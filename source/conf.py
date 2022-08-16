@@ -21,13 +21,6 @@ import shutil
 
 sys.path.insert(0, os.path.abspath('.'))
 source_root=os.path.abspath('.')
-bin_path=os.path.dirname(subprocess.check_output(['which', 'turbo-genius.sh']).decode('utf-8'))
-turbo_root=os.path.abspath(os.path.join(bin_path, '../'))
-turbo_doc=os.path.abspath(os.path.join(turbo_root, 'doc'))
-turbo_genius_root=os.path.abspath(os.path.join(turbo_root, 'turbo_genius_dist'))
-turbo_genius_modules=os.path.abspath(os.path.join(turbo_root, 'turbo_genius_dist/turbo_genius'))
-sys.path.insert(0, turbo_genius_root)
-sys.path.insert(0, turbo_genius_modules)
 
 import sphinx_rtd_theme
 import datetime
@@ -200,36 +193,3 @@ texinfo_documents = [
      author, 'TurboRVB_userguides', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-# -- Readme Integration-----------------------------------------------------
-"""
-readme_doc_list = [os.path.split(f)[1] for f in glob.glob(turbo_doc+'/*.README')]
-readme_exist_list = [os.path.split(f)[1] for f in glob.glob(source_root+'/_sources/00users_manual/01turborvb/98readmes/*.README')]
-copy_readme_list = set(readme_doc_list) & set(readme_exist_list)
-print("=====Copy Readme======")
-
-for copy_readme in copy_readme_list:
-    print(" Copy " + copy_readme)
-    shutil.copyfile(turbo_doc+"/"+copy_readme, source_root+"/_sources/00users_manual/01turborvb/98readmes/"+copy_readme)
-
-for i in range(65, 91):
-    alphabet=chr(i)
-    l_start = [s for s in copy_readme_list if s.startswith(alphabet.upper()) or s.startswith(alphabet.lower())]
-    if len(l_start) > 0:
-        print(f"^^^")
-        print(alphabet.upper())
-        print(f"^^^")
-
-        print("")
-        print(".. toctree::")
-        print("   :maxdepth: 1")
-        print("")
-        
-        for l_ in l_start:
-            print("   ./98readmes/"+l_)
-        
-        print("")
-
-sys.exit()
-"""

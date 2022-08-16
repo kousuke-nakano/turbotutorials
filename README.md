@@ -21,12 +21,12 @@ The document can be built just by typing::
     
 in the root directory (i.e., turborvb_userguides/). The generated documents are::
 
-     html version : turborvb_userguides -> build -> html -> index.html
-     latex-pdf version : turborvb_userguides -> build -> latex -> index.html
+     html version : turbotutorials -> build -> html -> index.html
+     latex-pdf version : turbotutorials -> build -> latex -> index.html
 
 The latex-pdf version is automatically converted from the html files using sphinx. So, please update the source/_sources/.../***.rst files even if you want to edit the pdf one.
    
-Enjoy TurboRVB and Sphinx.
+Enjoy TurboRVB :-)
 
 Kosuke Nakano
 
