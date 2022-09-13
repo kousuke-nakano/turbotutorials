@@ -225,7 +225,7 @@ This is a generated ``makefort10.input``.
 
    We have cut first few orbitals from the basis sets for atomic wavefunction as well as for the Jastrow part (``nshelldet`` and ``nshelljas`` should be changed accordingly) by the option ``-cutbasis``. The basis set can be automatically cut by using the ``--cutbasis`` flag as a command line argument while generating the makefort10 input. It cuts the basis set based on the AZ algorithm. An empirical criteria is :math:`\eta \ge 8 \times Z^2` in the :math:`s` channel, where :math:`Z = \rm{atomic number}`. For example, we can discard the topmost :math:`\eta = 33.87 \ge 8 \times 1^2`. The cut :math:`s` orbitals are implicitly compensated by the one body Jastrow term  (See `J. Chem. Theory Comput. 2019, 15, 7, 4044-4055 <https://doi.org/10.1021/acs.jctc.9b00295>`_ ).
 
-For explanations of the input variables, please refer to the :ref:`turbo_rvb_manual_top`, :ref:`turborvbtutorial_0101_01_01`, and/or README.
+For explanations of the input variables, please refer to the doc files in the TurboRVB repository.
 
 .. _turbogeniustutorial_0101_01_02:
 

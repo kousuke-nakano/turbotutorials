@@ -6,8 +6,10 @@
 TurboWorkflows tutorials 
 ===========================================
 
-.. figure:: /_static/07logo/logo2.png
+.. figure:: /_static/07logo/logo3.jpg
     :width: 600px
 
 Here are examples of various TurboWorkflows calculations.
+
+In progress!!
 

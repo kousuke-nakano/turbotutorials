@@ -74,7 +74,6 @@ Here are examples of various calculations with TurboRVB via Turbo-Genius.
 .. toctree::
    :maxdepth: 3
    
-   ./00installation.rst
    ./01_01H2-dimer/tutorial.rst
    ./02_02C-dimer/tutorial.rst
    ./03_01Hydrogen_chain/tutorial.rst
