@@ -11,5 +11,12 @@ TurboWorkflows tutorials
 
 Here are examples of various TurboWorkflows calculations.
 
-In progress!!
+.. toctree::
+   :maxdepth: 3
+   
+   ./01_CO-dimer/tutorial.rst
+   ./02_pyscf-HF_turbo-VMC_molecules/tutorial.rst
+   ./03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.rst
+   ./04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.rst
+
 
