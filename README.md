@@ -10,13 +10,13 @@ This document includes ``TurboRVB``, ``TurboGenius``, and ``TurboWorkflows`` tut
     pip install sphinx
     pip install sphinx_rtd_theme
 
-The document can be built just by typing::
+The document can be built just by typing
 
     make html
     or
     make pdflatex
     
-in the root directory (i.e., turborvb_userguides/). The generated documents are::
+in the root directory (i.e., ``turbotutorials/``). The generated documents are
 
      html version : turbotutorials -> build -> html -> index.html
      latex-pdf version : turbotutorials -> build -> latex -> index.html
