@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01_CO-dimer &mdash; Turbotutorials Updated on 24/04/2023 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="02_pyscf-HF_turbo-VMC_molecules" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html" />
+    <link rel="prev" title="TurboWorkflows tutorials" href="../00index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 24/04/2023
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">01_CO-dimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html">02_pyscf-HF_turbo-VMC_molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.html">03_pyscf-HF_turbo-VMC_crystals_at_gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html">04_pyscf-HF_turbo-VMC_crystals_at_complex</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows tutorials</a></li>
+      <li class="breadcrumb-item active">01_CO-dimer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows/01_CO-dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="co-dimer">
+<span id="turboworkflowstutorial-01"></span><h1>01_CO-dimer<a class="headerlink" href="#co-dimer" title="Permalink to this heading">¶</a></h1>
+<p>From this tutorial, you can learn how to compute the potential energy surface of the CO dimer using <cite>turboworkflows</cite>.
+Here is a python script to compute it.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../../_images/CO_PES.png"><img alt="../../../_images/CO_PES.png" src="../../../_images/CO_PES.png" style="width: 700px;" /></a>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+
+<span class="c1"># python packages</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># turboworkflows packages</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_encapsulated</span> <span class="kn">import</span> <span class="n">eWorkflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_lrdmc</span> <span class="kn">import</span> <span class="n">LRDMC_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_vmc</span> <span class="kn">import</span> <span class="n">VMC_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_pyscf</span> <span class="kn">import</span> <span class="n">PySCF_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_trexio</span> <span class="kn">import</span> <span class="n">TREXIO_convert_to_turboWF</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_vmcopt</span> <span class="kn">import</span> <span class="n">VMCopt_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_collections</span> <span class="kn">import</span> <span class="n">Jastrowcopy_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_lanchers</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">Variable</span>
+
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="n">max_d</span><span class="o">=</span><span class="mf">1.30</span>
+<span class="n">min_d</span><span class="o">=</span><span class="mf">0.90</span>
+<span class="n">num_d</span><span class="o">=</span><span class="mi">11</span>
+
+<span class="n">pid</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;turboworkflows.pid&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">result_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">result_dir</span><span class="p">)</span>
+
+<span class="n">d_list</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">min_d</span><span class="p">,</span> <span class="n">max_d</span><span class="p">,</span> <span class="n">num_d</span><span class="p">)]</span>
+<span class="n">cworkflows_list</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="n">d_ref</span><span class="o">=</span><span class="n">d_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d_list</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;d_list=</span><span class="si">{</span><span class="n">d_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;d_ref=</span><span class="si">{</span><span class="n">d_ref</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># jastrow basis dictionary</span>
+<span class="n">jastrow_basis_dict</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       1.637494  1.00000000</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       0.921552  1.00000000</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       0.409924  1.00000000</span>
+<span class="sd">        P  1</span>
+<span class="sd">        1       0.935757  1.00000000</span>
+<span class="sd">        &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;O&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       1.686633  1.00000000</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       0.237997  1.00000000</span>
+<span class="sd">        S  1</span>
+<span class="sd">        1       0.125346  1.00000000</span>
+<span class="sd">        P  1</span>
+<span class="sd">        1       1.331816  1.00000000</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">d_list</span><span class="p">:</span>
+    <span class="n">H2_molecule</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)])</span>
+    <span class="n">H2_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CO_</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">)</span>
+
+    <span class="n">pyscf_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;CO_</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">PySCF_workflow</span><span class="p">(</span>
+            <span class="c1">## structure file (mandatory)</span>
+            <span class="n">structure_file</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;CO_</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">,</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;kagayaki&quot;</span><span class="p">,</span>
+            <span class="n">cores</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+            <span class="n">openmp</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+            <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;DEFAULT&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>  <span class="c1"># sec.</span>
+            <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+            <span class="c1">## pyscf</span>
+            <span class="n">pyscf_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">pyscf_pkl_name</span><span class="o">=</span><span class="s2">&quot;pyscf_genius&quot;</span><span class="p">,</span>
+            <span class="n">charge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">spin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;ccecp-ccpvqz&quot;</span><span class="p">,</span>
+            <span class="n">ecp</span><span class="o">=</span><span class="s2">&quot;ccecp&quot;</span><span class="p">,</span>
+            <span class="n">scf_method</span><span class="o">=</span><span class="s2">&quot;DFT&quot;</span><span class="p">,</span>  <span class="c1"># HF or DFT</span>
+            <span class="n">dft_xc</span><span class="o">=</span><span class="s2">&quot;LDA_X,LDA_C_PZ&quot;</span><span class="p">,</span>
+            <span class="n">mp2_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">pyscf_output</span><span class="o">=</span><span class="s2">&quot;out.pyscf&quot;</span><span class="p">,</span>
+            <span class="n">pyscf_chkfile</span><span class="o">=</span><span class="s2">&quot;pyscf.chk&quot;</span><span class="p">,</span>
+            <span class="n">solver_newton</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">exp_to_discard</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+            <span class="n">kpt</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># scaled_kpts!! i.e., crystal coord.</span>
+            <span class="n">kpt_grid</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pyscf_workflow</span><span class="p">)</span>
+
+    <span class="n">trexio_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trexio.hdf5&#39;</span><span class="p">)],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">TREXIO_convert_to_turboWF</span><span class="p">(</span>
+            <span class="n">trexio_filename</span><span class="o">=</span><span class="s2">&quot;trexio.hdf5&quot;</span><span class="p">,</span>
+            <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">jastrow_basis_dict</span><span class="o">=</span><span class="n">jastrow_basis_dict</span><span class="p">,</span>
+            <span class="n">max_occ_conv</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">mo_num_conv</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">trexio_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">trexio_pkl_name</span><span class="o">=</span><span class="s2">&quot;trexio_genius&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">trexio_workflow</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">d</span><span class="o">!=</span><span class="n">d_ref</span><span class="p">:</span>
+        <span class="n">copyjas_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;copyjas-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;copyjas-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d_ref</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)],</span>
+            <span class="n">rename_input_files</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;fort.10&quot;</span><span class="p">,</span> <span class="s2">&quot;fort.10_new&quot;</span><span class="p">,</span> <span class="s2">&quot;pseudo.dat&quot;</span><span class="p">],</span>
+            <span class="n">workflow</span><span class="o">=</span><span class="n">Jastrowcopy_workflow</span><span class="p">(</span>
+                <span class="n">jastrowcopy_fort10_to</span><span class="o">=</span><span class="s2">&quot;fort.10&quot;</span><span class="p">,</span>
+                <span class="n">jastrowcopy_fort10_from</span><span class="o">=</span><span class="s2">&quot;fort.10_new&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">copyjas_workflow</span><span class="p">)</span>
+
+        <span class="n">vmcopt_input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;copyjas-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;copyjas-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">vmcopt_input_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span> <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)]</span>
+
+    <span class="n">vmcopt_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="n">vmcopt_input_files</span><span class="p">,</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">VMCopt_workflow</span><span class="p">(</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;kagayaki&quot;</span><span class="p">,</span>
+            <span class="n">cores</span><span class="o">=</span><span class="mi">1536</span><span class="p">,</span>
+            <span class="n">openmp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;LARGE&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span> <span class="c1"># sec.</span>
+            <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+            <span class="c1">## vmcopt</span>
+            <span class="n">vmcopt_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">vmcopt_pkl_name</span><span class="o">=</span><span class="s2">&quot;vmcopt_genius&quot;</span><span class="p">,</span>
+            <span class="n">vmcopt_target_error_bar</span><span class="o">=</span><span class="mf">1.0e-3</span><span class="p">,</span>  <span class="c1"># Ha</span>
+            <span class="n">vmcopt_trial_optsteps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">vmcopt_trial_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+            <span class="n">vmcopt_production_optsteps</span><span class="o">=</span><span class="mi">1200</span><span class="p">,</span>
+            <span class="n">vmcopt_optwarmupsteps_ratio</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+            <span class="n">vmcopt_bin_block</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">vmcopt_warmupblocks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">vmcopt_optimizer</span><span class="o">=</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span>
+            <span class="n">vmcopt_learning_rate</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+            <span class="n">vmcopt_regularization</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+            <span class="n">vmcopt_onebody</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">vmcopt_twobody</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">vmcopt_det_mat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_jas_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">vmcopt_det_basis_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_jas_basis_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_det_basis_coeff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_jas_basis_coeff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_num_walkers</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># default -1 -&gt; num of MPI process.</span>
+            <span class="n">vmcopt_twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmcopt_kpoints</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">vmcopt_maxtime</span><span class="o">=</span><span class="mi">172000</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vmcopt_workflow</span><span class="p">)</span>
+
+    <span class="n">vmc_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span>
+                    <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">VMC_workflow</span><span class="p">(</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;kagayaki&quot;</span><span class="p">,</span>
+            <span class="n">cores</span><span class="o">=</span><span class="mi">1536</span><span class="p">,</span>
+            <span class="n">openmp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;LARGE&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="c1"># sec.</span>
+            <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+            <span class="c1">## vmc</span>
+            <span class="n">vmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">vmc_pkl_name</span><span class="o">=</span><span class="s2">&quot;vmc_genius&quot;</span><span class="p">,</span>
+            <span class="n">vmc_target_error_bar</span><span class="o">=</span><span class="mf">7.0e-5</span><span class="p">,</span> <span class="c1"># Ha</span>
+            <span class="n">vmc_trial_steps</span><span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+            <span class="n">vmc_bin_block</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">vmc_warmupblocks</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="n">vmc_num_walkers</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># default -1 -&gt; num of MPI process.</span>
+            <span class="n">vmc_twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmc_kpoints</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">vmc_force_calc_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">vmc_maxtime</span><span class="o">=</span><span class="mi">172000</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vmc_workflow</span><span class="p">)</span>
+
+    <span class="n">lrdmc_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lrdmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lrdmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span>
+                    <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">LRDMC_workflow</span><span class="p">(</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;kagayaki&quot;</span><span class="p">,</span>
+            <span class="n">cores</span><span class="o">=</span><span class="mi">1536</span><span class="p">,</span>
+            <span class="n">openmp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;LARGE&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>  <span class="c1"># sec.</span>
+            <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+            <span class="c1">## lrdmc</span>
+            <span class="n">lrdmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">lrdmc_pkl_name</span><span class="o">=</span><span class="s2">&quot;lrdmc_genius&quot;</span><span class="p">,</span>
+            <span class="n">lrdmc_target_error_bar</span><span class="o">=</span><span class="mf">7.0e-5</span><span class="p">,</span>  <span class="c1"># Ha</span>
+            <span class="n">lrdmc_trial_steps</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+            <span class="n">lrdmc_bin_block</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">lrdmc_warmupblocks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">lrdmc_correcting_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="n">lrdmc_trial_etry</span><span class="o">=</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;energy&#39;</span><span class="p">),</span>
+            <span class="n">lrdmc_alat</span><span class="o">=-</span><span class="mf">0.25</span><span class="p">,</span>
+            <span class="n">lrdmc_nonlocalmoves</span><span class="o">=</span><span class="s2">&quot;dla&quot;</span><span class="p">,</span>  <span class="c1"># tmove, dla, dlatm</span>
+            <span class="n">lrdmc_num_walkers</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># default -1 -&gt; num of MPI process.</span>
+            <span class="n">lrdmc_twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">lrdmc_kpoints</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">lrdmc_force_calc_flag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">lrdmc_maxtime</span><span class="o">=</span><span class="mi">172000</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lrdmc_workflow</span><span class="p">)</span>
+
+<span class="n">launcher</span><span class="o">=</span><span class="n">Launcher</span><span class="p">(</span><span class="n">cworkflows_list</span><span class="o">=</span><span class="n">cworkflows_list</span><span class="p">,</span> <span class="n">dependency_graph_draw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">launcher</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../00index.html" class="btn btn-neutral float-left" title="TurboWorkflows tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html" class="btn btn-neutral float-right" title="02_pyscf-HF_turbo-VMC_molecules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>98 Wavefuntion optimization &mdash; Turbotutorials Updated on 24/04/2023 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Turbo-Genius tutorials" href="../../02turbogenius/00index.html" />
+    <link rel="prev" title="02_01Lithium_dimer" href="../02_01Li-dimer/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 24/04/2023
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboRVB tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_01Hydrogen_dimer/tutorial.html">01_01Hydrogen_dimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../01_02Hydrogen_dimer/tutorial.html">01_02Hydrogen_dimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_01Li-dimer/tutorial.html">02_01Lithium_dimer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">98 Wavefuntion optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-the-vmc-optimization-does">00 What the VMC optimization does?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimization-method">01 Optimization method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-hyperparameters">02 important hyperparameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tpar">tpar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parr">parr</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#order-of-optimizing-variational-parameters">03 Order of optimizing variational parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#criterium-of-optimization-convergence">04 Criterium of optimization convergence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hyperparameters-in-the-optimization-methods">05 Hyperparameters in the optimization methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nweight">05-01 nweight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turborvbtutorial-98-05-02">05-02 tpar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turborvbtutorial-98-05-03">05-03 parr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ncg">05-04 ncg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#npbra-and-parcurpar">05-05 npbra and parcurpar</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows/00index.html">TurboWorkflows tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboRVB tutorials</a></li>
+      <li class="breadcrumb-item active">98 Wavefuntion optimization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/01turborvb/98_wf_optimization/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="wavefuntion-optimization">
+<span id="turborvbtutorial-98"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">98 Wavefuntion optimization</a><a class="headerlink" href="#wavefuntion-optimization" title="Permalink to this heading">¶</a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#wavefuntion-optimization" id="id3">98 Wavefuntion optimization</a></p>
+<ul>
+<li><p><a class="reference internal" href="#what-the-vmc-optimization-does" id="id4">00 What the VMC optimization does?</a></p></li>
+<li><p><a class="reference internal" href="#optimization-method" id="id5">01 Optimization method</a></p></li>
+<li><p><a class="reference internal" href="#important-hyperparameters" id="id6">02 important hyperparameters</a></p></li>
+<li><p><a class="reference internal" href="#order-of-optimizing-variational-parameters" id="id7">03 Order of optimizing variational parameters</a></p></li>
+<li><p><a class="reference internal" href="#criterium-of-optimization-convergence" id="id8">04 Criterium of optimization convergence</a></p></li>
+<li><p><a class="reference internal" href="#hyperparameters-in-the-optimization-methods" id="id9">05 Hyperparameters in the optimization methods</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="what-the-vmc-optimization-does">
+<span id="turborvbtutorial-98-00"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">00 What the VMC optimization does?</a><a class="headerlink" href="#what-the-vmc-optimization-does" title="Permalink to this heading">¶</a></h2>
+<p>From this document, you can learn how to optimize a wavefunction at the VMC level in practice. The most difficult operation in quantum Monte Carlo simulations is to optimize a many-body wavefunction at the VMC level. Here, we describe how to do it in practice. You can also refer to the optimization part (VII. Optimization of WFs) of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> article.</p>
+<p>In Variational Monte Carlo, we evaluate the following integral using the Markov-chain monte Carlo method.</p>
+<div class="math">
+<p><span class="math">E = \cfrac{\int d \vec{R} \cdot \Psi^{*} \left( \vec{R} \right) \cdot \hat{\cal{H}} \Psi \left( \vec{R} \right)}{\int d \vec{R} \cdot \Psi^{*} \left( \vec{R} \right) \Psi \left( \vec{R} \right)}</span></p>
+</div><p>From the variational principle, the closer to the exact the WF is, the lower the energy becomes.
+There once we can evaluate the above integral with some variational parameters <span class="math">\vec{\alpha}</span>, we can seek exact solution by minimizing the parameters.</p>
+<div class="math">
+<p><span class="math">E\left(\vec{\alpha}\right) = \cfrac{\int d \vec{R} \cdot \Psi^{*} \left( \vec{R}, \vec{\alpha} \right) \cdot \hat{\cal{H}} \Psi \left( \vec{R}, \vec{\alpha} \right)}{\int d \vec{R} \cdot \Psi^{*} \left( \vec{R}, \vec{\alpha} \right) \Psi \left( \vec{R}, \vec{\alpha} \right)} \ge E_0</span></p>
+</div></section>
+<section id="optimization-method">
+<span id="turborvbtutorial-98-01"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">01 Optimization method</a><a class="headerlink" href="#optimization-method" title="Permalink to this heading">¶</a></h2>
+<p>There are two major optimization methods are implemented in TurboRVB.
+One is the so-called stochastic reconfiguration (SR) method (<code class="docutils literal notranslate"><span class="pre">itestr4</span></code> = -9,-5),
+and the other one is the so-called linear method (LR) with conjugate gradient (<code class="docutils literal notranslate"><span class="pre">itestr4</span></code> = -4,-8). Notice that -9 and -4 do not optimize exponents of the determinant part, while -5 and -8 optimize them.</p>
+<p>In general, the LR method works very efficiently and properly when the number of variational parmeters is not so large. For example, less than 1000? If you optimize more than 1000 variational parameters, we recommend the SR method.</p>
+</section>
+<section id="important-hyperparameters">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">02 important hyperparameters</a><a class="headerlink" href="#important-hyperparameters" title="Permalink to this heading">¶</a></h2>
+<p>The most important parameters in practice are</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>tpar: Acceleration parameter (i.e., learning rate.)</p></li>
+<li><p>parr: Regularization (c.f., LASSO)</p></li>
+</ul>
+</div></blockquote>
+<section id="tpar">
+<h3>tpar<a class="headerlink" href="#tpar" title="Permalink to this heading">¶</a></h3>
+<p>For example, in the stochastic reconfiguration (SR) method, the variational parameters
+are updated as:</p>
+<div class="math">
+<p><span class="math">{\alpha _k} \to {\alpha _k} + \Delta  \cdot {\left( {{{{\boldsymbol{\mathcal{S'}}}}^{ - 1}}{\mathbf{f}}} \right)_k},</span></p>
+</div><p>where <span class="math">\Delta</span> is <code class="docutils literal notranslate"><span class="pre">tpar</span></code>, <span class="math">{\mathbf{f}}</span> is the general force vector, and <span class="math">{\boldsymbol{\mathcal{S'}}}</span> is
+the variance-covariance matrix which is stochastically evaluated by means of <span class="math">M</span> configuration samples <span class="math">{\mathbf{x}} = \left\{ {{{\mathbf{x}}_1},{{\mathbf{x}}_2}, \ldots {{\mathbf{x}}_M}} \right\}</span>:</p>
+<div class="math">
+<p><span class="math">{{\mathcal{S}}_{k,k'}} = \left[ {\frac{1}{M}\sum\limits_{i = 1}^M {\left( {{O_k}\left( {{{\mathbf{x}}_i}} \right) - {{\bar O}_k}} \right) ^ * \left( {{O_{k'}}\left( {{{\mathbf{x}}_i}} \right) - {{\bar O}_{k'}}} \right)} } \right],</span></p>
+</div><p>where <span class="math">{O_k}\left( {{{\mathbf{x}}_i}} \right) = \frac{{\partial \ln \Psi \left( {{{\mathbf{x}}_i}} \right)}}{{\partial {\alpha _k}}}</span> and <span class="math">{{\bar O}_k} = \frac{1}{M}\sum\limits_{i = 1}^M {{O_k}\left( {{{\mathbf{x}}_i}} \right)}</span>.</p>
+</section>
+<section id="parr">
+<h3>parr<a class="headerlink" href="#parr" title="Permalink to this heading">¶</a></h3>
+<p>The straightforward implementation of the SR method is not stable mainly because the statistical noise sometimes makes the matrix <span class="math">{\boldsymbol{\mathcal{S}}}</span> ill-conditioned,
+which deteriorates the efficiency of the optimization method. Therefore, in practice, the diagonal elements of the  preconditioning matrix <span class="math">{\mathcal{S}}</span> are shifted by a small positive parameter (<span class="math">\varepsilon</span>) as:</p>
+<div class="math">
+<p><span class="math">{s'_{i,i}} = {s_{i.i}}(1 + \varepsilon ),</span></p>
+</div><p>where <span class="math">\varepsilon</span> = <code class="docutils literal notranslate"><span class="pre">parr</span></code> in TurboRVB.</p>
+<p>This modification improves the efficiency of the optimization by  several orders of magnitude.</p>
+</section>
+</section>
+<section id="order-of-optimizing-variational-parameters">
+<span id="turborvbtutorial-98-03"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">03 Order of optimizing variational parameters</a><a class="headerlink" href="#order-of-optimizing-variational-parameters" title="Permalink to this heading">¶</a></h2>
+<p>The so-called Andrea-Zen’s method empirically works very well for the LR method.
+Indeed, to avoid local minima in the Jastrow, the developers have experienced that it is important at the beginning to optimize only the one-body Jastrow part.
+According to this procedure, one should optimize variational parameters in the following order.</p>
+<ol class="arabic simple">
+<li><p>Put a reasonable two-body Jastrow parameter (typically ~ 1.0 for -6, -15, -22),</p></li>
+<li><p>Optimize homogenous and inhomogeneous one-body Jastrows (two-body and three-body are fixed),</p></li>
+<li><p>Optimize three-body Jastrows (two-body fixed), and</p></li>
+<li><p>Optimize two-body Jastrow(s) and the determinant part,</p></li>
+</ol>
+<p>wherein</p>
+<ol class="arabic simple" start="2">
+<li><p>One should set <code class="docutils literal notranslate"><span class="pre">iesfree=1</span></code> and <code class="docutils literal notranslate"><span class="pre">iesd=1</span></code>, and put <code class="docutils literal notranslate"><span class="pre">twobodyoff=.true.</span></code> and <code class="docutils literal notranslate"><span class="pre">iesdtwobodyoff=.true.</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;parameters</span></code> section,</p></li>
+<li><p>One should remove <code class="docutils literal notranslate"><span class="pre">iesdtwobodyoff=.true.</span></code> option, and</p></li>
+<li><p>One should remove <code class="docutils literal notranslate"><span class="pre">twobodyoff=.true.</span></code> and <code class="docutils literal notranslate"><span class="pre">iesdtwobodyoff=.true.</span></code>, and set <code class="docutils literal notranslate"><span class="pre">iessw=1</span></code> (determinant optimization).</p></li>
+</ol>
+</section>
+<section id="criterium-of-optimization-convergence">
+<span id="turborvbtutorial-98-04"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">04 Criterium of optimization convergence</a><a class="headerlink" href="#criterium-of-optimization-convergence" title="Permalink to this heading">¶</a></h2>
+<p>In practice, during an optimization, the code monitors the variational energy (<span class="math">E\left( \boldsymbol{\alpha} \right)</span>) and the maximum value of the signal to noise ratio among all  the force components, which is denoted as <code class="docutils literal notranslate"><span class="pre">devmax</span></code>  in the code:</p>
+<div class="math">
+<p><span class="math">devmax \equiv \max_k \left( {\left| {\frac{{{f_k}}}{{{\sigma _{{f_k}}}}}} \right|} \right)</span></p>
+</div><p>where <span class="math">{\sigma _{{f_k}}}</span> represents the estimated error bar of a general force <span class="math">{f_k} =- \frac{{\partial E\left( \alpha  \right)}}{{\partial {\alpha _k}}} =  - \frac{\partial }{{\partial {\alpha _k}}}\frac{{\braket{{\Psi _\alpha }|\hat {\mathcal{H}}|{\Psi _\alpha }}}}{{\braket{{\Psi _\alpha }|{\Psi _\alpha }}}}</span>.</p>
+<p>You can plot <code class="docutils literal notranslate"><span class="pre">energies</span></code> by <code class="docutils literal notranslate"><span class="pre">plot_Energy.sh</span></code></p>
+<a class="reference internal image-reference" href="../../../_images/energy.png"><img alt="../../../_images/energy.png" class="align-center" src="../../../_images/energy.png" style="width: 316.5px; height: 238.0px;" /></a>
+<p>You can also plot <code class="docutils literal notranslate"><span class="pre">devmaxs</span></code> by <code class="docutils literal notranslate"><span class="pre">plot_devmax.sh</span></code></p>
+<a class="reference internal image-reference" href="../../../_images/devmax.png"><img alt="../../../_images/devmax.png" class="align-center" src="../../../_images/devmax.png" style="width: 316.5px; height: 238.0px;" /></a>
+<p>The devepoler has experience that, at least, <code class="docutils literal notranslate"><span class="pre">devmax</span></code> should be smaller
+than 4.0 after optimization. However, the developers also have experienced
+that this simple criteria is not sufficient to obtain a converged result.</p>
+<p>Instead, the developers recently checked if the <code class="docutils literal notranslate"><span class="pre">two-body</span> <span class="pre">Jastrow</span></code> and the <code class="docutils literal notranslate"><span class="pre">inhomogeneous</span> <span class="pre">one-body</span> <span class="pre">Jastrows</span></code> are also converged.
+This seems an empirically good criterium of optimization convergence,
+though it is still under debate.</p>
+</section>
+<section id="hyperparameters-in-the-optimization-methods">
+<span id="turborvbtutorial-98-05"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">05 Hyperparameters in the optimization methods</a><a class="headerlink" href="#hyperparameters-in-the-optimization-methods" title="Permalink to this heading">¶</a></h2>
+<p>There are several hyperparameters in the optimization method.
+Although a proper choice for some hyperparameters are still under debate,
+we show a tentative guidline.</p>
+<section id="nweight">
+<span id="turborvbtutorial-98-05-01"></span><h3>05-01 nweight<a class="headerlink" href="#nweight" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nweight</span></code> is the number of Monte Carlo sampling per optimization step.
+For the LR method, the number of samplings in VMC should be much larger than the number of variational parameters, i.e., <code class="docutils literal notranslate"><span class="pre">nweight</span></code> <span class="math">\times</span> <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">(mpi)</span> <span class="pre">tasks</span></code> <span class="math">&gt;</span> 5 <span class="math">\sim</span> 10 <span class="math">\times</span> <span class="math">p</span>, where <span class="math">p</span> is the number of variational parameters.</p>
+<p>For the SR method, <code class="docutils literal notranslate"><span class="pre">nweight</span></code> <span class="math">\times</span> <code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">(mpi)</span> <span class="pre">tasks</span></code> can be set even or smaller than <span class="math">p</span> as long as <code class="docutils literal notranslate"><span class="pre">parr</span></code> is set sufficiently large.</p>
+</section>
+<section id="turborvbtutorial-98-05-02">
+<span id="id1"></span><h3>05-02 tpar<a class="headerlink" href="#turborvbtutorial-98-05-02" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">tpar</span></code> is an acceleration hyperparameter in optimization, corresponding to <span class="math">Delta</span> in Eq.131 and that in Eq.139 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper for the LR and SR methods, respectively. In the machine learning community, <code class="docutils literal notranslate"><span class="pre">tpar</span></code> is also called <code class="docutils literal notranslate"><span class="pre">learning</span> <span class="pre">rate</span></code>.
+For the LR method, <code class="docutils literal notranslate"><span class="pre">tpar</span></code> = 0.35 usually works well.
+For the SR method, one should set <code class="docutils literal notranslate"><span class="pre">tpar</span></code> much smaller, typically 1.0d-4.</p>
+<p><code class="docutils literal notranslate"><span class="pre">adjust_tpar</span></code> is a useful option recently introduced by Andrea Tirelli, to find an optimal <code class="docutils literal notranslate"><span class="pre">tpar</span></code>. Indeed, if <code class="docutils literal notranslate"><span class="pre">adjust_tpar</span></code> is set true, <code class="docutils literal notranslate"><span class="pre">tpar</span></code> gradually increases as optimization iteration goes on after 100 equilibrium iterations.</p>
+<p><code class="docutils literal notranslate"><span class="pre">beta_learning</span></code> is also a useful option to realize a stable optimization. <code class="docutils literal notranslate"><span class="pre">beta_learning</span> <span class="pre">=</span> <span class="pre">0.90</span></code> is a good starting point?</p>
+</section>
+<section id="turborvbtutorial-98-05-03">
+<span id="id2"></span><h3>05-03 parr<a class="headerlink" href="#turborvbtutorial-98-05-03" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">parr</span></code> is a regularization parameter which is added to the diagonal elements of a preconditioning matrix S, in Eq.128 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.
+In the LR method, XXX</p>
+<p><span class="red">KN is now working…</span></p>
+</section>
+<section id="ncg">
+<span id="turborvbtutorial-98-05-04"></span><h3>05-04 ncg<a class="headerlink" href="#ncg" title="Permalink to this heading">¶</a></h3>
+<p>This works only for the LR method.</p>
+<p><span class="red">KN is now working…</span></p>
+</section>
+<section id="npbra-and-parcurpar">
+<span id="turborvbtutorial-98-05-05"></span><h3>05-05 npbra and parcurpar<a class="headerlink" href="#npbra-and-parcurpar" title="Permalink to this heading">¶</a></h3>
+<p>This works only for the LR method.</p>
+<p><span class="red">KN is now working…</span></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../02_01Li-dimer/tutorial.html" class="btn btn-neutral float-left" title="02_01Lithium_dimer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../02turbogenius/00index.html" class="btn btn-neutral float-right" title="Turbo-Genius tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
