@@ -3,8 +3,8 @@
 name: sphinx-deploy-gh-pages
 
 on:
-  push:
-    branches: [ "main", "devel"]
+  release:
+    types: [published]
 
 jobs:
   sphinx-build:
@@ -25,9 +25,9 @@ jobs:
       run: |
         make html
 
-    - name: deploy
+    - name: Deploy the sphinx document.
       uses: peaceiris/actions-gh-pages@v3
-      #if: ${{ github.ref == 'refs/heads/main' }}
+      if: ${{ github.ref == 'refs/heads/main' }}
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./build/html
