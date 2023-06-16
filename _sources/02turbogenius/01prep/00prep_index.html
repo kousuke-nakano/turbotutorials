@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting from a built-in DFT calculation &mdash; Turbotutorials Updated on 16/06/2023 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="01Hydrogen_dimer" href="01H2-dimer/tutorial.html" />
+    <link rel="prev" title="Turbo-Genius tutorials" href="../00index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 16/06/2023
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">Turbo-Genius tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Starting from a built-in DFT calculation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01H2-dimer/tutorial.html">01Hydrogen_dimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html">02Carbon_dimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_chain/tutorial.html">03Hydrogen_chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html">04Diamond with k twist (pi,pi,pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05Diamond_twist_average/tutorial.html">05Diamond with k twist average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html">06h-BN with finite-size extrapolation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02PySCF/00PySCF_index.html">Starting from a PySCF calculation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows/00index.html">TurboWorkflows tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">Turbo-Genius tutorials</a></li>
+      <li class="breadcrumb-item active">Starting from a built-in DFT calculation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/02turbogenius/01prep/00prep_index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="starting-from-a-built-in-dft-calculation">
+<h1>Starting from a built-in DFT calculation<a class="headerlink" href="#starting-from-a-built-in-dft-calculation" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../../_images/logo2.png"><img alt="../../../_images/logo2.png" src="../../../_images/logo2.png" style="width: 600px;" /></a>
+</figure>
+<p>Here are examples of various calculations with TurboRVB via Turbo-Genius, starting from the built-in DFT code, prep.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="01H2-dimer/tutorial.html">01Hydrogen_dimer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#important-introduction-for-turbogenius">00 Important introduction for TurboGenius</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#preparing-a-jdft-trial-wavefunction">01 Preparing a JDFT trial wavefunction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01H2-dimer/tutorial.html#preparing-a-makefort10-input-file">01-01 Preparing a makefort10.input file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01H2-dimer/tutorial.html#generating-a-jagps-template">01-02 Generating a JAGPs template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01H2-dimer/tutorial.html#adding-molecular-orbitals-to-the-jagps-template">01-03 Adding molecular orbitals to the JAGPs template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01H2-dimer/tutorial.html#run-dft">01-04 Run DFT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#jastrow-factor-optimization-wf-jdft">02 Jastrow factor optimization (WF=JDFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#vmc-wf-jdft">03 VMC (WF=JDFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#lrdmc-wf-jdft">04 LRDMC (WF=JDFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#lrdmc-wf-jdft-extrapolation">05 LRDMC (WF=JDFT) Extrapolation.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#convert-jdft-wf-to-jagp-one">06 Convert JDFT WF to JAGP one</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#conversion-check">07 Conversion check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#nodal-surface-optimization-wf-jsagps">08 Nodal surface optimization (WF=JsAGPs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#vmc-wf-jsagps">09 VMC (WF=JsAGPs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#lrdmc-wf-jsagps">10 LRDMC (WF=JsAGPs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#summary">11 Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#preparing-a-jagp-wavefuction-of-the-h-dimer-with-a-shorter-bond-distance">12 Preparing a JAGP wavefuction of the H dimer with a shorter bond distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#id3">13 Nodal surface optimization (WF=JsAGPs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#vmc-before-structural-optimization">14 VMC before structural optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#structural-optimization">15 Structural optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01H2-dimer/tutorial.html#vmc-after-structural-optimization">16 VMC after structural optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02C-dimer/tutorial.html">02Carbon_dimer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02C-dimer/tutorial.html#introduction">00 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02C-dimer/tutorial.html#c2-dimer-and-c-atom-jdft-ansatz">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#preparing-a-trial-wave-function">01-01 Preparing a trial wave function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#generating-a-jagps-template">01-02 Generating a JAGPs template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#generating-a-pseudo-potential-file">01-03 Generating a Pseudo potential file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#adding-molecular-orbitals-to-the-jagps-template">01-04 Adding molecular orbitals to the JAGPs template</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#run-dft">01-05 Run DFT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#jastrow-factor-optimization-wf-jdft">01-06 Jastrow factor optimization (WF=JDFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#vmc-wf-jdft">01-07 VMC (WF=JDFT)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#lrdmc-wf-jdft">01-08 LRDMC (WF=JDFT)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02C-dimer/tutorial.html#c2-dimer-and-c-atom-jsagps-ansatz">02 C<sub>2</sub> dimer and C atom - JsAGPs ansatz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#conversion-of-wf-wf-jsagps">02-01 Conversion of WF (WF=JsAGPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#vmc-optimization-wf-jsagps">02-02 VMC-optimization (WF=JsAGPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#vmc-wf-jsagps">02-03 VMC (WF=JsAGPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#lrdmc-wf-jsagps">02-04 LRDMC (WF=JsAGPs)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02C-dimer/tutorial.html#c2-dimer-and-c-atom-jagpu-ansatz">03 C<sub>2</sub> dimer and C atom - JAGPu ansatz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#prepration-of-a-wave-function">03-01 prepration of a wave function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#generate-a-trial-wave-function-using-dft-with-a-magnetic-moment-c2-dimer">03-02 Generate a trial wave function using DFT with a magnetic moment (C<sub>2</sub> dimer:).</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#check-local-magnetic-moments-c2-dimer">03-03 Check local magnetic moments (C<sub>2</sub> dimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#convert-jdft-wf-to-jagpu-one">03-04 Convert JDFT WF to JAGPu one</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#optimization-wf-jagpu">03-05 Optimization (WF=JAGPu)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#vmc-and-lrdmc">03-06 VMC and LRDMC</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02C-dimer/tutorial.html#c2-dimer-and-c-atom-jagp-jpf-ansatz">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one">04-01 (spin-singlet case) C<sub>2</sub> dimer: Convert JAGPu WF to JAGP one</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#spin-triplet-case-c-atom-convert-jagpu-wf-to-jagp-one">04-02 (spin-triplet case) C atom: Convert JAGPu WF to JAGP one</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02C-dimer/tutorial.html#vmc-opt-vmc-and-lrdmc">04-03 VMC-opt, VMC and LRDMC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03Hydrogen_chain/tutorial.html">03Hydrogen_chain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#introduction">00 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#hydrogen-chain-jdft-ansatz">01 Hydrogen-chain - JDFT ansatz</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#preparing-a-wave-function">01-01 Preparing a wave function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#run-dft">01-02 Run DFT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#jdft-ansatz-jastrow-optimization">02 JDFT ansatz - Jastrow optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#jdft-ansatz-vmc">03 JDFT ansatz - VMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_chain/tutorial.html#jdft-ansatz-lrdmc">04 JDFT ansatz - LRDMC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html">04Diamond with k twist (pi,pi,pi)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html#introduction">00 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html#dft">01 DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html#jastrow-optimization">02 Jastrow optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04Diamond_k_pi_pi_pi/tutorial.html#jdft-ansatz-vmc">03 JDFT ansatz - VMC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05Diamond_twist_average/tutorial.html">05Diamond with k twist average</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05Diamond_twist_average/tutorial.html#introduction">00 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05Diamond_twist_average/tutorial.html#dft">01 DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05Diamond_twist_average/tutorial.html#jastrow-optimization">02 Jastrow optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05Diamond_twist_average/tutorial.html#jdft-ansatz-vmc">03 JDFT ansatz - VMC</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html">06h-BN with finite-size extrapolation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html#introduction">00 Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html#dft">01 DFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html#jastrow-optimization">02 Jastrow optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html#jdft-ansatz-vmc">03 JDFT ansatz - VMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06hBN_finite_size_correction/tutorial.html#summary">04 Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../00index.html" class="btn btn-neutral float-left" title="Turbo-Genius tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01H2-dimer/tutorial.html" class="btn btn-neutral float-right" title="01Hydrogen_dimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

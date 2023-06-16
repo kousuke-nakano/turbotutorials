@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>02Carbon_dimer &mdash; Turbotutorials Updated on 16/06/2023 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="03Hydrogen_chain" href="../03Hydrogen_chain/tutorial.html" />
+    <link rel="prev" title="01Hydrogen_dimer" href="../01H2-dimer/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 16/06/2023
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">Turbo-Genius tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../00prep_index.html">Starting from a built-in DFT calculation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01H2-dimer/tutorial.html">01Hydrogen_dimer</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">02Carbon_dimer</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">00 Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c2-dimer-and-c-atom-jdft-ansatz">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c2-dimer-and-c-atom-jsagps-ansatz">02 C<sub>2</sub> dimer and C atom - JsAGPs ansatz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c2-dimer-and-c-atom-jagpu-ansatz">03 C<sub>2</sub> dimer and C atom - JAGPu ansatz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c2-dimer-and-c-atom-jagp-jpf-ansatz">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">03Hydrogen_chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04Diamond_k_pi_pi_pi/tutorial.html">04Diamond with k twist (pi,pi,pi)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05Diamond_twist_average/tutorial.html">05Diamond with k twist average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06hBN_finite_size_correction/tutorial.html">06h-BN with finite-size extrapolation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../02PySCF/00PySCF_index.html">Starting from a PySCF calculation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows/00index.html">TurboWorkflows tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">Turbo-Genius tutorials</a></li>
+          <li class="breadcrumb-item"><a href="../00prep_index.html">Starting from a built-in DFT calculation</a></li>
+      <li class="breadcrumb-item active">02Carbon_dimer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/02turbogenius/01prep/02C-dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="carbon-dimer">
+<span id="turbogeniustutorial-0202"></span><h1><a class="toc-backref" href="#id5" role="doc-backlink">02Carbon_dimer</a><a class="headerlink" href="#carbon-dimer" title="Permalink to this heading">¶</a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#carbon-dimer" id="id5">02Carbon_dimer</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id6">00 Introduction</a></p></li>
+<li><p><a class="reference internal" href="#c2-dimer-and-c-atom-jdft-ansatz" id="id7">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a></p>
+<ul>
+<li><p><a class="reference internal" href="#preparing-a-trial-wave-function" id="id8">01-01 Preparing a trial wave function</a></p></li>
+<li><p><a class="reference internal" href="#generating-a-jagps-template" id="id9">01-02 Generating a JAGPs template</a></p></li>
+<li><p><a class="reference internal" href="#generating-a-pseudo-potential-file" id="id10">01-03 Generating a Pseudo potential file</a></p></li>
+<li><p><a class="reference internal" href="#adding-molecular-orbitals-to-the-jagps-template" id="id11">01-04 Adding molecular orbitals to the JAGPs template</a></p></li>
+<li><p><a class="reference internal" href="#run-dft" id="id12">01-05 Run DFT</a></p></li>
+<li><p><a class="reference internal" href="#jastrow-factor-optimization-wf-jdft" id="id13">01-06 Jastrow factor optimization (WF=JDFT)</a></p></li>
+<li><p><a class="reference internal" href="#vmc-wf-jdft" id="id14">01-07 VMC (WF=JDFT)</a></p></li>
+<li><p><a class="reference internal" href="#lrdmc-wf-jdft" id="id15">01-08 LRDMC (WF=JDFT)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#c2-dimer-and-c-atom-jsagps-ansatz" id="id16">02 C<sub>2</sub> dimer and C atom - JsAGPs ansatz</a></p>
+<ul>
+<li><p><a class="reference internal" href="#conversion-of-wf-wf-jsagps" id="id17">02-01 Conversion of WF (WF=JsAGPs)</a></p></li>
+<li><p><a class="reference internal" href="#vmc-optimization-wf-jsagps" id="id18">02-02 VMC-optimization (WF=JsAGPs)</a></p></li>
+<li><p><a class="reference internal" href="#vmc-wf-jsagps" id="id19">02-03 VMC (WF=JsAGPs)</a></p></li>
+<li><p><a class="reference internal" href="#lrdmc-wf-jsagps" id="id20">02-04 LRDMC (WF=JsAGPs)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#c2-dimer-and-c-atom-jagpu-ansatz" id="id21">03 C<sub>2</sub> dimer and C atom - JAGPu ansatz</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prepration-of-a-wave-function" id="id22">03-01 prepration of a wave function</a></p></li>
+<li><p><a class="reference internal" href="#generate-a-trial-wave-function-using-dft-with-a-magnetic-moment-c2-dimer" id="id23">03-02 Generate a trial wave function using DFT with a magnetic moment (C<sub>2</sub> dimer:).</a></p></li>
+<li><p><a class="reference internal" href="#check-local-magnetic-moments-c2-dimer" id="id24">03-03 Check local magnetic moments (C<sub>2</sub> dimer)</a></p></li>
+<li><p><a class="reference internal" href="#convert-jdft-wf-to-jagpu-one" id="id25">03-04 Convert JDFT WF to JAGPu one</a></p></li>
+<li><p><a class="reference internal" href="#optimization-wf-jagpu" id="id26">03-05 Optimization (WF=JAGPu)</a></p></li>
+<li><p><a class="reference internal" href="#vmc-and-lrdmc" id="id27">03-06 VMC and LRDMC</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#c2-dimer-and-c-atom-jagp-jpf-ansatz" id="id28">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a></p>
+<ul>
+<li><p><a class="reference internal" href="#spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one" id="id29">04-01 (spin-singlet case) C<sub>2</sub> dimer: Convert JAGPu WF to JAGP one</a></p></li>
+<li><p><a class="reference internal" href="#spin-triplet-case-c-atom-convert-jagpu-wf-to-jagp-one" id="id30">04-02 (spin-triplet case) C atom: Convert JAGPu WF to JAGP one</a></p></li>
+<li><p><a class="reference internal" href="#vmc-opt-vmc-and-lrdmc" id="id31">04-03 VMC-opt, VMC and LRDMC</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<span id="turbogeniustutorial-0202-00"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the C<sub>2</sub> dimer with various ansatz. JDFT, JSD, JsAGPs, JAGPu, and JAGP (JPf) with <code class="docutils literal notranslate"><span class="pre">turbo-genius</span></code>. You can download all the input and output files for this tutorial from <a class="reference download internal" download="" href="../../../../_downloads/c9180a85361bde7b3832e52617cc7981/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<dl class="simple">
+<dt>C<sub>2</sub> dimer</dt><dd><ul class="simple">
+<li><p>E<sub>bond</sub> = 6.44 eV = 148.508 kcal/mol = 0.236 Ha <a class="reference external" href="https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00165">J. Chem. Theory Comput. 16, 6114-6131 (2020)</a></p></li>
+<li><p>d<sub>C-C</sub> = 2.3481 bohr <a class="reference external" href="https://doi.org/10.1063/1.2908237">J. Chem. Phys. 128, 174101 (2008)</a></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<blockquote>
+<div><p>In this tutorial, d<sub>C-C</sub> = 2.300 bohr is used just for simplicity. So, please change it if you need a more accurat result.</p>
+</div></blockquote>
+</div>
+</section>
+<section id="c2-dimer-and-c-atom-jdft-ansatz">
+<span id="turbogeniustutorial-0202-01"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a><a class="headerlink" href="#c2-dimer-and-c-atom-jdft-ansatz" title="Permalink to this heading">¶</a></h2>
+<section id="preparing-a-trial-wave-function">
+<span id="turbogeniustutorial-0202-01-01"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">01-01 Preparing a trial wave function</a><a class="headerlink" href="#preparing-a-trial-wave-function" title="Permalink to this heading">¶</a></h3>
+<p>Download C<sub>2</sub> dimer and C atom structures, <a class="reference download internal" download="" href="../../../../_downloads/15b9e8409c27321436365517b4c0c594/C2.xyz"><code class="xref download docutils literal notranslate"><span class="pre">C2.xyz</span></code></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2-dimer</span>
+<span class="m">2</span>
+comment<span class="w"> </span>line
+C<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span>-0.60855355000000000000
+C<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.60855355000000000000
+
+<span class="c1"># C-atom</span>
+<span class="m">1</span>
+comment<span class="w"> </span>line
+C<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000<span class="w"> </span><span class="m">0</span>.0000
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+<span class="nb">cd</span><span class="w"> </span>01JDFT/01C2_dimer/01trial_wavefunction/00makefort10
+turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-g<span class="w"> </span>-str<span class="w"> </span>C2.xyz<span class="w"> </span>-detbasis<span class="w"> </span>vtz<span class="w"> </span>-jasbasis<span class="w"> </span>vdz<span class="w"> </span>-pp<span class="w"> </span>BFD
+
+<span class="c1"># C atom</span>
+<span class="nb">cd</span><span class="w"> </span>01JDFT/02C_atom/01trial_wavefunction/00makefort10
+turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-g<span class="w"> </span>-str<span class="w"> </span>C.xyz<span class="w"> </span>-detbasis<span class="w"> </span>vtz<span class="w"> </span>-jasbasis<span class="w"> </span>vdz<span class="w"> </span>-pp<span class="w"> </span>BFD<span class="w"> </span>-neldiff<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</div>
+</section>
+<section id="generating-a-jagps-template">
+<span id="turbogeniustutorial-0202-01-02"></span><h3><a class="toc-backref" href="#id9" role="doc-backlink">01-02 Generating a JAGPs template</a><a class="headerlink" href="#generating-a-jagps-template" title="Permalink to this heading">¶</a></h3>
+<p>One can generate a JAGPs template using the prepared makefort10.input by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w">         </span><span class="c1"># ``-r`` for running calculations</span>
+turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-post<span class="w">      </span><span class="c1"># ``-post`` for post-analysis or cleanup</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w"> </span>-post
+</pre></div>
+</div>
+</section>
+<section id="generating-a-pseudo-potential-file">
+<span id="turbogeniustutorial-0202-01-03"></span><h3><a class="toc-backref" href="#id10" role="doc-backlink">01-03 Generating a Pseudo potential file</a><a class="headerlink" href="#generating-a-pseudo-potential-file" title="Permalink to this heading">¶</a></h3>
+<p>The pseudo potential file has been automatically generated by turbogenius.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%cat<span class="w"> </span>pseudo.dat
+ECP
+<span class="w">        </span><span class="m">1</span><span class="w">   </span><span class="m">1</span>.87000000000000<span class="w">                </span><span class="m">2</span>
+<span class="w">        </span><span class="m">1</span><span class="w">           </span><span class="m">3</span>
+<span class="m">22</span>.5516419100000<span class="w">        </span><span class="m">2</span>.00000000000000<span class="w">        </span><span class="m">5</span>.02991637000000
+<span class="m">4</span>.00000000000000<span class="w">        </span><span class="m">1</span>.00000000000000<span class="w">        </span><span class="m">8</span>.35973821000000
+<span class="m">33</span>.4389528500000<span class="w">        </span><span class="m">3</span>.00000000000000<span class="w">        </span><span class="m">4</span>.48361888000000
+-19.1753732300000<span class="w">        </span><span class="m">2</span>.00000000000000<span class="w">        </span><span class="m">3</span>.93831258000000
+<span class="w">        </span><span class="m">2</span><span class="w">   </span><span class="m">1</span>.87000000000000<span class="w">                </span><span class="m">2</span>
+<span class="w">        </span><span class="m">1</span><span class="w">           </span><span class="m">3</span>
+<span class="m">22</span>.5516419100000<span class="w">        </span><span class="m">2</span>.00000000000000<span class="w">        </span><span class="m">5</span>.02991637000000
+<span class="m">4</span>.00000000000000<span class="w">        </span><span class="m">1</span>.00000000000000<span class="w">        </span><span class="m">8</span>.35973821000000
+<span class="m">33</span>.4389528500000<span class="w">        </span><span class="m">3</span>.00000000000000<span class="w">        </span><span class="m">4</span>.48361888000000
+-19.1753732300000<span class="w">        </span><span class="m">2</span>.00000000000000<span class="w">        </span><span class="m">3</span>.93831258000000
+</pre></div>
+</div>
+</section>
+<section id="adding-molecular-orbitals-to-the-jagps-template">
+<span id="turbogeniustutorial-0202-01-04"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">01-04 Adding molecular orbitals to the JAGPs template</a><a class="headerlink" href="#adding-molecular-orbitals-to-the-jagps-template" title="Permalink to this heading">¶</a></h3>
+<p>One should convert the generated JAGPs template to Jastrow Slater Determinant (JSD) one to prepare a trial wavefunction using DFT. This can be done using the <code class="docutils literal notranslate"><span class="pre">convertfort10</span></code> module. Generate an input file for convertfort10mol using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>fort.10<span class="w"> </span>fort.10_in
+turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-g
+</pre></div>
+</div>
+<p>After preparing <code class="docutils literal notranslate"><span class="pre">convertfort10mol.input</span></code>, run the calculation by typing the following commands to covert <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> (JAGPs) to <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> (JSD) by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-r
+turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-post
+</pre></div>
+</div>
+</section>
+<section id="run-dft">
+<span id="turbogeniustutorial-0202-01-05"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">01-05 Run DFT</a><a class="headerlink" href="#run-dft" title="Permalink to this heading">¶</a></h3>
+<p>As written above, the coefficients of the molecular orbitals generated by <code class="docutils literal notranslate"><span class="pre">convertfort10mol.x</span></code> are random. Therefore, the next step is to optimize the coefficients using a build-in DFT code, called <code class="docutils literal notranslate"><span class="pre">prep.x</span></code>. This is done by using the <code class="docutils literal notranslate"><span class="pre">prep</span></code> module of Turbo-Genius.</p>
+<p>Move to a working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../01DFT
+</pre></div>
+</div>
+<p>Next, copy the prepared <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code> to 01DFT directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>../00makefort10/fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../00makefort10/pseudo.dat<span class="w"> </span>./
+</pre></div>
+</div>
+<p>To generate an input file for a DFT calculation type the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for C2 molecule</span>
+turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span>-lbox<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">14</span>.0
+
+<span class="c1"># for C atom</span>
+turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span>-lbox<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the generated <code class="docutils literal notranslate"><span class="pre">prep.input</span></code> file, set <code class="docutils literal notranslate"><span class="pre">nelocc</span></code> to 4. The occupation of the orbitals is specified at the end of the input file (2 in this case, indicating paired electrons)</p>
+</div>
+<p>Launch the DFT job.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on a local machine (serial version)</span>
+prep-serial.x<span class="w"> </span>&lt;<span class="w"> </span>prep.input<span class="w"> </span>&gt;<span class="w"> </span>out_prep
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>prep-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>prep.input<span class="w"> </span>&gt;<span class="w"> </span>out_prep
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>Check the convergence.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-post
+
+grep<span class="w"> </span>Iter<span class="w"> </span>out_prep
+Iter,E,xc,corr<span class="w">     </span><span class="m">1</span><span class="w">       </span>-13.1203443<span class="w">        </span>-3.6300842<span class="w">        </span>-0.4666827<span class="w">        </span><span class="m">19</span>.4803860
+Iter,E,xc,corr<span class="w">     </span><span class="m">2</span><span class="w">       </span>-11.9869924<span class="w">        </span>-2.0332673<span class="w">        </span>-0.3526467<span class="w">         </span><span class="m">1</span>.1333519
+Iter,E,xc,corr<span class="w">     </span><span class="m">3</span><span class="w">       </span>-11.2327951<span class="w">        </span>-2.3881088<span class="w">        </span>-0.3788108<span class="w">         </span><span class="m">0</span>.7541973
+Iter,E,xc,corr<span class="w">     </span><span class="m">4</span><span class="w">       </span>-20.6331707<span class="w">        </span>-1.9842066<span class="w">        </span>-0.4019725<span class="w">         </span><span class="m">9</span>.4003755
+Iter,E,xc,corr<span class="w">     </span><span class="m">5</span><span class="w">       </span>-11.3440293<span class="w">        </span>-2.3325513<span class="w">        </span>-0.3733283<span class="w">         </span><span class="m">9</span>.2891413
+Iter,E,xc,corr<span class="w">     </span><span class="m">6</span><span class="w">       </span>-11.0026202<span class="w">        </span>-2.6778705<span class="w">        </span>-0.4050588<span class="w">         </span><span class="m">0</span>.3414091
+Iter,E,xc,corr<span class="w">     </span><span class="m">7</span><span class="w">       </span>-11.0245545<span class="w">        </span>-2.5463056<span class="w">        </span>-0.3964621<span class="w">         </span><span class="m">0</span>.0219343
+Iter,E,xc,corr<span class="w">     </span><span class="m">8</span><span class="w">       </span>-10.9915229<span class="w">        </span>-2.6421696<span class="w">        </span>-0.4050391<span class="w">         </span><span class="m">0</span>.0330315
+Iter,E,xc,corr<span class="w">     </span><span class="m">9</span><span class="w">       </span>-10.9894860<span class="w">        </span>-2.6702884<span class="w">        </span>-0.4084529<span class="w">         </span><span class="m">0</span>.0020369
+Iter,E,xc,corr<span class="w">    </span><span class="m">10</span><span class="w">       </span>-10.9899084<span class="w">        </span>-2.6757655<span class="w">        </span>-0.4102938<span class="w">         </span><span class="m">0</span>.0004223
+<span class="c1"># Iterations =    10</span>
+</pre></div>
+</div>
+</section>
+<section id="jastrow-factor-optimization-wf-jdft">
+<span id="turbogeniustutorial-0202-01-06"></span><h3><a class="toc-backref" href="#id13" role="doc-backlink">01-06 Jastrow factor optimization (WF=JDFT)</a><a class="headerlink" href="#jastrow-factor-optimization-wf-jdft" title="Permalink to this heading">¶</a></h3>
+<p>One should refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-02"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only the commands are shown.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../../02optimization/
+cp<span class="w"> </span>../01trial_wavefunction/01DFT/fort.10_new<span class="w"> </span>fort.10
+cp<span class="w"> </span>../01trial_wavefunction/01DFT/pseudo.dat<span class="w"> </span>./
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_dft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+</pre></div>
+</div>
+<p>Run the optimization jobs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>Check the convergence.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">100</span><span class="w"> </span>-plot
+<span class="c1"># and then please follow the instructions.</span>
+</pre></div>
+</div>
+</section>
+<section id="vmc-wf-jdft">
+<span id="turbogeniustutorial-0202-01-07"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">01-07 VMC (WF=JDFT)</a><a class="headerlink" href="#vmc-wf-jdft" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-03"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only needed commands are shown.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../03vmc/
+cp<span class="w"> </span>../02optimization/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../02optimization/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g
+vi<span class="w"> </span>datasvmc.input<span class="w"> </span><span class="c1"># if needed</span>
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>You may obtain like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2-dimer</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">996</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0221801195572<span class="w">       </span><span class="m">2</span>.314058967237164E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.225404174390588<span class="w">       </span><span class="m">6</span>.661308870842383E-004
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">2</span>.326984685231173E-004<span class="w">  </span><span class="m">5</span>.429092343987092E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.53214388283156<span class="w">       </span><span class="m">7</span>.133083209261912E-002
+
+<span class="c1"># C-atom</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">999</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-5.40965078208914<span class="w">       </span><span class="m">1</span>.502837476823764E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">8</span>.609101949646993E-002<span class="w">  </span><span class="m">3</span>.231616256487902E-004
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.528893139652585E-004<span class="w">  </span><span class="m">3</span>.472140401553639E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.73685872518992<span class="w">       </span><span class="m">7</span>.845390460943868E-002
+</pre></div>
+</div>
+</section>
+<section id="lrdmc-wf-jdft">
+<span id="turbogeniustutorial-0202-01-08"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">01-08 LRDMC (WF=JDFT)</a><a class="headerlink" href="#lrdmc-wf-jdft" title="Permalink to this heading">¶</a></h3>
+<p>One should refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-05"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only needed explanations and commands are shown.</p>
+<p>Run LRDMC jobs for each <code class="docutils literal notranslate"><span class="pre">alat</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../04lrdmc/alat_0.XX/
+
+<span class="c1"># for each alat</span>
+cp<span class="w"> </span>../../03vmc/fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../../03vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># C2 molecule</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-11.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># C atom</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-5.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn<span class="w"> </span><span class="c1"># parallel version</span>
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Extrapolation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.30 0.40&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>turbo-genius.sh<span class="w"> </span>-j<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-eq<span class="w"> </span><span class="m">5</span><span class="w"> </span>-reb<span class="w"> </span><span class="m">20</span><span class="w"> </span>-col<span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="nv">num</span><span class="o">=</span><span class="sb">`</span>expr<span class="w"> </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alat</span><span class="si">}</span><span class="s2"> &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;Energy =&quot;</span><span class="w"> </span>pip0_fn.d<span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3, $4}&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># quartic fit (C2 dimer)</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 2  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+
+<span class="c1"># quadratic fit (C atom)</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 1  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+
+<span class="c1"># plot</span>
+gnuplot
+p<span class="w"> </span><span class="s2">&quot;evsa.gnu&quot;</span><span class="w"> </span>u<span class="w"> </span><span class="m">1</span>:2:3<span class="w"> </span>with<span class="w"> </span>yerr
+</pre></div>
+</div>
+<p>It performs curve fitting for energies vs alat, which is then used for extrapolation. While running turbo-genius asks for the degree of polynomial to be used for curve fitting. The result of fitting is written to the file <code class="docutils literal notranslate"><span class="pre">evsa.out</span></code></p>
+<p>For quartic fitting i.e. <span class="math">E(a)=E(0) + k_{1} \cdot a^2 + k_{2} \cdot a^4</span>, the results are like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+%<span class="w"> </span>cat<span class="w"> </span>evsa.out
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">3</span>.24139195024559
+Coefficient<span class="w"> </span>found
+<span class="m">1</span><span class="w">  </span>-11.0529822174764<span class="w">       </span><span class="m">1</span>.886835280808058E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="m">2</span><span class="w"> </span>-3.752828455181791E-003<span class="w">  </span><span class="m">3</span>.868657694133935E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+<span class="m">3</span><span class="w"> </span>-2.343738962778753E-002<span class="w">  </span><span class="m">1</span>.487080872118977E-002<span class="w">  </span>&lt;-<span class="w"> </span>k_2
+</pre></div>
+</div>
+<p>For quadratic fitting i.e. <span class="math">E(a)=E(0) + k_{1} \cdot a^2</span>, the results are like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C atom</span>
+%<span class="w"> </span>cat<span class="w"> </span>evsa.out
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">3</span>.22600367069279
+Coefficient<span class="w"> </span>found
+<span class="m">1</span><span class="w"> </span>-5.42188811770239<span class="w">        </span><span class="m">1</span>.033538868667457E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="m">2</span><span class="w"> </span>-3.493534258715859E-003<span class="w">  </span><span class="m">7</span>.118635862498798E-004<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+</pre></div>
+</div>
+<p>Finally:</p>
+<p>C<sub>2</sub> dimer</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JDFT)   = -11.02218(23) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JDFT) = -11.05298(19) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>C atom</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JDFT)   = -5.40965(15) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JDFT) = -5.42189(10) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>Binding energy</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E<sub>bond</sub> = 0.2028(3) Ha = 5.51(8) eV (VMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 5.656(3) eV (DMC-JDFT) (<a class="reference external" href="https://doi.org/10.1063/1.2908237">J. Chem. Phys. 2008, 128, 174101</a> ).</p></li>
+<li><p>E<sub>bond</sub> = 0.2092(2) Ha = 5.69(5) eV (LRDMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.236 Ha = 6.44 eV (Experiment)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="c2-dimer-and-c-atom-jsagps-ansatz">
+<span id="turbogeniustutorial-0202-02"></span><h2><a class="toc-backref" href="#id16" role="doc-backlink">02 C<sub>2</sub> dimer and C atom - JsAGPs ansatz</a><a class="headerlink" href="#c2-dimer-and-c-atom-jsagps-ansatz" title="Permalink to this heading">¶</a></h2>
+<section id="conversion-of-wf-wf-jsagps">
+<span id="turbogeniustutorial-0202-02-01"></span><h3><a class="toc-backref" href="#id17" role="doc-backlink">02-01 Conversion of WF (WF=JsAGPs)</a><a class="headerlink" href="#conversion-of-wf-wf-jsagps" title="Permalink to this heading">¶</a></h3>
+<p>The procedure is the almost same as in the Hydrogen-dimer tutorial.
+Three hybrid-orbitals (<code class="docutils literal notranslate"><span class="pre">nhyb=4</span></code>) were employed here.</p>
+<p>Please refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-06"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2-dimer/copy wfs</span>
+<span class="nb">cd</span><span class="w"> </span>../../../03JsAGPs/01C2_dimer/01convert_WF_JSD_to_JAGP/
+cp<span class="w"> </span>../../../01JDFT/01C2_dimer/03vmc/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../../../01JDFT/01C2_dimer/03vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># C atom/copy wfs</span>
+<span class="nb">cd</span><span class="w"> </span>../../../03JsAGPs/02C_atom/01_01convert_WF_JSD_to_JAGP/
+cp<span class="w"> </span>../../../01JDFT/02C_atom/03vmc/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../../../01JDFT/02C_atom/03vmc/pseudo.dat<span class="w"> </span>.
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#conversion (C2-dimer)</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps<span class="w"> </span>-nosym<span class="w"> </span>-hyb<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="c1"># add hybrid orbitals 4 4 for the first and the second C atoms</span>
+
+<span class="c1">#conversion (C atom)</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps<span class="w"> </span>-nosym<span class="w"> </span><span class="c1"># hybrid orbitals are added later. See below</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># grep Overlap out_conv</span>
+....
+Overlap<span class="w"> </span>square<span class="w"> </span>with<span class="w"> </span>no<span class="w"> </span>zero<span class="w">  </span><span class="m">0</span>.9999....
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># correlated sampling</span>
+cp<span class="w"> </span>fort.10_bak<span class="w"> </span>./fort.10_corr
+turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w">  </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1"># check the overlap</span>
+%cat<span class="w"> </span>corrsampling.dat
+<span class="w">                                </span>Number<span class="w"> </span>of<span class="w"> </span>bins<span class="w">                 </span><span class="m">10</span>
+<span class="w">                    </span>reference<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10<span class="o">)</span><span class="w">  </span>-0.110045875E+02<span class="w">     </span><span class="m">0</span>.252368934E-01
+<span class="w">                </span>reweighted<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10_corr<span class="o">)</span><span class="w">  </span>-0.110045875E+02<span class="w">     </span><span class="m">0</span>.252368985E-01
+reweighted<span class="w"> </span>difference:<span class="w"> </span>E<span class="o">(</span>fort.10<span class="o">)</span>-E<span class="o">(</span>fort.10_corr<span class="o">)</span><span class="w">   </span>-0.148834687E-07<span class="w">     </span><span class="m">0</span>.316227766E-07
+<span class="w">        </span>Overlap<span class="w"> </span>square<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>fort.10,fort.10_corr<span class="o">)</span><span class="w">    </span><span class="m">0</span>.999999998E+00<span class="w">     </span><span class="m">0</span>.316227766E-07
+</pre></div>
+</div>
+<p>The conversion procedure is a bit complicated for the C atom.
+You should optimize the matrix elements before adding hybrid orbitals.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../01_02convert_WF_JSD_to_JAGP/
+cp<span class="w"> </span>../01_01convert_WF_JSD_to_JAGP/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../01_01convert_WF_JSD_to_JAGP/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>Finally, you can convert the optimized WF to the JAGP one with <code class="docutils literal notranslate"><span class="pre">-hyb</span> <span class="pre">4</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#conversion with 4 hybrid orbitals</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps<span class="w"> </span>-nosym<span class="w"> </span>-hyb<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>Please check if the largest eigenvalues are non zero that were zero before the optimization.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>out_conv
+...
+<span class="m">41</span><span class="w"> </span><span class="m">0</span>.359417387280524595E-01
+<span class="m">42</span><span class="w"> </span><span class="m">0</span>.472612394607655972<span class="w">         </span>&lt;-<span class="w"> </span>here
+<span class="m">43</span><span class="w"> </span><span class="m">50</span>.2735591956323731<span class="w">          </span>&lt;-<span class="w"> </span>here
+<span class="m">44</span><span class="w"> </span><span class="m">52</span>.3040643927227791<span class="w">          </span>&lt;-<span class="w"> </span>here
+<span class="m">45</span><span class="w"> </span><span class="m">52</span>.4454593457030782<span class="w">          </span>&lt;-<span class="w"> </span>here
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">45</span><span class="w">           </span><span class="m">4</span>
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">45</span><span class="w">           </span><span class="m">4</span>
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">45</span><span class="w">           </span><span class="m">4</span>
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">45</span><span class="w">           </span><span class="m">4</span>
+</pre></div>
+</div>
+<p>Please check the energy diff. by the correlated sampling.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># correlated sampling</span>
+cp<span class="w"> </span>fort.10_bak<span class="w"> </span>./fort.10_corr
+turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w">  </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+</section>
+<section id="vmc-optimization-wf-jsagps">
+<span id="turbogeniustutorial-0202-02-02"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">02-02 VMC-optimization (WF=JsAGPs)</a><a class="headerlink" href="#vmc-optimization-wf-jsagps" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-08"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only the commands are shown.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for C2 dimer</span>
+<span class="nb">cd</span><span class="w"> </span>../02optimization/
+cp<span class="w"> </span>../01convert_WF_JSD_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../01convert_WF_JSD_to_JAGP/pseudo.dat<span class="w"> </span>pseudo.dat
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+
+<span class="c1"># for C atom</span>
+<span class="nb">cd</span><span class="w"> </span>../02optimization/
+cp<span class="w"> </span>../01_02convert_WF_JSD_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../01_02convert_WF_JSD_to_JAGP/pseudo.dat<span class="w"> </span>pseudo.dat
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+</pre></div>
+</div>
+<p>Run a optimization job.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>Check the convergence.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">100</span><span class="w"> </span>-plot
+<span class="c1"># and then please follow the instructions.</span>
+</pre></div>
+</div>
+</section>
+<section id="vmc-wf-jsagps">
+<span id="turbogeniustutorial-0202-02-03"></span><h3><a class="toc-backref" href="#id19" role="doc-backlink">02-03 VMC (WF=JsAGPs)</a><a class="headerlink" href="#vmc-wf-jsagps" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-09"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only needed commands are shown.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../03vmc
+cp<span class="w"> </span>../02optimization/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../02optimization/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>You may obtain:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">499</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0561023752813<span class="w">       </span><span class="m">2</span>.657081737992969E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.167151337506581<span class="w">       </span><span class="m">2</span>.487175392299656E-003
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">2</span>.667881948465201E-004<span class="w">  </span><span class="m">9</span>.740755305129974E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.36165378936245<span class="w">       </span><span class="m">9</span>.657211844194399E-002
+
+<span class="c1"># C2 dimer</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">499</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-5.42023281231657<span class="w">       </span><span class="m">1</span>.747843070690741E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.151263349430580E-002<span class="w">  </span><span class="m">2</span>.812473020121101E-004
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.823230486819808E-004<span class="w">  </span><span class="m">5</span>.739947472392408E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.72750276011311<span class="w">       </span><span class="m">0</span>.107600086165112
+</pre></div>
+</div>
+</section>
+<section id="lrdmc-wf-jsagps">
+<span id="turbogeniustutorial-0202-02-04"></span><h3><a class="toc-backref" href="#id20" role="doc-backlink">02-04 LRDMC (WF=JsAGPs)</a><a class="headerlink" href="#lrdmc-wf-jsagps" title="Permalink to this heading">¶</a></h3>
+<p>Please refer to the <a class="reference internal" href="../01H2-dimer/tutorial.html#turbogeniustutorial-0101-10"><span class="std std-ref">Hydrogen tutorial</span></a> for the details.
+Here, only the commands are shown.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../04lrdmc/alat_0.XX/
+
+<span class="c1"># for each alat</span>
+cp<span class="w"> </span>../../03vmc/fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../../03vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># C2 molecule</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-11.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># C atom</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-5.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn<span class="w"> </span><span class="c1"># parallel version</span>
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Extrapolation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.30 0.40&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>turbo-genius.sh<span class="w"> </span>-j<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-eq<span class="w"> </span><span class="m">5</span><span class="w"> </span>-reb<span class="w"> </span><span class="m">20</span><span class="w"> </span>-col<span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="nv">num</span><span class="o">=</span><span class="sb">`</span>expr<span class="w"> </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alat</span><span class="si">}</span><span class="s2"> &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;Energy =&quot;</span><span class="w"> </span>pip0_fn.d<span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3, $4}&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># quartic fit (C2 dimer)</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 2  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+
+<span class="c1"># quadratic fit (C atom)</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 1  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+
+<span class="c1"># plot</span>
+gnuplot
+p<span class="w"> </span><span class="s2">&quot;evsa.gnu&quot;</span><span class="w"> </span>u<span class="w"> </span><span class="m">1</span>:2:3<span class="w"> </span>with<span class="w"> </span>yerr
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.211949768672111
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-11.0749244254452<span class="w">       </span><span class="m">1</span>.269668477442219E-004
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-5.572540169827904E-003<span class="w">  </span><span class="m">8</span>.734350696222097E-004
+
+<span class="c1"># C atom</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.48922837922392
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-5.42734029684322<span class="w">       </span><span class="m">8</span>.031603687503355E-005
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-1.750555796426137E-003<span class="w">  </span><span class="m">5</span>.639930126170355E-004
+</pre></div>
+</div>
+<p>Finally:</p>
+<p>C<sub>2</sub> dimer</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JsAGPs)   = -11.05610(27) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JsAGPs) = -11.07492(13) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>C atom</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JsAGPs)   = -5.4202(17) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JsAGPs) = -5.42734(8) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>Binding energy</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E<sub>bond</sub> = 0.2028(3) Ha = 5.519(8) eV (VMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2157(4)Ha = 5.870(10) eV (VMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 5.656(3) eV (DMC-JDFT) (<a class="reference external" href="https://doi.org/10.1063/1.2908237">J. Chem. Phys. 2008, 128, 174101</a> ).</p></li>
+<li><p>E<sub>bond</sub> = 0.2092(2) Ha = 5.693(5) eV (LRDMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2202(2)Ha = 5.993(5)eV (LRDMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 0.236 Ha = 6.44 eV (Experiment)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="c2-dimer-and-c-atom-jagpu-ansatz">
+<span id="turbogeniustutorial-0202-03"></span><h2><a class="toc-backref" href="#id21" role="doc-backlink">03 C<sub>2</sub> dimer and C atom - JAGPu ansatz</a><a class="headerlink" href="#c2-dimer-and-c-atom-jagpu-ansatz" title="Permalink to this heading">¶</a></h2>
+<section id="prepration-of-a-wave-function">
+<span id="turbogeniustutorial-0202-03-01"></span><h3><a class="toc-backref" href="#id22" role="doc-backlink">03-01 prepration of a wave function</a><a class="headerlink" href="#prepration-of-a-wave-function" title="Permalink to this heading">¶</a></h3>
+<p>You can convert the JAGPs WF to the JAGPu WF by the following commands</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+<span class="nb">cd</span><span class="w"> </span>../../../04JAGPu/01C2_dimer/01trial_wavefunction/01DFT/
+cp<span class="w"> </span>../../../../03JsAGPs/01C2_dimer/03vmc/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../../../../03JsAGPs/01C2_dimer/03vmc/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agpu<span class="w"> </span>-nosym
+
+<span class="c1"># add molecular orbital (i.e., JAGPu -&gt; JSD)</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>sd
+</pre></div>
+</div>
+</section>
+<section id="generate-a-trial-wave-function-using-dft-with-a-magnetic-moment-c2-dimer">
+<span id="turbogeniustutorial-0202-03-02"></span><h3><a class="toc-backref" href="#id23" role="doc-backlink">03-02 Generate a trial wave function using DFT with a magnetic moment (C<sub>2</sub> dimer:).</a><a class="headerlink" href="#generate-a-trial-wave-function-using-dft-with-a-magnetic-moment-c2-dimer" title="Permalink to this heading">¶</a></h3>
+<p>The next step is to prepare a trial wave function using the built-in DFT code.
+Here you can set magnetic moments on each atom to obtain an AFM initial state.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># both for C2 dimer and C atom</span>
+<span class="nb">cd</span><span class="w"> </span>../01DFT
+cp<span class="w"> </span>../00makefort10/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../00makefort10/pseudo.dat<span class="w"> </span>.
+<span class="c1">#C2-dimer</span>
+turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-xc<span class="w"> </span>lsda<span class="w"> </span>-f<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span>-lbox<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">14</span>.0<span class="w"> </span>-m<span class="w"> </span>u<span class="w"> </span>d
+<span class="c1">#C-atom</span>
+turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-xc<span class="w"> </span>lsda<span class="w"> </span>-f<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span>-lbox<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span>-m<span class="w"> </span>u
+</pre></div>
+</div>
+<p>Then, you can run DFT by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on a local machine (serial version)</span>
+prep-serial.x<span class="w"> </span>&lt;<span class="w"> </span>prep.input<span class="w"> </span>&gt;<span class="w"> </span>out_prep
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>prep-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>prep.input<span class="w"> </span>&gt;<span class="w"> </span>out_prep
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>prep<span class="w"> </span>-post
+</pre></div>
+</div>
+</section>
+<section id="check-local-magnetic-moments-c2-dimer">
+<span id="turbogeniustutorial-0202-03-03"></span><h3><a class="toc-backref" href="#id24" role="doc-backlink">03-03 Check local magnetic moments (C<sub>2</sub> dimer)</a><a class="headerlink" href="#check-local-magnetic-moments-c2-dimer" title="Permalink to this heading">¶</a></h3>
+<p>You can check the obtained magnetic moments by using plot_orbitals.x</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># copy fort.10</span>
+<span class="nb">cd</span><span class="w"> </span>../02check_magnetization
+cp<span class="w"> </span>../01DFT/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># plot spin density</span>
+cp<span class="w"> </span>../01DFT/fort.10_new<span class="w"> </span>fort.10
+plot_orbitals.x
+
+Number<span class="w"> </span>of<span class="w"> </span>molecular<span class="w"> </span>orbitals<span class="w"> </span>:<span class="w">            </span><span class="m">6</span>
+Choose<span class="w"> </span>box<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>x,y,z<span class="o">)</span>
+<span class="m">15</span><span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">15</span>
+<span class="m">15</span>.0000000000000<span class="w">        </span><span class="m">15</span>.0000000000000<span class="w">        </span><span class="m">15</span>.0000000000000
+Choose<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>mesh<span class="w"> </span>points<span class="w"> </span><span class="o">(</span>x,y,z<span class="o">)</span><span class="w"> </span>:
+<span class="m">61</span><span class="w"> </span><span class="m">61</span><span class="w"> </span><span class="m">61</span>
+<span class="m">61</span><span class="w">          </span><span class="m">61</span><span class="w">          </span><span class="m">61</span>
+Choose<span class="w"> </span>orbitals<span class="w"> </span>to<span class="w"> </span>tabulate<span class="w"> </span><span class="o">(</span>possible<span class="w"> </span>answers<span class="w"> </span>all,<span class="w"> </span>partial,<span class="w"> </span>charge,<span class="w"> </span>spin<span class="o">)</span><span class="w"> </span>:
+spin
+spin
+Please<span class="w"> </span>give<span class="w">  </span>the<span class="w"> </span>lowest<span class="w"> </span>molecular<span class="w"> </span>orbital<span class="w"> </span>within<span class="w"> </span><span class="m">1</span><span class="w"> </span>and<span class="w">            </span><span class="m">8</span>
+<span class="m">1</span>
+Number<span class="w"> </span>of<span class="w"> </span>fully<span class="w"> </span>occupied<span class="w"> </span>molecular<span class="w"> </span>orbital/total<span class="w"> </span>number<span class="w"> </span>occupied<span class="w"> </span>by<span class="w"> </span>up<span class="w"> </span>and<span class="w"> </span>down?
+<span class="m">4</span><span class="w"> </span><span class="m">4</span>
+Momentum<span class="w"> </span>magnetization<span class="w"> </span>?<span class="w"> </span><span class="o">(</span>unit<span class="w"> </span>2pi/cellscale<span class="o">)</span>
+<span class="m">0</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">0</span>
+
+You<span class="w"> </span>obtain<span class="w"> </span>output_spin000000.xsf.<span class="w"> </span>You<span class="w"> </span>can<span class="w"> </span>depict<span class="w"> </span>it<span class="w"> </span>using<span class="w"> </span>xcrysden:
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xcrysden<span class="w"> </span>--xsf<span class="w"> </span>output_spin000000.xsf
+open<span class="w"> </span>-a<span class="w"> </span>output_spin000000.xsf<span class="w">  </span><span class="c1"># e.g., VESTA</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/C2_dft_mag.png"><img alt="../../../../_images/C2_dft_mag.png" class="align-center" src="../../../../_images/C2_dft_mag.png" style="width: 679.0px; height: 273.0px;" /></a>
+<p>Thus, one can obtain an AFM trial wavefunction.</p>
+</section>
+<section id="convert-jdft-wf-to-jagpu-one">
+<span id="turbogeniustutorial-0202-03-04"></span><h3><a class="toc-backref" href="#id25" role="doc-backlink">03-04 Convert JDFT WF to JAGPu one</a><a class="headerlink" href="#convert-jdft-wf-to-jagpu-one" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p>Next step is to convert the optimized JDFT WF to a JAGPu one.
+You should check the consistency after conversion.</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2-dimer</span>
+<span class="c1"># conversion of WF (02convert_WF_JDFT_to_JAGP)</span>
+<span class="nb">cd</span><span class="w"> </span>../../02convert_WF_JDFT_to_JAGP/
+cp<span class="w"> </span>../01trial_wavefunction/01DFT/fort.10_new<span class="w"> </span>fort.10
+cp<span class="w"> </span>../01trial_wavefunction/01DFT/pseudo.dat<span class="w"> </span>.
+
+<span class="c1">#conversion (C2-dimer)</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agpu<span class="w"> </span>-nosym<span class="w"> </span>-hyb<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="c1"># add hybrid orbitals 4 4 for the first and the second C atoms</span>
+
+<span class="c1">#conversion (C atom)</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agpu<span class="w"> </span>-nosym<span class="w"> </span><span class="c1"># hybrid orbitals are added later. See below</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># grep Overlap out_conv</span>
+....
+Overlap<span class="w"> </span>square<span class="w"> </span>with<span class="w"> </span>no<span class="w"> </span>zero<span class="w">  </span><span class="m">0</span>.9999....
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># correlated sampling</span>
+cp<span class="w"> </span>fort.10_bak<span class="w"> </span>./fort.10_corr
+turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w">  </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1"># check the overlap</span>
+%cat<span class="w"> </span>corrsampling.dat
+<span class="c1"># Here, you may loose ~ 100mHa for the C2 dimer.</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You should use more hybrid orbitals in a real research project! (e.g. ~ 7).</p>
+</div>
+<p>The conversion procedure is again complicated for the C atom. Please do the same procedure as in the JAGPs case.</p>
+</section>
+<section id="optimization-wf-jagpu">
+<span id="turbogeniustutorial-0202-03-05"></span><h3><a class="toc-backref" href="#id26" role="doc-backlink">03-05 Optimization (WF=JAGPu)</a><a class="headerlink" href="#optimization-wf-jagpu" title="Permalink to this heading">¶</a></h3>
+<p>Now that you have obtained a good trial JAGPu wavefunction,
+you can optimize its nodal surface at the VMC level.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#C2 dimers</span>
+<span class="nb">cd</span><span class="w"> </span>../03optimization/
+cp<span class="w"> </span>../02convert_WF_JDFT_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../02convert_WF_JDFT_to_JAGP/pseudo.dat<span class="w"> </span>./
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+
+<span class="c1">#C atom</span>
+<span class="nb">cd</span><span class="w"> </span>../03optimization/
+cp<span class="w"> </span>../02_02convert_WF_JDFT_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../02_02convert_WF_JDFT_to_JAGP/pseudo.dat<span class="w"> </span>./
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+</pre></div>
+</div>
+<p>Run VMC-opt runs</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1">#average fort.10</span>
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">100</span><span class="w"> </span>-plot
+</pre></div>
+</div>
+</section>
+<section id="vmc-and-lrdmc">
+<span id="turbogeniustutorial-0202-03-06"></span><h3><a class="toc-backref" href="#id27" role="doc-backlink">03-06 VMC and LRDMC</a><a class="headerlink" href="#vmc-and-lrdmc" title="Permalink to this heading">¶</a></h3>
+<p>VMC and LRDMC procesures are the same as in the JsAGPs case.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># VMC</span>
+<span class="nb">cd</span><span class="w"> </span>../04vmc
+cp<span class="w"> </span>../03optimization/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../03optimization/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2-dimer</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">499</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0639657131521<span class="w">       </span><span class="m">2</span>.451753146145206E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.144445612617421<span class="w">       </span><span class="m">1</span>.504179616851022E-003
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">2</span>.382267038858785E-004<span class="w">  </span><span class="m">7</span>.075164804881710E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.25601105010529<span class="w">       </span><span class="m">7</span>.608951964475108E-002
+
+<span class="c1"># C atom</span>
+%<span class="w"> </span>cat<span class="w"> </span>pip0.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">499</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-5.42587679977424<span class="w">       </span><span class="m">1</span>.407145615635295E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">4</span>.092231745300601E-002<span class="w">  </span><span class="m">3</span>.752942906547522E-004
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.386833646006721E-004<span class="w">  </span><span class="m">4</span>.181441619092614E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.50231356841123<span class="w">       </span><span class="m">8</span>.930286017090674E-002
+</pre></div>
+</div>
+<p>Heres are commands for LRDMCs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../04lrdmc/alat_0.XX/
+
+<span class="c1"># for each alat</span>
+cp<span class="w"> </span>../../03vmc/fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../../03vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># C2 molecule</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-11.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># C atom</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-5.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn<span class="w"> </span><span class="c1"># parallel version</span>
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># extrapolation</span>
+<span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.30 0.40 0.50&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>turbo-genius.sh<span class="w"> </span>-j<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-eq<span class="w"> </span><span class="m">5</span><span class="w"> </span>-reb<span class="w"> </span><span class="m">20</span><span class="w"> </span>-col<span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="nv">num</span><span class="o">=</span><span class="sb">`</span>expr<span class="w"> </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alat</span><span class="si">}</span><span class="s2"> &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;Energy =&quot;</span><span class="w"> </span>pip0_fn.d<span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3, $4}&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># quadratic fit</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 2  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.229533908546215
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-11.0757437909485<span class="w">       </span><span class="m">1</span>.464579638032684E-004
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-1.087864661257017E-002<span class="w">  </span><span class="m">2</span>.922117199514128E-003
+<span class="w">        </span><span class="m">3</span><span class="w">  </span><span class="m">6</span>.078076478538951E-003<span class="w">  </span><span class="m">1</span>.109481138283852E-002
+
+<span class="c1"># C atom</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">3</span>.354870888922901E-003
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-5.42939660705427<span class="w">       </span><span class="m">7</span>.390966338489803E-005
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-1.281854484441583E-003<span class="w">  </span><span class="m">1</span>.529393458975311E-003
+<span class="w">        </span><span class="m">3</span><span class="w"> </span>-5.479765301310381E-003<span class="w">  </span><span class="m">5</span>.869251318513092E-003
+</pre></div>
+</div>
+<p>Finally:</p>
+<p>C<sub>2</sub> dimer</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JAGPu)   = -11.06397(25) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JAGPu) = -11.07574(15) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>C atom</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JAGPu)   = -5.42588(14) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JAGPu) = -5.42940(7)Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>Binding energy</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E<sub>bond</sub> = 0.2028(3) Ha = 5.519(8) eV (VMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2157(4) Ha = 5.870(10) eV (VMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 0.2122(4) Ha = 5.774(10) eV (VMC-JAGPu)</p></li>
+<li><p>E<sub>bond</sub> = 5.656(3) eV (DMC-JDFT) (<a class="reference external" href="https://doi.org/10.1063/1.2908237">J. Chem. Phys. 2008, 128, 174101</a> ).</p></li>
+<li><p>E<sub>bond</sub> = 0.2092(2) Ha = 5.693(5) eV (LRDMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2202(2) Ha = 5.993(5) eV (LRDMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 0.2169(2) Ha = 5.903(5) eV (LRDMC-JAGPu)</p></li>
+<li><p>E<sub>bond</sub> = 0.236 Ha = 6.44 eV (Experiment)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="c2-dimer-and-c-atom-jagp-jpf-ansatz">
+<span id="turbogeniustutorial-0202-04"></span><h2><a class="toc-backref" href="#id28" role="doc-backlink">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a><a class="headerlink" href="#c2-dimer-and-c-atom-jagp-jpf-ansatz" title="Permalink to this heading">¶</a></h2>
+<p id="turbogeniustutorial-0202-04-01">The most important procedure in a Pfaffian calculation is to convert a JDFT or JAGPu
+ansatz to JAGP(JPf) ansatz.
+Since the JAGP ansatz is a special case of the JPf one,  where only <span class="math">G_{ud}</span> and <span class="math">G_{du}</span> terms are defined as described in the section <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span> that are not described in the JAGP and that otherwise have to be set to 0.
+There are two possible approaches to convert an ansatz:
+<span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span>
+for polarized systems, we can build the <span class="math">G_{uu}</span> block of the matrix by using an even number of
+<span class="math">\{ \phi_i\}</span> and build an antisymmetric <span class="math">g_{uu}</span>, where the eigenvalues <span class="math">\lambda_k</span> are chosen to be large enough
+to occupy certainly  these unpaired states, as in  the standard Slater determinant used
+for our initialization.
+Again, we emphasize that  this works only for polarized systems.
+<span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span>
+The second approach that also works in a spin-unpolarized case is to determine
+a standard broken symmetry single determinant ansatz ({it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {it i.e.}, the <span class="math">z</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
+A particularly important case is when  a rotation of <span class="math">\pi/2</span> is applied around the <span class="math">y</span> direction. This operation maps <span class="math">|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}</span> to a Pf one <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.</p>
+<p>The strategy <span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span> is employed for the Li dimer (i.e., unpolarized case) while <span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span> is employed for the Li atom (i.e., polarized case)</p>
+<section id="spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">04-01 (spin-singlet case) C<sub>2</sub> dimer: Convert JAGPu WF to JAGP one</a><a class="headerlink" href="#spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">################</span>
+<span class="c1"># C-dimer</span>
+<span class="c1">################</span>
+<span class="nb">cd</span><span class="w"> </span>../../../05JAGP/01C2_dimer/01convert_WF_JAGPu_to_JAGP
+cp<span class="w"> </span>../../../04JAGPu/01C2_dimer/04vmc/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../../../04JAGPu/01C2_dimer/04vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># convert to Paffian</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>pf<span class="w"> </span>-rot<span class="w"> </span><span class="m">0</span>.125<span class="w"> </span>-nosym<span class="w"> </span><span class="c1"># pi/8 rotation</span>
+
+<span class="c1"># correlated sampling</span>
+cp<span class="w"> </span>fort.10_bak<span class="w"> </span>./fort.10_corr
+turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w">  </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1"># check the overlap</span>
+<span class="c1"># Here, you may loose some energy! because you have rotated the spins.</span>
+%cat<span class="w"> </span>corrsampling.dat
+</pre></div>
+</div>
+</section>
+<section id="spin-triplet-case-c-atom-convert-jagpu-wf-to-jagp-one">
+<span id="turborvbtutorial-0202-04-02"></span><h3><a class="toc-backref" href="#id30" role="doc-backlink">04-02 (spin-triplet case) C atom: Convert JAGPu WF to JAGP one</a><a class="headerlink" href="#spin-triplet-case-c-atom-convert-jagpu-wf-to-jagp-one" title="Permalink to this heading">¶</a></h3>
+<p>You can convert spin-polarized WFs using turbogenius in the same way as in the non spin-polarized WFs.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">################</span>
+<span class="c1"># C-dimer</span>
+<span class="c1">################</span>
+<span class="nb">cd</span><span class="w"> </span>../../../05JAGP/02C_atom/01convert_WF_JAGPu_to_JAGP/
+cp<span class="w"> </span>../../../04JAGPu/02C_atom/02_02convert_WF_JDFT_to_JAGP/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../../../04JAGPu/02C_atom/02_02convert_WF_JDFT_to_JAGP/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># convert to Paffian</span>
+turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>pf<span class="w"> </span>-rot<span class="w"> </span><span class="m">0</span>.0
+
+<span class="c1"># correlated sampling</span>
+cp<span class="w"> </span>fort.10_bak<span class="w"> </span>./fort.10_corr
+turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w">  </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_readforward
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1"># check the overlap</span>
+%cat<span class="w"> </span>corrsampling.dat
+</pre></div>
+</div>
+</section>
+<section id="vmc-opt-vmc-and-lrdmc">
+<span id="turbogeniustutorial-0202-04-03"></span><h3><a class="toc-backref" href="#id31" role="doc-backlink">04-03 VMC-opt, VMC and LRDMC</a><a class="headerlink" href="#vmc-opt-vmc-and-lrdmc" title="Permalink to this heading">¶</a></h3>
+<p>VMC and LRDMC procesures are the same as in the JsAGPs case.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#C2 dimers/vmcopt</span>
+<span class="nb">cd</span><span class="w"> </span>../03optimization/
+cp<span class="w"> </span>../02convert_WF_JAGPu_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../02convert_WF_JAGPu_to_JAGP/pseudo.dat<span class="w"> </span>./
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+
+<span class="c1">#C atom</span>
+<span class="nb">cd</span><span class="w"> </span>../03optimization/
+cp<span class="w"> </span>../02_02convert_WF_JAGPu_to_JAGP/fort.10<span class="w"> </span>fort.10
+cp<span class="w"> </span>../02_02convert_WF_JAGPu_to_JAGP/pseudo.dat<span class="w"> </span>./
+cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_jdft
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+
+<span class="c1">#C atom/vmcopt</span>
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+<span class="c1">#average fort.10</span>
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">100</span><span class="w"> </span>-plot
+
+<span class="c1"># VMC</span>
+<span class="nb">cd</span><span class="w"> </span>../04vmc
+cp<span class="w"> </span>../03optimization/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../03optimization/pseudo.dat<span class="w"> </span>.
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+
+<span class="nb">cd</span><span class="w"> </span>../04lrdmc/alat_0.XX/
+
+<span class="c1"># for each alat</span>
+cp<span class="w"> </span>../../04vmc/fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../../04vmc/pseudo.dat<span class="w"> </span>.
+
+<span class="c1"># C2 molecule</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-11.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># C atom</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>--help<span class="w"> </span>-etry<span class="w"> </span>-5.00<span class="w"> </span>-alat<span class="w"> </span>-0.XX
+
+<span class="c1"># on a local machine (serial version)</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
+<span class="c1"># on a local machine (parallel version)</span>
+mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn<span class="w"> </span><span class="c1"># parallel version</span>
+<span class="c1"># on a cluster machine (PBS)</span>
+qsub<span class="w"> </span>submit.sh
+<span class="c1"># on a cluster machine (Slurm)</span>
+sbatch<span class="w"> </span>submit.sh
+
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
+
+<span class="c1"># extrapolation</span>
+<span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.30 0.40 0.50&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>turbo-genius.sh<span class="w"> </span>-j<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-eq<span class="w"> </span><span class="m">5</span><span class="w"> </span>-reb<span class="w"> </span><span class="m">20</span><span class="w"> </span>-col<span class="w"> </span><span class="m">5</span>
+<span class="w">    </span><span class="nv">num</span><span class="o">=</span><span class="sb">`</span>expr<span class="w"> </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alat</span><span class="si">}</span><span class="s2"> &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;Energy =&quot;</span><span class="w"> </span>pip0_fn.d<span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3, $4}&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+
+<span class="c1"># quadratic fit</span>
+<span class="c1"># please replace sed with gsed on Mac</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 2  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa.in
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># C2 dimer</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.02522438570479
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-11.0850570018256<span class="w">       </span><span class="m">1</span>.273076518444894E-004
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-5.555205897180920E-003<span class="w">  </span><span class="m">2</span>.663590439241813E-003
+<span class="w">        </span><span class="m">3</span><span class="w"> </span>-6.811913435438424E-003<span class="w">  </span><span class="m">1</span>.030873939747665E-002
+
+<span class="c1"># C atom</span>
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.175095826610375E-002
+Coefficient<span class="w"> </span>found
+<span class="w">        </span><span class="m">1</span><span class="w">  </span>-5.42990249903405<span class="w">       </span><span class="m">7</span>.249216286985208E-005
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>-5.519306385371122E-003<span class="w">  </span><span class="m">1</span>.468246248490263E-003
+<span class="w">        </span><span class="m">3</span><span class="w">  </span><span class="m">1</span>.078150972592802E-002<span class="w">  </span><span class="m">5</span>.587021310029283E-003
+</pre></div>
+</div>
+<p>Finally:</p>
+<p>C<sub>2</sub> dimer</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JAGP)   = -11.07452(24) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JAGP) = -11.08506(12) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>C atom</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="blue">VMC(JAGP)   = -5.42700(15) Ha</span></p></li>
+<li><p><span class="blue">LRDMC(JAGP) = -5.42990(72) Ha</span></p></li>
+</ul>
+</div></blockquote>
+<p>Binding energy</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>E<sub>bond</sub> = 0.2028(3) Ha = 5.519(8) eV (VMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2157(4) Ha = 5.870(10) eV (VMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 0.2122(4) Ha = 5.774(10) eV (VMC-JAGPu)</p></li>
+<li><p>E<sub>bond</sub> = 0.2205(3) Ha = 6.000(8) eV (VMC-JAGP)</p></li>
+<li><p>E<sub>bond</sub> = 5.656(3) eV (DMC-JDFT) (<a class="reference external" href="https://doi.org/10.1063/1.2908237">J. Chem. Phys. 2008, 128, 174101</a> ).</p></li>
+<li><p>E<sub>bond</sub> = 0.2092(2) Ha = 5.693(5) eV (LRDMC-JDFT)</p></li>
+<li><p>E<sub>bond</sub> = 0.2202(2) Ha = 5.993(5) eV (LRDMC-JsAGPs)</p></li>
+<li><p>E<sub>bond</sub> = 0.2169(2) Ha = 5.903(5) eV (LRDMC-JAGPu)</p></li>
+<li><p>E<sub>bond</sub> = 0.2253(2) Ha = 6.130(5) eV (LRDMC-JAGP)</p></li>
+<li><p>E<sub>bond</sub> = 6.31(1) eV (LRDMC-JAGP, an optimized cc-pVTZ, all-electron) (<a class="reference external" href="https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00165">J. Chem. Theory Comput. 16, 6114-6131 (2020)</a>).</p></li>
+<li><p>E<sub>bond</sub> = 0.236 Ha = 6.44 eV (Experiment)</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../01H2-dimer/tutorial.html" class="btn btn-neutral float-left" title="01Hydrogen_dimer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../03Hydrogen_chain/tutorial.html" class="btn btn-neutral float-right" title="03Hydrogen_chain" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
