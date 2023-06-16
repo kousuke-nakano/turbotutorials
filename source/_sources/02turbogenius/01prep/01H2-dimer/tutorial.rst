@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0101:
 
-01_01Hydrogen_dimer
+01Hydrogen_dimer
 ======================================================
 
 From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the H\ :sub:`2` dimer using Turbo-genius. There is also a TurboRVB tutorial, which does the same calculations but without using Turbo-Genius. For detailed information about input parameters in various input files, we recomment visiting that tutorial. You can download all the input and output files for this tutorial from :download:`here  <./file.tar.gz>`.
@@ -227,6 +227,10 @@ This is a generated ``makefort10.input``.
 
 For explanations of the input variables, please refer to the doc files in the TurboRVB repository.
 
+.. warning::
+
+    If you want to use your own Det. or Jas. basis sets, you can edit ``makefort10.input`` at this step.
+
 .. _turbogeniustutorial_0101_01_02:
 
 
@@ -403,15 +407,19 @@ After preparing ``prep.input``, one can start DFT on a local machine:
 
 .. code-block:: bash
     
-    # on a local machine (serial)
-    turbogenius prep -r          # run on a local machine or a login node.
+    # on a local machine (serial version)
+    prep-serial.x < prep.input > out_prep
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
 
 If you want to run the job via a job-queuing system, please prepare a job submission script.
 
 .. code-block:: bash
     
-    # for the trex summer school!
-    job-manager toss -p turborvb -b prep-mpi.x -i prep.input -o out_prep -q reserved -core 12
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 .. warning::
 
@@ -535,20 +543,18 @@ You can also specify an optimization algorithm via ``-optimizer`` command-line v
    
    2. ``lr`` : Linear method with natural gradients. See `Phys. Rev. B 71, 241103(R) (2005) <https://doi.org/10.1103/PhysRevB.71.241103>`_, `Phys. Rev. Lett. 98, 110201 (2007) <https://doi.org/10.1103/PhysRevLett.98.110201>`_, and review_ paper.
    
-Now you can launch a VMC optimization using:
-
-.. code-block:: bash
-    
-        # on a local machine
-        # (TREX-summer school) Please don't do this on the login node!!
-        turbogenius vmcopt -r
-
-or via a job-queueing system.
+Now you can launch the VMC optimization:
 
 .. code-block:: bash
 
-        # for the trex summer school
-        job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 Now for post-processing use:
 
@@ -642,18 +648,18 @@ It should look something like the following:
     /
 
 
-Run a VMC calculation by typing:
+Run the VMC calculation:
 
 .. code-block:: bash
 
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmc -r
-
-.. code-block:: bash
-
-    # for the trex summer school
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 After the VMC run finishes, use post-processing to check the total energy:
 
@@ -769,14 +775,14 @@ Now run the LRDMC calculation:
 
 .. code-block:: bash
 
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius lrdmc -r
-
-.. code-block:: bash
-
-    # for the trex summer school
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasfn.input -o out_fn -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 For post-processing use:
 
@@ -802,12 +808,39 @@ If you want to extrapolate energies, please collect all LRDMC energies into ``ev
 
 .. code-block:: bash
     
-    # First of all, run all the alat jobs!!
-    # The procedure is the same except for alat
-    turbogenius lrdmc -g -etry -1.10 -alat XXXX -steps 1000
-    
-    # Extrapolations
-    alat_list="0.10 0.20 0.40"
+    # Preparation of the input files for all alat.
+    alat_list="0.10 0.40 0.60"
+    lrdmc_root_dir=`pwd`
+    for alat in $alat_list
+    do
+    cd ../04lrdmc/alat_0.10
+    cp ../../03vmc/fort.10 .
+    turbogenius lrdmc -g -etry -1.10 -alat $alat -steps 1000
+    cd $lrdmc_root_dir
+    done
+
+.. code-block:: bash
+
+    # run the jobs
+    alat_list="0.10 0.40 0.60"
+    lrdmc_root_dir=`pwd`
+    for alat in $alat_list
+    do
+        # on a local machine (serial version)
+        turborvb-serial.x < datasfn.input > out_fn
+        # on a local machine (parallel version)
+        mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+        # on a cluster machine (PBS)
+        qsub submit.sh
+        # on a cluster machine (Slurm)
+        sbatch submit.sh
+    cd $lrdmc_root_dir
+    done
+
+.. code-block:: bash
+
+    # Extrapolations of the obtained energies
+    alat_list="0.10 0.20 0.40 0.60"
     lrdmc_root_dir=`pwd`
     
     num=0
@@ -872,7 +905,7 @@ Copy ``fort.10`` in ``03VMC`` to ``05jdft_to_jagp`` and rename it as ``fort.10_i
 
 .. warning::
 
-    the original ``fort.10`` is renamed ``fort.10_bak``
+    the original ``fort.10`` is renamed to ``fort.10_bak``
 
 Please check the overlap square in out_conv:
 
@@ -962,15 +995,16 @@ Now run the calculation using:
 
 .. code-block:: bash
 
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-
-.. code-block:: bash
-
-    # trex summer school
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12
-    job-manager toss -p turborvb -b readforward-mpi.x -i datasvmc.input -o out_readforward -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 ``corrsampling.dat`` contains the output.
 
@@ -1052,11 +1086,14 @@ Now run VMC optimization using:
 
 .. code-block:: bash
 
-        # on a local machine
-        turbogenius vmcopt -r
-        
-        # trex summer school
-        job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
 Now for post-processing use:
 
@@ -1099,11 +1136,14 @@ Run a VMC calculation by typing:
 
 .. code-block:: bash
 
-    # on a local machine
-    turbogenius vmc -r
-    
-    # trex summer school
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 After the VMC run finishes, use post-processing to check the total energy:
 
@@ -1148,11 +1188,14 @@ Now run the LRDMC calculation:
 
 .. code-block:: bash
 
-    # on a local machine
-    turbogenius lrdmc -r 
-    
-    # for the trex summer school
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasfn.input -o out_fn -q reserved -core 12
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 For post-processing use:
 
@@ -1193,7 +1236,16 @@ Total energy:
     cd ../01DFT/
     cp ../00makefort10/fort.10 ./
     turbogenius prep -g -grid 0.2 0.2 0.2 -lbox 10.0 10.0 10.0
-    job-manager toss -p turborvb -b prep-mpi.x -i prep.input -o out_prep -q reserved -core 12
+
+    # on a local machine (serial version)
+    prep-serial.x < prep.input > out_prep
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius prep -post
     
     # conversion
@@ -1209,7 +1261,16 @@ Total energy:
     cd ../../11optimization/
     cp ../10trial_wavefunction/02jdft_to_jagp/fort.10 ./
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmcopt -post -optwarmup 80 -plot
 
 14 VMC before structural optimization
@@ -1220,7 +1281,16 @@ Total energy:
     cd ../12vmc
     cp ../11optimization/fort.10 fort.10
     turbogenius vmc -g -steps 1000 -force
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmc -post -bin 10 -warmup 5
     
     # check force
@@ -1241,7 +1311,16 @@ Total energy:
     cd ../13str_optimization
     cp ../12vmc/fort.10 ./
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10 -opt_structure -strlearn 1.0e-6
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmcopt -post -optwarmup 80 -plot
 
 16 VMC after structural optimization
@@ -1252,7 +1331,16 @@ Total energy:
     cd ../14vmc
     cp ../13str_optimization/fort.10 fort.10
     turbogenius vmc -g -steps 1000 -force
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmc -post -bin 10 -warmup 5
     
     # check force
@@ -1264,3 +1352,4 @@ Total energy:
     <OH> =  0.901136545231286       3.656293234452725E-002
     <O><H> = -0.900141675925860       3.673121825334205E-002
     2*(<OH> - <O><H>) =  1.989738610852276E-003  3.770140210987045E-003
+

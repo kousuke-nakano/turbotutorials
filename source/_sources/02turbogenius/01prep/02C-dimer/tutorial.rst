@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0202:
 
-02_02Carbon_dimer
+02Carbon_dimer
 ======================================================
 
 .. contents:: Table of Contents
@@ -161,18 +161,18 @@ To generate an input file for a DFT calculation type the following command:
 
    In the generated ``prep.input`` file, set ``nelocc`` to 4. The occupation of the orbitals is specified at the end of the input file (2 in this case, indicating paired electrons)
     
-Launch a DFT job.
+Launch the DFT job.
 
 .. code-block:: bash
     
-   # on a local machine (parallel)
-   # (TREX-summer school) Please don't do this on m100!!
-   turbogenius prep -r
-
-.. code-block:: bash
-
-   # trex summer school
-   cp $WORK/submit_prep.sh ./; sbatch submit_prep.sh
+    # on a local machine (serial version)
+    prep-serial.x < prep.input > out_prep
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 Check the convergence.
 
@@ -212,16 +212,15 @@ Here, only the commands are shown.
 Run the optimization jobs.
 
 .. code-block:: bash
-    
-   # on a local machine
-   # (TREX-summer school) Please don't do this on m100!!
-   turbogenius vmcopt -r
 
-.. code-block::bash
-
-   # trex summer school
-   cp $WORK/submit_vmcopt.sh ./
-   sbatch submit_vmcopt.sh # it takes ~ 100 sec. for the C2 dimer
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
    
 
 Check the convergence.
@@ -246,14 +245,16 @@ Here, only needed commands are shown.
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g
+    vi datasvmc.input # if needed
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmc -r
-    
-    #trex summer school
-    cp $WORK/submit_vmc.sh ./
-    sbatch submit_vmc.sh  # it takes ~ 30 secs. for the C2 dimer.
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius vmc -post -bin 10 -warmup 5 
 
@@ -303,13 +304,14 @@ Run LRDMC jobs for each ``alat``:
     # C atom
     turbogenius lrdmc -g -etry -5.00 -alat -0.XX
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius lrdmc -r 
-    
-    # trex summer school
-    cp $WORK/submit_lrdmc.sh ./; sbatch submit_lrdmc.sh
-    # In C2-dimer cal. min, ~ 12 min and ~ 3 min. for alat=0.10 and 0.20 respectively. 
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius lrdmc -bin 20 -corr 3 warmup 5
 
@@ -442,13 +444,16 @@ Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_06>` for t
     cp fort.10_bak ./fort.10_corr
     turbogenius correlated-sampling -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-    
-    # trex summer school
-    cp $WORK/submit_corr_sampling.sh .
-    sbatch submit_corr_sampling.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
     # check the overlap
     %cat corrsampling.dat 
@@ -469,12 +474,14 @@ You should optimize the matrix elements before adding hybrid orbitals.
     cp ../01_01convert_WF_JSD_to_JAGP/pseudo.dat .
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmcopt -r 
-    
-    # trex summer school
-    cp $WORK/submit_vmcopt.sh ./; sbatch submit_vmcopt.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
 Finally, you can convert the optimized WF to the JAGP one with ``-hyb 4``.
 
@@ -507,13 +514,16 @@ Please check the energy diff. by the correlated sampling.
     cp fort.10_bak ./fort.10_corr
     turbogenius correlated-sampling -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-    
-    # trex summer school
-    cp $WORK/submit_corr_sampling.sh .
-    sbatch submit_corr_sampling.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 .. _turbogeniustutorial_0202_02_02:
 
@@ -544,16 +554,14 @@ Run a optimization job.
 
 .. code-block:: bash
     
-   # on a local machine
-   # (TREX-summer school) Please don't do this on m100!!
-   turbogenius vmcopt -r
-
-.. code-block::bash
-
-   # trex summer school
-   cp $WORK/submit_vmcopt.sh ./
-   sbatch submit_vmcopt.sh # it takes ~ 100 sec. for the C2 dimer
-   
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
 Check the convergence.
 
@@ -577,14 +585,15 @@ Here, only needed commands are shown.
     cp ../02optimization/fort.10 ./fort.10
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g
-    
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmc -r
-    
-    #trex summer school
-    cp $WORK/submit_vmc.sh ./
-    sbatch submit_vmc.sh  # it takes ~ 30 secs. for the C2 dimer.
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius vmc -post -bin 10 -warmup 5 
 
@@ -630,13 +639,14 @@ Here, only the commands are shown.
     # C atom
     turbogenius lrdmc -g --help -etry -5.00 -alat -0.XX
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius lrdmc -r 
-    
-    # trex summer school
-    cp $WORK/submit_lrdmc.sh ./; sbatch submit_lrdmc.sh
-    # In C2-dimer cal. min, ~ 12 min and ~ 3 min. for alat=0.10 and 0.20 respectively. 
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius lrdmc -bin 20 -corr 3 warmup 5
 
@@ -760,12 +770,14 @@ Then, you can run DFT by typing:
 
 .. code-block:: bash
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius prep -r 
-    
-    # for trex summer school
-    cp $WORK/submit_prep.sh ./; sbatch submit_prep.sh
+    # on a local machine (serial version)
+    prep-serial.x < prep.input > out_prep
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius prep -post
 
@@ -850,13 +862,16 @@ Thus, one can obtain an AFM trial wavefunction.
     cp fort.10_bak ./fort.10_corr
     turbogenius correlated-sampling -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-    
-    # trex summer school
-    cp $WORK/submit_corr_sampling.sh .
-    sbatch submit_corr_sampling.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
     # check the overlap
     %cat corrsampling.dat 
@@ -896,13 +911,15 @@ you can optimize its nodal surface at the VMC level.
 Run VMC-opt runs
 
 .. code-block:: bash
-    
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmcopt -r
- 
-    # trex summer school
-    cp $WORK/submit_vmcopt.sh ./; sbatch submit_vmcopt.sh  # it takes ~ 6 min for the C2-dimer.
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     #average fort.10
     turbogenius vmcopt -post -optwarmup 100 -plot
@@ -923,14 +940,15 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
     cp ../03optimization/pseudo.dat .
     turbogenius vmc -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmc -r
-    
-    #trex summer school
-    cp $WORK/submit_vmc.sh ./
-    sbatch submit_vmc.sh  # it takes ~ 30 secs. for the C2 dimer.
-    
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+
     turbogenius vmc -post -bin 10 -warmup 5
 
 .. code-block:: bash
@@ -968,13 +986,14 @@ Heres are commands for LRDMCs.
     # C atom
     turbogenius lrdmc -g --help -etry -5.00 -alat -0.XX
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius lrdmc -r
-    
-    # trex summer school
-    cp $WORK/submit_lrdmc.sh ./; sbatch submit_lrdmc.sh
-    # In C2-dimer cal. min, ~ 12 min and ~ 3 min. for alat=0.10 and 0.20 respectively.
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius lrdmc -bin 20 -corr 3 warmup 5
     
@@ -1088,13 +1107,16 @@ The strategy :math:`\rm(\hspace{.08em}ii\hspace{.08em})` is employed for the Li 
     cp fort.10_bak ./fort.10_corr
     turbogenius correlated-sampling -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-    
-    # trex summer school
-    cp $WORK/submit_corr_sampling.sh .
-    sbatch submit_corr_sampling.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
     # check the overlap
     # Here, you may loose some energy! because you have rotated the spins.
@@ -1124,13 +1146,16 @@ You can convert spin-polarized WFs using turbogenius in the same way as in the n
     cp fort.10_bak ./fort.10_corr
     turbogenius correlated-sampling -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius correlated-sampling -r
-    
-    # trex summer school
-    cp $WORK/submit_corr_sampling.sh .
-    sbatch submit_corr_sampling.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x  < datasvmc.input > out_readforward
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
     # check the overlap
     %cat corrsampling.dat     
@@ -1161,12 +1186,14 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr
 
     #C atom/vmcopt
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmcopt -r
-    
-    # trex summer school
-    cp $WORK/submit_vmcopt.sh ./; sbatch submit_vmcopt.sh  # it takes ~ 6 min for the C2-dimer.
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     #average fort.10
     turbogenius vmcopt -post -optwarmup 100 -plot
@@ -1177,13 +1204,14 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
     cp ../03optimization/pseudo.dat .
     turbogenius vmc -g
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius vmc -r
-    
-    #trex summer school
-    cp $WORK/submit_vmc.sh ./
-    sbatch submit_vmc.sh  # it takes ~ 30 secs. for the C2 dimer.
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
     
     turbogenius vmc -post -bin 10 -warmup 5
     
@@ -1199,12 +1227,14 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
     # C atom
     turbogenius lrdmc -g --help -etry -5.00 -alat -0.XX
     
-    # on a local machine
-    # (TREX-summer school) Please don't do this on m100!!
-    turbogenius lrdmc -r
-    
-    # trex summer school
-    cp $WORK/submit_lrdmc.sh ./; sbatch submit_lrdmc.sh
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
 
     turbogenius lrdmc -bin 20 -corr 3 warmup 5
     
