@@ -3,16 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Turbo-Genius tutorials 
+Starting from a PySCF calculation
 ===========================================
 
 .. figure:: /_static/07logo/logo2.png
     :width: 600px
 
-Here are examples of various calculations with TurboRVB via Turbo-Genius.
+Here are examples of various calculations with TurboRVB via Turbo-Genius, starting from PySCF.
 
 .. toctree::
    :maxdepth: 3
    
-   ./01prep/00prep_index.rst
-   ./02PySCF/00PySCF_index.rst
+   ./01NH3_trexio/tutorial.rst
+   ./02SiO2_trexio_k_gamma/tutorial.rst
+   ./04NaCl_finite_size_correction_trexio/tutorial.rst

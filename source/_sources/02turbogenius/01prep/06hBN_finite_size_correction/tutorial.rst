@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0501:
 
-05_01h-BN with finite-size extrapolation
+06h-BN with finite-size extrapolation
 ======================================================
 
 .. _turbogeniustutorial_0501_00:
@@ -42,7 +42,14 @@ From this tutorial, you can learn how to calculate h-BN (finite-size extrapolati
     cp ../00makefort10/pseudo.dat .
 
     turbogenius prep -g -grid 0.10 0.10 0.10
-    job-manager toss -p turborvb -b prep-mpi.x -i prep.input -o out_prep -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius prep -post
 
 .. _turbogeniustutorial_0501_02:
@@ -57,7 +64,14 @@ From this tutorial, you can learn how to calculate h-BN (finite-size extrapolati
     cp ../01trial_wavefunction/01DFT/pseudo.dat ./
     cp fort.10 fort.10_dft
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr  -steps 500 -nw 480
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmcopt -post -optwarmup 450 -plot
 
 .. _turbogeniustutorial_0501_03:
@@ -71,7 +85,14 @@ From this tutorial, you can learn how to calculate h-BN (finite-size extrapolati
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g -steps 500 -nw 480
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmc -post -bin 10 -warmup 5 
     
 .. _turbogeniustutorial_0501_04:

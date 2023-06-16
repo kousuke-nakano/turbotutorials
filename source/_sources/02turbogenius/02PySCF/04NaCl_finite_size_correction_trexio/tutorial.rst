@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0502:
 
-05_02NaCl_trexio with finite-size extrapolation
+04NaCl with finite-size extrapolation
 ===========================================================================
 
 .. _turbogeniustutorial_0502_00:
@@ -47,7 +47,16 @@ From this tutorial, you can learn how to calculate NaCl (finite-size extrapolati
     cp ../01trexio_to_turborvbwf/pseudo.dat ./
     cp fort.10 fort.10_pyscf
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr  -steps 500 -nw 480
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12 # TREX summer school
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmcopt -post -optwarmup 450 -plot
    
 .. _turbogeniustutorial_0502_03:
@@ -61,7 +70,16 @@ From this tutorial, you can learn how to calculate NaCl (finite-size extrapolati
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g -steps 500 -nw 480
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12 # TREX summer school
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmc -post -bin 10 -warmup 5 
 
 .. _turbogeniustutorial_0502_04:

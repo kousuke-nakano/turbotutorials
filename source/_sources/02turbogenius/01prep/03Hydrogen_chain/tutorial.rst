@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0301:
 
-03_01Hydrogen_chain
+03Hydrogen_chain
 ======================================================
 
 .. _turbogeniustutorial_0301_00:
@@ -52,8 +52,16 @@ From this tutorial, you can learn how to calculate Hydrogen-chain (periodic boun
     cp ../00makefort10/pseudo.dat .
 
     turbogenius prep -g -grid 0.20 0.20 0.20 -smear 0.01
-    turbogenius prep -r # on a local machine
-    job-manager toss -p turborvb -b prep-mpi.x -i prep.input -o out_prep -q reserved -core 12 # TREX summer school!
+
+    # on a local machine (serial version)
+    prep-serial.x < prep.input > out_prep
+    # on a local machine (parallel version)
+    mpirun -np XX prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius prep -post
     grep Iter out_prep
 
@@ -72,8 +80,16 @@ Here, only needed commands are shown.
     cp ../01trial_wavefunction/01DFT/fort.10_new fort.10
     cp ../01trial_wavefunction/01DFT/pseudo.dat ./
     cp fort.10 fort.10_dft
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 100 -steps 200
-    turbogenius vmcopt -r # on a local machine
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasmin.input > out_min
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12 # TREX summer school!
     turbogenius vmcopt -post -optwarmup 80 -plot
 
@@ -89,8 +105,16 @@ Here, only needed commands are shown.
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g -steps 1000
-    turbogenius vmc -r # on local machine
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12 # TREX summer school!
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasvmc.input > out_vmc
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+
     turbogenius vmc -post -bin 10 -warmup 5 
     
 .. _turbogeniustutorial_0301_04:
@@ -106,7 +130,15 @@ Here, only needed commands are shown.
     cp ../../03vmc/pseudo.dat .
     
     turbogenius lrdmc -g -etry -3.600 -alat -0.50 -steps 1000
-    turbogenius lrdmc -r # on a local machine
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasfn.input -o out_fn -q reserved -core 12 # TREX summer school!
+
+    # on a local machine (serial version)
+    turborvb-serial.x < datasfn.input > out_fn
+    # on a local machine (parallel version)
+    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
     

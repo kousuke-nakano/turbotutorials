@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_0304:
 
-03_04Diamond with k twist average
+05Diamond with k twist average
 ======================================================
 
 .. _turbogeniustutorial_0304_00:
@@ -41,7 +41,14 @@ From this tutorial, you can learn how to calculate Diamond (with k twist average
     cp ../00makefort10/pseudo.dat .
 
     turbogenius prep -g -grid 0.10 0.10 0.10 -kpts 2 2 2 0 0 0
-    job-manager toss -p turborvb -b prep-mpi.x -i prep.input -o out_prep -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np 8x prep-mpi.x < prep.input > out_prep
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius prep -post
 
 .. _turbogeniustutorial_0304_02:
@@ -56,7 +63,14 @@ From this tutorial, you can learn how to calculate Diamond (with k twist average
     cp -r ../01trial_wavefunction/01DFT/turborvb.scratch turborvb.scratch
     cp ../01trial_wavefunction/01DFT/pseudo.dat ./
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -twist -kpts 2 2 2 0 0 0
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasmin.input -o out_min -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np 8x turborvb-mpi.x < datasmin.input > out_min
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmcopt -post -optwarmup 50 -plot
 
 .. _turbogeniustutorial_0304_03:
@@ -71,5 +85,12 @@ From this tutorial, you can learn how to calculate Diamond (with k twist average
     cp -r ../02optimization/turborvb.scratch turborvb.scratch
     cp ../02optimization/pseudo.dat .
     turbogenius vmc -g -twist -kpts 2 2 2 0 0 0
-    job-manager toss -p turborvb -b turborvb-mpi.x -i datasvmc.input -o out_vmc -q reserved -core 12 # TREX summer school
+
+    # on a local machine (parallel version)
+    mpirun -np 8x turborvb-mpi.x < datasvmc.input > out_vmc
+    # on a cluster machine (PBS)
+    qsub submit.sh
+    # on a cluster machine (Slurm)
+    sbatch submit.sh
+    
     turbogenius vmc -post -bin 10 -warmup 5 
