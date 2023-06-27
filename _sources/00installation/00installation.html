@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation of packages &mdash; Turbotutorials Updated on 16/06/2023 documentation</title>
+  <title>Installation of packages &mdash; Turbotutorials Updated on 27/06/2023 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
@@ -34,7 +34,7 @@
             Turbotutorials
           </a>
               <div class="version">
-                Updated on 16/06/2023
+                Updated on 27/06/2023
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -84,11 +84,15 @@
 <section id="turborvb-installation">
 <h2>TurboRVB installation<a class="headerlink" href="#turborvb-installation" title="Permalink to this heading">¶</a></h2>
 <p>Please download the source codes from the GitHub repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sissaschool/turborvb.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~
+%<span class="w"> </span>mkdir<span class="w"> </span>applications
+%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/applications/turborvb
+%<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/sissaschool/turborvb.git
 </pre></div>
 </div>
 <p>Let’s compile and test TurboRVB</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>turborvb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/applications/turborvb
+%<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>cmake<span class="w">    </span><span class="c1"># depending on your env.</span>
 %<span class="w"> </span>cmake<span class="w"> </span>-S<span class="w"> </span>.<span class="w"> </span>-B<span class="w"> </span>build
 %<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
 %<span class="w"> </span>make<span class="w"> </span>-j<span class="w"> </span><span class="m">4</span>
@@ -96,26 +100,32 @@
 </pre></div>
 </div>
 <p>Copy the compiled binaries to bin/ directory</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>turborvb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/applications/turborvb
 %<span class="w"> </span>cp<span class="w"> </span>build/*.x<span class="w"> </span>bin/
 </pre></div>
 </div>
 <p>Please add a PATH to the turborvb/bin directory to your environment</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>e.g.,<span class="w"> </span><span class="k">for</span><span class="w"> </span>bash
-%<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;$PATH&#39;</span><span class="o">=</span>your-turborvb-root/bin:<span class="s1">&#39;$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="c1"># e.g., for bash</span>
+%<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$HOME</span>/applications/turborvb/bin:<span class="s1">&#39;$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+%<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>Check if it works</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>which<span class="w"> </span>turborvb-serial.x
 </pre></div>
 </div>
 <p>You can see available options for the CMake in the GitHub repository.</p>
 </section>
 <section id="turbogenius-installation">
 <h2>TurboGenius installation<a class="headerlink" href="#turbogenius-installation" title="Permalink to this heading">¶</a></h2>
-<p>Please download the source codes from the GitHub repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kousuke-nakano/turbogenius.git
+<p>Let’s make a conda environment to install turbogenius (if you prefer)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>turborvb<span class="w"> </span><span class="nv">python</span><span class="o">==</span><span class="m">3</span>.8
+conda<span class="w"> </span>activate<span class="w"> </span>turborvb
 </pre></div>
 </div>
-<p>Let’s make a conda environment to install turbogenius (if you prefer)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>turbo<span class="w"> </span><span class="nv">python</span><span class="o">==</span><span class="m">3</span>.8
-conda<span class="w"> </span>activate<span class="w"> </span>turbo
+<p>Please download the source codes from the GitHub repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/applications
+%<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kousuke-nakano/turbogenius.git
 </pre></div>
 </div>
 <p>Let’s install turbogenius via pip</p>
@@ -124,10 +134,10 @@ conda<span class="w"> </span>activate<span class="w"> </span>turbo
 </pre></div>
 </div>
 <p>Test if it works.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>turbogenius<span class="w"> </span>-h
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>turbogenius<span class="w"> </span>--help
 </pre></div>
 </div>
-<p>If you see an output from the helper, TurboRVB and TurboGenius have been successfully compiled.</p>
+<p>If you see an output from the helper, TurboRVB and TurboGenius have been successfully compiled on your machine!</p>
 </section>
 </section>
 

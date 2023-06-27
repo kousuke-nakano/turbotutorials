@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01NH3 &mdash; Turbotutorials Updated on 16/06/2023 documentation</title>
+  <title>01NH3 &mdash; Turbotutorials Updated on 27/06/2023 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
@@ -34,7 +34,7 @@
             Turbotutorials
           </a>
               <div class="version">
-                Updated on 16/06/2023
+                Updated on 27/06/2023
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -307,7 +307,7 @@ Here, only needed commands are shown.</p>
 cp<span class="w"> </span>../01trexio_to_turborvbwf/fort.10<span class="w"> </span>fort.10
 cp<span class="w"> </span>../01trexio_to_turborvbwf/pseudo.dat<span class="w"> </span>./
 cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_pyscf
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">300</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">480</span>
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">300</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span>
 
 <span class="c1"># on a local machine (serial version)</span>
 turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
@@ -327,7 +327,7 @@ turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span clas
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../03vmc/
 cp<span class="w"> </span>../02optimization/fort.10<span class="w"> </span>fort.10
 cp<span class="w"> </span>../02optimization/pseudo.dat<span class="w"> </span>.
-turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-nw<span class="w"> </span><span class="m">480</span><span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span>
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span>
 
 <span class="c1"># on a local machine (serial version)</span>
 turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
@@ -349,7 +349,7 @@ turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="
 cp<span class="w"> </span>../../03vmc/fort.10<span class="w"> </span>./
 cp<span class="w"> </span>../../03vmc/pseudo.dat<span class="w"> </span>.
 
-turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-11.70<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-nw<span class="w"> </span><span class="m">480</span><span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-11.70<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span>
 
 <span class="c1"># on a local machine (serial version)</span>
 turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
