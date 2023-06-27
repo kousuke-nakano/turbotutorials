@@ -337,7 +337,7 @@ Here, only needed commands are shown.
     cp ../01trexio_to_turborvbwf/fort.10 fort.10
     cp ../01trexio_to_turborvbwf/pseudo.dat ./
     cp fort.10 fort.10_pyscf
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100 -nw 480
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100
 
     # on a local machine (serial version)
     turborvb-serial.x < datasmin.input > out_min
@@ -360,7 +360,7 @@ Here, only needed commands are shown.
     cd ../03vmc/
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
-    turbogenius vmc -g -steps 500 -nw 480
+    turbogenius vmc -g -steps 500
 
     # on a local machine (serial version)
     turborvb-serial.x < datasvmc.input > out_vmc
