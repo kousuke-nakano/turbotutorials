@@ -29,7 +29,6 @@ From this tutorial, you can learn how to calculate Diamond (with k twist average
 .. code-block:: bash
     
     cd 01trial_wavefunction/00makefort10/
-    cp ../../../2101499.cif .
     turbogenius makefort10 -g -str 2101499.cif -detbasis cc-pVTZ -jasbasis cc-pVDZ -detcutbasis -jascutbasis -pp ccECP -complex
     turbogenius makefort10 -r -post
     
@@ -62,7 +61,7 @@ From this tutorial, you can learn how to calculate Diamond (with k twist average
     cp ../01trial_wavefunction/01DFT/fort.10 fort.10
     cp -r ../01trial_wavefunction/01DFT/turborvb.scratch turborvb.scratch
     cp ../01trial_wavefunction/01DFT/pseudo.dat ./
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -twist -kpts 2 2 2 0 0 0
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 100 -steps 200 -twist -kpts 2 2 2 0 0 0
 
     # on a local machine (parallel version)
     mpirun -np 8x turborvb-mpi.x < datasmin.input > out_min

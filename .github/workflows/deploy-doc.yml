@@ -3,8 +3,8 @@
 name: sphinx-deploy-gh-pages
 
 on:
-  release:
-    types: [published]
+  push:
+    branches: [ "main" ]
 
 jobs:
   sphinx-build:
