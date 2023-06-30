@@ -52,6 +52,7 @@ do
     find ./file -name "ave_temp" | xargs rm -r
     find ./file -name "turborvb.scratch" | xargs rm -r
     find ./file -name "parameters_graphs" | xargs rm -r
+    find ./file -name ".*" | xargs rm -r
     tar -zcvf file.tar.gz file
     fi
     cd $tutorial_root
