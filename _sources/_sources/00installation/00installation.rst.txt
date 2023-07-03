@@ -15,8 +15,8 @@ Please download the source codes from the GitHub repository.
     
     % cd ~
     % mkdir applications
-    % cd ~/applications/turborvb
     % git clone https://github.com/sissaschool/turborvb.git
+    % cd ~/applications/turborvb
 
 Let's compile and test TurboRVB 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>02Carbon_dimer &mdash; Turbotutorials Updated on 27/06/2023 documentation</title>
+  <title>02Carbon_dimer &mdash; Turbotutorials Updated on 03/07/2023 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
@@ -34,7 +34,7 @@
             Turbotutorials
           </a>
               <div class="version">
-                Updated on 27/06/2023
+                Updated on 03/07/2023
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -295,7 +295,7 @@ Here, only the commands are shown.</p>
 cp<span class="w"> </span>../01trial_wavefunction/01DFT/fort.10_new<span class="w"> </span>fort.10
 cp<span class="w"> </span>../01trial_wavefunction/01DFT/pseudo.dat<span class="w"> </span>./
 cp<span class="w"> </span>fort.10<span class="w"> </span>fort.10_dft
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span>
 </pre></div>
 </div>
 <p>Run the optimization jobs.</p>
@@ -310,7 +310,7 @@ sbatch<span class="w"> </span>submit.sh
 </pre></div>
 </div>
 <p>Check the convergence.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">100</span><span class="w"> </span>-plot
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">80</span><span class="w"> </span>-plot
 <span class="c1"># and then please follow the instructions.</span>
 </pre></div>
 </div>
@@ -768,8 +768,7 @@ turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span cla
 Here you can set magnetic moments on each atom to obtain an AFM initial state.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># both for C2 dimer and C atom</span>
 <span class="nb">cd</span><span class="w"> </span>../01DFT
-cp<span class="w"> </span>../00makefort10/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../00makefort10/pseudo.dat<span class="w"> </span>.
+
 <span class="c1">#C2-dimer</span>
 turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-xc<span class="w"> </span>lsda<span class="w"> </span>-f<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span><span class="m">0</span>.10<span class="w"> </span>-lbox<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">12</span>.0<span class="w"> </span><span class="m">14</span>.0<span class="w"> </span>-m<span class="w"> </span>u<span class="w"> </span>d
 <span class="c1">#C-atom</span>
@@ -1045,20 +1044,11 @@ Coefficient<span class="w"> </span>found
 <section id="c2-dimer-and-c-atom-jagp-jpf-ansatz">
 <span id="turbogeniustutorial-0202-04"></span><h2><a class="toc-backref" href="#id28" role="doc-backlink">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a><a class="headerlink" href="#c2-dimer-and-c-atom-jagp-jpf-ansatz" title="Permalink to this heading">¶</a></h2>
 <p id="turbogeniustutorial-0202-04-01">The most important procedure in a Pfaffian calculation is to convert a JDFT or JAGPu
-ansatz to JAGP(JPf) ansatz.
-Since the JAGP ansatz is a special case of the JPf one,  where only <span class="math">G_{ud}</span> and <span class="math">G_{du}</span> terms are defined as described in the section <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span> that are not described in the JAGP and that otherwise have to be set to 0.
-There are two possible approaches to convert an ansatz:
-<span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span>
-for polarized systems, we can build the <span class="math">G_{uu}</span> block of the matrix by using an even number of
-<span class="math">\{ \phi_i\}</span> and build an antisymmetric <span class="math">g_{uu}</span>, where the eigenvalues <span class="math">\lambda_k</span> are chosen to be large enough
-to occupy certainly  these unpaired states, as in  the standard Slater determinant used
-for our initialization.
-Again, we emphasize that  this works only for polarized systems.
-<span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span>
-The second approach that also works in a spin-unpolarized case is to determine
-a standard broken symmetry single determinant ansatz ({it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {it i.e.}, the <span class="math">z</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
-A particularly important case is when  a rotation of <span class="math">\pi/2</span> is applied around the <span class="math">y</span> direction. This operation maps <span class="math">|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}</span> to a Pf one <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.</p>
-<p>The strategy <span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span> is employed for the Li dimer (i.e., unpolarized case) while <span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span> is employed for the Li atom (i.e., polarized case)</p>
+ansatz to JAGP(JPf) ansatz. Since the JAGP ansatz is a special case of the JPf one, where only <span class="math">G_{ud}</span> and <span class="math">G_{du}</span> terms are defined as described in the section <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span> that are not described in the JAGP and that otherwise have to be set to 0.</p>
+<p>There are two possible approaches to convert an ansatz: <span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span> for polarized systems, we can build the <span class="math">G_{uu}</span> block of the matrix by using an even number of <span class="math">\{ \phi_i\}</span> and build an antisymmetric <span class="math">g_{uu}</span>, where the eigenvalues <span class="math">\lambda_k</span> are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization.</p>
+<p>Again, we emphasize that  this works only for polarized systems. <span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span> The second approach that also works in a spin-unpolarized case is to determine
+a standard broken symmetry single determinant ansatz ({it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {it i.e.}, the <span class="math">z</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of <span class="math">\pi/2</span> is applied around the <span class="math">y</span> direction. This operation maps <span class="math">|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}</span> to a Pf one <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.</p>
+<p>The strategy <span class="math">\rm(\hspace{.08em}ii\hspace{.08em})</span> is employed for the C dimer (i.e., unpolarized case) while <span class="math">\rm(\hspace{.18em}i\hspace{.18em})</span> is employed for the C atom (i.e., polarized case)</p>
 <section id="spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one">
 <h3><a class="toc-backref" href="#id29" role="doc-backlink">04-01 (spin-singlet case) C<sub>2</sub> dimer: Convert JAGPu WF to JAGP one</a><a class="headerlink" href="#spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one" title="Permalink to this heading">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">################</span>

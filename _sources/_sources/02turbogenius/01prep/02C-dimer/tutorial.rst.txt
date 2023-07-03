@@ -207,7 +207,7 @@ Here, only the commands are shown.
     cp ../01trial_wavefunction/01DFT/fort.10_new fort.10
     cp ../01trial_wavefunction/01DFT/pseudo.dat ./
     cp fort.10 fort.10_dft
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 100 -steps 400
 
 Run the optimization jobs.
 
@@ -227,7 +227,7 @@ Check the convergence.
 
 .. code-block:: bash
 
-    turbogenius vmcopt -post -optwarmup 100 -plot
+    turbogenius vmcopt -post -optwarmup 80 -plot
     # and then please follow the instructions.
 
 
@@ -758,8 +758,7 @@ Here you can set magnetic moments on each atom to obtain an AFM initial state.
     
     # both for C2 dimer and C atom
     cd ../01DFT
-    cp ../00makefort10/fort.10 .
-    cp ../00makefort10/pseudo.dat .
+
     #C2-dimer
     turbogenius prep -g -xc lsda -f 0.01 -grid 0.10 0.10 0.10 -lbox 12.0 12.0 14.0 -m u d
     #C-atom
@@ -1072,21 +1071,14 @@ Binding energy
 .. _turbogeniustutorial_0202_04_01:
 
 The most important procedure in a Pfaffian calculation is to convert a JDFT or JAGPu
-ansatz to JAGP(JPf) ansatz.
-Since the JAGP ansatz is a special case of the JPf one,  where only :math:`G_{ud}` and :math:`G_{du}` terms are defined as described in the section review_ paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors :math:`G_{uu}` and :math:`G_{dd}` that are not described in the JAGP and that otherwise have to be set to 0.
-There are two possible approaches to convert an ansatz: 
-:math:`\rm(\hspace{.18em}i\hspace{.18em})`
-for polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of 
-:math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough 
-to occupy certainly  these unpaired states, as in  the standard Slater determinant used 
-for our initialization.
-Again, we emphasize that  this works only for polarized systems.
-:math:`\rm(\hspace{.08em}ii\hspace{.08em})`
-The second approach that also works in a spin-unpolarized case is to determine 
-a standard broken symmetry single determinant ansatz ({\it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {\it i.e.}, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
-A particularly important case is when  a rotation of :math:`\pi/2` is applied around the :math:`y` direction. This operation maps :math:`|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).` One can convert from a AGP the pairing function that is obtained from a VMC optimization :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}` to a Pf one :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).` This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.
+ansatz to JAGP(JPf) ansatz. Since the JAGP ansatz is a special case of the JPf one, where only :math:`G_{ud}` and :math:`G_{du}` terms are defined as described in the section review_ paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors :math:`G_{uu}` and :math:`G_{dd}` that are not described in the JAGP and that otherwise have to be set to 0.
 
-The strategy :math:`\rm(\hspace{.08em}ii\hspace{.08em})` is employed for the Li dimer (i.e., unpolarized case) while :math:`\rm(\hspace{.18em}i\hspace{.18em})` is employed for the Li atom (i.e., polarized case)
+There are two possible approaches to convert an ansatz: :math:`\rm(\hspace{.18em}i\hspace{.18em})` for polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of :math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization.
+
+Again, we emphasize that  this works only for polarized systems. :math:`\rm(\hspace{.08em}ii\hspace{.08em})` The second approach that also works in a spin-unpolarized case is to determine 
+a standard broken symmetry single determinant ansatz ({\it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {\it i.e.}, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of :math:`\pi/2` is applied around the :math:`y` direction. This operation maps :math:`|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).` One can convert from a AGP the pairing function that is obtained from a VMC optimization :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}` to a Pf one :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).` This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.
+
+The strategy :math:`\rm(\hspace{.08em}ii\hspace{.08em})` is employed for the C dimer (i.e., unpolarized case) while :math:`\rm(\hspace{.18em}i\hspace{.18em})` is employed for the C atom (i.e., polarized case)
 
 04-01 (spin-singlet case) C\ :sub:`2` dimer: Convert JAGPu WF to JAGP one
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
