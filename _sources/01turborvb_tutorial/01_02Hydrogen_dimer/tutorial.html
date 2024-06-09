@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>01_02Hydrogen_dimer &mdash; Turbotutorials Updated on 09/06/2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=eee8fc05"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="02_01Lithium_dimer" href="../02_01Li-dimer/tutorial.html" />
+    <link rel="prev" title="01_01Hydrogen_dimer" href="../01_01Hydrogen_dimer/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 09/06/2024
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB user manuals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboRVB tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_01Hydrogen_dimer/tutorial.html">01_01Hydrogen_dimer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">01_02Hydrogen_dimer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">00 Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convert-jdft-wf-to-jagp-one-with-hybrid-basis-set">01 Convert JDFT WF to JAGP one with hybrid basis set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conversion-check">02 Conversion check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">03 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02_01Li-dimer/tutorial.html">02_01Lithium_dimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../98_wf_optimization/tutorial.html">98 Wavefuntion optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_tutorial/00index.html">TurboWorkflows tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboRVB tutorials</a></li>
+      <li class="breadcrumb-item active">01_02Hydrogen_dimer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/01turborvb_tutorial/01_02Hydrogen_dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hydrogen-dimer">
+<span id="turborvbtutorial-0102"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">01_02Hydrogen_dimer</a><a class="headerlink" href="#hydrogen-dimer" title="Permalink to this heading">¶</a></h1>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#hydrogen-dimer" id="id1">01_02Hydrogen_dimer</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id2">00 Introduction</a></p></li>
+<li><p><a class="reference internal" href="#convert-jdft-wf-to-jagp-one-with-hybrid-basis-set" id="id3">01 Convert JDFT WF to JAGP one with hybrid basis set</a></p></li>
+<li><p><a class="reference internal" href="#conversion-check" id="id4">02 Conversion check</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id5">03 Summary</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<span id="turborvbtutorial-0102-00"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>From this tutorial, you can learn how to use hybrid (i.e., contracted) basis set in TurboRVB.
+You can download all the input and output files from <a class="reference download internal" download="" href="../../../_downloads/9cefd33d57175831104a30d1b51dbdeb/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+</section>
+<section id="convert-jdft-wf-to-jagp-one-with-hybrid-basis-set">
+<span id="turborvbtutorial-0102-01"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">01 Convert JDFT WF to JAGP one with hybrid basis set</a><a class="headerlink" href="#convert-jdft-wf-to-jagp-one-with-hybrid-basis-set" title="Permalink to this heading">¶</a></h2>
+<p>In this tutorial, one can convert the optimized JDFT ansatz to a JAGP one with hybrid orbital.</p>
+<p>Create the following working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>01convert_WF_JDFT_to_JAGP
+<span class="nb">cd</span><span class="w"> </span>01convert_WF_JDFT_to_JAGP/
+</pre></div>
+</div>
+<p>Then, copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> in <code class="docutils literal notranslate"><span class="pre">03VMC</span></code> to <code class="docutils literal notranslate"><span class="pre">01convert_WF_JDFT_to_JAGP</span></code>
+and rename it as <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>, and copy makefort10.input in
+01trial_wavefunction/00makefort10 directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>../03vmc/fort.10<span class="w"> </span>fort.10_in
+cp<span class="w"> </span>../01trial_wavefunction/00makefort10/makefort10.input<span class="w"> </span>./
+</pre></div>
+</div>
+<p>Open <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> by an editor (e.g., emacs) and check the values of <code class="docutils literal notranslate"><span class="pre">twobodypar</span></code> and <code class="docutils literal notranslate"><span class="pre">onebodypar</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Parameters Jastrow two body</span>
+<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">0</span>.290626442260694<span class="w">        </span><span class="m">1</span>.08521356525542
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">twobodypar</span></code> is 0.290626442260694, and <code class="docutils literal notranslate"><span class="pre">onebodypar</span></code> is 1.08521356525542.
+Put these values into <code class="docutils literal notranslate"><span class="pre">makefort10.input</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">twobodypar</span><span class="o">=</span><span class="m">0</span>.290626442260694<span class="w">         </span>!<span class="w"> </span>two<span class="w"> </span>body<span class="w"> </span>parameter
+<span class="nv">onebodypar</span><span class="o">=</span><span class="m">1</span>.08521356525542<span class="w">          </span>!<span class="w"> </span>one<span class="w"> </span>body<span class="w"> </span>parameter
+</pre></div>
+</div>
+<p>To use hybrid orbital, please put the following variable into <code class="docutils literal notranslate"><span class="pre">makefort10.input</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ATOM_1
+<span class="p">&amp;</span>shells
+<span class="nv">nshelldet</span><span class="o">=</span><span class="m">7</span>
+<span class="nv">nshelljas</span><span class="o">=</span><span class="m">6</span>
+<span class="nv">ndet_hyb</span><span class="o">=</span><span class="m">1</span><span class="w">   </span>!!!<span class="w"> </span>The<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>hybrid<span class="w"> </span>orbitals.
+</pre></div>
+</div>
+<p>The other procedures are the same as a usual conversion.
+Please generate a <strong>templete</strong> of a JAGP ansatz and rename it as <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>makefort10.x<span class="w"> </span>&lt;<span class="w"> </span>makefort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_make
+mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10_out
+</pre></div>
+</div>
+<p>You may see the hybrid orbitals <code class="docutils literal notranslate"><span class="pre">900000</span></code> in <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">         </span><span class="m">1</span><span class="w">          </span><span class="m">30</span><span class="w">      </span><span class="m">900000</span>
+<span class="w">         </span><span class="m">1</span><span class="w">           </span><span class="m">1</span><span class="w">           </span><span class="m">2</span><span class="w">           </span><span class="m">3</span><span class="w">           </span><span class="m">4</span><span class="w">           </span><span class="m">5</span>
+<span class="w">         </span><span class="m">6</span><span class="w">           </span><span class="m">7</span><span class="w">           </span><span class="m">8</span><span class="w">           </span><span class="m">9</span><span class="w">          </span><span class="m">10</span><span class="w">          </span><span class="m">11</span>
+<span class="w">        </span><span class="m">12</span><span class="w">          </span><span class="m">13</span><span class="w">          </span><span class="m">14</span><span class="w">          </span><span class="m">15</span><span class="w">   </span><span class="m">1</span>.000000<span class="w">      </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+<span class="w">         </span><span class="m">1</span><span class="w">          </span><span class="m">30</span><span class="w">      </span><span class="m">900000</span>
+<span class="w">         </span><span class="m">2</span><span class="w">          </span><span class="m">16</span><span class="w">          </span><span class="m">17</span><span class="w">          </span><span class="m">18</span><span class="w">          </span><span class="m">19</span><span class="w">          </span><span class="m">20</span>
+<span class="w">        </span><span class="m">21</span><span class="w">          </span><span class="m">22</span><span class="w">          </span><span class="m">23</span><span class="w">          </span><span class="m">24</span><span class="w">          </span><span class="m">25</span><span class="w">          </span><span class="m">26</span>
+<span class="w">        </span><span class="m">27</span><span class="w">          </span><span class="m">28</span><span class="w">          </span><span class="m">29</span><span class="w">          </span><span class="m">30</span><span class="w">   </span><span class="m">1</span>.000000<span class="w">      </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+<span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00<span class="w">  </span><span class="m">0</span>.0000000E+00
+</pre></div>
+</div>
+<p>Run a conversion:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_conv
+</pre></div>
+</div>
+<p>Please check the overlap square in out_conv:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kosukenoMBP%<span class="w"> </span>cat<span class="w"> </span>out_conv
+....
+Overlap<span class="w"> </span>square<span class="w"> </span>with<span class="w"> </span>no<span class="w"> </span>zero<span class="w">  </span><span class="m">0</span>.99999999999999800
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Overlap</span> <span class="pre">square</span></code> should be close to unity, i.e., if a conversion is perfect, this becomes unity.</p>
+<p>How to choose the number of hybrid orbitals? You can see eigenvalues of the Density matrix
+in <code class="docutils literal notranslate"><span class="pre">out_conv</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>DMRG<span class="w"> </span>AGP<span class="w"> </span>eigs<span class="w"> </span><span class="nv">atom</span><span class="o">=</span><span class="w">           </span><span class="m">1</span>
+<span class="w">         </span><span class="m">1</span><span class="w"> </span>-3.846218917216071E-017
+<span class="w">         </span><span class="m">2</span><span class="w"> </span>-5.989310793692198E-018
+<span class="w">         </span><span class="m">3</span><span class="w"> </span>-2.114200963101394E-018
+<span class="w">         </span><span class="m">4</span><span class="w"> </span>-3.116687538640809E-020
+<span class="w">         </span><span class="m">5</span><span class="w"> </span>-2.700889601630337E-035
+<span class="w">         </span><span class="m">6</span><span class="w"> </span>-1.323908158470134E-036
+<span class="w">         </span><span class="m">7</span><span class="w"> </span>-1.034939478211192E-046
+<span class="w">         </span><span class="m">8</span><span class="w"> </span>-1.630861872977912E-048
+<span class="w">         </span><span class="m">9</span><span class="w">  </span><span class="m">5</span>.677970820165607E-048
+<span class="w">        </span><span class="m">10</span><span class="w">  </span><span class="m">7</span>.285734600442618E-047
+<span class="w">        </span><span class="m">11</span><span class="w">  </span><span class="m">3</span>.533831326263726E-046
+<span class="w">        </span><span class="m">12</span><span class="w">  </span><span class="m">5</span>.753356744022504E-034
+<span class="w">        </span><span class="m">13</span><span class="w">  </span><span class="m">7</span>.196307749840218E-019
+<span class="w">        </span><span class="m">14</span><span class="w">  </span><span class="m">1</span>.287076970325539E-016
+<span class="w">        </span><span class="m">15</span><span class="w">  </span><span class="m">0</span>.486455161249419
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">15</span><span class="w">           </span><span class="m">1</span>
+
+...
+
+DMRG<span class="w"> </span>AGP<span class="w"> </span>eigs<span class="w"> </span><span class="nv">atom</span><span class="o">=</span><span class="w">           </span><span class="m">2</span>
+<span class="w">         </span><span class="m">1</span><span class="w"> </span>-2.277829325110379E-017
+<span class="w">         </span><span class="m">2</span><span class="w"> </span>-7.506998333295701E-018
+<span class="w">         </span><span class="m">3</span><span class="w"> </span>-2.352524937915374E-019
+<span class="w">         </span><span class="m">4</span><span class="w"> </span>-1.255624973246101E-034
+<span class="w">         </span><span class="m">5</span><span class="w"> </span>-2.361470267822471E-046
+<span class="w">         </span><span class="m">6</span><span class="w"> </span>-6.554274614496367E-048
+<span class="w">         </span><span class="m">7</span><span class="w">  </span><span class="m">7</span>.727350885150923E-049
+<span class="w">         </span><span class="m">8</span><span class="w">  </span><span class="m">1</span>.508672640800797E-046
+<span class="w">         </span><span class="m">9</span><span class="w">  </span><span class="m">3</span>.967229189818456E-046
+<span class="w">        </span><span class="m">10</span><span class="w">  </span><span class="m">4</span>.849965271589550E-037
+<span class="w">        </span><span class="m">11</span><span class="w">  </span><span class="m">1</span>.671046179733616E-035
+<span class="w">        </span><span class="m">12</span><span class="w">  </span><span class="m">3</span>.052239961822894E-020
+<span class="w">        </span><span class="m">13</span><span class="w">  </span><span class="m">1</span>.052982100946220E-017
+<span class="w">        </span><span class="m">14</span><span class="w">  </span><span class="m">7</span>.014101372275822E-017
+<span class="w">        </span><span class="m">15</span><span class="w">  </span><span class="m">0</span>.486455161248972
+<span class="nv">dimension</span><span class="w"> </span><span class="o">=</span><span class="w">          </span><span class="m">15</span><span class="w">           </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>One should choose several largest eigenvalues <span class="math">p</span> (see. the page 15 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper) such that <code class="docutils literal notranslate"><span class="pre">Overlap</span> <span class="pre">square</span></code> does not become too small. In this case, <code class="docutils literal notranslate"><span class="pre">ndet_hyb=1</span></code> is enough.</p>
+<p>The converted WF <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>. This is an JAGP wavefunction.
+Rename <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> as <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> as <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10
+cp<span class="w"> </span>fort.10_in<span class="w"> </span>fort.10_new
+</pre></div>
+</div>
+<p>A tool <code class="docutils literal notranslate"><span class="pre">copyjas.x</span></code> copies Jastrow factors written in fort.10_new to fort.10.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>copyjas.x<span class="w"> </span>&gt;<span class="w"> </span>out_copyjas
+</pre></div>
+</div>
+<p>The conversion has finished. The obtained JAGP wavefunction is fort.10 with hybrid orbitals.</p>
+</section>
+<section id="conversion-check">
+<span id="turborvbtutorial-0102-02"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">02 Conversion check</a><a class="headerlink" href="#conversion-check" title="Permalink to this heading">¶</a></h2>
+<p>We recommend one should check if the above conversion was successful.
+This can be checked using the so-called correlated sampling method.
+Indeed, one can check the difference in energies of WFs using a VMC calculation.</p>
+<p>Create a working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>02conversion_check
+</pre></div>
+</div>
+<p>Copy the obtained JAGP wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, and the optimized JDFT wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> as <code class="docutils literal notranslate"><span class="pre">fort.10_corr</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>../01convert_WF_JDFT_to_JAGP/fort.10<span class="w"> </span>./fort.10
+cp<span class="w"> </span>../01convert_WF_JDFT_to_JAGP/fort.10_in<span class="w"> </span>./fort.10_corr
+</pre></div>
+</div>
+<p>Prepare the following two input files for a correlated sampling calculation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#datasvmc.input</span>
+<span class="p">&amp;</span>simulation
+<span class="nv">itestr4</span><span class="o">=</span><span class="m">2</span>
+<span class="nv">ngen</span><span class="o">=</span><span class="m">15000</span>
+<span class="nv">maxtime</span><span class="o">=</span><span class="m">86000</span>
+<span class="nv">iopt</span><span class="o">=</span><span class="m">1</span>
+/
+<span class="p">&amp;</span>pseudo
+/
+<span class="p">&amp;</span>vmc
+<span class="nv">epscut</span><span class="o">=</span><span class="m">1</span>.0d-10
+/
+<span class="p">&amp;</span>optimization
+/
+<span class="p">&amp;</span>readio
+<span class="nv">iread</span><span class="o">=</span><span class="m">3</span>
+/
+<span class="p">&amp;</span>parameters
+/
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># readforward.input</span>
+<span class="p">&amp;</span>simulation
+/
+<span class="p">&amp;</span>system
+/
+<span class="p">&amp;</span>corrfun
+<span class="nv">bin_length</span><span class="o">=</span><span class="m">100</span>
+<span class="nv">initial_bin</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">correlated_samp</span><span class="o">=</span>.true.
+/
+</pre></div>
+</div>
+<p>Run a correlated sampling</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w">  </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_read
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">corrsampling.dat</span></code> contains the output.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#KosukenoMacBook-Pro-2% cat corrsampling.dat</span>
+Number<span class="w"> </span>of<span class="w"> </span>bins<span class="w">                </span><span class="m">146</span>
+reference<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10<span class="o">)</span><span class="w">  </span>-0.113830415E+01<span class="w">     </span><span class="m">0</span>.208254732E-03
+reweighted<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10_corr<span class="o">)</span><span class="w">  </span>-0.113830415E+01<span class="w">     </span><span class="m">0</span>.208254697E-03
+reweighted<span class="w"> </span>difference:<span class="w"> </span>E<span class="o">(</span>fort.10<span class="o">)</span>-E<span class="o">(</span>fort.10_corr<span class="o">)</span><span class="w">    </span><span class="m">0</span>.297758662E-08<span class="w">     </span><span class="m">0</span>.316227766E-07
+Overlap<span class="w"> </span>square<span class="w"> </span>:<span class="w"> </span><span class="o">(</span>fort.10,fort.10_corr<span class="o">)</span><span class="w">    </span><span class="m">0</span>.999999992E+00<span class="w">     </span><span class="m">0</span>.316227766E-07
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">reweighted</span> <span class="pre">difference</span></code> indicates the difference in energies of the WFs, <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">fort.10_corr</span></code>. This should be close to zero. <code class="docutils literal notranslate"><span class="pre">Overlap</span> <span class="pre">square</span></code> should be close to unity, i.e., if a conversion is perfect, this becomes unity.</p>
+</section>
+<section id="summary">
+<span id="turborvbtutorial-0102-03"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">03 Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<p>All other procesures are the same. Enjoy.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../01_01Hydrogen_dimer/tutorial.html" class="btn btn-neutral float-left" title="01_01Hydrogen_dimer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../02_01Li-dimer/tutorial.html" class="btn btn-neutral float-right" title="02_01Lithium_dimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>04_pyscf-HF_turbo-VMC_crystals_at_complex &mdash; Turbotutorials Updated on 09/06/2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=eee8fc05"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="prev" title="03_pyscf-HF_turbo-VMC_crystals_at_gamma" href="../03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+              <div class="version">
+                Updated on 09/06/2024
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB user manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_tutorial/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01_CO-dimer/tutorial.html">01_CO-dimer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html">02_pyscf-HF_turbo-VMC_molecules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.html">03_pyscf-HF_turbo-VMC_crystals_at_gamma</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">04_pyscf-HF_turbo-VMC_crystals_at_complex</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows tutorials</a></li>
+      <li class="breadcrumb-item active">04_pyscf-HF_turbo-VMC_crystals_at_complex</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows_tutorial/04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pyscf-hf-turbo-vmc-crystals-at-complex">
+<span id="turboworkflowstutorial-04"></span><h1>04_pyscf-HF_turbo-VMC_crystals_at_complex<a class="headerlink" href="#pyscf-hf-turbo-vmc-crystals-at-complex" title="Permalink to this heading">¶</a></h1>
+<p>From this tutorial, you can learn how to compare HF energies obtained by pySCF and VMC energies obtained by TurboRVB for 7 crystals at k=gamma using <cite>turboworkflows</cite>. Here is a python script to compute it. You can download the csv and geometry files for this tutorial from <a class="reference download internal" download="" href="../../../_downloads/9567773666f46e79e3a62b3f1b373188/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../../_images/pyscf_turborvb_sanity_check_HF_PBC_k_0.25_0.25_0.25.png"><img alt="../../../_images/pyscf_turborvb_sanity_check_HF_PBC_k_0.25_0.25_0.25.png" src="../../../_images/pyscf_turborvb_sanity_check_HF_PBC_k_0.25_0.25_0.25.png" style="width: 700px;" /></a>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+
+<span class="c1"># python packages</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">write</span><span class="p">,</span> <span class="n">read</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+
+<span class="c1"># turboworkflows packages</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_encapsulated</span> <span class="kn">import</span> <span class="n">eWorkflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_lrdmc_ext</span> <span class="kn">import</span> <span class="n">LRDMC_ext_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_vmc</span> <span class="kn">import</span> <span class="n">VMC_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_pyscf</span> <span class="kn">import</span> <span class="n">PySCF_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_trexio</span> <span class="kn">import</span> <span class="n">TREXIO_convert_to_turboWF</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_vmcopt</span> <span class="kn">import</span> <span class="n">VMCopt_workflow</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_lanchers</span> <span class="kn">import</span> <span class="n">Launcher</span><span class="p">,</span> <span class="n">Variable</span>
+<span class="kn">from</span> <span class="nn">turboworkflows.workflow_prep</span> <span class="kn">import</span> <span class="n">DFT_workflow</span>
+
+<span class="c1"># read molecules and its info.</span>
+<span class="n">mol_info</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data_sanity_check.csv&quot;</span><span class="p">)</span>
+<span class="n">mol_calc</span><span class="o">=</span><span class="n">mol_info</span><span class="p">[</span><span class="n">mol_info</span><span class="p">[</span><span class="s2">&quot;Flag&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span>
+
+<span class="c1"># info list:</span>
+<span class="n">codid_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;CODID&quot;</span><span class="p">])</span>
+<span class="n">label_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">])</span>
+<span class="n">pyscf_basis_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;pyscf_basis&quot;</span><span class="p">])</span>
+<span class="n">pyscf_ecp_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;pyscf_ecp&quot;</span><span class="p">])</span>
+<span class="n">charge_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;Charge&quot;</span><span class="p">])</span>
+<span class="n">neldiff_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">mol_calc</span><span class="p">[</span><span class="s2">&quot;Neldiff&quot;</span><span class="p">])</span>
+
+<span class="n">pid</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;turboworkflows.pid&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">result_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">result_dir</span><span class="p">)</span>
+
+<span class="n">cworkflows_list</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">codid</span><span class="p">,</span><span class="n">label</span><span class="p">,</span><span class="n">pyscf_basis</span><span class="p">,</span><span class="n">pyscf_ecp</span><span class="p">,</span><span class="n">charge</span><span class="p">,</span><span class="n">neldiff</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">codid_list</span><span class="p">,</span><span class="n">label_list</span><span class="p">,</span><span class="n">pyscf_basis_list</span><span class="p">,</span> <span class="n">pyscf_ecp_list</span><span class="p">,</span><span class="n">charge_list</span><span class="p">,</span><span class="n">neldiff_list</span><span class="p">):</span>
+
+    <span class="n">mol_root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">))</span>
+
+    <span class="c1">#pyscf</span>
+    <span class="n">pyscf_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow&#39;</span><span class="p">),</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">PySCF_workflow</span><span class="p">(</span>
+        <span class="c1">## structure file (mandatory)</span>
+        <span class="n">structure_file</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">,</span>
+        <span class="c1">## job</span>
+        <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;lmpcc&quot;</span><span class="p">,</span>
+        <span class="n">cores</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+        <span class="n">openmp</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+        <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;XLARGE-6T&quot;</span><span class="p">,</span>
+        <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+        <span class="n">sleep_time</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>  <span class="c1"># sec.</span>
+        <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+        <span class="c1">## pyscf</span>
+        <span class="n">pyscf_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">pyscf_pkl_name</span><span class="o">=</span><span class="s2">&quot;pyscf_genius&quot;</span><span class="p">,</span>
+        <span class="n">charge</span><span class="o">=</span><span class="n">charge</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="n">neldiff</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="n">pyscf_basis</span><span class="p">,</span>
+        <span class="n">ecp</span><span class="o">=</span><span class="n">pyscf_ecp</span><span class="p">,</span>
+        <span class="n">scf_method</span><span class="o">=</span><span class="s2">&quot;HF&quot;</span><span class="p">,</span>
+        <span class="n">dft_xc</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+        <span class="n">pyscf_output</span><span class="o">=</span><span class="s2">&quot;out.pyscf&quot;</span><span class="p">,</span>
+        <span class="n">pyscf_chkfile</span><span class="o">=</span><span class="s2">&quot;pyscf.chk&quot;</span><span class="p">,</span>
+        <span class="n">solver_newton</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">exp_to_discard</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+        <span class="n">kpt</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>  <span class="c1"># scaled_kpts!! i.e., crystal coord.</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cworkflows_list</span><span class="o">+=</span><span class="p">[</span><span class="n">pyscf_HF_workflow</span><span class="p">]</span>
+
+    <span class="c1">#continue #to check pyscf convergence.</span>
+
+    <span class="c1">#trexio</span>
+    <span class="n">trexio_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow&#39;</span><span class="p">),</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trexio.hdf5&#39;</span><span class="p">)],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">TREXIO_convert_to_turboWF</span><span class="p">(</span>
+            <span class="n">trexio_filename</span><span class="o">=</span><span class="s2">&quot;trexio.hdf5&quot;</span><span class="p">,</span>
+            <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">jastrow_basis_dict</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">max_occ_conv</span><span class="o">=</span><span class="mf">1.0e-4</span><span class="p">,</span>
+            <span class="n">trexio_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">trexio_pkl_name</span><span class="o">=</span><span class="s2">&quot;trexio_genius&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">cworkflows_list</span><span class="o">+=</span><span class="p">[</span><span class="n">trexio_HF_workflow</span><span class="p">]</span>
+
+    <span class="c1">#vmc</span>
+    <span class="n">vmc_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow&#39;</span><span class="p">),</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span>
+                    <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">)],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">VMC_workflow</span><span class="p">(</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;fugaku&quot;</span><span class="p">,</span>
+            <span class="n">cores</span><span class="o">=</span><span class="mi">4608</span><span class="p">,</span>
+            <span class="n">openmp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">queue</span><span class="o">=</span><span class="s2">&quot;small&quot;</span><span class="p">,</span>
+            <span class="n">version</span><span class="o">=</span><span class="s2">&quot;stable&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span> <span class="c1"># sec.</span>
+            <span class="n">jobpkl_name</span><span class="o">=</span><span class="s2">&quot;job_manager&quot;</span><span class="p">,</span>
+            <span class="c1">## vmc</span>
+            <span class="n">vmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">vmc_pkl_name</span><span class="o">=</span><span class="s2">&quot;vmc_genius&quot;</span><span class="p">,</span>
+            <span class="n">vmc_target_error_bar</span><span class="o">=</span><span class="mf">5.0e-5</span><span class="p">,</span> <span class="c1"># Ha</span>
+            <span class="n">vmc_trial_steps</span><span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+            <span class="n">vmc_bin_block</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">vmc_warmupblocks</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="n">vmc_num_walkers</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># default -1 -&gt; num of MPI process.</span>
+            <span class="n">vmc_twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmc_kpoints</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">vmc_force_calc_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmc_maxtime</span><span class="o">=</span><span class="mi">172000</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="n">cworkflows_list</span><span class="o">+=</span><span class="p">[</span><span class="n">vmc_HF_workflow</span><span class="p">]</span>
+
+<span class="n">launcher</span><span class="o">=</span><span class="n">Launcher</span><span class="p">(</span><span class="n">cworkflows_list</span><span class="o">=</span><span class="n">cworkflows_list</span><span class="p">,</span> <span class="n">dependency_graph_draw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">launcher</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.html" class="btn btn-neutral float-left" title="03_pyscf-HF_turbo-VMC_crystals_at_gamma" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
