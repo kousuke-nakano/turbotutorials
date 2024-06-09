@@ -6,6 +6,11 @@
 Installation of packages
 ======================================================
 
+The followings are very simple tutorials for installing TurboRVB, TurboGenius, and TurboWorkflows.
+The details of the installation options are written in each GitHub repository.
+
+If you have any problem on the installation, please visit `TurboRVB Discussions <https://github.com/sissaschool/turborvb/discussions>`__, `TurboGenius Discussions <https://github.com/kousuke-nakano/turbogenius/discussions>`__, or `TurboWorkflows Discussions <https://github.com/kousuke-nakano/turboworkflows/discussions>`__, and please post your problem.
+
 TurboRVB installation
 --------------------------------------------
 
@@ -84,3 +89,8 @@ Test if it works.
     % turbogenius --help
 
 If you see an output from the helper, TurboRVB and TurboGenius have been successfully compiled on your machine!
+
+TurboWorkflows installation
+--------------------------------------------
+
+WIP.

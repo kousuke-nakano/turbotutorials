@@ -6,54 +6,7 @@
 Wavefunction
 ===========================================
 
-TurboRVB employs a many-body WF ansatz :math:`\Psi` which can be written as the product of two terms:
-
-.. math::
-
-    \Psi  =  \Phi _\text{AS} \times \exp J \,,
-
-where the term :math:`\exp J`, conventionally dubbed Jastrow factor, is symmetric under electron exchange, and the term :math:`\Phi _\text{AS}`, also referred to as the determinant part of the WF, is antisymmetric.
-The resulting WF :math:`\Psi` is antisymmetric, thus fermionic.
-
-The Jastrow factor (:math:`\exp J`) plays an important role
-in improving the correlation of the WF and in fulfilling Kato's cusp conditions.
-TurboRVB implements the Jastrow term composed of one-body, two-body, and three/four-body factors (:math:`J = {J_1}+{J_2}+{J_{3/4}}`).
-
--------------------------------------------
-Wavefunction file format (fort.10)
--------------------------------------------
-
-In TurboRVB, ``fort.10`` is a fundamental file that contains all information about the nuclear positions and the wave function (WF) details and parameters. ::
-
-    # fort.10 of the C2-dimer (the Pfaffian ansatz with the Filippi pseudo potential.)
-    # Nelup  #Nel  # Ion
-            4          -8           2
-    # Shell Det.   # Shell Jas.
-            50          43
-    # Jas 2body  # Det   #  3 body atomic par.
-            -22        1482          42
-    # Det mat. =/0  # Jas mat. =/0
-            120        8370
-    # Eq. Det atomic par.  # Eq. 3 body atomic. par.
-            741          21
-    # unconstrained iesfree,iessw,ieskinr,I/O flag
-            8370         120           6           0
-    # Ion coordinates
-    4.00000000000000        6.00000000000000       0.000000000000000E+000
-    0.000000000000000E+000  -1.14999954166875
-    4.00000000000000        6.00000000000000       0.000000000000000E+000
-    0.000000000000000E+000   1.14999954166875
-    #  Constraints for forces: ion - coordinate
-            1           1           1
-            1           1           2
-            1           1           3
-            1           2           1
-            1           2           2
-            1           2           3
-    #          Parameters Jastrow two body
-            -1  0.342214663461764
-    ...
-
+In TurboRVB, ``fort.10`` is a fundamental file that contains all information about the nuclear positions and the wave function (WF) details and parameters.
 In the following each part of the file will be described. The file is divided in different sections and it contains numbers (in a
 free format) as well as comment lines (which start with \#).
 
@@ -80,17 +33,104 @@ keywords.::
      # unconstrained iesfree,iessw,ieskinr,I/O flag
                4           4           0           0
 
-``NELUP`` Number of spin up electrons in the system.
+.. table::
 
-``NEL`` Total number of electrons in the system.
+    +---------------------------+----------------------------------------------+
+    | name                      | description                                  |
+    +===========================+==============================================+
+    | NELUP                     | Number of spin up electrons in the system.   |
+    +---------------------------+----------------------------------------------+
+    | NEL                       | Total number of electrons in the system.     |
+    +---------------------------+----------------------------------------------+
+    | ION                       | Number of nuclei in the system.              |
+    +---------------------------+----------------------------------------------+
+    | SHELL DET                 | Number of shells used to describe the        |
+    |                           | determinantal term of the AGP wavefunction.  |
+    +---------------------------+----------------------------------------------+
+    | SHELL JAS                 | Number of shells used to describe the        |
+    |                           | Jastrow term of the wavefunction.            |
+    +---------------------------+----------------------------------------------+
+    | JAS 2BODY                 | Type of the Jastrow 2B/1B term used to       |
+    |                           | satisfy the electron-electron, electron-ion  |
+    |                           | cusp conditions, respectively.               |
+    +---------------------------+----------------------------------------------+
+    | DET                       | Total number of atomic variational parameters|
+    |                           | used for the description of the determinant  |
+    |                           | part of the JAGP. The atomic variational     |
+    |                           | parameters are all parameters describing the |
+    |                           | shell used to expand the WF (i.e. gaussian   |
+    |                           | coefficient and gaussian exponents). For     |
+    |                           | example, if a shell is described by a single |
+    |                           | Gaussian function, :math:`\phi(r) \sim       |
+    |                           | \exp(-Zr^2)` there is only one atomic        |
+    |                           | parameter, the Z exponent of the Gaussian.   |
+    |                           | if the shell is described by a contracted    |
+    |                           | orbital of two Gaussians,                    |
+    |                           | :math:`\psi = \alpha_1 =                     |
+    |                           | \exp(-Z_1 r^2) + \alpha_2 \exp(-Z_2 r^2)`    |
+    |                           | then there are four atomic parameters,       |
+    |                           | :math:`Z_1` and :math:`Z_2` and the          |
+    |                           | coefficients :math:`\alpha_1` and :math:`    |
+    |                           | \alpha_2` of the linear combination.         |
+    +---------------------------+----------------------------------------------+
+    | 3 BODY ATOMIC PAR         | Total number of atomic parameters used to    |
+    |                           | describe the Jastrow part of the JAGP. It is |
+    |                           | analogous to **DET** but for the Jastrow     |
+    |                           | orbitals.                                    |
+    +---------------------------+----------------------------------------------+
+    | DET MAT =/0               | Number of coefficients :math:`\{\lambda_{ij} |
+    |                           | \}` of the determinant that are different    |
+    |                           | from zero. Note that the :math:`\Lambda`     |
+    |                           | matrix is symmetric and only :math:`\lambda_ |
+    |                           | {ij}` for :math:`i \geq j` are provided in   |
+    |                           | the data file. This number corresponds to the|
+    |                           | number of lines read afterwards.             |
+    +---------------------------+----------------------------------------------+
+    | JAS MAT =/0               | Number of coefficients :math:`\{\lambda_{ij} |
+    |                           | \}` in the 3B Jastrow that will be considered|
+    |                           | different from zero. This number corresponds |
+    |                           | to the number of lines that will be read     |
+    |                           | afterwards.                                  |
+    +---------------------------+----------------------------------------------+
+    | EQ DET ATOMIC PAR         | Number of symmetries involving the           |
+    |                           | variational atomic parameters of the         |
+    |                           | determinant. This number corresponds to the  |
+    |                           | number of lines that will be read afterwards.|
+    +---------------------------+----------------------------------------------+
+    | EQ 3 BODY ATOMIC PAR      | Number of symmetries involving the           |
+    |                           | variational atomic parameters of the 3B      |
+    |                           | Jastrow. This number corresponds to the      |
+    |                           | number of lines that will be read afterwards.|
+    +---------------------------+----------------------------------------------+
+    | UNCONSTRAINED IESFREE     | Number of independent coefficients           |
+    |                           | :math:`\{\lambda\}` of the Jastrow. This     |
+    |                           | number corresponds to the number of lines to |
+    |                           | be read when the symmetries for the Jastrow  |
+    |                           | :math:`\{\Lambda\}` matrix are described.    |
+    +---------------------------+----------------------------------------------+
+    | IESWW                     | Number of independent coefficients           |
+    |                           | :math:`\{\lambda\}` of the determinant. This |
+    |                           | number corresponds to the number of lines to |
+    |                           | be read when the symmetries for the          |
+    |                           | determinant are described.                   |
+    +---------------------------+----------------------------------------------+
+    | IESKINR                   | Number of cartesian nuclear components to be |
+    |                           | optimized. This number corresponds to the    |
+    |                           | number of lines to be read in the relative   |
+    |                           | section of the file.                         |
+    +---------------------------+----------------------------------------------+
+    | I\O FLAG                  | It describes how to read the FORT.10 file. If|
+    |                           | '0' the file is read and all the information |
+    |                           | is used. If '1', at the end of the file, an  |
+    |                           | extra part is expected where new parameters  |
+    |                           | (for example averaged from previous          |
+    |                           | simulations) are provided in free format.    |
+    +---------------------------+----------------------------------------------+
 
-``ION`` Number of nuclei in the system.
 
-``SHELL DET`` Number of shells  used to describe the determinantal term of the AGP wavefunction.
+The following is a more details description about the header part.
 
-``SHELL JAS`` Number of shells used to describe the Jastrow term of the wavefunction.
-
-``JAS 2BODY`` Type of the Jastrow 2B/1B term used to satisfy the electron-electron, electron-ion cusp conditions, respectively.
+`JAS 2BODY` represents your one-body and two-body Jastrow parameter choice.
 
 The one-body Jastrow factor :math:`J_1` is the sum of two parts, the homogeneous part (enforcing the electron-ion cusp condition) and the corresponding inhomogeneous parts.
 
@@ -106,10 +146,7 @@ where the most common choice for :math:`u_a` in turborvb is:
 
     u_a\left( r \right) = \frac{ 1 }{2 b_{\text{e}a}} \left( {1 - {e^{ - r b_{\text{e}a}}}} \right)
 
-depending on a single variational parameter :math:`b_{\text{e}a}`, that may be optimized
-independently for each atomic species, but we can choose several different forms as described below.
-
-The two-body Jastrow factor is defined as:
+depending on a single variational parameter :math:`b_{\text{e}a}`, that may be optimized independently for each atomic species, but we can choose several different forms as described below. The two-body Jastrow factor is defined as:
 
 .. math::
 
@@ -127,11 +164,56 @@ where :math:`v_{{\sigma _i},{\sigma _j}}` is another  simple bounded  function. 
 
 where :math:`{r_{i,j}} = \left| {{{\mathbf{r}}_i} - {{\mathbf{r}}_j}} \right|`, and :math:`b_{\rm{ee}}^{\rm{para}}` and :math:`b_{\rm{ee}}^{\rm{anti}}` are variational parameters.
 
-Different functional form of the Jastrow one and two body terms are available and each one is identified with an integer number code iesdrr (the leftmost integer below the line::
+Different functional form of the Jastrow one and two body terms are available and each one is identified with an integer number `JAS 2BODY`. The following values of the implemented Jastrow functional forms:
 
-      # Jas 2body  # Det   #  3 body atomic par.
+.. table:: ``JAS 2BODY`` summary
 
-, i.e. -8 in the above example)  that selects also the number of parameters :math:`p` used for the two body Jastrow part only. The input consists of one line below::
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+   | iesdrr  | two-body                                          + one-body                                       + note                              |
+   +=========+===================================================+================================================+===================================+
+   | 0       | No two-body                                       | No one-body (i.e., no homogenius part)         |                                   |
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+   | -5      | :math:`\frac{r}{2(1+ar)}`                         | Rescaled the same form as the two-body         |                                   |
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+   | -1      | :math:`\frac{r}{2(1+ar)}` for opposite spins      | One body rescaled same form.                   | Not tested                        |
+   |         | :math:`\frac{r}{4(1+ar)}` for parallel spins      |                                                |                                   |
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+
+..
+    | -4      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated.
+    | -7, -6  | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, +cusp for parallel spins (divided by two).
+    | 2       | Two parameters Jastrow improved version of -1 with an independent parameter for the parallel spins, :math:`\frac{r}{4(1 + br)}` for (anti-)parallel spins, spin contaminated.
+    | -8      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, + cusp for (anti-)parallel spins + 3B Jastrow Sz.
+    | 8       | Two body :math:`\frac{1}{a} (1 - e^{-ar^3})` for pseudo soft.
+    | -9      | Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{b(1 + a)}{4a}` , to satisfy the cusp conditions for opposite spin electrons. Two parameters :math:`niesd \geq 2`.
+    | 9       | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons.
+    | 10      | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons. Rescaled :math:`r \to \frac{r}{2}` to satisfy the cusp condition for parallel spins.
+    | 5       | Three parameters :math:`\frac{1}{a + b*c} (1+c-\exp(-ar)-c\exp(-br))` improved version of -6. Warning! Implemented only for open systems.
+    | 6       | Two parameters, the second is used to rescale the electron-electron distance :math:`r_s = \frac{1-\exp(-br)}{r}` and the Jastrow is defined by :math:`J_{ee}=\frac{r_s}{2(1+ar_s)}` , no spin contamination and cusp condition for opposite spin electrons.
+    | -2      | Two parameter Jastrow :math:`r_z = \sqrt{a^2(x^2+y^2) + {(bz)}^2}` , and :math:`J_2 = \frac{1}{2} \frac{r}{1+r_z}` + cusp for (anti-)parallel spins for anisotropic phases. Warning! Implemented only for open systems.
+    | 3       | Three parameters correction to :math:`-5` :math:`J_2 = \frac{r}{2}(\frac{1}{1+ar} + \frac{cr}{{(1+br)}^2})` + cusp for (anti-)parallel spins.
+    | -9      | Two body :math:`\frac{1}{2b} (1 - e^{-br})` one body rescaled, + cusp for (anti-)parallel spins + 3B + 1B Jastrow Sz (for studying magnetic phases).
+    | -10     | No two body and one body, 3B Jastrow and Jastrow Sz is on.
+    | -11     | No two body and one body, 3B+1B Jastrow and Jastrow Sz are on (for studying magnetic phases).
+    | -12     | General spin-density Jastrow, one body and two body as -15, namely without spin dependent cusp condition.
+    | -15     | Long range two body :math:`\frac{r}{2(1+br)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .
+    | -20     | Two parameters, spin dependent (as -7) long range two body :math:`\frac{r}{2(1+ar)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .
+    | -21     | Three parameters, first two same as Jastrow number 2; short range one body :math:`\frac{1}{2c} (1-e^{-cr})`.
+    | -22     | General spin-density Jastrow one body and two body as -20, with spin dependent cusp condition, more appropriate in this case, as the spin contamination is already implied by the three and four body term.
+    | -26     | General spin-density Jastrow one body and two body as -7, with spin dependent cusp condition, without long range power law tails.
+    | -27     | General spin-density Jastrow one body and two body as -21, with spin dependent cusp condition.NB :math:`p=2` in this case, so one can put niesd=3 safely. Warning! If you put niesd>2, it is recommended to set niesd equal to 2 + # different atomic species, e.g. niesd=4 for benzene. In this way, all different atomic species will have a different one-body term.
+    | -30     | General spin-density Jastrow one body and two as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.
+    | -31     | General spin-density Jastrow one body and two body as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.
+    | -18     | same as :math:`iesdrr=-8` but with two body :math:`\frac{r}{2(1+br)}` .
+    | -19     | same as :math:`iesdrr=-9` but with two body :math:`\frac{r}{2(1+br)}` as -7.
+    | -28     | same as :math:`iesdrr=-8` but with two body/one body as -20.
+    | -29     | same as :math:`iesdrr=-9` but with two body/one body as -20.
+    | -16     | same as :math:`iesdrr=-19` but with spin independent two body as -5.
+
+
+WIP...
+
+selects also the number of parameters :math:`p` used for the two body Jastrow part only. The input consists of one line below::
 
       #          Parameters Jastrow two body
       e.g.  2  1.0 1.0
@@ -144,101 +226,6 @@ species and its default form is given by a rescaled (-4, see below) in order to 
 	:math:`p_{onebody} = 1` the one body parameter is set equal to the last parameter of the record for all the atomic species, but is independent of the two body parameters.
 
 	:math:`p_{onebody} = \#` different atoms as above, the one body parameters act independently on each atomic species, for instance in water there are two independent atomic species (two Hydrogen and one Oxygen) and the one-body is defined by two parameters. In this case the one body parameters are sorted in the record according to the atomic number, the leftmost corresponding to the lightest atomic number.
-
-Be careful with this number, as its allowed value is not tested in the input (yet).
-The following values of the two body Jastrow (iesdrr) are allowed:
-
-.. table:: Jastrow ``iesdrr`` summary
-
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | iesdrr  | description                                                                                                                                                                                                                                                                                                                                      |
-   +=========+==================================================================================================================================================================================================================================================================================================================================================+
-   | 0       | No two body and one body, 3B Jastrow may be on.                                                                                                                                                                                                                                                                                                  |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -5      | Two body :math:`\frac{r}{2(1+ar)}` one body rescaled same form.                                                                                                                                                                                                                                                                                  |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -1      | Two body :math:`\frac{r}{2(1+ar)}` for opposite spins and  :math:`\frac{r}{4(1+ar)}` for parallel spins, one body rescaled same form.                                                                                                                                                                                                            |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -4      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated.                                                                                                                                                                                                                                                            |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -7, -6  | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, +cusp for parallel spins (divided by two).                                                                                                                                                                                                                                        |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 2       | Two parameters Jastrow improved version of -1 with an independent parameter for the parellel spins, :math:`\frac{r}{4(1 + br)}` for (anti-)parallel spins, spin contaminated.                                                                                                                                                                    |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -8      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, + cusp for (anti-)parallel spins + 3B Jastrow Sz.                                                                                                                                                                                                                                 |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 8       | Two body :math:`\frac{1}{a} (1 - e^{-ar^3})` for pseudo soft.                                                                                                                                                                                                                                                                                    |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -9      | Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{b(1 + a)}{4a}` , to satisfy the cusp conditions for opposite spin electrons. Two parameters :math:`niesd \geq 2`.                                                                                                                                |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 9       | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons.                                                                                                                              |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 10      | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons. Rescaled :math:`r \to \frac{r}{2}` to satisfy the cusp condition for parallel spins.                                         |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 5       | Three parameters :math:`\frac{1}{a + b*c} (1+c-\exp(-ar)-c\exp(-br))` improved version of -6. Warning! Implemented only for open systems.                                                                                                                                                                                                        |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 6       | Two parameters, the second is used to rescale the electron-electron distance :math:`r_s = \frac{1-\exp(-br)}{r}` and the Jastrow is defined by :math:`J_{ee}=\frac{r_s}{2(1+ar_s)}` , no spin contamination and cusp condition for opposite spin electrons.                                                                                      |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -2      | Two parameter Jastrow :math:`r_z = \sqrt{a^2(x^2+y^2) + {(bz)}^2}` , and :math:`J_2 = \frac{1}{2} \frac{r}{1+r_z}` + cusp for (anti-)parallel spins for anisotropic phases. Warning! Implemented only for open systems.                                                                                                                          |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | 3       | Three parameters correction to :math:`-5` :math:`J_2 = \frac{r}{2}(\frac{1}{1+ar} + \frac{cr}{{(1+br)}^2})` + cusp for (anti-)parallel spins.                                                                                                                                                                                                    |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -9      | Two body :math:`\frac{1}{2b} (1 - e^{-br})` one body rescaled, + cusp for (anti-)parallel spins + 3B + 1B Jastrow Sz (for studying magnetic phases).                                                                                                                                                                                             |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -10     | No two body and one body, 3B Jastrow and Jastrow Sz is on.                                                                                                                                                                                                                                                                                       |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -11     | No two body and one body, 3B+1B Jastrow and Jastrow Sz are on (for studying magnetic phases).                                                                                                                                                                                                                                                    |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -12     | General spin-density Jastrow, one body and two body as -15, namely without spin dependent cusp condition.                                                                                                                                                                                                                                        |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -15     | Long range two body :math:`\frac{r}{2(1+br)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .                                                                                                                                                                                                                                          |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -20     | Two parameters, spin dependent (as -7) long range two body :math:`\frac{r}{2(1+ar)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .                                                                                                                                                                                                   |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -21     | Three parameters, first two same as Jastrow number 2; short range one body :math:`\frac{1}{2c} (1-e^{-cr})`.                                                                                                                                                                                                                                     |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -22     | General spin-density Jastrow one body and two body as -20, with spin dependent cusp condition, more appropriate in this case, as the spin contamination is already implied by the three and four body term.                                                                                                                                      |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -26     | General spin-density Jastrow one body and two body as -7, with spin dependent cusp condition, without long range power law tails.                                                                                                                                                                                                                |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -27     | General spin-density Jastrow one body and two body as -21, with spin dependent cusp condition.NB :math:`p=2` in this case, so one can put niesd=3 safely. Warning! If you put niesd>2, it is recommended to set niesd equal to 2 + # different atomic species, e.g. niesd=4 for benzene. In this way,                                            |
-   |         | all different atomic species will have a different one-body term.                                                                                                                                                                                                                                                                                |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -30     | General spin-density Jastrow one body and two as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.                                                                                                                                                                                             |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -31     | General spin-density Jastrow one body and two body as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.                                                                                                                                                                                        |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -18     | same as :math:`iesdrr=-8` but with two body :math:`\frac{r}{2(1+br)}` .                                                                                                                                                                                                                                                                          |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -19     | same as :math:`iesdrr=-9` but with two body :math:`\frac{r}{2(1+br)}` as -7.                                                                                                                                                                                                                                                                     |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -28     | same as :math:`iesdrr=-8` but with two body/one body as -20.                                                                                                                                                                                                                                                                                     |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -29     | same as :math:`iesdrr=-9` but with two body/one body as -20.                                                                                                                                                                                                                                                                                     |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | -16     | same as :math:`iesdrr=-19` but with spin independent two body as -5.                                                                                                                                                                                                                                                                             |
-   +---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-``DET`` Total number of atomic variational parameters used for the description of the determinant part of the JAGP. The atomic variational parameters are all parameters describing the shell used to expand the WF (i.e. gaussian coefficient and gaussian exponents). For example, if a shell is described by a single Gaussian function, :math:`\phi(r) \sim \exp(-Zr^2)` there is only one atomic parameter, the Z exponent of the Gaussian. If the shell is described by a contraacted orbital of two Gaussians, :math:`\psi = \alpha_1 \exp(-Z_1 r^2) + \alpha_2 \exp(-Z_2 r^2)` then there are four atomic parameters, :math:`Z_1` and :math:`Z_2` and the coefficients :math:`\alpha_1` and :math:`\alpha_2` of the linear combination.
-
-``3 BODY ATOMIC PAR`` Total number of atomic parameters used to describe the Jastrow part of the JAGP. It is analogous to **DET** but for the Jastrow orbitals.
-
-``DET MAT =/0`` Number of coefficients :math:`\{\lambda_{ij}\}` of the determinant that are different from zero. Note that the :math:`\Lambda` matrix is symmetric and only :math:`\lambda_{ij}` for :math:`i \geq j` are provided in the data file. This number corresponds to the number of lines read afterwards.
-
-``JAS MAT =/0`` Number of coefficients :math:`\{\lambda_{ij}\}` in the 3B Jastrow that will be considered different from zero. This number corresponds to the number of lines that will be read afterwards.
-
-``EQ DET ATOMIC PAR`` Number of symmetries involving the variational atomic parameters of the determinant. This number corresponds to the number of lines that will be read afterwards.
-
-``EQ 3 BODY ATOMIC PAR`` Number of symmetries involving the variational atomic parameters of the 3B Jastrow. This number corresponds to the number of lines that will be read afterwards.
-
-``UNCONSTRAINED IESFREE`` Number of independent coefficients :math:`\{\lambda\}` of the Jastrow. This number corresponds to the number of lines to be read when the symmetries for the Jastrow :math:`\{\Lambda\}` matrix are described.
-
-``IESWW`` Number of independent coefficients :math:`\{\lambda\}` of the determinant. This number corresponds to the number of lines to be read when the symmetries for the determinant are described.
-
-``IESKINR`` Number of cartesian nuclear components to be optimized. This number corresponds to the number of lines to be read in the relative section of the file.
-
-``I\O FLAG`` It describes how to read the FORT.10 file. If '0' the file is read and all the information is used. If '1', at the end of the file, an extra part is expected where new parameters (for example averaged from previous simulations) are provided in free format.
 
 In case the system has periodic boundary conditions (PBC), two additional lines appear as first lines at the beginning of the header. Here is an example::
 
