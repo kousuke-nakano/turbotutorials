@@ -132,4 +132,7 @@ dmypy.json
 .DS_Store
 
 # tutorial files
+tar_all_tutorials.sh
+*.pptx
 file/
+99archived/
