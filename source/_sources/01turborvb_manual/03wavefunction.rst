@@ -175,13 +175,18 @@ Different functional form of the Jastrow one and two body terms are available an
    +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
    | -5      | :math:`\frac{r}{2(1+ar)}`                         | Rescaled the same form as the two-body         |                                   |
    +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | -1      | :math:`\frac{r}{2(1+ar)}` for opposite spins      | One body rescaled same form.                   | Not tested                        |
-   |         | :math:`\frac{r}{4(1+ar)}` for parallel spins      |                                                |                                   |
+   | -6      | :math:`\frac{1}{2a} (1 - e^{-ar})` (opposite spin)| Rescaled the same form as the two-body         |                                   |
+   |         | :math:`\frac{1}{4a} (1 - e^{-ar})` (parallel spin)|                                                |                                   |
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+   | -15     | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                   |
+   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
+   | -20     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                   |
+   |         | :math:`\frac{r}{2(1+ar)}` (parallel spin)         |                                                |                                   |
    +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
 
 ..
+    | -1      | Two body :math:`\frac{r}{2(1+ar)}` for opposite spins and  :math:`\frac{r}{4(1+ar)}` for parallel spins, one body rescaled same form.     
     | -4      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated.
-    | -7, -6  | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, +cusp for parallel spins (divided by two).
     | 2       | Two parameters Jastrow improved version of -1 with an independent parameter for the parallel spins, :math:`\frac{r}{4(1 + br)}` for (anti-)parallel spins, spin contaminated.
     | -8      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, + cusp for (anti-)parallel spins + 3B Jastrow Sz.
     | 8       | Two body :math:`\frac{1}{a} (1 - e^{-ar^3})` for pseudo soft.
@@ -209,9 +214,6 @@ Different functional form of the Jastrow one and two body terms are available an
     | -28     | same as :math:`iesdrr=-8` but with two body/one body as -20.
     | -29     | same as :math:`iesdrr=-9` but with two body/one body as -20.
     | -16     | same as :math:`iesdrr=-19` but with spin independent two body as -5.
-
-
-WIP...
 
 selects also the number of parameters :math:`p` used for the two body Jastrow part only. The input consists of one line below::
 
