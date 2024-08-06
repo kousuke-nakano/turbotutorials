@@ -10,8 +10,10 @@ In TurboRVB, ``fort.10`` is a fundamental file that contains all information abo
 In the following each part of the file will be described. The file is divided in different sections and it contains numbers (in a
 free format) as well as comment lines (which start with \#).
 
+.. _header:
+
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Header
+Header
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This part accounts for the first twelve lines of the file.
 It contains general information about the system (such as number
@@ -52,7 +54,8 @@ keywords.::
     +---------------------------+----------------------------------------------+
     | JAS 2BODY                 | Type of the Jastrow 2B/1B term used to       |
     |                           | satisfy the electron-electron, electron-ion  |
-    |                           | cusp conditions, respectively.               |
+    |                           | cusp conditions, respectively. See the       |
+    |                           | following section for the detail.            |
     +---------------------------+----------------------------------------------+
     | DET                       | Total number of atomic variational parameters|
     |                           | used for the description of the determinant  |
@@ -127,63 +130,51 @@ keywords.::
     |                           | simulations) are provided in free format.    |
     +---------------------------+----------------------------------------------+
 
-
 The following is a more details description about the header part.
 
 `JAS 2BODY` represents your one-body and two-body Jastrow parameter choice.
 
-The one-body Jastrow factor :math:`J_1` is the sum of two parts, the homogeneous part (enforcing the electron-ion cusp condition) and the corresponding inhomogeneous parts.
-
-The homogenenous part reads
+The one-body Jastrow factor :math:`J_1` is the sum of two parts, the homogeneous part (enforcing the electron-ion cusp condition) and the corresponding inhomogeneous parts. The homogenenous :math:`J_1` part reads
 
 .. math::
 
     J_1^h \left( \mathbf{r}_1,\ldots,\mathbf{r}_N \right) = \sum_{i=1}^N \sum_{a=1}^{N_\text{at}} \left( { { - {{\left( {2{Z_a}} \right)}^{3/4}}u_a\left( {(2{Z_a})^{1/4}\left| {{\mathbf{r}_i} - {{\mathbf{R}}_a}} \right|} \right)} } \right),
 
-where the most common choice for :math:`u_a` in turborvb is:
-
-.. math::
-
-    u_a\left( r \right) = \frac{ 1 }{2 b_{\text{e}a}} \left( {1 - {e^{ - r b_{\text{e}a}}}} \right)
-
-depending on a single variational parameter :math:`b_{\text{e}a}`, that may be optimized independently for each atomic species, but we can choose several different forms as described below. The two-body Jastrow factor is defined as:
+and the two-body Jastrow factor is defined as:
 
 .. math::
 
     {J_2}\left( {{{\mathbf{r}}_1}{\sigma _1}, \ldots, {{\mathbf{r}}_N}{\sigma _N}} \right) =  {\sum\limits_{i < j} {{v_{{\sigma _i},{\sigma _j}}}\left( {\left| {{{\mathbf{r}}_i} - {{\mathbf{r}}_j}} \right|} \right)} },
 
-where :math:`v_{{\sigma _i},{\sigma _j}}` is another  simple bounded  function. There are several possible choices for :math:`v_{{\sigma _i},{\sigma _j}}` implemented in turborvb (all listed as below), and one of them is, for instance, the following spin-dependent form:
-
-.. math::
-
-    {v_{{\sigma _i},{\sigma _j}}}\left( {{r_{i,j}}} \right) =
-    \begin{cases}
-        \cfrac{{{r_{i,j}}}}{4} \cdot {\left( {1 + b_{\rm{ee}}^{\rm{para}} \cdot {{r_{i,j}}}} \right)^{ - 1}} & ({\sigma _i} = {\sigma _j}) \\
-        \cfrac{{{r_{i,j}}}}{2} \cdot {\left( {1 + b_{\rm{ee}}^{\rm{anti}} \cdot {{r_{i,j}}}} \right)^{ - 1}} & ({\sigma _i} \neq {\sigma _j})
-    \end{cases},
-
-where :math:`{r_{i,j}} = \left| {{{\mathbf{r}}_i} - {{\mathbf{r}}_j}} \right|`, and :math:`b_{\rm{ee}}^{\rm{para}}` and :math:`b_{\rm{ee}}^{\rm{anti}}` are variational parameters.
-
-Different functional form of the Jastrow one and two body terms are available and each one is identified with an integer number `JAS 2BODY`. The following values of the implemented Jastrow functional forms:
+where :math:`u_a` and :math:`v_{{\sigma _i},{\sigma _j}}` are simple bounded functions. There are several possible choices for :math:`v_{{\sigma _i},{\sigma _j}}` implemented in turborvb (all listed as below).
 
 .. table:: ``JAS 2BODY`` summary
 
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | iesdrr  | two-body                                          + one-body                                       + note                              |
-   +=========+===================================================+================================================+===================================+
-   | 0       | No two-body                                       | No one-body (i.e., no homogenius part)         |                                   |
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | -5      | :math:`\frac{r}{2(1+ar)}`                         | Rescaled the same form as the two-body         |                                   |
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | -6      | :math:`\frac{1}{2a} (1 - e^{-ar})` (opposite spin)| Rescaled the same form as the two-body         |                                   |
-   |         | :math:`\frac{1}{4a} (1 - e^{-ar})` (parallel spin)|                                                |                                   |
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | -15     | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                   |
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-   | -20     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                   |
-   |         | :math:`\frac{r}{2(1+ar)}` (parallel spin)         |                                                |                                   |
-   +---------+---------------------------------------------------+------------------------------------------------+-----------------------------------+
-
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | iesdrr  | two-body                                          + one-body                                       + note                                     |
+   +=========+===================================================+================================================+==========================================+
+   | 0       | No two-body                                       | No one-body (i.e., no homogenius part)         |                                          |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -5      | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{r}{2(1+br)}`                      |                                          |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -6      | :math:`\frac{1}{2a} (1 - e^{-ar})` (opposite spin)| :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameter is common between  |
+   |         | :math:`\frac{1}{4a} (1 - e^{-ar})` (parallel spin)|                                                | the opposite and same spins              |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -15     | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                          |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -20     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1-e^{-br})`               | The twobody parameter is common between  |
+   |         | :math:`\frac{r}{4(1+ar)}` (parallel spin)         |                                                | the opposite and same spins              |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -22     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameter is common between  |
+   |         | :math:`\frac{r}{4(1+ar)}` (parallel spin)         |                                                | the opposite and same spins.             |
+   |         |                                                   |                                                | 3B/4B Jastrows are spin-dependent        |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   | -27     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameters are independent   |
+   |         | :math:`\frac{r}{4(1+a'r)}` (parallel spin)        |                                                | between the opposite and same spins.     |
+   |         |                                                   |                                                | The onebody parameters are independent   |
+   |         |                                                   |                                                | among atomic species                     |
+   |         |                                                   |                                                | 3B/4B Jastrows are spin-dependent        |
+   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
 ..
     | -1      | Two body :math:`\frac{r}{2(1+ar)}` for opposite spins and  :math:`\frac{r}{4(1+ar)}` for parallel spins, one body rescaled same form.     
     | -4      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated.
@@ -215,20 +206,6 @@ Different functional form of the Jastrow one and two body terms are available an
     | -29     | same as :math:`iesdrr=-9` but with two body/one body as -20.
     | -16     | same as :math:`iesdrr=-19` but with spin independent two body as -5.
 
-selects also the number of parameters :math:`p` used for the two body Jastrow part only. The input consists of one line below::
-
-      #          Parameters Jastrow two body
-      e.g.  2  1.0 1.0
-
-There are two body Jastrow defined with a number :math:`p` of parameters larger than one, that are put in order from left to right in the input line according to the alphabetic order, :math:`a,b,c \cdots` . The absolute value of the integer in the record  indicates the number of parameters :math:`niesd=p+p_{obebody}`, where :math:`p_{onebody}` is the number of parameters used in the one body Jastrow. From left to right in the record the first :math:`p` parameters refer to the two-body Jastwow and the remaining ones to the one body Jastrow. The one body form is assumed to have at most one parameter for each atomic
-species and its default form is given by a rescaled (-4, see below) in order to satisfy the electron-ion cusp.There are only three possible values allowed for :math:`niesd`:
-
-	:math:`p_{onebody} = 0` the one body parameter is set equal to the last parameter of the record for all the atomic species.
-
-	:math:`p_{onebody} = 1` the one body parameter is set equal to the last parameter of the record for all the atomic species, but is independent of the two body parameters.
-
-	:math:`p_{onebody} = \#` different atoms as above, the one body parameters act independently on each atomic species, for instance in water there are two independent atomic species (two Hydrogen and one Oxygen) and the one-body is defined by two parameters. In this case the one body parameters are sorted in the record according to the atomic number, the leftmost corresponding to the lightest atomic number.
-
 In case the system has periodic boundary conditions (PBC), two additional lines appear as first lines at the beginning of the header. Here is an example::
 
    	#   PBC rs, Ly/Lx, Lz/Lx
@@ -237,7 +214,7 @@ In case the system has periodic boundary conditions (PBC), two additional lines 
 The first line is a comment line required to switch on the use of PBC and the second line lists the cell dimension in :math:`x` direction :math:`Lx`, the ratio between :math:`Ly` and :math:`Lx` and the ratio between :math:`Lz` and :math:`Lx` . The last three numbers correspond to the phase of the wave-function along the direction :math:`x` , :math:`y` , :math:`z` . Zero is used for a periodic wavefunction and 0.5 for an antiperiodic along a given direction.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Coordinates
+Coordinates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 After the header the coordinates of the nuclei are provided
 in the same line. Starting from the left the first number is the
@@ -254,7 +231,7 @@ The coordinates are in atomic units (BOHR). For example for :math:`n` nuclei::
       Nn Zn                xn     yn     zn
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Ionic Forces
+Ionic Forces
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This part of FORT.10 lists the cartesian components of the nuclear forces that will be calculated and used for the structural optimazation or dynamics. The number of lines to be read is defined by the **N.FORCES** in the **HEADER**. If **N.FORCES=0** in the header, no line will be read. At the same time, it can eventually specify symmetries to be enforced on the nuclear coordinates. To identify a force component, two numbers have to be specified: the atom number (according to the ion coordinate list) and the cartesian component (1 for X, 2 for Y and 3 for Z). For example::
@@ -273,20 +250,20 @@ The first number indicates that two components have to be read afterwards, formi
                2      1	     1      2      3
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The 2B Jastrow
+1B/2B Jastrow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The parameter(s) of the 2B Jastrow are listed in one line::
+The parameter(s) of the 1B/2B Jastrow are listed in one line::
 
     #	   Parameters Jastrow two body
            1  0.549835086466315
 
-The absolute value of the first number, dubbed as :math:`iesd` in the code, indicates how many parameters have to be read (they depend on the Jastrow type) for iesdrr different from zero. The subsequent numbers in the same record are the 2B Jastrow parameters. If the first integer is negative the AGP function is not assumed to be symmetric. If no one-two body Jastrow is used (iesdrr=0) the records::
+The absolute value of the first number, dubbed as :math:`iesd` in the code, indicates how many parameters have to be read (they depend on the Jastrow type) for iesdrr different from zero. The subsequent numbers in the same record are the 1B/2B Jastrow parameters. The 1B/2B Jastrow functional forms are written in :ref:`header`. If the first integer is negative the AGP function is not assumed to be symmetric. If no one-two body Jastrow is used (iesdrr=0) the records::
 
     #		Parameters Jastrow two body
     		-1
 
-means AGP is not symmetric whereas::
+means AGP is not symmetric, whereas::
 
     #		Parameters Jastrow two body
     		0
@@ -297,48 +274,43 @@ would be the standard symmetric case (not spin contaminated). In other cases (ie
 
       * If ``iesd = 2`` there are two independent variational parameters one for the one-body Jastrow and one for the two-body Jastrow.
 
-      * If ``iesd > 2``, ``iesd`` should be equal to the number different atomic species in the system plus one (e.g. in water :math:`iesd = 3` because of two atomic species corresponding to H and O), because for each atomic species, we assume an independent variational parameter for the one-body Jastrow. The variational parameters are ordered from left to right in this record, in the order of increasing atomic number (e.g. in the water for example, the first one corresponds to the two-body term, the second to the Hydrogen one body parameter, and the third to the Oxygen one).
+      * If ``iesd > 2``, ``iesd`` should be equal to the number different atomic species in the system plus one (e.g. in water :math:`iesd = 3` because of two atomic species corresponding to H and O), because for each atomic species, we assume an independent variational parameter for the one-body Jastrow. The variational parameters are ordered from left to right in this record, in the order of increasing atomic number (e.g. in the water for example, the first one corresponds to the two-bodys term, the second to the Hydrogen one body parameter, and the third to the Oxygen one).
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The Basis Set for Determinant
+Basis Set for Determinant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this section the Basis Set used for expanding the JAGP determinant is described. There are a fixed number of lines to be read (2*NSHELL). Each shell of the determinant is described by two lines. The first one contains the multiplicity, the number of variational parameters of the shell function and the code describing the function. The code numbers and the description of the corresponding shell are described in the file makefun.f90 of the source code. The multiplicity depends on the shell type: Shells S, P and D have the multiplicities of 1, 3 and 5 respectively. In the second line the index of the nucleus on which the shell is centered is first indicated. Then the parameter values are listed. Keep in mind that the number of parameters to be read is given in the first line.::
+In this section the Basis Set used for expanding the JAGP determinant is described. There are a fixed number of lines to be read (2*``NSHELL``). Each shell of the determinant is described by two lines. The first one contains the multiplicity, the number of variational parameters of the shell function and the code describing the function. The code numbers and the description of the corresponding shell are described in the file ``makefun.f90`` of the source code. The multiplicity depends on the shell type: i.e., s,p,d,f,g,h, and i have the multiplicities of 1,3,5,7,9,11, and, 13 respectively. In the second line the index of the nucleus on which the shell is centered is first indicated. Then the parameter values are listed. Keep in mind that the number of parameters to be read is given in the first line.::
 
-   #		Parameters atomic wf
-   Shell_Multiplicity	   Number of par.		Shell code
-   Ion index		   [par (1, NUMBER OF PAR.)]
+    #   Parameters atomic wf
+    Shell_Multiplicity  Number of parameters  Shell code
+    Ion index  [par (1, NUMBER OF PAR.)]
+    
+    #   Parameters atomic wf
+    1           1          16
+    1  0.500000000000000
+    3           1          36
+    1  1.000000000000000
+    1           1          16
+    2  0.300000000000000
+    1           1          16
+    3  0.300000000000000
+    1           1          16
+    4  0.300000000000000
+    1           1          16
+    5  0.300000000000000
 
-   #   		Parameters atomic wf
-   		1           1          16
-		1  0.500000000000000
-		3           1          36
-		1   1.00000000000000
-		1           1          16
-		2  0.300000000000000
-		1           1          16
-		3  0.300000000000000
-		1           1          16
-		4  0.300000000000000
-		1           1          16
-		5  0.300000000000000
+All primitive orbitals are written in the source file ``makefun.f90`` (open boundary), ``makefun_pbc.f90`` (pbc) and ``makefun_bump.f90`` (finite range orbitals).
 
-All primitive orbitals are written in the source file makefun.f90 (open boundary), makefun_pbc.f90 (pbc) and makefun_bump.f90 (finite range orbitals).
+TurboRVB also implements standard contracted orbitals written  as a linear combination of :math:`p` primitive orbitals. The definitions are easily found (and can be easily implemented) in the fortran file: ``ioptorbcontr.f90``. In this case, the number corresponding to "Number of par." is equal to :math:`2p`. In the next line, one writes these extra coefficients, :math:`c_i, i = 1,...2p:` the coefficient :math:`c_{i+p}` acts on the orbital number defined by the contracted orbital written in "Shell code", with exponent :math:`Z_i = c_i` (we omit the normalization, each orbital is assumed to be normalized). For instance, a :math:`2s` contracted orbital,
+:math:`\phi(r) = 3.231 \cdot \exp(-2.0 \cdot r^2) + 7.54 \cdot \exp(-1.0 \cdot r^2)` is written as::
 
-TurboRVB also implements standard contracted orbitals written  as a linear combination of :math:`p` primitive orbitals. The definitions are easily found (and can be easily implemented) in the fortran file: ioptorbcontr.f90. In this case, the number corresponding to "Number of par." is equal to :math:`2p`. In the next line, one writes these extra coefficients, :math:`C_i, i = 1,...2p:` the coefficient :math:`C_{i+p}` acts on the orbital number defined by the contracted orbital written in "Shell code", with exponent :math:`Z_i = C_i` (we omit the normalization, each orbital is assumed to be normalized), for instance a :math:`2s` contracted orbital:
+   #    Parameters atomic wf
+   1  4  300
+   1    2.0   1.0  3.231  7.54
 
-.. math::
-
-   \phi(r) = 3.231 \cdot \exp(-2.0 \cdot r^2) + 7.54 \cdot \exp(-1.0 \cdot r^2)
-
-is written as::
-
-   #	   Parameters atomic wf
-        1	      4		300
-        1	2.0   1.0  3.231  7.54
-
-Shell code::
+Shell code (primitive)::
 
     16 -> s orbital
     36 -> p orbital
@@ -348,15 +320,19 @@ Shell code::
     72 -> h orbital
     73 -> i orbital
 
+Shell code (contracted)::
+
+    300 -> s orbital
+    400 -> p orbital
+    500 -> d orbital
+    600 -> f orbital
+    700 -> g orbital
+    800 -> h orbital
+    900 -> i orbital
+
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Molecular orbital
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-``convertfort10mol.x`` can add molecular orbitals to ``fort.10``.
-
-.. math::
-
-    \tilde \Phi_k=\sum_{i=1}^{N_{\rm basis}}c_{i,k} \cdot \phi_i \left({\bm r} \right)
 
 In ``fort.10``, ``1000000`` indicates a molecular orbital.::
 
@@ -410,6 +386,12 @@ In ``fort.10``, ``1000000`` indicates a molecular orbital.::
     0.266949594020844      -5.606234073638916E-002 -0.166017174720764
     0.363827764987946       0.222376465797424       0.321450889110565
     0.293389737606049
+
+``convertfort10mol.x`` can add molecular orbitals to ``fort.10``.
+
+.. math::
+
+    \tilde \Phi_k=\sum_{i=1}^{N_{\rm basis}}c_{i,k} \cdot \phi_i \left({\bm r} \right)
 
 Note that the paring function is represented by molecular orbitals as follows:
 
