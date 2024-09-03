@@ -1,4 +1,4 @@
-Turbotutorials
+Documentations
 ===========================================
 
 This documentation contains various tutorials for TurboRVB, TurboGenius, and TurboWorkflows.
