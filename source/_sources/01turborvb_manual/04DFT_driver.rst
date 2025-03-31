@@ -113,7 +113,10 @@ Parameters section
     | ``epsbas``       | NA       | NA      | Real space cutoff for the periodic basis set (keyword PBC_C in the first record of the wave function fort.10). Note that, if|
     |                  |          |         | DFT energy is different from what is expected, then try decreasing the cutoff.                                              |
     +------------------+----------+---------+-----------------------------------------------------------------------------------------------------------------------------+
-
+    | ``skip_equivalence``  |  logic     | ``.true.``     | Set it to ``.false.`` the code looks for the k-points equivalent by symmetry and takes only one of them in the star of the Brillouin zone, |
+    |                                     |                |                     | by taking into account their degeneracy in the k summation. It is useful to reduce the number of k points explicitly calculated.    |
+    +------------------+----------+---------+-----------------------------------------------------------------------------------------------------------------------------+
+    
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Molecule section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
