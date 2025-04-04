@@ -1,22 +1,20 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Initializations of Wavefunctions &mdash; Turbotutorials Updated on 09/06/2024 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+  <title>Initializations of Wavefunctions &mdash; Turbotutorials Updated on 04/04/2025 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=eee8fc05"></script>
-        <script src="../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=a1bbd705"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -35,9 +33,6 @@
           <a href="../../index.html" class="icon icon-home">
             Turbotutorials
           </a>
-              <div class="version">
-                Updated on 09/06/2024
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -221,42 +216,11 @@ molecular orbitals only.</p></td>
 </section>
 <section id="parameters-section">
 <h4>Parameters section<a class="headerlink" href="#parameters-section" title="Permalink to this heading">¶</a></h4>
-<table class="docutils align-default" id="id5">
-<caption><span class="caption-text">Parameters section</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
-<thead>
-<tr class="row-odd"><th class="head"><p>Parameter</p></th>
-<th class="head"><p>Datatype</p></th>
-<th class="head"><p>Default</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code></p></td>
-<td><p>NA</p></td>
-<td><p>NA</p></td>
-<td><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> the code starts a k-independent calculation. When k-points are activated, this option allows performing an
-independent self-consistent cycle for each k-point without performing the k-points average of electronic density. To be used
-before a twist average calculation in QMC.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">yes_kpoints</span></code></p></td>
-<td><p>NA</p></td>
-<td><p>NA</p></td>
-<td><p>Set it to <code class="docutils literal notranslate"><span class="pre">.true.</span></code> if you plan to do a calculation with k-points sampling. In this case, the phase of the wavefunction
-fort.10 is disregarded.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">epsbas</span></code></p></td>
-<td><p>NA</p></td>
-<td><p>NA</p></td>
-<td><p>Real space cutoff for the periodic basis set (keyword PBC_C in the first record of the wave function fort.10). Note that, if
-DFT energy is different from what is expected, then try decreasing the cutoff.</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="molecule-section">
 <h4>Molecule section<a class="headerlink" href="#molecule-section" title="Permalink to this heading">¶</a></h4>
-<table class="docutils align-default" id="id6">
-<caption><span class="caption-text">Molecule section</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Molecule section</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>parameter name</p></th>
 <th class="head"><p>datatype</p></th>
@@ -285,8 +249,8 @@ DFT energy is different from what is expected, then try decreasing the cutoff.</
 </section>
 <section id="kpoints-section">
 <h4>Kpoints section<a class="headerlink" href="#kpoints-section" title="Permalink to this heading">¶</a></h4>
-<table class="docutils align-default" id="id7">
-<caption><span class="caption-text">Kpoints section</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Kpoints section</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>parameter name</p></th>
 <th class="head"><p>datatype</p></th>
@@ -358,8 +322,8 @@ KPOINTS
 </section>
 <section id="dft-section">
 <h4>DFT section<a class="headerlink" href="#dft-section" title="Permalink to this heading">¶</a></h4>
-<table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter Name</p></th>
 <th class="head"><p>Datatype</p></th>

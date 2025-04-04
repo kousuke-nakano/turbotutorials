@@ -1,22 +1,20 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01NH3 &mdash; Turbotutorials Updated on 09/06/2024 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+  <title>01NH3 &mdash; Turbotutorials Updated on 04/04/2025 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=eee8fc05"></script>
-        <script src="../../../../_static/doctools.js?v=888ff710"></script>
-        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=a1bbd705"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -35,9 +33,6 @@
           <a href="../../../../index.html" class="icon icon-home">
             Turbotutorials
           </a>
-              <div class="version">
-                Updated on 09/06/2024
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -133,13 +128,13 @@ python<span class="w"> </span>pyscf_NH3.py
 <span class="c1"># pySCF -&gt; pyscf checkpoint file (NH3 molecule)</span>
 
 <span class="c1"># load python packages</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="c1"># load ASE modules</span>
-<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ase.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read</span>
 
 <span class="c1"># load pyscf packages</span>
-<span class="kn">from</span> <span class="nn">pyscf</span> <span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">tools</span>
 
 <span class="c1">#open boundary condition</span>
 <span class="n">structure_file</span><span class="o">=</span><span class="s2">&quot;NH3.xyz&quot;</span>
@@ -247,12 +242,12 @@ python<span class="w"> </span>trexio_turborvb_wf_converter.py
 <span class="c1"># coding: utf-8</span>
 
 <span class="c1"># load python packages</span>
-<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 
 <span class="c1"># load turbogenius module</span>
-<span class="kn">from</span> <span class="nn">turbogenius.trexio_to_turborvb</span> <span class="kn">import</span> <span class="n">trexio_to_turborvb_wf</span>
-<span class="kn">from</span> <span class="nn">turbogenius.trexio_wrapper</span> <span class="kn">import</span> <span class="n">Trexio_wrapper_r</span>
-<span class="kn">from</span> <span class="nn">turbogenius.pyturbo.basis_set</span> <span class="kn">import</span> <span class="n">Jas_Basis_sets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">turbogenius.trexio_to_turborvb</span><span class="w"> </span><span class="kn">import</span> <span class="n">trexio_to_turborvb_wf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">turbogenius.trexio_wrapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">Trexio_wrapper_r</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">turbogenius.pyturbo.basis_set</span><span class="w"> </span><span class="kn">import</span> <span class="n">Jas_Basis_sets</span>
 
 <span class="c1"># TREXIO file</span>
 <span class="n">trexio_file</span><span class="o">=</span><span class="s2">&quot;NH3.hdf5&quot;</span>
