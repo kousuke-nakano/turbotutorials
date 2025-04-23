@@ -67,35 +67,55 @@ TurboRVB installation
     % cd build
     % make -j 4
 
-   You can see available options for the CMake in the GitHub repository.
+The following CMake options are available to customize your TurboRVB build:
 
-   Available CMake options:
-   
-   * EXT_SERIAL: Compile serial version (default: ON)
-   * EXT_PARALLEL: Compile parallel version (default: ON)
-   * EXT_OPT: Turn on optimization (default: ON)
-   * EXT_DEBUG: Turn on debug mode (default: OFF)
-   * EXT_TIME: Turn on internal time counter (default: OFF)
-   * EXT_DFT: Compile DFT code (default: ON)
-   * EXT_QMC: Compile QMC code (default: ON)
-   * EXT_MODTEST: Compile module test tools (default: ON)
-   * EXT_TOOLS: Compile auxiliary tools (default: ON)
-   * EXT_GPU: Compile GPU version (default: ON)
-   * EXT_LTO: Enable Link Time Optimization (default: OFF)
-   * EXT_SPEEDTEST: Enable speed tests targets (default: OFF)
-   * EXT_STATICPACK: Produce static packaging (default: OFF)
-   * EXT_DETAIL: Produce more detailed config output (default: OFF)
-   * EXT_NVTX: Turn on Nvidia NVTX ranges (default: OFF)
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
 
-   Example with specific options:
-   
-   .. code-block:: bash
-   
-       % cmake -S . -B build -DEXT_GPU=OFF -DEXT_DEBUG=ON
+   * - Option
+     - Description
+   * - ``EXT_SERIAL``
+     - Compile serial version (default: ON)
+   * - ``EXT_PARALLEL``
+     - Compile parallel version (default: ON) 
+   * - ``EXT_OPT``
+     - Turn on optimization (default: ON)
+   * - ``EXT_DEBUG``
+     - Turn on debug mode (default: OFF)
+   * - ``EXT_TIME``
+     - Turn on internal time counter (default: OFF)
+   * - ``EXT_DFT``
+     - Compile DFT code (default: ON)
+   * - ``EXT_QMC``
+     - Compile QMC code (default: ON)
+   * - ``EXT_MODTEST``
+     - Compile module test tools (default: ON)
+   * - ``EXT_TOOLS``
+     - Compile auxiliary tools (default: ON)
+   * - ``EXT_GPU``
+     - Compile GPU version (default: ON)
+   * - ``EXT_LTO``
+     - Enable Link Time Optimization (default: OFF)
+   * - ``EXT_SPEEDTEST``
+     - Enable speed tests targets (default: OFF)
+   * - ``EXT_STATICPACK``
+     - Produce static packaging (default: OFF)
+   * - ``EXT_DETAIL``
+     - Produce more detailed config output (default: OFF)
+   * - ``EXT_NVTX``
+     - Turn on Nvidia NVTX ranges (default: OFF)
+
+For example, to disable GPU support and enable debug mode:
+
+.. code-block:: bash
+
+    % cmake -S . -B build -DEXT_GPU=OFF -DEXT_DEBUG=ON
 
 3. Test TurboRVB
 
 .. code-block:: bash
+
     % ctest
 
 .. note::
@@ -148,8 +168,8 @@ Let's make a conda environment to install turbogenius (if you prefer)
 
 .. code-block:: bash
     
-    conda create -n turborvb python=3.8
-    conda activate turborvb
+    % conda create -n turborvb python=3.8
+    % conda activate turborvb
 
 Please download the source codes from the GitHub repository.
 
@@ -181,23 +201,14 @@ TurboWorkflows is a Python package for high-throughput quantum Monte Carlo calcu
 .. note::
    TurboWorkflows depends on TurboGenius. Make sure you have installed TurboGenius before proceeding with the TurboWorkflows installation.
 
-1. Create and activate a conda environment (recommended):
+1. Activate the conda environment created for TurboGenius:
 
 .. code-block:: bash
     
-    conda create -n turborvb python=3.8
-    conda activate turborvb
+    % conda activate turborvb
 
-2. Install TurboGenius first:
 
-.. code-block:: bash
-
-    % cd ~/applications
-    % git clone https://github.com/kousuke-nakano/turbogenius.git
-    % cd turbogenius
-    % pip install -e .
-
-3. Install TurboWorkflows:
+2. Install TurboWorkflows:
 
 .. code-block:: bash
 
@@ -206,74 +217,74 @@ TurboWorkflows is a Python package for high-throughput quantum Monte Carlo calcu
     % cd turboworkflows
     % pip install -e .    # Install in development mode
 
-4. Initial Configuration:
+3. Initial Configuration:
 
 After installation, TurboWorkflows will create a configuration directory at ``~/.turbofilemanager_config`` when you first run any TurboWorkflows command. You need to edit the following configuration files:
 
-a. Edit ``~/.turbofilemanager_config/machine_handler_env/machine_data.yaml`` to configure your computational resources. Here's an example configuration:
+    a. Edit ``~/.turbofilemanager_config/machine_handler_env/machine_data.yaml`` to configure your computational resources. Here's an example configuration:
 
-.. code-block:: yaml
+    .. code-block:: yaml
 
-    # Example for a remote computational server (e.g., a login node)
-    henteko:
-        machine_type: remote
-        queuing: True
-        computation: True
-        ip: XXX.XX.XX.XX
-        file_manager_root: /home/xxxx/xxxx/xxxx
-        ssh_key: ~/.ssh/id_rsa
-        ssh_option: -Y -A
-        jobsubmit: /opt/pbs/bin/qsub
-        jobcheck: /opt/pbs/bin/qstat
-        jobdel: /opt/pbs/bin/qdel
-        jobnum_index: 0
+        # Example for a remote computational server (e.g., a login node) 
+        henteko:
+            machine_type: remote
+            queuing: True
+            computation: True
+            ip: XXX.XX.XX.XX
+            file_manager_root: /home/xxxx/xxxx/xxxx
+            ssh_key: ~/.ssh/id_rsa
+            ssh_option: -Y -A
+            jobsubmit: /opt/pbs/bin/qsub
+            jobcheck: /opt/pbs/bin/qstat
+            jobdel: /opt/pbs/bin/qdel
+            jobnum_index: 0
 
-    # Example for localhost (e.g., mac)
-    localhost:
-        machine_type: local
-        queuing: False
-        computation: True
-        file_manager_root: /Users/xxxxx/yyyyy/zzzzz
-        jobsubmit: bash
-        jobcheck: ps
-        jobnum_index: 1
+        # Example for localhost (e.g., mac)
+        localhost:
+            machine_type: local
+            queuing: False
+            computation: True
+            file_manager_root: /Users/xxxxx/yyyyy/zzzzz
+            jobsubmit: bash
+            jobcheck: ps
+            jobnum_index: 1
 
-b. Edit the following files for each machine configuration:
+    b. Edit the following files for each machine configuration:
 
-* ``~/.turbofilemanager_config/{machine_name}/package.yaml``: Define package paths and job templates
-* ``~/.turbofilemanager_config/{machine_name}/submit.sh``: MPI job submission script
-* ``~/.turbofilemanager_config/{machine_name}/submit_nompi.sh``: Non-MPI job submission script
-* ``~/.turbofilemanager_config/{machine_name}/queue_data.toml``: Queue configuration
+        * ``~/.turbofilemanager_config/{machine_name}/package.yaml``: Define package paths and job templates
+        * ``~/.turbofilemanager_config/{machine_name}/submit.sh``: MPI job submission script
+        * ``~/.turbofilemanager_config/{machine_name}/submit_nompi.sh``: Non-MPI job submission script
+        * ``~/.turbofilemanager_config/{machine_name}/queue_data.toml``: Queue configuration
 
-Example of package.yaml:
+    Example of package.yaml:
 
-.. code-block:: yaml
+    .. code-block:: yaml
 
-    turborvb:
-        name: turborvb
-        binary_path:
-            stable: /home/application/TurboRVB/bin
-        binary_list:
-            - turborvb-mpi.x
-            - ...
-        job_template:
-            mpi: submit.sh
-            nompi: submit_nompi.sh
+        turborvb:
+            name: turborvb
+            binary_path:
+                stable: /home/application/TurboRVB/bin
+            binary_list:
+                - turborvb-mpi.x
+                - ...
+            job_template:
+                mpi: submit.sh
+                nompi: submit_nompi.sh
 
-Example of queue_data.toml:
+    Example of queue_data.toml:
 
-.. code-block:: toml
+    .. code-block:: toml
 
-    [default]
-        mpi=false
-        max_job_submit=1
-        num_cores=1
-        omp_num_threads=1
-        nodes=1
-        cpns=1
-        mpi_per_node=1
+        [default]
+            mpi = false
+            max_job_submit = 1
+            num_cores = 1
+            omp_num_threads = 1
+            nodes = 1
+            cpns = 1
+            mpi_per_node = 1
 
-5. Verify the installation:
+4. Verify the installation:
 
 .. code-block:: bash
 
@@ -281,7 +292,7 @@ Example of queue_data.toml:
 
 If you see the help output, TurboWorkflows has been successfully installed!
 
-6. Basic Usage:
+5. Basic Usage:
 
 TurboWorkflows provides the ``turbo-jobmanager`` command-line tool for managing jobs:
 
@@ -296,7 +307,7 @@ TurboWorkflows provides the ``turbo-jobmanager`` command-line tool for managing 
     % # Delete running jobs
     % turbo-jobmanager del -id XXXXX
 
-For detailed examples and tutorials, please visit the `examples` directory in the TurboWorkflows repository or check the tutorials at `https://github.com/kousuke-nakano/turbotutorials`.
+For detailed examples and tutorials, please visit the `examples` directory in the TurboWorkflows repository or check the tutorials.
 
 Troubleshooting
 --------------------------------------------
