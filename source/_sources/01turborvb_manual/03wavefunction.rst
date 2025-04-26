@@ -35,100 +35,25 @@ keywords.::
      # unconstrained iesfree,iessw,ieskinr,I/O flag
                4           4           0           0
 
-.. table::
+.. csv-table::
+   :header: "name", "description"
 
-    +---------------------------+----------------------------------------------+
-    | name                      | description                                  |
-    +===========================+==============================================+
-    | NELUP                     | Number of spin up electrons in the system.   |
-    +---------------------------+----------------------------------------------+
-    | NEL                       | Total number of electrons in the system.     |
-    +---------------------------+----------------------------------------------+
-    | ION                       | Number of nuclei in the system.              |
-    +---------------------------+----------------------------------------------+
-    | SHELL DET                 | Number of shells used to describe the        |
-    |                           | determinantal term of the AGP wavefunction.  |
-    +---------------------------+----------------------------------------------+
-    | SHELL JAS                 | Number of shells used to describe the        |
-    |                           | Jastrow term of the wavefunction.            |
-    +---------------------------+----------------------------------------------+
-    | JAS 2BODY                 | Type of the Jastrow 2B/1B term used to       |
-    |                           | satisfy the electron-electron, electron-ion  |
-    |                           | cusp conditions, respectively. See the       |
-    |                           | following section for the detail.            |
-    +---------------------------+----------------------------------------------+
-    | DET                       | Total number of atomic variational parameters|
-    |                           | used for the description of the determinant  |
-    |                           | part of the JAGP. The atomic variational     |
-    |                           | parameters are all parameters describing the |
-    |                           | shell used to expand the WF (i.e. gaussian   |
-    |                           | coefficient and gaussian exponents). For     |
-    |                           | example, if a shell is described by a single |
-    |                           | Gaussian function, :math:`\phi(r) \sim       |
-    |                           | \exp(-Zr^2)` there is only one atomic        |
-    |                           | parameter, the Z exponent of the Gaussian.   |
-    |                           | if the shell is described by a contracted    |
-    |                           | orbital of two Gaussians,                    |
-    |                           | :math:`\psi = \alpha_1 =                     |
-    |                           | \exp(-Z_1 r^2) + \alpha_2 \exp(-Z_2 r^2)`    |
-    |                           | then there are four atomic parameters,       |
-    |                           | :math:`Z_1` and :math:`Z_2` and the          |
-    |                           | coefficients :math:`\alpha_1` and :math:`    |
-    |                           | \alpha_2` of the linear combination.         |
-    +---------------------------+----------------------------------------------+
-    | 3 BODY ATOMIC PAR         | Total number of atomic parameters used to    |
-    |                           | describe the Jastrow part of the JAGP. It is |
-    |                           | analogous to **DET** but for the Jastrow     |
-    |                           | orbitals.                                    |
-    +---------------------------+----------------------------------------------+
-    | DET MAT =/0               | Number of coefficients :math:`\{\lambda_{ij} |
-    |                           | \}` of the determinant that are different    |
-    |                           | from zero. Note that the :math:`\Lambda`     |
-    |                           | matrix is symmetric and only :math:`\lambda_ |
-    |                           | {ij}` for :math:`i \geq j` are provided in   |
-    |                           | the data file. This number corresponds to the|
-    |                           | number of lines read afterwards.             |
-    +---------------------------+----------------------------------------------+
-    | JAS MAT =/0               | Number of coefficients :math:`\{\lambda_{ij} |
-    |                           | \}` in the 3B Jastrow that will be considered|
-    |                           | different from zero. This number corresponds |
-    |                           | to the number of lines that will be read     |
-    |                           | afterwards.                                  |
-    +---------------------------+----------------------------------------------+
-    | EQ DET ATOMIC PAR         | Number of symmetries involving the           |
-    |                           | variational atomic parameters of the         |
-    |                           | determinant. This number corresponds to the  |
-    |                           | number of lines that will be read afterwards.|
-    +---------------------------+----------------------------------------------+
-    | EQ 3 BODY ATOMIC PAR      | Number of symmetries involving the           |
-    |                           | variational atomic parameters of the 3B      |
-    |                           | Jastrow. This number corresponds to the      |
-    |                           | number of lines that will be read afterwards.|
-    +---------------------------+----------------------------------------------+
-    | UNCONSTRAINED IESFREE     | Number of independent coefficients           |
-    |                           | :math:`\{\lambda\}` of the Jastrow. This     |
-    |                           | number corresponds to the number of lines to |
-    |                           | be read when the symmetries for the Jastrow  |
-    |                           | :math:`\{\Lambda\}` matrix are described.    |
-    +---------------------------+----------------------------------------------+
-    | IESWW                     | Number of independent coefficients           |
-    |                           | :math:`\{\lambda\}` of the determinant. This |
-    |                           | number corresponds to the number of lines to |
-    |                           | be read when the symmetries for the          |
-    |                           | determinant are described.                   |
-    +---------------------------+----------------------------------------------+
-    | IESKINR                   | Number of cartesian nuclear components to be |
-    |                           | optimized. This number corresponds to the    |
-    |                           | number of lines to be read in the relative   |
-    |                           | section of the file.                         |
-    +---------------------------+----------------------------------------------+
-    | I\O FLAG                  | It describes how to read the FORT.10 file. If|
-    |                           | '0' the file is read and all the information |
-    |                           | is used. If '1', at the end of the file, an  |
-    |                           | extra part is expected where new parameters  |
-    |                           | (for example averaged from previous          |
-    |                           | simulations) are provided in free format.    |
-    +---------------------------+----------------------------------------------+
+   "NELUP", "Number of spin up electrons in the system."
+   "NEL", "Total number of electrons in the system."
+   "ION", "Number of nuclei in the system."
+   "SHELL DET", "Number of shells used to describe the determinantal term of the AGP wavefunction."
+   "SHELL JAS", "Number of shells used to describe the Jastrow term of the wavefunction."
+   "JAS 2BODY", "Type of the Jastrow 2B/1B term used to satisfy the electron-electron, electron-ion cusp conditions, respectively. See the following section for the detail."
+   "DET", "Total number of atomic variational parameters used for the description of the determinant part of the JAGP. The atomic variational parameters are all parameters describing the shell used to expand the WF (i.e. gaussian coefficient and gaussian exponents). For example, if a shell is described by a single Gaussian function, :math:`\phi(r) \sim \exp(-Zr^2)` there is only one atomic parameter, the Z exponent of the Gaussian. if the shell is described by a contracted orbital of two Gaussians, :math:`\psi = \alpha_1 = \exp(-Z_1 r^2) + \alpha_2 \exp(-Z_2 r^2)` then there are four atomic parameters, :math:`Z_1` and :math:`Z_2` and the coefficients :math:`\alpha_1` and :math:`\alpha_2` of the linear combination."
+   "3 BODY ATOMIC PAR", "Total number of atomic parameters used to describe the Jastrow part of the JAGP. It is analogous to **DET** but for the Jastrow orbitals."
+   "DET MAT =/0", "Number of coefficients :math:`\{\lambda_{ij}\}` of the determinant that are different from zero. Note that the :math:`\Lambda` matrix is symmetric and only :math:`\lambda_{ij}` for :math:`i \geq j` are provided in the data file. This number corresponds to the number of lines read afterwards."
+   "JAS MAT =/0", "Number of coefficients :math:`\{\lambda_{ij}\}` in the 3B Jastrow that will be considered different from zero. This number corresponds to the number of lines that will be read afterwards."
+   "EQ DET ATOMIC PAR", "Number of symmetries involving the variational atomic parameters of the determinant. This number corresponds to the number of lines that will be read afterwards."
+   "EQ 3 BODY ATOMIC PAR", "Number of symmetries involving the variational atomic parameters of the 3B Jastrow. This number corresponds to the number of lines that will be read afterwards."
+   "UNCONSTRAINED IESFREE", "Number of independent coefficients :math:`\{\lambda\}` of the Jastrow. This number corresponds to the number of lines to be read when the symmetries for the Jastrow :math:`\{\Lambda\}` matrix are described."
+   "IESWW", "Number of independent coefficients :math:`\{\lambda\}` of the determinant. This number corresponds to the number of lines to be read when the symmetries for the determinant are described."
+   "IESKINR", "Number of cartesian nuclear components to be optimized. This number corresponds to the number of lines to be read in the relative section of the file."
+   "I/O FLAG", "It describes how to read the FORT.10 file. If '0' the file is read and all the information is used. If '1', at the end of the file, an extra part is expected where new parameters (for example averaged from previous simulations) are provided in free format."
 
 The following is a more details description about the header part.
 
@@ -148,63 +73,46 @@ and the two-body Jastrow factor is defined as:
 
 where :math:`u_a` and :math:`v_{{\sigma _i},{\sigma _j}}` are simple bounded functions. There are several possible choices for :math:`v_{{\sigma _i},{\sigma _j}}` implemented in turborvb (all listed as below).
 
-.. table:: ``JAS 2BODY`` summary
+.. csv-table:: ``JAS 2BODY`` summary
+   :header: "iesdrr", "two-body", "one-body", "note"
 
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | iesdrr  | two-body                                          + one-body                                       + note                                     |
-   +=========+===================================================+================================================+==========================================+
-   | 0       | No two-body                                       | No one-body (i.e., no homogenius part)         |                                          |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -5      | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{r}{2(1+br)}`                      |                                          |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -6      | :math:`\frac{1}{2a} (1 - e^{-ar})` (opposite spin)| :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameter is common between  |
-   |         | :math:`\frac{1}{4a} (1 - e^{-ar})` (parallel spin)|                                                | the opposite and same spins              |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -15     | :math:`\frac{r}{2(1+ar)}`                         | :math:`\frac{1}{2b} (1-e^{-br})`               |                                          |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -20     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1-e^{-br})`               | The twobody parameter is common between  |
-   |         | :math:`\frac{r}{4(1+ar)}` (parallel spin)         |                                                | the opposite and same spins              |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -22     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameter is common between  |
-   |         | :math:`\frac{r}{4(1+ar)}` (parallel spin)         |                                                | the opposite and same spins.             |
-   |         |                                                   |                                                | 3B/4B Jastrows are spin-dependent        |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
-   | -27     | :math:`\frac{r}{2(1+ar)}` (opposite spin)         | :math:`\frac{1}{2b} (1 - e^{-br})`             | The twobody parameters are independent   |
-   |         | :math:`\frac{r}{4(1+a'r)}` (parallel spin)        |                                                | between the opposite and same spins.     |
-   |         |                                                   |                                                | The onebody parameters are independent   |
-   |         |                                                   |                                                | among atomic species                     |
-   |         |                                                   |                                                | 3B/4B Jastrows are spin-dependent        |
-   +---------+---------------------------------------------------+------------------------------------------------+------------------------------------------+
+   "0", "No two-body", "No one-body (i.e., no homogenius part)", ""
+   "-5", ":math:`\frac{r}{2(1+ar)}`", ":math:`\frac{r}{2(1+br)}`", ""
+   "-6", ":math:`\frac{1}{2a} (1 - e^{-ar})` (opposite spin) :math:`\frac{1}{4a} (1 - e^{-ar})` (parallel spin)", ":math:`\frac{1}{2b} (1 - e^{-br})`", "The twobody parameter is common between the opposite and same spins"
+   "-15", ":math:`\frac{r}{2(1+ar)}`", ":math:`\frac{1}{2b} (1-e^{-br})`", ""
+   "-20", ":math:`\frac{r}{2(1+ar)}` (opposite spin) :math:`\frac{r}{4(1+ar)}` (parallel spin)", ":math:`\frac{1}{2b} (1-e^{-br})`", "The twobody parameter is common between the opposite and same spins"
+   "-22", ":math:`\frac{r}{2(1+ar)}` (opposite spin) :math:`\frac{r}{4(1+ar)}` (parallel spin)", ":math:`\frac{1}{2b} (1 - e^{-br})`", "The twobody parameter is common between the opposite and same spins. 3B/4B Jastrows are spin-dependent"
+   "-27", ":math:`\frac{r}{2(1+ar)}` (opposite spin) :math:`\frac{r}{4(1+a'r)}` (parallel spin)", ":math:`\frac{1}{2b} (1 - e^{-br})`", "The twobody parameters are independent between the opposite and same spins. The onebody parameters are independent among atomic species. 3B/4B Jastrows are spin-dependent"
 ..
-    | -1      | Two body :math:`\frac{r}{2(1+ar)}` for opposite spins and  :math:`\frac{r}{4(1+ar)}` for parallel spins, one body rescaled same form.     
-    | -4      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated.
-    | 2       | Two parameters Jastrow improved version of -1 with an independent parameter for the parallel spins, :math:`\frac{r}{4(1 + br)}` for (anti-)parallel spins, spin contaminated.
-    | -8      | Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, + cusp for (anti-)parallel spins + 3B Jastrow Sz.
-    | 8       | Two body :math:`\frac{1}{a} (1 - e^{-ar^3})` for pseudo soft.
-    | -9      | Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{b(1 + a)}{4a}` , to satisfy the cusp conditions for opposite spin electrons. Two parameters :math:`niesd \geq 2`.
-    | 9       | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons.
-    | 10      | Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons. Rescaled :math:`r \to \frac{r}{2}` to satisfy the cusp condition for parallel spins.
-    | 5       | Three parameters :math:`\frac{1}{a + b*c} (1+c-\exp(-ar)-c\exp(-br))` improved version of -6. Warning! Implemented only for open systems.
-    | 6       | Two parameters, the second is used to rescale the electron-electron distance :math:`r_s = \frac{1-\exp(-br)}{r}` and the Jastrow is defined by :math:`J_{ee}=\frac{r_s}{2(1+ar_s)}` , no spin contamination and cusp condition for opposite spin electrons.
-    | -2      | Two parameter Jastrow :math:`r_z = \sqrt{a^2(x^2+y^2) + {(bz)}^2}` , and :math:`J_2 = \frac{1}{2} \frac{r}{1+r_z}` + cusp for (anti-)parallel spins for anisotropic phases. Warning! Implemented only for open systems.
-    | 3       | Three parameters correction to :math:`-5` :math:`J_2 = \frac{r}{2}(\frac{1}{1+ar} + \frac{cr}{{(1+br)}^2})` + cusp for (anti-)parallel spins.
-    | -9      | Two body :math:`\frac{1}{2b} (1 - e^{-br})` one body rescaled, + cusp for (anti-)parallel spins + 3B + 1B Jastrow Sz (for studying magnetic phases).
-    | -10     | No two body and one body, 3B Jastrow and Jastrow Sz is on.
-    | -11     | No two body and one body, 3B+1B Jastrow and Jastrow Sz are on (for studying magnetic phases).
-    | -12     | General spin-density Jastrow, one body and two body as -15, namely without spin dependent cusp condition.
-    | -15     | Long range two body :math:`\frac{r}{2(1+br)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .
-    | -20     | Two parameters, spin dependent (as -7) long range two body :math:`\frac{r}{2(1+ar)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` .
-    | -21     | Three parameters, first two same as Jastrow number 2; short range one body :math:`\frac{1}{2c} (1-e^{-cr})`.
-    | -22     | General spin-density Jastrow one body and two body as -20, with spin dependent cusp condition, more appropriate in this case, as the spin contamination is already implied by the three and four body term.
-    | -26     | General spin-density Jastrow one body and two body as -7, with spin dependent cusp condition, without long range power law tails.
-    | -27     | General spin-density Jastrow one body and two body as -21, with spin dependent cusp condition.NB :math:`p=2` in this case, so one can put niesd=3 safely. Warning! If you put niesd>2, it is recommended to set niesd equal to 2 + # different atomic species, e.g. niesd=4 for benzene. In this way, all different atomic species will have a different one-body term.
-    | -30     | General spin-density Jastrow one body and two as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.
-    | -31     | General spin-density Jastrow one body and two body as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely.
-    | -18     | same as :math:`iesdrr=-8` but with two body :math:`\frac{r}{2(1+br)}` .
-    | -19     | same as :math:`iesdrr=-9` but with two body :math:`\frac{r}{2(1+br)}` as -7.
-    | -28     | same as :math:`iesdrr=-8` but with two body/one body as -20.
-    | -29     | same as :math:`iesdrr=-9` but with two body/one body as -20.
-    | -16     | same as :math:`iesdrr=-19` but with spin independent two body as -5.
+   "-1", "Two body :math:`\frac{r}{2(1+ar)}` for opposite spins and  :math:`\frac{r}{4(1+ar)}` for parallel spins, one body rescaled same form."
+   "-4", "Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled. Not spin contaminated."
+   "2", "Two parameters Jastrow improved version of -1 with an independent parameter for the parallel spins, :math:`\frac{r}{4(1 + br)}` for (anti-)parallel spins, spin contaminated."
+   "-8", "Two body :math:`\frac{1}{2a} (1 - e^{-ar})` one body rescaled, + cusp for (anti-)parallel spins + 3B Jastrow Sz."
+   "8", "Two body :math:`\frac{1}{a} (1 - e^{-ar^3})` for pseudo soft."
+   "-9", "Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{b(1 + a)}{4a}` , to satisfy the cusp conditions for opposite spin electrons. Two parameters :math:`niesd \geq 2`."
+   "9", "Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons."
+   "10", "Two parameters RVB two-body Jastrow. Two body :math:`-A \ln(1 + a{(1 - \frac{r}{b})}^2)` for RVB wavefunction, with :math:`A = \frac{r_0(1 + b)}{4b}` , to satisfy the cusp conditions for opposite spin electrons. Rescaled :math:`r \to \frac{r}{2}` to satisfy the cusp condition for parallel spins."
+   "5", "Three parameters :math:`\frac{1}{a + b*c} (1+c-\exp(-ar)-c\exp(-br))` improved version of -6. Warning! Implemented only for open systems."
+   "6", "Two parameters, the second is used to rescale the electron-electron distance :math:`r_s = \frac{1-\exp(-br)}{r}` and the Jastrow is defined by :math:`J_{ee}=\frac{r_s}{2(1+ar_s)}` , no spin contamination and cusp condition for opposite spin electrons."
+   "-2", "Two parameter Jastrow :math:`r_z = \sqrt{a^2(x^2+y^2) + {(bz)}^2}` , and :math:`J_2 = \frac{1}{2} \frac{r}{1+r_z}` + cusp for (anti-)parallel spins for anisotropic phases. Warning! Implemented only for open systems."
+   "3", "Three parameters correction to :math:`-5` :math:`J_2 = \frac{r}{2}(\frac{1}{1+ar} + \frac{cr}{{(1+br)}^2})` + cusp for (anti-)parallel spins."
+   "-9", "Two body :math:`\frac{1}{2b} (1 - e^{-br})` one body rescaled, + cusp for (anti-)parallel spins + 3B + 1B Jastrow Sz (for studying magnetic phases)."
+   "-10", "No two body and one body, 3B Jastrow and Jastrow Sz is on."
+   "-11", "No two body and one body, 3B+1B Jastrow and Jastrow Sz are on (for studying magnetic phases)."
+   "-12", "General spin-density Jastrow, one body and two body as -15, namely without spin dependent cusp condition."
+   "-15", "Long range two body :math:`\frac{r}{2(1+br)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` ."
+   "-20", "Two parameters, spin dependent (as -7) long range two body :math:`\frac{r}{2(1+ar)}` ; short range one body :math:`\frac{1}{2b} (1-e^{-br})` ."
+   "-21", "Three parameters, first two same as Jastrow number 2; short range one body :math:`\frac{1}{2c} (1-e^{-cr})`."
+   "-22", "General spin-density Jastrow one body and two body as -20, with spin dependent cusp condition, more appropriate in this case, as the spin contamination is already implied by the three and four body term."
+   "-26", "General spin-density Jastrow one body and two body as -7, with spin dependent cusp condition, without long range power law tails."
+   "-27", "General spin-density Jastrow one body and two body as -21, with spin dependent cusp condition.NB :math:`p=2` in this case, so one can put niesd=3 safely. Warning! If you put niesd>2, it is recommended to set niesd equal to 2 + # different atomic species, e.g. niesd=4 for benzene. In this way, all different atomic species will have a different one-body term."
+   "-30", "General spin-density Jastrow one body and two as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely."
+   "-31", "General spin-density Jastrow one body and two body as 10, with spin dependent cusp condition. NB :math:`p=2` in this case, so one can put niesd=3 safely."
+   "-18", "same as :math:`iesdrr=-8` but with two body :math:`\frac{r}{2(1+br)}` ."
+   "-19", "same as :math:`iesdrr=-9` but with two body :math:`\frac{r}{2(1+br)}` as -7."
+   "-28", "same as :math:`iesdrr=-8` but with two body/one body as -20."
+   "-29", "same as :math:`iesdrr=-9` but with two body/one body as -20."
+   "-16", "same as :math:`iesdrr=-19` but with spin independent two body as -5."
 
 In case the system has periodic boundary conditions (PBC), two additional lines appear as first lines at the beginning of the header. Here is an example::
 
@@ -904,115 +812,50 @@ Generate a Wavefunction file (makefort10.x)
 system section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table:: Parameter List
+.. csv-table:: Parameter List
+   :header: "Parameter Name", "Datatype", "Default", "Description"
 
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | Parameter Name  | Datatype | Default | Description                                                    |
-    +=================+==========+=========+================================================================+
-    | ``posunits``    | str      | NA      | units for atomic positions (bohr| angstrom | crystal)          |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``natoms``      | int      | NA      | Total number of electrons in the system.                       |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``ntyp``        | int      | NA      | Total number of element types in the system.                   |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    |``complexfort10``| NA       | NA      | it generates a complex fort.10 if it is .true.                 |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``pbcfort10``   | NA       | NA      | it generates a fort.10 for PBC if it is .true.                 |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``yes_pfaff``   | NA       | NA      | it generates pfaffian WF it it is .true.                       |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``celldm(1-6)`` | NA       | NA      | they specify lattice vectors following Quantum Espresso's      |
-    |                 |          |         | convention.                                                    |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``yes_tilted``  | NA       | NA      | non-orthorombic cell if it is .true. # specify celldm(4-6).    |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``nxyz(1-3)``   | NA       | NA      | repetition of the cell in the three direction. Use this option |
-    |                 |          |         | for exploiting translational symmetries.                       |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``phase(1-3)``  | NA       | NA      | phase factors for up electrons                                 |
-    +-----------------+----------+---------+----------------------------------------------------------------+
-    | ``phasedo(1-3)``| NA       | NA      | phase factors for down electrons                               |
-    +-----------------+----------+---------+----------------------------------------------------------------+
+   "``posunits``", "str", "NA", "units for atomic positions (bohr| angstrom | crystal)"
+   "``natoms``", "int", "NA", "Total number of electrons in the system."
+   "``ntyp``", "int", "NA", "Total number of element types in the system."
+   "``complexfort10``", "NA", "NA", "it generates a complex fort.10 if it is .true."
+   "``pbcfort10``", "NA", "NA", "it generates a fort.10 for PBC if it is .true."
+   "``yes_pfaff``", "NA", "NA", "it generates pfaffian WF it it is .true."
+   "``celldm(1-6)``", "NA", "NA", "they specify lattice vectors following Quantum Espresso's convention."
+   "``yes_tilted``", "NA", "NA", "non-orthorombic cell if it is .true. # specify celldm(4-6)."
+   "``nxyz(1-3)``", "NA", "NA", "repetition of the cell in the three direction. Use this option for exploiting translational symmetries."
+   "``phase(1-3)``", "NA", "NA", "phase factors for up electrons"
+   "``phasedo(1-3)``", "NA", "NA", "phase factors for down electrons"
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 electron section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table:: Parameter List
+.. csv-table:: Parameter List
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | Parameter       | Datatype | Default | Description                                         |
-   +=================+==========+=========+=====================================================+
-   | filling         | NA       | NA      |                                                     |
-   |                 |          |         | ``filling = diagonal``: Fill the initial detmat(:,:)|
-   |                 |          |         | and jasmat(:,:) with 1.d0 on the diagonal.          |
-   |                 |          |         | ``filling = random``: Fill with random numbers      |
-   |                 |          |         | between (0,1.d0).                                   |
-   |                 |          |         | ``filling = semidiagonal``: Fill off-diagonal       |
-   |                 |          |         | elements with random numbers between (0,0.1d0) and  |
-   |                 |          |         | diagonal elements with 1.d0.                        |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | orbtype         | NA       | NA      |                                                     |
-   |                 |          |         | ``orbtype = normal``: Use normal orbitals.          |
-   |                 |          |         | ``orbtype = mixed``: Use mixed orbitals.            |
-   |                 |          |         | ``orbtype = tempered``: Use tempered orbitals.      |
-   |                 |          |         | The same applies for Jastrow orbitals with          |
-   |                 |          |         | ``jorbtype``.                                       |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | twobody         | NA       | NA      | Type of the Jastrow 2B/1B term used to satisfy the  |
-   |                 |          |         | electron-electron, electron-ion cusp conditions.    |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | twobodypar      | NA       | NA      | Twobody parameter, :math:`p`                        |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | onebodypar      | NA       | NA      | Onebody parameter, :math:`b`                        |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | yes_crystal     | NA       | NA      | Use the crystal basis for the determinant part.     |
-   |                 |          |         | The default is ``.true.`` for a PBC case.           |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | yes_crystalj    | NA       | NA      | Use the crystal basis for the jastrow part.         |
-   |                 |          |         | The default is ``.true.`` for a PBC case.           |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | no_4body_jas    | NA       | NA      | Does not use the 4-body jastrow factors when it is  |
-   |                 |          |         | true.                                               |
-   +-----------------+----------+---------+-----------------------------------------------------+
-   | neldiff         | NA       | NA      | The difference in the number of up and down         |
-   |                 |          |         | electrons.                                          |
-   +-----------------+----------+---------+-----------------------------------------------------+
+   "filling", "NA", "NA", "``filling = diagonal``: Fill the initial detmat(:,:) and jasmat(:,:) with 1.d0 on the diagonal. ``filling = random``: Fill with random numbers between (0,1.d0). ``filling = semidiagonal``: Fill off-diagonal elements with random numbers between (0,0.1d0) and diagonal elements with 1.d0."
+   "orbtype", "NA", "NA", "``orbtype = normal``: Use normal orbitals. ``orbtype = mixed``: Use mixed orbitals. ``orbtype = tempered``: Use tempered orbitals. The same applies for Jastrow orbitals with ``jorbtype``."
+   "twobody", "NA", "NA", "Type of the Jastrow 2B/1B term used to satisfy the electron-electron, electron-ion cusp conditions."
+   "twobodypar", "NA", "NA", "Twobody parameter, :math:`p`"
+   "onebodypar", "NA", "NA", "Onebody parameter, :math:`b`"
+   "yes_crystal", "NA", "NA", "Use the crystal basis for the determinant part. The default is ``.true.`` for a PBC case."
+   "yes_crystalj", "NA", "NA", "Use the crystal basis for the jastrow part. The default is ``.true.`` for a PBC case."
+   "no_4body_jas", "NA", "NA", "Does not use the 4-body jastrow factors when it is true."
+   "neldiff", "NA", "NA", "The difference in the number of up and down electrons."
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 symmetry section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table:: Parameter List
+.. csv-table:: Parameter List
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +-------------+----------+---------+--------------------------------------------------------------+
-   | Parameter   | Datatype | Default | Description                                                  |
-   +=============+==========+=========+==============================================================+
-   | nosym       | NA       | NA      |                                                              |
-   |             |          |         | If ``nosym = .true.``, do not use symmetry, but only identity|
-   |             |          |         | and inversion symmetries. The default is ``.false.``.        |
-   +-------------+----------+---------+--------------------------------------------------------------+
-   | eqatoms     | NA       | NA      |                                                              |
-   |             |          |         | If ``eqatoms = .true.``, set the same value for all the      |
-   |             |          |         | exponents of the atomic basis if acting on the same type of  |
-   |             |          |         | atom. If ``eqatoms = .false.``, exponents corresponding to   |
-   |             |          |         | different atomic positions are equal only if related by      |
-   |             |          |         | spatial symmetries.                                          |
-   +-------------+----------+---------+--------------------------------------------------------------+
-   | rot_det     | NA       | NA      |                                                              |
-   |             |          |         | This flag is used to exclude rotation symmetries from the    |
-   |             |          |         | lambda matrix of the determinant. If ``rot_det = .false.``,  |
-   |             |          |         | makefort10.x uses only translations and inversion symmetry,  |
-   |             |          |         | if present. Note that the rotation symmetries are still used |
-   |             |          |         | to determine the relation between the parameters of the      |
-   |             |          |         | orbitals, so the result is slightly different from           |
-   |             |          |         | ``nosym = .true.`` that does not use rotation for everything.|
-   +-------------+----------+---------+--------------------------------------------------------------+
-   | symmagp     | NA       | NA      |                                                              |
-   |             |          |         | If ``symmagp = .false.``, create a fort.10 file with a lambda|
-   |             |          |         | matrix that is not symmetric (e.g., JAGPu ansatz).           |
-   +-------------+----------+---------+--------------------------------------------------------------+
+   "nosym", "NA", "NA", "If ``nosym = .true.``, do not use symmetry, but only identity and inversion symmetries. The default is ``.false.``."
+   "eqatoms", "NA", "NA", "If ``eqatoms = .true.``, set the same value for all the exponents of the atomic basis if acting on the same type of atom. If ``eqatoms = .false.``, exponents corresponding to different atomic positions are equal only if related by spatial symmetries."
+   "rot_det", "NA", "NA", "This flag is used to exclude rotation symmetries from the lambda matrix of the determinant. If ``rot_det = .false.``, makefort10.x uses only translations and inversion symmetry, if present. Note that the rotation symmetries are still used to determine the relation between the parameters of the orbitals, so the result is slightly different from ``nosym = .true.`` that does not use rotation for everything."
+   "symmagp", "NA", "NA", "If ``symmagp = .false.``, create a fort.10 file with a lambda matrix that is not symmetric (e.g., JAGPu ansatz)."
 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

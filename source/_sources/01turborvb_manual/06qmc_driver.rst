@@ -23,154 +23,91 @@ This section contains general informations necessary to specify the type of run 
 In this section it is specified whether we want to perform a wave function optimization or
 production run and using which method (like Variational Monte Carlo (VMC) or Lattice Regularized DMC (LRDMC).
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | parameter        | datatype | default                               | description                                                                                                                                                                                                                                                                                                          |
-    +==================+==========+=======================================+======================================================================================================================================================================================================================================================================================================================+
-    | itestr4          | int      | 2                                     | This keyword decides the optimization scheme and its kernel. It can assume an integer value according to the following scheme:                                                                                                                                                                                       |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = 2`` (VMC) Variational Monte Carlo.                                                                                                                                                                                                                                                                     |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -4`` (VMC-opt) Wavefunction optimization by Hessian matrix method. Only the **lambda** parameters and the coefficients of the contracted orbitals are optimized.                                                                                                                                       |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -8`` (VMC-opt) Wavefunction optimization by Hessian matrix method. All the parameters are optimized.                                                                                                                                                                                                   |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -9, -5`` (VMC-opt) Same as -4, -8, respectively, but using Stochastic reconfiguration (SR) wavefunction optimization method.                                                                                                                                                                           |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -6`` (LRDMC) Lattice Regularized Diffusion Monte Carlo.                                                                                                                                                                                                                                                |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -24, -28`` (LRDMC-opt) Same as -4, -8, respectively, but the derivatives are computed using LRDMC.                                                                                                                                                                                                     |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``itestr4 = -29, -25`` (LRDMC-opt) Same as -9, -5, respectively, but the derivatives are computed using LRDMC.                                                                                                                                                                                                     |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | maxtime          | int      | 86000                                 | The program will stop after maxtime (sec.)                                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | iopt             | int      | 1                                     | This keyword controls the starting of the run. It can assume the following integer values:                                                                                                                                                                                                                           |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``iopt = 1``: New run from scratch.                                                                                                                                                                                                                                                                                |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``iopt = 0``: Continue from previous run.                                                                                                                                                                                                                                                                          |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``iopt = 2``: Initialize the optimization from the initial values given by fort.10, but read the previous equilibrated configuration.                                                                                                                                                                              |
-    |                  |          |                                       |                                                                                                                                                                                                                                                                                                                      |
-    |                  |          |                                       | - ``iopt = 3``: Same as 2, but when combined with molopt=-1, recomputes from scratch the projection matrices required to enforce a given number of molecular orbitals.                                                                                                                                               |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | ngen             | int      | 100                                   | The number of iterations of any chosen method. Represents the total number of samples for the local energy or energy derivatives. In case of optimization, it must be a multiple of nweight given in the &optimization section.                                                                                      |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | nscra            | int      | 2*nel + 2                             | Inside an MC step, the determinant is usually updated instead of being recalculated from scratch. To avoid error summation, it's necessary to calculate it from scratch every nscra accepted moves.                                                                                                                  |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | nbra             | int      | depending on itestr4                  | In VMC, it indicates the number of Metropolis steps before computing a new sample. In LRDMC, if > 0, it uses the new more efficient method with perfect load balancing. Should be large enough (#electrons) to guarantee an efficient branching (% independent walkers / # walkers between 80% and 95%).             |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | iseedr           | int      | 236413883                             | Seed of the random number generator.                                                                                                                                                                                                                                                                                 |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | nw               | int      | num. of MPI                           | Number of walkers. If not specified, it coincides with the number of processors. Otherwise, it must be a multiple of their number.                                                                                                                                                                                   |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | disk_io          | str      | default                               | 'default': default I/O, temporary files for each MPI process, 'nocont': minimal I/O no continuation, 'mpiio': temporary files are not generated for each MPI rank. They are gathered to single file.                                                                                                                 |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | kSq              | real     | 0.0 for molecule, 1.d-8 for crystals  | Precision for the Ewald summation.                                                                                                                                                                                                                                                                                   |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | kappar           | real     | 0.0 for molecule                      | Coefficient in the Ewald summation. The default value depends on the crystal type (orthorombic, nonorthorohmbic).                                                                                                                                                                                                    |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | freqcheck        | int      | 1000                                  | Frequency for checking flag error.                                                                                                                                                                                                                                                                                   |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | membig           | bool     | .true.                                | Large memory is given or not.                                                                                                                                                                                                                                                                                        |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | membigcpu        | bool     | .true.                                | Large memory is given or not.                                                                                                                                                                                                                                                                                        |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | developer        | int      | 0                                     | Unidentified (This will be removed in the future).                                                                                                                                                                                                                                                                   |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | yesfast          | int      | -1                                    | Fast I/O (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                               |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | nproc_diag       | int      | 0                                     | The number of intra MPI communicators. 0 means no intra communicator (this will be removed in the future).                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | ip_reshuff       | int      | -1                                    | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | min_block        | int      | 100                                   | The minimum block size for computational efficiency at expense of memory, used for SCALAPACK. A smaller value will require less memory. (This will be removed in the future).                                                                                                                                        |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | max_target       | int      | 200000 for GPU, 0 for CPU             | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | max_targetsr     | int      | 200000 for GPU, 0 for CPU             | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | dielectric_ratio | real     | 1.0                                   | Parameter for dielectric constant: see dielectric.f90 (not tested).                                                                                                                                                                                                                                                  |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | dielectric_length| real     | 1.0                                   | Parameter for dielectric constant: see dielectric.f90 (not tested).                                                                                                                                                                                                                                                  |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | case_diel        | int      | 0                                     | Flag for dielectric constant: see dielectric.f90 (not tested).                                                                                                                                                                                                                                                       |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | neigh            | int      | 1                                     | Neighbors in the Ewald summation (but not used?) unidentified.                                                                                                                                                                                                                                                       |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | novec_loop1      | bool     | .true.                                | Vectorize of subroutine upnewwf (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                        |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | yes_sparse       | bool     | .false.                               | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | yes_sparse_choose| bool     | .false. for DFT, .true. for QMC       | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-    | max_sparse_choice| int      | 20 for CPU, 100 for GPU               | Unidentified (This will be moved to /developer/ namelist).                                                                                                                                                                                                                                                           |
-    +------------------+----------+---------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   "itestr4", "int", "2", "This keyword decides the optimization scheme and its kernel. It can assume an integer value according to the following scheme:
+
+   - ``itestr4 = 2`` (VMC) Variational Monte Carlo.
+
+   - ``itestr4 = -4`` (VMC-opt) Wavefunction optimization by Hessian matrix method. Only the **lambda** parameters and the coefficients of the contracted orbitals are optimized.
+
+   - ``itestr4 = -8`` (VMC-opt) Wavefunction optimization by Hessian matrix method. All the parameters are optimized.
+
+   - ``itestr4 = -9, -5`` (VMC-opt) Same as -4, -8, respectively, but using Stochastic reconfiguration (SR) wavefunction optimization method.
+
+   - ``itestr4 = -6`` (LRDMC) Lattice Regularized Diffusion Monte Carlo.
+
+   - ``itestr4 = -24, -28`` (LRDMC-opt) Same as -4, -8, respectively, but the derivatives are computed using LRDMC.
+
+   - ``itestr4 = -29, -25`` (LRDMC-opt) Same as -9, -5, respectively, but the derivatives are computed using LRDMC."
+   "maxtime", "int", "86000", "The program will stop after maxtime (sec.)"
+   "iopt", "int", "1", "This keyword controls the starting of the run. It can assume the following integer values:
+
+   - ``iopt = 1``: New run from scratch.
+
+   - ``iopt = 0``: Continue from previous run.
+
+   - ``iopt = 2``: Initialize the optimization from the initial values given by fort.10, but read the previous equilibrated configuration.
+
+   - ``iopt = 3``: Same as 2, but when combined with molopt=-1, recomputes from scratch the projection matrices required to enforce a given number of molecular orbitals."
+   "ngen", "int", "100", "The number of iterations of any chosen method. Represents the total number of samples for the local energy or energy derivatives. In case of optimization, it must be a multiple of nweight given in the &optimization section."
+   "nscra", "int", "2*nel + 2", "Inside an MC step, the determinant is usually updated instead of being recalculated from scratch. To avoid error summation, it's necessary to calculate it from scratch every nscra accepted moves."
+   "nbra", "int", "depending on itestr4", "In VMC, it indicates the number of Metropolis steps before computing a new sample. In LRDMC, if > 0, it uses the new more efficient method with perfect load balancing. Should be large enough (#electrons) to guarantee an efficient branching (% independent walkers / # walkers between 80% and 95%)."
+   "iseedr", "int", "236413883", "Seed of the random number generator."
+   "nw", "int", "num. of MPI", "Number of walkers. If not specified, it coincides with the number of processors. Otherwise, it must be a multiple of their number."
+   "disk_io", "str", "default", "'default': default I/O, temporary files for each MPI process, 'nocont': minimal I/O no continuation, 'mpiio': temporary files are not generated for each MPI rank. They are gathered to single file."
+   "kSq", "real", "0.0 for molecule, 1.d-8 for crystals", "Precision for the Ewald summation."
+   "kappar", "real", "0.0 for molecule", "Coefficient in the Ewald summation. The default value depends on the crystal type (orthorombic, nonorthorohmbic)."
+   "freqcheck", "int", "1000", "Frequency for checking flag error."
+   "membig", "bool", ".true.", "Large memory is given or not."
+   "membigcpu", "bool", ".true.", "Large memory is given or not."
+   "developer", "int", "0", "Unidentified (This will be removed in the future)."
+   "yesfast", "int", "-1", "Fast I/O (This will be moved to /developer/ namelist)."
+   "nproc_diag", "int", "0", "The number of intra MPI communicators. 0 means no intra communicator (this will be removed in the future)."
+   "ip_reshuff", "int", "-1", "Unidentified (This will be moved to /developer/ namelist)."
+   "min_block", "int", "100", "The minimum block size for computational efficiency at expense of memory, used for SCALAPACK. A smaller value will require less memory. (This will be removed in the future)."
+   "max_target", "int", "200000 for GPU, 0 for CPU", "Unidentified (This will be moved to /developer/ namelist)."
+   "max_targetsr", "int", "200000 for GPU, 0 for CPU", "Unidentified (This will be moved to /developer/ namelist)."
+   "dielectric_ratio", "real", "1.0", "Parameter for dielectric constant: see dielectric.f90 (not tested)."
+   "dielectric_length", "real", "1.0", "Parameter for dielectric constant: see dielectric.f90 (not tested)."
+   "case_diel", "int", "0", "Flag for dielectric constant: see dielectric.f90 (not tested)."
+   "neigh", "int", "1", "Neighbors in the Ewald summation (but not used?) unidentified."
+   "novec_loop1", "bool", ".true.", "Vectorize of subroutine upnewwf (This will be moved to /developer/ namelist)."
+   "yes_sparse", "bool", ".false.", "Unidentified (This will be moved to /developer/ namelist)."
+   "yes_sparse_choose", "bool", ".false. for DFT, .true. for QMC", "Unidentified (This will be moved to /developer/ namelist)."
+   "max_sparse_choice", "int", "20 for CPU, 100 for GPU", "Unidentified (This will be moved to /developer/ namelist)."
 
 
 Pseudo section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +---------------+----------+---------------------+-------------------------------------------------------------------+
-   | Parameter     | Datatype | Default             | Description                                                       |
-   +===============+==========+=====================+===================================================================+
-   | nintpsa       | int      | 6, 12, 18, 50       | Number of integer points for pseudopotential, if present.         |
-   +---------------+----------+---------------------+-------------------------------------------------------------------+
-   | npsamax       | int      | 2                   | Multiplication factor for the number of pseudo integration points.|
-   |               |          |                     | Note that, you should use npsmax > 2 if the code terminates with  |
-   |               |          |                     | the error 'Increase npsamax'.                                     |
-   +---------------+----------+---------------------+-------------------------------------------------------------------+
-   | pseudorandom  | bool     | .false. for DFT,    | Use a random integration mesh for pseudo with the algorithm for   |
-   |               |          | .true. for QMC      | QMC by R. Fahy.                                                   |
-   +---------------+----------+---------------------+-------------------------------------------------------------------+
+   "nintpsa", "int", "6, 12, 18, 50", "Number of integer points for pseudopotential, if present."
+   "npsamax", "int", "2", "Multiplication factor for the number of pseudo integration points. Note that, you should use npsmax > 2 if the code terminates with the error 'Increase npsamax'."
+   "pseudorandom", "bool", ".false. for DFT, .true. for QMC", "Use a random integration mesh for pseudo with the algorithm for QMC by R. Fahy."
 
 VMC section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section should be specified for a VMC or VMCopt run.
 
-.. table::
+.. csv-table::
+   :header: "Parameter Name", "Datatype", "Default", "Description"
 
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | Parameter Name | Datatype | Default                                              | Description                                                                               |
-   +================+==========+======================================================+===========================================================================================+
-   | tstep          | real     | 2.0                                                  | Time step for VMC moves. Adapted automatically.                                           |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | hopfraction    | real     | 0.0                                                  | The hopping ratio used in the MCMC. See. subroutine hopping in detail.                    |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | epscut         | real     | 1.0d-5                                               | The threshold of regularization. epscut = 0 to be used only in                            |
-   |                |          |                                                      | the optimization of the Jastrow, when no regularization is                                |
-   |                |          |                                                      | necessary for finite variance energy derivatives. If epscut > 0,                          |
-   |                |          |                                                      | a regularization is applied (epscuttype=2) and finite variance                            |
-   |                |          |                                                      | forces and energy derivatives can be computed. It is tuned                                |
-   |                |          |                                                      | automatically starting from the value in input.                                           |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | epstlrat       | real     | sqrt(epsmach), where epsmach = dlamch('e')           | epstl = epstlrat*epscut.  epstl is a precision control parameter used in                  |
-   |                |          |                                                      | subroutine ratio_psi() (if zero not used)  dlamch('e') is a lapack routine                |
-   |                |          |                                                      | that returns the relative machine precision                                               |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | epscuttype     | int      | 0 or 2                                               | Accept default (0,2) determined by epscut. The type of                                    |
-   |                |          |                                                      | regularization applied to the determinant. Type 0: no                                     |
-   |                |          |                                                      | regularization. Type 2: best one. (Other options are possible                             |
-   |                |          |                                                      | but deprecated).                                                                          |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | alat2v         | real     | 0.0                                                  | not used. This will be removed in the future                                              |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | shift          | real     | 0.0                                                  | unidentified                                                                              |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | change_epscut  | bool     | .true. for VMC, otherwise .false.                    | automatic adjustment of epscut                                                            |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | change_tstep   | bool     | .true. for VMC, otherwise .false.                    | automatic adjustment of tstep                                                             |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | epsvar         | real     | 1.0d-4                                               | epsvar is a precision control parameter used in subroutine ratiovar.f90 (if zero not used)|
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
-   | theta_reg      | real     | 0.375                                                | ratiodet = 1.d0/ratiodet**theta_reg used in subroutine ratiovar.f90.                      |
-   |                |          |                                                      | Eq.(121) in the paper [J. Chem. Phys. 152, 204121 (2020)].                                |
-   +----------------+----------+------------------------------------------------------+-------------------------------------------------------------------------------------------+
+   "tstep", "real", "2.0", "Time step for VMC moves. Adapted automatically."
+   "hopfraction", "real", "0.0", "The hopping ratio used in the MCMC. See. subroutine hopping in detail."
+   "epscut", "real", "1.0d-5", "The threshold of regularization. epscut = 0 to be used only in the optimization of the Jastrow, when no regularization is necessary for finite variance energy derivatives. If epscut > 0, a regularization is applied (epscuttype=2) and finite variance forces and energy derivatives can be computed. It is tuned automatically starting from the value in input."
+   "epstlrat", "real", "sqrt(epsmach), where epsmach = dlamch('e')", "epstl = epstlrat*epscut.  epstl is a precision control parameter used in subroutine ratio_psi() (if zero not used)  dlamch('e') is a lapack routine that returns the relative machine precision"
+   "epscuttype", "int", "0 or 2", "Accept default (0,2) determined by epscut. The type of regularization applied to the determinant. Type 0: no regularization. Type 2: best one. (Other options are possible but deprecated)."
+   "alat2v", "real", "0.0", "not used. This will be removed in the future"
+   "shift", "real", "0.0", "unidentified"
+   "change_epscut", "bool", ".true. for VMC, otherwise .false.", "automatic adjustment of epscut"
+   "change_tstep", "bool", ".true. for VMC, otherwise .false.", "automatic adjustment of tstep"
+   "epsvar", "real", "1.0d-4", "epsvar is a precision control parameter used in subroutine ratiovar.f90 (if zero not used)"
+   "theta_reg", "real", "0.375", "ratiodet = 1.d0/ratiodet**theta_reg used in subroutine ratiovar.f90. Eq.(121) in the paper [J. Chem. Phys. 152, 204121 (2020)]."
 
 
 DMCLRDMC section
@@ -178,114 +115,53 @@ DMCLRDMC section
 
 This section should be specified for a LRDMC or LRDMCopt run.
 
-.. table::
+.. csv-table::
+   :header: "Parameter name", "Datatype", "Default", "Description"
 
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | Parameter name  | Datatype | Default               | Description                                                                                                        |
-   +=================+==========+=======================+====================================================================================================================+
-   | etry            | real     | 0.0                   | Trial total energy. Please put the DFT or VMC energy.                                                              |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | typereg         | int      | 6                     | How to deal with the spin-flip term, 0: Standard (Det. + Jas.), 6: only Det.                                       |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | npow            | int      | 0                     | The parameter npow gradually sets the degree of localization used                                                  |
-   |                 |          |                       | in the effective Hamiltonian. npow = 0 corresponds to a Fixed                                                      |
-   |                 |          |                       | Node Hamiltonian whereas npow = 1 corresponds to the local                                                         |
-   |                 |          |                       | approximation. Accept default.                                                                                     |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | tbra            | real     | 0.1                   | DMC time between consecutive branchings. Do not define when                                                        |
-   |                 |          |                       | nbra > 0 in the simulation section.                                                                                |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | gamma           | real     | 0.0                   | The γ parameter in LRDMC. Accept default.                                                                          |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | plat            | real     | 0.0                   | a function p(r) dividing the dense and coarse regions. Default value is 0.0 for the single-grid LRDMC (i.e.,       |
-   |                 |          |                       | alat2=0.0), automatically adjusted for the double-grid LRDMC (i.e., alat2=finite value)                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | alat2           | real     | 0.0                   | Double-grid Lattice space. alat2 = a'/a, where a is the smallest                                                   |
-   |                 |          |                       | regularization grid and a' is the larger one used in the valence                                                   |
-   |                 |          |                       | region (i.e., far from nuclei). When you put a negative value for                                                  |
-   |                 |          |                       | alat, you should not specify alat2 (i.e., please comment it out).                                                  |
-   |                 |          |                       | The default value of alat2 is determined by Nakano's algorithm.                                                    |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | alat            | real     | 1.0/Z_max             | Z_max is the largest effective nuclear charge in the system. Lattice space a of the smallest regularization grid.  |
-   |                 |          |                       | Accept default. If you want to do a single-grid LRDMC calculation, please                                          |
-   |                 |          |                       | put a negative value to satisfy the detailed-balance. If you want                                                  |
-   |                 |          |                       | to do a double-grid LRDMC, please put a positive value and switch                                                  |
-   |                 |          |                       | on iesrandoma.                                                                                                     |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | tstepfn         | real     | 0.0                   | 0.0 -> Fixed-node, 1.0 -> LRDMC becomes a VMC calc.                                                                |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | Klrdmc          | real     | 0.0                   | η parameter of LRDMC. η = 1 + Ka^2                                                                                 |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | optbra          | int      | 0                     | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | parcutg         | real     | 1                     | Use parcutg=1. parcutg=0 for standard LRDMC with no cutoff                                                         |
-   |                 |          |                       | (energy unbounded), but it now works.                                                                              |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | novar           | int      | 0                     | unclear, used for evaluating local energies in the subroutines updiag/updiag_complex compute the local energy both |
-   |                 |          |                       | diagonal and off-diagonal part. Regularization of the Coulomb potential is also computed.                          |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | epscutdmc       | real     | 0.0                   | regularization used in a DMC calculation. the detail is under investigation.                                       |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | epstldmc        | real     | 0.0                   | psidetln(j) is smaller than epstldmc, then kill the walker.                                                        |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | rejweight       | bool     | .true.                | rejecting or rescaling the weights according to the acceptance/rejection step) in standard dmc or non local dmc    |
-   |                 |          |                       | with heat bath after all electron diffusion rejecting or rescaling the weights according to acceptance should be   |
-   |                 |          |                       | the best choice. In non local dmc with heat bath after single particle diffusion the best choice is not to reject  |
-   |                 |          |                       | the weights.                                                                                                       |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | cutreg          | float    | automatically chosen  | DMC cutoff on local energy (Ry).                                                                                   |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | better_dmc      | bool     | .true.                | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | yesalfe         | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | safelrdmc       | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | changelambda    | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | noblocking      | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | add_diff        | bool     | .true.                | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | lrdmc_der       | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | lrdmc_nonodes   | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | enforce_detailb | bool     | .false.               | enforcing the detailed-balance                                                                                     |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | iesrandoma      | bool     | .true.                | flag to randomize the direction of the electron's diffusion.                                                       |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | zmin            | real     | 0.0                   | the minimum effective Z for which the double-grid LRDMC is applied.                                                |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | yes_fastbranch  | bool     | .false.               | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | l0_kousuke      | real     | 2.0                   | a parameter for the double-grid LRDMC. See "l" in the Eq.6 of the paper (Phys. Rev. B 101, 155106 (2020)).         |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | nw_max          | int      | -1                    | max number of. walker                                                                                              |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | true_wagner     | int      | -1 for VMC, 2 for DMC | if true_wagner=2, the regularization developed by S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]       |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | cutweight       | real     | depends on calc. type | regularization parameter in eq.4 of S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]                     |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | nbra_cyrus      | int      | 0                     | A parameter to compute forces using the practical scheme developed by S. Moroni et al. (originally devised by      |
-   |                 |          |                       | Cyrus Umrigar), corresponding n in Eqs. 12 and 13 of the paper [J. Chem. Theory Comput. 2014, 10, 11, 4823–4829]   |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
-   | weight_moroni   | real     | 1.0                   | unclear                                                                                                            |
-   +-----------------+----------+-----------------------+--------------------------------------------------------------------------------------------------------------------+
+   "etry", "real", "0.0", "Trial total energy. Please put the DFT or VMC energy."
+   "typereg", "int", "6", "How to deal with the spin-flip term, 0: Standard (Det. + Jas.), 6: only Det."
+   "npow", "int", "0", "The parameter npow gradually sets the degree of localization used in the effective Hamiltonian. npow = 0 corresponds to a Fixed Node Hamiltonian whereas npow = 1 corresponds to the local approximation. Accept default."
+   "tbra", "real", "0.1", "DMC time between consecutive branchings. Do not define when nbra > 0 in the simulation section."
+   "gamma", "real", "0.0", "The γ parameter in LRDMC. Accept default."
+   "plat", "real", "0.0", "a function p(r) dividing the dense and coarse regions. Default value is 0.0 for the single-grid LRDMC (i.e., alat2=0.0), automatically adjusted for the double-grid LRDMC (i.e., alat2=finite value)"
+   "alat2", "real", "0.0", "Double-grid Lattice space. alat2 = a'/a, where a is the smallest regularization grid and a' is the larger one used in the valence region (i.e., far from nuclei). When you put a negative value for alat, you should not specify alat2 (i.e., please comment it out). The default value of alat2 is determined by Nakano's algorithm."
+   "alat", "real", "1.0/Z_max", "Z_max is the largest effective nuclear charge in the system. Lattice space a of the smallest regularization grid. Accept default. If you want to do a single-grid LRDMC calculation, please put a negative value to satisfy the detailed-balance. If you want to do a double-grid LRDMC, please put a positive value and switch on iesrandoma."
+   "tstepfn", "real", "0.0", "0.0 -> Fixed-node, 1.0 -> LRDMC becomes a VMC calc."
+   "Klrdmc", "real", "0.0", "η parameter of LRDMC. η = 1 + Ka^2"
+   "optbra", "int", "0", "unclear"
+   "parcutg", "real", "1", "Use parcutg=1. parcutg=0 for standard LRDMC with no cutoff (energy unbounded), but it now works."
+   "novar", "int", "0", "unclear, used for evaluating local energies in the subroutines updiag/updiag_complex compute the local energy both diagonal and off-diagonal part. Regularization of the Coulomb potential is also computed."
+   "epscutdmc", "real", "0.0", "regularization used in a DMC calculation. the detail is under investigation."
+   "epstldmc", "real", "0.0", "psidetln(j) is smaller than epstldmc, then kill the walker."
+   "rejweight", "bool", ".true.", "rejecting or rescaling the weights according to the acceptance/rejection step) in standard dmc or non local dmc with heat bath after all electron diffusion rejecting or rescaling the weights according to acceptance should be the best choice. In non local dmc with heat bath after single particle diffusion the best choice is not to reject the weights."
+   "cutreg", "float", "automatically chosen", "DMC cutoff on local energy (Ry)."
+   "better_dmc", "bool", ".true.", "unclear"
+   "yesalfe", "bool", ".false.", "unclear"
+   "safelrdmc", "bool", ".false.", "unclear"
+   "changelambda", "bool", ".false.", "unclear"
+   "noblocking", "bool", ".false.", "unclear"
+   "add_diff", "bool", ".true.", "unclear"
+   "lrdmc_der", "bool", ".false.", "unclear"
+   "lrdmc_nonodes", "bool", ".false.", "unclear"
+   "enforce_detailb", "bool", ".false.", "enforcing the detailed-balance"
+   "iesrandoma", "bool", ".true.", "flag to randomize the direction of the electron's diffusion."
+   "zmin", "real", "0.0", "the minimum effective Z for which the double-grid LRDMC is applied."
+   "yes_fastbranch", "bool", ".false.", "unclear"
+   "l0_kousuke", "real", "2.0", "a parameter for the double-grid LRDMC. See 'l' in the Eq.6 of the paper (Phys. Rev. B 101, 155106 (2020))."
+   "nw_max", "int", "-1", "max number of. walker"
+   "true_wagner", "int", "-1 for VMC, 2 for DMC", "if true_wagner=2, the regularization developed by S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]"
+   "cutweight", "real", "depends on calc. type", "regularization parameter in eq.4 of S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]"
+   "nbra_cyrus", "int", "0", "A parameter to compute forces using the practical scheme developed by S. Moroni et al. (originally devised by Cyrus Umrigar), corresponding n in Eqs. 12 and 13 of the paper [J. Chem. Theory Comput. 2014, 10, 11, 4823–4829]"
+   "weight_moroni", "real", "1.0", "unclear"
 
 
 Readio section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +----------+----------+---------+----------------------------------------------+
-   | Parameter| Datatype | Default | Description                                  |
-   +==========+==========+=========+==============================================+
-   | iread    | int      | 0       | For correlated sampling or measuring         |
-   |          |          |         | correlation functions with readforward, use  |
-   |          |          |         | iread=3.                                     |
-   +----------+----------+---------+----------------------------------------------+
+   "iread", "int", "0", "For correlated sampling or measuring correlation functions with readforward, use iread=3."
 
 Optimization section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -296,140 +172,40 @@ This section should be specified for a VMCopt or LRDMCopt run.
    :scale: 40%
    :align: center
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +-----------------+----------+---------+--------------------------------------------------+
-   |    Parameter    | Datatype | Default |              Description                         |
-   +=================+==========+=========+==================================================+
-   |       kl        |   int    |   -7    | Method used for the solution of the linear       |
-   |                 |          |         | equation Sx = f, where f are energy              |
-   |                 |          |         | derivatives and x parameters change in the       |
-   |                 |          |         | stochastic reconfiguration. kl=-7 is mandatory   |
-   |                 |          |         | for signalnoise=.true. optimization method.      |
-   |                 |          |         | It is faster for large number of parameters      |
-   |                 |          |         | and small number of sampling per processor.      |
-   |                 |          |         | kl=-6 may be useful for small systems/computers  |
-   |                 |          |         | when the number of sampling per processor is     |
-   |                 |          |         | very large.                                      |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |       ncg       |   int    |   1     | If ncg > 1, a conjugate gradient approach is     |
-   |                 |          |         | used with ncg gradients (generated on fly        |
-   |                 |          |         | during the run) to accelerate convergence.       |
-   |                 |          |         | ncg > 1 can be used only with the linear         |
-   |                 |          |         | method (itestr4 = -4, -8).                       |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   parcutmin     |  real    |  0.0    | If ncg > 1 is used in the minimization only      |
-   |                 |          |         | the gradients that have a signal/noise ratio     |
-   |                 |          |         | larger than parcutmin. If ncg = 0, the standard  |
-   |                 |          |         | linear method with all parameters included in    |
-   |                 |          |         | the optimization is used.                        |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |     npbra       |   int    |   0     | If npbra > 0 in the linear method, npbra         |
-   |                 |          |         | parameters with the largest signal to noise      |
-   |                 |          |         | ratio are also included.                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   parcutpar     |   real   |  0.0    | If npbra > 0, among the npbra selected, only     |
-   |                 |          |         | the parameters with signal/noise ratio >         |
-   |                 |          |         | parcutpar are optimized.                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |      tpar       |   Real   |  0.35   | Optimization step; in the case of the linear     |
-   |                 |          |         | method (itestr4 = -4, -8) reduces the step       |
-   |                 |          |         | from its ideal value (tpar = 1) that is          |
-   |                 |          |         | unfortunately unstable for large number of       |
-   |                 |          |         | variational parameters or small statistics.      |
-   |                 |          |         | In the simpler SR method tpar has to be set      |
-   |                 |          |         | by hand as in the standard steepest descent      |
-   |                 |          |         | method.                                          |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |      parr       |   real   |  0.0    | Determines the accuracy in the calculation       |
-   |                 |          |         | of the inverse of the SR matrix. The smaller     |
-   |                 |          |         | the value, the more accurate (and fast) is       |
-   |                 |          |         | the optimization, but the stability of the       |
-   |                 |          |         | method gets worse. It should be decreased        |
-   |                 |          |         | systematically up to at least 0.001 for fairly   |
-   |                 |          |         | accurate wavefunction optimizations.             |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |    nweight      |   int    |   1     | Number of sampling used for each iteration of    |
-   |                 |          |         | the optimization steps.                          |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |     nbinr       |   int    |   1     | Number of bins used in the optimization step     |
-   |                 |          |         | of length nweight-iboot. This binning is used    |
-   |                 |          |         | to estimate error bars during the simulation.    |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |     iboot       |   int    |   0     | Number of step before making averages in the     |
-   |                 |          |         | bin of length nweight. nweight-iboot has to      |
-   |                 |          |         | be a multiple of nbinr.                          |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |      epsi       |   real   | 10000.0 | Cutoff for reducing too large changes of WF      |
-   |                 |          |         | such that Δpsi/\|psi\| > epsi.                   |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |  minzj/maxzj    |   real   |automatic| Minimum/Maximum Jastrow orbital exponent Z       |
-   |                 |          |         | allowed.                                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   minz/maxz     |   real   |automatic| Minimum/Maximum AGP orbital exponent Z           |
-   |                 |          |         | allowed.                                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |     molopt      |   int    |   0     | If molopt = -1 optimization with fixed number    |
-   |                 |          |         | of molecular orbitals is performed (nmolmax      |
-   |                 |          |         | in the &molecul section should be defined in     |
-   |                 |          |         | this case). If not specified, the standard       |
-   |                 |          |         | optimization is employed.                        |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   yesquantum    |   bool   |.false.  | If yesquantum=.true. quantum effects are         |
-   |                 |          |         | included. No kaverage is possible for the        |
-   |                 |          |         | time being.                                      |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |     nbead       |   int    |   -1    | When yesquantum is true, one has to specify      |
-   |                 |          |         | the number of beads of the corresponding path    |
-   |                 |          |         | integral. The larger this number, the more       |
-   |                 |          |         | accurate the Trotter approximation is (error     |
-   |                 |          |         | vanishing as 1/nbead^2).                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |      idyn       |   int    |   0     | To choose the type of ion dynamics. The          |
-   |                 |          |         | available options are:                           |
-   |                 |          |         |                                                  |
-   |                 |          |         |   - idyn=0: No dynamic option specified,         |
-   |                 |          |         |             i.e. standard optimization at        |
-   |                 |          |         |             fixed ion positions.                 |
-   |                 |          |         |   - idyn=1: First order standard steepest        |
-   |                 |          |         |             descent dynamics.                    |
-   |                 |          |         |   - idyn=2: Second order standard with           |
-   |                 |          |         |             damping.                             |
-   |                 |          |         |   - idyn=3: More accurate.                       |
-   |                 |          |         |   - idyn=5: New accelerated molecular            |
-   |                 |          |         |             dynamics.                            |
-   |                 |          |         |   - idyn=6: Even more accurate but never         |
-   |                 |          |         |             published.                           |
-   |                 |          |         |   - idyn=7: New second order Ornstein Uhlenbeck  |
-   |                 |          |         |             damped Newton dynamics.              |
-   |                 |          |         |   - idyn=8: Standard Ceriotti's second order     |
-   |                 |          |         |             damped Newton dynamics.              |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |      tion       |   real   |  tpar   | When dynamics is on (idyn > 0) it represents     |
-   |                 |          |         | the time-step of the molecular dynamics. With    |
-   |                 |          |         | idyn=5, has the scale of an energy and should    |
-   |                 |          |         | be set small enough inversely proportional to    |
-   |                 |          |         | the number of samples used to evaluate the       |
-   |                 |          |         | covariance matrix.                               |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   signalnoise   |   bool   |.false.  | If signalnoise=.true., one optimizes all the     |
-   |                 |          |         | parameters (including atomic positions with      |
-   |                 |          |         | ieskin ≠ 0) by following the direction of        |
-   |                 |          |         | maximum signal to noise ratio. parr is also      |
-   |                 |          |         | effective in this case to regularize the         |
-   |                 |          |         | inversion.                                       |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |  nmore_force    |   int    |   1     | If dynamics is employed, the number of samples   |
-   |                 |          |         | used during the last step of optimization is     |
-   |                 |          |         | increased by a factor (nmore_force+1).           |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |   onebodysz     |   bool   |.false.  | If .true., optimize only the one body part of    |
-   |                 |          |         | the spin Jastrow factor.                         |
-   +-----------------+----------+---------+--------------------------------------------------+
-   |  symmetrizeagp  |   bool   |.true.   | If .true. (default), symmetrize the agp at       |
-   |                 |          |         | each iteration step, as it can deteriorate       |
-   |                 |          |         | due to numerical accuracy.                       |
-   +-----------------+----------+---------+--------------------------------------------------+
+   "kl", "int", "-7", "Method used for the solution of the linear equation Sx = f, where f are energy derivatives and x parameters change in the stochastic reconfiguration. kl=-7 is mandatory for signalnoise=.true. optimization method. It is faster for large number of parameters and small number of sampling per processor. kl=-6 may be useful for small systems/computers when the number of sampling per processor is very large."
+   "ncg", "int", "1", "If ncg > 1, a conjugate gradient approach is used with ncg gradients (generated on fly during the run) to accelerate convergence. ncg > 1 can be used only with the linear method (itestr4 = -4, -8)."
+   "parcutmin", "real", "0.0", "If ncg > 1 is used in the minimization only the gradients that have a signal/noise ratio larger than parcutmin. If ncg = 0, the standard linear method with all parameters included in the optimization is used."
+   "npbra", "int", "0", "If npbra > 0 in the linear method, npbra parameters with the largest signal to noise ratio are also included."
+   "parcutpar", "real", "0.0", "If npbra > 0, among the npbra selected, only the parameters with signal/noise ratio > parcutpar are optimized."
+   "tpar", "Real", "0.35", "Optimization step; in the case of the linear method (itestr4 = -4, -8) reduces the step from its ideal value (tpar = 1) that is unfortunately unstable for large number of variational parameters or small statistics. In the simpler SR method tpar has to be set by hand as in the standard steepest descent method."
+   "parr", "real", "0.0", "Determines the accuracy in the calculation of the inverse of the SR matrix. The smaller the value, the more accurate (and fast) is the optimization, but the stability of the method gets worse. It should be decreased systematically up to at least 0.001 for fairly accurate wavefunction optimizations."
+   "nweight", "int", "1", "Number of sampling used for each iteration of the optimization steps."
+   "nbinr", "int", "1", "Number of bins used in the optimization step of length nweight-iboot. This binning is used to estimate error bars during the simulation."
+   "iboot", "int", "0", "Number of step before making averages in the bin of length nweight. nweight-iboot has to be a multiple of nbinr."
+   "epsi", "real", "10000.0", "Cutoff for reducing too large changes of WF such that Δpsi/|psi| > epsi."
+   "minzj/maxzj", "real", "automatic", "Minimum/Maximum Jastrow orbital exponent Z allowed."
+   "minz/maxz", "real", "automatic", "Minimum/Maximum AGP orbital exponent Z allowed."
+   "molopt", "int", "0", "If molopt = -1 optimization with fixed number of molecular orbitals is performed (nmolmax in the &molecul section should be defined in this case). If not specified, the standard optimization is employed."
+   "yesquantum", "bool", ".false.", "If yesquantum=.true. quantum effects are included. No kaverage is possible for the time being."
+   "nbead", "int", "-1", "When yesquantum is true, one has to specify the number of beads of the corresponding path integral. The larger this number, the more accurate the Trotter approximation is (error vanishing as 1/nbead^2)."
+   "idyn", "int", "0", "To choose the type of ion dynamics. The available options are:
+
+   - idyn=0: No dynamic option specified, i.e. standard optimization at fixed ion positions.
+   - idyn=1: First order standard steepest descent dynamics.
+   - idyn=2: Second order standard with damping.
+   - idyn=3: More accurate.
+   - idyn=5: New accelerated molecular dynamics.
+   - idyn=6: Even more accurate but never published.
+   - idyn=7: New second order Ornstein Uhlenbeck damped Newton dynamics.
+   - idyn=8: Standard Ceriotti's second order damped Newton dynamics."
+   "tion", "real", "tpar", "When dynamics is on (idyn > 0) it represents the time-step of the molecular dynamics. With idyn=5, has the scale of an energy and should be set small enough inversely proportional to the number of samples used to evaluate the covariance matrix."
+   "signalnoise", "bool", ".false.", "If signalnoise=.true., one optimizes all the parameters (including atomic positions with ieskin ≠ 0) by following the direction of maximum signal to noise ratio. parr is also effective in this case to regularize the inversion."
+   "nmore_force", "int", "1", "If dynamics is employed, the number of samples used during the last step of optimization is increased by a factor (nmore_force+1)."
+   "onebodysz", "bool", ".false.", "If .true., optimize only the one body part of the spin Jastrow factor."
+   "symmetrizeagp", "bool", ".true.", "If .true. (default), symmetrize the agp at each iteration step, as it can deteriorate due to numerical accuracy."
 
 
 Parameters section
@@ -439,58 +215,27 @@ This section should be specified for a VMCopt or LRDMCopt run.
 Only ``ieskin`` should be specified for a VMC or LRDMC run if one wants to compute atomic forces.
 This section describes switches for optimizing wavefunction parameters, the ouput printout and on the measures performed during the MC run. For example, value=0 means do not optimize this type, vice versa (:math:`iesd=0` means that one body and two body Jastrow factors will not be optimized).
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | parameter name      | datatype | default | description                                                                                                                            |
-   +=====================+==========+=========+========================================================================================================================================+
-   | ``iesd``            | int      | 0       | Integer (0 or 1). It acts as a switch for the 1-body and 2-body Jastrow.                                                               |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iesinv``          | int      | 0       | Integer (-1, 0 or 1). If :math:`\neq 0`, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10.                 |
-   |                     |          |         | If :math:`< 0`, a range can be defined in the &fitpar section with rmaxinv.                                                            |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iesfree``         | int      | 0       | Integer (-1, 0 or 1). If :math:`\neq 0`, the density Jastrow factor matrix is optimized.                                               |
-   |                     |          |         | If :math:`< 0`, a range can be defined in the &fitpar section with rmaxj.                                                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iessw``           | int      | 0       | Integer (-1, 0 or 1). If :math:`\neq 0`, the AGP matrix on the localized basis is optimized.                                           |
-   |                     |          |         | If :math:`< 0`, a range can be defined in the &fitpar section with rmax.                                                               |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iesm``            | int      | 0       | Integer (0 or 1). If :math:`\neq 0`, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized.   |
-   |                     |          |         | When :math:`itestr4 = -4,-9`, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true.            |
-   |                     |          |         | is switched on and exponents are optimized.                                                                                            |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iesup``           | int      | 0       | Integer (0 or 1). Same as the above, but for the determinantal part. yeszagp=.true. replaces yeszj in this case.                       |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``ieser``           | int      | 0       | Integer (0 or 1). It specifies which part of the energy is printed out. If :math:`ieser = 1`, it measures the total energy             |
-   |                     |          |         | (no optimization assumed).                                                                                                             |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iesfix``          | int      | 0       | Integer (0 or 1). If :math:`iesfix = 1`, the variance of the energy is printed out (no optimization assumed).                          |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``ieskin``          | int      | 0       | Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics :math:`idyn > 0`), set :math:`ieskin > 0`.           |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``yeszj``           | int      | .false. | Logical value. If :math:`yeszj=.true.`, exponents of the Jastrow basis are optimized if :math:`iesm \neq 0`                            |
-   |                     |          |         | even if :math:`itestr4 = -4, -9`.                                                                                                      |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``yeszagp``         | int      | .false. | Logical value. Same as above, but for the determinantal part.                                                                          |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``real_agp``        | int      | .false. | Logical value. For complex wf, if real_agp=.true. and :math:`iessw=\neq 0`, only the real part of the complex agp matrix               |
-   |                     |          |         | is optimized. The imaginary part is assumed and set to zero.                                                                           |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``real_contracted`` | int      | .false. | Logical value. For complex wf, if real_contracted=.true., only the real part of the contracted coefficient of the basis is optimized.  |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``typedyncell``     | int      | .false. | Integer value. :math:`typedyncell=0` means Standard NVT ensemble with no optimization of cell.                                         |
-   |                     |          |         | :math:`typedyncell=1` implies fixed volume, but optimization of b/a and c/a at fixed volume :math:`V = a \times b \times c`.           |
-   |                     |          |         | :math:`typedyncell=2` stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant.                   |
-   |                     |          |         | :math:`typedyncell=3` represents constant pressure and variable volume but without modifying b/a and c/a.                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``pressfixed``      | int      | 0       | Value of the pressure in a.u., for dynamics at fixed pressure. Note: the classical value is not included.                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``fixa``            | bool     | .false. | Logical value. If :math:`fixa = .true.`, a is kept fixed during dynamics.                                                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``fixb``            | bool     | .false. | Logical value. If :math:`fixb = .true.`, b is kept fixed during dynamics.                                                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
-   | ``fixc``            | bool     | .false. | Logical value. If :math:`fixc = .true.`, c is kept fixed during dynamics.                                                              |
-   +---------------------+----------+---------+----------------------------------------------------------------------------------------------------------------------------------------+
+   "``iesd``", "int", "0", "Integer (0 or 1). It acts as a switch for the 1-body and 2-body Jastrow."
+   "``iesinv``", "int", "0", "Integer (-1, 0 or 1). If :math:`\neq 0`, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10. If :math:`< 0`, a range can be defined in the &fitpar section with rmaxinv."
+   "``iesfree``", "int", "0", "Integer (-1, 0 or 1). If :math:`\neq 0`, the density Jastrow factor matrix is optimized. If :math:`< 0`, a range can be defined in the &fitpar section with rmaxj."
+   "``iessw``", "int", "0", "Integer (-1, 0 or 1). If :math:`\neq 0`, the AGP matrix on the localized basis is optimized. If :math:`< 0`, a range can be defined in the &fitpar section with rmax."
+   "``iesm``", "int", "0", "Integer (0 or 1). If :math:`\neq 0`, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized. When :math:`itestr4 = -4,-9`, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true. is switched on and exponents are optimized."
+   "``iesup``", "int", "0", "Integer (0 or 1). Same as the above, but for the determinantal part. yeszagp=.true. replaces yeszj in this case."
+   "``ieser``", "int", "0", "Integer (0 or 1). It specifies which part of the energy is printed out. If :math:`ieser = 1`, it measures the total energy (no optimization assumed)."
+   "``iesfix``", "int", "0", "Integer (0 or 1). If :math:`iesfix = 1`, the variance of the energy is printed out (no optimization assumed)."
+   "``ieskin``", "int", "0", "Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics :math:`idyn > 0`), set :math:`ieskin > 0`."
+   "``yeszj``", "int", ".false.", "Logical value. If :math:`yeszj=.true.`, exponents of the Jastrow basis are optimized if :math:`iesm \neq 0` even if :math:`itestr4 = -4, -9`."
+   "``yeszagp``", "int", ".false.", "Logical value. Same as above, but for the determinantal part."
+   "``real_agp``", "int", ".false.", "Logical value. For complex wf, if real_agp=.true. and :math:`iessw=\neq 0`, only the real part of the complex agp matrix is optimized. The imaginary part is assumed and set to zero."
+   "``real_contracted``", "int", ".false.", "Logical value. For complex wf, if real_contracted=.true., only the real part of the contracted coefficient of the basis is optimized."
+   "``typedyncell``", "int", ".false.", "Integer value. :math:`typedyncell=0` means Standard NVT ensemble with no optimization of cell. :math:`typedyncell=1` implies fixed volume, but optimization of b/a and c/a at fixed volume :math:`V = a \times b \times c`. :math:`typedyncell=2` stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant. :math:`typedyncell=3` represents constant pressure and variable volume but without modifying b/a and c/a."
+   "``pressfixed``", "int", "0", "Value of the pressure in a.u., for dynamics at fixed pressure. Note: the classical value is not included."
+   "``fixa``", "bool", ".false.", "Logical value. If :math:`fixa = .true.`, a is kept fixed during dynamics."
+   "``fixb``", "bool", ".false.", "Logical value. If :math:`fixb = .true.`, b is kept fixed during dynamics."
+   "``fixc``", "bool", ".false.", "Logical value. If :math:`fixc = .true.`, c is kept fixed during dynamics."
 
 
 
@@ -499,20 +244,12 @@ Fitpar section
 
 This section describes the details of the locality approximations for reducing the number of parameters.
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +-----------------+----------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | parameter name  | datatype | default | description                                                                                                                                          |
-   +=================+==========+=========+======================================================================================================================================================+
-   | ``rmax``        | real     | 0.0     | Real value. If :math:`iessw < 0`, then all matrix elements of the AGP at distance larger than rmax are not optimized.                                |
-   |                 |          |         | :math:`rmax = 0` implies that no matrix elements connecting different atoms are optimized.                                                           |
-   +-----------------+----------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``rmaxj``       | real     | 0.0     | Real value. If :math:`iefree < 0`, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized.                          |
-   |                 |          |         | :math:`rmaxj = 0` has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized.                                       |
-   +-----------------+----------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``rmaxinv``     | real     | 0.0     | Real value. If :math:`iesinv < 0`, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized.                   |
-   |                 |          |         | The rule is the same as the ones above for the spin Jastrow.                                                                                         |
-   +-----------------+----------+---------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+   "``rmax``", "real", "0.0", "Real value. If :math:`iessw < 0`, then all matrix elements of the AGP at distance larger than rmax are not optimized. :math:`rmax = 0` implies that no matrix elements connecting different atoms are optimized."
+   "``rmaxj``", "real", "0.0", "Real value. If :math:`iefree < 0`, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized. :math:`rmaxj = 0` has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized."
+   "``rmaxinv``", "real", "0.0", "Real value. If :math:`iesinv < 0`, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized. The rule is the same as the ones above for the spin Jastrow."
 
 
 Dynamics section
@@ -520,27 +257,16 @@ Dynamics section
 
 This section contains details about ion dynamics.
 
-.. table::
+.. csv-table::
+   :header: "Parameter", "Datatype", "Default", "Description"
 
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | parameter name  | datatype | default | description                                                                                                                                                                                                                                           |
-   +=================+==========+=========+=======================================================================================================================================================================================================================================================+
-   | ``temp``        | real     | 0.0     | Real value. The temperature in a.u. If :math:`temp < 0`, then `abs(temp)` indicates the temperature in Kelvin. :math:`temp = 0` can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization.      |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``friction``    | real     | 0.0     | Real value. It is necessary to keep it non-zero in Newtonian dynamics (:math:`idyn=4,7,8`) but can be set to zero (recommended) for :math:`idyn=5` (the recommended dynamics).                                                                        |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``iskipdyn``    | int      | 0       | Integer value. After :math:`iskipdyn` times :math:`nweight` MC steps, check if :math:`dev_mat < maxdev_dyn`.                                                                                                                                          |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``maxdev_dyn``  | real     | 0.0     | Real value. After each WF optimization, it is the maximum value of dev max accepted for an ion move. Deprecated.                                                                                                                                      |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``delta0``      | real     | 0.0     | Real value. Used with :math:`idyn = 5`, it is a parameter that can help with convergence in the small time step limit (:math:`tion \to 0`). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0 |
-   |                 |          |         | :math:`\times` Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the   |
-   |                 |          |         | time step. However, this is chosen by default.                                                                                                                                                                                                        |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``addrognoso``  | bool     | .false. | Logical value. With :math:`idyn = 5` it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for :math:`tion \to 0`.                                                                                           |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   | ``normcorr``    | real     | 0.0     | Real value. If non-zero and equal to one, it applies the noise correction to reduce the bias implied by the statistical evaluation of forces. In theory it should work, but in practice, it has little effects. So it is recommended to set to zero.  |
-   +-----------------+----------+---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   "``temp``", "real", "0.0", "Real value. The temperature in a.u. If :math:`temp < 0`, then `abs(temp)` indicates the temperature in Kelvin. :math:`temp = 0` can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization."
+   "``friction``", "real", "0.0", "Real value. It is necessary to keep it non-zero in Newtonian dynamics (:math:`idyn=4,7,8`) but can be set to zero (recommended) for :math:`idyn=5` (the recommended dynamics)."
+   "``iskipdyn``", "int", "0", "Integer value. After :math:`iskipdyn` times :math:`nweight` MC steps, check if :math:`dev_mat < maxdev_dyn`."
+   "``maxdev_dyn``", "real", "0.0", "Real value. After each WF optimization, it is the maximum value of dev max accepted for an ion move. Deprecated."
+   "``delta0``", "real", "0.0", "Real value. Used with :math:`idyn = 5`, it is a parameter that can help with convergence in the small time step limit (:math:`tion \to 0`). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0 :math:`\times` Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the time step. However, this is chosen by default."
+   "``addrognoso``", "bool", ".false.", "Logical value. With :math:`idyn = 5` it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for :math:`tion \to 0`."
+   "``normcorr``", "real", "0.0", "Real value. If non-zero and equal to one, it applies the noise correction to reduce the bias implied by the statistical evaluation of forces. In theory it should work, but in practice, it has little effects. So it is recommended to set to zero."
 
 ---------------------------------------------------------------------------------------
 How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)
