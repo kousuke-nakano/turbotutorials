@@ -185,7 +185,7 @@ This section should be specified for a VMCopt or LRDMCopt run.
    "nweight", "int", "1", "Number of sampling used for each iteration of the optimization steps."
    "nbinr", "int", "1", "Number of bins used in the optimization step of length nweight-iboot. This binning is used to estimate error bars during the simulation."
    "iboot", "int", "0", "Number of step before making averages in the bin of length nweight. nweight-iboot has to be a multiple of nbinr."
-   "epsi", "real", "10000.0", "Cutoff for reducing too large changes of WF such that Δpsi/|psi| > epsi."
+   "epsi", "real", "10000.0", "Cutoff for reducing too large changes of WF such that Δpsi/\|psi| > epsi."
    "minzj/maxzj", "real", "automatic", "Minimum/Maximum Jastrow orbital exponent Z allowed."
    "minz/maxz", "real", "automatic", "Minimum/Maximum AGP orbital exponent Z allowed."
    "molopt", "int", "0", "If molopt = -1 optimization with fixed number of molecular orbitals is performed (nmolmax in the &molecul section should be defined in this case). If not specified, the standard optimization is employed."
