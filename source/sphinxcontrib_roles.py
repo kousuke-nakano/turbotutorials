@@ -11,8 +11,9 @@ def _define_role(name):
 
 
 def on_builder_inited(app):
-    for name in app.builder.config.roles:
-        _define_role(name)
+    if app.builder.config.roles is not None:
+        for name in app.builder.config.roles:
+            _define_role(name)
 
 
 def on_html_collect_pages(app):
@@ -37,7 +38,7 @@ def html_page_context(app, pagename, templatename, context, doctree):
 
 
 def setup(app):
-    app.add_config_value('roles', [], 'html')
+    app.add_config_value('roles', None, 'html')
     app.connect("builder-inited", on_builder_inited)
     app.connect("html-collect-pages", on_html_collect_pages)
     app.connect("html-page-context", html_page_context)
