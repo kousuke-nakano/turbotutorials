@@ -772,15 +772,15 @@ Here:
 
 Then, you can see following figures:
 
-.. image:: J2.PNG
+.. image:: J2.png
    :scale: 60%
    :align: center
 
-.. image:: J1.PNG
+.. image:: J1.png
    :scale: 60%
    :align: center
 
-.. image:: J3.PNG
+.. image:: J3.png
    :scale: 60%
    :align: center
 
