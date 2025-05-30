@@ -129,7 +129,7 @@ The first step of this tutorial is to generate an antisymmetrized Geminal Power 
 
 The command line options:
 
-1. ``-j`` is used to specify the job type (like makefort10, prep etc.),
+1. ``makefort10`` is used to specify the job type.
 
 2. ``-g`` is used to generate input files. Alternatively ``-r`` may be used for running calculations and ``-post`` is used for postprocessing of results after running.
 
@@ -137,11 +137,11 @@ The command line options:
 
 4. ``-detbasis`` is used to specify the basis set used to construct atomic orbitals for the determinant part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.
 
-5. ``--cutdetbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
+5. ``-detcutbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
 
 6. ``-jasbasis`` is used to specify the basis set used to construct atomic orbitals for the jastrow part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.
 
-7. ``--cutjasbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
+7. ``-jascutbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
 
 This is a generated ``makefort10.input``.
 
@@ -223,9 +223,14 @@ This is a generated ``makefort10.input``.
 
 .. note::
 
-   We have cut first few orbitals from the basis sets for atomic wavefunction as well as for the Jastrow part (``nshelldet`` and ``nshelljas`` should be changed accordingly) by the option ``-cutbasis``. The basis set can be automatically cut by using the ``--cutbasis`` flag as a command line argument while generating the makefort10 input. It cuts the basis set based on the AZ algorithm. An empirical criteria is :math:`\eta \ge 8 \times Z^2` in the :math:`s` channel, where :math:`Z = \rm{atomic number}`. For example, we can discard the topmost :math:`\eta = 33.87 \ge 8 \times 1^2`. The cut :math:`s` orbitals are implicitly compensated by the one body Jastrow term  (See `J. Chem. Theory Comput. 2019, 15, 7, 4044-4055 <https://doi.org/10.1021/acs.jctc.9b00295>`_ ).
+   We have cut first few orbitals from the basis sets for atomic wavefunction as well as for the Jastrow part (``nshelldet`` and ``nshelljas`` should be changed accordingly) by the options ``-detcutbasis`` and ``-jascutbasis``. The basis set can be automatically cut by using the ``-detcutbasis`` and ``-jascutbasis`` flags as command line arguments while generating the makefort10 input. They cut the basis sets based on the AZ algorithm. An empirical criteria is :math:`\eta \ge 8 \times Z^2` in the :math:`s` channel, where :math:`Z` is the atomic number. For example, we can discard the topmost :math:`\eta = 33.87 \ge 8 \times 1^2`. The cut :math:`s` orbitals are implicitly compensated by the one body Jastrow term  (See `J. Chem. Theory Comput. 2019, 15, 7, 4044-4055 <https://doi.org/10.1021/acs.jctc.9b00295>`_ ).
 
 For explanations of the input variables, please refer to the doc files in the TurboRVB repository.
+
+.. note::
+
+   For the first time of execution, the basis set files are downloaded and stored in ``~/.turgo_genius_tmp/``.
+
 
 .. warning::
 
@@ -311,10 +316,10 @@ After preparing ``convertfort10mol.input``, run the calculation by typing the fo
     turbogenius convertfort10mol -post
     
     # the corresponding turborvb commands are:
-    convertfort10mol.x < convertfort10mol.input > out_conv  # turbogenius convertfort10mol -r
+    convertfort10mol.x < convertfort10mol.input > out_mol   # turbogenius convertfort10mol -r
     mv fort.10_new fort.10                                  # turbogenius convertfort10mol -post
 
-The new JDFT template is ``fort.10``. If you find ``100000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
+The new JDFT template is ``fort.10``. If you find ``1000000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
 
 .. _turbogeniustutorial_0101_01_04:
 
@@ -336,9 +341,11 @@ To generate input for a DFT calculation type the following command:
 
     turbogenius prep -g -grid 0.2 0.2 0.2 -lbox 10.0 10.0 10.0
 
-1. ``-grid`` specifies the numerical grid size (the unit is ``bohr``).
+1. ``-g`` specifies to generate an input file.
 
-2. ``-lbox`` specifies the simulation box size (the unit is ``bohr``).
+2. ``-grid`` specifies the numerical grid size (the unit is ``bohr``).
+
+3. ``-lbox`` specifies the simulation box size (the unit is ``bohr``).
 
 .. note::
 
