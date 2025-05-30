@@ -210,7 +210,7 @@ Only the optimized exponents are needed in general.
 
 In all-electron calculations, we recommend that you cut several s orbitals having large exponents. 
 The cut s orbitals are implicitly compensated by the one body Jastrow term  (see. `J. Chem. Theory Comput. 2019, 15, 7, 4044-4055 <https://doi.org/10.1021/acs.jctc.9b00295>`_ ).
-An empirical criteria is :math:`\eta \ge 8 \times \rm{atomic number}`. For example, we can discard the topmost :math:`\eta = 33.87 \ge 8 \time 1.0`.
+An empirical criteria is :math:`\eta \ge 8 \times \rm{atomic number}`. For example, we can discard the topmost :math:`\eta = 33.87 \ge 8 \times 1.0`.
 
 Also, when there exist duplicated coefficients, you can choose only one of them. 
 For example, :math:`0.1027` appears twice, and you can remove one of them. 
@@ -280,7 +280,7 @@ represents,
     Number of orbitals, Number of exponents (and/or coefficients), Type of orbital
     Label,  Exponents
 
-``Type of orbital`` specifies an angular momentum of orbital, i.e., s, p, d, f, g, h, which correspond to 16, 36, 68, 48, xx, and xx, respectively. In detail, please refer to makefun.f90 in src directory.
+``Type of orbital`` specifies an angular momentum of orbital, i.e., s, p, d, f, g, h, which correspond to 16, 36, 68, 48, 51, and 72, respectively. In detail, please refer to makefun.f90 in src directory.
 
 ``Number of orbitals`` should be consistenti with the type of orbital, i.e., 1, 3, 5, 7, 9, 11 for s, p, d, f, g, h, respectively.
 
@@ -380,7 +380,7 @@ After preparing "convertfort10mol.input", covert ``fort.10_in`` (JAGP) to ``fort
 
 .. code-block:: bash
 
-    convertfort10mol.x < convertfort10mol.input > out_mol
+    convertfort10mol-serial.x < convertfort10mol.input > out_mol
 
 Confirm that the ``fort.10_new`` is generated. If you find ``100000`` (molecular orbital) in fort.10_new and it counts N/2, you have successfully converted the JAGP to a JSD ansatz.
 
@@ -460,7 +460,7 @@ Here are brief explanations of the variables:
 
 ``itestr4`` Always set -4 in a DFT calculation (INTEGER).
 
-``iopt=1``  From scratch 1, Restart 0 (INTEGER).
+``iopt``  From scratch 1, Restart 0 (INTEGER).
 
 
 **&optimization section**
@@ -544,7 +544,7 @@ Then, you get:
 
 .. code-block:: bash
 
-    %kosukenoMBP% grep "variat" b_*/out_prep 
+    % grep "variat" b_*/out_prep 
     
     b_0.50/out_prep: Final variational DFT  energy (Ha) =            -1.108442236649934
     b_0.60/out_prep: Final variational DFT  energy (Ha) =            -1.109010338029238
@@ -642,7 +642,7 @@ Here are brief explanations of the variables:
 
 ``ngen`` Total number of Monte Carlo sampling (INTEGER). Number of optimization steps is ``ngen``/``nweight``.
 
-``iopt 1`` 1:From scratch, 0:Restart.
+``iopt`` 1:From scratch, 0:Restart.
 
 ``maxtime`` Maximun CPU time (INTEGER).
 
@@ -738,7 +738,7 @@ Alternatively, you may check the convergence using row data:
 
 .. code-block:: bash
 
-    KosukenoMacBook-Pro-2% grep New out_min
+    % grep New out_min
     New Energy =   -1.11404046317607       1.050065489593612E-002
     New Energy =   -1.11787627130192       7.600965145837732E-003
     New Energy =   -1.11586670351862       9.751652956980546E-003
@@ -750,7 +750,7 @@ Next step is to average optimized variational parameters. first of all, you can 
 
 .. code-block:: bash
 
-    kosukenoMBP% readalles.x 
+    % readalles.x 
     bin length, ibinit, write fort.10 (0/1), draw (0/1) ? 
     1 1 0 1
     number of generations from standard input? (1  yes, 0 no) 
@@ -772,15 +772,15 @@ Here:
 
 Then, you can see following figures:
 
-.. image:: J2.PNG
+.. image:: J2.png
    :scale: 60%
    :align: center
 
-.. image:: J1.PNG
+.. image:: J1.png
    :scale: 60%
    :align: center
 
-.. image:: J3.PNG
+.. image:: J3.png
    :scale: 60%
    :align: center
 
@@ -791,7 +791,7 @@ You may know the number of steps that required to obtain converged the Jastrow f
 
 .. code-block:: bash
 
-    kosukenoMBP% readalles.x 
+    % readalles.x 
     bin length, ibinit, write fort.10 (0/1), draw (0/1) ? 
     1 201 1 0
     number of generations from standard input? (1  yes, 0 no) 
@@ -908,7 +908,7 @@ Prepare datasvmc.input:
 
 ``ngen`` Total number of Monte Carlo sampling.
 
-``iopt 1`` 1:From scratch, 0:Restart.
+``iopt`` 1:From scratch, 0:Restart.
 
 Run a VMC calculation by typing:
 
@@ -930,7 +930,7 @@ After the VMC run finishes, check the total energy by running the script:
 
 .. code-block:: bash
 
-    kosukenoMBP% forcevmc.sh 10 5 1
+    % forcevmc.sh 10 5 1
     ...
     max k corrections, bin lenght, ibinit,iskip  ?
     number of measures done =        1496
@@ -958,14 +958,14 @@ After the VMC run finishes, check the total energy by running the script:
 --------------------------------------------------------------------
 Lattice regularized diffusion Monte Carlo (LRDMC) is a projection technique that
 can improve a trial wavefunction obtained by a DFT calculation or a VMC optimization systematically. Indeed, this method filters out the ground state wavefunction 
-fro a given trial wavefunction. See `the original Casula's paper <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.95.100201>`_, or the review_ paper in detail.
+from a given trial wavefunction. See `the original Casula's paper <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.95.100201>`_, or the review_ paper in detail.
 
 In LRDMC, the Suzuki-Trotter decomposition is no longer necessary, 
 the so-called time step error does not exist unlike the conventional DMC technique.
 Instead, there is the so-called lattice-space error in LRDMC,
 because the Hamiltonian is regularized by allowing electrons hopping with finite step size ``alat`` (Bohr).
 Therefore, one should extrapolate energies calculated by several 
-lattice spaces (``alat``) to obtain an unbiased energy (:math`alat \to 0`).
+lattice spaces (``alat``) to obtain an unbiased energy (:math:`alat \to 0`).
 
 Move to a working directory.
 
@@ -1035,7 +1035,7 @@ Here are brief explanations of the variables for a LRDMC calculation:
 
 ``ngen`` Total number of projections (i.e, :math:`\exp(-\tau \cdot \hat{\mathcal{H}})`).
 
-``iopt 1`` 1:From scratch, 2:Restart. Since initial configurations are generated by a VMC calculation, choose 2.
+``iopt`` 1:From scratch, 2:Restart. Since initial configurations are generated by a VMC calculation, choose 2.
 
 **&dmclrdmc section**
 
@@ -1076,7 +1076,7 @@ You can average the local energies with considering weights:
 .. code-block:: bash
     
     # in alat_0.XX directory
-    kosukenoMBP% readf.x
+    % readf.x
     max k corrections, bin lenght, ibinit,iskip  ?
     5 10 5 1
     number of measures done =        9996
@@ -1088,7 +1088,7 @@ You can average the local energies with considering weights:
 
 .. code-block:: bash
 
-    kosukenoMBP% cat fort.20 
+    % cat fort.20 
     Independent bins        19996 of lenght           10
  
     Energy , error, # of bias correcting factor 
@@ -1250,7 +1250,7 @@ Please check the overlap square in out_conv:
 
 .. code-block:: bash
 
-    kosukenoMBP% cat out_conv 
+    % cat out_conv 
     ....
     Overlap square with no zero  0.99999999999999800   
 
@@ -1406,7 +1406,7 @@ Prepare ``datasmin.input``:
     /
 
 
-The difference from datasmin.input in ``03optimization`` is ``iessw``, because we optimize the determinant part (nodal surface) at this step.
+The difference from datasmin.input in ``02optimization`` is ``iessw``, because we optimize the determinant part (nodal surface) at this step.
 
 Run a VMC run.
 
@@ -1432,7 +1432,7 @@ All procedure is the same as in 03VMC (WF=JDFT). You may get:
 
     #cat pip0.d 
 
-    kosukenoMBP% cat pip0.d 
+    % cat pip0.d 
     number of bins read =        2996
     Energy =  -1.13824397697212       2.031478212992182E-004
     Variance square =  6.011315428358828E-004  3.723234430114773E-005
@@ -1452,7 +1452,7 @@ All procedure is the same as in 04LRDMC (WF=JDFT). You may get:
 
 Thus, we get :math:`E(a \to 0)` = -1.13808(7)
 
-_turborvbtutorial_0101_10:
+.. _turborvbtutorial_0101_10:
 
 10 Summary
 --------------------------------------------------------------------
