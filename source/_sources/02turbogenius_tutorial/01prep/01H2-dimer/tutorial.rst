@@ -248,11 +248,16 @@ One can generate a JAGPs template using the prepared makefort10.input by typing:
 
     turbogenius makefort10 -r         # ``-r`` for running calculations
     turbogenius makefort10 -post      # ``-post`` for post-analysis or cleanup
+
+.. note::
+
+    The corresponding TurboRVB commands are:
+
+    .. code-block:: bash
     
-    # Note: the corresponding TurboRVB commands:
-    makefort10.x < makefort10.input > out_make  # turbogenius makefort10 -r
-    mv fort.10_new fort.10                      # turbogenius makefort10 -post
-    
+        makefort10.x < makefort10.input > out_make  # turbogenius makefort10 -r
+        mv fort.10_new fort.10                      # turbogenius makefort10 -post
+
 You can also do:
 
 .. code-block:: bash
@@ -314,10 +319,15 @@ After preparing ``convertfort10mol.input``, run the calculation by typing the fo
 
     turbogenius convertfort10mol -r
     turbogenius convertfort10mol -post
-    
-    # the corresponding turborvb commands are:
-    convertfort10mol.x < convertfort10mol.input > out_mol   # turbogenius convertfort10mol -r
-    mv fort.10_new fort.10                                  # turbogenius convertfort10mol -post
+
+.. note::
+
+    The corresponding turborvb commands are:
+
+    .. code-block:: bash
+
+        convertfort10mol.x < convertfort10mol.input > out_mol   # turbogenius convertfort10mol -r
+        mv fort.10_new fort.10                                  # turbogenius convertfort10mol -post
 
 The new JDFT template is ``fort.10``. If you find ``1000000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
 
@@ -569,9 +579,14 @@ Now for post-processing use:
 
         turbogenius vmcopt -post -optwarmup 80 -plot
         # and then please follow the instructions.
+
+.. note::
+
+        The corresponding command in turborvb is:
+
+        .. code-block:: bash
         
-        # the corresponding command in turborvb is
-        readalles.x
+            readalles.x < readalles.input > out_read
 
 It plots energy with the error bars and devmax wrt optimization steps (plot_energy_and_devmax.png).
 e.g., eog plot_energy_and_devmax.png
@@ -674,7 +689,7 @@ After the VMC run finishes, use post-processing to check the total energy:
 
     turbogenius vmc -post -bin 10 -warmup 5
 
-# Note: this corresponds to ``forces_vmc.sh 10 5 1``
+# Note: this corresponds to ``forcevmc.sh 10 5 1``
 
 Use the following values in this example:
 
@@ -1110,7 +1125,7 @@ Now for post-processing use:
         
         # this corresponds readalles.x
 
-It plots energy with the error bars and devmax wrt optimization steps (vmcopt_Energy_devmax.png).
+It plots energy with the error bars and devmax wrt optimization steps (``plot_energy_and_devmax.png``).
 
    .. image:: vmcopt_jsagps_Energy_devmax.png
        :width: 70%
@@ -1171,7 +1186,9 @@ Use the following values in this example:
         
     # Note: this corresponds to ``forces_vmc.sh 10 5 1``
 
-Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive. The reblocked total energy and error are written to the file ``energy_error.out``. More details are provided in the file ``pip0.d``.
+Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive.
+The reblocked total energy and error are written to the file ``energy_error.out``.
+More details are provided in the file ``pip0.d``.
 
 .. code-block:: bash
     
