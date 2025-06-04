@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0101:
+.. _turbogeniustutorial_9803:
 
 01Hydrogen_dimer
 ======================================================
@@ -15,7 +15,7 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
 .. contents:: Table of Contents
    :depth: 2
    
-.. _turbogeniustutorial_0101_12:
+.. _turbogeniustutorial_9803_12:
 
 12 Preparing a JAGP wavefuction of the H dimer with a shorter bond distance
 ---------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ Main steps:
 13 Nodal surface optimization (WF=JsAGPs)
 --------------------------------------------------------------------
 
-In this step, the Jastrow factors and the determinant part are optimized at the VMC level using ``vmcopt`` module of Turbo-Genius. The procedure is almost the same as in :ref:`turbogeniustutorial_0101_08`.
+In this step, the Jastrow factors and the determinant part are optimized at the VMC level using ``vmcopt`` module of Turbo-Genius. The procedure is almost the same as in :ref:`turbogeniustutorial_9802_08`.
 
 First, copy the converted wavefunction ``fort.10``
 
@@ -134,7 +134,7 @@ Next, generate the input file for VMC optimization ``datasmin.input`` using:
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10
 
 Run the VMC optimization.
-Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_0101_12`.
+Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_9803_12`.
 
 .. code-block:: bash
 

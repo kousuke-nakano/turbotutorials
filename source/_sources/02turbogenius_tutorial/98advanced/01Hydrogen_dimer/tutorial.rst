@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0101:
+.. _turbogeniustutorial_9801:
 
 01Hydrogen_dimer starting from built-in DFT calculations
 ========================================================
@@ -15,12 +15,12 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
 .. contents:: Table of Contents
    :depth: 2
    
-.. _turbogeniustutorial_0101_01:
+.. _turbogeniustutorial_9801_01:
 
 01 Preparing a JDFT trial wavefunction
 --------------------------------------------------------------------
 
-.. _turbogeniustutorial_0101_01_01:
+.. _turbogeniustutorial_9801_01_01:
 
 01-01 Preparing a makefort10.input file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -141,7 +141,7 @@ For explanations of the input variables, please refer to the doc files in the Tu
 
     If you want to use your own Det. or Jas. basis sets, you can edit ``makefort10.input`` at this step.
 
-.. _turbogeniustutorial_0101_01_02:
+.. _turbogeniustutorial_9801_01_02:
 
 
 01-02 Generating a JAGPs template
@@ -174,7 +174,7 @@ The generated JAGPs template is the file ``fort.10``.
 
 At the same time, ``structure.xsf`` is generated. One can check if the input structure is what you expect.
 
-.. _turbogeniustutorial_0101_01_03:
+.. _turbogeniustutorial_9801_01_03:
 
 01-03 Adding molecular orbitals to the JAGPs template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -236,7 +236,7 @@ After preparing ``convertfort10mol.input``, run the calculation by typing the fo
 
 The new JDFT template is ``fort.10``. If you find ``1000000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
 
-.. _turbogeniustutorial_0101_01_04:
+.. _turbogeniustutorial_9801_01_04:
 
 01-04 Run DFT
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

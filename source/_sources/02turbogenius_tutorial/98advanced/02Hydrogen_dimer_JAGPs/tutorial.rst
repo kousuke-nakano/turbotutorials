@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0101:
+.. _turbogeniustutorial_9802:
 
 01Hydrogen_dimer with JAGPs wavefunctions
 ======================================================
@@ -52,7 +52,7 @@ The converted WF ``fort.10``. This is a JAGPs wavefunction.
 
 The conversion has finished. The obtained JAGPs wavefunction is ``fort.10``.
 
-.. _turbogeniustutorial_0101_07:
+.. _turbogeniustutorial_9802_07:
 
 
 07 Conversion check
@@ -150,7 +150,7 @@ Now run the calculation using:
 ``reweighted difference`` indicates the difference in energies of the WFs, ``fort.10`` and ``fort.10_corr``. This should be close to zero. ``Overlap square`` should be close to unity, i.e., if a conversion is perfect, this becomes unity.  
 
 
-.. _turbogeniustutorial_0101_08:
+.. _turbogeniustutorial_9802_08:
 
 08 Nodal surface optimization (WF=JsAGPs)
 --------------------------------------------------------------------
@@ -243,7 +243,7 @@ It plots energy with the error bars and devmax wrt optimization steps (``plot_en
 For the hydrogen dimer, the JDFT ansatz is enough accurate, so nothing has gained.
 
 
-.. _turbogeniustutorial_0101_09:
+.. _turbogeniustutorial_9802_09:
 
 09 VMC (WF=JsAGPs)
 --------------------------------------------------------------------
@@ -305,7 +305,7 @@ More details are provided in the file ``pip0.d``.
     Energy =  -1.17399712181874  4.494314925096871E-004
 
 
-.. _turbogeniustutorial_0101_10:
+.. _turbogeniustutorial_9802_10:
 
 10 LRDMC (WF=JsAGPs)
 --------------------------------------------------------------------
