@@ -5,7 +5,7 @@
 
 .. _turborvbtutorial_98:
 
-98 Wavefuntion optimization
+Wavefuntion optimization
 ======================================================
 
 .. contents:: Table of Contents

@@ -84,4 +84,6 @@ Here are examples of various calculations with TurboRVB.
    ./01_01Hydrogen_dimer/tutorial.rst
    ./01_02Hydrogen_dimer/tutorial.rst
    ./02_01Li-dimer/tutorial.rst
+
+..
    ./98_wf_optimization/tutorial.rst
