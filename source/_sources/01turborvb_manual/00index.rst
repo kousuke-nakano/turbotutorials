@@ -12,7 +12,7 @@ TurboRVB manuals
    ./04DFT_driver.rst
    ./05conversions.rst
    ./06qmc_driver.rst
-   ../01turborvb_tutorial/00index.rst
-   ../01turborvb_tutorial/98_wf_optimization/tutorial.rst
+   ./07tutorial/00index.rst
+   ./08wf_optimization/tutorial.rst
 
 
