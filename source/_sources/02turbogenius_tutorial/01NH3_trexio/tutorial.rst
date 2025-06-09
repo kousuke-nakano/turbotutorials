@@ -8,16 +8,16 @@
 01NH\ :sub:`3`\
 ======================================================
 
+.. contents:: Table of Contents
+   :depth: 3
+
 .. _turbogeniustutorial_0401_00:
 
 00 Introduction
 --------------------------------------------------------------------
 
-.. contents:: Table of Contents
-   :depth: 3
-   
 From this tutorial, you can learn how to calculate NH3 with JDFT ansatz starting from a pySCF calculation by ``turbo-genius``. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
-   
+
 .. _review: https://doi.org/10.1063/5.0005037
 
 .. _turbogeniustutorial_0401_01:
@@ -25,32 +25,32 @@ From this tutorial, you can learn how to calculate NH3 with JDFT ansatz starting
 01 PySCF calculation and its conversion to a TREXIO file
 --------------------------------------------------------------------
 
-Run a PySCF calculation.
+The first step is to run a PySCF calculation by typing:
 
 .. code-block:: bash
-    
+
     # pyscf calculation
     cd 00pyscf_to_trexio
-    python pyscf_NH3.py 
+    python3 pyscf_NH3.py
 
-The Python code is:
+The Python code is given as follows:
 
 .. code-block:: python
 
     #!/usr/bin/env python
     # coding: utf-8
-    
+
     # pySCF -> pyscf checkpoint file (NH3 molecule)
-    
+
     # load python packages
     import os, sys
-    
+
     # load ASE modules
     from ase.io import read
-    
+
     # load pyscf packages
     from pyscf import gto, scf, mp, tools
-    
+
     #open boundary condition
     structure_file="NH3.xyz"
     checkpoint_file="NH3.chk"
@@ -61,9 +61,9 @@ The Python code is:
     ecp='ccecp'
     scf_method="HF"  # HF or DFT
     dft_xc="LDA_X,LDA_C_PZ" # XC for DFT
-    
+
     print(f"structure file = {structure_file}")
-    
+
     # read a structure
     atom=read(structure_file)
     chemical_symbols=atom.get_chemical_symbols()
@@ -71,7 +71,7 @@ The Python code is:
     mol_string=""
     for chemical_symbol, position in zip(chemical_symbols, positions):
         mol_string+="{:s} {:.10f} {:.10f} {:.10f} \n".format(chemical_symbol, position[0], position[1], position[2])
-    
+
     # build a molecule
     mol = gto.Mole()
     mol.atom = mol_string
@@ -81,19 +81,19 @@ The Python code is:
     mol.charge = charge
     mol.spin = spin
     mol.symmetry = False
-    
+
     # basis set
     mol.basis = basis
-    
+
     # define ecp
     mol.ecp = ecp
-    
+
     # molecular build
     mol.build(cart=False)  # cart = False => use spherical basis!!
-    
+
     # calc type setting
     print(f"scf_method = {scf_method}")  # HF/DFT
-    
+
     if scf_method == "HF":
         # HF calculation
         if mol.spin == 0:
@@ -104,7 +104,7 @@ The Python code is:
             print("HF kernel = ROHF")
             mf = scf.ROHF(mol)
             mf.chkfile = checkpoint_file
-    
+
     elif scf_method == "DFT":
         # DFT calculation
         if mol.spin == 0:
@@ -118,9 +118,9 @@ The Python code is:
         mf.xc = dft_xc
     else:
         raise NotImplementedError
-    
+
     total_energy = mf.kernel()
-    
+
     # HF/DFT energy
     print(f"Total HF/DFT energy = {total_energy}")
     print("HF/DFT calculation is done.")
@@ -133,21 +133,23 @@ You can convert the generated PySCF checkpoint file to a TREXIO file
 
     # pyscf chkfile to TREXIO
     trexio convert-from -t pyscf -i NH3.chk -b hdf5 NH3.hdf5
-    
+
 .. _turbogeniustutorial_0401_02:
 
 02 From TREXIO file to TurboRVB WF
 --------------------------------------------------------------------
 
+Next, the TREXIO file is converted to a TurboRVB wavefunction file as follows:
+
 .. code-block:: bash
-    
+
     cd ../01trexio_to_turborvbwf/
     cp ../00pyscf_to_trexio/NH3.hdf5 .
-    
+
     trexio-to-turborvb NH3.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 .. note::
-    
+
     If you want to specify Jastrow basis set, you can use the following python script to convert the TREXIO file.
 
 .. code-block:: bash
@@ -160,21 +162,21 @@ You can convert the generated PySCF checkpoint file to a TREXIO file
 The Python code is:
 
 .. code-block:: python
-    
+
     #!/usr/bin/env python
     # coding: utf-8
-    
+
     # load python packages
     import os, sys
-    
+
     # load turbogenius module
     from turbogenius.trexio_to_turborvb import trexio_to_turborvb_wf
     from turbogenius.trexio_wrapper import Trexio_wrapper_r
     from turbogenius.pyturbo.basis_set import Jas_Basis_sets
-    
+
     # TREXIO file
     trexio_file="NH3.hdf5"
-    
+
     # Jastrow basis (GAMESS format)
     jastrow_basis_dict={
         'N':"""
@@ -196,7 +198,7 @@ The Python code is:
             1  0.1220000  1.000000
         """
     }
-    
+
     # Generage jastrow basis set list
     trexio_r = Trexio_wrapper_r(
         trexio_file=trexio_file
@@ -210,7 +212,7 @@ The Python code is:
             jastrow_basis_list, format="gamess"
         )
     )
-    
+
     # Convert the TREXIO file to TurboRVB WF.
     trexio_to_turborvb_wf(
         trexio_file=trexio_file,
@@ -223,73 +225,122 @@ The Python code is:
 03 JDFT ansatz - Jastrow optimization
 --------------------------------------------------------------------
 
+The next step is to optimize the Jastrow factor at the VMC level using ``vmcopt`` module.
 One should refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_02>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. Copy the prepared wavefunction file `fort.10` and the pseudopotential file to the work directory:
 
-    cd ../02optimization/
-    cp ../01trexio_to_turborvbwf/fort.10 fort.10
-    cp ../01trexio_to_turborvbwf/pseudo.dat ./
-    cp fort.10 fort.10_pyscf
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100
+   .. code-block:: bash
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasmin.input > out_min
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+      cd ../02optimization/
+      cp ../01trexio_to_turborvbwf/fort.10 fort.10
+      cp ../01trexio_to_turborvbwf/pseudo.dat ./
+      cp fort.10 fort.10_pyscf
 
-    turbogenius vmcopt -post -optwarmup 280 -plot
+2. Generate an input file for VMC optimization:
+      
+   .. code-block:: bash
+
+      turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100
+
+3. Run the VMC optimization, e,g, as follows:
+      
+   .. code-block:: bash
+
+      TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+      export TURBOVMC_RUN_COMMAND
+
+      turbogenius vmcopt -r
+
+4. Perform the postprocess by typing:
+      
+   .. code-block:: bash
+
+      turbogenius vmcopt -post -optwarmup 280 -plot
+
+Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
+
 
 .. _turbogeniustutorial_0401_04:
 
 04 JDFT ansatz - VMC
 --------------------------------------------------------------------
 
+The next step is to run a single-shot VMC calculation.
+This is done using the ``vmc`` module of TurboGenius.
+First, prepare the wavefunction and pseudopotential files:
+
 .. code-block:: bash
 
     cd ../03vmc/
     cp ../02optimization/fort.10 fort.10
     cp ../02optimization/pseudo.dat .
+
+Next, generate an input file `datasvmc.input` using:
+
+.. code-block:: bash
+
     turbogenius vmc -g -step 1000
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasvmc.input > out_vmc
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+Then, run the VMC calculation, e.g., by typing:
     
+.. code-block:: bash
+
+    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND
+
+    turbogenius vmc -r
+
+Finally, run the postprocess:
+
+.. code-block:: bash
+
     turbogenius vmc -post -bin 10 -warmup 3
-   
+
+Check the reblocked total energy and error in the file `pip0.d`.
+
 
 .. _turbogeniustutorial_0401_05:
 
 05 JDFT ansatz - LRDMC
 --------------------------------------------------------------------
+
+Now we proceed to the lattice regularized diffusion Monte Carlo calculation that can improve a trial wavefunction obtained by a DFT calculation or a VMC optimization.
+One should refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_04>` for the details.
+
+In this section, we will perform the calculation at the lattice constant `alat=0.20`.
+First, copy the prepared wavefunction and the pseudopotential files:
+
 .. code-block:: bash
 
     # LRDMC run
     cd ../04lrdmc/alat_0.20/
     cp ../../03vmc/fort.10 ./
     cp ../../03vmc/pseudo.dat .
+
+Next, generate an input file `datasfn.input` for the LRDMC calculation:
     
+.. code-block:: bash
+
     turbogenius lrdmc -g -etry -11.70 -alat -0.20 -step 1000
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasfn.input > out_fn
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+Then, run the calculation by typing:
     
+.. code-block:: bash
+
+    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND
+
+    turbogenius lrdmc -r
+
+Finally, run the postprocess:
+    
+.. code-block:: bash
+
     turbogenius lrdmc -bin 20 -corr 3 warmup 5
-    
+
+We will get E at a=0.20 bohr in `pip0_fn.d`.
+
+One then follows the above procedure for several choices of `alat`, and extrapolates the energy value at :math:`a \to 0`.
+See the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_05>` for the concrete steps.
