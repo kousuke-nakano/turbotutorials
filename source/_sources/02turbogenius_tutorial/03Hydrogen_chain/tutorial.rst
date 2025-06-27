@@ -6,85 +6,213 @@
 .. _turbogeniustutorial_0301:
 
 03Hydrogen_chain
-======================================================
-
-.. contents:: Table of Contents
-   :depth: 3
+================================================================
 
 .. _turbogeniustutorial_0301_00:
 
 00 Introduction
---------------------------------------------------------------------
+----------------------------------------------------------------
 
 From this tutorial, you can learn how to calculate Hydrogen-chain (periodic boundary condition) with JDFT ansatz with ``turbo-genius``. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
 
+.. contents:: Table of Contents
+   :depth: 3
+
 .. _turbogeniustutorial_0301_01:
 
 01 Hydrogen-chain - JDFT ansatz
---------------------------------------------------------------------
+----------------------------------------------------------------
 
 .. _turbogeniustutorial_0301_01_01:
 
-01-01 Preparing a wave function
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The first step of this tutorial is to generate a JDFT ansatz.
-First, one should prepare an input file ``makefort10.input`` from a structure data in ``H-chain.xsf`` that is extended to a :math:`1 \times 1 \times 3` supercell specified by the ``-s`` option.
-Then, run the `makefort10` command, followed by the postprocess.
+We use PySCF for this step. A Python script will be presented later.
+We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf.
 
-.. code-block:: bash
+The procedure is as follows:
 
-    cd 01trial_wavefunction/00makefort10
-    # 1*1*3 supercell ( 6 atoms)
-    turbogenius makefort10 -g -str H-chain.xsf -s 1 1 3 -detbasis cc-pVTZ -jasbasis cc-pVDZ -detcutbasis -jascutbasis
-    turbogenius makefort10 -r -post
+1. Run the PySCF calculation by typing:
 
-Next, add molecular orbitals to the wavefunction template:
+   .. code-block:: bash
 
-.. code-block:: bash
+      cd 01trial_wavefunction
+      python3 pyscf_H-chain.py
 
-    mv fort.10 fort.10_in
-    turbogenius convertfort10mol -g -r -post
+   .. note::
 
-.. _turbogeniustutorial_0301_01_02:
+      You may increase the maximum size of memory allocation in PySCF by preparing a config file in the home directory ``~/.pyscf_conf.py``:
 
-01-02 Run DFT
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      .. code-block:: python
 
-The next step is to optimize the coefficients in the wavefunction template using a built-in DFT code.
-First, copy the prepared `fort.10` as well as `pseudo.dat` to 01DFT directory:
+	 import psutil
+	 MAX_MEMORY = int(psutil.virtual_memory().available / 1e6)
 
-.. code-block:: bash
+   .. warning::
 
-    cd ../01DFT
-    cp ../00makefort10/fort.10 ./
-    cp ../00makefort10/pseudo.dat .
+      It requires more than 256GB memory. You need to run it on large-memory computers.
 
-Next, generate an input for the DFT calculation by typing the following command:
+2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    turbogenius prep -g -grid 0.20 0.20 0.20 -smear 0.01
+      trexio convert-from -t pyscf -i H-chain.chk -b hdf5 H-chain.hdf5
 
-Then, run the DFT calculation, perform the postprocess, and check how the iteration has proceeded:
+3. Convert from TREXIO file to the TurboRVB wavefunction file by typing:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    TURBOPREP_RUN_COMMAND="mpirun -np 4 prep-mpi.x"
-    export TURBOPREP_RUN_COMMAND
+      trexio-to-turborvb H-chain.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
-    turbogenius prep -r
-
-    turbogenius prep -post
-
-    grep Iter out_prep
+Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
 .. note::
 
-   There are several ways to run the DFT calculation. In the above example, the MPI parallel version is executed on a local machine. See note in 01Hydrogen_dimer.
+   When the PySCF calculation fails:
 
+   - Check if the basis set is available,
+   - Ensure that the sufficient memory allocation is available.
+
+The Python code for the PySCF calculation is given as follows:
+
+.. code-block:: python
+
+    #!/usr/bin/env python
+    # coding: utf-8
+
+    # pySCF -> pyscf checkpoint file
+
+    # load python packages
+    import os, sys
+    import numpy as np
+
+    # load pyscf packages
+    from pyscf import gto, scf, mp, tools
+    from pyscf.pbc import gto as gto_pbc
+    from pyscf.pbc import dft as pbcdft
+    from pyscf.pbc import scf as pbcscf
+
+    #open boundary condition
+    checkpoint_file = "H-chain.chk"
+    pyscf_output = "H-chain_pyscf.out"
+    charge = 0
+    spin = 0
+    basis = "ccecp-ccpvtz"
+    ecp = "ccecp"
+    scf_method = "DFT"  # HF or DFT
+    dft_xc = "LDA_X,LDA_C_PZ" # XC for DFT
+    exp_to_discard = 0.10
+    twist_average = False
+    kpt = [0.00, 0.00, 0.00]
+    kpt_grid = [1, 1, 1]
+
+    # construct cell
+    cell = gto_pbc.M(
+        atom = [
+            ['H', ( 0.00000000,  0.00000000, -0.37042405)],
+            ['H', ( 0.00000000,  0.00000000,  0.37042405)],
+            ['H', ( 0.00000000,  0.00000000,  1.11127214)],
+            ['H', ( 0.00000000,  0.00000000,  1.85212024)],
+            ['H', ( 0.00000000,  0.00000000,  2.59296833)],
+            ['H', ( 0.00000000,  0.00000000,  3.33381643)],
+            ['H', ( 0.00000000,  0.00000000,  4.07466452)],
+            ['H', ( 0.00000000,  0.00000000,  4.81551262)],
+            ['H', ( 0.00000000,  0.00000000,  5.55636071)],
+            ['H', ( 0.00000000,  0.00000000,  6.29720881)],
+        ],
+        a = [
+            (2.9633923810400000, 0.0000000000000000, 0.0000000000000000),
+            (0.0000000000000000, 2.9633923810400000, 0.0000000000000000),
+            (0.0000000000000000, 0.0000000000000000, 7.4084809526000000),
+        ],
+        unit = 'Ang',
+    )
+
+    cell.verbose = 5
+    cell.output = pyscf_output
+    cell.charge = charge
+    cell.spin = spin
+    cell.symmetry = False
+
+    # basis set
+    cell.basis = basis
+    cell.exp_to_discard=exp_to_discard
+
+    # define ecp
+    cell.ecp = ecp
+
+    cell.build(cart=False)
+
+    # calc type setting
+    print(f"scf_method = {scf_method}")  # HF/DFT
+
+    if scf_method == "HF":
+        # HF calculation
+        if cell.spin == 0:
+            print("HF kernel=RHF")
+            if twist_average:
+                print("twist_average=True")
+                kpt_grid_m = cell.make_kpts(kpt_grid)
+                mf = pbcscf.khf.KRHF(cell, kpt_grid_m)
+                mf = mf.newton()
+            else:
+                print("twist_average=False")
+                mf = pbcscf.hf.RHF(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
+                mf = mf.newton()
+
+        else:
+            print("HF kernel=ROHF")
+            if twist_average:
+                print("twist_average=True")
+                kpt_grid_m = cell.make_kpts(kpt_grid)
+                mf = pbcscf.krohf.KROHF(cell, kpt_grid_m)
+                mf = mf.newton()
+            else:
+                print("twist_average=False")
+                mf = pbcscf.rohf.ROHF(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
+                mf = mf.newton()
+
+        mf.chkfile = checkpoint_file
+
+    elif scf_method == "DFT":
+        # DFT calculation
+        if cell.spin == 0:
+            print("DFT kernel=RKS")
+            if twist_average:
+                print("twist_average=True")
+                kpt_grid_m = cell.make_kpts(kpt_grid)
+                mf = pbcdft.krks.KRKS(cell, kpt_grid_m)
+                mf = mf.newton()
+            else:
+                print("twist_average=False")
+                mf = pbcdft.rks.RKS(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
+                mf = mf.newton()
+        else:
+            print("DFT kernel=ROKS")
+            if twist_average:
+                print("twist_average=True")
+                kpt_grid_m = cell.make_kpts(kpt_grid)
+                mf = pbcdft.kroks.KROKS(cell, kpt_grid_m)
+                mf = mf.newton()
+            else:
+                print("twist_average=False")
+                mf = pbcdft.roks.ROKS(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
+                mf = mf.newton()
+
+        mf.chkfile = checkpoint_file
+        mf.xc = dft_xc
+    else:
+        raise NotImplementedError
+
+    total_energy = mf.kernel()
+
+    # HF/DFT energy
+    print(f"Total HF/DFT energy = {total_energy}")
+    print("HF/DFT calculation is done.")
+    print("PySCF calculation is done.")
+    print(f"checkpoint file = {checkpoint_file}")
+        
 
 .. _turbogeniustutorial_0301_02:
 
@@ -100,8 +228,8 @@ Here, only needed commands are shown.
   .. code-block:: bash
 
     cd ../../02optimization/
-    cp ../01trial_wavefunction/01DFT/fort.10_new fort.10
-    cp ../01trial_wavefunction/01DFT/pseudo.dat ./
+    cp ../01trial_wavefunction/fort.10 .
+    cp ../01trial_wavefunction/pseudo.dat .
     cp fort.10 fort.10_dft
 
 2. Generate an input file `datasmin.input`:
@@ -114,8 +242,10 @@ Here, only needed commands are shown.
 
   .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np XX turborvb-mpi.x"
     turbogenius vmcopt -r
+
+  See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
 
 4. Perform the postprocess and plot the results:
 
