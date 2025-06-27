@@ -375,6 +375,7 @@ Now you can launch the VMC optimization:
            qsub submit.sh
 
         on a cluster machine running the Slurm job scheduler:
+
         .. code-block:: bash
 
            sbatch submit.sh
@@ -709,7 +710,7 @@ If you want to extrapolate energies, collect all LRDMC energies into ``evsa.in``
 
 It performs a curve fitting for energies vs alat. turbo-genius asks for the degree of polynomial to be used for curve fitting. The result of fitting is written to the file ``evsa.out``
 
-For a quartic fitting i.e. :math:`E(a)=E(0) + k_{1} a^2 + k_{2} a^4`, the result is like:
+For a quartic fitting i.e. :math:`E(a) = E(0) + k_{1} \cdot a^2 + k_{2} \cdot a^4`, the result is like:
 
 .. code-block:: text
 
@@ -721,7 +722,7 @@ For a quartic fitting i.e. :math:`E(a)=E(0) + k_{1} a^2 + k_{2} a^4`, the result
 
 where the first coefficient corresponds to :math:`E(0)`, the second to :math:`k_{1}`, and the third to :math:`k_{2}`.
 	     
-For a linear fitting i.e. :math:`E(a)=E(0) + k_{1} a^2`, the result is like:
+For a linear fitting i.e. :math:`E(a) = E(0) + k_{1} \cdot a^2`, the result is like:
 
 .. code-block:: bash
 
