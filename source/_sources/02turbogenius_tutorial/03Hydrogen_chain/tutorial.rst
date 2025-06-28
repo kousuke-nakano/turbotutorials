@@ -284,7 +284,7 @@ Then, run the VMC calculation:
     TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
     export TURBOVMC_RUN_COMMAND
 
-    turbogenius vmcopt -r
+    turbogenius vmc -r
 
 Finally, run the postprocess:
 
