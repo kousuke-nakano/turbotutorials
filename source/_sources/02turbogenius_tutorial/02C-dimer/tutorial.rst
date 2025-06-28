@@ -452,7 +452,7 @@ Binding energy
 The procedure is the almost same as in the Hydrogen-dimer tutorial. 
 Three hybrid-orbitals (``nhyb=4``) were employed here.
 
-.. Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_06>` for the details.
+Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_9802_06>` for the details.
 
 C\ :sub:`2` dimer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -648,7 +648,7 @@ Please check the energy difference by the correlated sampling.
 02-02 VMC-optimization (WF=JsAGPs)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_08>` for the details.
+Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_9802_08>` for the details.
 Here, only the commands are shown.
 
 First, copy the wavefunction and pseudopotential files from the previous step:
@@ -696,7 +696,7 @@ and then follow the instructions for tuning the optimization.
 02-03 VMC (WF=JsAGPs)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_09>` for the details.
+Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_9802_09>` for the details.
 Here, only needed commands are shown.
 
 Copy the optimized wavefunction as well as pseudopotential from the previous step:
@@ -753,7 +753,7 @@ C atom
 02-04 LRDMC (WF=JsAGPs)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_10>` for the details.
+Please refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_9802_10>` for the details.
 Here, only the commands are shown.
 
 We will perform LRDMC calculations at several lattice spacings `alat`, and estimate an unbiased energy at `alat`:math:`\to 0`.
