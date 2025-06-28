@@ -4,10 +4,7 @@
    contain the root `toctree` directive.
 
 Advanced topics
-===============================================
-
-.. figure:: /_static/07logo/logo2.png
-    :width: 600px
+================================================================
 
 Here are advanced examples of various calculations with TurboRVB via Turbo-Genius, starting from the built-in DFT code, prep.
 

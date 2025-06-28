@@ -374,5 +374,5 @@ The generated ``fort.10_new`` is used for the following VMC and DMC calculations
 Next steps
 --------------------------------------------------------------------
 
-Subsequent steps follow 02 Jastrow factor optimization of H2_dimer.
+Subsequent steps follow :ref:`02 Jastrow factor optimization of H2_dimer <turbogeniustutorial_0101_02>`.
 

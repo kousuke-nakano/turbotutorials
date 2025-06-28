@@ -115,6 +115,8 @@ Main steps:
         cp ../01DFT/fort.10_new fort.10
         turbogenius convertwf -to agps
 
+.. _turbogeniustutorial_9803_13:
+
 13 Nodal surface optimization (WF=JsAGPs)
 --------------------------------------------------------------------
 
@@ -146,6 +148,8 @@ Finally, run the post-processing using:
 .. code-block:: bash
 
     turbogenius vmcopt -post -optwarmup 80 -plot
+
+.. _turbogeniustutorial_9803_14:
 
 14 VMC before structural optimization
 --------------------------------------------------------------------
@@ -191,6 +195,8 @@ and check the force term:
     <O><H> = -0.898355292427328       4.681606812429169E-002
     2*(<OH> - <O><H>) = -1.491014244640310E-002  3.607617628391403E-003
 
+.. _turbogeniustutorial_9803_15:
+
 15 Structural optimization
 --------------------------------------------------------------------
 
@@ -223,6 +229,8 @@ Finally, run the post-processing using:
 .. code-block:: bash
 
     turbogenius vmcopt -post -optwarmup 80 -plot
+
+.. _turbogeniustutorial_9803_16:
 
 16 VMC after structural optimization
 --------------------------------------------------------------------

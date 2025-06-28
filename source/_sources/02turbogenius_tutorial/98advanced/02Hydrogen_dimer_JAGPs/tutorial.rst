@@ -17,6 +17,7 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
    
 Follow the steps 01--05 of H2 dimer calculation and generate JDFT wavefunction.
 
+.. _turbogeniustutorial_9802_06:
 	   
 06 Convert JDFT WF to JAGP one
 --------------------------------------------------------------------
@@ -53,7 +54,6 @@ The converted WF ``fort.10``. This is a JAGPs wavefunction.
 The conversion has finished. The obtained JAGPs wavefunction is ``fort.10``.
 
 .. _turbogeniustutorial_9802_07:
-
 
 07 Conversion check
 --------------------------------------------------------------------
@@ -338,6 +338,8 @@ For post-processing use:
     # This corresponds to forcefn.sh 20 3 5 1
 
 Thus, we get :math:`E (a=0.20 bohr)` = -1.1739(4) Ha.
+
+.. _turbogeniustutorial_9802_11:
 
 11 Summary
 ----------------------------------------------------------------------
