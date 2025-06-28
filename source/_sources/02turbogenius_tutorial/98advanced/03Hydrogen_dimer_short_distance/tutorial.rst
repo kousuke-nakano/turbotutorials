@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_9803:
 
-01Hydrogen_dimer
+03Hydrogen_dimer with a shorter bond distance
 ======================================================
 
 From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the H\ :sub:`2` dimer using Turbo-genius. There is also a TurboRVB tutorial, which does the same calculations but without using Turbo-Genius. For detailed information about input parameters in various input files, we recomment visiting that tutorial. You can download all the input and output files for this tutorial from :download:`here  <./file.tar.gz>`.
