@@ -27,8 +27,9 @@ From this tutorial, you can learn how to calculate Hydrogen-chain (periodic boun
 
 .. _turbogeniustutorial_0301_01_01:
 
-The first step of this tutorial is to generate a JDFT ansatz.
-We use PySCF for this step. A Python script will be presented later.
+The first step of this tutorial is to generate a JDFT ansatz using PySCF.
+A Python script will be presented later.
+In this example, a unit cell containing two hydrogen atoms is repeated 5 times along z-axis, forming a supercell.
 We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf.
 
 The procedure is as follows:
