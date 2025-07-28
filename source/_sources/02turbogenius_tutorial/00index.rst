@@ -16,7 +16,6 @@ Here are examples of various calculations with TurboRVB via Turbo-Genius.
 
    ./00intro/tutorial.rst
    ./01H2-dimer/tutorial.rst
-   ./02C-dimer/tutorial.rst
    ./03Hydrogen_chain/tutorial.rst
    ./04Diamond_k_pi_pi_pi/tutorial.rst
    ./05Diamond_twist_average/tutorial.rst

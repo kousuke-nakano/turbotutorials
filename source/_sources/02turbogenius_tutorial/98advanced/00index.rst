@@ -14,3 +14,4 @@ Here are advanced examples of various calculations with TurboRVB via Turbo-Geniu
    ./01Hydrogen_dimer/tutorial.rst
    ./02Hydrogen_dimer_JAGPs/tutorial.rst
    ./03Hydrogen_dimer_short_distance/tutorial.rst
+   ./02C-dimer/tutorial.rst
