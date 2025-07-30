@@ -14,15 +14,15 @@
 #
 import os
 import sys
-import subprocess
-import glob
-import re
-import shutil
+#import subprocess
+#import glob
+#import re
+#import shutil
 
 sys.path.insert(0, os.path.abspath('.'))
 source_root=os.path.abspath('.')
 
-import sphinx_rtd_theme
+#import sphinx_rtd_theme
 import datetime
 
 # -- Project information -----------------------------------------------------
@@ -54,12 +54,12 @@ extensions = [
 'sphinx.ext.napoleon',
 'sphinx.ext.viewcode',
 'sphinxcontrib_roles',
-'sphinx.ext.imgmath'
+#'sphinx.ext.imgmath'
 ]
 
-imgmath_latex_preamble = r'''
-\usepackage{braket}
-'''
+#imgmath_latex_preamble = r'''
+#\usepackage{braket}
+#'''
 
 # configuration case.1: define roles as list (define only roles)
 #roles = ['strike', 'red', 'blue']
@@ -98,8 +98,8 @@ exclude_patterns = ['**/99rubbish', '**/99archived']
 pygments_style = 'sphinx'
 
 # sphinx.ext.jsmath
-extensions += ['sphinx.ext.imgmath']
-imgmath_image_format='svg'
+#extensions += ['sphinx.ext.imgmath']
+#imgmath_image_format='svg'
 #extensions += ['sphinx.ext.jsmath']
 
 # jsMath path
@@ -115,7 +115,7 @@ imgmath_image_format='svg'
 #html_theme_options = {'bootswatch_theme': "flatly"}
 
 html_theme = "sphinx_rtd_theme"
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+#html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 html_style = "css/my_theme.css"
 
 # Theme options are theme-specific and customize the look and feel of a theme
