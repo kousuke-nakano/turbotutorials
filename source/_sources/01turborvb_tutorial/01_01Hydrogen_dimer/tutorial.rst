@@ -707,7 +707,7 @@ Next, confirm energy convergence by typing:
 
 Then, you can see the following window.
 
-.. image:: plot_Energy.PNG
+.. image:: plot_Energy.png
    :scale: 60%
    :align: center
 
@@ -728,7 +728,7 @@ Next, check the convergence of devmax by typing:
 
 Then, you can see following window.
 
-.. image:: plot_devmax.PNG
+.. image:: plot_devmax.png
    :scale: 60%
    :align: center
 
@@ -772,15 +772,15 @@ Here:
 
 Then, you can see following figures:
 
-.. image:: J2.PNG
+.. image:: J2.png
    :scale: 60%
    :align: center
 
-.. image:: J1.PNG
+.. image:: J1.png
    :scale: 60%
    :align: center
 
-.. image:: J3.PNG
+.. image:: J3.png
    :scale: 60%
    :align: center
 
