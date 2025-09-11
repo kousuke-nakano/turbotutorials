@@ -5,10 +5,10 @@
 
 .. _turbogeniustutorial_9802:
 
-02Hydrogen_dimer with JAGPs wavefunctions
-======================================================
+A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)
+=================================================================================================================================================
 
-From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the H\ :sub:`2` dimer using Turbo-genius. There is also a TurboRVB tutorial, which does the same calculations but without using Turbo-Genius. For detailed information about input parameters in various input files, we recomment visiting that tutorial. You can download all the input and output files for this tutorial from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will compute all-electron VMC and LRDMC energies of the hydrogen dimer (:math:`H_2`). You will go beyond the Jastrow–Slater single-determinant ansatz by adopting a JAGP wave function. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
 

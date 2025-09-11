@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0202:
 
-02Carbon_dimer
-================================================================
+A challenging case: the spin-singlet carbon dimer with various ansätze
+======================================================================
 
 .. contents:: Table of Contents
    :depth: 3
@@ -16,7 +16,15 @@
 00 Introduction
 ----------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the C\ :sub:`2` dimer with various ansatz, JDFT, JSD, JsAGPs, JAGPu, and JAGP (JPf) with ``turbo-genius``. You can download all the input and output files for this tutorial from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will compute all-electron VMC and LRDMC energies for the C₂ dimer using several wave-function ansätze:
+
+- JDFT — a Jastrow–Slater determinant with frozen DFT orbitals,
+- JSD — a Jastrow–Slater determinant with optimized molecular orbitals,
+- JsAGPs — a Jastrow–AGP with a spin-independent Jastrow factor,
+- JAGPu — a Jastrow–AGP with a spin-dependent Jastrow factor, and
+- JAGP (the most general ansatz) — a Jastrow–AGP including both singlet and triplet pair correlations (often referred to as a Jastrow–Pfaffian ansatz).
+
+All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 C\ :sub:`2` dimer
  - E\ :sub:`bond` = 6.44 eV = 148.508 kcal/mol = 0.236 Ha, `J. Chem. Theory Comput. 16, 6114-6131 (2020) <https://pubs.acs.org/doi/abs/10.1021/acs.jctc.0c00165>`_

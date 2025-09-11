@@ -5,15 +5,15 @@
 
 .. _turbogeniustutorial_0301:
 
-03Hydrogen_chain
-================================================================
+Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
+====================================================================================================
 
 .. _turbogeniustutorial_0301_00:
 
 00 Introduction
 ----------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate Hydrogen-chain (periodic boundary condition) with JDFT ansatz with ``turbo-genius``. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will carry out a VMC/LRDMC workflow for the periodic hydrogen chain under periodic boundary conditions (PBCs), starting from a DFT calculation in PySCF with ccECPs. You will use Gamma-point sampling. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
 

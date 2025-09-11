@@ -5,15 +5,15 @@
 
 .. _turbogeniustutorial_0304:
 
-05Diamond with k twist average
-======================================================
+Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs
+===================================================================================================================
 
 .. _turbogeniustutorial_0304_00:
 
 00 Introduction
 --------------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate Diamond (with k twist average) with JDFT ansatz. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will perform k-point (twist) averaging using a Monkhorst–Pack grid within a VMC/LRDMC workflow for diamond. This reduces the so-called one-body finite-size effects in QMC. Calculations start from PySCF with ccECPs under PBCs. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
    
 .. _review: https://doi.org/10.1063/5.0005037
 

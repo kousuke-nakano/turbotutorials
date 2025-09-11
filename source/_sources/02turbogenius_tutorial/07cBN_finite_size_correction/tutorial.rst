@@ -5,15 +5,15 @@
 
 .. _turbogeniustutorial_0501:
 
-h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
-===================================================================================================================
+c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
+=======================================================================================================================================
 
 .. _turbogeniustutorial_0501_00:
 
 00 Introduction
 ----------------------------------------------------------------
 
-In this tutorial, you will reduce the so-called two-body finite-size errors by supercell extrapolation in VMC/LRDMC calculations for h-BN under PBCs, starting from PySCF with ccECPs. You will use 1×1×1, 2×2×2, 3×3×1, and 4×4×1 supercells and extrapolate to the thermodynamic limit. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
+In this tutorial, you will perform VMC/LRDMC calculations for c-BN (conventional cell) under PBCs, starting from PySCF with ccECPs. You will carry out supercell extrapolation using 1×1×1 and 2×2×2 supercells to mitigate the so-called two-body finite-size errors. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
    
 .. _review: https://doi.org/10.1063/5.0005037
 

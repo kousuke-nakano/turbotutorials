@@ -28,7 +28,7 @@ import datetime
 # -- Project information -----------------------------------------------------
 
 project = 'Turbotutorials'
-copyright = '2022, Kosuke Nakano (SISSA/JAIST) and collaborators.'
+copyright = '2022, Kosuke Nakano (SISSA/JAIST) and collaborators'
 author = 'Kosuke Nakano'
 
 # The short X.Y version

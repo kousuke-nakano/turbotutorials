@@ -5,15 +5,15 @@
 
 .. _turbogeniustutorial_0402:
 
-02SiO\ :sub:`2`\  at k = Gamma
-======================================================
+SiO2 crystal (Gamma-point) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
+=======================================================================================================
 
 .. _turbogeniustutorial_0402_00:
 
 00 Introduction
 --------------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate SiO2 (at k=gamma) with JDFT ansatz starting from a pySCF calculation by ``turbo-genius``. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will perform a VMC/LRDMC workflow for crystalline SiO2 under PBCs, starting from a PySCF DFT calculation with ccECPs. You will use Gamma-point sampling. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
    
 .. _review: https://doi.org/10.1063/5.0005037
 

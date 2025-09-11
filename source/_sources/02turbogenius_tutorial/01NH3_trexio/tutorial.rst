@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0401:
 
-01NH\ :sub:`3`\
-======================================================
+Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)
+================================================================================================================
 
 .. contents:: Table of Contents
    :depth: 3
@@ -16,7 +16,7 @@
 00 Introduction
 --------------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate NH3 with JDFT ansatz starting from a pySCF calculation by ``turbo-genius``. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will learn a complete workflow for VMC and LRDMC calculations on the ammonia molecule, starting from a DFT calculation in PySCF that employs correlation-consistent effective core potentials (ccECPs). All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
 

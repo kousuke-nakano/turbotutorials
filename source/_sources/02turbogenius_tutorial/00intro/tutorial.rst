@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_00:
 
-00 Important introduction for TurboGenius
+Important introduction for TurboGenius
 ======================================================
 
 ``TurboGenius`` has a very useful command line tool that allows us

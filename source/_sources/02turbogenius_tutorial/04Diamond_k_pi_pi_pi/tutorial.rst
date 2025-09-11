@@ -5,15 +5,15 @@
 
 .. _turbogeniustutorial_0303:
 
-04Diamond with k twist (pi/2,pi/2,pi/2)
-================================================================
+Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
+=========================================================================================================
 
 .. _turbogeniustutorial_0303_00:
 
 00 Introduction
 ----------------------------------------------------------------
 
-From this tutorial, you can learn how to calculate Diamond (with a k twist) with JDFT ansatz. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
+In this tutorial, you will run VMC and LRDMC calculations for diamond under PBCs, beginning with a PySCF DFT calculation with ccECPs. You will use a general k-point, so the wave functions are complex. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
    
 .. _review: https://doi.org/10.1063/5.0005037
 
