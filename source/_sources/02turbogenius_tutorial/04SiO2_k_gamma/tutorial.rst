@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0402:
+.. _turbogeniustutorial_0401:
 
 SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs
 =======================================================================================================
 
-.. _turbogeniustutorial_0402_00:
+.. _turbogeniustutorial_0401_00:
 
 00 Introduction
 --------------------------------------------------------------------
@@ -20,7 +20,7 @@ In this tutorial, you will perform a VMC/LRDMC workflow for crystalline SiO2 und
 .. contents:: Table of Contents
    :depth: 3
    
-.. _turbogeniustutorial_0402_01:
+.. _turbogeniustutorial_0401_01:
 
 01 PySCF calculation and its conversion to a TREXIO file
 --------------------------------------------------------------------
@@ -45,7 +45,7 @@ You can convert the generated PySCF checkpoint file to a TREXIO file
     trexio convert-from -t pyscf -i SiO2.chk -b hdf5 SiO2.hdf5
     
 
-.. _turbogeniustutorial_0402_02:
+.. _turbogeniustutorial_0401_02:
 
 02 From TREXIO file to TurboRVB WF
 --------------------------------------------------------------------
@@ -67,7 +67,7 @@ It can be done by using ``trexio-to-turborvb`` program in the TurboGenius packag
        python trexio_turborvb_wf_converter.py
       
             
-.. _turbogeniustutorial_0402_03:
+.. _turbogeniustutorial_0401_03:
 
 03 JDFT ansatz - Jastrow optimization
 --------------------------------------------------------------------
@@ -128,7 +128,7 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
        :align: center
 
 
-.. _turbogeniustutorial_0402_04:
+.. _turbogeniustutorial_0401_04:
 
 04 JDFT ansatz - VMC
 --------------------------------------------------------------------
@@ -166,7 +166,7 @@ Finally, run the postprocess:
 Check the reblocked total energy and error in the file `pip0.d`.
 
 
-.. _turbogeniustutorial_0402_05:
+.. _turbogeniustutorial_0401_05:
 
 05 JDFT ansatz - LRDMC
 --------------------------------------------------------------------

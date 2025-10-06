@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_9801:
+.. _turbogeniustutorial_9803:
 
 Hydrogen dimer calculation starting from the built-in DFT code 'prep'
 =====================================================================
@@ -15,17 +15,17 @@ In this tutorial, you will perform a hydrogen dimer calculation starting from th
 .. contents:: Table of Contents
    :depth: 2
    
-.. _turbogeniustutorial_9801_01:
+.. _turbogeniustutorial_9803_01:
 
 01 Preparing a JDFT trial wavefunction
 --------------------------------------------------------------------
 
-.. _turbogeniustutorial_9801_01_01:
+.. _turbogeniustutorial_9803_01_01:
 
 01-01 Preparing a makefort10.input file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first step of this tutorial is to generate an antisymmetrized Geminal Power (AGP) ansatz, which will be convert to a Slater determinant (SD) ansatz later. First, one should prepare ``makefort10.input`` to generate an AGP ansatz. The ``makefort10`` module of Turbo-Genius can be used to generate AGP ansatz. Use the following command to generate a makefort10.input file. Remember that the structure file is also required at this step. Note: If you are interested in a pseudo-potential calculation, please refer to :ref:`turbogeniustutorial_0202`.
+The first step of this tutorial is to generate an antisymmetrized Geminal Power (AGP) ansatz, which will be convert to a Slater determinant (SD) ansatz later. First, one should prepare ``makefort10.input`` to generate an AGP ansatz. The ``makefort10`` module of Turbo-Genius can be used to generate AGP ansatz. Use the following command to generate a makefort10.input file. Remember that the structure file is also required at this step. Note: If you are interested in a pseudo-potential calculation, please refer to :ref:`turbogeniustutorial_9804`.
 
 .. code-block:: bash
     
@@ -68,7 +68,7 @@ For explanations of the input variables, please refer to the doc files in the Tu
 
     If you want to use your own Determinant or Jastrow basis sets, you can edit ``makefort10.input`` at this step.
 
-.. _turbogeniustutorial_9801_01_02:
+.. _turbogeniustutorial_9803_01_02:
 
 
 01-02 Generating a JAGPs template
@@ -101,7 +101,7 @@ The generated JAGPs template is the file ``fort.10``.
 
 At the same time, ``structure.xsf`` is generated. One can check if the input structure is what you expect.
 
-.. _turbogeniustutorial_9801_01_03:
+.. _turbogeniustutorial_9803_01_03:
 
 01-03 Adding molecular orbitals to the JAGPs template
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -146,7 +146,7 @@ After preparing ``convertfort10mol.input``, run the calculation by typing the fo
 The new JDFT template is ``fort.10``. If you find ``1000000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
 
 
-.. _turbogeniustutorial_9801_01_04:
+.. _turbogeniustutorial_9803_01_04:
 
 01-04 Run DFT
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

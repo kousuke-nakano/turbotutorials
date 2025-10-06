@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0501:
+.. _turbogeniustutorial_0801:
 
 c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
 =======================================================================================================================================
 
-.. _turbogeniustutorial_0501_00:
+.. _turbogeniustutorial_0801_00:
 
 00 Introduction
 ----------------------------------------------------------------
@@ -21,7 +21,7 @@ In this tutorial, you will perform VMC/LRDMC calculations for c-BN (conventional
    :depth: 3
    
     
-.. _turbogeniustutorial_0501_01:
+.. _turbogeniustutorial_0801_01:
 
 01 DFT
 ----------------------------------------------------------------
@@ -59,7 +59,7 @@ Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the ps
    - Ensure that the sufficient memory allocation is available.
 
 
-.. _turbogeniustutorial_0501_02:
+.. _turbogeniustutorial_0801_02:
 
 02 Jastrow optimization
 ----------------------------------------------------------------
@@ -100,7 +100,7 @@ Here, only needed commands are shown.
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
 
-.. _turbogeniustutorial_0501_03:
+.. _turbogeniustutorial_0801_03:
 
 03 JDFT ansatz - VMC
 ----------------------------------------------------------------
@@ -138,7 +138,7 @@ Finally, run the postprocess:
 Check the reblocked total energy and error in the file `pip0.d`.
 
     
-.. _turbogeniustutorial_0501_04:
+.. _turbogeniustutorial_0801_04:
 
 04 JDFT ansatz - LRDMC
 --------------------------------------------------------------------
@@ -183,7 +183,7 @@ One then follows the above procedure for several choices of `alat`, and extrapol
 See the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_05>` for the concrete steps.
 
 
-.. _turbogeniustutorial_0501_05:
+.. _turbogeniustutorial_0801_05:
 
 05 Finite-size extrapolation
 ----------------------------------------------------------------

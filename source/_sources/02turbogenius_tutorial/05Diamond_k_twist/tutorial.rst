@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0303:
+.. _turbogeniustutorial_0501:
 
 Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
 =========================================================================================================
 
-.. _turbogeniustutorial_0303_00:
+.. _turbogeniustutorial_0501_00:
 
 00 Introduction
 ----------------------------------------------------------------
@@ -20,7 +20,7 @@ In this tutorial, you will run VMC and LRDMC calculations for diamond under PBCs
 .. contents:: Table of Contents
    :depth: 3
    
-.. _turbogeniustutorial_0303_01:
+.. _turbogeniustutorial_0501_01:
 
 01 DFT
 ----------------------------------------------------------------
@@ -58,7 +58,7 @@ Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the ps
    - Ensure that the sufficient memory allocation is available.
 
 
-.. _turbogeniustutorial_0303_02:
+.. _turbogeniustutorial_0501_02:
 
 02 Jastrow optimization
 ----------------------------------------------------------------
@@ -106,7 +106,7 @@ One should refer to the :ref:`Hydrogen dimer tutorial <turbogeniustutorial_0101_
   Check `plot_energy_and_devmax.png` and files in the `parameters_graphs` directory to see if the convergence criterion is satisfied.
 
   
-.. _turbogeniustutorial_0303_03:
+.. _turbogeniustutorial_0501_03:
 
 03 JDFT ansatz - VMC
 ----------------------------------------------------------------
@@ -143,7 +143,7 @@ Finally, run the postprocess:
 Check the reblocked total energy and error in the file `pip0.d`.
 
 
-.. _turbogeniustutorial_0303_04:
+.. _turbogeniustutorial_0501_04:
 
 04 JDFT ansatz - LRDMC
 ----------------------------------------------------------------
