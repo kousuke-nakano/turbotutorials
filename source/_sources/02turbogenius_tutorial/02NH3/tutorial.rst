@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0401:
+.. _turbogeniustutorial_0201:
 
 Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)
 ================================================================================================================
@@ -11,7 +11,7 @@ Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC usin
 .. contents:: Table of Contents
    :depth: 3
 
-.. _turbogeniustutorial_0401_00:
+.. _turbogeniustutorial_0201_00:
 
 00 Introduction
 --------------------------------------------------------------------
@@ -20,7 +20,7 @@ In this tutorial, you will learn a complete workflow for VMC and LRDMC calculati
 
 .. _review: https://doi.org/10.1063/5.0005037
 
-.. _turbogeniustutorial_0401_01:
+.. _turbogeniustutorial_0201_01:
 
 01 PySCF calculation and its conversion to a TREXIO file
 --------------------------------------------------------------------
@@ -45,7 +45,7 @@ You can convert the generated PySCF checkpoint file to a TREXIO file
     # pyscf chkfile to TREXIO
     trexio convert-from -t pyscf -i NH3.chk -b hdf5 NH3.hdf5
 
-.. _turbogeniustutorial_0401_02:
+.. _turbogeniustutorial_0201_02:
 
 02 From TREXIO file to TurboRVB WF
 --------------------------------------------------------------------
@@ -75,7 +75,7 @@ Next, the TREXIO file is converted to a TurboRVB wavefunction file as follows:
     .. literalinclude:: data/trexio_turborvb_wf_converter.py
        :language: python
         
-.. _turbogeniustutorial_0401_03:
+.. _turbogeniustutorial_0201_03:
 
 03 JDFT ansatz - Jastrow optimization
 --------------------------------------------------------------------
@@ -120,7 +120,7 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
     :width: 70%
     :align: center
 
-.. _turbogeniustutorial_0401_04:
+.. _turbogeniustutorial_0201_04:
 
 04 JDFT ansatz - VMC
 --------------------------------------------------------------------
@@ -159,7 +159,7 @@ Finally, run the postprocess:
 Check the reblocked total energy and error in the file `pip0.d`.
 
 
-.. _turbogeniustutorial_0401_05:
+.. _turbogeniustutorial_0201_05:
 
 05 JDFT ansatz - LRDMC
 --------------------------------------------------------------------
@@ -206,6 +206,8 @@ See the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_05>` for the concrete 
 .. image:: image/lrdmc_extrapolation.png
     :width: 70%
     :align: center
+
+.. _turbogeniustutorial_0201_06:
 
 06 Summary
 ----------------------------------------------------------------

@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_9803:
+.. _turbogeniustutorial_9802:
 
 Structural optimization of the hydrogen dimer
 =============================================
@@ -15,7 +15,7 @@ In this tutorial, you will compute atomic forces for the hydrogen dimer (H\ :sub
 .. contents:: Table of Contents
    :depth: 2
    
-.. _turbogeniustutorial_9803_12:
+.. _turbogeniustutorial_9802_12:
 
 12 Preparing a JAGP wavefuction of the H dimer with a shorter bond distance
 ---------------------------------------------------------------------------------------
@@ -60,12 +60,12 @@ This section describes the procedure for preparing a JAGP wavefunction for the H
       grep Overlap out_conv
 
 
-.. _turbogeniustutorial_9803_13:
+.. _turbogeniustutorial_9802_13:
 
 13 Nodal surface optimization (WF=JsAGPs)
 --------------------------------------------------------------------
 
-In this step, the Jastrow factors and the determinant part are optimized at the VMC level using ``vmcopt`` module of Turbo-Genius. The procedure is almost the same as in :ref:`turbogeniustutorial_9802_08`.
+In this step, the Jastrow factors and the determinant part are optimized at the VMC level using ``vmcopt`` module of Turbo-Genius. The procedure is almost the same as in :ref:`turbogeniustutorial_9801_08`.
 
 First, copy the converted wavefunction ``fort.10``
 
@@ -82,7 +82,7 @@ Next, generate the input file for VMC optimization ``datasmin.input`` using:
     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
 
 Run the VMC optimization.
-Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_9803_12`.
+Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_9802_12`.
 
 .. code-block:: bash
 
@@ -95,7 +95,7 @@ Finally, run the post-processing using:
 
     turbogenius vmcopt -post -optwarmup 80 -plot
 
-.. _turbogeniustutorial_9803_14:
+.. _turbogeniustutorial_9802_14:
 
 14 VMC before structural optimization
 --------------------------------------------------------------------
@@ -142,7 +142,7 @@ and check the force term:
     <O><H> = -0.898355292427328       4.681606812429169E-002
     2*(<OH> - <O><H>) = -1.491014244640310E-002  3.607617628391403E-003
 
-.. _turbogeniustutorial_9803_15:
+.. _turbogeniustutorial_9802_15:
 
 15 Structural optimization
 --------------------------------------------------------------------
@@ -178,7 +178,7 @@ Finally, run the post-processing using:
 
     turbogenius vmcopt -post -optwarmup 80 -plot
 
-.. _turbogeniustutorial_9803_16:
+.. _turbogeniustutorial_9802_16:
 
 16 VMC after structural optimization
 --------------------------------------------------------------------

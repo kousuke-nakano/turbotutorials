@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_9802:
+.. _turbogeniustutorial_9801:
 
 A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)
 =================================================================================================================================================
@@ -15,7 +15,7 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 .. contents:: Table of Contents
    :depth: 2
    
-.. _turbogeniustutorial_9802_06:
+.. _turbogeniustutorial_9801_06:
 	   
 06 Convert JDFT WF to JAGP one
 --------------------------------------------------------------------
@@ -56,7 +56,7 @@ Please check the overlap square in out_conv:
 
 The conversion has finished. The obtained JAGPs wavefunction is ``fort.10``.
 
-.. _turbogeniustutorial_9802_07:
+.. _turbogeniustutorial_9801_07:
 
 07 Conversion check
 --------------------------------------------------------------------
@@ -114,7 +114,7 @@ Now run the calculation using:
 ``reweighted difference`` indicates the difference in energies of the WFs, ``fort.10`` and ``fort.10_corr``. This should be close to zero. ``Overlap square`` should be close to unity, i.e., if a conversion is perfect, this becomes unity.  
 
 
-.. _turbogeniustutorial_9802_08:
+.. _turbogeniustutorial_9801_08:
 
 08 Nodal surface optimization (WF=JsAGPs)
 --------------------------------------------------------------------
@@ -162,7 +162,7 @@ It plots energy with the error bars and devmax wrt optimization steps (``plot_en
 For the hydrogen dimer, the JDFT ansatz is enough accurate, so nothing has gained.
 
 
-.. _turbogeniustutorial_9802_09:
+.. _turbogeniustutorial_9801_09:
 
 09 VMC (WF=JsAGPs)
 --------------------------------------------------------------------
@@ -219,7 +219,7 @@ More details are provided in the file ``pip0.d``.
     Energy =  -1.17399712181874  4.494314925096871E-004
 
 
-.. _turbogeniustutorial_9802_10:
+.. _turbogeniustutorial_9801_10:
 
 10 LRDMC (WF=JsAGPs)
 --------------------------------------------------------------------
@@ -249,7 +249,7 @@ For post-processing use:
 
 Thus, we get :math:`E (a=0.20 {\rm bohr})` = -1.1739(4) Ha.
 
-.. _turbogeniustutorial_9802_11:
+.. _turbogeniustutorial_9801_11:
 
 11 Summary
 ----------------------------------------------------------------------

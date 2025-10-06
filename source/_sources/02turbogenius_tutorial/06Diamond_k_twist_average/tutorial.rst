@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. _turbogeniustutorial_0304:
+.. _turbogeniustutorial_0601:
 
 Diamond with k-point (twist) averaging using a Jastrowâ€“Slater single-determinant ansatz via VMC and LRDMC with ECPs
 ===================================================================================================================
 
-.. _turbogeniustutorial_0304_00:
+.. _turbogeniustutorial_0601_00:
 
 00 Introduction
 --------------------------------------------------------------------
@@ -21,7 +21,7 @@ In this tutorial, you will perform k-point (twist) averaging using a Monkhorstâ€
    :depth: 3
 
 
-.. _turbogeniustutorial_0304_01:
+.. _turbogeniustutorial_0601_01:
 
 01 DFT
 --------------------------------------------------------------------
@@ -63,7 +63,7 @@ Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the ps
    - Ensure that the sufficient memory allocation is available.
 
 
-.. _turbogeniustutorial_0304_02:
+.. _turbogeniustutorial_0601_02:
 
 02 Jastrow optimization
 --------------------------------------------------------------------
@@ -101,7 +101,7 @@ One should refer to the :ref:`Hydrogen dimer tutorial <turbogeniustutorial_0101_
 Check `plot_energy_and_devmax.png` and files in the `parameters_graphs` directory to see if the convergence criterion is satisfied.
 
 
-.. _turbogeniustutorial_0304_03:
+.. _turbogeniustutorial_0601_03:
 
 03 JDFT ansatz - VMC
 --------------------------------------------------------------------
@@ -143,7 +143,7 @@ Finally, run the postprocess:
 Check the reblocked total energy and error in the file `pip0.d`.
 
 
-.. _turbogeniustutorial_0304_04:
+.. _turbogeniustutorial_0601_04:
 
 04 JDFT ansatz - LRDMC
 ----------------------------------------------------------------
