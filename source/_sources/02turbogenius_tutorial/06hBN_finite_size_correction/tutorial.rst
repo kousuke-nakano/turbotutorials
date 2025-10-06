@@ -13,7 +13,7 @@ h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using E
 00 Introduction
 ----------------------------------------------------------------
 
-In this tutorial, you will reduce the so-called two-body finite-size errors by supercell extrapolation in VMC/LRDMC calculations for h-BN under PBCs, starting from PySCF with ccECPs. You will use 1×1×1, 2×2×2, 3×3×1, and 4×4×1 supercells and extrapolate to the thermodynamic limit. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
+In this tutorial, you will reduce the so-called two-body finite-size errors by supercell extrapolation in VMC/LRDMC calculations for h-BN under PBCs, starting from PySCF with ccECPs. You will use 1×1×1, 2×2×1, 3×3×1, and 4×4×1 supercells and extrapolate to the thermodynamic limit. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
    
 .. _review: https://doi.org/10.1063/5.0005037
 
@@ -25,66 +25,39 @@ In this tutorial, you will reduce the so-called two-body finite-size errors by s
 
 01 DFT
 ----------------------------------------------------------------
-The crystal structure is read from a cif file ``9008997.cif`` from the Crystallography Open Database (COD).
-First we choose a supercell to be :math:`1 \times 1 \times 1`.
-Subsequently, we will extend the supercell and examine the finite-size extrapolation.
 
-The first step is to generate an antisymmetrized Geminal Power (AGP) ansatz wavefunction, and then convert it to a Slater determinant (SD) ansatz wavefunction. The steps are summarized as follows. 
+The first step of this tutorial is to generate a JDFT ansatz using PySCF.
+A Python script will be presented later.
+The procedure is as follows:
 
-1. First, move to a work directory, and copy the cif file. Here, `s_1_1_1` stands for the supercell of :math:`1 \times 1 \times 1` shape.
-
-  .. code-block:: bash
-
-      cd s_1_1_1/01trial_wavefunction/00makefort10/
-      cp ../../../9008997.cif .
-    
-2. Prepare an input file `makefort10.input`, and generate a wavefunction template:
+1. Run the PySCF calculation:
 
   .. code-block:: bash
       
-      turbogenius makefort10 -g -str 9008997.cif -s 1 1 1 -detbasis cc-pVTZ -jasbasis cc-pVDZ -detcutbasis -jascutbasis -pp ccECP
-      turbogenius makefort10 -r -post
+      cd s_1_1_1/01_trial_wavefunction
+      python3 pyscf_hBN.py
     
-3. Add molecular orbitals to the JAGPs template:
-    
-  .. code-block:: bash
-
-      cp fort.10 fort.10_in
-      turbogenius convertfort10mol -g -r -post
-        
-4. Prepare for the DFT calculation to optimize coefficients. Note that ``pseudo.dat`` should also be copied, as well as ``fort.10``.
-
-  .. code-block:: bash
-
-      cd ../01DFT
-      cp ../00makefort10/fort.10 .
-      cp ../00makefort10/pseudo.dat .
-    
-5. Generate an input file for the DFT calclation using the built-in code:
+2. Convert the generated PySCF checkpoint file to a TREXIO file:
     
   .. code-block:: bash
 
-      turbogenius prep -g -grid 0.10 0.10 0.10
+      trexio convert-from -t pyscf -i hBN.chk -b hdf5 hBN.hdf5
     
-6. Run the DFT calculation:
-    
+3. Convert the TREXIO file to a TurboRVB wavefunction file:
+
   .. code-block:: bash
 
-      TURBOPREP_RUN_COMMAND="mpirun -np XX prep-mpi.x"
-      turbogenius prep -r
+      trexio-to-turborvb hBN.hdf5 -jasbasis cc-pVDZ -jascutbasis
     
-7. Perform the postprocess:
-    
-  .. code-block:: bash
+Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
-      turbogenius prep -post
-    
-8. Check convergence:
-    
-  .. code-block:: bash
+.. note::
 
-      grep Iter out_prep
-    
+   When the PySCF calculation fails:
+
+   - Check if the basis set is available,
+   - Ensure that the sufficient memory allocation is available.
+
 
 .. _turbogeniustutorial_0501_02:
 
@@ -98,22 +71,22 @@ Here, only needed commands are shown.
 
   .. code-block:: bash
 
-    cd ../../02optimization/
-    cp ../01trial_wavefunction/fort.10 .
-    cp ../01trial_wavefunction/pseudo.dat .
+    cd ../02_optimization/
+    cp ../01_trial_wavefunction/fort.10 .
+    cp ../01_trial_wavefunction/pseudo.dat .
     cp fort.10 fort.10_dft
 
 2. Generate an input file `datasmin.input`:
 
   .. code-block:: bash
 
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -steps 500 -nw 480
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcsteps 300 -steps 100 -nw 1024
 
 3. Run the optimization:
 
   .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np XX turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmcopt -r
 
   See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
@@ -122,7 +95,7 @@ Here, only needed commands are shown.
 
   .. code-block:: bash
 
-    turbogenius vmcopt -post -optwarmup 450 -plot
+    turbogenius vmcopt -post -optwarmup 20 -plot
 
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
@@ -137,21 +110,21 @@ First, prepare the wavefunction and related files:
 
 .. code-block:: bash
 
-    cd ../03vmc/
-    cp ../02optimization/fort.10 fort.10
-    cp ../02optimization/pseudo.dat .
+    cd ../03_vmc/
+    cp ../02_optimization/fort.10 .
+    cp ../02_optimization/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 500 -nw 480
+    turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation:
 
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     export TURBOVMC_RUN_COMMAND
 
     turbogenius vmc -r
@@ -179,22 +152,21 @@ First, copy the prepared wavefunction and the pseudopotential files:
 .. code-block:: bash
 
     # LRDMC run
-    mkdir -p ../04lrdmc/alat_0.20/
-    cd ../04lrdmc/alat_0.20/
-    cp ../../03vmc/fort.10 ./
-    cp ../../03vmc/pseudo.dat .
+    cd ../04_lrdmc/
+    cp ../../03_vmc/fort.10 .
+    cp ../../03_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
 
 .. code-block:: bash
 
-    turbogenius lrdmc -g -etry -3.600 -alat -0.20 -steps 1000
+    turbogenius lrdmc -g -etry -25.00 -alat -0.20 -steps 1000 -nw 128
 
 Then, run the calculation by typing:
 
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     export TURBOVMC_RUN_COMMAND
 
     turbogenius lrdmc -r
@@ -213,6 +185,23 @@ See the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_05>` for the concrete 
 
 .. _turbogeniustutorial_0501_05:
 
-05 Summary
+05 Finite-size extrapolation
 ----------------------------------------------------------------
+
+Then, we repeat the above procedure by changing the size of the supercell, from 1x1x1 to 2x2x1, 3x3x1, and 4x4x1.
+In this example, we extend the supercells in the :math:`xy` direction, taking account of the planar structure of h-BN.
+The shape of the supercell is specified by ``nx``, ``ny``, and ``nz`` variables in ``pyscf_hBN.py``.
+
 Try to plot the obtained energies per formula unit. v.s. 1/N, where N is the number of atoms in the simulation cell.
+
+.. figure:: image/extrapolation_vmc.png
+   :width: 50%
+   :align: center
+
+   The energy per atom obtained by the VMC calculation is plotted with respect to 1/N.
+
+.. figure:: image/extrapolation_lrdmc.png
+   :width: 50%
+   :align: center
+
+   The energy per atom obtained by the LRDMC calculation is plotted with respect to 1/N.
