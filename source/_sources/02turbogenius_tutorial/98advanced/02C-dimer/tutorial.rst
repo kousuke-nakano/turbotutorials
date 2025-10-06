@@ -1248,7 +1248,7 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
 
       turbogenius vmc -g -steps 10000 -nw 128
 
-      export TURBOVMC_RUN_COMAND="mpirun -np 16 turborvb-mpi.x"
+      export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       turbogenius vmc -r
 
       turbogenius vmc -post -bin 10 -warmup 5
