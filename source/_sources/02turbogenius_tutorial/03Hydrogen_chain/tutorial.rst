@@ -38,7 +38,7 @@ The procedure is as follows:
 
    .. code-block:: bash
 
-      cd 01trial_wavefunction
+      cd 01_trial_wavefunction
       python3 pyscf_H-chain.py
 
    .. note::
@@ -49,10 +49,6 @@ The procedure is as follows:
 
 	 import psutil
 	 MAX_MEMORY = int(psutil.virtual_memory().available / 1e6)
-
-   .. warning::
-
-      It requires more than 256GB memory. You need to run it on large-memory computers.
 
 2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
 
@@ -75,145 +71,6 @@ Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the ps
    - Check if the basis set is available,
    - Ensure that the sufficient memory allocation is available.
 
-The Python code for the PySCF calculation is given as follows:
-
-.. code-block:: python
-
-    #!/usr/bin/env python
-    # coding: utf-8
-
-    # pySCF -> pyscf checkpoint file
-
-    # load python packages
-    import os, sys
-    import numpy as np
-
-    # load pyscf packages
-    from pyscf import gto, scf, mp, tools
-    from pyscf.pbc import gto as gto_pbc
-    from pyscf.pbc import dft as pbcdft
-    from pyscf.pbc import scf as pbcscf
-
-    #open boundary condition
-    checkpoint_file = "H-chain.chk"
-    pyscf_output = "H-chain_pyscf.out"
-    charge = 0
-    spin = 0
-    basis = "ccecp-ccpvtz"
-    ecp = "ccecp"
-    scf_method = "DFT"  # HF or DFT
-    dft_xc = "LDA_X,LDA_C_PZ" # XC for DFT
-    exp_to_discard = 0.10
-    twist_average = False
-    kpt = [0.00, 0.00, 0.00]
-    kpt_grid = [1, 1, 1]
-
-    # construct cell
-    cell = gto_pbc.M(
-        atom = [
-            ['H', ( 0.00000000,  0.00000000, -0.37042405)],
-            ['H', ( 0.00000000,  0.00000000,  0.37042405)],
-            ['H', ( 0.00000000,  0.00000000,  1.11127214)],
-            ['H', ( 0.00000000,  0.00000000,  1.85212024)],
-            ['H', ( 0.00000000,  0.00000000,  2.59296833)],
-            ['H', ( 0.00000000,  0.00000000,  3.33381643)],
-            ['H', ( 0.00000000,  0.00000000,  4.07466452)],
-            ['H', ( 0.00000000,  0.00000000,  4.81551262)],
-            ['H', ( 0.00000000,  0.00000000,  5.55636071)],
-            ['H', ( 0.00000000,  0.00000000,  6.29720881)],
-        ],
-        a = [
-            (2.9633923810400000, 0.0000000000000000, 0.0000000000000000),
-            (0.0000000000000000, 2.9633923810400000, 0.0000000000000000),
-            (0.0000000000000000, 0.0000000000000000, 7.4084809526000000),
-        ],
-        unit = 'Ang',
-    )
-
-    cell.verbose = 5
-    cell.output = pyscf_output
-    cell.charge = charge
-    cell.spin = spin
-    cell.symmetry = False
-
-    # basis set
-    cell.basis = basis
-    cell.exp_to_discard=exp_to_discard
-
-    # define ecp
-    cell.ecp = ecp
-
-    cell.build(cart=False)
-
-    # calc type setting
-    print(f"scf_method = {scf_method}")  # HF/DFT
-
-    if scf_method == "HF":
-        # HF calculation
-        if cell.spin == 0:
-            print("HF kernel=RHF")
-            if twist_average:
-                print("twist_average=True")
-                kpt_grid_m = cell.make_kpts(kpt_grid)
-                mf = pbcscf.khf.KRHF(cell, kpt_grid_m)
-                mf = mf.newton()
-            else:
-                print("twist_average=False")
-                mf = pbcscf.hf.RHF(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
-                mf = mf.newton()
-
-        else:
-            print("HF kernel=ROHF")
-            if twist_average:
-                print("twist_average=True")
-                kpt_grid_m = cell.make_kpts(kpt_grid)
-                mf = pbcscf.krohf.KROHF(cell, kpt_grid_m)
-                mf = mf.newton()
-            else:
-                print("twist_average=False")
-                mf = pbcscf.rohf.ROHF(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
-                mf = mf.newton()
-
-        mf.chkfile = checkpoint_file
-
-    elif scf_method == "DFT":
-        # DFT calculation
-        if cell.spin == 0:
-            print("DFT kernel=RKS")
-            if twist_average:
-                print("twist_average=True")
-                kpt_grid_m = cell.make_kpts(kpt_grid)
-                mf = pbcdft.krks.KRKS(cell, kpt_grid_m)
-                mf = mf.newton()
-            else:
-                print("twist_average=False")
-                mf = pbcdft.rks.RKS(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
-                mf = mf.newton()
-        else:
-            print("DFT kernel=ROKS")
-            if twist_average:
-                print("twist_average=True")
-                kpt_grid_m = cell.make_kpts(kpt_grid)
-                mf = pbcdft.kroks.KROKS(cell, kpt_grid_m)
-                mf = mf.newton()
-            else:
-                print("twist_average=False")
-                mf = pbcdft.roks.ROKS(cell, kpt=cell.get_abs_kpts(scaled_kpts=[kpt])[0])
-                mf = mf.newton()
-
-        mf.chkfile = checkpoint_file
-        mf.xc = dft_xc
-    else:
-        raise NotImplementedError
-
-    total_energy = mf.kernel()
-
-    # HF/DFT energy
-    print(f"Total HF/DFT energy = {total_energy}")
-    print("HF/DFT calculation is done.")
-    print("PySCF calculation is done.")
-    print(f"checkpoint file = {checkpoint_file}")
-        
 
 .. _turbogeniustutorial_0301_02:
 
@@ -228,22 +85,22 @@ Here, only needed commands are shown.
 
   .. code-block:: bash
 
-    cd ../../02optimization/
-    cp ../01trial_wavefunction/fort.10 .
-    cp ../01trial_wavefunction/pseudo.dat .
+    cd ../02_optimization/
+    cp ../01_trial_wavefunction/fort.10 .
+    cp ../01_trial_wavefunction/pseudo.dat .
     cp fort.10 fort.10_dft
 
 2. Generate an input file `datasmin.input`:
 
   .. code-block:: bash
 
-    turbogenius vmcpot -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 1000 -steps 100
+    turbogenius vmcpot -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100 -nw 128
 
 3. Run the optimization:
 
   .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np XX turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmcopt -r
 
   See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
@@ -263,25 +120,25 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
 --------------------------------------------------------------------
 
 The next step is to run a single-shot VMC calculation. This is done using the ``vmc`` module of TurboGenius.
-First, prepare the wavefunction and related files:
+First, prepare the wavefunction and pseudopotential files:
 
 .. code-block:: bash
 
-    cd ../03vmc/
-    cp ../02optimization/fort.10 fort.10
-    cp ../02optimization/pseudo.dat .
+    cd ../03_vmc/
+    cp ../02_optimization/fort.10 fort.10
+    cp ../02_optimization/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 1000
+    turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation:
 
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     export TURBOVMC_RUN_COMMAND
 
     turbogenius vmc -r
@@ -309,22 +166,21 @@ First, copy the prepared wavefunction and the pseudopotential files:
 .. code-block:: bash
 
     # LRDMC run
-    mkdir -p ../04lrdmc/alat_0.50/
-    cd ../04lrdmc/alat_0.50/
-    cp ../../03vmc/fort.10 ./
-    cp ../../03vmc/pseudo.dat .
+    cd ../04_lrdmc/
+    cp ../03_vmc/fort.10 .
+    cp ../03_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
 
 .. code-block:: bash
 
-    turbogenius lrdmc -g -etry -3.600 -alat -0.50 -steps 1000
+    turbogenius lrdmc -g -etry -5.500 -alat -0.50 -steps 10000 -nw 128
 
 Then, run the calculation by typing:
 
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     export TURBOVMC_RUN_COMMAND
 
     turbogenius lrdmc -r
