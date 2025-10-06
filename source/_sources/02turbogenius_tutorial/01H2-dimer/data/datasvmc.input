@@ -1,0 +1,26 @@
+&simulation
+    itestr4=2
+    ngen=10000
+    maxtime=86400
+    iopt=1
+    disk_io='mpiio'
+    nw=128
+/
+
+&pseudo
+    npsamax=4
+/
+
+&vmc
+/
+
+&readio
+/
+
+&parameters
+    ieskin=1
+/
+
+&kpoints
+/
+
