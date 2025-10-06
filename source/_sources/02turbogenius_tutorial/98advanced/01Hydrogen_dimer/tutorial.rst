@@ -29,7 +29,7 @@ The first step of this tutorial is to generate an antisymmetrized Geminal Power 
 
 .. code-block:: bash
     
-    cd 01trial_wavefunction/00makefort10/
+    cd 01_trial_wavefunction/00_makefort10/
     turbogenius makefort10 -g -str H2_dimer.xyz -detbasis cc-pVTZ -jasbasis cc-pVDZ -detcutbasis -jascutbasis
 
 The command line options:
@@ -44,87 +44,14 @@ The command line options:
 
 5. ``-detcutbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
 
-6. ``-jasbasis`` is used to specify the basis set used to construct atomic orbitals for the jastrow part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.
+6. ``-jasbasis`` is used to specify the basis set used to construct atomic orbitals for the Jastrow part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.
 
-7. ``-jascutbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation. 
+7. ``-jascutbasis`` flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below). It makes sense only for an all-electron calculation. 
 
 This is a generated ``makefort10.input``.
 
-.. code-block:: bash
-
-        # makefort10 input
-        &system
-            posunits='bohr'
-            natoms=2
-            ntyp=1
-            complexfort10=.false.
-            pbcfort10=.false.
-            yes_pfaff=.false.
-            nxyz(1)=1
-            nxyz(2)=1
-            nxyz(3)=1
-            phase(1)=0.0
-            phase(2)=0.0
-            phase(3)=0.0
-            phasedo(1)=0.0
-            phasedo(2)=0.0
-            phasedo(3)=0.0
-        /
-        
-        &electrons
-            orbtype='normal'
-            jorbtype='normal'
-            twobody=-6
-            filling='diagonal'
-            yes_crystal=.false.
-            yes_crystalj=.false.
-            no_4body_jas=.true.
-            neldiff=0
-            !onebodypar=1.0
-            twobodypar(1)=1.0
-            !twobodypar=1.0
-        /
-        
-        &symmetries
-            nosym=.false.
-            eqatoms=.true.
-            rot_det=.true.
-            symmagp=.true.
-        /
-        
-        ATOMIC_POSITIONS 
-        1.00000000  1.00000000  0.00000000000000  0.00000000000000  -0.70014352917385
-        1.00000000  1.00000000  0.00000000000000  0.00000000000000  0.70014352917385
-        /
-        
-        ATOM_1
-        &shells
-        nshelldet=7
-        nshelljas=4
-        /
-        1   1   16
-        1   0.325800000000
-        1   1   16
-        1   5.095000000000
-        1   1   16
-        1   1.159000000000
-        1   1   16
-        1   0.102700000000
-        3   1   36
-        1   1.407000000000
-        3   1   36
-        1   0.388000000000
-        5   1   37
-        1   1.057000000000
-        # Parameters atomic Jastrow wf 
-        1   1   16
-        1   1.962000000000
-        1   1   16
-        1   0.444600000000
-        1   1   16
-        1   0.122000000000
-        3   1   36
-        1   0.727000000000
+.. literalinclude:: data/makefort10.input
+   :language: fortran
 
 .. note::
 
@@ -139,7 +66,7 @@ For explanations of the input variables, please refer to the doc files in the Tu
 
 .. warning::
 
-    If you want to use your own Det. or Jas. basis sets, you can edit ``makefort10.input`` at this step.
+    If you want to use your own Determinant or Jastrow basis sets, you can edit ``makefort10.input`` at this step.
 
 .. _turbogeniustutorial_9801_01_02:
 
@@ -187,26 +114,8 @@ One should convert the generated JAGPs template to Jastrow Slater Determinant (J
 
 convertfort10 mol input will look like the following:
 
-.. code-block:: bash
-
-    #convertfort10mol.input 
-    &control
-        epsdgm=-1e-14
-    /
-    
-    &mesh_info
-        ax=10
-        ay=10
-        az=10
-        nx=30
-        ny=30
-        nz=30
-    /
-    
-    &molec_info
-        nmol=1
-    /
-
+.. literalinclude:: data/convertfort10mol.input
+   :language: fortran
 
 .. note::
 
@@ -236,6 +145,7 @@ After preparing ``convertfort10mol.input``, run the calculation by typing the fo
 
 The new JDFT template is ``fort.10``. If you find ``1000000`` (molecular orbital) in fort.10 and it counts :math:`N/2`, you have successfully converted the JAGPs template to a JDFT one.
 
+
 .. _turbogeniustutorial_9801_01_04:
 
 01-04 Run DFT
@@ -247,8 +157,8 @@ Copy the prepared ``fort.10`` to 01DFT directory:
 
 .. code-block:: bash
     
-    cd ../01DFT/
-    cp ../00makefort10/fort.10 ./
+    cd ../01_dft/
+    cp ../00_makefort10/fort.10 .
 
 To generate input for a DFT calculation type the following command:
 
@@ -268,58 +178,8 @@ To generate input for a DFT calculation type the following command:
    
 The generated input file will look like:
 
-.. code-block:: bash
-
-    #prep.input
-    &simulation
-        itestr4=-4
-        iopt=1
-        maxtime=3600
-    /
-    
-    &pseudo
-    /
-    
-    &vmc
-    /
-    
-    &optimization
-        molopt=1
-    /
-    
-    &readio
-        writescratch=1
-    /
-    
-    &parameters
-        yes_kpoints=.false.
-    /
-    
-    &kpoints
-    /
-    
-    &molecul
-        ax=0.2
-        ay=0.2
-        az=0.2
-        nx=50
-        ny=50
-        nz=57
-    /
-    
-    &dft
-        contracted_on=.false.
-        maxit=50
-        epsdft=1e-05
-        mixing=0.5
-        typedft=1
-        optocc=0
-        epsshell=0.01
-        memlarge=.false.
-        nelocc=1
-    /
-    
-    2
+.. literalinclude:: data/prep.input
+   :language: fortran
 
 .. warning::
 
@@ -328,20 +188,9 @@ The generated input file will look like:
 After preparing ``prep.input``, one can start DFT on a local machine:
 
 .. code-block:: bash
-    
-    # on a local machine (serial version)
-    prep-serial.x < prep.input > out_prep
-    # on a local machine (parallel version)
-    mpirun -np XX prep-mpi.x < prep.input > out_prep
 
-If you want to run the job via a job-queuing system, please prepare a job submission script.
-
-.. code-block:: bash
-    
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+    export TURBOPREP_RUN_COMMAND="mpirun -np 4 prep-mpi.x"
+    turbogenius prep -r
 
 .. warning::
 
@@ -368,7 +217,7 @@ DFT-LDA total energy, the occupations, etc... are written in ``out_prep``:
     Iter,E,xc,corr     7        -1.1372355        -0.5593173        -0.0943114         0.0000030
     # Iterations =     7
 
-The generated ``fort.10_new`` is used for the following VMC and DMC calculations as its **trial wave function** / **guiding wave function**.
+The generated ``fort.10_new`` is used for the following VMC and DMC calculations as its trial wave function / guiding wave function.
 
 
 Next steps

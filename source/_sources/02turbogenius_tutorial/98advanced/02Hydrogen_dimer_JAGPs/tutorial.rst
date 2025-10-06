@@ -15,20 +15,25 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 .. contents:: Table of Contents
    :depth: 2
    
-Follow the steps 01--05 of H2 dimer calculation and generate JDFT wavefunction.
-
 .. _turbogeniustutorial_9802_06:
 	   
 06 Convert JDFT WF to JAGP one
 --------------------------------------------------------------------
-We have finished all JDFT calculation. The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be done using ``convertfort10`` module of Turbo-Genius. Basically, we require two fort.10 files: the JDFT one (that we want to convert) and a JAGPs fort10 file which we will use as a template for conversion. The JDFT one should be named as ``fort.10_in`` and the JAGPs one should be named as ``fort.10_out``.
 
-Copy ``fort.10`` in ``03VMC`` to ``05jdft_to_jagp`` and rename it as ``fort.10_in``, and copy makefort10.input in 01trial_wavefunction/00makefort10 directory.
+We assume that we have finished all JDFT calculations following the steps described in the :ref:`previous tutorial <turbogeniustutorial_0101>`.
+The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be done using ``convertfort10`` module of Turbo-Genius. Basically, we require two fort.10 files: the JDFT one (that we want to convert) and a JAGPs fort10 file which we will use as a template for conversion. The JDFT one should be named as ``fort.10_in`` and the JAGPs one should be named as ``fort.10_out``.
+
+Copy ``fort.10`` in ``03_vmc`` to ``06_convert`` and rename it as ``fort.10_in``, and copy makefort10.input in ``01_trial_wavefunction`` directory.
 
 .. code-block:: bash
     
-    cd ../05jdft_to_jagp/
-    cp ../03vmc/fort.10 .
+    cd ./06_convert/
+    cp ../../01Hydrogen_dimer_pyscf/03_vmc/fort.10 .
+    cp ../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat .
+    cp ../../01Hydrogen_dimer_pyscf/01_trial_wavefunction/makefort10.input .
+
+    cp ./fort.10 ./fort.10_in
+
     turbogenius convertwf -to agps
 
 .. warning::
@@ -49,8 +54,6 @@ Please check the overlap square in out_conv:
 
 ``Overlap square`` should be close to unity, i.e., if the conversion is perfect, this becomes unity.
 
-The converted WF ``fort.10``. This is a JAGPs wavefunction.
-
 The conversion has finished. The obtained JAGPs wavefunction is ``fort.10``.
 
 .. _turbogeniustutorial_9802_07:
@@ -66,82 +69,43 @@ Copy the obtained JAGPs wavefunction ``fort.10``, and the optimized JDFT wavefun
 
 .. code-block:: bash
 
-    cd ../06conversion_check/
-    cp ../05jdft_to_jagp/fort.10 ./fort.10
-    cp ../05jdft_to_jagp/fort.10_bak ./fort.10_corr
+    cd ../07_conversion_check/
+    cp ../06_convert/fort.10 ./fort.10
+    cp ../06_convert/fort.10_bak ./fort.10_corr
+    cp ../06_convert/pseudo.dat .
 
 Prepare input files using:
 
 .. code-block:: bash
 
-    turbogenius correlated-sampling -g -steps 100
+    turbogenius correlated-sampling -g -steps 100 -nw 128
 
 For the correlating sampling, we need two input files, for a vmc calculation (i.e., generation of Markov chain) and a correlated sampling itself.
 
-.. code-block:: bash
-    
-    #datasvmc.input
-    &simulation
-        itestr4=2
-        ngen=100
-        maxtime=3600
-        iopt=1
-        disk_io='mpiio'
-    /
-    
-    &pseudo
-    /
-    
-    &vmc
-    /
-    
-    &readio
-        iread=3
-    /
-    
-    &parameters
-    /
-    
-    &kpoints
-    /
+The generated ``datasvmc.input`` looks like:
 
-and
+.. literalinclude:: data/datasvmc.input
+   :language: fortran
 
-.. code-block:: bash
+and ``readforward.input`` looks like:
 
-    #readforward.input
-    &simulation
-    /
-    
-    &system
-    /
-    
-    &corrfun
-        bin_length=1
-        initial_bin=1
-        correlated_samp=.true.
-    /
+.. literalinclude:: data/readforward.input
+   :language: fortran
 
 Now run the calculation using:
 
 .. code-block:: bash
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasvmc.input > out_vmc
-    readforward-serial.x  < datasvmc.input > out_readforward
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
-    mpirun -np XX readforward-mpi.x < datasvmc.input > out_readforward
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    export TURBOREADFORWARD_RUN_COMMAND="mpirun -np 16 readforward-mpi.x"
+
+    turbogenius correlated-sampling -r
 
 ``corrsampling.dat`` contains the output.
 
 .. code-block:: bash
 
-	# corrsampling.dat
+    # corrsampling.dat
     Energy (fort10 ref.) = -1.17606202 Ha +- 0.00119647941 Ha
     Energy (fort10 corr.) = -1.17606265 Ha +- 0.00119634713 Ha
     Energy difference = 6.26299353e-07 Ha +- 2.29651078e-06 Ha
@@ -156,75 +120,32 @@ Now run the calculation using:
 --------------------------------------------------------------------
 
 In this step, the Jastrow factors and the determinant part are optimized at the VMC level using ``vmcopt`` module of Turbo-Genius. The procedure is almost the same as in :ref:`turbogeniustutorial_0101_02`
+
 First of all, copy the converted wavefunction ``fort.10``
 
 .. code-block:: bash
 
-    cd ../07optimization/
-    cp ../05jdft_to_jagp/fort.10 ./
+    cd ../08_nodal_surface_optimization/
+    cp ../06_convert/fort.10 .
+    cp ../06_convert/pseudo.dat .
 
 To generate ``datasmin.input``, which is a minimal input file for a VMC-optimization use:
 
 .. code-block:: bash
 
-     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10
+     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
 
 The input file should look something like:
 
-.. code-block:: bash
-
-    &simulation
-        itestr4=-4
-        ngen=1000
-        iopt=1
-        maxtime=3600
-        disk_io='mpiio'
-    /
-    
-    &pseudo
-    /
-    
-    &vmc
-    /
-    
-    &optimization
-        ncg=1
-        nweight=10
-        nbinr=1
-        iboot=0
-        tpar=0.35
-        parr=0.001
-        iesdonebodyoff=.false.
-        iesdtwobodyoff=.false.
-        twobodyoff=.false.
-    /
-    
-    &readio
-    /
-    
-    &parameters
-        iesd=1
-        iesfree=1
-        iessw=1
-        iesup=0
-        iesm=0
-    /
-    
-    &kpoints
-    /
+.. literalinclude:: data/datasmin.input
+   :language: fortran
 
 Now run VMC optimization using:
 
 .. code-block:: bash
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasmin.input > out_min
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    turbogenius vmcopt -r
     
 Now for post-processing use:
 
@@ -232,11 +153,9 @@ Now for post-processing use:
 
         turbogenius vmcopt -post -optwarmup 80 -plot
         
-        # this corresponds readalles.x
-
 It plots energy with the error bars and devmax wrt optimization steps (``plot_energy_and_devmax.png``).
 
-   .. image:: vmcopt_jsagps_Energy_devmax.png
+   .. image:: image/plot_energy_and_devmax.png
        :width: 70%
        :align: center
 
@@ -250,31 +169,26 @@ For the hydrogen dimer, the JDFT ansatz is enough accurate, so nothing has gaine
 
 The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_03`
 
-First, copy ``fort.10`` from ``02optimization`` to ``08vmc``.
+First, copy ``fort.10`` from ``08_nodal_surface_optimization`` to ``09_vmc``.
 
 .. code-block:: bash
     
-    cd ../08vmc
-    cp ../07optimization/fort.10 fort.10
+    cd ../09_vmc
+    cp ../08_nodal_surface_optimization/fort.10 fort.10
+    cp ../08_nodal_surface_optimization/pseudo.dat .
     
 Now generate the input file for vmc ``datasvmc.input`` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 1000
+    turbogenius vmc -g -steps 1000 -nw 128
 
 Run a VMC calculation by typing:
 
 .. code-block:: bash
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasvmc.input > out_vmc
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasvmc.input > out_vmc
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    turbogenius vmc -r
 
 After the VMC run finishes, use post-processing to check the total energy:
 
@@ -313,22 +227,18 @@ The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_04`
 
 .. code-block:: bash
 
-    cd ../09lrdmc/alat_0.20/
-    cp ../../08vmc/fort.10 .
-    turbogenius lrdmc -g -etry -1.10 -alat -0.20 -steps 1000
+    cd ../10_lrdmc/
+    cp ../09_vmc/fort.10 .
+    cp ../09_vmc/pseudo.dat .
+
+    turbogenius lrdmc -g -etry -1.10 -alat -0.20 -steps 1000 -nw 128
     
 Now run the LRDMC calculation:
 
 .. code-block:: bash
 
-    # on a local machine (serial version)
-    turborvb-serial.x < datasfn.input > out_fn
-    # on a local machine (parallel version)
-    mpirun -np XX turborvb-mpi.x < datasfn.input > out_fn # parallel version
-    # on a cluster machine (PBS)
-    qsub submit.sh
-    # on a cluster machine (Slurm)
-    sbatch submit.sh
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    turbogenius lrdmc -r
 
 For post-processing use:
 
@@ -337,7 +247,7 @@ For post-processing use:
     turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
     # This corresponds to forcefn.sh 20 3 5 1
 
-Thus, we get :math:`E (a=0.20 bohr)` = -1.1739(4) Ha.
+Thus, we get :math:`E (a=0.20 {\rm bohr})` = -1.1739(4) Ha.
 
 .. _turbogeniustutorial_9802_11:
 

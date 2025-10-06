@@ -23,6 +23,7 @@ Here are examples of various calculations with TurboRVB via Turbo-Genius.
    ./05Diamond_twist_average/tutorial.rst
    ./06hBN_finite_size_correction/tutorial.rst
    ./07cBN_finite_size_correction/tutorial.rst
+   ./07cBN_finite_size_correction_primitive_cell/tutorial.rst
 
 [Advanced topics]
    

@@ -1,0 +1,12 @@
+&simulation
+/
+
+&system
+/
+
+&corrfun
+    bin_length=2
+    initial_bin=1
+    correlated_samp=.true.
+/
+

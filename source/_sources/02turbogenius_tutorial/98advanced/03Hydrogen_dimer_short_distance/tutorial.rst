@@ -8,7 +8,7 @@
 Structural optimization of the hydrogen dimer
 =============================================
 
-In this tutorial, you will compute atomic forces for the hydrogen dimer (H2) and optimize its geometry. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
+In this tutorial, you will compute atomic forces for the hydrogen dimer (H\ :sub:`2`) and optimize its geometry. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
 
@@ -21,99 +21,44 @@ In this tutorial, you will compute atomic forces for the hydrogen dimer (H2) and
 ---------------------------------------------------------------------------------------
 
 This section describes the procedure for preparing a JAGP wavefunction for the H\ :sub:`2` dimer at a shorter bond distance.
-Main steps:
 
-1. Preparing a JDFT trial wavefunction
-    - Generate an JDFT trial wavefunction using the makefort10 module.
-    - Add molecular orbitals to the wavefunction.
+0. Prepare a molecular structure file ``H2_dimer_short.xyz`` in which H atoms are relocated, e.g.:
 
-    .. code-block:: bash
+  .. literalinclude:: data/H2_dimer_short.xyz
+     :language: text
 
-        cd 10trial_wavefunction/00makefort10/
-        turbogenius makefort10 -g -str H2_dimer.xyz -detbasis cc-pVTZ -jasbasis cc-pVDZ -detcutbasis -jascutbasis
-        turbogenius makefort10 -r
-        turbogenius makefort10 -post
 
-        mv fort.10 fort.10_in
-        turbogenius convertfort10mol -g -r -post
+1. Run the PySCF calculation
 
-2. Running DFT calculation
-    - Copy the generated wavefunction to the DFT calculation directory.
-    - Generate the input file for the DFT calculation with grid size 0.2 Bohr and box size 10.0 Bohr.
-    - Run the DFT calculation.
-    - Post-process the calculation results.
+   .. code-block:: bash
 
-    .. code-block:: bash
+      cd 12_jagp_wf_shorter_distance
+      python3 pyscf_H2.py
 
-        cd ../01DFT/
-        cp ../00makefort10/fort.10 ./
-        turbogenius prep -g -grid 0.2 0.2 0.2 -lbox 10.0 10.0 10.0
+2. Convert the generated PySCF checkpoint file to a TREXIO file
 
-    To run the DFT calculation, several options are available:
+   .. code-block:: bash
 
-    (a) Running the serial version on a local machine through the turbogenius interface
+      trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
 
-        .. code-block:: bash
+3. Convert from the TREXIO file to the TurboRVB wavefunction
 
-            turbogenius prep -r
+   .. code-block:: bash
+    
+      trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
-    (b) Running the parallel version through the turbogenius interface
+4. Convert from JDFT wavefunction to JAGP wavefunction
 
-        .. code-block:: bash
+   .. code-block:: bash
 
-            export TURBOPREP_RUN_COMMAND="mpirun -np 4 prep-mpi.x"
-            turbogenius prep -r
+      turbogenius convertwf -to agps
 
-    (c) Running direcly the serial version of the turborvb executable on a local machie
+   then, check the conversion by typing:
 
-        .. code-block:: bash
+   .. code-block:: bash
 
-            prep-serial.x < prep.input > out_prep
+      grep Overlap out_conv
 
-    (d) Running directly the parallel version of the turborvb executable on a cluster machine
-
-        .. code-block:: bash
-
-            mpirun -np 4 prep-mpi.x < prep.input > out_prep
-
-    (e) Submitting a job to a cluster machine (PBS)
-
-        .. code-block:: bash
-
-            qsub submit.sh
-
-        where ``submit.sh`` is a job script for the cluster machine running the PBS or similar batch system.
-
-    (f) Submitting a job to a cluster machine (Slurm)
-
-        .. code-block:: bash
-
-            sbatch submit.sh
-
-        where ``submit.sh`` is a job script for the cluster machine running the Slurm batch system.
-
-    After the DFT calculation finishes, run the post-process calculation using:
-
-        .. code-block:: bash
-
-            turbogenius prep -post
-
-    and check the results:
-
-        .. code-block:: bash
-
-            $ cat pip0.d
-            Energy =  -1.17399712181874  4.494314925096871E-004
-
-3. Converting from JDFT to JAGP
-    - Convert the optimized JDFT wavefunction to JAGP format
-
-    .. code-block:: bash
-
-        # conversion
-        cd ../02jdft_to_jagp/
-        cp ../01DFT/fort.10_new fort.10
-        turbogenius convertwf -to agps
 
 .. _turbogeniustutorial_9803_13:
 
@@ -126,21 +71,22 @@ First, copy the converted wavefunction ``fort.10``
 
 .. code-block:: bash
 
-    cd ../../11optimization/
-    cp ../10trial_wavefunction/02jdft_to_jagp/fort.10 ./
+    cd ../13_nodal_surface_optimization/
+    cp ../12_jagp_wf_shorter_distance/fort.10 .
+    cp ../12_jagp_wf_shorter_distance/pseudo.dat .
 
 Next, generate the input file for VMC optimization ``datasmin.input`` using:
 
 .. code-block:: bash
 
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
 
 Run the VMC optimization.
 Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_9803_12`.
 
 .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmcopt -r
 
 Finally, run the post-processing using:
@@ -160,20 +106,21 @@ First, copy fort.10 from the previous step.
 
 .. code-block:: bash
 
-    cd ../12vmc
-    cp ../11optimization/fort.10 fort.10
+    cd ../14_vmc_before_structural_optimization/
+    cp ../13_nodal_surface_optimization/fort.10 .
+    cp ../13_nodal_surface_optimization/pseudo.dat .
 
 Next, generate the input file for VMC calculation ``datasvmc.input`` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 1000 -force
+    turbogenius vmc -g -steps 1000 -nw 128 -force
 
 Run the VMC calculation, for example, using:
 
 .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmc -r
 
 Finally, run the post-processing using:
@@ -206,22 +153,23 @@ First, copy fort.10 from the previous step.
 
 .. code-block:: bash
 
-    cd ../13str_optimization
-    cp ../12vmc/fort.10 ./
+    cd ../15_structural_optimization
+    cp ../13_nodal_surface_optimization/fort.10 .
+    cp ../13_nodal_surface_optimization/pseudo.dat .
 
 Next, generate the input file for VMC optimization ``datasmin.input`` using:
 
 .. code-block:: bash
 
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 10 -opt_structure -strlearn 1.0e-6
+    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128 -opt_structure -strlearn 1.0e-6
 
-Note that the ``-opt_structure`` option is used to perform the structural optimization. The learning rate is set to 1.0e-6.
+Note that the ``-opt_structure`` option is used to perform the structural optimization. The learning rate is set to 10\ :sup:`-6`.
 
 Run the VMC optimization, for example, using:
 
 .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmcopt -r
 
 Finally, run the post-processing using:
@@ -241,20 +189,21 @@ First, copy fort.10 from the previous step.
 
 .. code-block:: bash
 
-    cd ../14vmc
-    cp ../13str_optimization/fort.10 fort.10
+    cd ../16_vmc_after_structural_optimization/
+    cp ../15_structural_optimization/fort.10 .
+    cp ../15_structural_optimization/pseudo.dat .
 
 Next, generate the input file for VMC calculation ``datasvmc.input`` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 1000 -force
+    turbogenius vmc -g -steps 1000 -nw 128 -force
 
 Run the VMC calculation, for example, using:
 
 .. code-block:: bash
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 4 turborvb-mpi.x"
+    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     turbogenius vmc -r
 
 Finally, run the post-processing using:
