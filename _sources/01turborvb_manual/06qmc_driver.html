@@ -6,19 +6,22 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quantum Monte Carlo calculations &mdash; Turbotutorials Updated on 04/04/2025 documentation</title>
+  <title>Quantum Monte Carlo calculations &mdash; Turbotutorials Updated on 07/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
 
   
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=a1bbd705"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=26ea414d"></script>
       <script src="../../_static/doctools.js?v=888ff710"></script>
       <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="TurboRVB tutorials" href="../01turborvb_tutorial/00index.html" />
+    <link rel="next" title="TurboRVB tutorials" href="07tutorial/00index.html" />
     <link rel="prev" title="Wavefunction conversions" href="05conversions.html" /> 
 </head>
 
@@ -43,7 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="00index.html">TurboRVB user manuals</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="00index.html">TurboRVB manuals</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01nutshell.html">TurboRVB in a nutshell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03wavefunction.html">Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04DFT_driver.html">Initializations of Wavefunctions</a></li>
@@ -58,9 +61,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="07tutorial/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08wf_optimization/tutorial.html">Wavefuntion optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../01turborvb_tutorial/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_tutorial/00index.html">TurboWorkflows tutorials</a></li>
 </ul>
@@ -79,7 +83,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="00index.html">TurboRVB user manuals</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">TurboRVB manuals</a></li>
       <li class="breadcrumb-item active">Quantum Monte Carlo calculations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/01turborvb_manual/06qmc_driver.rst.txt" rel="nofollow"> View page source</a>
@@ -91,16 +95,16 @@
            <div itemprop="articleBody">
              
   <section id="quantum-monte-carlo-calculations">
-<h1>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Permalink to this heading">¶</a></h1>
+<h1>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Permalink to this heading"></a></h1>
 <p>We describe input files that control variational and diffusion Monte Carlo simulations.
 TurboRVB input files are built using fortran namelists.
 Keywords are divided in different sections according to their meaning.</p>
 <section id="quantum-monte-carlo-kernel-turborvb-x">
-<h2>Quantum Monte Carlo kernel (turborvb.x)<a class="headerlink" href="#quantum-monte-carlo-kernel-turborvb-x" title="Permalink to this heading">¶</a></h2>
+<h2>Quantum Monte Carlo kernel (turborvb.x)<a class="headerlink" href="#quantum-monte-carlo-kernel-turborvb-x" title="Permalink to this heading"></a></h2>
 <p>turborvb.x is a binary to run QMC jobs.
 The input parameters are explained as follows.</p>
 <section id="simulation-section">
-<h3>Simulation section<a class="headerlink" href="#simulation-section" title="Permalink to this heading">¶</a></h3>
+<h3>Simulation section<a class="headerlink" href="#simulation-section" title="Permalink to this heading"></a></h3>
 <p>This section contains general informations necessary to specify the type of run to be carried out.
 In this section it is specified whether we want to perform a wave function optimization or
 production run and using which method (like Variational Monte Carlo (VMC) or Lattice Regularized DMC (LRDMC).</p>
@@ -278,7 +282,7 @@ production run and using which method (like Variational Monte Carlo (VMC) or Lat
 </tbody>
 </table>
 <section id="pseudo-section">
-<h4>Pseudo section<a class="headerlink" href="#pseudo-section" title="Permalink to this heading">¶</a></h4>
+<h4>Pseudo section<a class="headerlink" href="#pseudo-section" title="Permalink to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -311,7 +315,7 @@ QMC by R. Fahy.</p></td>
 </table>
 </section>
 <section id="vmc-section">
-<h4>VMC section<a class="headerlink" href="#vmc-section" title="Permalink to this heading">¶</a></h4>
+<h4>VMC section<a class="headerlink" href="#vmc-section" title="Permalink to this heading"></a></h4>
 <p>This section should be specified for a VMC or VMCopt run.</p>
 <table class="docutils align-default">
 <thead>
@@ -392,7 +396,7 @@ Eq.(121) in the paper [J. Chem. Phys. 152, 204121 (2020)].</p></td>
 </table>
 </section>
 <section id="dmclrdmc-section">
-<h4>DMCLRDMC section<a class="headerlink" href="#dmclrdmc-section" title="Permalink to this heading">¶</a></h4>
+<h4>DMCLRDMC section<a class="headerlink" href="#dmclrdmc-section" title="Permalink to this heading"></a></h4>
 <p>This section should be specified for a LRDMC or LRDMCopt run.</p>
 <table class="docutils align-default">
 <thead>
@@ -601,7 +605,7 @@ Cyrus Umrigar), corresponding n in Eqs. 12 and 13 of the paper [J. Chem. Theory 
 </table>
 </section>
 <section id="readio-section">
-<h4>Readio section<a class="headerlink" href="#readio-section" title="Permalink to this heading">¶</a></h4>
+<h4>Readio section<a class="headerlink" href="#readio-section" title="Permalink to this heading"></a></h4>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -622,7 +626,7 @@ iread=3.</p></td>
 </table>
 </section>
 <section id="optimization-section">
-<h4>Optimization section<a class="headerlink" href="#optimization-section" title="Permalink to this heading">¶</a></h4>
+<h4>Optimization section<a class="headerlink" href="#optimization-section" title="Permalink to this heading"></a></h4>
 <p>This section should be specified for a VMCopt or LRDMCopt run.</p>
 <a class="reference internal image-reference" href="../../_images/VMC_opt.png"><img alt="../../_images/VMC_opt.png" class="align-center" src="../../_images/VMC_opt.png" style="width: 688.8000000000001px; height: 293.2px;" /></a>
 <table class="docutils align-default">
@@ -858,10 +862,10 @@ due to numerical accuracy.</p></td>
 </table>
 </section>
 <section id="parameters-section">
-<h4>Parameters section<a class="headerlink" href="#parameters-section" title="Permalink to this heading">¶</a></h4>
+<h4>Parameters section<a class="headerlink" href="#parameters-section" title="Permalink to this heading"></a></h4>
 <p>This section should be specified for a VMCopt or LRDMCopt run.
 Only <code class="docutils literal notranslate"><span class="pre">ieskin</span></code> should be specified for a VMC or LRDMC run if one wants to compute atomic forces.
-This section describes switches for optimizing wavefunction parameters, the ouput printout and on the measures performed during the MC run. For example, value=0 means do not optimize this type, vice versa (<span class="math">iesd=0</span> means that one body and two body Jastrow factors will not be optimized).</p>
+This section describes switches for optimizing wavefunction parameters, the ouput printout and on the measures performed during the MC run. For example, value=0 means do not optimize this type, vice versa (<span class="math notranslate nohighlight">\(iesd=0\)</span> means that one body and two body Jastrow factors will not be optimized).</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>parameter name</p></th>
@@ -879,26 +883,26 @@ This section describes switches for optimizing wavefunction parameters, the oupu
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iesinv</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (-1, 0 or 1). If <span class="math">\neq 0</span>, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10.
-If <span class="math">&lt; 0</span>, a range can be defined in the &amp;fitpar section with rmaxinv.</p></td>
+<td><p>Integer (-1, 0 or 1). If <span class="math notranslate nohighlight">\(\neq 0\)</span>, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10.
+If <span class="math notranslate nohighlight">\(&lt; 0\)</span>, a range can be defined in the &amp;fitpar section with rmaxinv.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iesfree</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (-1, 0 or 1). If <span class="math">\neq 0</span>, the density Jastrow factor matrix is optimized.
-If <span class="math">&lt; 0</span>, a range can be defined in the &amp;fitpar section with rmaxj.</p></td>
+<td><p>Integer (-1, 0 or 1). If <span class="math notranslate nohighlight">\(\neq 0\)</span>, the density Jastrow factor matrix is optimized.
+If <span class="math notranslate nohighlight">\(&lt; 0\)</span>, a range can be defined in the &amp;fitpar section with rmaxj.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iessw</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (-1, 0 or 1). If <span class="math">\neq 0</span>, the AGP matrix on the localized basis is optimized.
-If <span class="math">&lt; 0</span>, a range can be defined in the &amp;fitpar section with rmax.</p></td>
+<td><p>Integer (-1, 0 or 1). If <span class="math notranslate nohighlight">\(\neq 0\)</span>, the AGP matrix on the localized basis is optimized.
+If <span class="math notranslate nohighlight">\(&lt; 0\)</span>, a range can be defined in the &amp;fitpar section with rmax.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iesm</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (0 or 1). If <span class="math">\neq 0</span>, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized.
-When <span class="math">itestr4 = -4,-9</span>, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true.
+<td><p>Integer (0 or 1). If <span class="math notranslate nohighlight">\(\neq 0\)</span>, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized.
+When <span class="math notranslate nohighlight">\(itestr4 = -4,-9\)</span>, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true.
 is switched on and exponents are optimized.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iesup</span></code></p></td>
@@ -909,24 +913,24 @@ is switched on and exponents are optimized.</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ieser</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (0 or 1). It specifies which part of the energy is printed out. If <span class="math">ieser = 1</span>, it measures the total energy
+<td><p>Integer (0 or 1). It specifies which part of the energy is printed out. If <span class="math notranslate nohighlight">\(ieser = 1\)</span>, it measures the total energy
 (no optimization assumed).</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">iesfix</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (0 or 1). If <span class="math">iesfix = 1</span>, the variance of the energy is printed out (no optimization assumed).</p></td>
+<td><p>Integer (0 or 1). If <span class="math notranslate nohighlight">\(iesfix = 1\)</span>, the variance of the energy is printed out (no optimization assumed).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ieskin</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics <span class="math">idyn &gt; 0</span>), set <span class="math">ieskin &gt; 0</span>.</p></td>
+<td><p>Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics <span class="math notranslate nohighlight">\(idyn &gt; 0\)</span>), set <span class="math notranslate nohighlight">\(ieskin &gt; 0\)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">yeszj</span></code></p></td>
 <td><p>int</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. If <span class="math">yeszj=.true.</span>, exponents of the Jastrow basis are optimized if <span class="math">iesm \neq 0</span>
-even if <span class="math">itestr4 = -4, -9</span>.</p></td>
+<td><p>Logical value. If <span class="math notranslate nohighlight">\(yeszj=.true.\)</span>, exponents of the Jastrow basis are optimized if <span class="math notranslate nohighlight">\(iesm \neq 0\)</span>
+even if <span class="math notranslate nohighlight">\(itestr4 = -4, -9\)</span>.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">yeszagp</span></code></p></td>
 <td><p>int</p></td>
@@ -936,7 +940,7 @@ even if <span class="math">itestr4 = -4, -9</span>.</p></td>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">real_agp</span></code></p></td>
 <td><p>int</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. For complex wf, if real_agp=.true. and <span class="math">iessw=\neq 0</span>, only the real part of the complex agp matrix
+<td><p>Logical value. For complex wf, if real_agp=.true. and <span class="math notranslate nohighlight">\(iessw=\neq 0\)</span>, only the real part of the complex agp matrix
 is optimized. The imaginary part is assumed and set to zero.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">real_contracted</span></code></p></td>
@@ -947,10 +951,10 @@ is optimized. The imaginary part is assumed and set to zero.</p></td>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">typedyncell</span></code></p></td>
 <td><p>int</p></td>
 <td><p>.false.</p></td>
-<td><p>Integer value. <span class="math">typedyncell=0</span> means Standard NVT ensemble with no optimization of cell.
-<span class="math">typedyncell=1</span> implies fixed volume, but optimization of b/a and c/a at fixed volume <span class="math">V = a \times b \times c</span>.
-<span class="math">typedyncell=2</span> stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant.
-<span class="math">typedyncell=3</span> represents constant pressure and variable volume but without modifying b/a and c/a.</p></td>
+<td><p>Integer value. <span class="math notranslate nohighlight">\(typedyncell=0\)</span> means Standard NVT ensemble with no optimization of cell.
+<span class="math notranslate nohighlight">\(typedyncell=1\)</span> implies fixed volume, but optimization of b/a and c/a at fixed volume <span class="math notranslate nohighlight">\(V = a \times b \times c\)</span>.
+<span class="math notranslate nohighlight">\(typedyncell=2\)</span> stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant.
+<span class="math notranslate nohighlight">\(typedyncell=3\)</span> represents constant pressure and variable volume but without modifying b/a and c/a.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pressfixed</span></code></p></td>
 <td><p>int</p></td>
@@ -960,23 +964,23 @@ is optimized. The imaginary part is assumed and set to zero.</p></td>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixa</span></code></p></td>
 <td><p>bool</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. If <span class="math">fixa = .true.</span>, a is kept fixed during dynamics.</p></td>
+<td><p>Logical value. If <span class="math notranslate nohighlight">\(fixa = .true.\)</span>, a is kept fixed during dynamics.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixb</span></code></p></td>
 <td><p>bool</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. If <span class="math">fixb = .true.</span>, b is kept fixed during dynamics.</p></td>
+<td><p>Logical value. If <span class="math notranslate nohighlight">\(fixb = .true.\)</span>, b is kept fixed during dynamics.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">fixc</span></code></p></td>
 <td><p>bool</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. If <span class="math">fixc = .true.</span>, c is kept fixed during dynamics.</p></td>
+<td><p>Logical value. If <span class="math notranslate nohighlight">\(fixc = .true.\)</span>, c is kept fixed during dynamics.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="fitpar-section">
-<h4>Fitpar section<a class="headerlink" href="#fitpar-section" title="Permalink to this heading">¶</a></h4>
+<h4>Fitpar section<a class="headerlink" href="#fitpar-section" title="Permalink to this heading"></a></h4>
 <p>This section describes the details of the locality approximations for reducing the number of parameters.</p>
 <table class="docutils align-default">
 <thead>
@@ -990,26 +994,26 @@ is optimized. The imaginary part is assumed and set to zero.</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rmax</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. If <span class="math">iessw &lt; 0</span>, then all matrix elements of the AGP at distance larger than rmax are not optimized.
-<span class="math">rmax = 0</span> implies that no matrix elements connecting different atoms are optimized.</p></td>
+<td><p>Real value. If <span class="math notranslate nohighlight">\(iessw &lt; 0\)</span>, then all matrix elements of the AGP at distance larger than rmax are not optimized.
+<span class="math notranslate nohighlight">\(rmax = 0\)</span> implies that no matrix elements connecting different atoms are optimized.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rmaxj</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. If <span class="math">iefree &lt; 0</span>, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized.
-<span class="math">rmaxj = 0</span> has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized.</p></td>
+<td><p>Real value. If <span class="math notranslate nohighlight">\(iefree &lt; 0\)</span>, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized.
+<span class="math notranslate nohighlight">\(rmaxj = 0\)</span> has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rmaxinv</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. If <span class="math">iesinv &lt; 0</span>, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized.
+<td><p>Real value. If <span class="math notranslate nohighlight">\(iesinv &lt; 0\)</span>, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized.
 The rule is the same as the ones above for the spin Jastrow.</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="dynamics-section">
-<h4>Dynamics section<a class="headerlink" href="#dynamics-section" title="Permalink to this heading">¶</a></h4>
+<h4>Dynamics section<a class="headerlink" href="#dynamics-section" title="Permalink to this heading"></a></h4>
 <p>This section contains details about ion dynamics.</p>
 <table class="docutils align-default">
 <thead>
@@ -1023,17 +1027,17 @@ The rule is the same as the ones above for the spin Jastrow.</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">temp</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. The temperature in a.u. If <span class="math">temp &lt; 0</span>, then <cite>abs(temp)</cite> indicates the temperature in Kelvin. <span class="math">temp = 0</span> can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization.</p></td>
+<td><p>Real value. The temperature in a.u. If <span class="math notranslate nohighlight">\(temp &lt; 0\)</span>, then <cite>abs(temp)</cite> indicates the temperature in Kelvin. <span class="math notranslate nohighlight">\(temp = 0\)</span> can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">friction</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. It is necessary to keep it non-zero in Newtonian dynamics (<span class="math">idyn=4,7,8</span>) but can be set to zero (recommended) for <span class="math">idyn=5</span> (the recommended dynamics).</p></td>
+<td><p>Real value. It is necessary to keep it non-zero in Newtonian dynamics (<span class="math notranslate nohighlight">\(idyn=4,7,8\)</span>) but can be set to zero (recommended) for <span class="math notranslate nohighlight">\(idyn=5\)</span> (the recommended dynamics).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">iskipdyn</span></code></p></td>
 <td><p>int</p></td>
 <td><p>0</p></td>
-<td><p>Integer value. After <span class="math">iskipdyn</span> times <span class="math">nweight</span> MC steps, check if <span class="math">dev_mat &lt; maxdev_dyn</span>.</p></td>
+<td><p>Integer value. After <span class="math notranslate nohighlight">\(iskipdyn\)</span> times <span class="math notranslate nohighlight">\(nweight\)</span> MC steps, check if <span class="math notranslate nohighlight">\(dev_mat &lt; maxdev_dyn\)</span>.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">maxdev_dyn</span></code></p></td>
 <td><p>real</p></td>
@@ -1043,14 +1047,14 @@ The rule is the same as the ones above for the spin Jastrow.</p></td>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">delta0</span></code></p></td>
 <td><p>real</p></td>
 <td><p>0.0</p></td>
-<td><p>Real value. Used with <span class="math">idyn = 5</span>, it is a parameter that can help with convergence in the small time step limit (<span class="math">tion \to 0</span>). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0
-<span class="math">\times</span> Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the
+<td><p>Real value. Used with <span class="math notranslate nohighlight">\(idyn = 5\)</span>, it is a parameter that can help with convergence in the small time step limit (<span class="math notranslate nohighlight">\(tion \to 0\)</span>). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0
+<span class="math notranslate nohighlight">\(\times\)</span> Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the
 time step. However, this is chosen by default.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">addrognoso</span></code></p></td>
 <td><p>bool</p></td>
 <td><p>.false.</p></td>
-<td><p>Logical value. With <span class="math">idyn = 5</span> it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for <span class="math">tion \to 0</span>.</p></td>
+<td><p>Logical value. With <span class="math notranslate nohighlight">\(idyn = 5\)</span> it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for <span class="math notranslate nohighlight">\(tion \to 0\)</span>.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normcorr</span></code></p></td>
 <td><p>real</p></td>
@@ -1063,12 +1067,12 @@ time step. However, this is chosen by default.</p></td>
 </section>
 </section>
 <section id="how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh">
-<h2>How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)<a class="headerlink" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh" title="Permalink to this heading">¶</a></h2>
+<h2>How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)<a class="headerlink" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh" title="Permalink to this heading"></a></h2>
 <p>After a VMC calculation has finished, you can get the total energy
 (i.e., summation of the local energy), i.e.,</p>
-<div class="math">
-<p><span class="math">E_{tot}=\int d {\bf{x}} \pi({\bf{x}}) e_L ({\bf{x}}) \sim \cfrac{1}{M} \sum_{i=1}^{M}e_L(x_i)</span></p>
-</div><p>by <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span></code> script:</p>
+<div class="math notranslate nohighlight">
+\[E_{tot}=\int d {\bf{x}} \pi({\bf{x}}) e_L ({\bf{x}}) \sim \cfrac{1}{M} \sum_{i=1}^{M}e_L(x_i)\]</div>
+<p>by <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span></code> script:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcevmc.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
@@ -1110,20 +1114,20 @@ Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">Force</span></code> are total forces, <code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> are Hellman-Feyman contributions, and <code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> are Pulay contributions. In detail,</p>
-<div class="math">
-<p><span class="math">F_{\alpha} = - \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L} - 2 \left(\braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} - \braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)}\right),</span></p>
-</div><p>where <span class="math">J</span> is the Jacobian of the <a class="reference external" href="https://doi.org/10.1063/1.3516208">warp transformation</a> if it is employed:</p>
-<div class="math">
-<p><span class="math">\bar{\bm {r}_i} = \bm{r}_i + \Delta \bm{R}_{a}\omega_{a} \left({\bm{r}_i} \right), {\rm{where}} ,\,\ \omega_{a} = \cfrac{F \left( |\bm{r}-\bm{R_{a}}| \right)}{\sum_{M}^{b=1} F \left( |\bm{r}-\bm{R_{b}}| \right)}.</span></p>
-</div><p>Indeed,</p>
+<div class="math notranslate nohighlight">
+\[F_{\alpha} = - \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L} - 2 \left(\braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} - \braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)}\right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the Jacobian of the <a class="reference external" href="https://doi.org/10.1063/1.3516208">warp transformation</a> if it is employed:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\bm {r}_i} = \bm{r}_i + \Delta \bm{R}_{a}\omega_{a} \left({\bm{r}_i} \right), {\rm{where}} ,\,\ \omega_{a} = \cfrac{F \left( |\bm{r}-\bm{R_{a}}| \right)}{\sum_{M}^{b=1} F \left( |\bm{r}-\bm{R_{b}}| \right)}.\]</div>
+<p>Indeed,</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> corresponds to <span class="math">- \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L}</span>, and</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> corresponds to <span class="math">2 \left(\braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \right)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> corresponds to <span class="math notranslate nohighlight">\(- \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L}\)</span>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> corresponds to <span class="math notranslate nohighlight">\(2 \left(\braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \right)\)</span>.</p></li>
 </ul>
 </div></blockquote>
 <p>Note that the obtained force is the sum of force components when you specify the symmetry, i.e.,
-<code class="docutils literal notranslate"><span class="pre">Force</span></code> = <span class="math">F_{1,x} + F_{2,z}</span> for:</p>
+<code class="docutils literal notranslate"><span class="pre">Force</span></code> = <span class="math notranslate nohighlight">\(F_{1,x} + F_{2,z}\)</span> for:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraints for forces: ion - coordinate</span>
            <span class="mi">2</span>      <span class="mi">1</span>      <span class="mi">1</span>      <span class="mi">2</span>      <span class="mi">3</span>
 </pre></div>
@@ -1185,7 +1189,7 @@ array<span class="o">([(</span><span class="m">40</span>,<span class="w"> </span
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcefn.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
-<p>wherein <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">correcting</span> <span class="pre">factor</span></code> (i.e., <span class="math">p</span> in the above expression), <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps is <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy and its variance is written in pip0_fn.d.</p>
+<p>wherein <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">correcting</span> <span class="pre">factor</span></code> (i.e., <span class="math notranslate nohighlight">\(p\)</span> in the above expression), <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps is <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy and its variance is written in pip0_fn.d.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>pip0_fn.d
 number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">1201</span>
 <span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0854289356563<span class="w">       </span><span class="m">1</span>.239503202184784E-004
@@ -1232,7 +1236,7 @@ print<span class="o">(</span>fort12<span class="o">)</span>
 <span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.98680471e-01,<span class="w">  </span><span class="m">4</span>.99068560e-02,<span class="w">  </span><span class="m">9</span>.98680471e-01,<span class="w"> </span>-1.09867801e+01,<span class="w"> </span>-1.11478923e+01,<span class="w">  </span><span class="m">1</span>.14530815e+01,<span class="w">  </span><span class="m">9</span>.02006051e-01,<span class="w">  </span><span class="m">5</span>.49970529e+00,<span class="w">  </span><span class="m">1</span>.87028590e+01,<span class="w">  </span><span class="m">2</span>.42025643e+01,<span class="w">  </span><span class="m">1</span>.24275504e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)]</span>
 </pre></div>
 </div>
-<p>When you do LRDMC calculations with several <span class="math">a</span>, extrapolation <span class="math">a \rightarrow 0</span> by <code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code></p>
+<p>When you do LRDMC calculations with several <span class="math notranslate nohighlight">\(a\)</span>, extrapolation <span class="math notranslate nohighlight">\(a \rightarrow 0\)</span> by <code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
 <span class="c1"># 2=(up to a^4) number of data 4 1</span>
 <span class="m">2</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
@@ -1253,7 +1257,7 @@ Coefficient<span class="w"> </span>found
 </div>
 </section>
 <section id="extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">
-<h2>Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)<a class="headerlink" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x" title="Permalink to this heading">¶</a></h2>
+<h2>Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)<a class="headerlink" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x" title="Permalink to this heading"></a></h2>
 <p>Please collect all LRDMC energies into <code class="docutils literal notranslate"><span class="pre">evsa.in</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
 <span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
@@ -1268,7 +1272,7 @@ Coefficient<span class="w"> </span>found
 <span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
 </pre></div>
 </div>
-<p>for a quadratic fitting i.e., <span class="math">E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4</span> and</p>
+<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># alat    LRDMC energy            Its error bar</span>
 <span class="w">  </span><span class="m">0</span>.10<span class="w">    </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
 </pre></div>
@@ -1285,7 +1289,7 @@ Coefficient<span class="w"> </span>found
 <span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="m">4</span>.237124912102820E-003<span class="w">  </span><span class="m">4</span>.688879337831868E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_2
 </pre></div>
 </div>
-<p>If you want to do a linear fitting, i.e, i.e., <span class="math">E(a)=E(0) + k_{1} \cdots a^2</span>, put evsa.in</p>
+<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
 <span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
 <span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
@@ -1304,10 +1308,10 @@ Coefficient<span class="w"> </span>found
 <span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="m">5</span>.210500236482952E-004<span class="w">  </span><span class="m">4</span>.472096760481409E-004<span class="w">  </span>&lt;-<span class="w"> </span>k_1
 </pre></div>
 </div>
-<p>Thus, we get <span class="math">E(a \to 0)</span> = -1.13808(8) Ha.</p>
+<p>Thus, we get <span class="math notranslate nohighlight">\(E(a \to 0)\)</span> = -1.13808(8) Ha.</p>
 </section>
 <section id="how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">
-<h2>How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)<a class="headerlink" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x" title="Permalink to this heading">¶</a></h2>
+<h2>How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)<a class="headerlink" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x" title="Permalink to this heading"></a></h2>
 <p>You can confirm energy convergence by typing:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_Energy.sh<span class="w"> </span>out_min
 </pre></div>
@@ -1416,13 +1420,13 @@ copyjas.x<span class="w"> </span>kpoints
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="05conversions.html" class="btn btn-neutral float-left" title="Wavefunction conversions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../01turborvb_tutorial/00index.html" class="btn btn-neutral float-right" title="TurboRVB tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07tutorial/00index.html" class="btn btn-neutral float-right" title="TurboRVB tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

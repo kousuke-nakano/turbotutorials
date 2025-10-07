@@ -12,7 +12,25 @@ Turbo-Genius tutorials
 Here are examples of various calculations with TurboRVB via Turbo-Genius.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
+
+   ./00intro/tutorial.rst
+   ./01Hydrogen_dimer/tutorial.rst
+   ./02NH3/tutorial.rst
+   ./03Hydrogen_chain/tutorial.rst
+   ./04SiO2_k_gamma/tutorial.rst
+   ./05Diamond_k_twist/tutorial.rst
+   ./06Diamond_k_twist_average/tutorial.rst
+   ./07hBN_finite_size_correction/tutorial.rst
+   ./08cBN_finite_size_correction/tutorial.rst
+   ./09cBN_finite_size_correction_primitive_cell/tutorial.rst
+
+[Advanced topics]
    
-   ./01prep/00prep_index.rst
-   ./02PySCF/00PySCF_index.rst
+.. toctree::
+   :maxdepth: 1
+
+   ./98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.rst
+   ./98advanced/02Hydrogen_dimer_structural_optimization/tutorial.rst
+   ./98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.rst
+   ./98advanced/04Carbon_dimer/tutorial.rst

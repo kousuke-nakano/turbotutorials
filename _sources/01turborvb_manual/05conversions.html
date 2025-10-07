@@ -6,15 +6,18 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wavefunction conversions &mdash; Turbotutorials Updated on 04/04/2025 documentation</title>
+  <title>Wavefunction conversions &mdash; Turbotutorials Updated on 07/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
 
   
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=a1bbd705"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=26ea414d"></script>
       <script src="../../_static/doctools.js?v=888ff710"></script>
       <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,7 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="00index.html">TurboRVB user manuals</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="00index.html">TurboRVB manuals</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01nutshell.html">TurboRVB in a nutshell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03wavefunction.html">Wavefunction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04DFT_driver.html">Initializations of Wavefunctions</a></li>
@@ -53,9 +56,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="06qmc_driver.html">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07tutorial/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08wf_optimization/tutorial.html">Wavefuntion optimization</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../01turborvb_tutorial/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_tutorial/00index.html">TurboWorkflows tutorials</a></li>
 </ul>
@@ -74,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="00index.html">TurboRVB user manuals</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">TurboRVB manuals</a></li>
       <li class="breadcrumb-item active">Wavefunction conversions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/01turborvb_manual/05conversions.rst.txt" rel="nofollow"> View page source</a>
@@ -86,7 +90,7 @@
            <div itemprop="articleBody">
              
   <section id="wavefunction-conversions">
-<h1>Wavefunction conversions<a class="headerlink" href="#wavefunction-conversions" title="Permalink to this heading">¶</a></h1>
+<h1>Wavefunction conversions<a class="headerlink" href="#wavefunction-conversions" title="Permalink to this heading"></a></h1>
 <p>TurboRVB implements different types of <em>Ansatz</em>:</p>
 <ol class="arabic simple">
 <li><p>Pfaffian (Pf)</p></li>
@@ -110,38 +114,38 @@ by new geminal matrix coefficients (<code class="docutils literal notranslate"><
 The following overlap between two geminals is maximized:</p></li>
 </ul>
 <blockquote>
-<div><div class="math">
-<p><span class="math">max \: Q = \frac{\left \langle g^{new}|g^{ori} \right \rangle^2}{\left \langle g^{new}|g^{new} \right \rangle \left \langle g^{ori}|g^{ori} \right \rangle} \,,</span></p>
-</div></div></blockquote>
-<p>in order to obtain new geminal matrix coefficients <span class="math">A^{new}_{\mu,\nu}</span>, defining
+<div><div class="math notranslate nohighlight">
+\[max \: Q = \frac{\left \langle g^{new}|g^{ori} \right \rangle^2}{\left \langle g^{new}|g^{new} \right \rangle \left \langle g^{ori}|g^{ori} \right \rangle} \,,\]</div>
+</div></blockquote>
+<p>in order to obtain new geminal matrix coefficients <span class="math notranslate nohighlight">\(A^{new}_{\mu,\nu}\)</span>, defining
 the new pairing function as</p>
-<div class="math">
-<p><span class="math">g^{new}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{new}_{\mu.\nu} \psi^{new}_\mu(\mathbf{i}) \psi^{new}_\nu(\mathbf{j}) \,,</span></p>
-</div><p>while the original geminal was given in terms of the parameter matrix <span class="math">A^{ori}_{\mu, \nu}</span>,</p>
-<div class="math">
-<p><span class="math">g^{ori}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{ori}_{\mu.\nu} \psi^{ori}_\mu(\mathbf{i}) \psi^{ori}_\nu(\mathbf{j}) .</span></p>
-</div><div class="admonition note">
+<div class="math notranslate nohighlight">
+\[g^{new}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{new}_{\mu.\nu} \psi^{new}_\mu(\mathbf{i}) \psi^{new}_\nu(\mathbf{j}) \,,\]</div>
+<p>while the original geminal was given in terms of the parameter matrix <span class="math notranslate nohighlight">\(A^{ori}_{\mu, \nu}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[g^{ori}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{ori}_{\mu.\nu} \psi^{ori}_\mu(\mathbf{i}) \psi^{ori}_\nu(\mathbf{j}) .\]</div>
+<div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="math">0 \leq Q \leq 1</span>; so, the larger the <span class="math">Q</span>, the better is the conversion.
-<span class="math">Q</span> approaches unity if the conversion is perfect.</p>
+<p><span class="math notranslate nohighlight">\(0 \leq Q \leq 1\)</span>; so, the larger the <span class="math notranslate nohighlight">\(Q\)</span>, the better is the conversion.
+<span class="math notranslate nohighlight">\(Q\)</span> approaches unity if the conversion is perfect.</p>
 </div>
 <ul>
 <li><p>The final case is to convert a JAGP <em>ansatz</em> to JPf. Since the JAGP <em>ansatz</em> is a special case
-of the JPf <em>ansatz</em>, where only <span class="math">G_{ud}</span> and <span class="math">G_{du}</span> terms are defined, the
+of the JPf <em>ansatz</em>, where only <span class="math notranslate nohighlight">\(G_{ud}\)</span> and <span class="math notranslate nohighlight">\(G_{du}\)</span> terms are defined, the
 conversion can just be realized by direct substitution.
 The primary challenge is to find a reasonable initialization for the two spin-triplet sectors,
-<span class="math">G_{uu}</span> and <span class="math">G_{dd}</span> that are not described in the JAGP and that otherwise
+<span class="math notranslate nohighlight">\(G_{uu}\)</span> and <span class="math notranslate nohighlight">\(G_{dd}\)</span> that are not described in the JAGP and that otherwise
 have to be set to 0. There are two possible approaches:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p>For polarized systems, we can build the <span class="math">G_{uu}</span> block of the matrix by using an even number of <span class="math">\{ \phi_i\}</span> and build an antisymmetric <span class="math">g_{uu}</span>, where the eigenvalues <span class="math">\lambda_k</span> are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization. Again, we emphasize that  this works only for polarized systems.</p></li>
-<li><p>The second approach that also works in a spin-unpolarized case is to determine a standard broken symmetry single determinant <em>ansatz</em> (<em>e.g.</em>, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, <em>i.e.</em>, the <span class="math">z</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math">G_{uu}</span> and <span class="math">G_{dd}</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of <span class="math">\pi/2</span> is applied around the <span class="math">y</span> direction. This operation maps <span class="math">|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i}, {{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}</span> to a Pf one <span class="math">{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this <em>ansatz</em>.</p></li>
+<li><p>For polarized systems, we can build the <span class="math notranslate nohighlight">\(G_{uu}\)</span> block of the matrix by using an even number of <span class="math notranslate nohighlight">\(\{ \phi_i\}\)</span> and build an antisymmetric <span class="math notranslate nohighlight">\(g_{uu}\)</span>, where the eigenvalues <span class="math notranslate nohighlight">\(\lambda_k\)</span> are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization. Again, we emphasize that  this works only for polarized systems.</p></li>
+<li><p>The second approach that also works in a spin-unpolarized case is to determine a standard broken symmetry single determinant <em>ansatz</em> (<em>e.g.</em>, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, <em>i.e.</em>, the <span class="math notranslate nohighlight">\(z\)</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math notranslate nohighlight">\(G_{uu}\)</span> and <span class="math notranslate nohighlight">\(G_{dd}\)</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of <span class="math notranslate nohighlight">\(\pi/2\)</span> is applied around the <span class="math notranslate nohighlight">\(y\)</span> direction. This operation maps <span class="math notranslate nohighlight">\(|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).\)</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math notranslate nohighlight">\({g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i}, {{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}\)</span> to a Pf one <span class="math notranslate nohighlight">\({g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).\)</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this <em>ansatz</em>.</p></li>
 </ol>
 </div></blockquote>
 </li>
 </ul>
 <section id="converting-a-wf-to-agp-convertfort10-x">
-<h2>Converting a WF to AGP (convertfort10.x)<a class="headerlink" href="#converting-a-wf-to-agp-convertfort10-x" title="Permalink to this heading">¶</a></h2>
+<h2>Converting a WF to AGP (convertfort10.x)<a class="headerlink" href="#converting-a-wf-to-agp-convertfort10-x" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Rename a <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> that you want to convert AGP as  <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code></p></li>
 <li><p>Prepare a template of an AGP <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> with new basis/new exponents… as <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code></p></li>
@@ -272,7 +276,7 @@ molecular WF in a AGP and then use the numerical version</p>
 </div>
 </section>
 <section id="converting-a-wf-to-agpn-sd-convertfort10mol-x">
-<h2>Converting a WF to AGPn/SD (convertfort10mol.x)<a class="headerlink" href="#converting-a-wf-to-agpn-sd-convertfort10mol-x" title="Permalink to this heading">¶</a></h2>
+<h2>Converting a WF to AGPn/SD (convertfort10mol.x)<a class="headerlink" href="#converting-a-wf-to-agpn-sd-convertfort10mol-x" title="Permalink to this heading"></a></h2>
 <p>This tool converts a generic input wf (<code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>) written with generic
 atomic orbitals into a new wf (<code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>) that includes  the corresponding
 molecular orbitals. The unpaired orbitals are always assumed to be the last molecular orbitals in fort.10_new. The number of molecular orbitals  appended in <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>
@@ -431,7 +435,7 @@ molecular = nmol+#unpaired orbitals (nelup-neldo)</p></td>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
