@@ -121,7 +121,7 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
     in which the diagonal part is directly enhanced by the `parr` parameter.
     This may stabilize the inversion.
 
-  - By specifying a parameter ``npbra`` in the ``&optimization`` section of the input parameter ``datasmin.input``, the convergence may speed up. The figure below plots the values of devmax along the optimization steps, with and without specifying ``npbra``.
+  - By adding ``-num_opt_param`` to the turbogenius command line or specifying a parameter ``npbra`` in the ``&optimization`` section of the input parameter ``datasmin.input``, the convergence may speed up. The figure below plots the values of devmax along the optimization steps, with and without specifying ``npbra``.
     
     .. image:: image/optimization_devmax.png
        :width: 70%

@@ -139,7 +139,7 @@ Next, generate an input file `datasvmc.input` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -step 1000 -nw 128
+    turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
     
@@ -181,7 +181,7 @@ Next, generate an input file `datasfn.input` for the LRDMC calculation:
     
 .. code-block:: bash
 
-    turbogenius lrdmc -g -etry -11.70 -alat -0.20 -step 1000 -nw 128
+    turbogenius lrdmc -g -etry -11.70 -alat -0.20 -steps 1000 -nw 128
 
 Then, run the calculation by typing:
     
@@ -196,7 +196,7 @@ Finally, run the postprocess:
     
 .. code-block:: bash
 
-    turbogenius lrdmc -bin 20 -corr 3 warmup 5
+    turbogenius lrdmc -post -bin 20 -corr 3 warmup 5
 
 We will get E at a=0.20 bohr in `pip0_fn.d`.
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs) &mdash; Turbotutorials Updated on 07/10/2025 documentation</title>
+  <title>Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs) &mdash; Turbotutorials Updated on 08/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=26ea414d"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d2c36517"></script>
       <script src="../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -355,7 +355,7 @@ cp<span class="w"> </span>../03_optimization/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Next, generate an input file <cite>datasvmc.input</cite> using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Then, run the VMC calculation, e.g., by typing:</p>
@@ -384,7 +384,7 @@ cp<span class="w"> </span>../../04_vmc/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Next, generate an input file <cite>datasfn.input</cite> for the LRDMC calculation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-11.70<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-step<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-11.70<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Then, run the calculation by typing:</p>
@@ -395,7 +395,7 @@ turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>Finally, run the postprocess:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>warmup<span class="w"> </span><span class="m">5</span>
 </pre></div>
 </div>
 <p>We will get E at a=0.20 bohr in <cite>pip0_fn.d</cite>.</p>

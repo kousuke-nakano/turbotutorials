@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs &mdash; Turbotutorials Updated on 07/10/2025 documentation</title>
+  <title>SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs &mdash; Turbotutorials Updated on 08/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=26ea414d"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=d2c36517"></script>
       <script src="../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -206,7 +206,7 @@ Instead, by choosing a <strong>negative</strong> value of the <cite>parr</cite> 
 <span class="math notranslate nohighlight">\({\rm diag}(S') = {\rm diag}(S) + {\rm parr}\)</span> is adopted
 in which the diagonal part is directly enhanced by the <cite>parr</cite> parameter.
 This may stabilize the inversion.</p></li>
-<li><p>By specifying a parameter <code class="docutils literal notranslate"><span class="pre">npbra</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;optimization</span></code> section of the input parameter <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code>, the convergence may speed up. The figure below plots the values of devmax along the optimization steps, with and without specifying <code class="docutils literal notranslate"><span class="pre">npbra</span></code>.</p>
+<li><p>By adding <code class="docutils literal notranslate"><span class="pre">-num_opt_param</span></code> to the turbogenius command line or specifying a parameter <code class="docutils literal notranslate"><span class="pre">npbra</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;optimization</span></code> section of the input parameter <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code>, the convergence may speed up. The figure below plots the values of devmax along the optimization steps, with and without specifying <code class="docutils literal notranslate"><span class="pre">npbra</span></code>.</p>
 <a class="reference internal image-reference" href="../../../_images/optimization_devmax.png"><img alt="../../../_images/optimization_devmax.png" class="align-center" src="../../../_images/optimization_devmax.png" style="width: 70%;" /></a>
 </li>
 </ul>
