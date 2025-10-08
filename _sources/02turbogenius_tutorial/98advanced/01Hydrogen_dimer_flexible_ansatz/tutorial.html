@@ -98,20 +98,13 @@
 <span id="turbogeniustutorial-9801-06"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">06 Convert JDFT WF to JAGP one</a><a class="headerlink" href="#convert-jdft-wf-to-jagp-one" title="Permalink to this heading"></a></h2>
 <p>We assume that we have finished all JDFT calculations following the steps described in the <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101"><span class="std std-ref">previous tutorial</span></a>.
 The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be done using <code class="docutils literal notranslate"><span class="pre">convertfort10</span></code> module of Turbo-Genius. Basically, we require two fort.10 files: the JDFT one (that we want to convert) and a JAGPs fort10 file which we will use as a template for conversion. The JDFT one should be named as <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> and the JAGPs one should be named as <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code>.</p>
-<p>Copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> in <code class="docutils literal notranslate"><span class="pre">03_vmc</span></code> to <code class="docutils literal notranslate"><span class="pre">06_convert</span></code> and rename it as <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>, and copy makefort10.input in <code class="docutils literal notranslate"><span class="pre">01_trial_wavefunction</span></code> directory.</p>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> in <code class="docutils literal notranslate"><span class="pre">03_vmc</span></code> to <code class="docutils literal notranslate"><span class="pre">06_convert</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>./06_convert/
 cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/fort.10<span class="w"> </span>.
 cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat<span class="w"> </span>.
-cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/01_trial_wavefunction/makefort10.input<span class="w"> </span>.
-
-cp<span class="w"> </span>./fort.10<span class="w"> </span>./fort.10_in
 
 turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps
 </pre></div>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Here, onebody, twobody, and basis set exponents are read from <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>

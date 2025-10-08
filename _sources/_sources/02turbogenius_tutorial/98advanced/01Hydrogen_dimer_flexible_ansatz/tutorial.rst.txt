@@ -23,22 +23,15 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 We assume that we have finished all JDFT calculations following the steps described in the :ref:`previous tutorial <turbogeniustutorial_0101>`.
 The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be done using ``convertfort10`` module of Turbo-Genius. Basically, we require two fort.10 files: the JDFT one (that we want to convert) and a JAGPs fort10 file which we will use as a template for conversion. The JDFT one should be named as ``fort.10_in`` and the JAGPs one should be named as ``fort.10_out``.
 
-Copy ``fort.10`` in ``03_vmc`` to ``06_convert`` and rename it as ``fort.10_in``, and copy makefort10.input in ``01_trial_wavefunction`` directory.
+Copy ``fort.10`` in ``03_vmc`` to ``06_convert``.
 
 .. code-block:: bash
     
     cd ./06_convert/
     cp ../../01Hydrogen_dimer_pyscf/03_vmc/fort.10 .
     cp ../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat .
-    cp ../../01Hydrogen_dimer_pyscf/01_trial_wavefunction/makefort10.input .
-
-    cp ./fort.10 ./fort.10_in
 
     turbogenius convertwf -to agps
-
-.. warning::
-
-    Here, onebody, twobody, and basis set exponents are read from ``fort.10_in``.
 
 .. warning::
 
