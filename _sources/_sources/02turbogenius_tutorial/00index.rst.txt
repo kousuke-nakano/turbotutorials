@@ -24,6 +24,7 @@ Here are examples of various calculations with TurboRVB via Turbo-Genius.
    ./07hBN_finite_size_correction/tutorial.rst
    ./08cBN_finite_size_correction/tutorial.rst
    ./09cBN_finite_size_correction_primitive_cell/tutorial.rst
+   ./10Benzene/tutorial.rst
 
 [Advanced topics]
    
