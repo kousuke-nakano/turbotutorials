@@ -35,3 +35,5 @@ Here are examples of various calculations with TurboRVB via Turbo-Genius.
    ./98advanced/02Hydrogen_dimer_structural_optimization/tutorial.rst
    ./98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.rst
    ./98advanced/04Carbon_dimer/tutorial.rst
+   ./98advanced/04Carbon_dimer/tutorial.rst
+   ./98advanced/05Benzene/tutorial.rst

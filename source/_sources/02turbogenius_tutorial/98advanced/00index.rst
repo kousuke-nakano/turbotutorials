@@ -15,3 +15,4 @@ Here are advanced examples of various calculations with TurboRVB via Turbo-Geniu
    ./02Hydrogen_dimer_structural_optimization/tutorial.rst
    ./03Hydrogen_dimer_builtin_DFT/tutorial.rst
    ./04Carbon_dimer/tutorial.rst
+   ./05Benzene/tutorial.rst
