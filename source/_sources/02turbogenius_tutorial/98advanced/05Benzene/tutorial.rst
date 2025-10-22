@@ -17,6 +17,7 @@ Benzene: Kekulé vs. Resonating Structures
 --------------------------------------------------------------------
 
 In this tutorial, following the benzene calculation from the :ref:`previous chapter <turbogeniustutorial_1001>`, we handle a slightly more *advanced* task. Concretely, we will *schematically* estimate the energy difference between (i) the classical electronic description of benzene (the **Kekulé** structure) and (ii) the **resonating aromatic** structure (the correct delocalized picture). To do so, we first extract the carbon :math:`p_z` orbitals that form the :math:`\pi` electron cloud.
+All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
 .. _turbogeniustutorial_9805_01:
 
@@ -39,7 +40,7 @@ This projects the wavefunction onto an **AGP** (Antisymmetrized Geminal Power) f
 
 The obtained hybrid orbitals are visualized in **XSF** format, which can be visualized with **VESTA**. 
 
-.. image:: orbital_atom_1_hyb_2.jpg
+.. image:: image/orbital_atom_1_hyb_2.jpg
    :width: 70%
    :align: center
 
@@ -88,7 +89,7 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
    - 12–17 → **keep as is** (finite)
    - 17–22 → **set to 0**
    - 22–27 → **keep as is** (finite)
-   - 27–7  → **set to 0**
+   - 27–2  → **set to 0**
 
    Edit these entries in the ``detmat`` list accordingly.
 
@@ -99,7 +100,7 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
    For the Kekulé pattern:
 
    - 2–7, 12–17, 22–27 → **optimize** (set flag to ``1``)
-   - 7–12, 17–22, 27–7 → **fixed to 0** (ensure value is 0 and set flag to ``-1``)
+   - 7–12, 17–22, 27–2 → **fixed to 0** (ensure value is 0 and set flag to ``-1``)
 
    Concretely, keep only the following **three** lines with flag ``1`` and set **all other** entries’ first column to ``-1``:
 
@@ -120,8 +121,9 @@ Once optimized, evaluate the energy with the optimized wavefunction:
 1. Generate an input file for VMC optimization:
       
    .. code-block:: bash
-        cd ../11_Kekule_vmcopt
-        turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
+
+      cd ../11_Kekule_vmcopt
+      turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
 
 2. Run the VMC optimization, e,g, as follows:
       
@@ -149,30 +151,30 @@ Then, you can evaluate the energy.
 
 .. code-block:: bash
 
-   cd ../12_Kekule_vmc
-   cp ../11_Kekule_vmcopt/fort.10 .
-   cp ../11_Kekule_vmcopt/pseudo.dat .
+      cd ../12_Kekule_vmc
+      cp ../11_Kekule_vmcopt/fort.10 .
+      cp ../11_Kekule_vmcopt/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 3000 -nw 128
+      turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
     
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    export TURBOVMC_RUN_COMMAND
+      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      export TURBOVMC_RUN_COMMAND
 
-    turbogenius vmc -r
+      turbogenius vmc -r
 
 Finally, run the postprocess:
 
 .. code-block:: bash
 
-    turbogenius vmc -post -bin 20 -warmup 10
+      turbogenius vmc -post -bin 20 -warmup 10
 
 Check the reblocked total energy and error in the file `pip0.d`.
 
@@ -186,14 +188,14 @@ Now set up the **resonating** (fully delocalized) :math:`\pi`-bond picture by al
 
 .. code-block:: bash
 
-   cd ../13_Resonating_vmcopt
-   cp ../10_hybrid_orbitals/fort.10 .
-   cp ../10_hybrid_orbitals/pseudo.dat .
-   more fort.10
+      cd ../13_Resonating_vmcopt
+      cp ../10_hybrid_orbitals/fort.10 .
+      cp ../10_hybrid_orbitals/pseudo.dat .
+      vi fort.10
 
 For the six :math:`p_z` indices (2, 7, 12, 17, 22, 27), enable optimization for **all** ring-adjacent pairs:
 
-- 2–7, 7–12, 12–17, 17–22, 22–27, 27–2 (note: original text used 27–7; use your file’s ordering)
+- 2–7, 7–12, 12–17, 17–22, 22–27, 27–2
 
 Thus, in the ``# Grouped par.`` block, keep these **six** lines with flag ``1`` and set all other entries’ first column to ``-1``:
 
@@ -208,7 +210,7 @@ Thus, in the ``# Grouped par.`` block, keep these **six** lines with flag ``1`` 
 
 .. note::
 
-   Depending on how pairs are ordered in your ``fort.10``, you may see (27, 7) instead of (27, 2).  
+   Depending on how pairs are ordered in your ``fort.10``, you may see (2, 27) instead of (27, 2).  
    Use the six **nearest-neighbor** pairs consistently around the ring, matching your index ordering.
 
 .. _turbogeniustutorial_9805_06:
@@ -221,8 +223,9 @@ Optimize this resonating AGP wavefunction, then evaluate the energy as in the Ke
 1. Generate an input file for VMC optimization:
       
    .. code-block:: bash
-        cd ../13_Resonating_vmcopt
-        turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
+
+      cd ../13_Resonating_vmcopt
+      turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
 
 2. Run the VMC optimization, e,g, as follows:
       
@@ -250,30 +253,30 @@ Then, you can evaluate the energy.
 
 .. code-block:: bash
 
-   cd ../14_Resonating_vmc
-   cp ../13_Resonating_vmcopt/fort.10 .
-   cp ../13_Resonating_vmcopt/pseudo.dat .
+      cd ../14_Resonating_vmc
+      cp ../13_Resonating_vmcopt/fort.10 .
+      cp ../13_Resonating_vmcopt/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
 .. code-block:: bash
 
-    turbogenius vmc -g -steps 3000 -nw 128
+      turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
     
 .. code-block:: bash
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    export TURBOVMC_RUN_COMMAND
+      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      export TURBOVMC_RUN_COMMAND
 
-    turbogenius vmc -r
+      turbogenius vmc -r
 
 Finally, run the postprocess:
 
 .. code-block:: bash
 
-    turbogenius vmc -post -bin 20 -warmup 10
+      turbogenius vmc -post -bin 20 -warmup 10
 
 Check the reblocked total energy and error in the file `pip0.d`.
 
