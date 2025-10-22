@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benzene: Kekulé vs. Resonating Structures &mdash; Turbotutorials Updated on 21/10/2025 documentation</title>
+  <title>Benzene: Kekulé vs. Resonating Structures &mdash; Turbotutorials Updated on 22/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=3dc0c86b"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=ba4d3e46"></script>
       <script src="../../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -98,7 +98,8 @@
 </nav>
 <section id="introduction">
 <span id="turbogeniustutorial-9805-00"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
-<p>In this tutorial, following the benzene calculation from the <a class="reference internal" href="../../10Benzene/tutorial.html#turbogeniustutorial-1001"><span class="std std-ref">previous chapter</span></a>, we handle a slightly more <em>advanced</em> task. Concretely, we will <em>schematically</em> estimate the energy difference between (i) the classical electronic description of benzene (the <strong>Kekulé</strong> structure) and (ii) the <strong>resonating aromatic</strong> structure (the correct delocalized picture). To do so, we first extract the carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals that form the <span class="math notranslate nohighlight">\(\pi\)</span> electron cloud.</p>
+<p>In this tutorial, following the benzene calculation from the <a class="reference internal" href="../../10Benzene/tutorial.html#turbogeniustutorial-1001"><span class="std std-ref">previous chapter</span></a>, we handle a slightly more <em>advanced</em> task. Concretely, we will <em>schematically</em> estimate the energy difference between (i) the classical electronic description of benzene (the <strong>Kekulé</strong> structure) and (ii) the <strong>resonating aromatic</strong> structure (the correct delocalized picture). To do so, we first extract the carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals that form the <span class="math notranslate nohighlight">\(\pi\)</span> electron cloud.
+All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../_downloads/ce63727877d8af6dc36ce2a853eecbbe/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </section>
 <section id="extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals">
 <span id="turbogeniustutorial-9805-01"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">01 Extracting carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals and plotting molecular orbitals</a><a class="headerlink" href="#extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals" title="Permalink to this heading"></a></h2>
@@ -174,7 +175,7 @@ This region lists the <strong>indices</strong> and <strong>values</strong> of th
 <li><p>12–17 → <strong>keep as is</strong> (finite)</p></li>
 <li><p>17–22 → <strong>set to 0</strong></p></li>
 <li><p>22–27 → <strong>keep as is</strong> (finite)</p></li>
-<li><p>27–7  → <strong>set to 0</strong></p></li>
+<li><p>27–2  → <strong>set to 0</strong></p></li>
 </ul>
 <p>Edit these entries in the <code class="docutils literal notranslate"><span class="pre">detmat</span></code> list accordingly.</p>
 </li>
@@ -184,7 +185,7 @@ Here, columns 2 and 3 are the pair indices (as above), and <strong>column 1</str
 <p>For the Kekulé pattern:</p>
 <ul class="simple">
 <li><p>2–7, 12–17, 22–27 → <strong>optimize</strong> (set flag to <code class="docutils literal notranslate"><span class="pre">1</span></code>)</p></li>
-<li><p>7–12, 17–22, 27–7 → <strong>fixed to 0</strong> (ensure value is 0 and set flag to <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</p></li>
+<li><p>7–12, 17–22, 27–2 → <strong>fixed to 0</strong> (ensure value is 0 and set flag to <code class="docutils literal notranslate"><span class="pre">-1</span></code>)</p></li>
 </ul>
 <p>Concretely, keep only the following <strong>three</strong> lines with flag <code class="docutils literal notranslate"><span class="pre">1</span></code> and set <strong>all other</strong> entries’ first column to <code class="docutils literal notranslate"><span class="pre">-1</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1           2           7
@@ -200,7 +201,12 @@ Here, columns 2 and 3 are the pair indices (as above), and <strong>column 1</str
 <p>After editing, run the wavefunction optimization in this directory (your usual VMC optimization workflow).
 Once optimized, evaluate the energy with the optimized wavefunction:</p>
 <ol class="arabic">
-<li><p>Generate an input file for VMC optimization:</p></li>
+<li><p>Generate an input file for VMC optimization:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../11_Kekule_vmcopt
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">50</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005
+</pre></div>
+</div>
+</li>
 <li><p>Run the VMC optimization, e,g, as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
 <span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
@@ -248,12 +254,12 @@ turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
 cp<span class="w"> </span>../10_hybrid_orbitals/fort.10<span class="w"> </span>.
 cp<span class="w"> </span>../10_hybrid_orbitals/pseudo.dat<span class="w"> </span>.
-more<span class="w"> </span>fort.10
+vi<span class="w"> </span>fort.10
 </pre></div>
 </div>
 <p>For the six <span class="math notranslate nohighlight">\(p_z\)</span> indices (2, 7, 12, 17, 22, 27), enable optimization for <strong>all</strong> ring-adjacent pairs:</p>
 <ul class="simple">
-<li><p>2–7, 7–12, 12–17, 17–22, 22–27, 27–2 (note: original text used 27–7; use your file’s ordering)</p></li>
+<li><p>2–7, 7–12, 12–17, 17–22, 22–27, 27–2</p></li>
 </ul>
 <p>Thus, in the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Grouped</span> <span class="pre">par.</span></code> block, keep these <strong>six</strong> lines with flag <code class="docutils literal notranslate"><span class="pre">1</span></code> and set all other entries’ first column to <code class="docutils literal notranslate"><span class="pre">-1</span></code>:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1           2           7
@@ -266,7 +272,7 @@ more<span class="w"> </span>fort.10
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Depending on how pairs are ordered in your <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, you may see (27, 7) instead of (27, 2).
+<p>Depending on how pairs are ordered in your <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, you may see (2, 27) instead of (27, 2).
 Use the six <strong>nearest-neighbor</strong> pairs consistently around the ring, matching your index ordering.</p>
 </div>
 </section>
@@ -274,7 +280,12 @@ Use the six <strong>nearest-neighbor</strong> pairs consistently around the ring
 <span id="turbogeniustutorial-9805-06"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">06 Optimization (Resonating)</a><a class="headerlink" href="#optimization-resonating" title="Permalink to this heading"></a></h2>
 <p>Optimize this resonating AGP wavefunction, then evaluate the energy as in the Kekulé case.</p>
 <ol class="arabic">
-<li><p>Generate an input file for VMC optimization:</p></li>
+<li><p>Generate an input file for VMC optimization:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">50</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005
+</pre></div>
+</div>
+</li>
 <li><p>Run the VMC optimization, e,g, as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
 <span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
