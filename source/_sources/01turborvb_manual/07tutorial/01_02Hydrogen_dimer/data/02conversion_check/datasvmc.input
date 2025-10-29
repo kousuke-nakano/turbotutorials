@@ -1,0 +1,18 @@
+&simulation 
+itestr4=2 
+ngen=15000
+maxtime=86000
+iopt=1
+/
+&pseudo  
+/
+&vmc
+epscut=1.0d-10 ! a finite number when calc. forces
+/
+&optimization 
+/
+&readio
+iread=3
+/
+&parameters  
+/
