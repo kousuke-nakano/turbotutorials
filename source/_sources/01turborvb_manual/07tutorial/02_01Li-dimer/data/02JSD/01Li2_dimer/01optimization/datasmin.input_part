@@ -1,0 +1,21 @@
+&optimization
+  molopt=-1
+  ...
+/
+
+&parameters
+  iesd=1
+  iesfree=1
+  iessw=1
+/
+
+&molecul
+  ax=0.10
+  ay=0.10
+  az=0.10
+  nx=150
+  ny=150
+  nz=250
+  nmolmin=3
+  nmolmax=3
+/

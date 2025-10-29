@@ -44,121 +44,29 @@ Li\ :sub:`2` dimer
 01-01 Li\ :sub:`2` dimer: Preparing a wave function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Prepare Li\ :sub:`2` dimer structure, :download:`Li2.xyz <./Li2.xyz>` ::
+Prepare Li\ :sub:`2` dimer structure, :download:`Li2.xyz <data/Li2.xyz>`:
 
-      2
-      comment line
-	  Li 0.0000 0.0000 -2.52589975576638451762
-	  Li 0.0000 0.0000 2.52589975576638451762
+.. literalinclude:: data/Li2.xyz
+   :language: text
 
 and prepare ``makefort10.input`` and ``convertfort10mol.input`` and 
 
-.. code-block:: bash
+.. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input
+   :language: fortran
 
-    # makefort10.input
-    
-    &system
-    posunits='bohr'
-    natoms=2
-    ntyp=1
-    pbcfort10=.false.
-    /
-    
-    &electrons
-    twobody=-15
-    twobodypar=1.00
-    onebodypar=1.00
-    no_4body_jas=.false.
-    neldiff=0
-    /
-    
-    &symmetries
-    eqatoms=.true.
-    rot_det=.true.
-    symmagp=.true.
-    /
-    
-    ATOMIC_POSITIONS 
-    3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  -2.5259024244810400
-    3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  2.5259024244810400
-    /
-    
-    ATOM_3
-    &shells
-    nshelldet=11
-    nshelljas=5
-    /
-    1   1   16
-    1   14.24
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   16
-    1   0.07345
-    1   1   16
-    1   0.02805
-    1   1   36
-    1   1.534
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
-    1   1   36
-    1   0.02403
-    1   1   68
-    1   0.1144
-    #  Parameters atomic Jastrow wf 
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
-
-
-.. code-block:: bash
-
-    # convertfort10mol.input
-
-    &control
-    epsdgm=-1d-14
-    /
-    &mesh_info
-    ax=0.20
-    nx=64
-    ny=68
-    nz=128
-    /
-    &molec_info
-    nmol=3
-    nmolmax=3
-    nmolmin=3
-    /
+.. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/convertfort10mol.input
+   :language: fortran
 
 You may obtain makefort10.input. Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
   
-    kosukenoMBP% ./makefort10.sh
+    ./makefort10.sh
 
-where,
+which contains
 
-.. code-block:: bash
-
-    # makefort10.sh
-    kosukenoMBP% cat makefort10.sh
-    makefort10.x < makefort10.input > out_make
-    mv fort.10_new fort.10
-    mv fort.10 fort.10_in
-    convertfort10mol.x < convertfort10mol.input > out_mol
-    mv fort.10_new fort.10
+.. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.sh
+   :language: bash
 
 The generated wave function ``fort.10`` is a symmetric Jastrow Antisymmetrized Geminal Power (JsAGPs).
 
@@ -170,47 +78,8 @@ The generated wave function ``fort.10`` is a symmetric Jastrow Antisymmetrized G
 The next step is to generate a trial wave function using the built-in DFT code.
 This is the minimal input file:
 
-.. code-block:: bash
-    
-    # prep.input
-    &simulation
-    itestr4=-4
-    iopt=1
-    double_mesh=.true
-    /
-    &pseudo
-    /
-    &vmc
-    /
-    &optimization
-    molopt=1
-    /
-    &readio
-    /
-    &parameters
-    /
-    &molecul
-    ax=0.2
-    ay=0.2
-    az=0.2
-    nx=64
-    ny=64
-    nz=128
-    /
-    &dft
-    maxit=50
-    epsdft=1d-5
-    mixing=1.0d0
-    typedft=1
-    optocc=0
-    nelocc=3
-    l0_at=0.8320335292207617
-    scale_z=5
-    scale_hartree=-1.00
-    corr_hartree=.true.
-    linear=.false.
-    /
-    2 2 2
+.. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/01DFT/prep.input
+   :language: fortran    
 
 Then, you can run DFT by typing:
 
@@ -222,7 +91,6 @@ You can optimize one-body Jastrow.
 
 .. code-block:: bash
 
-    #onebody-script for bash on mac
     b_onebody_list="0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5"
     
     root_dir=`pwd`
@@ -230,9 +98,9 @@ You can optimize one-body Jastrow.
     do
         mkdir onebody_$b_onebody
         cd onebody_$b_onebody
-        cp $root_dir/temp/fort.10 ./
-        cp $root_dir/temp/prep.input ./
-        gsed -i -e "s/b_onebody/$b_onebody/g" fort.10
+        cp $root_dir/template/fort.10 ./
+        cp $root_dir/template/prep.input ./
+        sed -i -e "s/b_onebody/$b_onebody/g" fort.10
         prep-serial.x < prep.input > out_prep
         cd $root_dir
     done
@@ -251,7 +119,7 @@ You may get
 
 .. code-block:: bash
     
-    kosukenoMBP% cat result.out 
+    % cat result.out 
     b_onebody dft energy
     0.5  -14.740030455469444
     0.6  -14.746632760686529
@@ -268,7 +136,9 @@ You may get
 Here, the DFT double-grid integration scheme is employed.
 
 ``l0_at`` The radius where the double-grid is used (Bohr)
+
 ``scale_z`` The number of grids used for the double grid. Indeed, the grid sizes in the double-grid region are ``ax/scale_z``, ``ay/scale_z``, and ``ax/scale_z``
+
 ``scale_hartree``, ``corr_hartree``, and ``linear`` can be default values.
 
 
@@ -279,20 +149,50 @@ Here, the DFT double-grid integration scheme is employed.
 One should refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_02>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory and copy the trial wavefunction generated by the DFT calculation at the optimal onebody Jastrow term:
 
-    cd 02optimization/
-    cp ../01trial_wavefunction/02onebody_jastrow_opt/onebody_0.9/fort.10_new fort.10
-    cp fort.10 fort.10_dft
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min &
-    rm -r turborvb.scratch/
-    plot_Energy.sh out_min
-    plot_devmax.sh out_min
-    readalles.x << ____EOS
-    1 41 10 
-    0 
-    1000 
-    ____EOS
+   .. code-block:: bash
+
+      cd 02optimization
+      cp ../01trial_wavefunction/02onebody_jastrow_opt/onebody_0.9/fort.10_new fort.10
+      cp fort.10 fort.10_dft
+
+2. Prepare an input file ``datasmin.input``
+
+3. Start a VMC optimization:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+   After finishing the calculation, you can delete template files:
+
+   .. code-block:: bash
+
+      rm -r turborvb.scratch/
+
+4. Confirm energy convergence by typing:
+
+   .. code-block:: bash
+
+      plot_Energy.sh out_min
+
+   Check the convergence of devmax by typing:
+
+   .. code-block:: bash
+
+      plot_devmax.sh out_min
+
+5. Next step is to average optimized variational parameters.
+
+   .. code-block:: bash
+
+      readalles.x << ____EOS
+      1 41 1 0 
+      0 
+      1000 
+      ____EOS
+
 
 .. _turborvbtutorial_0201_01_04:
 
@@ -302,29 +202,67 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_03>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory, and copy the trial wavefunction:
 
-    cd 03vmc/
-    cp ../02optimization/fort.10 ./
-    cp ../02optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 20 5 1
-    cat pip0.d | grep "Energy"
-    ...
-    number of bins read =       14996
-    Energy =  -14.9757876300445       4.853630781726438E-004
-    Variance square =  7.979609547808308E-002  2.379635260709342E-004
-    Est. energy error bar =  4.748991835467470E-004  2.848268581908139E-006
-    Est. corr. time  =   3.39078657629560       3.817021016290687E-002
+   .. code-block:: bash
+		   
+      cd 03vmc/
+      cp ../02optimization/fort.10 ./
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../02optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 20 5 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
+
+   .. code-block:: bash
+
+      % cat pip0.d
+      ...
+      number of bins read =       14996
+      Energy =  -14.9757876300445       4.853630781726438E-004
+      Variance square =  7.979609547808308E-002  2.379635260709342E-004
+      Est. energy error bar =  4.748991835467470E-004  2.848268581908139E-006
+      Est. corr. time  =   3.39078657629560       3.817021016290687E-002
+
 
 VMC (JDFT) = -14.9759(9)  Ha
 
@@ -337,29 +275,12 @@ VMC (JDFT) = -14.9759(9)  Ha
 One should refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_04>` for the details.
 Here, only needed explanations and commands are shown.
 
-.. code-block:: bash
+First, prepare an input file ``datasfn.input`` for LRDMC calculation:
 
-    # datasfn.input 
-    &simulation
-    itestr4=-6
-    ngen=200000
-    iopt=2
-    /
-    &pseudo
-    /
-    &dmclrdmc
-    tbra=0.1d0
-    etry=-15.00d0
-    alat=-0.20
-    !alat2=0.0d0
-    iesrandoma=.true.
-    /
-    &readio
-    /
-    &parameters
-    /
+.. literalinclude:: data/01JDFT/01Li2_dimer/04lrdmc/datasfn.input
+   :language: fortran
 
-Here are brief explanations of the variables for a LRDMC calculation:
+Here are brief explanations of the variables for the LRDMC calculation:
 
 **&dmclrdmc section**
 
@@ -370,9 +291,9 @@ Here are brief explanations of the variables for a LRDMC calculation:
     Av. num. of survived walkers/ # walkers in the branching
     0.9939
 
-if the number is too small, try smaller ``tbra``.
+If the number is too small, try smaller ``tbra``.
 
-``etry`` Put a DFT of VMC energy. :math:`\Gamma` in eq.6 of the review_ paper is set 2 :math:`\times` ``etry``
+``etry`` Put a DFT of VMC energy. :math:`\Gamma` in Eq.6 of the review_ paper is set 2 :math:`\times` ``etry``
 
 ``alat`` The lattice space for discretizing the Hamitonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See. Nakano's paper), put a positive value and set ``iesrandoma=.true.``. This trick is needed for satisfying the detailed-valance condition.
 
@@ -387,21 +308,23 @@ Prepare different working directories, copy ``fort.10`` to each directory, and s
     alat_1.2Z
     alat_1.5Z
 
-And then, run each LRDMC calculation after generating initial 
-electron configurations at the VMC level.
+And then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
 
 .. code-block:: bash
 
-    cd ../03lrdmc/
+
+    cd 03lrdmc/
     cp ../02vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
@@ -418,7 +341,7 @@ electron configurations at the VMC level.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
 One has collected all LRDMC energis into evsa.in 
 
@@ -459,116 +382,30 @@ Li\ :sub:`2` dimer
 01-06 Li atom: preparation of a wave function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-and prepare ``makefort10.input`` and ``convertfort10mol.input`` and 
+First, prepare ``makefort10.input`` and ``convertfort10mol.input``:
 
-.. code-block:: bash
+makefort10.input:
 
-    # makefort10.input
-    
-    &system
-    posunits='bohr'
-    natoms=1
-    ntyp=1
-    pbcfort10=.false.
-    /
-    
-    &electrons
-    twobody=-15
-    twobodypar=1.00
-    onebodypar=0.90
-    no_4body_jas=.false.
-    neldiff=1  !! unpaired electrons
-    /
-    
-    &symmetries
-    eqatoms=.true.
-    rot_det=.true.
-    symmagp=.true.
-    /
-    
-    ATOMIC_POSITIONS 
-    3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  0.0000000000000000
-    /
-    
-    ATOM_3
-    &shells
-    nshelldet=11
-    nshelljas=5
-    /
-    1   1   16
-    1   14.24
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   16
-    1   0.07345
-    1   1   16
-    1   0.02805
-    1   1   36
-    1   1.534
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
-    1   1   36
-    1   0.02403
-    1   1   68
-    1   0.1144
-    #  Parameters atomic Jastrow wf 
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
+.. literalinclude:: data/01JDFT/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input
+   :language: fortran
 
+convertfort10mol.input:
 
-.. code-block:: bash
+.. literalinclude:: data/01JDFT/02Li_atom/01trial_wavefunction/00makefort10/convertfort10mol.input
+   :language: fortran
 
-    # convertfort10mol.input
-
-    &control
-    epsdgm=-1d-14
-    /
-    &mesh_info
-    ax=0.20
-    nx=64
-    ny=64
-    nz=64
-    /
-    &molec_info
-    nmol=1
-    nmolmax=1
-    nmolmin=1
-    /
-
-You may obtain makefort10.input. Next, you can run ``makefort10.sh``:
+Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
   
-    kosukenoMBP% ./makefort10.sh
+    % ./makefort10.sh
 
-where,
+which contains
 
-.. code-block:: bash
-
-    # makefort10.sh
-    kosukenoMBP% cat makefort10.sh
-    makefort10.x < makefort10.input > out_make
-    mv fort.10_new fort.10
-    mv fort.10 fort.10_in
-    convertfort10mol.x < convertfort10mol.input > out_mol
-    mv fort.10_new fort.10
+.. literalinclude:: data/01JDFT/02Li_atom/01trial_wavefunction/00makefort10/makefort10.sh
+   :language: bash
 
 The generated wave function ``fort.10`` is a symmetric Jastrow Antisymmetrized Geminal Power (JsAGPs).
-
 
 
 .. _turborvbtutorial_0201_01_07:
@@ -580,7 +417,7 @@ Here, only needed commands are shown.
 
 .. code-block:: bash
 
-    mpirun -np 4 prep-mpi.x < prep.input > out_prep
+    prep-serial.x < prep.input > out_prep
 
 
 .. _turborvbtutorial_0201_01_08:
@@ -591,20 +428,49 @@ Here, only needed commands are shown.
 One should refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_02>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory and copy the trial wavefunction generated by the DFT calculation at the optimal onebody Jastrow term:
 
-    cd 02optimization/
-    cp ../01trial_wavefunction/01DFT/fort.10_new fort.10 
-    cp fort.10 fort.10_dft
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min &
-    rm -r turborvb.scratch/
-    plot_Energy.sh out_min
-    plot_devmax.sh out_min
-    readalles.x << ____EOS
-    1 41 10 
-    0 
-    1000 
-    ____EOS
+   .. code-block:: bash
+
+      cd 02optimization
+      cp ../01trial_wavefunction/01DFT/fort.10_new fort.10
+      cp fort.10 fort.10_dft
+
+2. Prepare an input file ``datasmin.input``
+
+3. Start a VMC optimization:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+   After finishing the calculation, you can delete template files:
+
+   .. code-block:: bash
+
+      rm -r turborvb.scratch/
+
+4. Confirm energy convergence by typing:
+
+   .. code-block:: bash
+
+      plot_Energy.sh out_min
+
+   Check the convergence of devmax by typing:
+
+   .. code-block:: bash
+
+      plot_devmax.sh out_min
+
+5. Next step is to average optimized variational parameters.
+
+   .. code-block:: bash
+
+      readalles.x << ____EOS
+      1 41 1 0
+      0 
+      1000 
+      ____EOS
 
 
 .. _turborvbtutorial_0201_01_09:
@@ -615,29 +481,65 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_03>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory, and copy the trial wavefunction:
 
-    cd 03vmc/
-    cp ../02optimization/fort.10 ./
-    cp ../02optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 20 5 1
-    cat pip0.d 
-    ...
-    number of bins read =       14996
-    Energy =  -7.47539042703452       2.682804200575495E-004
-    Variance square =  2.847683107759093E-002  1.295272783812896E-004
-    Est. energy error bar =  2.683664075931440E-004  1.733280980510503E-006
-    Est. corr. time  =   3.03421296313493       3.544802996972372E-002
+   .. code-block:: bash
+		   
+      cd 03vmc/
+      cp ../02optimization/fort.10 ./
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../02optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 20 5 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
+
+   .. code-block:: bash
+
+      number of bins read =       14996
+      Energy =  -7.47539042703452       2.682804200575495E-004
+      Variance square =  2.847683107759093E-002  1.295272783812896E-004
+      Est. energy error bar =  2.683664075931440E-004  1.733280980510503E-006
+      Est. corr. time  =   3.03421296313493       3.544802996972372E-002
+
 
 VMC (JDFT) = -14.9759(9)  Ha  (Li\ :sub:`2` dimer)
 VMC (JDFT) =  -7.4754(3)  Ha  (Li atom)
@@ -654,18 +556,31 @@ Li\ :sub:`2` dimer
 One should refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_04>` for the details.
 Here, only needed commands are shown.
 
+Prepare different working directories for each value of alat, copy ``fort.10`` to each directory, and create an input file ``datasfn.input`` with the corresponding ``alat``:
+
 .. code-block:: bash
 
-    cd ../03lrdmc/
+    alat_0.8Z
+    alat_1.0Z
+    alat_1.2Z
+    alat_1.5Z
+
+Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
+    
+.. code-block:: bash
+
+    cd 03lrdmc/
     cp ../02vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+    
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
@@ -682,7 +597,7 @@ Here, only needed commands are shown.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
 One has collected all LRDMC energis into evsa.in 
 
@@ -735,84 +650,71 @@ ansatz is called JSD.
 In this case, one does not have to convert the ansatz, just put the 
 following section in ``datasmin.input`` at the optimization step.
 
-.. code-block:: bash
+datasmin.input for the Li dimer:
 
-    # datasmin.input for the Li dimer
-    
-    &optimization
-      molopt=-1
-      ...
-    /
-    
-    &parameters
-      iesd=1
-      iesfree=1
-      iessw=1
-    /
-    
-    &molecul
-      ax=0.10
-      ay=0.10
-      az=0.10
-      nx=150
-      ny=150
-      nz=250
-      nmolmin=3
-      nmolmax=3
-    /
+.. literalinclude:: data/02JSD/01Li2_dimer/01optimization/datasmin.input_part
+   :language: fortran
 
-.. code-block:: bash
+datasmin.input for the Li atom:
 
-    # datasmin.input for the Li atom
-    
-    &optimization
-      molopt=-1
-      ...
-    /
-    
-    &parameters
-      iesd=1
-      iesfree=1
-      iessw=1
-    /
-    
-    &molecul
-      ax=0.10
-      ay=0.10
-      az=0.10
-      nx=150
-      ny=150
-      nz=150
-      nmolmin=1
-      nmolmax=1
-    /
+.. literalinclude:: data/02JSD/02Li_atom/01optimization/datasmin.input_part
+   :language: fortran
 
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_02>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
 
-    # Li2 dimer - vmc opt
-    cp ../../../01JDFT/01Li2_dimer/03vmc/fort.10 .
-    cp fort.10 fort.10_jdft
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min;
-    readalles.x << ____EOS
-    1 181 1 0
-    0
-    1000
-    ____EOS
+Li\ :sub:`2` dimer
+~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+1. Copy ``fort.10`` from JDFT ansatz:
 
-    # Li atom - vmc opt
-    cp ../../../01JDFT/02Li_atom/03vmc/fort.10 .
-    cp fort.10 fort.10_jdft
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min;
-    readalles.x << ____EOS
-    1 181 1 0
-    0
-    1000
-    ____EOS
+   .. code-block:: bash
+
+      cp ../../../01JDFT/01Li2_dimer/03vmc/fort.10 .
+      cp fort.10 fort.10_jdft
+
+2. Run optimization:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+3. Average optimized variational parameters:
+
+   .. code-block:: bash
+
+      readalles.x << ____EOS
+      1 41 1 0
+      0
+      1000
+      ____EOS
+
+Li atom
+~~~~~~~
+
+1. Copy ``fort.10`` from JDFT ansatz:
+
+   .. code-block:: bash
+
+      cp ../../../01JDFT/02Li_atom/03vmc/fort.10 .
+      cp fort.10 fort.10_jdft
+
+2. Run optimization:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+3. Average optimized variational parameters:
+
+   .. code-block:: bash
+
+      readalles.x << ____EOS
+      1 41 1 0
+      0
+      1000
+      ____EOS
 
 
 .. _turborvbtutorial_0201_02_02:
@@ -823,23 +725,56 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_03>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory, and copy the trial wavefunction:
 
-    cd ../02vmc
-    cp ../01optimization/fort.10 .
-    cp ../01optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 10 2 1
-    cat pip0.d | grep "Energy"
+   .. code-block:: bash
+		   
+      cd 02vmc/
+      cp ../01optimization/fort.10 .
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../01optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 10 2 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
 
 
 .. _turborvbtutorial_0201_02_03:
@@ -850,18 +785,31 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_04>` for the details.
 Here, only needed commands are shown.
 
+Prepare different working directories for each value of alat, copy ``fort.10`` to each directory, and create an input file ``datasfn.input`` with the corresponding ``alat``:
+
+.. code-block:: bash
+
+    alat_0.8Z
+    alat_1.0Z
+    alat_1.2Z
+    alat_1.5Z
+
+Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
+    
 .. code-block:: bash
 
     cd ../03lrdmc/
     cp ../02vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
@@ -878,12 +826,12 @@ Here, only needed commands are shown.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
-    
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
+
     funvsa.x < evsa.in > evsa.out
 
 
-Finally I got:
+Finally we got:
 
 Li\ :sub:`2` dimer
 
@@ -925,65 +873,112 @@ Three hybrid-orbitals (``nhyb=2``) were employed here.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_05>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+Li\ :sub:`2` dimer
+~~~~~~~~~~~~~~~~~~
 
-    # Li2 dimer - conversion
-    cp ../../../02JSD/01Li2_dimer/02vmc/fort.10 ./fort.10_in
-    cp ../../../01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input .
-     twobodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $2}'`
-    onebodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $3}'`
-    echo "twobodyjas=${twobodyjas} onebodyjas=${onebodyjas}"
-    
-    gsed -i -e "/twobodypar/c\ twobodypar=${twobodyjas}" \
-            -e "/onebodypar/c\ onebodypar=${onebodyjas}" \
-            makefort10.input
-    
-    hyb_line=`grep "nshelljas" -n makefort10.input | cut -d ":" -f 1`
-    hyb_line=`expr $hyb_line + 1`
-    
-    gsed -i "${hyb_line}i   ndet_hyb=2" makefort10.input
-    
-    makefort10.x < ./makefort10.input > out_make
-    mv fort.10_new fort.10_out
-    
-    convertfort10.x < ./convertfort10.input > out_conv
-    grep "Overlap square Geminal" out_conv 
-    
-    mv fort.10_new fort.10
-    cp fort.10_in fort.10_new 
-    copyjas.x > out_copyjas
-    cleanfort10.x > out_cleanfort10
-    cp fort.10_clean fort.10
+1. create a work directory, and copy ``fort.10`` from JSD ansatz.
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    # Li atom - conversion
-    cp ../../../02JSD/02Li_atom/02vmc/fort.10 ./fort.10_in
-    cp ../../../01JDFT/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input .
-     twobodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $2}'`
-    onebodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $3}'`
-    echo "twobodyjas=${twobodyjas} onebodyjas=${onebodyjas}"
-    
-    gsed -i -e "/twobodypar/c\ twobodypar=${twobodyjas}" \
-            -e "/onebodypar/c\ onebodypar=${onebodyjas}" \
-            makefort10.input
-    
-    hyb_line=`grep "nshelljas" -n makefort10.input | cut -d ":" -f 1`
-    hyb_line=`expr $hyb_line + 1`
-    
-    gsed -i "${hyb_line}i   ndet_hyb=2" makefort10.input
-    
-    makefort10.x < ./makefort10.input > out_make
-    mv fort.10_new fort.10_out
-    
-    convertfort10.x < ./convertfort10.input > out_conv
-    grep "Overlap square Geminal" out_conv 
-    
-    mv fort.10_new fort.10
-    cp fort.10_in fort.10_new 
-    copyjas.x > out_copyjas
-    cleanfort10.x > out_cleanfort10
-    cp fort.10_clean fort.10
+      cd 03JsAGPs/01Li2_dimer/01convert_WF_JSD_to_JAGP
+      cp ../../../02JSD/01Li2_dimer/02vmc/fort.10 ./fort.10_in
+
+2. copy ``makefort10.input`` from JDFT ansatz, and edit:
+
+   .. code-block:: bash
+      
+      cp ../../../01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input .
+
+      set `grep -A1 "Parameters Jastrow two body" ./fort.10_in | tail -1`
+      twobodyjas=$2
+      onebodyjas=$3
+
+      sed -i \
+        -e '/twobodypar/s/=.*$/'$twobodyjas'/' \
+        -e '/onebodypar/s/=.*$/'$onebodyjas'/' \
+        -e '/nshelljas/a ndet_hyb=2' \
+	makefort10.input
+
+3. run makefort10
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10.input > out_make
+      mv fort.10_new fort.10_out
+
+4. convert wavefunction
+
+   .. code-block:: bash
+
+      convertfort10-serial.x < convertfort10.input > out_conv
+
+      grep "Overlap square Geminal" out_conv
+
+5. copy Jastrow factor to wavefunction
+
+   .. code-block:: bash
+
+      mv fort.10_new fort.10
+      cp fort.10_in fort.10_new
+
+      copyjas.x > out_copyjas
+
+      cleanfort10.x > out_cleanfort10
+      cp fort.10_clean fort.10
+
+
+Li atom
+~~~~~~~
+
+1. create a work directory, and copy ``fort.10`` from JSD ansatz.
+
+   .. code-block:: bash
+
+      cd 03JsAGPs/02Li_atom/01convert_WF_JSD_to_JAGP
+      cp ../../../02JSD/02Li_atom/02vmc/fort.10 ./fort.10_in
+
+2. copy ``makefort10.input`` from JDFT ansatz, and edit:
+
+   .. code-block:: bash
+      
+      cp ../../../01JDFT/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input .
+
+      set `grep -A1 "Parameters Jastrow two body" ./fort.10_in | tail -1`
+      twobodyjas=$2
+      onebodyjas=$3
+
+      sed -i \
+        -e '/twobodypar/s/=.*$/'$twobodyjas'/' \
+        -e '/onebodypar/s/=.*$/'$onebodyjas'/' \
+        -e '/nshelljas/a ndet_hyb=2' \
+	makefort10.input
+
+3. run makefort10
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10.input > out_make
+      mv fort.10_new fort.10_out
+
+4. convert wavefunction
+
+   .. code-block:: bash
+
+      convertfort10-serial.x < convertfort10.input > out_conv
+
+      grep "Overlap square Geminal" out_conv
+
+5. copy Jastrow factor to wavefunction
+
+   .. code-block:: bash
+
+      mv fort.10_new fort.10
+      cp fort.10_in fort.10_new
+
+      copyjas.x > out_copyjas
+
+      cleanfort10.x > out_cleanfort10
+      cp fort.10_clean fort.10
 
 
 .. _turborvbtutorial_0201_03_02:
@@ -1000,8 +995,8 @@ Here, only needed commands are shown.
     cp ../01convert_WF_JSD_to_JAGP/fort.10 .
     cp ../01convert_WF_JSD_to_JAGP/fort.10_in fort.10_corr
 
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_read;
+    turborvb-serial.x < datasvmc.input > out_vmc;
+    readforward-serial.x < datasvmc.input > out_read;
     
     cat corrsampling.dat 
 
@@ -1022,30 +1017,36 @@ Here, only needed commands are shown.
     or ``itestr4=-5``, the code optimizes not only contraction coefficients
     but also exponents of basis set.
 
-.. code-block:: bash
-    
-    #copy wavefunction
-    cd ../03optimization/
-    cp ../01convert_WF_JSD_to_JAGP/fort.10 .
-    cp fort.10 fort.10_jsd
-   
-    # datasmin.input
-    ...
-    &parameters
-    iesd=1
-    iesfree=1
-    iessw=1
-    iesup=1
-    ...
-   
-    # commands
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min;
-    readalles.x
-    readalles.x << ____EOS
-    1 81 1 0
-    0
-    1000
-    ____EOS
+1. create a work directory, and copy ``fort.10``:
+
+   .. code-block:: bash
+
+      cd ../03optimization
+      cp ../01convert_WF_JSD_to_JAGP/fort.10 .
+
+2. prepare ``datasmin.input``
+
+   .. code-block:: fortran
+
+      ...
+      &parameters
+      iesd=1
+      iesfree=1
+      iessw=1
+      iesup=1
+      ...
+
+3. run optimization
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+      readalles.x << ____EOS
+      1 81 1 0
+      0
+      1000
+      ____EOS
 
 
 .. _turborvbtutorial_0201_03_04:
@@ -1056,23 +1057,56 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_08>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory, and copy the trial wavefunction:
 
-    cd ../04vmc
-    cp ../03optimization/fort.10 .
-    cp ../03optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 10 2 1
-    cat pip0.d | grep "Energy"
+   .. code-block:: bash
+		   
+      cd ../04vmc/
+      cp ../03optimization/fort.10 .
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../03optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 10 2 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
 
 
 .. _turborvbtutorial_0201_03_05:
@@ -1083,18 +1117,31 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_09>` for the details.
 Here, only needed commands are shown.
 
+Prepare different working directories for each value of alat, copy ``fort.10`` to each directory, and create an input file ``datasfn.input`` with the corresponding ``alat``:
+
+.. code-block:: bash
+
+    alat_0.8Z
+    alat_1.0Z
+    alat_1.2Z
+    alat_1.5Z
+
+Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
+    
 .. code-block:: bash
 
     cd ../05lrdmc/
     cp ../04vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
@@ -1111,13 +1158,12 @@ Here, only needed commands are shown.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
-    
-    funvsa.x < evsa.in > evsa.out
-    
-    cat evsa.out
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
-Finally I got:
+    funvsa.x < evsa.in > evsa.out
+
+
+Finally we got:
 
 Li\ :sub:`2` dimer
 
@@ -1147,7 +1193,7 @@ Binding energy
 
 .. warning::
 
-    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the :ref:`turborvbtutorial_98` part.
+    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the :ref:`optimization` part.
 
 .. _turborvbtutorial_0201_04:
 
@@ -1160,125 +1206,40 @@ Binding energy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As in the JDFT procedure, prepare Li\ :sub:`2` dimer structure, 
-:download:`Li2.xyz <./Li2.xyz>` ::
+:download:`Li2.xyz <data/Li2.xyz>` :
 
-      2
-      comment line
-	  Li 0.0000 0.0000 -2.52589975576638451762
-	  Li 0.0000 0.0000 2.52589975576638451762
+.. literalinclude:: data/Li2.xyz
+   :language: text
 
-The point is that you should set ``twobody=-22`` and ``symmagp=.false.`` in ``makefort10.input`` 
+The point is that you should set ``twobody=-22`` and ``symmagp=.false.`` in ``makefort10.input``:
 
-.. code-block:: bash
+.. literalinclude:: data/04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input
+   :language: fortran
 
-    # makefort10.input
-    
-    &system
-    posunits='bohr'
-    natoms=2
-    ntyp=1
-    pbcfort10=.false.
-    /
-    
-    &electrons
-    twobody=-22
-    twobodypar=1.00
-    onebodypar=0.90
-    no_4body_jas=.false.
-    neldiff=0
-    /
-    
-    &symmetries
-    eqatoms=.true.
-    rot_det=.true.
-    symmagp=.false.
-    /
-    
-    ATOMIC_POSITIONS 
-    3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  -2.5259024244810400
-    3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  2.5259024244810400
-    /
-    
-    ATOM_3
-    &shells
-    nshelldet=11
-    nshelljas=5
-    /
-    1   1   16
-    1   14.24
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   16
-    1   0.07345
-    1   1   16
-    1   0.02805
-    1   1   36
-    1   1.534
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
-    1   1   36
-    1   0.02403
-    1   1   68
-    1   0.1144
-    #  Parameters atomic Jastrow wf 
-    1   1   16
-    1   4.581
-    1   1   16
-    1   1.58
-    1   1   16
-    1   0.564
-    1   1   36
-    1   0.2749
-    1   1   36
-    1   0.07362
-
-
-.. code-block:: bash
-
-    # convertfort10mol.input
-
-    &control
-    epsdgm=-1d-14
-    /
-    &mesh_info
-    ax=0.20
-    nx=64
-    ny=64
-    nz=128
-    /
-    &molec_info
-    nmol=3
-    nmolmax=3
-    nmolmin=3
-    /
+``convertfort10mol.input`` reads as follows:
+	      
+.. literalinclude:: data/04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/convertfort10mol.input
+   :language: fortran
 
 The other procedure is the same. You may obtain makefort10.input. Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
   
-    kosukenoMBP% ./makefort10.sh
+    % ./makefort10.sh
 
-where,
+which contains
 
 .. code-block:: bash
 
-    # makefort10.sh
-    kosukenoMBP% cat makefort10.sh
     makefort10.x < makefort10.input > out_make
     mv fort.10_new fort.10
     mv fort.10 fort.10_in
-    convertfort10mol.x < convertfort10mol.input > out_mol
+    convertfort10mol-serial.x < convertfort10mol.input > out_mol
     mv fort.10_new fort.10
 
 The generated wave function ``fort.10`` is a Jastrow Antisymmetrized Geminal Power including a triplet correlation (JAGPu).
 
-.. warning::
+.. note::
 
     If you want to use a more general spin-dependent Jastrow, i.e., independent parameters for the parallel and opposite spins (``twobody`` = ``-27``), you should manually put variational parameters for the two-body Jastrow part after generating ``fort.10``. Since ``makefort10.x`` supports only one variable for the two-body part at present, while ``-27`` has two independent two-body Jastrow variational parameters. 
 
@@ -1318,96 +1279,58 @@ in a generated ``fort.10`` with
 The next step is to generate a trial wave function using the built-in DFT code.
 This is the minimal input file:
 
-.. code-block:: bash
-    
-    # prep.input
-    &simulation
-    itestr4=-4
-    iopt=1
-    double_mesh=.true
-    /
-    &pseudo
-    /
-    &vmc
-    /
-    &optimization
-    molopt=1
-    /
-    &readio
-    /
-    &parameters
-    /
-    &molecul
-    ax=0.2
-    ay=0.2
-    az=0.2
-    nx=64
-    ny=64
-    nz=128
-    /
-    &dft
-    maxit=50
-    epsdft=1d-5
-    mixing=1.0d0
-    typedft=4
-    optocc=1  ! do not fix the occ.
-    l0_at=1.0
-    scale_z=5
-    scale_hartree=-1.00
-    corr_hartree=.true.
-    linear=.false.
-    nxs=1
-    nys=1
-    nzs=2
-    h_field=1.0d-2
-    /
-    1 -1     !  <- magnetic moment (i.e., * h_field)
+.. literalinclude:: data/04JAGPu/01Li2_dimer/01trial_wavefunction/01DFT/prep.input
+   :language: fortran
 
 Then, you can run DFT by typing:
 
 .. code-block:: bash
 
-    mpirun -np 4 prep-mpi.x < prep.input > out_prep
+    prep-serial.x < prep.input > out_prep
     
 .. _turborvbtutorial_0201_04_03:
 
 04-03 Li\ :sub:`2` dimer: Check local magnetic moments
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can check the obtained magnetic moments by using plot_orbitals.x
+You can check the obtained magnetic moments by using plot_orbitals.x.
+
+First, copy fort.10 obtained by DFT calculation:
 
 .. code-block:: bash
 
-  # copy fort.10
-  KosukenoMacBook-Pro-2% cp ../01DFT/fort.10_new fort.10
-  
-  # plot spin density
-  KosukenoMacBook-Pro-2% plot_orbitals.x
-  
-  Number of molecular orbitals :            6
-  Choose box size (x,y,z) 
-  15 15 15
-  15.0000000000000        15.0000000000000        15.0000000000000     
-  Choose number of mesh points (x,y,z) : 
-  61 61 61
-  61          61          61
-  Choose orbitals to tabulate (possible answers all, partial, charge, spin) : 
-  spin
-  spin
-  Please give  the lowest molecular orbital within 1 and            6
-  1
-  Number of fully occupied molecular orbital/total number occupied by up and down?
-  3 3
-  Momentum magnetization ? (unit 2pi/cellscale) 
-  0 0 0
+   cp ../01DFT/fort.10_new fort.10
 
-  You may obtain --xsf output_spin000000.xsf. Depict it using xcrysden:
+Then, plot spin density:
+   
+.. code-block:: bash
+
+   % plot_orbitals.x
+  
+   Number of molecular orbitals :            6
+   Choose box size (x,y,z) 
+   15 15 15
+   15.0000000000000        15.0000000000000        15.0000000000000     
+   Choose number of mesh points (x,y,z) : 
+   61 61 61
+   61          61          61
+   Choose orbitals to tabulate (possible answers all, partial, charge, spin) : 
+   spin
+   spin
+   Please give  the lowest molecular orbital within 1 and            6
+   1
+   Number of fully occupied molecular orbital/total number occupied by up and down?
+   3 3
+   Momentum magnetization ? (unit 2pi/cellscale) 
+   0 0 0
+  
+You may obtain --xsf output_spin000000.xsf. Depict it using xcrysden:
 
 .. code-block:: bash
   
-  # KosukenoMacBook-Pro-2%  xcrysden --xsf output_spin000000.xsf 
+   % xcrysden --xsf output_spin000000.xsf 
 
-.. image:: Li2_dft_mag.png
+.. image:: image/Li2_dft_mag.png
    :scale: 25%
    :align: center
 
@@ -1418,36 +1341,54 @@ Thus, one can obtain an AFM trial wavefunction.
 
 04-04 Li\ :sub:`2` dimer and Li atom: Convert JDFT WF to JAGPu one
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- Next step is to convert the optimized JDFT ansatz to a JAGPu one.
- You should check the consistency after conversion.
+Next step is to convert the optimized JDFT ansatz to a JAGPu one.
+You should check the consistency after conversion.
  
-.. code-block:: bash
+1. copy ``fort.10`` obtained from DFT calculation:
 
- # conversion of WF (02convert_WF_JDFT_to_JAGP)
- cp ../01trial_wavefunction/01DFT/fort.10_new ./fort.10_in
- cp ../01trial_wavefunction/00makefort10/makefort10.input .
- 
- sym_line=`grep "&symmetries" -n makefort10.input | cut -d ":" -f 1`
- sym_line=`expr $sym_line + 1`
- gsed -i "${sym_line}i   nosym_contr=.true." makefort10.input 
-  
- hyb_line=`grep "nshelljas" -n makefort10.input | cut -d ":" -f 1`
- hyb_line=`expr $hyb_line + 1`
- gsed -i "${hyb_line}i   ndet_hyb=2" makefort10.input
- 
- makefort10.x < makefort10.input > out_make
- mv fort.10_new fort.10_out
- convertfort10.x < convertfort10.input > out_conv
- mv fort.10_new fort.10
- 
- # correlated sampling (03conversion_check)
- cp ../02convert_WF_JDFT_to_JAGP/fort.10 .
- cp ../02convert_WF_JDFT_to_JAGP/fort.10_in fort.10_corr
- mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc
- mpirun -np 4 readforward-mpi.x < datasvmc.input > out_read
- cat corrsampling.dat 
- 
- # Li-dimer
+   .. code-block:: bash
+
+      cp ../01trial_wavefunction/01DFT/fort.10_new ./fort.10_in
+
+2. copy ``makefort10.input``, and edit:
+
+   .. code-block:: bash
+      
+      cp ../01trial_wavefunction/00makefort10/makefort10.input .
+
+      sed -i -e '/&symmetries/a nosym_contr=.true.' makefort10.input
+      sed -i -e '/nshelljas/a ndet_hyb=2' makefort10.input
+
+3. run makefort10
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10.input > out_make
+      mv fort.10_new fort.10_out
+
+4. convert wavefunction
+
+   .. code-block:: bash
+
+      convertfort10-serial.x < convertfort10.input > out_conv
+      mv fort.10_new fort.10
+
+5. run correlated sampling for conversion check
+
+   .. code-block:: bash
+
+      cd ../03conversion_check
+      cp ../02convert_WF_JDFT_to_JAGP/fort.10 .
+      cp ../02convert_WF_JDFT_to_JAGP/fort.10_in fort.10_corr
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+      readforward-serial.x < datasvmc.input > out_read
+
+Li\ :sub:`2` dimer:
+
+.. code-block:: text
+
+   % cat corrsampling.dat 
 
    Number of bins                146
    reference energy: E(fort.10)  -0.149056547E+02     0.903277814E-02
@@ -1455,13 +1396,18 @@ Thus, one can obtain an AFM trial wavefunction.
    reweighted difference: E(fort.10)-E(fort.10_corr)    0.974326537E-02     0.795833755E-03
    Overlap square : (fort.10,fort.10_corr)    0.993230204E+00     0.284523743E-03
  
- # Li-atom
+Li atom:
+
+.. code-block:: text
+
+   % cat corrsampling.dat 
 
    Number of bins                146
    reference energy: E(fort.10)  -0.148896680E+02     0.929468673E-02
    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468634E-02
    reweighted difference: E(fort.10)-E(fort.10_corr)    0.124625377E-07     0.316227766E-07
    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
+
 
 .. _turborvbtutorial_0201_04_05:
 
@@ -1480,39 +1426,10 @@ Then, copy the converted WF.
 
 Prepare ``datasmin.input``:
 
-.. code-block:: bash
+.. literalinclude:: data/04JAGPu/01Li2_dimer/04optimization/datasmin.input
+   :language: fortran
 
-    &simulation
-      itestr4=-4
-      ngen=200000
-      iopt=1
-      maxtime=10800
-      !nscra=1
-    /
-    &pseudo
-    /
-    &vmc
-    /
-    &optimization
-      ncg=2
-      nweight=1000
-      nbinr=10
-      iboot=0
-      tpar=1.5d-1
-      parr=5.0d-3
-    /
-    &readio
-      !iread=3
-      !nowrite12=.true.
-    /
-    &parameters
-      iesd=1
-      iesfree=1
-      iessw=1
-    /
-
-
-The difference from datasmin.input in ``03optimization`` is ``iessw``, 
+The difference from datasmin.input in ``03JsAGPs/03optimization`` is ``iessw``, 
 because we optimize the determinant part (nodal surface) at this step.
 
 Run a VMC-opt run.
@@ -1520,7 +1437,7 @@ Run a VMC-opt run.
 .. code-block:: bash
     
     #run vmc-opt
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min
+    turborvb-serial.x < datasmin.input > out_min
     
     #average fort.10
     readalles.x << ____EOS
@@ -1542,43 +1459,94 @@ The rest of the procesure (e.g., averaging the variational parameters) is the sa
 
 VMC and LRDMC procesures are the same as in the JsAGPs case.
 
+VMC
+~~~
+
+1. First, create a working directory, and copy the trial wavefunction:
+
+   .. code-block:: bash
+		   
+      cd ../05vmc/
+      cp ../04ptimization/fort.10 .
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../04optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 10 2 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
+
+LRDMC
+~~~~~
+Prepare different working directories for each value of alat, copy ``fort.10`` to each directory, and create an input file ``datasfn.input`` with the corresponding ``alat``:
+
 .. code-block:: bash
 
-    # VMC
-    cp ../04optimization/fort.10 ./
-    cp ../04optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 20 5 1
-    cat pip0.d | grep "Energy"
+    alat_0.8Z
+    alat_1.0Z
+    alat_1.2Z
+    alat_1.5Z
 
-.. code-block:: bash
+Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
     
-    #LRDMC
+.. code-block:: bash
+
+    cd ../06lrdmc/
     cp ../05vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do
+    do  
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -1588,8 +1556,8 @@ VMC and LRDMC procesures are the same as in the JsAGPs case.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
-    
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
+
     funvsa.x < evsa.in > evsa.out
     
 Li\ :sub:`2` dimer
@@ -1633,167 +1601,193 @@ The most important procedure in a Pfaffian calculation is to convert a JDFT or J
 ansatz to JAGP(JPf) ansatz.
 Since the JAGP ansatz is a special case of the JPf one,  where only :math:`G_{ud}` and :math:`G_{du}` terms are defined as described in the section review_ paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors :math:`G_{uu}` and :math:`G_{dd}` that are not described in the JAGP and that otherwise have to be set to 0.
 There are two possible approaches to convert an ansatz: 
-:math:`\rm(\hspace{.18em}i\hspace{.18em})`
+(i)
 for polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of 
 :math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough 
 to occupy certainly  these unpaired states, as in  the standard Slater determinant used 
 for our initialization.
 Again, we emphasize that  this works only for polarized systems.
-:math:`\rm(\hspace{.08em}ii\hspace{.08em})`
+(ii)
 The second approach that also works in a spin-unpolarized case is to determine 
-a standard broken symmetry single determinant ansatz ({\it e.g.}, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, {\it i.e.}, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
+a standard broken symmetry single determinant ansatz (*e.g.*, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, *i.e.*, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
 A particularly important case is when  a rotation of :math:`\pi/2` is applied around the :math:`y` direction. This operation maps :math:`|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).` One can convert from a AGP the pairing function that is obtained from a VMC optimization :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}` to a Pf one :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).` This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.
 
-The strategy :math:`\rm(\hspace{.08em}ii\hspace{.08em})` is employed for the Li dimer (i.e., unpolarized case) while :math:`\rm(\hspace{.18em}i\hspace{.18em})` is employed for the Li atom (i.e., polarized case)
+The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i) is employed for the Li atom (i.e., polarized case)
 
-.. code-block:: bash
+1. First, copy ``fort.10`` from JAGPu ansatz, and run VMC for corrlated sampling.
 
-    ################
-    # Li-dimer, strategy (ii)
-    ################
-    
-    # run VMC for corr. sampling.
-    cp ../../../04JAGPu/01Li2_dimer/01trial_wavefunction/01DFT/fort.10_new fort.10_in
-    cp fort.10_in fort.10_dft
-    cp fort.10_dft fort.10
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc
-    rm fort.10
-    
-    ################
-    # convert JDFT -> uncont JAGP
-    ################
-    
-    # convertfort.10
-    cp ../../../04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
-    makefort10.x < makefort10_agp_uncont.input > out_make_agp_uncont
-    mv fort.10_new fort.10_out
-    convertfort10.x < convertfort10.input > out_conv_agp_uncont
-    mv fort.10_new fort.10_agp_uncont
-    
-    # corr sampling
-    cp fort.10_dft fort.10
-    cp fort.10_agp_uncont fort.10_corr
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_dft_agp_uncont.dat
-    rm fort.10
-    cat corrsampling_dft_agp_uncont.dat
-    
-    KosukenoMacBook-Pro-2% cat corrsampling_dft_agp_uncont.dat
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
-    
-    ################
-    # convert uncont JAGP -> uncont JPf (norotate)
-    ################
-    
-    cp fort.10_agp_uncont fort.10_in
-    cp makefort10_agp_uncont.input makefort10_pf_uncont.input
-    
-    vi makefort10_pf_uncont.input
-    
-    &system
-    ...
-    yes_pfaff=.true.
-    
-    &symmetries
-    ...
-    rot_pfaff=.false.
-    
-    makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
-    mv fort.10_new fort.10_out
-    
-    convertpfaff.x norotate
-    
-    cp fort.10_new fort.10_pfaff_uncont
-    
-    # corr. sampling
-    cp fort.10_dft fort.10
-    cp fort.10_pfaff_uncont fort.10_corr
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_agp_pfaff_uncont.dat
-    cat corrsampling_agp_pfaff_uncont.dat
-    
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
-    
-    ################
-    # convert uncont JPf -> cont JPf
-    ################
-    
-    cp fort.10_pfaff_uncont fort.10_in
-    cp makefort10_pf_uncont.input makefort10_pf_cont.input
-    
-    vi makefort10_pf_cont.input
-    
-    &symmetries
-      nosym_contr=.true.
-    
-    ATOM_3
-      &shells
-      nshelldet=11
-      nshelljas=5
-      ndet_hyb=2
-    
-    makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
-    mv fort.10_new fort.10_out
-    
-    convertfort10.x < convertfort10.input > out_conv_pfaff_cont
-    
-    cp fort.10_new fort.10_pfaff_cont
-    cp fort.10_pfaff_cont fort.10_corr
-    
-    # corr. sampling
-    cp fort.10_dft fort.10
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_dft_pfaff_cont.dat
-    cat corrsampling_dft_pfaff_cont.dat
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468645E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.115194734E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.505322962E-07
-    
-    ################
-    # rotate fort.10
-    ################
-    # rotate by 1/8pi
-    
-    cp fort.10_pfaff_cont fort.10_in
-    cp fort.10_pfaff_cont fort.10_out
-    convertpfaff.x
-    -0.125
+   .. code-block:: bash
 
-    cp fort.10_new fort.10_pfaff_cont_rot
+      cp ../../../04JAGPu/01Li2_dimer/01trial_wavefunction/01DFT/fort.10_new fort.10_in
+      cp fort.10_in fort.10_dft
+      cp fort.10_dft fort.10
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+      rm fort.10
+
+2. Convert wavefunction from JDFT ansatz to uncontracted JAGP ansatz:
+      
+   .. code-block:: bash
+
+      cp ../../../04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
+
+      makefort10.x < makefort10_agp_uncont.input > out_make_agp_uncont
+      mv fort.10_new fort.10_out
+
+      convertfort10-serial.x < convertfort10.input > out_conv_agp_uncont
+      mv fort.10_new fort.10_agp_uncont
+
+   Run correlated sampling
+      
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      cp fort.10_agp_uncont fort.10_corr
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_dft_agp_uncont.dat
+      rm fort.10
+
+   .. code-block:: bash
+      
+      % cat corrsampling_dft_agp_uncont.dat
     
-    # clean fort.10
-    cp fort.10_pfaff_cont_rot fort.10
-    cleanfort10.x 
-    mv fort.10_clean fort.10
-    cp fort.10 fort.10_final
-    cp fort.10 fort.10_corr
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
+    
+3. Convert wavefunction from uncontracted JAGP ansatz to uncontracted JPf (norotate) ansatz:
+      
+   .. code-block:: bash
 
-    # corr. sampling
-    cp fort.10_dft fort.10
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_dft_pfaff_cont_rot.dat
-    rm fort.10
-    cat corrsampling_dft_pfaff_cont_rot.dat
+      cp fort.10_agp_uncont fort.10_in
+      cp makefort10_agp_uncont.input makefort10_pf_uncont.input
 
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148904372E+02     0.936290264E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.769116534E-03     0.396919093E-03
-    Overlap square : (fort.10,fort.10_corr)    0.998728350E+00     0.512541253E-03
+   Edit ``makefort10_pf_uncont.input``
+
+   .. code-block:: bash
+
+      sed -i -e '/&system/a yes_pfaff=.true.' -e '/&symetries/a rot_pfaff=.false.' makefort10_pf_uncont.input
+
+   Convert wavefunction
+
+   .. code-block:: bash
+    
+      makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
+      mv fort.10_new fort.10_out
+    
+      convertpfaff.x norotate > out_conv_pfaff_norotate
+    
+      cp fort.10_new fort.10_pfaff_uncont
+
+   Run correlated sampling
+
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      cp fort.10_pfaff_uncont fort.10_corr
+
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_agp_pfaff_uncont.dat
+
+   .. code-block:: bash
+
+      % cat corrsampling_agp_pfaff_uncont.dat
+    
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
+
+4. Convert wavefunction from uncontracted JPf ansatz to contracted JPf ansatz:
+      
+   .. code-block:: bash
+
+      cp fort.10_pfaff_uncont fort.10_in
+      cp makefort10_pf_uncont.input makefort10_pf_cont.input
+    
+   Edit makefort10_pf_cont.input
+
+   .. code-block:: bash
+
+      sed -i -e '/&symmetries/a nosym_contr=.true.' -e '/nshelljas/a ndet_hyb=2' makefort10_pf_cont.input
+
+   Convert wavefunction
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
+      mv fort.10_new fort.10_out
+    
+      convertfort10-serial.x < convertfort10.input > out_conv_pfaff_cont
+    
+      cp fort.10_new fort.10_pfaff_cont
+      cp fort.10_pfaff_cont fort.10_corr
+
+   Run correlated sampling
+
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_dft_pfaff_cont.dat
+
+   .. code-block:: bash
+
+      % cat corrsampling_dft_pfaff_cont.dat
+
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468645E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.115194734E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.505322962E-07
+
+5. Rotate wavefunction by 1/8 pi:
+
+   .. code-block:: bash
+    
+      cp fort.10_pfaff_cont fort.10_in
+      cp fort.10_pfaff_cont fort.10_out
+      echo "-0.125" | convertpfaff.x > out_conv_pfaff_rot
+
+      cp fort.10_new fort.10_pfaff_cont_rot
+
+   Clean fort.10
+      
+   .. code-block:: bash
+
+      cp fort.10_pfaff_cont_rot fort.10
+      cleanfort10.x 
+      mv fort.10_clean fort.10
+
+      cp fort.10 fort.10_final
+      cp fort.10 fort.10_corr
+
+   Run correlated sampling
+
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_dft_pfaff_cont_rot.dat
+      rm fort.10
+
+   .. code-block:: bash
+
+      % cat corrsampling_dft_pfaff_cont_rot.dat
+
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148904372E+02     0.936290264E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.769116534E-03     0.396919093E-03
+      Overlap square : (fort.10,fort.10_corr)    0.998728350E+00     0.512541253E-03
 
 The total energy was a bit lost by the rotation.
 
-.. warning::
+.. note::
 
     If you want to use a more general spin-dependent Jastrow, i.e., independent parameters for the parallel and opposite spins (``twobody`` = ``-27``), you should manually put variational parameters for the two-body Jastrow part whenever generating a new ``fort.10``.
 
@@ -1803,204 +1797,257 @@ The total energy was a bit lost by the rotation.
 05-02 (spin-polarized case) Li atom: Convert JDFT WF to JAGP one
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
+1. First, copy ``fort.10`` from JAGPu ansatz, and run VMC for correlated sampling.
 
-    ################
-    # Li-atom, strategy (i)
-    ################
+   .. code-block:: bash
+   
+      cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/01DFT/fort.10_new fort.10_in
+      cp fort.10_in fort.10_dft
+      cp fort.10_dft fort.10
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+      rm fort.10
     
-    # run VMC for corr. sampling.
-    cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/01DFT/fort.10_new fort.10_in
-    cp fort.10_in fort.10_dft
-    cp fort.10_dft fort.10
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc
-    rm fort.10
+2. Convert wavefunction from JDFT ansatz to uncontracted JAGP ansatz:
+
+   .. code-block:: bash
+		   
+      cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
+
+      makefort10.x < makefort10_agp_uncont.input > out_make_agp_uncont
+      mv fort.10_new fort.10_out
+
+      convertfort10-serial.x < convertfort10.input > out_conv_agp_uncont
+      mv fort.10_new fort.10_agp_uncont
+
+   Run correlated sampling
+
+   .. code-block:: bash
+      
+      cp fort.10_dft fort.10
+      cp fort.10_agp_uncont fort.10_corr
+
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_dft_agp_uncont.dat
+      rm fort.10
+
+   .. code-block:: bash
+
+      % cat corrsampling_dft_agp_uncont.dat
     
-    ################
-    # convert JDFT -> uncont JAGP
-    ################
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
+
+3. Convert wavefunction from uncontracted JAGP ansatz to uncontracted JPf (norotate) ansatz:
+      
+   .. code-block:: bash
+
+      cp fort.10_agp_uncont fort.10_in
+      cp makefort10_agp_uncont.input makefort10_pf_uncont.input
     
-    # convertfort.10
-    cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
-    makefort10.x < makefort10_agp_uncont.input > out_make_agp_uncont
-    mv fort.10_new fort.10_out
-    convertfort10.x < convertfort10.input > out_conv_agp_uncont
-    mv fort.10_new fort.10_agp_uncont
+   Edit makefort10_pf_uncont.input
+
+   .. code-block:: bash
+
+      sed -i -e '/&system/a yes_pfaff=.true.' -e '/&symetries/a rot_pfaff=.false.' makefort10_pf_uncont.input
+
+   Convert wavefunction
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
+      mv fort.10_new fort.10_out
     
-    # corr sampling
-    cp fort.10_dft fort.10
-    cp fort.10_agp_uncont fort.10_corr
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_dft_agp_uncont.dat
-    rm fort.10
-    cat corrsampling_dft_agp_uncont.dat
+      echo "10000" | convertpfaff.x norotate > out_conv_pfaff_norotate
     
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
+      cp fort.10_new fort.10_pfaff_uncont
+
+   Run correlated sampling
+
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      cp fort.10_pfaff_uncont fort.10_corr
+
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_agp_pfaff_uncont.dat
+
+   .. code-block:: bash
+      
+      % cat corrsampling_agp_pfaff_uncont.dat
     
-    ################
-    # convert uncont JAGP -> uncont JPf (norotate)
-    ################
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
     
-    cp fort.10_agp_uncont fort.10_in
-    cp makefort10_agp_uncont.input makefort10_pf_uncont.input
+4. Convert wavefunction from uncontracted JPf ansatz to contracted JPf ansatz:
+
+   .. code-block:: bash
+
+      cp fort.10_pfaff_uncont fort.10_in
+      cp makefort10_pf_uncont.input makefort10_pf_cont.input
     
-    # makefort10_pf_uncont.input
+   Edit makefort10_pf_cont.input
+
+   .. code-block:: bash
+
+      sed -i -e '/&symmetries/a nosym_contr=.true.' -e '/nshelljas/a ndet_hyb=2' makefort10_pf_cont.input
+
+   Convert wavefunction
+
+   .. code-block:: bash
+
+      makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
+      mv fort.10_new fort.10_out
     
-    &system
-    ...
-    yes_pfaff=.true.
+      convertfort10-serial.x < convertfort10.input > out_conv_pfaff_cont
     
-    &symmetries
-    ...
-    rot_pfaff=.false.
-    
-    makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
-    mv fort.10_new fort.10_out
-    
-    convertpfaff.x norotate
-    10000
-    
-    cp fort.10_new fort.10_pfaff_uncont
-    
-    # corr. sampling
-    cp fort.10_dft fort.10
-    cp fort.10_pfaff_uncont fort.10_corr
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_agp_pfaff_uncont.dat
-    cat corrsampling_agp_pfaff_uncont.dat
-    
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
-    
-    ################
-    # convert uncont JPf -> cont JPf
-    ################
-    
-    cp fort.10_pfaff_uncont fort.10_in
-    cp makefort10_pf_uncont.input makefort10_pf_cont.input
-    
-    # makefort10_pf_cont.input
-    
-    &symmetries
-      nosym_contr=.true.
-    
-    ATOM_3
-      &shells
-      nshelldet=11
-      nshelljas=5
-      ndet_hyb=2
-    
-    makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
-    mv fort.10_new fort.10_out
-    
-    convertfort10.x < convertfort10.input > out_conv_pfaff_cont
-    
-    cp fort.10_new fort.10_pfaff_cont
-    
-    # clean fort.10
-    cp fort.10_pfaff_cont fort.10
-    cleanfort10.x 
-    mv fort.10_clean fort.10
-    cp fort.10 fort.10_final
-    cp fort.10 fort.10_corr
-    
-    # corr. sampling
-    cp fort.10_dft fort.10
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_dft_pfaff_cont.dat
-    cat corrsampling_dft_pfaff_cont.dat
-    Number of bins                146
-    reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
-    reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468645E-02
-    reweighted difference: E(fort.10)-E(fort.10_corr)    0.115194734E-07     0.316227766E-07
-    Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.505322962E-07
+      cp fort.10_new fort.10_pfaff_cont
+
+   Clean wavefunction
+
+   .. code-block:: bash
+
+      cp fort.10_pfaff_cont fort.10
+      cleanfort10.x 
+      mv fort.10_clean fort.10
+
+      cp fort.10 fort.10_final
+      cp fort.10 fort.10_corr
+
+   Run correlated sampling
+
+   .. code-block:: bash
+
+      cp fort.10_dft fort.10
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_dft_pfaff_cont.dat
+
+   .. code-block:: bash
+
+      % cat corrsampling_dft_pfaff_cont.dat
+
+      Number of bins                146
+      reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
+      reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468645E-02
+      reweighted difference: E(fort.10)-E(fort.10_corr)    0.115194734E-07     0.316227766E-07
+      Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.505322962E-07
 
 .. _turborvbtutorial_0201_05_03:
 
 05-03 Li\ :sub:`2` dimer and Li atom: VMC optimization (WF=JPf)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
+1. First, copy ``fort.10`` and ``makefort10.input``.
 
-    # Li2-dimer
-    cp ../01convert_WF_JDFT_to_JAGP/fort.10_pfaff_cont_rot  fort.10
-    cp fort.10 fort.10_sav
-    cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
+   For Li\ :sub:`2` dimer:
+
+   .. code-block:: bash
+
+      cp ../01convert_WF_JDFT_to_JAGP/fort.10_pfaff_cont_rot  fort.10
+      cp fort.10 fort.10_sav
+      cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
+
+   For Li atom:
+
+   .. code-block:: bash
+
+      cp ../01convert_WF_JDFT_to_JAGP/fort.10_pfaff_cont fort.10
+      cp fort.10 fort.10_sav
+      cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
+
+2. Run optimization
+
+   .. code-block:: bash
+   
+      turborvb-serial.x < datasmin.input > out_min
+
+      cleanfort10.x
+      mv fort.10_clean fort.10
+
+   Check convergence and average
+
+   .. code-block:: bash
+
+      # check convergence
+      readalles.x << ____EOS
+      1 1 0 1
+      0
+      1000
+      ____EOS
     
-    # Li-atom
-    cp ../01convert_WF_JDFT_to_JAGP/fort.10_pfaff_cont fort.10
-    cp fort.10 fort.10_sav
-    cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
+      # average
+      readalles.x << ____EOS
+      1 81 1 0
+      0
+      1000
+      ____EOS
+
+3. If you find many warnings in your output during optimization, do the following stabilization and continue optimization.
+
+   .. code-block:: bash
+
+      # Stabilization (especially needed for an open system, Li atom)
+      cp fort.10 fort.10_in
+      cp fort.10 fort.10_opt
+
+      vi convertfort10mol.input
+      # you should comment out epsdgm=-1d-14 -> !epsdgm=1d-14.
+      # If this value is set negative, a generated molecular orbitals are random.
+      # You can start from nmolmin=1, until nmolmin=N_el/ 2.
+      # and check you do not loose much energy.
+      
+      convertfort10mol-serial.x < convertfort10mol.input > out_mol_stabilized
+      cp fort.10_new fort.10
+
+4. Run correlated sampling (aftre the above conversion)
+      
+   .. code-block:: bash
+
+      cp fort.10_in fort.10_corr
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+      readforward-serial.x < datasvmc.input > out_readforward
+      mv corrsampling.dat corrsampling_pfaff_stabilized.dat
+
+      cat corrsampling_pfaff_stabilized.dat
+
+5. Convert back to a geminal (JAGP)
+      
+   .. code-block:: bash
+
+      cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
+      cp fort.10 fort.10_in
+
+      set -- `grep -A1 "Parameters Jastrow two body" ./fort.10_in | tail -1`
+      twobodyjas=$2
+      onebodyjas=$3
+
+      echo "twobodyjas=${twobodyjas} onebodyjas=${onebodyjas}"
     
-    # Li2-dimer and Li-atom
-    mpirun -np 4 turborvb-mpi.x < datasmin.input > out_min &
-    cleanfort10.x
-    mv fort.10_clean fort.10
-    
-    # check convergence
-    readalles.x << ____EOS
-    1 1 0 1
-    0
-    1000
-    ____EOS
-    
-    # average
-    readalles.x << ____EOS
-    1 81 1 0
-    0
-    1000
-    ____EOS
-    
-    !! If you find many War in your output during optimization, !!
-    !! please do the following stabilization, and continue optimization. !!
-    
-    # Stabilization (especially needed for an open system, Li atom)
-    cp fort.10 fort.10_in
-    cp fort.10 fort.10_opt
-    vi convertfort10mol.input
-    # you should comment out epsdgm=-1d-14 -> !epsdgm=1d-14.
-    # If this value is set negative, a generated molecular orbitals are random.
-    # You can start from nmolmin=1, until nmolmin=N_el/ 2.
-    # and check you do not loose much energy.
-    convertfort10mol.x < convertfort10mol.input > out_mol_stabilized
-    cp fort.10_new fort.10
-    
-    # Correlated sampling (after the above conversion)
-    cp fort.10_in fort.10_corr
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc
-    mpirun -np 4 readforward-mpi.x < datasvmc.input > out_readforward
-    mv corrsampling.dat corrsampling_pfaff_stabilized.dat
-    cat corrsampling_pfaff_stabilized.dat
-    
-    # Convert back to a geminal (JAGP)
-    cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
-    cp fort.10 fort.10_in
-    twobodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $2}'`
-    onebodyjas=`grep -A 1 "Parameters Jastrow two body" ./fort.10_in | tail -n -1 | awk '{print $3}'`
-    echo "twobodyjas=${twobodyjas} onebodyjas=${onebodyjas}"
-    
-    gsed -i -e "/twobodypar/c\ twobodypar=${twobodyjas}" \
-            -e "/onebodypar/c\ onebodypar=${onebodyjas}" \
-            makefort10_pf_cont.input
+      sed -i \
+          -e "/twobodypar/c\ twobodypar=${twobodyjas}" \
+          -e "/onebodypar/c\ onebodypar=${onebodyjas}" \
+          makefort10_pf_cont.input
             
-    makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
-    mv fort.10_new fort.10_out
-    convertfort10.x < convertfort10.input > out_conv
-    
-    cp fort.10_new fort.10
-    cleanfort10.x
-    mv fort.10_clean fort.10
-    cp fort.10_opt fort.10_new
-    copyjas.x
+      makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
+      mv fort.10_new fort.10_out
 
-.. warning::
+      convertfort10-serial.x < convertfort10.input > out_conv
+    
+      cp fort.10_new fort.10
+      cleanfort10.x
+      mv fort.10_clean fort.10
+      cp fort.10_opt fort.10_new
+
+      copyjas.x
+
+.. note::
 
     If you are using a more general spin-dependent Jastrow (i.e., ``twobody`` = ``-27``), you should manually put Jastrow parameters after generating ``fort.10_out`` by ``makerfort10.x``.
 
@@ -2012,23 +2059,57 @@ The total energy was a bit lost by the rotation.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_03>` for the details.
 Here, only needed commands are shown.
 
-.. code-block:: bash
+1. First, create a working directory, and copy the trial wavefunction:
 
-    cd ../03vmc
-    cp ../02optimization/fort.10 .
-    cp ../02optimization/datasmin.input ave.in
-    gsed -i -e 's/ngen=.*/ngen=1/g' ave.in
-    gsed -i -e 's/iopt=.*/iopt=1/g' ave.in
-    line_num_key=`grep "unconstrained" -n fort.10 | cut -d ":" -f 1`
-    line_num=`expr $line_num_key + 1`
-    line=`gsed -n ${line_num}p fort.10`
-    mod_line=`echo $line | gsed -e 's/0$/ 1/'`
-    gsed -i "${line_num}d" fort.10
-    gsed -i "${line_num_key}a $mod_line" fort.10
-    turborvb-serial.x < ave.in > out_ave
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-    forcevmc.sh 10 2 1
-    cat pip0.d | grep "Energy"
+   .. code-block:: bash
+		   
+      cd ../03vmc/
+      cp ../02optimization/fort.10_new ./fort.10
+
+   Then, copy ``datasmin.input`` and rename it as ``ave.in``:
+
+   .. code-block:: bash
+
+      cp ../02optimization/datasmin.input ave.in
+
+   You must also rewrite value of ``ngen`` in ave.in as ``ngen=1``, and ``iopt`` as ``iopt=1``, by using an editor or typing the following commands:
+
+   .. code-block:: bash
+
+      sed -i -e 's/ngen=.*/ngen=1/g' ave.in
+      sed -i -e 's/iopt=.*/iopt=1/g' ave.in
+
+   Next, change ``I/O flag`` in fort.10 to ``1`` which allow us to write the optimized variationa parameters:
+
+   .. code-block:: bash
+
+      sed -i -e '/unconstrained/{n;s/0$/1/}' fort.10
+
+   .. note::
+
+      You may need to use GNU sed ``gsed`` instead of ``sed`` on macOS.
+
+2. Run the dummy VMC by typing
+
+   .. code-block:: bash
+      
+      turborvb-serial.x < ave.in > out_ave
+
+3. Next step is to run VMC for calculating the total energy.
+   Prepare ``datasvmc.input``, and run a VMC calculation by typing:
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasvmc.input > out_vmc
+
+4. After the VMC run finishes, check the total energy by running the script:
+
+   .. code-block:: bash
+
+      forcevmc.sh 10 2 1
+
+   A reblocked total energy and its variance is written in ``pip0.d``.
+
 
 .. _turborvbtutorial_0201_05_05:
 
@@ -2038,18 +2119,31 @@ Here, only needed commands are shown.
 Please refer to the :ref:`Hydrogen tutorial <turborvbtutorial_0101_04>` for the details.
 Here, only needed commands are shown.
 
+Prepare different working directories for each value of alat, copy ``fort.10`` to each directory, and create an input file ``datasfn.input`` with the corresponding ``alat``:
+
+.. code-block:: bash
+
+    alat_0.8Z
+    alat_1.0Z
+    alat_1.2Z
+    alat_1.5Z
+
+Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
+    
 .. code-block:: bash
 
     cd ../04lrdmc/
     cp ../03vmc/fort.10 .
-    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
+
     lrdmc_root_dir=`pwd`
+
+    alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
     for alat in $alat_list
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc;
-        mpirun -np 4 turborvb-mpi.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc;
+        turborvb-serial.x < datasfn.input > out_fn;
         cd ${lrdmc_root_dir}
     done
     
@@ -2066,11 +2160,12 @@ Here, only needed commands are shown.
         cd ${lrdmc_root_dir}
     done
     
-    gsed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
-    
+    sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
+
     funvsa.x < evsa.in > evsa.out
 
-Finally I got:
+
+Finally we got:
 
 Li\ :sub:`2` dimer
 

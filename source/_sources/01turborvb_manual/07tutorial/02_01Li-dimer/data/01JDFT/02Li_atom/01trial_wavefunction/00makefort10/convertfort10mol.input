@@ -1,0 +1,14 @@
+&control
+epsdgm=-1d-14
+/
+&mesh_info
+ax=0.20
+nx=64
+ny=64
+nz=64
+/
+&molec_info
+nmol=1
+nmolmax=1
+nmolmin=1
+/

@@ -1,0 +1,65 @@
+&system
+ posunits='bohr'
+ natoms=2
+ ntyp=1
+ pbcfort10=.false.
+/
+
+&electrons
+ twobody=-22
+ twobodypar=1.00
+ onebodypar=0.90
+ no_4body_jas=.false.
+ neldiff=0
+/
+
+&symmetries
+ nosym=.true.
+ eqatoms=.true.
+ !rot_det=.true.
+ symmagp=.false.
+/
+
+ATOMIC_POSITIONS 
+3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  -2.5259024244810400
+3.0000000000000000  3.0000000000000000  0.0000000000000000  0.0000000000000000  2.5259024244810400
+/
+
+ATOM_3
+&shells
+ nshelldet=11
+ nshelljas=5
+/
+  1   1   16
+  1   14.24
+  1   1   16
+  1   4.581
+  1   1   16
+  1   1.58
+  1   1   16
+  1   0.564
+  1   1   16
+  1   0.07345
+  1   1   16
+  1   0.02805
+  1   1   36
+  1   1.534
+  1   1   36
+  1   0.2749
+  1   1   36
+  1   0.07362
+  1   1   36
+  1   0.02403
+  1   1   68
+  1   0.1144
+#  Parameters atomic Jastrow wf 
+  1   1   16
+  1   4.581
+  1   1   16
+  1   1.58
+  1   1   16
+  1   0.564
+  1   1   36
+  1   0.2749
+  1   1   36
+  1   0.07362
