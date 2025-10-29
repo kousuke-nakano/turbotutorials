@@ -1193,7 +1193,7 @@ Binding energy
 
 .. warning::
 
-    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the :ref:`optimization` part.
+    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the :ref:`turborvbtutorial_98` part.
 
 .. _turborvbtutorial_0201_04:
 
