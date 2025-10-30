@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01_02Hydrogen_dimer &mdash; Turbotutorials Updated on 22/10/2025 documentation</title>
+  <title>01_02Hydrogen_dimer &mdash; Turbotutorials Updated on 30/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=ba4d3e46"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=caa328ce"></script>
       <script src="../../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -175,7 +175,7 @@ mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10_out
 </pre></div>
 </div>
 <p>Run a conversion:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_conv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10-serial.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_conv
 </pre></div>
 </div>
 <p>Please check the overlap square in out_conv:</p>
@@ -254,46 +254,44 @@ cp<span class="w"> </span>../01convert_WF_JDFT_to_JAGP/fort.10_in<span class="w"
 </pre></div>
 </div>
 <p>Prepare the following two input files for a correlated sampling calculation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#datasvmc.input</span>
-<span class="p">&amp;</span>simulation
-<span class="nv">itestr4</span><span class="o">=</span><span class="m">2</span>
-<span class="nv">ngen</span><span class="o">=</span><span class="m">15000</span>
-<span class="nv">maxtime</span><span class="o">=</span><span class="m">86000</span>
-<span class="nv">iopt</span><span class="o">=</span><span class="m">1</span>
-/
-<span class="p">&amp;</span>pseudo
-/
-<span class="p">&amp;</span>vmc
-<span class="nv">epscut</span><span class="o">=</span><span class="m">1</span>.0d-10
-/
-<span class="p">&amp;</span>optimization
-/
-<span class="p">&amp;</span>readio
-<span class="nv">iread</span><span class="o">=</span><span class="m">3</span>
-/
-<span class="p">&amp;</span>parameters
-/
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">simulation</span><span class="w"> </span>
+<span class="n">itestr4</span><span class="o">=</span><span class="mi">2</span><span class="w"> </span>
+<span class="n">ngen</span><span class="o">=</span><span class="mi">15000</span>
+<span class="n">maxtime</span><span class="o">=</span><span class="mi">86000</span>
+<span class="n">iopt</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">pseudo</span><span class="w">  </span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">vmc</span>
+<span class="n">epscut</span><span class="o">=</span><span class="mf">1.0d-10</span><span class="w"> </span><span class="c">! a finite number when calc. forces</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">optimization</span><span class="w"> </span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">readio</span>
+<span class="n">iread</span><span class="o">=</span><span class="mi">3</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">parameters</span><span class="w">  </span>
+<span class="o">/</span>
 </pre></div>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># readforward.input</span>
-<span class="p">&amp;</span>simulation
-/
-<span class="p">&amp;</span>system
-/
-<span class="p">&amp;</span>corrfun
-<span class="nv">bin_length</span><span class="o">=</span><span class="m">100</span>
-<span class="nv">initial_bin</span><span class="o">=</span><span class="m">5</span>
-<span class="nv">correlated_samp</span><span class="o">=</span>.true.
-/
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">simulation</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="nb">system</span>
+<span class="o">/</span>
+<span class="p">&amp;</span><span class="n">corrfun</span>
+<span class="n">bin_length</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">initial_bin</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">correlated_samp</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<span class="o">/</span>
 </pre></div>
 </div>
 <p>Run a correlated sampling</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
-mpirun<span class="w"> </span>-np<span class="w"> </span><span class="m">4</span><span class="w">  </span>readforward-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_read
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+readforward-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_read
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">corrsampling.dat</span></code> contains the output.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#KosukenoMacBook-Pro-2% cat corrsampling.dat</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>corrsampling.dat
 Number<span class="w"> </span>of<span class="w"> </span>bins<span class="w">                </span><span class="m">146</span>
 reference<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10<span class="o">)</span><span class="w">  </span>-0.113830415E+01<span class="w">     </span><span class="m">0</span>.208254732E-03
 reweighted<span class="w"> </span>energy:<span class="w"> </span>E<span class="o">(</span>fort.10_corr<span class="o">)</span><span class="w">  </span>-0.113830415E+01<span class="w">     </span><span class="m">0</span>.208254697E-03

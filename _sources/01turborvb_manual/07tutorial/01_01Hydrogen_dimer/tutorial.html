@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01_01Hydrogen_dimer &mdash; Turbotutorials Updated on 22/10/2025 documentation</title>
+  <title>01_01Hydrogen_dimer &mdash; Turbotutorials Updated on 30/10/2025 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=ba4d3e46"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=caa328ce"></script>
       <script src="../../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -129,10 +129,6 @@
 <section id="introduction">
 <span id="turborvbtutorial-0101-00"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
 <p>From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the H<sub>2</sub> dimer. You can download all the input and output files from <a class="reference download internal" download="" href="../../../../_downloads/22d78747f796f94e31258fe494b29e76/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
-<p>This is a workflow of this tutorial:</p>
-<a class="reference internal image-reference" href="../../../../_images/workflow_detailed.jpeg"><img alt="../../../../_images/workflow_detailed.jpeg" class="align-center" src="../../../../_images/workflow_detailed.jpeg" style="width: 614.4000000000001px; height: 819.2px;" /></a>
-<p>This is the detailed workflow of this tutorial:</p>
-<a class="reference internal image-reference" href="../../../../_images/turbo_flow.jpg"><img alt="../../../../_images/turbo_flow.jpg" class="align-center" src="../../../../_images/turbo_flow.jpg" style="width: 582.2px; height: 1342.6000000000001px;" /></a>
 </section>
 <section id="preparing-a-jdft-trial-wavefunction">
 <span id="turborvbtutorial-0101-01"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">01 Preparing a JDFT trial wavefunction</a><a class="headerlink" href="#preparing-a-jdft-trial-wavefunction" title="Permalink to this heading"></a></h2>
@@ -209,7 +205,7 @@ ATOM_1
 <p>Here are brief explanations of the input variables.
 Please refer to the user manual and README in details:</p>
 <p><strong>&amp;system namelist</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">posunits</span></code> Unit used in the calculation (STRING). bohr and crystal are implemented.</p>
+<p><code class="docutils literal notranslate"><span class="pre">posunits</span></code> Unit used in the calculation (STRING). <em>bohr</em> and <em>crystal</em> are implemented.</p>
 <p><code class="docutils literal notranslate"><span class="pre">natoms</span></code> The number of atoms contained in the system (INTEGER).</p>
 <p><code class="docutils literal notranslate"><span class="pre">ntyp</span></code> The number of atomic species (INTEGER).</p>
 <p><code class="docutils literal notranslate"><span class="pre">pbcfort10</span></code> periodic boundary condition (BOOLEN).</p>
@@ -223,7 +219,7 @@ Please refer to the user manual and README in details:</p>
 <p><code class="docutils literal notranslate"><span class="pre">eqatoms</span></code> Treating the same atoms equally  (BOOLEAN).</p>
 <p><code class="docutils literal notranslate"><span class="pre">rot_det</span></code> Taking the rotational symmetries into account (BOOLEAN).</p>
 <p><code class="docutils literal notranslate"><span class="pre">symmagp</span></code> If true, taking into account of only singlet pairings, if false, considering also triplet pairings (BOOLEAN).</p>
-<p><strong>ATOMIC_POSITIONS namelist</strong></p>
+<p><strong>ATOMIC_POSITIONS</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ATOMIC_POSITIONS
 <span class="m">1</span>.0<span class="w">   </span><span class="m">1</span>.0<span class="w">   </span><span class="m">0</span>.0<span class="w">   </span><span class="m">0</span>.0<span class="w">  </span>-1.0000000000
 <span class="m">1</span>.0<span class="w">   </span><span class="m">1</span>.0<span class="w">   </span><span class="m">0</span>.0<span class="w">   </span><span class="m">0</span>.0<span class="w">  </span><span class="m">1</span>.0000000000
@@ -236,7 +232,7 @@ Electrons,<span class="w"> </span>Atomic<span class="w"> </span>number,<span cla
 ...
 </pre></div>
 </div>
-<p>wherein The unit of the coordinations are set by “posunits” in &amp;system namelist.</p>
+<p>wherein the unit of the coordinations are set by <code class="docutils literal notranslate"><span class="pre">posunits</span></code> in &amp;system namelist.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Electrons = Atomic number in an all-electron calculation.
@@ -329,7 +325,7 @@ D<span class="w">   </span><span class="m">1</span>
 <span class="m">1</span><span class="w">   </span><span class="m">5</span>.095000000000
 </pre></div>
 </div>
-<p>represents,</p>
+<p>represents</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Number<span class="w"> </span>of<span class="w"> </span>orbitals,<span class="w"> </span>Number<span class="w"> </span>of<span class="w"> </span>exponents<span class="w"> </span><span class="o">(</span>and/or<span class="w"> </span>coefficients<span class="o">)</span>,<span class="w"> </span>Type<span class="w"> </span>of<span class="w"> </span>orbital
 Label,<span class="w">  </span>Exponents
 </pre></div>
@@ -466,12 +462,12 @@ First, rename <cite>fort.10_new</cite>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">molopt</span></code> Always set 1 in a DFT calculation (INTEGER).</p>
 <p><strong>&amp;dft section</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">maxit</span></code> Maximun number of SCF iterations (INTEGER).</p>
-<p><code class="docutils literal notranslate"><span class="pre">epsdft</span></code> Tollerance in convergence in total energy (DOUBLE).</p>
+<p><code class="docutils literal notranslate"><span class="pre">epsdft</span></code> Tolerance in convergence in total energy (DOUBLE).</p>
 <p><code class="docutils literal notranslate"><span class="pre">mixing</span></code> Mixing in the density (DOUBLE).</p>
 <p><code class="docutils literal notranslate"><span class="pre">typedft</span></code> Type of exchange-correlation functional (INTEGER). typedft=0 Hartree, typedft=1 LDA (PZ 1981), typefit=2 LDA (OB 1994). We recommend 1 (PZ-LDA).</p>
 <p><code class="docutils literal notranslate"><span class="pre">optocc</span></code> Flag, smearing (Integer). 0: no use (i.e, fixed), 1: use.</p>
 <p><code class="docutils literal notranslate"><span class="pre">neloc</span></code> The number of occupied spatial orbitals (INTEGER). You should specify this variable and put the occupations explicitly below when you use <code class="docutils literal notranslate"><span class="pre">optocc</span></code> = 0.</p>
-<p><strong>&amp;mesh_info namelist</strong></p>
+<p><strong>&amp;molecul namelist</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">ax</span></code> Mesh width in x direction. The unit is Bohr</p>
 <p><code class="docutils literal notranslate"><span class="pre">ay</span></code> Mesh width in y direction. If it is not specified, <code class="docutils literal notranslate"><span class="pre">ay</span></code> = <code class="docutils literal notranslate"><span class="pre">ax</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">az</span></code> Mesh width in y direction. If it is not specified, <code class="docutils literal notranslate"><span class="pre">az</span></code> = <code class="docutils literal notranslate"><span class="pre">ax</span></code>.</p>
@@ -594,21 +590,21 @@ First, create a working directory.</p>
 </div>
 <p>Here are brief explanations of the variables:</p>
 <p><strong>&amp;simulation section</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">itestr4</span></code> Optimization method (INTEGER). -4 (-8) the modified linear method (LR) [<a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.98.110201">the original linear method</a>], -9 (-5) the stochastic reconfiguration (SR) [See. <a class="reference external" href="https://aip.scitation.org/doi/abs/10.1063/1.2746035">ref</a>]. See also the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p>
+<p><code class="docutils literal notranslate"><span class="pre">itestr4</span></code> Optimization method (INTEGER). -4 (optimize lambda parameter only) or -8 (all parameters) using the modified linear method (LR) [<a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.98.110201">the original linear method</a>], -9 (lambda parameter only) or -5 (all parameters) using the stochastic reconfiguration (SR) [See. <a class="reference external" href="https://aip.scitation.org/doi/abs/10.1063/1.2746035">ref</a>]. See also the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p>
 <p><code class="docutils literal notranslate"><span class="pre">ngen</span></code> Total number of Monte Carlo sampling (INTEGER). Number of optimization steps is <code class="docutils literal notranslate"><span class="pre">ngen</span></code>/<code class="docutils literal notranslate"><span class="pre">nweight</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">iopt</span></code> 1:From scratch, 0:Restart.</p>
 <p><code class="docutils literal notranslate"><span class="pre">maxtime</span></code> Maximun CPU time (INTEGER).</p>
 <p><strong>&amp;vmc section</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">epscut</span></code> Regularization parameter. Small positive value (DOUBLE).</p>
 <p><strong>&amp;optimization section</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">nweight</span></code> Number of Monte Carlo sampling per a optimization step (INTEGER).  Be careful to choose <code class="docutils literal notranslate"><span class="pre">nweight</span></code>.  If it is too small, the outcome is biased, also error bars during optimization steps become too large. Again, the total number of optimization steps is <code class="docutils literal notranslate"><span class="pre">ngen</span></code>/<code class="docutils literal notranslate"><span class="pre">nweight</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nweight</span></code> Number of Monte Carlo sampling per an optimization step (INTEGER).  Be careful to choose <code class="docutils literal notranslate"><span class="pre">nweight</span></code>.  If it is too small, the outcome is biased, also error bars during optimization steps become too large. Again, the total number of optimization steps is <code class="docutils literal notranslate"><span class="pre">ngen</span></code>/<code class="docutils literal notranslate"><span class="pre">nweight</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">nbinr</span></code> Bin (reblocking) length per a optimization step (INTEGER).</p>
 <p><code class="docutils literal notranslate"><span class="pre">iboot</span></code> Number of equilibrium step per a optimization step (INTEGER).</p>
-<p><code class="docutils literal notranslate"><span class="pre">ncg</span></code> The number of the natural gradients calculated the present and the previous optimization steps (ncg) to span global line parameter directions in eq. 135 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper. See the <code class="docutils literal notranslate"><span class="pre">VII</span> <span class="pre">B.</span> <span class="pre">Linear</span> <span class="pre">method</span></code> section of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.
+<p><code class="docutils literal notranslate"><span class="pre">ncg</span></code> The number of the natural gradients calculated the present and the previous optimization steps (ncg) to span global line parameter directions in Eq. 135 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper. See the <code class="docutils literal notranslate"><span class="pre">VII</span> <span class="pre">B.</span> <span class="pre">Linear</span> <span class="pre">method</span></code> section of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.
 Choose 1 for the SR method (not used), 2-4 is fine for the linear method.</p>
-<p><code class="docutils literal notranslate"><span class="pre">tpar</span></code> a hyper parameter <span class="math notranslate nohighlight">\(\Delta\)</span> for the acceleration (DOUBLE).  See the eq. 128 and eq. 139 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper, for the SR and LR method, respectively.
+<p><code class="docutils literal notranslate"><span class="pre">tpar</span></code> a hyper parameter <span class="math notranslate nohighlight">\(\Delta\)</span> for the acceleration (DOUBLE).  See the Eq. 128 and Eq. 139 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper, for the SR and LR method, respectively.
 ~ 0.30 is preferable for LR method. On the other hand, ~1.0d-4 can be an initial value of <code class="docutils literal notranslate"><span class="pre">tpar</span></code> for the SR method, and you can use <code class="docutils literal notranslate"><span class="pre">adjust_tpar</span></code> option to find an optimal <code class="docutils literal notranslate"><span class="pre">tpar</span></code> automatically, as discussed later.</p>
-<p><code class="docutils literal notranslate"><span class="pre">parr</span></code> a hyper parameter  <span class="math notranslate nohighlight">\(\varepsilon\)</span> for the regularization of the preconditioning matrix (i.e., ill-conditioned).  See the equation (130) of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p>
+<p><code class="docutils literal notranslate"><span class="pre">parr</span></code> a hyper parameter  <span class="math notranslate nohighlight">\(\varepsilon\)</span> for the regularization of the preconditioning matrix (i.e., ill-conditioned).  See Eq. 130 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p>
 <p><strong>&amp;parameters section</strong></p>
 <p><code class="docutils literal notranslate"><span class="pre">iesd</span></code> Optimizing one-body and two-body Jastrow parameters (INTEGER).  0: fixed, 1: optimized.</p>
 <p><code class="docutils literal notranslate"><span class="pre">iesfree</span></code> Optimizing three/four-body Jastrow parameters (INTEGER).  0: fixed, 1: optimized.</p>
@@ -616,12 +612,12 @@ Choose 1 for the SR method (not used), 2-4 is fine for the linear method.</p>
 <p><code class="docutils literal notranslate"><span class="pre">iesup</span></code> Optimizing exponents of the atomic orbitals (the antisymmetric part) and coefficients of hybrid orbitals (INTEGER).  0: fixed, 1: optimized.</p>
 <p><code class="docutils literal notranslate"><span class="pre">iesm</span></code> Optimizing exponents of the atomic orbitals (Jastrow part) (INTEGER).  0: fixed, 1: optimized.</p>
 <p>After preparing <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code>, you can start a VMC optimization:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min<span class="w"> </span><span class="p">&amp;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the <a class="reference internal" href="../../08wf_optimization/tutorial.html#turborvbtutorial-98"><span class="std std-ref">Wavefuntion optimization</span></a> part.</p>
+<p>For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the optimization part of the manual.</p>
 </div>
 <p>After finishing the calculation, you can delete temporary files:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-r<span class="w"> </span>turborvb.scratch/
@@ -660,7 +656,7 @@ New<span class="w"> </span><span class="nv">Energy</span><span class="w"> </span
 ...
 </pre></div>
 </div>
-<p>Next step is to average optimized variational parameters. first of all, you can check variational parameters v.s. optimization step:</p>
+<p>Next step is to average optimized variational parameters. First of all, you can check variational parameters v.s. optimization step:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>readalles.x
 bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
 <span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
@@ -775,7 +771,7 @@ Prepare datasvmc.input:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ngen</span></code> Total number of Monte Carlo sampling.</p>
 <p><code class="docutils literal notranslate"><span class="pre">iopt</span></code> 1:From scratch, 0:Restart.</p>
 <p>Run a VMC calculation by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc<span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
 </pre></div>
 </div>
 <p>Remove unnecessary files when you finish the calculation:</p>
@@ -883,8 +879,8 @@ lattice spaces (<code class="docutils literal notranslate"><span class="pre">ala
 </pre></div>
 </div>
 <p>if the number is too small, try smaller <code class="docutils literal notranslate"><span class="pre">tbra</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">etry</span></code> Put a DFT of VMC energy. <span class="math notranslate nohighlight">\(\Gamma\)</span> in eq.6 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper is set 2 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">etry</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">alat</span></code> The lattice space for discretizing the Hamitonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See. Nakano’s paper), put a positive value and set <code class="docutils literal notranslate"><span class="pre">iesrandoma=.true.</span></code>. This trick is needed for satisfying the detailed-valance condition.</p>
+<p><code class="docutils literal notranslate"><span class="pre">etry</span></code> Put a DFT of VMC energy. <span class="math notranslate nohighlight">\(\Gamma\)</span> in Eq.6 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper is set 2 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">etry</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">alat</span></code> The lattice space for discretizing the Hamitonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See. Nakano’s paper), put a positive value and set <code class="docutils literal notranslate"><span class="pre">iesrandoma=.true.</span></code>. This trick is needed for satisfying the detailed-balance condition.</p>
 <p><code class="docutils literal notranslate"><span class="pre">alat2</span></code> The corser lattice space used in the double-grid calculation. If you put 0.0d0, Turbo does a single grid calculation. If you want to do a double-grid calculation for a compound include Z &gt; 2 element, please comment out alat2 because alat2 is automatically set (See Nakano’s paper).</p>
 <p>Prepare different working directories, copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> to each directory, and set the corresponding <code class="docutils literal notranslate"><span class="pre">alat</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>alat_0.10<span class="w">  </span>&lt;-<span class="w"> </span>copy<span class="w"> </span>fort.10,<span class="w"> </span>datasvmc.input,<span class="w"> </span>and<span class="w"> </span>datasfn.input.<span class="w"> </span>Set<span class="w"> </span><span class="nv">alat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.10<span class="w"> </span><span class="k">in</span><span class="w"> </span>datasfn.input.
@@ -895,8 +891,8 @@ alat_0.60<span class="w">  </span>&lt;-<span class="w"> </span>copy<span class="
 </div>
 <p>And then, run each LRDMC calculation after generating initial electron configurations at the VMC level.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># in alat_0.XX directory</span>
-turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc<span class="p">;</span>
-turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn<span class="p">;</span>
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasvmc.input<span class="w"> </span>&gt;<span class="w"> </span>out_vmc
+turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasfn.input<span class="w"> </span>&gt;<span class="w"> </span>out_fn
 </pre></div>
 </div>
 <p>You can average the local energies with considering weights:</p>
@@ -907,6 +903,7 @@ max<span class="w"> </span>k<span class="w"> </span>corrections,<span class="w">
 number<span class="w"> </span>of<span class="w"> </span>measures<span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">9996</span>
 </pre></div>
 </div>
+<p>Here, the input values indicate as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">5</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
 collecting<span class="w"> </span>factor,<span class="w"> </span>bin<span class="w"> </span>length,<span class="w"> </span>initial<span class="w"> </span>bin,<span class="w"> </span>pulay<span class="w"> </span>force
 </pre></div>
@@ -939,7 +936,7 @@ One can also try different reblocking lengths (bin length) and check the converg
 <span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
 </pre></div>
 </div>
-<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
+<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a) = E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># alat    LRDMC energy            Its error bar</span>
 <span class="w">  </span><span class="m">0</span>.10<span class="w">    </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
 </pre></div>
@@ -956,7 +953,7 @@ Coefficient<span class="w"> </span>found
 <span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="m">4</span>.237124912102820E-003<span class="w">  </span><span class="m">4</span>.688879337831868E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_2
 </pre></div>
 </div>
-<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
+<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a) = E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
 <span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
 <span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
@@ -1032,7 +1029,7 @@ Prepare <code class="docutils literal notranslate"><span class="pre">convertfort
 <p>You can use the same grid as in the previous DFT calculation.</p>
 </div>
 <p>Run a conversion:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_conv
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10-serial.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_conv
 </pre></div>
 </div>
 <p>Please check the overlap square in out_conv:</p>

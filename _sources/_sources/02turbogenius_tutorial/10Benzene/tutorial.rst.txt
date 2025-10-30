@@ -338,6 +338,7 @@ Finally, run the postprocess:
 
 We will get E at a = 0.30 bohr in `pip0_fn.d`.
 
+.. _turbogeniustutorial_1001_10:
 
 10 Summary
 ----------------------------------------------------------------
