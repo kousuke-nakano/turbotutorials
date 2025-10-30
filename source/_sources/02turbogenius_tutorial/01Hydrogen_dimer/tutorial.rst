@@ -261,6 +261,9 @@ Now you can launch the VMC optimization:
 
         where ``submit.sh`` is an appropriate job script that invokes the serial or parallel version of TurboRVB executables or TurboGenius interface.
 
+.. note::
+
+        You can stop the optimization by writing ``0`` into ``stop.dat``.
 
 Now, for post-processing, use:
 

@@ -29,7 +29,10 @@ From the obtained wavefunction file ``fort.10``, we will construct the *hybrid o
 Based on physical considerations, assign **four** hybrid orbitals to each carbon and **one** hybrid orbital to each hydrogen using:
 
 .. code-block:: bash
-
+   
+   cd 10_hybrid_orbitals
+   cp ../04_vmc/fort.10 .
+   cp ../04_vmc/pseudo.dat .
    turbogenius convertwf -to agps -nosym -hyb 4 1 4 1 4 1 4 1 4 1 4 1
 
 This projects the wavefunction onto an **AGP** (Antisymmetrized Geminal Power) form **based on hybrid orbitals** rather than on atomic-orbital (AO) basis functions. You can visualize the generated hybrid orbitals with:
@@ -101,14 +104,16 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
 
    - 2–7, 12–17, 22–27 → **optimize** (set flag to ``1``)
    - 7–12, 17–22, 27–2 → **fixed to 0** (ensure value is 0 and set flag to ``-1``)
+   - all the other indices → **optimize** (set flag to ``1``)
 
-   Concretely, keep only the following **three** lines with flag ``1`` and set **all other** entries’ first column to ``-1``:
+   Concretely, keep only the following **three** lines with flag ``-1`` and set **all other** entries’ first column to ``1``:
 
    .. code-block:: text
 
-              1           2           7
-              1          12          17
-              1          22          27
+             -1           2          27
+             -1           7          12
+             -1          17          22
+
 
 .. _turbogeniustutorial_9805_03:
 
@@ -123,7 +128,7 @@ Once optimized, evaluate the energy with the optimized wavefunction:
    .. code-block:: bash
 
       cd ../11_Kekule_vmcopt
-      turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
+      turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
       
@@ -189,24 +194,21 @@ Now set up the **resonating** (fully delocalized) :math:`\pi`-bond picture by al
 .. code-block:: bash
 
       cd ../13_Resonating_vmcopt
-      cp ../10_hybrid_orbitals/fort.10 .
-      cp ../10_hybrid_orbitals/pseudo.dat .
+      cp ../12_Kekule_vmc/fort.10 .
+      cp ../12_Kekule_vmc/pseudo.dat .
       vi fort.10
 
 For the six :math:`p_z` indices (2, 7, 12, 17, 22, 27), enable optimization for **all** ring-adjacent pairs:
 
 - 2–7, 7–12, 12–17, 17–22, 22–27, 27–2
 
-Thus, in the ``# Grouped par.`` block, keep these **six** lines with flag ``1`` and set all other entries’ first column to ``-1``:
+Thus, in the ``# Grouped par.`` block, use flag ``1`` for all the lines. Specifically, you can change the flags of the following lines.
 
 .. code-block:: text
 
-           1           2           7
-           1           7          12
-           1          12          17
-           1          17          22
-           1          22          27
-           1          27           2
+             -1 → 1          2          27
+             -1 → 1          7          12
+             -1 → 1         17          22
 
 .. note::
 
@@ -225,7 +227,7 @@ Optimize this resonating AGP wavefunction, then evaluate the energy as in the Ke
    .. code-block:: bash
 
       cd ../13_Resonating_vmcopt
-      turbogenius vmcopt -g -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005
+      turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
       
@@ -288,14 +290,14 @@ Check the reblocked total energy and error in the file `pip0.d`.
 
 With both **Kekulé** and **resonating** AGP wavefunctions optimized and their energies computed, compare the two total energies to obtain a schematic measure of the stabilization due to aromatic resonance in benzene.
 
-    - Kekule: -34.6293(75) Ha
-    - Resonating: -34.7682(76) Ha
+    - Kekule: -37.322... Ha
+    - Resonating: -37.353... Ha
 
 .. tip::
 
    - Keep a clear record (e.g., a small table) of which :math:`\lambda` pairs are optimized vs. fixed for each case.
    - Verify that pairs set to zero in the Kekulé setup remain **exactly** zero during optimization (i.e., flagged ``-1``).
    - For reproducibility, retain the edited ``fort.10`` files (or diffs) in version control.
-
+   - Since the hybrid orbitals used here are smaller than the basis sets used in :ref:`previous chapter <turbogeniustutorial_1001_10>`, the obtained energy with the resonating wavefunction is slightly worse.
 
 .. [#geo_ref] GEO hybrid-orbital construction reference: DOI: https://doi.org/10.1063/1.4938089

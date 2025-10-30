@@ -100,7 +100,7 @@ Run a conversion:
 
 .. code-block:: bash
 
-    convertfort10.x < convertfort10.input > out_conv
+    convertfort10-serial.x < convertfort10.input > out_conv
 
 Please check the overlap square in out_conv:
 
@@ -198,53 +198,24 @@ Copy the obtained JAGP wavefunction ``fort.10``, and the optimized JDFT wavefunc
 
 Prepare the following two input files for a correlated sampling calculation:
 
-.. code-block:: bash
+.. literalinclude:: data/02conversion_check/datasvmc.input
+   :language: fortran
 
-    #datasvmc.input
-    &simulation 
-    itestr4=2 
-    ngen=15000
-    maxtime=86000
-    iopt=1
-    /
-    &pseudo  
-    /
-    &vmc
-    epscut=1.0d-10
-    /
-    &optimization 
-    /
-    &readio
-    iread=3
-    /
-    &parameters
-    /
-
-.. code-block:: bash
-
-    # readforward.input
-    &simulation
-    / 
-    &system
-    /
-    &corrfun
-    bin_length=100
-    initial_bin=5
-    correlated_samp=.true.
-    /
+.. literalinclude:: data/02conversion_check/readforward.input
+   :language: fortran
 
 Run a correlated sampling
 
 .. code-block:: bash
 
-    mpirun -np 4 turborvb-mpi.x < datasvmc.input > out_vmc
-    mpirun -np 4  readforward-mpi.x < datasvmc.input > out_read
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x < datasvmc.input > out_read
     
 ``corrsampling.dat`` contains the output.
 
 .. code-block:: bash
 
-    #KosukenoMacBook-Pro-2% cat corrsampling.dat 
+    % cat corrsampling.dat
     Number of bins                146
     reference energy: E(fort.10)  -0.113830415E+01     0.208254732E-03
     reweighted energy: E(fort.10_corr)  -0.113830415E+01     0.208254697E-03

@@ -1,0 +1,19 @@
+&simulation
+  itestr4=-6
+  ngen=200000
+  iopt=2
+  maxtime=345600
+/
+&pseudo
+/
+&dmclrdmc
+  tbra=0.1d0
+  etry=-15.00d0
+  alat=0.XXd0
+  !alat2=0.0d0
+  iesrandoma=.true.
+/
+&readio
+/
+&parameters
+/

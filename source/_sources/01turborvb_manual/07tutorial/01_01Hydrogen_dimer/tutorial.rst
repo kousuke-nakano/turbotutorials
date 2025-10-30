@@ -20,17 +20,6 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
 
 .. _review: https://doi.org/10.1063/5.0005037
 
-This is a workflow of this tutorial:
-
-.. image:: workflow_detailed.jpeg
-   :scale: 80%
-   :align: center
-
-This is the detailed workflow of this tutorial:
-
-.. image:: turbo_flow.jpg
-   :scale: 20%
-   :align: center
 
 .. _turborvbtutorial_0101_01:
 
@@ -102,24 +91,24 @@ which will be convert to a Jastrow Slater determinant (JSD) ansatz later. First,
       1   1.057000000000
     #  Parameters atomic Jastrow wf
       1   1   16
-      1   0.83560000000    
+      1   0.83560000000
       1   1   16
-      1   0.18530000000     
+      1   0.18530000000
       1   1   16
       1   0.09555000000
       3   1   36
-      1   1.26134000000     
+      1   1.26134000000
       3   1   36
-      1   0.18114000000     
+      1   0.18114000000
       5   1   68
-      1   0.36285000000  
+      1   0.36285000000
 
 Here are brief explanations of the input variables. 
 Please refer to the user manual and README in details:
 
 **&system namelist**
 
-``posunits`` Unit used in the calculation (STRING). bohr and crystal are implemented.
+``posunits`` Unit used in the calculation (STRING). *bohr* and *crystal* are implemented.
 
 ``natoms`` The number of atoms contained in the system (INTEGER).
 
@@ -148,7 +137,7 @@ Please refer to the user manual and README in details:
 ``symmagp`` If true, taking into account of only singlet pairings, if false, considering also triplet pairings (BOOLEAN).
 
 
-**ATOMIC_POSITIONS namelist**
+**ATOMIC_POSITIONS**
  
 .. code-block:: bash
 
@@ -158,7 +147,6 @@ Please refer to the user manual and README in details:
 
 They represent:
 
-
 .. code-block:: bash
 
     ATOMIC_POSITIONS
@@ -166,7 +154,7 @@ They represent:
     Electrons, Atomic number, Position x, Position y, Position z
     ...
 
-wherein The unit of the coordinations are set by "posunits" in &system namelist.
+wherein the unit of the coordinations are set by ``posunits`` in &system namelist.
 
 .. note::
 
@@ -254,17 +242,17 @@ put the Gaussian basis set into makefort10.input file as follows:
       1   1.057000000000
     #  Parameters atomic Jastrow wf
       1   1   16
-      1   0.83560000000    
+      1   0.83560000000
       1   1   16
-      1   0.18530000000     
+      1   0.18530000000
       1   1   16
       1   0.09555000000
       3   1   36
-      1   1.26134000000     
+      1   1.26134000000
       3   1   36
-      1   0.18114000000     
+      1   0.18114000000
       5   1   68
-      1   0.36285000000  
+      1   0.36285000000
 
 wherein,
 
@@ -272,8 +260,8 @@ wherein,
 
       1   1   16
       1   5.095000000000
-      
-represents,
+
+represents
 
 .. code-block:: bash
 
@@ -310,7 +298,7 @@ One can generate a JsAGPs ansatz using the prepared makefort10.input by typing:
 
 At the same time, ``structure.xsf`` is generated. One can check if the input structure is what you have expected, e.g., by xcrysden.
 
-.. image:: H2_dimer.jpg
+.. image:: image/H2_dimer.jpg
    :scale: 10%
    :align: center
 
@@ -471,7 +459,7 @@ Here are brief explanations of the variables:
 
 ``maxit`` Maximun number of SCF iterations (INTEGER).
 
-``epsdft`` Tollerance in convergence in total energy (DOUBLE).
+``epsdft`` Tolerance in convergence in total energy (DOUBLE).
 
 ``mixing`` Mixing in the density (DOUBLE).
 
@@ -481,7 +469,7 @@ Here are brief explanations of the variables:
 
 ``neloc`` The number of occupied spatial orbitals (INTEGER). You should specify this variable and put the occupations explicitly below when you use ``optocc`` = 0.
 
-**&mesh_info namelist**
+**&molecul namelist**
 
 ``ax`` Mesh width in x direction. The unit is Bohr
 
@@ -638,7 +626,7 @@ Here are brief explanations of the variables:
 
 **&simulation section**
 
-``itestr4`` Optimization method (INTEGER). -4 (-8) the modified linear method (LR) [`the original linear method <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.98.110201>`_], -9 (-5) the stochastic reconfiguration (SR) [See. `ref <https://aip.scitation.org/doi/abs/10.1063/1.2746035>`_]. See also the review_ paper.
+``itestr4`` Optimization method (INTEGER). -4 (optimize lambda parameter only) or -8 (all parameters) using the modified linear method (LR) [`the original linear method <https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.98.110201>`_], -9 (lambda parameter only) or -5 (all parameters) using the stochastic reconfiguration (SR) [See. `ref <https://aip.scitation.org/doi/abs/10.1063/1.2746035>`_]. See also the review_ paper.
 
 ``ngen`` Total number of Monte Carlo sampling (INTEGER). Number of optimization steps is ``ngen``/``nweight``.
 
@@ -652,19 +640,19 @@ Here are brief explanations of the variables:
 
 **&optimization section**
 
-``nweight`` Number of Monte Carlo sampling per a optimization step (INTEGER).  Be careful to choose ``nweight``.  If it is too small, the outcome is biased, also error bars during optimization steps become too large. Again, the total number of optimization steps is ``ngen``/``nweight``.
+``nweight`` Number of Monte Carlo sampling per an optimization step (INTEGER).  Be careful to choose ``nweight``.  If it is too small, the outcome is biased, also error bars during optimization steps become too large. Again, the total number of optimization steps is ``ngen``/``nweight``.
 
 ``nbinr`` Bin (reblocking) length per a optimization step (INTEGER).
 
 ``iboot`` Number of equilibrium step per a optimization step (INTEGER).
 
-``ncg`` The number of the natural gradients calculated the present and the previous optimization steps (ncg) to span global line parameter directions in eq. 135 of the review_ paper. See the ``VII B. Linear method`` section of the review_ paper.
+``ncg`` The number of the natural gradients calculated the present and the previous optimization steps (ncg) to span global line parameter directions in Eq. 135 of the review_ paper. See the ``VII B. Linear method`` section of the review_ paper.
 Choose 1 for the SR method (not used), 2-4 is fine for the linear method.
 
-``tpar`` a hyper parameter :math:`\Delta` for the acceleration (DOUBLE).  See the eq. 128 and eq. 139 of the review_ paper, for the SR and LR method, respectively.
+``tpar`` a hyper parameter :math:`\Delta` for the acceleration (DOUBLE).  See the Eq. 128 and Eq. 139 of the review_ paper, for the SR and LR method, respectively.
 ~ 0.30 is preferable for LR method. On the other hand, ~1.0d-4 can be an initial value of ``tpar`` for the SR method, and you can use ``adjust_tpar`` option to find an optimal ``tpar`` automatically, as discussed later.
 
-``parr`` a hyper parameter  :math:`\varepsilon` for the regularization of the preconditioning matrix (i.e., ill-conditioned).  See the equation (130) of the review_ paper.
+``parr`` a hyper parameter  :math:`\varepsilon` for the regularization of the preconditioning matrix (i.e., ill-conditioned).  See Eq. 130 of the review_ paper.
 
 **&parameters section**
 
@@ -682,11 +670,11 @@ After preparing ``datasmin.input``, you can start a VMC optimization:
 
 .. code-block:: bash
 
-    turborvb-serial.x < datasmin.input > out_min &
+    turborvb-serial.x < datasmin.input > out_min
 
 .. warning::
 
-    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the :ref:`turborvbtutorial_98` part.
+    For a real run (i.e., for a peer-reviewed paper), one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB, or carefully read the optimization part of the manual.
     
 After finishing the calculation, you can delete temporary files:
 
@@ -707,7 +695,7 @@ Next, confirm energy convergence by typing:
 
 Then, you can see the following window.
 
-.. image:: plot_Energy.PNG
+.. image:: image/plot_Energy.PNG
    :scale: 60%
    :align: center
 
@@ -728,7 +716,7 @@ Next, check the convergence of devmax by typing:
 
 Then, you can see following window.
 
-.. image:: plot_devmax.PNG
+.. image:: image/plot_devmax.PNG
    :scale: 60%
    :align: center
 
@@ -746,7 +734,7 @@ Alternatively, you may check the convergence using row data:
     New Energy =   -1.12493358677406       4.972731686123029E-003
     ...
 
-Next step is to average optimized variational parameters. first of all, you can check variational parameters v.s. optimization step:
+Next step is to average optimized variational parameters. First of all, you can check variational parameters v.s. optimization step:
 
 .. code-block:: bash
 
@@ -772,15 +760,15 @@ Here:
 
 Then, you can see following figures:
 
-.. image:: J2.png
+.. image:: image/J2.png
    :scale: 60%
    :align: center
 
-.. image:: J1.png
+.. image:: image/J1.png
    :scale: 60%
    :align: center
 
-.. image:: J3.png
+.. image:: image/J3.png
    :scale: 60%
    :align: center
 
@@ -914,7 +902,7 @@ Run a VMC calculation by typing:
 
 .. code-block:: bash
 
-    turborvb-serial.x < datasvmc.input > out_vmc;
+    turborvb-serial.x < datasvmc.input > out_vmc
 
 Remove unnecessary files when you finish the calculation:
 
@@ -1048,9 +1036,9 @@ Here are brief explanations of the variables for a LRDMC calculation:
 
 if the number is too small, try smaller ``tbra``.
 
-``etry`` Put a DFT of VMC energy. :math:`\Gamma` in eq.6 of the review_ paper is set 2 :math:`\times` ``etry``
+``etry`` Put a DFT of VMC energy. :math:`\Gamma` in Eq.6 of the review_ paper is set 2 :math:`\times` ``etry``
 
-``alat`` The lattice space for discretizing the Hamitonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See. Nakano's paper), put a positive value and set ``iesrandoma=.true.``. This trick is needed for satisfying the detailed-valance condition.
+``alat`` The lattice space for discretizing the Hamitonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See. Nakano's paper), put a positive value and set ``iesrandoma=.true.``. This trick is needed for satisfying the detailed-balance condition.
 
 ``alat2`` The corser lattice space used in the double-grid calculation. If you put 0.0d0, Turbo does a single grid calculation. If you want to do a double-grid calculation for a compound include Z > 2 element, please comment out alat2 because alat2 is automatically set (See Nakano's paper).
 
@@ -1068,8 +1056,8 @@ And then, run each LRDMC calculation after generating initial electron configura
 .. code-block:: bash
     
     # in alat_0.XX directory
-    turborvb-serial.x < datasvmc.input > out_vmc;
-    turborvb-serial.x < datasfn.input > out_fn;
+    turborvb-serial.x < datasvmc.input > out_vmc
+    turborvb-serial.x < datasfn.input > out_fn
 
 You can average the local energies with considering weights:
 
@@ -1081,6 +1069,8 @@ You can average the local energies with considering weights:
     5 10 5 1
     number of measures done =        9996
 
+Here, the input values indicate as follows:
+    
 .. code-block:: bash
 
     5 10 5 1
@@ -1120,7 +1110,7 @@ wherein
     # 2  number of data 4 1
       2  4  4  1
 
-for a quadratic fitting i.e., :math:`E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4` and 
+for a quadratic fitting i.e., :math:`E(a) = E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4` and 
 
 .. code-block:: bash
     
@@ -1143,7 +1133,7 @@ You can see
        2 -1.039867020790643E-003  1.780475364652620E-003  <- k_1
        3  4.237124912102820E-003  4.688879337831868E-003  <- k_2
 
-If you want to do a linear fitting, i.e, i.e., :math:`E(a)=E(0) + k_{1} \cdots a^2`, put evsa.in 
+If you want to do a linear fitting, i.e, i.e., :math:`E(a) = E(0) + k_{1} \cdots a^2`, put evsa.in 
 
 .. code-block:: bash
 
@@ -1244,7 +1234,7 @@ Run a conversion:
 
 .. code-block:: bash
 
-    convertfort10.x < convertfort10.input > out_conv
+    convertfort10-serial.x < convertfort10.input > out_conv
 
 Please check the overlap square in out_conv:
 
