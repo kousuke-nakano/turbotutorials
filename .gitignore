@@ -136,3 +136,6 @@ tar_all_tutorials.sh
 *.pptx
 file/
 99archived/
+
+# editor backup files
+*~
