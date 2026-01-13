@@ -31,7 +31,7 @@ An example of workflow is presented in the tutorial that performs a sequential j
    :maxdepth: 1
    
    ./getting_started/00index.rst
-   ../03turboworkflows_tutorial/00index.rst
+   ./tutorial/00index.rst
    ./reference/00index.rst
    ./troubleshooting.rst
    ./appendix/00index.rst
