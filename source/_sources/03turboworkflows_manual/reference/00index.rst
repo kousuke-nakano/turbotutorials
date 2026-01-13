@@ -22,7 +22,7 @@ workflow items
    workflow_lrdmcopt
    workflow_makefort10
    workflow_pyscf
-   workflow_texio
+   workflow_trexio
    workflow_vmc
    workflow_vmcopt
 

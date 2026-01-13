@@ -1,10 +1,10 @@
 .. _turboworkflows_tutorial_crystal_at_gamma:
 
 HF-VMC Calculation for Crystals at Gamma Point
-=========================================================================
+================================================================
 
 Overview
---------
+----------------------------------------------------------------
 
 This tutorial explains how to perform Hartree-Fock (HF) calculations using PySCF and Variational Monte Carlo (VMC) calculations using TurboRVB for crystal structures at k=gamma point (Γ point) using TurboWorkflows, using ``crystal_at_gamma`` as an example.
 
@@ -18,10 +18,10 @@ This tutorial can be used for sanity checks of TurboRVB VMC calculations. By con
 The complete set of files for this tutorial is available at :download:`file.tar.gz <./file.tar.gz>`.
 
 Execution Steps
----------------
+----------------------------------------------------------------
 
 1. Environment Setup
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.
 The following files are required:
@@ -30,7 +30,7 @@ The following files are required:
 - ``geometry/`` directory: CIF files (crystal structure files)
 
 2. Script Execution
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ``task.py``:
 
@@ -46,10 +46,10 @@ The script automatically performs the following operations:
 4. Sequentially executes PySCF calculation, TREXIO conversion, and VMC calculation for each crystal structure
 
 Program Overview
-----------------
+----------------------------------------------------------------
 
 Script Structure
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``task.py`` consists of the following main parts:
 
@@ -62,7 +62,7 @@ Script Structure
 Reads crystal structure information from the CSV file and only processes structures with ``Flag==TRUE``.
 
 File Format of ``data_sanity_check.csv``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``data_sanity_check.csv`` is a CSV file containing crystal structure information for calculations. It includes the following columns:
 
@@ -76,7 +76,7 @@ File Format of ``data_sanity_check.csv``
 
 Example CSV file:
 
-.. code-block:: csv
+.. code-block:: text
 
    Flag,CODID,Label,pyscf_basis,pyscf_ecp,Charge,Neldiff
    TRUE,1234567,LiH,ccecp-ccpvqz,ccecp,0,0
@@ -95,7 +95,7 @@ Creates ``results/`` directory and changes the working directory.
 For each crystal structure (each row in ``mol_calc``), the following workflows are generated:
 
 a. Crystal Structure Information Retrieval and CIF File Copying (lines 36-46)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 36-46
@@ -105,7 +105,7 @@ a. Crystal Structure Information Retrieval and CIF File Copying (lines 36-46)
 - Reads and copies the CIF file from the ``geometry/`` directory to the ``results/`` directory
 
 b. PySCF HF Calculation Workflow (lines 48-77)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 48-77
@@ -126,7 +126,7 @@ Main parameters:
 - ``use_jkmethod=True``: Use JK method (for crystal calculations)
 
 c. TREXIO Conversion Workflow (lines 81-95)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 81-95
@@ -136,7 +136,7 @@ c. TREXIO Conversion Workflow (lines 81-95)
 - Jastrow factors are initialized as empty (no optimization) with ``jastrow_basis_dict={}``
 
 d. VMC Calculation Workflow (lines 99-125)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 99-125
@@ -162,7 +162,7 @@ Main parameters:
 Registers all workflows with the ``Launcher`` class, draws the dependency graph (``dependency_graph_draw=True``), and then executes them.
 
 Workflow Dependencies
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When ``task.py`` is executed, a dependency graph is automatically generated due to ``dependency_graph_draw=True``.
 By referring to the generated dependency graph (``graphs.png``), you can visually confirm the dependencies between workflows.
@@ -176,10 +176,10 @@ Main dependency flow:
 The ``Launcher`` class automatically executes workflows in the appropriate order based on this dependency graph.
 
 Result Structure
-----------------
+----------------------------------------------------------------
 
 Output Directory Structure
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After execution, results are saved in the ``results/`` directory with the following structure:
 
@@ -224,7 +224,7 @@ For each crystal structure, the following directories are created:
   - VMC calculation log files and output files
 
 Checking Calculation Results
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Results from each workflow can be checked from log files and output files in the corresponding directories.
 
@@ -241,10 +241,10 @@ A plot summarizing the calculation results is shown below.
 This plot compares PySCF HF energies with TurboRVB VMC energies for each crystal structure, confirming consistency between the two methods.
 
 Parameter Adjustment
---------------------
+----------------------------------------------------------------
 
 Job Execution Parameters
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For VMC calculation and other workflows, the following job execution parameters need to be set:
 
@@ -253,7 +253,7 @@ For VMC calculation and other workflows, the following job execution parameters 
 - ``mpi``: Whether to use MPI version of the binary. If ``True``, parallel computation is possible.
 
 Calculation Accuracy Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To adjust VMC calculation accuracy, modify parameters of ``VMC_workflow``:
 
@@ -262,7 +262,7 @@ To adjust VMC calculation accuracy, modify parameters of ``VMC_workflow``:
 - ``vmc_bin_block``: Bin size
 
 PySCF Calculation Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 PySCF calculation parameters:
 
@@ -271,10 +271,10 @@ PySCF calculation parameters:
 - ``exp_to_discard``: Threshold for discarding orbitals
 
 Troubleshooting
----------------
+----------------------------------------------------------------
 
 When PySCF Calculation Fails
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Verify that PySCF and required packages are correctly installed
 - Check that computational resources (memory, CPU) are sufficient
@@ -282,7 +282,7 @@ When PySCF Calculation Fails
 - Check that the CIF file format is correct
 
 When Workflow Fails
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Check log files for each workflow
 - Verify that dependencies are correctly set (especially ``Variable`` references)
@@ -290,21 +290,21 @@ When Workflow Fails
 - Check the dependency graph generated by ``dependency_graph_draw=True``
 
 When TREXIO Conversion Fails
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Verify that ``trexio.hdf5`` is correctly generated
 - Check that TREXIO is correctly installed
 - Try adjusting the ``max_occ_conv`` parameter (e.g., from ``1.0e-3`` to ``1.0e-4``)
 
 When Calculation Time is Too Long
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Increase ``vmc_target_error_bar`` (lower accuracy)
 - Reduce ``vmc_trial_steps``
 - Check computational resources (CPU count, memory) being used
 
 Summary
--------
+----------------------------------------------------------------
 
 In this tutorial, we performed HF-VMC calculations for multiple crystal structures at k=gamma point through the following steps:
 

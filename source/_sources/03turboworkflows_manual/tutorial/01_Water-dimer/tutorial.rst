@@ -1,10 +1,10 @@
 .. _turboworkflows_tutorial_water_dimer:
 
 Water Dimer Calculation
-=================================================
+================================================================
 
 Overview
---------
+----------------------------------------------------------------
 
 This tutorial explains the workflow for Quantum Monte Carlo (QMC) calculations using TurboWorkflows, with Water Dimer as an example.
 This tutorial is based on the sample presented in J. Chem. Phys. 159, 224801 (2023).
@@ -19,12 +19,12 @@ This tutorial performs QMC calculations for Water Dimer through the following st
 5. **LRDMC Calculation**: Perform LRDMC calculations with multiple *a* values and extrapolate to *a*\ →0
 
 Step 1: PySCF Calculation
----------------------------
+----------------------------------------------------------------
 
 As the first step, we perform a DFT calculation using PySCF to generate the initial wavefunction.
 
 Input Files
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - ``water_dimer.xyz``: Molecular structure file (XYZ format)
 
@@ -40,7 +40,7 @@ Input Files
    H   1.680398  -0.373741   0.758561
 
 PySCF Calculation Script
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``pyscf_water_dimer.py`` performs DFT calculation with the following settings:
 
@@ -50,7 +50,7 @@ PySCF Calculation Script
 - Output: PySCF checkpoint file (``pyscf.chk``)
 
 Execution Method
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute the PySCF calculation using the ``do.sh`` script:
 
@@ -73,7 +73,7 @@ This script performs the following operations:
    trexio convert-from -t pyscf -i pyscf.chk -b hdf5 water.hdf5
 
 Output Files
-~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - ``pyscf.chk``: PySCF checkpoint file
 - ``water.hdf5``: Wavefunction data in TREXIO format (used in the next step)
@@ -84,12 +84,12 @@ Output Files
    This step will be simplified in the upcoming version of PySCF that directly generates outputs in TREXIO format.
 
 Step 2: TurboRVB Workflow Execution
--------------------------------------
+----------------------------------------------------------------
 
 Use the ``task.py`` script to execute a series of workflows from conversion to TurboRVB format to the final LRDMC calculation.
 
 Workflow Class Overview
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``task.py`` uses the following four workflow classes:
 
@@ -104,7 +104,7 @@ Workflow Class Overview
 For detailed parameters of each workflow class, please refer to :ref:`the reference manual <turboworkflows_reference>`.
 
 Encapsulated_Workflow Class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In TurboWorkflows, each calculation workflow is wrapped by the ``Encapsulated_Workflow`` class. This class manages workflow execution in isolated directories and automatically handles input file copying and output file tracking.
 
@@ -118,7 +118,7 @@ Main parameters of ``Encapsulated_Workflow``:
 In ``input_files``, you can specify normal file paths (strings) or use ``Variable`` objects to reference outputs from other workflows.
 
 Describing Dependencies with Variable Class
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The ``Variable`` class is used to describe dependencies between workflows. By using ``Variable``, you can automatically pass outputs from one workflow as inputs to another workflow.
 
@@ -156,12 +156,12 @@ Locations where ``Variable`` can be used:
 The ``Launcher`` class automatically resolves ``Variable`` objects, retrieves appropriate file paths or values, and passes them to workflows. This automatically manages dependencies between workflows and executes them in the appropriate order.
 
 Workflow Configuration
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``task.py`` executes the following four workflows sequentially:
 
 1. Conversion from TREXIO to TurboRVB Format
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 43-54
@@ -176,7 +176,7 @@ This workflow:
 In this example, a normal file path (``os.path.join(root_dir, "water.hdf5")``) is specified in ``input_files``. This is an example of using external files (PySCF calculation results) as input. On the other hand, subsequent workflows use ``Variable`` to reference outputs from previous workflows.
 
 2. VMC Optimization
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 56-94
@@ -205,7 +205,7 @@ Calculation parameters:
 - (See the reference manual for other parameters.)
 
 3. VMC Calculation
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 96-119
@@ -222,7 +222,7 @@ This workflow uses the wavefunction (``fort.10``) optimized by ``vmcopt-workflow
 In this example, job execution parameters such as ``server_machine_name="localhost"``, ``queue_label="default"``, ``sleep_time=60``, and ``mpi=True`` are set. These parameters should be set appropriately according to the computational environment used, similar to VMC optimization.
 
 4. LRDMC Calculation and a→0 Extrapolation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 121-150
@@ -239,7 +239,7 @@ In this example, not only are file dependencies specified in ``input_files``, bu
 Job execution parameters (``server_machine_name``, ``queue_label``, ``sleep_time``, ``mpi``, etc.) are set similarly to VMC optimization and VMC calculation.
 
 Workflow Execution
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Register all workflows with the ``Launcher`` class and execute:
 
@@ -248,14 +248,14 @@ Register all workflows with the ``Launcher`` class and execute:
    :language: python
 
 Execution Method
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
    python task.py
 
 Workflow Dependencies
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Workflows are executed with the following dependencies:
 
@@ -274,7 +274,7 @@ Workflows are executed with the following dependencies:
 The ``Launcher`` automatically resolves dependencies and executes workflows in the appropriate order.
 
 Output Directory Structure
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After execution, results are saved in the ``results/`` directory with the following structure:
 
@@ -293,10 +293,10 @@ After execution, results are saved in the ``results/`` directory with the follow
        └── ...              # LRDMC calculation results and extrapolation results
 
 Parameter Adjustment
---------------------
+----------------------------------------------------------------
 
 Job Execution Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For calculation workflows such as VMC, VMC optimization, and LRDMC, the following job execution parameters need to be set:
 
@@ -315,7 +315,7 @@ These parameters need to be set appropriately according to the computational env
 ``machine_data.yaml`` is a configuration file that defines settings for each server machine. This file contains information such as machine type (local/remote), IP address, whether to use queue system, job management commands (``jobsubmit``, ``jobcheck``, ``jobdel``, etc.). Similarly, ``queue_data.toml`` defines settings for each queue (number of CPUs, memory, execution time limit, etc.).
 
 Jastrow Basis Functions
-~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Jastrow basis functions can be defined in ``jastrow_basis_dict`` in ``task.py``:
 
@@ -324,7 +324,7 @@ Jastrow basis functions can be defined in ``jastrow_basis_dict`` in ``task.py``:
    :language: python
 
 VMC Optimization Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 By adjusting parameters of ``VMCopt_workflow``, you can control optimization accuracy and computation time:
 
@@ -333,7 +333,7 @@ By adjusting parameters of ``VMCopt_workflow``, you can control optimization acc
 - ``vmcopt_learning_rate``: Learning rate (affects optimization convergence speed)
 
 LRDMC Parameters
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Parameters of ``LRDMC_ext_workflow``:
 
@@ -342,30 +342,30 @@ Parameters of ``LRDMC_ext_workflow``:
 - ``lrdmc_nonlocalmoves``: Non-local move method ("tmove", etc.)
 
 Troubleshooting
----------------
+----------------------------------------------------------------
 
 When PySCF Calculation Fails
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Check the format of ``water_dimer.xyz``
 - Verify that PySCF and required packages are correctly installed
 - Check that computational resources (memory, CPU) are sufficient
 
 When TREXIO Conversion Fails
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Check that ``water.hdf5`` is correctly generated
 - Verify that TREXIO is correctly installed
 
 When Workflow Fails
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Check log files for each workflow
 - Verify that dependencies are correctly set
 - Check computational resources (especially cluster settings)
 
 Summary
--------
+----------------------------------------------------------------
 
 In this tutorial, we performed QMC calculations for Water Dimer through the following steps:
 

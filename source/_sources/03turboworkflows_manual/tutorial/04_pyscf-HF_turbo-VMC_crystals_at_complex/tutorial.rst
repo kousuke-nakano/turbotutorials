@@ -93,7 +93,7 @@ File Format of ``data_sanity_check.csv``
 
 Example CSV file:
 
-.. code-block:: csv
+.. code-block:: text
 
    Flag,CODID,Label,pyscf_basis,pyscf_ecp,Charge,Neldiff
    TRUE,1234567,LiH,ccecp-ccpvqz,ccecp,0,0

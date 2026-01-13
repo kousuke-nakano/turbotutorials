@@ -1,10 +1,10 @@
 .. _turboworkflows_tutorial_molecule:
 
 HF-VMC Calculation for Molecules
-===========================================================
+================================================================
 
 Overview
---------
+----------------------------------------------------------------
 
 This tutorial explains how to perform Hartree-Fock (HF) calculations using PySCF and Variational Monte Carlo (VMC) calculations using TurboRVB for multiple molecules using TurboWorkflows, and perform consistency checks between the two methods.
 
@@ -18,10 +18,10 @@ This tutorial can be used for sanity checks of TurboRVB VMC calculations. By con
 The complete set of files for this tutorial is available at :download:`file.tar.gz <./file.tar.gz>`.
 
 Execution Steps
----------------
+----------------------------------------------------------------
 
 1. Environment Setup
-~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.
 The following files are required:
@@ -30,7 +30,7 @@ The following files are required:
 - ``geometry/`` directory: XYZ files for molecules (for molecule type)
 
 2. Script Execution
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Execute ``task.py``:
 
@@ -46,10 +46,10 @@ The script automatically performs the following operations:
 4. Sequentially executes PySCF calculation, TREXIO conversion, and VMC calculation for each molecule
 
 Program Overview
-----------------
+----------------------------------------------------------------
 
 Script Structure
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ``task.py`` consists of the following main parts:
 
@@ -62,7 +62,7 @@ Script Structure
 Reads molecular information from the CSV file and only processes molecules with ``Flag==TRUE``.
 
 File Format of ``data_sanity_check.csv``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ``data_sanity_check.csv`` is a CSV file containing molecular information for calculations. It includes the following columns:
 
@@ -83,7 +83,7 @@ File Format of ``data_sanity_check.csv``
 
 Example CSV file:
 
-.. code-block:: csv
+.. code-block:: text
 
    Flag,Species,Type,Label,Note,scf_newton,pyscf_basis,pyscf_ecp,Charge,Neldiff,Geometry Reference
    TRUE,H,atom,H,simple atom,FALSE,ccecp-ccpvqz,ccecp,0,1,nan
@@ -103,7 +103,7 @@ Creates ``results/`` directory and changes the working directory.
 For each molecule (each row in ``mol_calc``), the following workflows are generated:
 
 a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 37-62
@@ -114,7 +114,7 @@ a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)
 - If ``Type`` is ``"molecule"``, reads and copies the XYZ file from the ``geometry/`` directory
 
 b. PySCF HF Calculation Workflow (lines 64-91)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 64-91
@@ -132,7 +132,7 @@ Main parameters:
 - ``solver_newton``: Flag for using Newton solver
 
 c. TREXIO Conversion Workflow (lines 97-110)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 97-110
@@ -142,7 +142,7 @@ c. TREXIO Conversion Workflow (lines 97-110)
 - Jastrow factors are initialized as empty (no optimization) with ``jastrow_basis_dict={}``
 
 d. VMC Calculation Workflow (lines 112-137)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. literalinclude:: task.py
    :lines: 112-137
@@ -167,7 +167,7 @@ Main parameters:
 Registers all workflows with the ``Launcher`` class, draws the dependency graph (``dependency_graph_draw=True``), and then executes them.
 
 Workflow Dependencies
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 When ``task.py`` is executed, a dependency graph is automatically generated due to ``dependency_graph_draw=True``.
 By referring to the generated dependency graph (``graphs.png``), you can visually confirm the dependencies between workflows.
@@ -181,10 +181,10 @@ Main dependency flow:
 The ``Launcher`` class automatically executes workflows in the appropriate order based on this dependency graph.
 
 Result Structure
-----------------
+----------------------------------------------------------------
 
 Output Directory Structure
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 After execution, results are saved in the ``results/`` directory with the following structure:
 
@@ -230,7 +230,7 @@ For each molecule, the following directories are created:
   - VMC calculation log files and output files
 
 Checking Calculation Results
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Results from each workflow can be checked from log files and output files in the corresponding directories.
 
@@ -247,7 +247,7 @@ A plot summarizing the calculation results is shown below.
 This plot compares PySCF HF energies with TurboRVB VMC energies for each molecule, confirming consistency between the two methods.
 
 Summary
--------
+----------------------------------------------------------------
 
 In this tutorial, we performed HF-VMC calculations for multiple molecules through the following steps:
 
