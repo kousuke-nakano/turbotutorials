@@ -1,194 +1,260 @@
-.. TurboRVB_manual documentation master file, created by
-   sphinx-quickstart on Thu Jan 24 00:11:17 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _turboworkflows_tutorial_molecule:
 
-.. _turboworkflowstutorial_02:
+HF-VMC Calculation for Molecules
+===========================================================
 
-02_pyscf-HF_turbo-VMC_molecules
-======================================================
+Overview
+--------
 
-From this tutorial, you can learn how to compare HF energies obtained by pySCF and VMC energies obtained by TurboRVB for 100 molecules using `turboworkflows`. Here is a python script to compute it. You can download the csv and geometry files for this tutorial from :download:`here  <./file.tar.gz>`.
+This tutorial explains how to perform Hartree-Fock (HF) calculations using PySCF and Variational Monte Carlo (VMC) calculations using TurboRVB for multiple molecules using TurboWorkflows, and perform consistency checks between the two methods.
 
-.. figure:: pyscf_turborvb_sanity_check_HF.png
-    :width: 700px
-    
-.. code-block:: python
+This tutorial automatically executes the following workflow for multiple molecules listed in the CSV file (``data_sanity_check.csv``):
 
-    #!/usr/bin/env python
-    # coding: utf-8
-    
-    # python packages
-    import os, sys
-    import numpy as np
-    import pandas as pd
-    from ase import Atoms
-    from ase.io import write, read
-    
-    # turboworkflows packages
-    from turboworkflows.workflow_encapsulated import eWorkflow
-    from turboworkflows.workflow_lrdmc_ext import LRDMC_ext_workflow
-    from turboworkflows.workflow_vmc import VMC_workflow
-    from turboworkflows.workflow_pyscf import PySCF_workflow
-    from turboworkflows.workflow_trexio import TREXIO_convert_to_turboWF
-    from turboworkflows.workflow_vmcopt import VMCopt_workflow
-    from turboworkflows.workflow_lanchers import Launcher, Variable
-    from turboworkflows.workflow_prep import DFT_workflow
-    
-    # read molecules and its info.
-    mol_info=pd.read_csv("data_sanity_check.csv")
-    mol_calc=mol_info[mol_info["Flag"]==True]
-    
-    # info list:
-    species_list=list(mol_calc["Species"])
-    type_list=list(mol_calc["Type"])
-    label_list=list(mol_calc["Label"])
-    scf_newton_list=list(mol_calc["scf_newton"])
-    pyscf_basis_list=list(mol_calc["pyscf_basis"])
-    pyscf_ecp_list=list(mol_calc["pyscf_ecp"])
-    charge_list=list(mol_calc["Charge"])
-    neldiff_list=list(mol_calc["Neldiff"])
-    geom_ref_list=list(mol_calc["Geometry Reference"])
-    
-    pid=os.getpid()
-    with open("turboworkflows.pid", "w") as f: f.write(str(pid)+'\n')
-    
-    root_dir=os.getcwd()
-    result_dir=os.path.join(os.getcwd(), "results")
-    os.makedirs(result_dir, exist_ok=True)
-    os.chdir(result_dir)
-    
-    cworkflows_list=[]
-    
-    for species,type,label,scf_newton,pyscf_basis,pyscf_ecp,charge,neldiff,geom_ref in zip(species_list,type_list,label_list,scf_newton_list,pyscf_basis_list,pyscf_ecp_list,charge_list,neldiff_list,geom_ref_list):
-    
-        mol_root_dir=os.path.join(result_dir, label)
-        
-        #copy or generate xyz file.
-        if type=="atom":
-            at = Atoms(species, positions=[(0, 0, 0)])
-            write(f"{species}.xyz", at)
-        
-        elif type=="molecule":
-            at = read(os.path.join(root_dir,"geometry", f"{species}.xyz"))
-            write(f"{species}.xyz", at)
-        
-        else:
-            sys.exit()
-        
-        pyscf_HF_workflow = eWorkflow(
-        label=f'pyscf-HF-workflow-{label}',
-        dirname=os.path.join(mol_root_dir, f'pyscf-HF-workflow'),
-        input_files=[f"{species}.xyz"],
-        workflow=PySCF_workflow(
-            ## structure file (mandatory)
-            structure_file=f"{species}.xyz",
-            ## job
-            server_machine_name="kagayaki",
-            cores=128,
-            openmp=128,
-            queue="SINGLE",
-            version="stable",
-            sleep_time=600,  # sec.
-            jobpkl_name="job_manager",
-            ## pyscf
-            pyscf_rerun=False,
-            pyscf_pkl_name="pyscf_genius",
-            charge=charge,
-            spin=neldiff,
-            basis=pyscf_basis,
-            ecp=pyscf_ecp,
-            scf_method="HF",
-            dft_xc="NA",
-            pyscf_output="out.pyscf",
-            pyscf_chkfile="pyscf.chk",
-            solver_newton=scf_newton,
-            twist_average=False,
-            exp_to_discard=0.00,
-            kpt=[0.0, 0.0, 0.0],  # scaled_kpts!! i.e., crystal coord.
-            kpt_grid=[1, 1, 1]
-            )
-        )
-        
-        cworkflows_list+=[pyscf_HF_workflow]
-        
-        #continue #to check pyscf convergences
-        
-        trexio_HF_workflow = eWorkflow(
-            label=f'trexio-HF-workflow-{label}',
-            dirname=os.path.join(mol_root_dir, f'trexio-HF-workflow'),
-            input_files=[Variable(label=f'pyscf-HF-workflow-{label}', vtype='file', name='trexio.hdf5')],
-            workflow=TREXIO_convert_to_turboWF(
-                trexio_filename="trexio.hdf5",
-                twist_average=False,
-                jastrow_basis_dict={},
-                max_occ_conv=1.0e-4,
-                trexio_rerun=False,
-                trexio_pkl_name="trexio_genius"
-            )
-        )
-        
-        vmc_HF_workflow = eWorkflow(
-            label=f'vmc-HF-workflow-{label}',
-            dirname=os.path.join(mol_root_dir, f'vmc-HF-workflow'),
-            input_files=[Variable(label=f'trexio-HF-workflow-{label}', vtype='file', name='fort.10'),
-                        Variable(label=f'trexio-HF-workflow-{label}', vtype='file', name='pseudo.dat')],
-            workflow=VMC_workflow(
-                ## job
-                server_machine_name="fugaku",
-                cores=2304,
-                openmp=1,
-                queue="small",
-                version="stable",
-                sleep_time=9600, # sec.
-                jobpkl_name="job_manager",
-                ## vmc
-                vmc_max_continuation=2,
-                vmc_pkl_name="vmc_genius",
-                vmc_target_error_bar=1.0e-5, # Ha
-                vmc_trial_steps= 150,
-                vmc_bin_block = 10,
-                vmc_warmupblocks = 5,
-                vmc_num_walkers = -1, # default -1 -> num of MPI process.
-                vmc_twist_average=False,
-                vmc_kpoints=[],
-                vmc_force_calc_flag=False,
-                vmc_maxtime=84600,
-            )
-        )
-        
-        cworkflows_list+=[vmc_HF_workflow, trexio_HF_workflow]
-    
-        vmc_HF_workflow_gpu = eWorkflow(
-            label=f'vmc-HF-workflow-{label}-gpu',
-            dirname=os.path.join(mol_root_dir, f'vmc-HF-workflow-gpu'),
-            input_files=[Variable(label=f'trexio-HF-workflow-{label}', vtype='file', name='fort.10'),
-                        Variable(label=f'trexio-HF-workflow-{label}', vtype='file', name='pseudo.dat')],
-            workflow=VMC_workflow(
-                ## job
-                server_machine_name="m100",
-                cores=512,
-                openmp=1,
-                queue="small",
-                version="stable",
-                sleep_time=9600, # sec.
-                jobpkl_name="job_manager",
-                ## vmc
-                vmc_max_continuation=2,
-                vmc_pkl_name="vmc_genius",
-                vmc_target_error_bar=1.0e-5, # Ha
-                vmc_trial_steps= 150,
-                vmc_bin_block = 10,
-                vmc_warmupblocks = 5,
-                vmc_num_walkers = -1, # default -1 -> num of MPI process.
-                vmc_twist_average=False,
-                vmc_kpoints=[],
-                vmc_force_calc_flag=False,
-                vmc_maxtime=84600,
-            )
-        )
-        
-        cworkflows_list+=[vmc_HF_workflow_gpu]
-        
-    launcher=Launcher(cworkflows_list=cworkflows_list, dependency_graph_draw=True)
-    launcher.launch()
+1. **PySCF Calculation**: Generate initial wavefunctions using HF calculations
+2. **TREXIO Conversion**: Convert PySCF results from TREXIO format to TurboRVB format
+3. **VMC Calculation**: Perform VMC calculations using the converted wavefunctions
+
+This tutorial can be used for sanity checks of TurboRVB VMC calculations. By converting HF wavefunctions to TurboRVB and performing VMC calculations, we can verify that the calculation results from both methods are consistent.
+The complete set of files for this tutorial is available at :download:`file.tar.gz <./file.tar.gz>`.
+
+Execution Steps
+---------------
+
+1. Environment Setup
+~~~~~~~~~~~~~~~~~~~~
+
+Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.
+The following files are required:
+
+- ``data_sanity_check.csv``: CSV file containing molecular information for calculations
+- ``geometry/`` directory: XYZ files for molecules (for molecule type)
+
+2. Script Execution
+~~~~~~~~~~~~~~~~~~~
+
+Execute ``task.py``:
+
+.. code-block:: bash
+
+   python task.py
+
+The script automatically performs the following operations:
+
+1. Reads molecular information from ``data_sanity_check.csv``
+2. Executes calculations for molecules with ``Flag==TRUE``
+3. Creates ``results/`` directory and saves results for each molecule
+4. Sequentially executes PySCF calculation, TREXIO conversion, and VMC calculation for each molecule
+
+Program Overview
+----------------
+
+Script Structure
+~~~~~~~~~~~~~~~~
+
+``task.py`` consists of the following main parts:
+
+1. **Molecular Information Reading** (lines 22-23)
+
+.. literalinclude:: task.py
+   :lines: 22-23
+   :language: python
+
+Reads molecular information from the CSV file and only processes molecules with ``Flag==TRUE``.
+
+File Format of ``data_sanity_check.csv``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``data_sanity_check.csv`` is a CSV file containing molecular information for calculations. It includes the following columns:
+
+- ``Flag``: Flag indicating whether to execute the calculation (``TRUE`` or ``FALSE``). Calculations are executed only when ``TRUE``
+- ``Species``: Molecular species (e.g., ``H``, ``He``, ``H2O``)
+- ``Type``: Type of molecule (``atom`` or ``molecule``)
+
+  - ``atom``: Single atom. XYZ file is automatically generated (placed at origin)
+  - ``molecule``: Molecule. XYZ file is read from ``geometry/`` directory
+- ``Label``: Label (used for result directory name)
+- ``Note``: Note (e.g., ``simple atom``, ``simple molecule``, ``charged atom``, ``charged molecule``)
+- ``scf_newton``: Flag for using Newton solver (``TRUE`` or ``FALSE``)
+- ``pyscf_basis``: Basis set name used in PySCF (e.g., ``ccecp-ccpvqz``, ``ccecp-ccpv6z``)
+- ``pyscf_ecp``: ECP (Effective Core Potential) name used in PySCF (e.g., ``ccecp``)
+- ``Charge``: Molecular charge (integer)
+- ``Neldiff``: Spin (number of unpaired electrons, integer)
+- ``Geometry Reference``: Reference information for geometry (literature information for molecules, ``nan`` for atoms)
+
+Example CSV file:
+
+.. code-block:: csv
+
+   Flag,Species,Type,Label,Note,scf_newton,pyscf_basis,pyscf_ecp,Charge,Neldiff,Geometry Reference
+   TRUE,H,atom,H,simple atom,FALSE,ccecp-ccpvqz,ccecp,0,1,nan
+   TRUE,He,atom,He,simple atom,FALSE,ccecp-ccpvqz,ccecp,0,0,nan
+   TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129.204105
+
+2. **Result Directory Preparation** (lines 28-31)
+
+.. literalinclude:: task.py
+   :lines: 28-31
+   :language: python
+
+Creates ``results/`` directory and changes the working directory.
+
+3. **Workflow Generation for Each Molecule** (lines 35-139)
+
+For each molecule (each row in ``mol_calc``), the following workflows are generated:
+
+a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: task.py
+   :lines: 37-62
+   :language: python
+
+- Retrieves information for each molecule from the CSV file (species, type, label, charge, spin, etc.)
+- If ``Type`` is ``"atom"``, generates an XYZ file for a single atom placed at the origin
+- If ``Type`` is ``"molecule"``, reads and copies the XYZ file from the ``geometry/`` directory
+
+b. PySCF HF Calculation Workflow (lines 64-91)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: task.py
+   :lines: 64-91
+   :language: python
+
+- Executes HF calculation using PySCF_workflow
+- Calculation parameters are retrieved from the CSV file (basis set, ECP, charge, spin, etc.)
+- Results are saved as ``trexio.hdf5``
+
+Main parameters:
+
+- ``scf_method="HF"``: Executes HF calculation
+- ``charge``, ``spin``: Charge and spin retrieved from CSV file
+- ``basis``, ``ecp``: Basis set and ECP retrieved from CSV file
+- ``solver_newton``: Flag for using Newton solver
+
+c. TREXIO Conversion Workflow (lines 97-110)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: task.py
+   :lines: 97-110
+   :language: python
+
+- Converts PySCF calculation results (``trexio.hdf5``) to TurboRVB format (``fort.10``, ``pseudo.dat``)
+- Jastrow factors are initialized as empty (no optimization) with ``jastrow_basis_dict={}``
+
+d. VMC Calculation Workflow (lines 112-137)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. literalinclude:: task.py
+   :lines: 112-137
+   :language: python
+
+- Performs VMC calculation using wavefunctions generated by TREXIO conversion
+- Calculates energy expectation values
+
+Main parameters:
+
+- ``vmc_target_error_bar=1.0e-5``: Target error bar (Ha)
+- ``vmc_trial_steps=150``: Number of trial steps
+- ``vmc_bin_block=10``: Bin size
+- ``vmc_num_walkers=-1``: Number of walkers (-1 means automatically set to the number of MPI processes)
+
+4. **Workflow Execution** (lines 141-142)
+
+.. literalinclude:: task.py
+   :lines: 141-142
+   :language: python
+
+Registers all workflows with the ``Launcher`` class, draws the dependency graph (``dependency_graph_draw=True``), and then executes them.
+
+Workflow Dependencies
+~~~~~~~~~~~~~~~~~~~~~
+
+When ``task.py`` is executed, a dependency graph is automatically generated due to ``dependency_graph_draw=True``.
+By referring to the generated dependency graph (``graphs.png``), you can visually confirm the dependencies between workflows.
+
+Main dependency flow:
+
+- For each molecule, ``pyscf-HF-workflow-{label}`` is executed first, performing PySCF calculation
+- ``trexio-HF-workflow-{label}`` depends on the output (``trexio.hdf5``) of ``pyscf-HF-workflow-{label}``
+- ``vmc-HF-workflow-{label}`` depends on the output (``fort.10``, ``pseudo.dat``) of ``trexio-HF-workflow-{label}``
+
+The ``Launcher`` class automatically executes workflows in the appropriate order based on this dependency graph.
+
+Result Structure
+----------------
+
+Output Directory Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+After execution, results are saved in the ``results/`` directory with the following structure:
+
+.. code-block:: text
+
+   results/
+   ├── H.xyz
+   ├── He.xyz
+   ├── ...
+   ├── H2O.xyz
+   ├── H/
+   │   ├── pyscf-HF-workflow/
+   │   │   ├── trexio.hdf5
+   │   │   ├── out.pyscf
+   │   │   └── ...
+   │   ├── trexio-HF-workflow/
+   │   │   ├── fort.10
+   │   │   ├── pseudo.dat
+   │   │   └── ...
+   │   └── vmc-HF-workflow/
+   │       ├── fort.10
+   │       └── ...
+   ├── He/
+   │   └── ... (similar structure)
+   └── ...
+
+For each molecule, the following directories are created:
+
+- ``{label}/pyscf-HF-workflow/``: PySCF calculation results
+
+  - ``trexio.hdf5``: Wavefunction data in TREXIO format
+  - ``out.pyscf``: PySCF calculation output file
+  - ``pyscf.chk``: PySCF checkpoint file
+
+- ``{label}/trexio-HF-workflow/``: TREXIO conversion results
+
+  - ``fort.10``: Wavefunction file in TurboRVB format
+  - ``pseudo.dat``: Pseudopotential file
+
+- ``{label}/vmc-HF-workflow/``: VMC calculation results
+
+  - ``fort.10``: Wavefunction file after VMC calculation
+  - VMC calculation log files and output files
+
+Checking Calculation Results
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Results from each workflow can be checked from log files and output files in the corresponding directories.
+
+- PySCF calculation results: ``{label}/pyscf-HF-workflow/out.pyscf``
+- VMC calculation results: By referring to the ``pip0.d`` file in ``{label}/vmc-HF-workflow/``, you can obtain VMC calculation results such as energy expectation values
+
+By comparing PySCF HF energies with TurboRVB VMC energies, you can verify the validity of the calculations.
+A plot summarizing the calculation results is shown below.
+
+.. image:: pyscf_turborvb_sanity_check_HF.png
+   :alt: Comparison of PySCF HF energy and TurboRVB VMC energy
+   :align: center
+
+This plot compares PySCF HF energies with TurboRVB VMC energies for each molecule, confirming consistency between the two methods.
+
+Summary
+-------
+
+In this tutorial, we performed HF-VMC calculations for multiple molecules through the following steps:
+
+1. Read molecular information from CSV file
+2. Generated HF wavefunctions using PySCF calculations for each molecule
+3. Converted to TurboRVB format via TREXIO conversion
+4. Calculated energy expectation values using VMC calculations
+
+Results for each molecule are saved in the ``results/`` directory and can be used to compare PySCF HF energies with TurboRVB VMC energies. The ``Launcher`` class automatically manages dependencies and executes workflows in the appropriate order.
+
