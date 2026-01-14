@@ -22,7 +22,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)" href="../02NH3/tutorial.html" />
-    <link rel="prev" title="Important introduction for TurboGenius" href="../00intro/tutorial.html" /> 
+    <link rel="prev" title="Turbo-Genius tutorials" href="../00index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,36 +47,38 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">Turbo-Genius tutorials</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../00intro/tutorial.html">Important introduction for TurboGenius</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#introduction">00 Introduction</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction-using-pyscf">01 Preparing a JDFT trial wavefunction using PySCF</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#notes-on-the-pyscf-script">Notes on the PySCF script</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../02turbogenius_manual/getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Turbo-Genius tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">00 Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction-using-pyscf">01 Preparing a JDFT trial wavefunction using PySCF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jastrow-factor-optimization-wf-jdft">02 Jastrow factor optimization (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vmc-wf-jdft">03 VMC (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lrdmc-wf-jdft">04 LRDMC (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lrdmc-wf-jdft-extrapolation">05 LRDMC (WF=JDFT) Extrapolation.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">06 Summary</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#jastrow-factor-optimization-wf-jdft">02 Jastrow factor optimization (WF=JDFT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#vmc-wf-jdft">03 VMC (WF=JDFT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lrdmc-wf-jdft">04 LRDMC (WF=JDFT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lrdmc-wf-jdft-extrapolation">05 LRDMC (WF=JDFT) Extrapolation.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#summary">06 Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../98advanced/05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02turbogenius_manual/reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02turbogenius_manual/appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_tutorial/00index.html">TurboWorkflows tutorials</a></li>
@@ -96,6 +98,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../00index.html">Turbo-Genius tutorials</a></li>
       <li class="breadcrumb-item active">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</li>
       <li class="wy-breadcrumbs-aside">
@@ -779,7 +782,7 @@ Coefficient<span class="w"> </span>found
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../00intro/tutorial.html" class="btn btn-neutral float-left" title="Important introduction for TurboGenius" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../00index.html" class="btn btn-neutral float-left" title="Turbo-Genius tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../02NH3/tutorial.html" class="btn btn-neutral float-right" title="Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>correlated-sampling &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="lrdmc" href="lrdmc.html" />
+    <link rel="prev" title="convertwf" href="convertwf.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_tutorial/00index.html">TurboWorkflows tutorials</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">Reference guide</a></li>
+      <li class="breadcrumb-item active">correlated-sampling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/02turbogenius_manual/reference/subcommands/correlated-sampling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="correlated-sampling">
+<span id="turbogeniustutorial-subcommand-correlated-sampling"></span><h1>correlated-sampling<a class="headerlink" href="#correlated-sampling" title="Permalink to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>This command manages the correlated-sampling calculation.
+It internally calls <code class="docutils literal notranslate"><span class="pre">readforward-serial.x</span></code> and, <code class="docutils literal notranslate"><span class="pre">turborvb-serial.x</span></code>.</p>
+</section>
+<section id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span><span class="o">[</span>ACTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p>ACTION is one or any combination of <code class="docutils literal notranslate"><span class="pre">-g</span></code> (generate an input file), <code class="docutils literal notranslate"><span class="pre">-r</span></code> (run a program), or <code class="docutils literal notranslate"><span class="pre">-post</span></code> (perform postprocess). It is mandatory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>This command shows the list of available options.</p>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<section id="general-option">
+<h3>general option<a class="headerlink" href="#general-option" title="Permalink to this heading"></a></h3>
+<p>This option affects all actions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>default value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-log TEXT</p></td>
+<td><p>INFO</p></td>
+<td><p>Specify log level. The argument is DEBUG, INFO, or ERROR.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="generate-g-options">
+<h3>generate (-g) options<a class="headerlink" href="#generate-g-options" title="Permalink to this heading"></a></h3>
+<p>These options affect the generation of the input file. The correspondence between the options and the input parameters are described in the note section.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>option</p></th>
+<th class="head"><p>default value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-steps INTEGER</p></td>
+<td><p>1000</p></td>
+<td><p>Specify vmcsteps</p></td>
+</tr>
+<tr class="row-odd"><td><p>-bin INTEGER</p></td>
+<td><p>2</p></td>
+<td><p>Specify bin_block</p></td>
+</tr>
+<tr class="row-even"><td><p>-warmup INTEGER</p></td>
+<td><p>1</p></td>
+<td><p>Specify warmupblocks</p></td>
+</tr>
+<tr class="row-odd"><td><p>-nw INTEGER</p></td>
+<td><p>-1</p></td>
+<td><p>Specify num_walkers. If omitted, it is set to the number of MPI processes.</p></td>
+</tr>
+<tr class="row-even"><td><p>-maxtime INTEGER</p></td>
+<td><p>3600</p></td>
+<td><p>Specify maxtime</p></td>
+</tr>
+<tr class="row-odd"><td><p>-twist</p></td>
+<td><p>false</p></td>
+<td><p>flag for twist_average</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id1">
+<h2>options<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>--help
+Usage:<span class="w"> </span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">  </span>-post<span class="w">             </span>Postprocess
+<span class="w">  </span>-r<span class="w">                </span>Run<span class="w"> </span>a<span class="w"> </span>program
+<span class="w">  </span>-g<span class="w">                </span>Generate<span class="w"> </span>an<span class="w"> </span>input<span class="w"> </span>file
+<span class="w">  </span>-steps<span class="w"> </span>INTEGER<span class="w">    </span>Specify<span class="w"> </span>vmcsteps
+<span class="w">  </span>-bin<span class="w"> </span>INTEGER<span class="w">      </span>Specify<span class="w"> </span>bin_block
+<span class="w">  </span>-warmup<span class="w"> </span>INTEGER<span class="w">   </span>Specify<span class="w"> </span>warmupblocks
+<span class="w">  </span>-nw<span class="w"> </span>INTEGER<span class="w">       </span>Specify<span class="w"> </span>num_walkers
+<span class="w">  </span>-maxtime<span class="w"> </span>INTEGER<span class="w">  </span>Specify<span class="w"> </span>maxtime
+<span class="w">  </span>-twist<span class="w">            </span>flag<span class="w"> </span><span class="k">for</span><span class="w"> </span>twist_average
+<span class="w">  </span>-log<span class="w"> </span>TEXT<span class="w">         </span>logger<span class="w"> </span>level,<span class="w"> </span>DEBUG,<span class="w"> </span>INFO,<span class="w"> </span>ERROR
+<span class="w">  </span>--help<span class="w">            </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+</pre></div>
+</div>
+</section>
+<section id="environment-variables">
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TURBOVMC_RUN_COMMAND</span></code></dt><dd><p>This specifies the execution command used in the DFT calculation. The default is <code class="docutils literal notranslate"><span class="pre">turborvb-serial.x</span></code>. If the MPI parallel version is to be used, set the variable, for example, to <code class="docutils literal notranslate"><span class="pre">mpiexec</span> <span class="pre">-n</span> <span class="pre">16</span> <span class="pre">turborvb-mpi.x</span></code>, where <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> is the MPI launch command, and <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">16</span></code> specifies the number of MPI processes (16 in this case).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">TURBOREADFORWARD_RUN_COMMAND</span></code></dt><dd><p>This specifies the execution command used in the DFT calculation. The default is <code class="docutils literal notranslate"><span class="pre">readforward-serial.x</span></code>. If the MPI parallel version is to be used, set the variable, for example, to <code class="docutils literal notranslate"><span class="pre">mpiexec</span> <span class="pre">-n</span> <span class="pre">16</span> <span class="pre">readforward-mpi.x</span></code>, where <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> is the MPI launch command, and <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">16</span></code> specifies the number of MPI processes (16 in this case).</p>
+</dd>
+</dl>
+</section>
+<section id="input-and-output-files">
+<h2>Input and output files<a class="headerlink" href="#input-and-output-files" title="Permalink to this heading"></a></h2>
+<p>This subcommand generates <code class="docutils literal notranslate"><span class="pre">prep.input</span></code>, each variable is described in <span class="xref std std-ref">turborvbtutorial_command_prep.x</span>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>action</p></th>
+<th class="head"><p>input</p></th>
+<th class="head"><p>output</p></th>
+<th class="head"><p>rename</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-g</span></code></p></td>
+<td><ul class="simple">
+<li><p>fort.10</p></li>
+<li><p>pseudo.dat</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>datasvmc.input</p></li>
+<li><p>readforward.input</p></li>
+<li><p>correlated_sampling_genius_cli.pkl</p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-r</span></code></p></td>
+<td><ul class="simple">
+<li><p>fort.10</p></li>
+<li><p>fort.10_corr</p></li>
+<li><p>pseudo.dat</p></li>
+<li><p>correlated_sampling_genius_cli.pkl</p></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>bins.dat</p></li>
+<li><p>corrsampilng.dat</p></li>
+<li><p>fort.10_000000</p></li>
+<li><p>fort.11</p></li>
+<li><p>fort.12</p></li>
+<li><p>fort.12.new</p></li>
+<li><p>fort.readforward</p></li>
+<li><p>out_readforward</p></li>
+<li><p>out_vmc</p></li>
+<li><p>parminimized.d</p></li>
+<li><p>randseed.000000</p></li>
+</ul>
+</td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-post</span></code></p></td>
+<td><ul class="simple">
+<li><p>out_vmc</p></li>
+<li><p>out_readforward</p></li>
+<li><p>correlated_sampling_genius_cli.pkl</p></li>
+</ul>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<section id="corresponding-input-parameters">
+<h3>Corresponding input parameters<a class="headerlink" href="#corresponding-input-parameters" title="Permalink to this heading"></a></h3>
+<p>The correspondence between the options and the input parameters in <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code> and <code class="docutils literal notranslate"><span class="pre">readforward.input</span></code> is summarized as follows.</p>
+<section id="datasvmc-input">
+<h4>datasvmc.input<a class="headerlink" href="#datasvmc-input" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>turbogenius option</p></th>
+<th class="head"><p>section</p></th>
+<th class="head"><p>paramter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>vmcsteps (-steps)</p></td>
+<td><p>&amp;simulation</p></td>
+<td><p>ngen</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_walkers (-nw)</p></td>
+<td><p>&amp;simulation</p></td>
+<td><p>nw</p></td>
+</tr>
+<tr class="row-even"><td><p>maxtime (-maxtime)</p></td>
+<td><p>&amp;simulation</p></td>
+<td><p>maxtime</p></td>
+</tr>
+<tr class="row-odd"><td><p>twist_average (-twist)</p>
+<p>kpoints</p>
+</td>
+<td></td>
+<td><ul class="simple">
+<li><p>&amp;parameters</p>
+<ul>
+<li><p>yes_kpoints</p></li>
+</ul>
+</li>
+<li><p>&amp;kpoints</p>
+<ul>
+<li><p>kp_typ</p></li>
+<li><p>nkx, nky, nkz, kx, ky, kz</p></li>
+<li><p>skip_equivalence</p></li>
+<li><p>double_kpgrid</p></li>
+</ul>
+</li>
+<li><p>&amp;optimization</p>
+<ul>
+<li><p>yeswrite10</p></li>
+</ul>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="readforward-input">
+<h4>readforward.input<a class="headerlink" href="#readforward-input" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>turbogenius option</p></th>
+<th class="head"><p>section</p></th>
+<th class="head"><p>paramter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>bin_block (-bin)</p></td>
+<td><p>&amp;corrfun</p></td>
+<td><p>bin_length</p></td>
+</tr>
+<tr class="row-odd"><td><p>warmupblocks (-warmup)</p></td>
+<td><p>&amp;corrfun</p></td>
+<td><p>initial_bin</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="convertwf.html" class="btn btn-neutral float-left" title="convertwf" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lrdmc.html" class="btn btn-neutral float-right" title="lrdmc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
