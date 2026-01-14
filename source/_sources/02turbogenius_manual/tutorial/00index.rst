@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Turbo-Genius tutorials 
+Tutorials 
 ===========================================
 
 .. figure:: /_static/07logo/logo2.png

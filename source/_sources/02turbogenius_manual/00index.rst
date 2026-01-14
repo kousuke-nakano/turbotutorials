@@ -15,7 +15,7 @@ TurboGenius is a Python package designed to fully control *ab initio* quantum Mo
    :maxdepth: 1
    
    ./getting_started/00index.rst
-   ../02turbogenius_tutorial/00index.rst
+   ./tutorial/00index.rst
    ./reference/00index.rst
    ./appendix/00index.rst
    
