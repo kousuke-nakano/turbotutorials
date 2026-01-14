@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting Guide &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Appendix" href="appendix/00index.html" />
+    <link rel="prev" title="turbo-jobmanager command" href="reference/job_manager_cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/00index.html">Reference</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Troubleshooting Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-related-issues">1. Installation-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#errors-during-pip-install">1.1. Errors during pip install</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-verification">1.2. Installation verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-files-are-not-generated">1.3. Configuration files are not generated</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-file-related-issues">2. Configuration File-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#machine-data-yaml-not-found">2.1. machine_data.yaml not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#machine-not-defined">2.2. Machine not defined</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-yaml-not-found">2.3. package.yaml not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queue-data-toml-not-found">2.4. queue_data.toml not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#queue-label-not-found">2.5. queue_label not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#version-does-not-exist">2.6. Version does not exist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#binary-does-not-exist">2.7. Binary does not exist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#not-configured-as-computation-server">2.8. Not configured as computation server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-verification-methods">2.9. Configuration verification methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh-connection-related-issues">3. SSH Connection-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-connection-fails">3.1. SSH connection fails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-configuration-file-not-found">3.2. SSH configuration file not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connection-via-proxy">3.3. Connection via proxy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-connection-retry">3.4. SSH connection retry</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#job-execution-related-issues">4. Job Execution-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#job-script-template-not-found">4.1. Job script template not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-submission-command-error">4.2. Job submission command error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jobnum-index-configuration-error">4.3. jobnum_index configuration error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-terminates-abnormally">4.4. Job terminates abnormally</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#file-transfer-related-issues">5. File Transfer-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-manager-root-path-error">5.1. file_manager_root path error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#directory-permission-error">5.2. Directory permission error</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-and-debugging">6. Logging and Debugging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#log-file-check">6.1. Log file check</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#enable-debug-mode">6.2. Enable debug mode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-issues">7. Other Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dependency-errors">7.1. Dependency errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-import-error">7.2. Package import error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-file-syntax-error">7.3. Configuration file syntax error</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#support-and-additional-information">8. Support and Additional Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="00index.html">TurboWorkflows manual</a></li>
+      <li class="breadcrumb-item active">Troubleshooting Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/03turboworkflows_manual/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting-guide">
+<span id="turboworkflows-troubleshooting"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">Troubleshooting Guide</a><a class="headerlink" href="#troubleshooting-guide" title="Permalink to this heading"></a></h1>
+<p>This section describes potential issues and their solutions that may occur during installation, configuration, and execution of TurboWorkflows.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#troubleshooting-guide" id="id1">Troubleshooting Guide</a></p>
+<ul>
+<li><p><a class="reference internal" href="#installation-related-issues" id="id2">1. Installation-related Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#errors-during-pip-install" id="id3">1.1. Errors during pip install</a></p></li>
+<li><p><a class="reference internal" href="#installation-verification" id="id4">1.2. Installation verification</a></p></li>
+<li><p><a class="reference internal" href="#configuration-files-are-not-generated" id="id5">1.3. Configuration files are not generated</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#configuration-file-related-issues" id="id6">2. Configuration File-related Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#machine-data-yaml-not-found" id="id7">2.1. machine_data.yaml not found</a></p></li>
+<li><p><a class="reference internal" href="#machine-not-defined" id="id8">2.2. Machine not defined</a></p></li>
+<li><p><a class="reference internal" href="#package-yaml-not-found" id="id9">2.3. package.yaml not found</a></p></li>
+<li><p><a class="reference internal" href="#queue-data-toml-not-found" id="id10">2.4. queue_data.toml not found</a></p></li>
+<li><p><a class="reference internal" href="#queue-label-not-found" id="id11">2.5. queue_label not found</a></p></li>
+<li><p><a class="reference internal" href="#version-does-not-exist" id="id12">2.6. Version does not exist</a></p></li>
+<li><p><a class="reference internal" href="#binary-does-not-exist" id="id13">2.7. Binary does not exist</a></p></li>
+<li><p><a class="reference internal" href="#not-configured-as-computation-server" id="id14">2.8. Not configured as computation server</a></p></li>
+<li><p><a class="reference internal" href="#configuration-verification-methods" id="id15">2.9. Configuration verification methods</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#ssh-connection-related-issues" id="id16">3. SSH Connection-related Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#ssh-connection-fails" id="id17">3.1. SSH connection fails</a></p></li>
+<li><p><a class="reference internal" href="#ssh-configuration-file-not-found" id="id18">3.2. SSH configuration file not found</a></p></li>
+<li><p><a class="reference internal" href="#connection-via-proxy" id="id19">3.3. Connection via proxy</a></p></li>
+<li><p><a class="reference internal" href="#ssh-connection-retry" id="id20">3.4. SSH connection retry</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#job-execution-related-issues" id="id21">4. Job Execution-related Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#job-script-template-not-found" id="id22">4.1. Job script template not found</a></p></li>
+<li><p><a class="reference internal" href="#job-submission-command-error" id="id23">4.2. Job submission command error</a></p></li>
+<li><p><a class="reference internal" href="#jobnum-index-configuration-error" id="id24">4.3. jobnum_index configuration error</a></p></li>
+<li><p><a class="reference internal" href="#job-terminates-abnormally" id="id25">4.4. Job terminates abnormally</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#file-transfer-related-issues" id="id26">5. File Transfer-related Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#file-manager-root-path-error" id="id27">5.1. file_manager_root path error</a></p></li>
+<li><p><a class="reference internal" href="#directory-permission-error" id="id28">5.2. Directory permission error</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#logging-and-debugging" id="id29">6. Logging and Debugging</a></p>
+<ul>
+<li><p><a class="reference internal" href="#log-file-check" id="id30">6.1. Log file check</a></p></li>
+<li><p><a class="reference internal" href="#enable-debug-mode" id="id31">6.2. Enable debug mode</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#other-issues" id="id32">7. Other Issues</a></p>
+<ul>
+<li><p><a class="reference internal" href="#dependency-errors" id="id33">7.1. Dependency errors</a></p></li>
+<li><p><a class="reference internal" href="#package-import-error" id="id34">7.2. Package import error</a></p></li>
+<li><p><a class="reference internal" href="#configuration-file-syntax-error" id="id35">7.3. Configuration file syntax error</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#support-and-additional-information" id="id36">8. Support and Additional Information</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="installation-related-issues">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">1. Installation-related Issues</a><a class="headerlink" href="#installation-related-issues" title="Permalink to this heading"></a></h2>
+<section id="errors-during-pip-install">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">1.1. Errors during pip install</a><a class="headerlink" href="#errors-during-pip-install" title="Permalink to this heading"></a></h3>
+<p>Issue: An error occurs when executing <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Permission denied error</strong></p>
+<p>Install with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> option.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--user
+</pre></div>
+</div>
+</li>
+<li><p><strong>Dependency package installation error</strong></p>
+<p>Install the required packages individually.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>paramiko<span class="w"> </span>paradag<span class="w"> </span>pyyaml<span class="w"> </span>toml<span class="w"> </span>pandas<span class="w"> </span>graphviz<span class="w"> </span>setuptools_scm
+</pre></div>
+</div>
+</li>
+<li><p><strong>Python version check</strong></p>
+<p>Python 3.8 or later is required. Check the version.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>--version
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="installation-verification">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">1.2. Installation verification</a><a class="headerlink" href="#installation-verification" title="Permalink to this heading"></a></h3>
+<p>Issue: Want to verify that the installation completed correctly</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Module import check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import turboworkflows; print(&#39;OK&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Command check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>--help
+</pre></div>
+</div>
+<p>If the help message is displayed, the installation was successful.</p>
+</li>
+</ul>
+</section>
+<section id="configuration-files-are-not-generated">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">1.3. Configuration files are not generated</a><a class="headerlink" href="#configuration-files-are-not-generated" title="Permalink to this heading"></a></h3>
+<p>Issue: Configuration files are not generated even when executing <code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span> <span class="pre">--help</span></code></p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check error messages</strong></p>
+<p>On the first run, a <code class="docutils literal notranslate"><span class="pre">FileNotFoundError</span></code> will occur, but the configuration directory will be automatically generated.
+Please edit the configuration files according to the error message.</p>
+</li>
+<li><p><strong>Check configuration directory</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-la<span class="w"> </span>~/.turbofilemanager_config
+</pre></div>
+</div>
+<p>If the directory does not exist, run <code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span> <span class="pre">--help</span></code> again.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="configuration-file-related-issues">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">2. Configuration File-related Issues</a><a class="headerlink" href="#configuration-file-related-issues" title="Permalink to this heading"></a></h2>
+<section id="machine-data-yaml-not-found">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">2.1. machine_data.yaml not found</a><a class="headerlink" href="#machine-data-yaml-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The yaml file=/home/user/.turbofilemanager_config/machine_data.yaml is not found!!
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check configuration file existence</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-la<span class="w"> </span>~/.turbofilemanager_config/machine_data.yaml
+</pre></div>
+</div>
+</li>
+<li><p><strong>Regenerate from template</strong></p>
+<p>Delete the configuration directory and regenerate it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm<span class="w"> </span>-rf<span class="w"> </span>~/.turbofilemanager_config
+turbo-jobmanager<span class="w"> </span>--help
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="machine-not-defined">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">2.2. Machine not defined</a><a class="headerlink" href="#machine-not-defined" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>machine=localhost is not defined in the database!!
+Plz. edit the following file according to the template.
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check machine_data.yaml</strong></p>
+<p>Verify that the machine name specified in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> is defined.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span><span class="w">  </span><span class="c1"># Check if this key exists</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>YAML syntax error</strong></p>
+<p>Check that the YAML syntax is correct. Pay attention to indentation and colon positions.</p>
+</li>
+</ul>
+</section>
+<section id="package-yaml-not-found">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">2.3. package.yaml not found</a><a class="headerlink" href="#package-yaml-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/home/user/.turbofilemanager_config/localhost/package.yaml is not found!!
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check directory structure</strong></p>
+<p>You need to create a directory for each machine and place <code class="docutils literal notranslate"><span class="pre">package.yaml</span></code> in it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.turbofilemanager_config/localhost
+cp<span class="w"> </span>~/.turbofilemanager_config/template/package.yaml<span class="w"> </span>~/.turbofilemanager_config/localhost/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Copy from template</strong></p>
+<p>Copy the template file and edit it.</p>
+</li>
+</ul>
+</section>
+<section id="queue-data-toml-not-found">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">2.4. queue_data.toml not found</a><a class="headerlink" href="#queue-data-toml-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>/home/user/.turbofilemanager_config/localhost/queue_data.toml is not found!!
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Create queue_data.toml</strong></p>
+<p>Create <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> in each machine’s directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>~/.turbofilemanager_config/template/queue_data.toml<span class="w"> </span>~/.turbofilemanager_config/localhost/
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="queue-label-not-found">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">2.5. queue_label not found</a><a class="headerlink" href="#queue-label-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">queue_label</span> <span class="o">=</span> <span class="n">default</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span> <span class="ow">in</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">user</span><span class="o">/.</span><span class="n">turbofilemanager_config</span><span class="o">/</span><span class="n">localhost</span><span class="o">/</span><span class="n">queue_data</span><span class="o">.</span><span class="n">toml</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check queue_data.toml</strong></p>
+<p>Verify that the <code class="docutils literal notranslate"><span class="pre">queue_label</span></code> specified in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> is defined.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[default]</span><span class="w">  </span><span class="c1"># Check if this label exists</span>
+<span class="w">    </span><span class="n">mpi</span><span class="o">=</span><span class="kc">false</span>
+<span class="w">    </span><span class="n">max_job_submit</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="p">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="version-does-not-exist">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">2.6. Version does not exist</a><a class="headerlink" href="#version-does-not-exist" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">version</span><span class="o">=</span><span class="n">stable</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">exist</span> <span class="ow">in</span> <span class="n">binary_path</span><span class="o">.</span> <span class="n">Plz</span><span class="o">.</span> <span class="n">check</span> <span class="n">package</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check package.yaml</strong></p>
+<p>Verify that the version specified in <code class="docutils literal notranslate"><span class="pre">binary_path</span></code> of <code class="docutils literal notranslate"><span class="pre">package.yaml</span></code> is defined.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/path/to/turborvb/bin</span><span class="w">  </span><span class="c1"># Check if this key exists</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="binary-does-not-exist">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">2.7. Binary does not exist</a><a class="headerlink" href="#binary-does-not-exist" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">binary</span><span class="o">=</span><span class="n">turborvb</span><span class="o">-</span><span class="n">mpi</span><span class="o">.</span><span class="n">x</span>
+<span class="n">binary_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;turborvb-serial.x&#39;</span><span class="p">,</span> <span class="s1">&#39;prep-serial.x&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check package.yaml</strong></p>
+<p>Verify that the binary name specified in <code class="docutils literal notranslate"><span class="pre">binary_list</span></code> of <code class="docutils literal notranslate"><span class="pre">package.yaml</span></code> is included.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-mpi.x</span><span class="w">  </span><span class="c1"># Check if this entry exists</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-mpi.x</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="not-configured-as-computation-server">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">2.8. Not configured as computation server</a><a class="headerlink" href="#not-configured-as-computation-server" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The server machine is not for computations!!!
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check machine_data.yaml</strong></p>
+<p>Verify that <code class="docutils literal notranslate"><span class="pre">computation:</span> <span class="pre">true</span></code> is set.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">  </span><span class="c1"># Check this setting</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="configuration-verification-methods">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">2.9. Configuration verification methods</a><a class="headerlink" href="#configuration-verification-methods" title="Permalink to this heading"></a></h3>
+<p>Issue: Want to verify that configuration files are correctly written</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>YAML syntax check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import yaml; yaml.safe_load(open(&#39;~/.turbofilemanager_config/machine_data.yaml&#39;))&quot;</span>
+</pre></div>
+</div>
+<p>Verify that no errors occur.</p>
+</li>
+<li><p><strong>TOML syntax check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import toml; toml.load(open(&#39;~/.turbofilemanager_config/localhost/queue_data.toml&#39;))&quot;</span>
+</pre></div>
+</div>
+<p>Verify that no errors occur.</p>
+</li>
+<li><p><strong>Check error messages</strong></p>
+<p>If there are problems with the configuration, detailed information will be displayed in error messages. Check the error messages and verify the specified files and lines.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="ssh-connection-related-issues">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">3. SSH Connection-related Issues</a><a class="headerlink" href="#ssh-connection-related-issues" title="Permalink to this heading"></a></h2>
+<section id="ssh-connection-fails">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink">3.1. SSH connection fails</a><a class="headerlink" href="#ssh-connection-fails" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">paramiko</span><span class="o">.</span><span class="n">ssh_exception</span><span class="o">.</span><span class="n">SSHException</span><span class="p">:</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check ~/.ssh/config</strong></p>
+<p>Verify that the remote machine configuration is correctly written in <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host remotesrv
+    HostName remotesrv.example.com
+    User myname
+    IdentityFile ~/.ssh/id_rsa
+</pre></div>
+</div>
+</li>
+<li><p><strong>Manual SSH connection test</strong></p>
+<p>Test whether the SSH connection succeeds manually.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>remotesrv
+</pre></div>
+</div>
+</li>
+<li><p><strong>Key file permissions</strong></p>
+<p>Check that the private key file permissions are correct (600 or 400).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/id_rsa
+</pre></div>
+</div>
+</li>
+<li><p><strong>SSH configuration file permissions</strong></p>
+<p>Check that <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code> permissions are correct (600).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/config
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="ssh-configuration-file-not-found">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink">3.2. SSH configuration file not found</a><a class="headerlink" href="#ssh-configuration-file-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">FileNotFoundError</span><span class="p">:</span> <span class="n">SSH</span> <span class="n">config</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Create ~/.ssh/config</strong></p>
+<p>If the SSH configuration file does not exist, create it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/.ssh
+touch<span class="w"> </span>~/.ssh/config
+chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/config
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="connection-via-proxy">
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">3.3. Connection via proxy</a><a class="headerlink" href="#connection-via-proxy" title="Permalink to this heading"></a></h3>
+<p>Issue: Need to connect to a remote machine via a proxy server</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Add ProxyCommand to ~/.ssh/config</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host remotesrv
+    HostName remotesrv.example.com
+    User myname
+    ProxyCommand ssh -W %h:%p proxy_host
+    IdentityFile ~/.ssh/id_rsa
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="ssh-connection-retry">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">3.4. SSH connection retry</a><a class="headerlink" href="#ssh-connection-retry" title="Permalink to this heading"></a></h3>
+<p>Issue: SSH connection sometimes fails</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Automatic retry feature</strong></p>
+<p>TurboWorkflows automatically retries (default: maximum 10 times, 120 second intervals).
+Check the error messages and verify that there are no network issues or server-side problems.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="job-execution-related-issues">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink">4. Job Execution-related Issues</a><a class="headerlink" href="#job-execution-related-issues" title="Permalink to this heading"></a></h2>
+<section id="job-script-template-not-found">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">4.1. Job script template not found</a><a class="headerlink" href="#job-script-template-not-found" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>submit_mpi.sh is not found!!
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check template files</strong></p>
+<p>Verify that <code class="docutils literal notranslate"><span class="pre">submit_mpi.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">submit_nompi.sh</span></code> exist in each machine’s directory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-la<span class="w"> </span>~/.turbofilemanager_config/localhost/submit_*.sh
+</pre></div>
+</div>
+</li>
+<li><p><strong>Copy from template</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>~/.turbofilemanager_config/template/submit_mpi.sh<span class="w"> </span>~/.turbofilemanager_config/localhost/
+cp<span class="w"> </span>~/.turbofilemanager_config/template/submit_nompi.sh<span class="w"> </span>~/.turbofilemanager_config/localhost/
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="job-submission-command-error">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink">4.2. Job submission command error</a><a class="headerlink" href="#job-submission-command-error" title="Permalink to this heading"></a></h3>
+<p>Issue: <code class="docutils literal notranslate"><span class="pre">jobsubmit</span></code> command (sbatch, qsub, etc.) fails</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check command path</strong></p>
+<p>Verify that the command path specified in <code class="docutils literal notranslate"><span class="pre">jobsubmit</span></code> of <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> is correct.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>which<span class="w"> </span>sbatch
+which<span class="w"> </span>qsub
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check job script syntax</strong></p>
+<p>Check that the syntax of the generated job script is correct. Refer to the job scheduler documentation for your system.</p>
+</li>
+</ul>
+</section>
+<section id="jobnum-index-configuration-error">
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">4.3. jobnum_index configuration error</a><a class="headerlink" href="#jobnum-index-configuration-error" title="Permalink to this heading"></a></h3>
+<p>Issue: Job ID cannot be retrieved correctly</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check job submission command output</strong></p>
+<p>Check the job submission command output and verify which column (0-based) the JOBID is in.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sbatch<span class="w"> </span>job.sh
+Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"> </span><span class="m">42</span>
+</pre></div>
+</div>
+<p>In this case, JOBID (42) is in the 3rd column (0-based), so set <code class="docutils literal notranslate"><span class="pre">jobnum_index:</span> <span class="pre">3</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>qsub<span class="w"> </span>job.sh
+<span class="m">42</span>.server-pbs
+</pre></div>
+</div>
+<p>In this case, JOBID (42.server-pbs) is in the 0th column, so set <code class="docutils literal notranslate"><span class="pre">jobnum_index:</span> <span class="pre">0</span></code>.</p>
+</li>
+</ul>
+</section>
+<section id="job-terminates-abnormally">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">4.4. Job terminates abnormally</a><a class="headerlink" href="#job-terminates-abnormally" title="Permalink to this heading"></a></h3>
+<p>Error message:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">The</span> <span class="n">job</span> <span class="n">ends</span> <span class="n">abnormally</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check output file</strong></p>
+<p>Check the job output file (usually <code class="docutils literal notranslate"><span class="pre">out.o</span></code>, etc.) and examine the error messages.</p>
+</li>
+<li><p><strong>Check input file</strong></p>
+<p>Verify that the input file is generated correctly.</p>
+</li>
+<li><p><strong>Check resources</strong></p>
+<p>Verify that resource settings such as memory and CPU count are appropriate.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="file-transfer-related-issues">
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">5. File Transfer-related Issues</a><a class="headerlink" href="#file-transfer-related-issues" title="Permalink to this heading"></a></h2>
+<section id="file-manager-root-path-error">
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">5.1. file_manager_root path error</a><a class="headerlink" href="#file-manager-root-path-error" title="Permalink to this heading"></a></h3>
+<p>Issue: Path error occurs during file transfer</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check file_manager_root setting</strong></p>
+<p>Verify that <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code> in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> is set correctly.
+Both local and remote need to be configured.</p>
+</li>
+<li><p><strong>Path relativity</strong></p>
+<p>File paths are treated as relative paths from <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code>.
+Make sure that absolute paths are under <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code>.</p>
+</li>
+<li><p><strong>Symbolic links</strong></p>
+<p>Note that symbolic links are resolved.</p>
+</li>
+</ul>
+</section>
+<section id="directory-permission-error">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">5.2. Directory permission error</a><a class="headerlink" href="#directory-permission-error" title="Permalink to this heading"></a></h3>
+<p>Issue: Permission error occurs during file transfer</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check directory permissions</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-ld<span class="w"> </span>/path/to/directory
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check write permissions</strong></p>
+<p>Verify that the destination directory has write permissions.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="logging-and-debugging">
+<h2><a class="toc-backref" href="#id29" role="doc-backlink">6. Logging and Debugging</a><a class="headerlink" href="#logging-and-debugging" title="Permalink to this heading"></a></h2>
+<section id="log-file-check">
+<h3><a class="toc-backref" href="#id30" role="doc-backlink">6.1. Log file check</a><a class="headerlink" href="#log-file-check" title="Permalink to this heading"></a></h3>
+<p>Issue: Want to check error details</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Workflow log file</strong></p>
+<p>Workflow log files are usually saved with the name <code class="docutils literal notranslate"><span class="pre">turboworkflows.log</span></code>.
+Check the execution directory.</p>
+</li>
+<li><p><strong>Temporary directory</strong></p>
+<p>TurboWorkflows temporary files are saved in <code class="docutils literal notranslate"><span class="pre">~/.turbo_workflows_tmp</span></code>.</p>
+</li>
+</ul>
+</section>
+<section id="enable-debug-mode">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">6.2. Enable debug mode</a><a class="headerlink" href="#enable-debug-mode" title="Permalink to this heading"></a></h3>
+<p>Issue: Want to obtain more detailed logs</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Launcher class log level setting (recommended)</strong></p>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class in workflow scripts, you can obtain detailed logs by setting the log level to “DEBUG” via parameters.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">turboworkflows.workflow_lanchers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Launcher</span>
+
+<span class="n">launcher</span> <span class="o">=</span> <span class="n">Launcher</span><span class="p">(</span>
+    <span class="n">cworkflows_list</span><span class="o">=</span><span class="n">workflows</span><span class="p">,</span>
+    <span class="n">turbo_workflows_log_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span>  <span class="c1"># Turbo-Workflows log level</span>
+    <span class="n">turbo_genius_log_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span>     <span class="c1"># Turbo-Genius log level</span>
+    <span class="n">pyturbo_log_level</span><span class="o">=</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">,</span>          <span class="c1"># pyturbo log level</span>
+    <span class="n">log_name</span><span class="o">=</span><span class="s2">&quot;turboworkflows.log&quot;</span><span class="p">,</span>      <span class="c1"># Log file name</span>
+<span class="p">)</span>
+<span class="n">launcher</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This will output the following detailed information to the logs:</p>
+<ul class="simple">
+<li><p>Workflow execution order and dependencies</p></li>
+<li><p>File transfer status</p></li>
+<li><p>Job submission and execution status</p></li>
+<li><p>Detailed error stack traces</p></li>
+</ul>
+<p>Logs are output to both the console and the <code class="docutils literal notranslate"><span class="pre">turboworkflows.log</span></code> file.</p>
+</li>
+<li><p><strong>Individual logger setting</strong></p>
+<p>If you are not using <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> or want to set only specific loggers, you can set the logger directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">getLogger</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;Turbo-Workflows&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="s2">&quot;DEBUG&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="other-issues">
+<h2><a class="toc-backref" href="#id32" role="doc-backlink">7. Other Issues</a><a class="headerlink" href="#other-issues" title="Permalink to this heading"></a></h2>
+<section id="dependency-errors">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">7.1. Dependency errors</a><a class="headerlink" href="#dependency-errors" title="Permalink to this heading"></a></h3>
+<p>Issue: Dependencies between workflows are not resolved correctly</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check Variable</strong></p>
+<p>Verify that the <code class="docutils literal notranslate"><span class="pre">label</span></code> specified in the <code class="docutils literal notranslate"><span class="pre">Variable</span></code> class is correct.</p>
+</li>
+<li><p><strong>Draw dependency graph</strong></p>
+<p>Set <code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code> in <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> to check the dependency graph.</p>
+</li>
+</ul>
+</section>
+<section id="package-import-error">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink">7.2. Package import error</a><a class="headerlink" href="#package-import-error" title="Permalink to this heading"></a></h3>
+<p>Issue: Cannot import TurboRVB or TurboGenius modules</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>Check installation</strong></p>
+<p>Verify that TurboRVB and TurboGenius are installed correctly.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import turbogenius; print(&#39;OK&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check environment variables</strong></p>
+<p>Verify that required environment variables (such as PATH and/or PYTHONPATH) are set.</p>
+</li>
+</ul>
+</section>
+<section id="configuration-file-syntax-error">
+<h3><a class="toc-backref" href="#id35" role="doc-backlink">7.3. Configuration file syntax error</a><a class="headerlink" href="#configuration-file-syntax-error" title="Permalink to this heading"></a></h3>
+<p>Issue: YAML or TOML syntax error</p>
+<p>Solution:</p>
+<ul>
+<li><p><strong>YAML syntax check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import yaml; yaml.safe_load(open(&#39;machine_data.yaml&#39;))&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>TOML syntax check</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import toml; toml.load(open(&#39;queue_data.toml&#39;))&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Use online tools</strong></p>
+<p>Use YAML or TOML syntax checkers.</p>
+</li>
+</ul>
+</section>
+</section>
+<section id="support-and-additional-information">
+<h2><a class="toc-backref" href="#id36" role="doc-backlink">8. Support and Additional Information</a><a class="headerlink" href="#support-and-additional-information" title="Permalink to this heading"></a></h2>
+<p>If the problem is not resolved:</p>
+<ul>
+<li><p><strong>Check log files</strong></p>
+<p>Check error messages and log files and collect detailed information.</p>
+</li>
+<li><p><strong>Check configuration files</strong></p>
+<p>Recheck the syntax and content of configuration files.</p>
+</li>
+<li><p><strong>Refer to documentation</strong></p>
+<p>Recheck the installation instructions (<a class="reference internal" href="getting_started/installation.html#turboworkflows-installation"><span class="std std-ref">Installation of TurboWorkflows</span></a>) and environment settings (<a class="reference internal" href="getting_started/settings.html#turboworkflows-installation-settings"><span class="std std-ref">Environment Configuration</span></a>).</p>
+</li>
+<li><p><strong>Check system requirements</strong></p>
+<p>Verify that Python version, TurboRVB, and TurboGenius versions meet the requirements.</p>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reference/job_manager_cli.html" class="btn btn-neutral float-left" title="turbo-jobmanager command" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="appendix/00index.html" class="btn btn-neutral float-right" title="Appendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

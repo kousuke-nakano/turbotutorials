@@ -1,0 +1,458 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Environment Configuration &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorial/00index.html" />
+    <link rel="prev" title="Installation of TurboWorkflows" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Getting started</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation of TurboWorkflows</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Environment Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-file-location-and-structure">Configuration File Location and Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-machine-settings-machine-data-yaml">Server Machine Settings (machine_data.yaml)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-settings-package-yaml">Package Settings (package.yaml)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#batch-queue-settings-queue-data-toml">Batch Queue Settings (queue_data.toml)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/00index.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Getting started</a></li>
+      <li class="breadcrumb-item active">Environment Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows_manual/getting_started/settings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="environment-configuration">
+<span id="turboworkflows-installation-settings"></span><h1>Environment Configuration<a class="headerlink" href="#environment-configuration" title="Permalink to this heading"></a></h1>
+<p>TurboWorkflows settings are described in configuration files under <code class="docutils literal notranslate"><span class="pre">.turbofilemanager_config</span></code> in the home directory.</p>
+<section id="configuration-file-location-and-structure">
+<h2>Configuration File Location and Structure<a class="headerlink" href="#configuration-file-location-and-structure" title="Permalink to this heading"></a></h2>
+<p>Configuration files are managed in the following directory structure.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/.turbofilemanager_config/
+├── machine_data.yaml          # Server machine settings
+├── localhost/                 # Settings for localhost
+│   ├── package.yaml
+│   ├── queue_data.toml
+│   ├── submit_mpi.sh
+│   └── submit_nompi.sh
+├── remotesrv/                 # Settings for remotesrv (example)
+│   ├── package.yaml
+│   ├── queue_data.toml
+│   ├── submit_mpi.sh
+│   └── submit_nompi.sh
+└── ...
+</pre></div>
+</div>
+<ul>
+<li><p><strong>machine_data.yaml</strong></p>
+<p>Describes settings for server machines. The format is YAML.
+It is a dictionary format with server names as keys, and accommodates settings for multiple servers.</p>
+</li>
+<li><p><strong>Directory for each server</strong></p>
+<p>Create a directory for each server (localhost, remotesrv, etc.) and place the following configuration files in it.</p>
+<ul>
+<li><p><strong>package.yaml</strong></p>
+<p>Describes settings for execution modules.</p>
+</li>
+<li><p><strong>queue_data.toml</strong></p>
+<p>Describes settings for job schedulers in TOML format.
+Distinguished by queue labels, it describes job queue names, number of nodes, parallelism, etc.</p>
+</li>
+<li><p><strong>submit_mpi.sh, submit_nompi.sh</strong></p>
+<p>Script templates for executing programs.
+TurboWorkflows creates job scripts by replacing keywords based on these templates and submits jobs. Prepare submit_mpi.sh for MPI jobs and submit_nompi.sh for serial jobs.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>For details on configuration, refer to <a class="reference internal" href="../reference/configuration.html#turboworkflows-reference-configuration"><span class="std std-ref">Configuration Files</span></a>.
+Some typical configuration examples are shown below.</p>
+</section>
+<section id="server-machine-settings-machine-data-yaml">
+<h2>Server Machine Settings (machine_data.yaml)<a class="headerlink" href="#server-machine-settings-machine-data-yaml" title="Permalink to this heading"></a></h2>
+<p>The machine_data.yaml file describes settings for localhost where workflows are executed, and remote servers as needed.</p>
+<section id="case-1-local-workstation">
+<h3>Case 1: Local Workstation<a class="headerlink" href="#case-1-local-workstation" title="Permalink to this heading"></a></h3>
+<p>Manage workflows and execute computations on a workstation. This is the configuration for directly executing programs without a job scheduler. Job execution is performed through a shell, and execution status is obtained by monitoring processes.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">queuing </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">file_manager_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/data/workflow</span>
+<span class="w">  </span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">  </span><span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ps</span>
+<span class="w">  </span><span class="nt">jobnum_index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</div>
+</section>
+<section id="case-2-frontend-login-node-of-supercomputer-systems">
+<h3>Case 2: Frontend (Login) Node of Supercomputer systems<a class="headerlink" href="#case-2-frontend-login-node-of-supercomputer-systems" title="Permalink to this heading"></a></h3>
+<p>Install TurboWorkflows on a supercomputer and manage workflows on the frontend node. Computations are executed as batch jobs.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">queuing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/slurm/bin/sbatch</span>
+<span class="w">  </span><span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/slurm/bin/squeue</span>
+<span class="w">  </span><span class="nt">jobdel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/slurm/bin/scancel</span>
+<span class="w">  </span><span class="nt">jobnum_index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<ul>
+<li><p>machine_type is local, and jobs are submitted from the same host where workflows are executed. Since this is a system for executing computations, set computation to true.</p></li>
+<li><p>jobsubmit is the job submission command, jobcheck is the command to get job execution status, and jobdel is the command to delete jobs. Please rewrite appropriately according to the job scheduler system and system settings.</p>
+<ul>
+<li><p>For Slurm, usually specify as follows.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sbatch</span>
+<span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">squeue</span>
+<span class="nt">jobdel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scancel</span>
+</pre></div>
+</div>
+</li>
+<li><p>For PBS, usually specify as follows</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qsub</span>
+<span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qstat -u username</span><span class="w">   </span><span class="c1"># replace username with your user name</span>
+<span class="nt">jobdel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qdel</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>jobnum_index is an integer value that specifies which column (0-based) the JOBID displayed at submitting a job corresponds to when it is split by whitespaces.</p>
+<ul>
+<li><p>For Slurm, it usually looks like this.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sbatch<span class="w"> </span>job.sh
+Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"> </span><span class="m">42</span>
+</pre></div>
+</div>
+<p>JOBID (“42” in this case) is in the 3rd column (0-based), so specify 3 for jobnum_index.</p>
+</li>
+<li><p>For PBS, it usually looks like this.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>qsub<span class="w"> </span>job.sh
+<span class="m">42</span>.server-pbs
+</pre></div>
+</div>
+<p>JOBID (“42.server-pbs” in this case) is in the first column, so specify 0 for jobnum_index.</p>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Commands and displays may vary depending on the system. Please refer to the system’s user manual.</p>
+</div>
+</section>
+<section id="case-3-remote-server">
+<h3>Case 3: Remote Server<a class="headerlink" href="#case-3-remote-server" title="Permalink to this heading"></a></h3>
+<p>Execute workflows on a local workstation and execute computations on a remote server or supercomputer. This is the configuration for cases where a job scheduler is running on the remote system and computations are executed as batch jobs.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">remotesrv</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remote</span>
+<span class="w">  </span><span class="nt">queuing </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">file_manager_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/work/xxxx/xxxx/xxxx</span>
+<span class="w">  </span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qsub</span>
+<span class="w">  </span><span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qstat</span>
+<span class="w">  </span><span class="nt">jobdel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qdel</span>
+<span class="w">  </span><span class="nt">jobnum_index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create an entry with the server name (remotesrv here) as the key.</p></li>
+<li><p>machine_type is remote, queuing specifies whether a job scheduler is used, and computation specifies whether it is used for computation execution.</p></li>
+<li><p>jobsubmit, jobcheck, jobdel, and jobnum_index are similar to the supercomputer frontend settings described above. Please specify execution commands and paths on the remote server.</p></li>
+<li><p>file_manager_root specifies the directory that serves as the starting point on the server side when transferring files. See below for the details.</p></li>
+<li><p>Please check the SSH settings below.</p></li>
+</ul>
+</section>
+<section id="case-4-file-server">
+<h3>Case 4: File Server<a class="headerlink" href="#case-4-file-server" title="Permalink to this heading"></a></h3>
+<p>This is a configuration example for a remote server used as a file server and not used for computation.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">filesrv</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remote</span>
+<span class="w">  </span><span class="nt">queuing </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">file_manager_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/xxxx/xxxx</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Set machine_type to remote and computation to false. Specify file_manager_root as appropriate.</p></li>
+</ul>
+</section>
+<section id="ssh-configuration-details">
+<h3>SSH Configuration Details<a class="headerlink" href="#ssh-configuration-details" title="Permalink to this heading"></a></h3>
+<p>Connection to remote server is made via SSH. Usually, SSH settings are described in ~/.ssh/config. For details, please refer to SSH documentation, etc.
+A configuration example is shown below.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host remotesrv
+    HostName remotesrv.example.com
+    User myname
+    IdentityFile ~/.ssh/remotesrv/id_rsa
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Create an entry with the server name (remotesrv) in the Host line.</p></li>
+<li><p>HostName specifies the actual server hostname or IP address, and User specifies the account.</p></li>
+<li><p>IdentityFile specifies the private key file. This can be omitted when using ssh-agent-forwarding, etc.</p></li>
+</ul>
+<p><strong>SSH Connection Test</strong></p>
+<p>To verify that SSH settings are working correctly, perform a manual connection test.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>remotesrv
+</pre></div>
+</div>
+<p>If the connection succeeds, the SSH settings are working correctly.</p>
+<p><strong>Connection via Proxy</strong></p>
+<p>If you need to connect to a remote machine via a proxy server, add <code class="docutils literal notranslate"><span class="pre">ProxyCommand</span></code> to <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host remotesrv
+    HostName remotesrv.example.com
+    User myname
+    ProxyCommand ssh -W %h:%p proxy_host
+    IdentityFile ~/.ssh/id_rsa
+</pre></div>
+</div>
+<p><strong>Required SSH Settings</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Host</span></code>: Must match the server name specified in machine_data.yaml.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HostName</span></code>: Specify the actual server hostname or IP address.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">User</span></code>: Specify the remote server user name.</p></li>
+</ul>
+</section>
+<section id="about-file-manager-root">
+<h3>About file_manager_root<a class="headerlink" href="#about-file-manager-root" title="Permalink to this heading"></a></h3>
+<p>When using a remote server, file_manager_root must be specified for both the remote server and localhost.
+When transferring files, file paths are treated as relative paths from file_manager_root. For example,</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file_manager_root</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/data/workflow</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="nt">remotesrv</span><span class="p">:</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">file_manager_root</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/work/myname/workflow_data</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>Suppose this is configured. remotesrv’s /work/myname/workflow_data/results/lrdmc-workflow/pip0_fn.d is treated as a relative path ./results/lrdmc-workflow/pip0_fn.d from root, and is transferred to localhost’s /mnt/data/workflow/results/lrdmc-workflow/pip0_fn.d.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><strong>Path relativity</strong>: File paths are treated as relative paths from <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code>. Make sure that absolute paths are under <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code>.</p></li>
+<li><p><strong>Symbolic links</strong>: Note that symbolic links are resolved.</p></li>
+<li><p><strong>Directory permissions</strong>: Make sure that the destination directory has write permissions.</p></li>
+<li><p><strong>Set for both local and remote</strong>: When using a remote server, you need to set <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code> for both localhost and the remote server.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="package-settings-package-yaml">
+<h2>Package Settings (package.yaml)<a class="headerlink" href="#package-settings-package-yaml" title="Permalink to this heading"></a></h2>
+<p>The package.yaml file configures program packages for each server. It is written in YAML format.
+It manages execution modules used for turborvb and python. You can separate installation directories by version and select a version at runtime.
+Also job script templates are specified for job submission. You can use different templates for each package, allowing for cases where specific settings such as loading external modules are required.</p>
+<p>A sample package.yaml is shown below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-mpi.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-mpi.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">makefort10.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">convertfort10mol.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">convertfort10.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">readforward-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">readforward-mpi.x</span>
+<span class="w">  </span><span class="nt">job_template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_mpi.sh</span>
+<span class="w">    </span><span class="nt">nompi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_nompi.sh</span>
+
+<span class="nt">python</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3</span>
+<span class="w">  </span><span class="nt">job_template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_mpi.sh</span>
+<span class="w">    </span><span class="nt">nompi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_nompi.sh</span>
+</pre></div>
+</div>
+<p><strong>Version Management for binary_path</strong></p>
+<p>You can manage multiple versions in <code class="docutils literal notranslate"><span class="pre">binary_path</span></code>. Specify the binary path for each version with the version name as the key.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/stable/bin</span>
+<span class="w">    </span><span class="nt">latest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/latest/bin</span>
+<span class="w">    </span><span class="nt">v1.0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/v1.0/bin</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-mpi.x</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+<p>Specify the version to use in workflows with the <code class="docutils literal notranslate"><span class="pre">version</span></code> parameter (e.g., <code class="docutils literal notranslate"><span class="pre">version=&quot;stable&quot;</span></code>).</p>
+<p><strong>Path Specification Method</strong></p>
+<p>It is recommended to specify absolute paths for <code class="docutils literal notranslate"><span class="pre">binary_path</span></code>. When using relative paths, be careful as they depend on the current directory at runtime.</p>
+</section>
+<section id="batch-queue-settings-queue-data-toml">
+<h2>Batch Queue Settings (queue_data.toml)<a class="headerlink" href="#batch-queue-settings-queue-data-toml" title="Permalink to this heading"></a></h2>
+<p>The batch queues are configured for each server. It is written in TOML format.
+It defines as dictionary format data with queue labels as keys.
+The queue labels are referred to by the queue_label parameter of the Workflow class instances.
+The main items are as follows.</p>
+<ul>
+<li><p>mpi</p>
+<blockquote>
+<div><p>Specifies whether to perform MPI parallelization.
+If true, execute as an MPI parallel job. Use the mpi version of job_template in package settings. If false, execute as a serial job. Use the nompi version in package settings’ job_template.</p>
+</div></blockquote>
+</li>
+<li><p>max_job_submit</p>
+<blockquote>
+<div><p>Specifies the maximum number of jobs that can be submitted to the job scheduler. The limit varies by systems.</p>
+</div></blockquote>
+</li>
+</ul>
+<p><strong>Adding Custom Variables</strong></p>
+<p>In queue_data.toml, you can define arbitrary key-value pairs. These are used as parameters in job templates, and <code class="docutils literal notranslate"><span class="pre">_KEY_</span></code> is replaced with the value corresponding to key (case-insensitive).</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[default]</span>
+<span class="w">    </span><span class="n">mpi</span><span class="o">=</span><span class="kc">false</span>
+<span class="w">    </span><span class="n">max_job_submit</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="c1"># Example of custom variables</span>
+<span class="w">    </span><span class="n">num_cores</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">omp_num_threads</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">nodes</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">account</span><span class="o">=</span><span class="s2">&quot;myaccount&quot;</span>
+<span class="w">    </span><span class="n">partition</span><span class="o">=</span><span class="s2">&quot;normal&quot;</span>
+<span class="w">    </span><span class="n">memory</span><span class="o">=</span><span class="s2">&quot;32GB&quot;</span>
+</pre></div>
+</div>
+<p>This allows you to embed different node counts, MPI process counts, and thread counts in job scripts for each queue_label.</p>
+<p><strong>TOML Format Notes</strong></p>
+<p>Care must be taken with TOML data types. For details, please check the TOML specification.</p>
+<ul>
+<li><p><strong>Time</strong>: When setting maximum execution time, values must be enclosed in quotes and treated as strings.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">max_time</span><span class="o">=</span><span class="s2">&quot;24:00:00&quot;</span><span class="w">  </span><span class="c1"># Correct</span>
+<span class="n">max_time</span><span class="o">=</span><span class="ld">24:00:00</span><span class="w">    </span><span class="c1"># Error (interpreted as time)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Boolean values</strong>: Write <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> (lowercase). <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">no</span></code>, etc. are treated as strings.</p></li>
+<li><p><strong>Numbers</strong>: Both integers and floating point numbers can be used.</p></li>
+</ul>
+</section>
+<section id="job-script-templates-submit-mpi-sh-submit-nompi-sh">
+<h2>Job Script Templates (submit_mpi.sh, submit_nompi.sh)<a class="headerlink" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh" title="Permalink to this heading"></a></h2>
+<p>Prepare job script templates. You can separate templates by package and whether MPI parallelization is used. Write embedded parameters in templates in the _KEY_ format.</p>
+<p>Job script formats vary by system. Examples for systems using Slurm and PBS are shown in <a class="reference internal" href="../appendix/config_examples.html#turboworkflows-config-examples"><span class="std std-ref">Configuration File Examples</span></a>. Some systems may require additional information such as account group specifications.</p>
+<p><strong>Using Variables Defined in queue_data.toml</strong></p>
+<p>Variables defined in queue_data.toml can also be used in job script templates. Enclose the variable name in uppercase with <code class="docutils literal notranslate"><span class="pre">_</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">_NUM_CORES_</span></code>, <code class="docutils literal notranslate"><span class="pre">_OMP_NUM_THREADS_</span></code>).</p>
+<p>Variable names are case-insensitive. <code class="docutils literal notranslate"><span class="pre">num_cores</span></code> and <code class="docutils literal notranslate"><span class="pre">NUM_CORES</span></code> are treated as the same variable.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation of TurboWorkflows" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorial/00index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

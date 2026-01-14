@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>class VMCopt_workflow &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="class Launcher" href="launcher.html" />
+    <link rel="prev" title="class VMC_workflow" href="workflow_vmc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="00index.html#api-reference">API reference</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="00index.html#workflow-items">workflow items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="00index.html#workflow-management">workflow management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="00index.html#configurations">Configurations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="00index.html#command-line-tools">Command-line tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Reference</a></li>
+      <li class="breadcrumb-item active">class VMCopt_workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows_manual/reference/workflow_vmcopt.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-vmcopt-workflow">
+<span id="turboworkflows-class-workflow-vmcopt"></span><h1>class VMCopt_workflow<a class="headerlink" href="#class-vmcopt-workflow" title="Permalink to this heading"></a></h1>
+<p>This class manages the workflow of VMC optimization.</p>
+<section id="module-usage">
+<h2>Module usage<a class="headerlink" href="#module-usage" title="Permalink to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">turboworkflows.workflow_vmcopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">VMCopt_workflow</span>
+</pre></div>
+</div>
+</section>
+<section id="constructor-arguments">
+<h2>Constructor arguments<a class="headerlink" href="#constructor-arguments" title="Permalink to this heading"></a></h2>
+<section id="job-parameters">
+<h3>job parameters<a class="headerlink" href="#job-parameters" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>argument</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>default value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>server_machine_name</p></td>
+<td><p>str</p></td>
+<td><p>localhost</p></td>
+<td><p>name of the server machine for job submission.</p></td>
+</tr>
+<tr class="row-odd"><td><p>queue_label</p></td>
+<td><p>str</p></td>
+<td><p>(None)</p></td>
+<td><p>queue label for job submission.</p></td>
+</tr>
+<tr class="row-even"><td><p>mpi</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>use MPI parallelization.</p></td>
+</tr>
+<tr class="row-odd"><td><p>version</p></td>
+<td><p>str</p></td>
+<td><p>stable</p></td>
+<td><p>version of packages to use.</p></td>
+</tr>
+<tr class="row-even"><td><p>sleep_time</p></td>
+<td><p>int</p></td>
+<td><p>1800</p></td>
+<td><p>interval of job status check in seconds.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vmcopt-parameters">
+<h3>vmcopt parameters<a class="headerlink" href="#vmcopt-parameters" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>argument</p></th>
+<th class="head"><p>type</p></th>
+<th class="head"><p>default value</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>vmcopt_max_continuation</p></td>
+<td><p>int</p></td>
+<td><p>2</p></td>
+<td><p>maximum number of continuation runs.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_target_error_bar</p></td>
+<td><p>float</p></td>
+<td><p>1.0e-3</p></td>
+<td><p>target error bar in Ha.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_trial_optsteps</p></td>
+<td><p>float</p></td>
+<td><p>50</p></td>
+<td><p>number of trial optimization steps.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_trial_steps</p></td>
+<td><p>float</p></td>
+<td><p>50</p></td>
+<td><p>number of trial VMC steps per optimization step.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_minimum_blocks</p></td>
+<td><p>int</p></td>
+<td><p>3</p></td>
+<td><p>minimum number of blocks required.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_production_optsteps</p></td>
+<td><p>int</p></td>
+<td><p>2000</p></td>
+<td><p>number of production optimization steps.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_optwarmupsteps_ratio</p></td>
+<td><p>int</p></td>
+<td><p>0.8</p></td>
+<td><p>ratio of warmup steps to discard.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_bin_block</p></td>
+<td><p>int</p></td>
+<td><p>1</p></td>
+<td><p>binning length.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_warmupblocks</p></td>
+<td><p>int</p></td>
+<td><p>0</p></td>
+<td><p>number of warmup blocks to discard.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_optimizer</p></td>
+<td><p>str</p></td>
+<td><p>lr</p></td>
+<td><p>optimizer type. options: sr for stochastic reconfiguration, lr for linear method.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_learning_rate</p></td>
+<td><p>float</p></td>
+<td><p>0.35</p></td>
+<td><p>optimization step size. default values is 0.05 for sr, 0.35 for lr.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_regularization</p></td>
+<td><p>float</p></td>
+<td><p>0.001</p></td>
+<td><p>regularization parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_num_opt_param</p></td>
+<td><p>int</p></td>
+<td><p>0</p></td>
+<td><p>number of optimized parameters. 0 means all the parameters are optimized.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_onebody</p></td>
+<td><p>bool</p></td>
+<td><p>True</p></td>
+<td><p>flag to optimize onebody Jastrow</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_twobody</p></td>
+<td><p>bool</p></td>
+<td><p>True</p></td>
+<td><p>flag to optimize twobody Jastrow</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_det_mat</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag to optimize matrix elements in the determinant part</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_jas_mat</p></td>
+<td><p>bool</p></td>
+<td><p>True</p></td>
+<td><p>flag to optimize matrix elements in the Jastrow part</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_det_basis_exp</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag to optimize exponents of the determinant basis sets</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_jas_basis_exp</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag to optimize exponents of the Jastrow basis sets</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_det_basis_coeff</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag to optimize coefficients of the determinant basis sets</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_jas_basis_coeff</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag to optimize coefficients of the Jastrow basis sets</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_num_walkers</p></td>
+<td><p>int</p></td>
+<td><p>-1</p></td>
+<td><p>number of walkers. -1 (default) = the number of MPI processes</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_twist_average</p></td>
+<td><p>bool</p></td>
+<td><p>False</p></td>
+<td><p>flag for twist average</p></td>
+</tr>
+<tr class="row-odd"><td><p>vmcopt_kpoints</p></td>
+<td><p>list</p></td>
+<td><p>[]</p></td>
+<td><p>Monkhorst-Pack k-grids, [kx,ky,kz,nx,ny,nz], kx,ky,kz for grids, nx,ny,nz for shift=0, noshift=1.</p></td>
+</tr>
+<tr class="row-even"><td><p>vmcopt_maxtime</p></td>
+<td><p>int</p></td>
+<td><p>172000</p></td>
+<td><p>maximum time (sec.)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="workflow_vmc.html" class="btn btn-neutral float-left" title="class VMC_workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="launcher.html" class="btn btn-neutral float-right" title="class Launcher" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reference &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="class Convertfort10_workflow" href="workflow_convertfort10.html" />
+    <link rel="prev" title="HF-VMC Calculation for Crystals at Complex k-Point" href="../tutorial/04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-reference">API reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#workflow-items">workflow items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#workflow-management">workflow management</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configurations">Configurations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#command-line-tools">Command-line tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="job_manager_cli.html">turbo-jobmanager command</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows manual</a></li>
+      <li class="breadcrumb-item active">Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows_manual/reference/00index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="reference">
+<span id="turboworkflows-reference"></span><h1>Reference<a class="headerlink" href="#reference" title="Permalink to this heading"></a></h1>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Permalink to this heading"></a></h2>
+<section id="workflow-items">
+<h3>workflow items<a class="headerlink" href="#workflow-items" title="Permalink to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="workflow_convertfort10.html">class Convertfort10_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_convertfort10mol.html">class Convertfort10mol_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_convertwf.html">class Conversion_wf_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_prep.html">class DFT_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_init_occ.html">class Init_occ_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_jastrowcopy.html">class Jastrowcopy_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_lrdmc.html">class LRDMC_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_lrdmc_ext.html">class LRDMC_ext_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_lrdmcopt.html">class LRDMCopt_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_makefort10.html">class Makefort10_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_pyscf.html">class PySCF_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_trexio.html">class TREXIO_convert_to_turboWF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_vmc.html">class VMC_workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow_vmcopt.html">class VMCopt_workflow</a></li>
+</ul>
+</div>
+</section>
+<section id="workflow-management">
+<h3>workflow management<a class="headerlink" href="#workflow-management" title="Permalink to this heading"></a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">class Launcher</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encapsulated_workflow.html">class Encapsulated_Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variable.html">class Variable</a></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="configurations">
+<h2>Configurations<a class="headerlink" href="#configurations" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-file-structure">Configuration File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#machine-data-yaml">machine_data.yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#package-yaml">package.yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#queue-data-toml">queue_data.toml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#job-script-templates-submit-mpi-sh-submit-nompi-sh">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="command-line-tools">
+<h2>Command-line tools<a class="headerlink" href="#command-line-tools" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="job_manager_cli.html">turbo-jobmanager command</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorial/04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html" class="btn btn-neutral float-left" title="HF-VMC Calculation for Crystals at Complex k-Point" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="workflow_convertfort10.html" class="btn btn-neutral float-right" title="class Convertfort10_workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

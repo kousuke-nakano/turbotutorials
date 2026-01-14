@@ -1,0 +1,531 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration Files &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="turbo-jobmanager command" href="job_manager_cli.html" />
+    <link rel="prev" title="class Variable" href="variable.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="00index.html#api-reference">API reference</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="00index.html#configurations">Configurations</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Configuration Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="00index.html#command-line-tools">Command-line tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Reference</a></li>
+      <li class="breadcrumb-item active">Configuration Files</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/03turboworkflows_manual/reference/configuration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration-files">
+<span id="turboworkflows-reference-configuration"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Configuration Files</a><a class="headerlink" href="#configuration-files" title="Permalink to this heading"></a></h1>
+<p>This document describes the detailed specifications of TurboWorkflows configuration files.
+For an overview and basic usage of configuration files, see <a class="reference internal" href="../getting_started/settings.html#turboworkflows-installation-settings"><span class="std std-ref">Environment Configuration</span></a>.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#configuration-files" id="id6">Configuration Files</a></p>
+<ul>
+<li><p><a class="reference internal" href="#configuration-file-structure" id="id7">Configuration File Structure</a></p></li>
+<li><p><a class="reference internal" href="#machine-data-yaml" id="id8">machine_data.yaml</a></p></li>
+<li><p><a class="reference internal" href="#package-yaml" id="id9">package.yaml</a></p></li>
+<li><p><a class="reference internal" href="#queue-data-toml" id="id10">queue_data.toml</a></p></li>
+<li><p><a class="reference internal" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh" id="id11">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="configuration-file-structure">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Configuration File Structure</a><a class="headerlink" href="#configuration-file-structure" title="Permalink to this heading"></a></h2>
+<p>Configuration files are managed in the following directory structure.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/.turbofilemanager_config/
+├── machine_data.yaml          # Server machine settings
+├── localhost/                 # Settings for localhost
+│   ├── package.yaml
+│   ├── queue_data.toml
+│   ├── submit_mpi.sh
+│   └── submit_nompi.sh
+├── remotesrv/                 # Settings for remotesrv (example)
+│   ├── package.yaml
+│   ├── queue_data.toml
+│   ├── submit_mpi.sh
+│   └── submit_nompi.sh
+└── ...
+</pre></div>
+</div>
+</section>
+<section id="machine-data-yaml">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">machine_data.yaml</a><a class="headerlink" href="#machine-data-yaml" title="Permalink to this heading"></a></h2>
+<p>A YAML file that describes settings for server machines.</p>
+<section id="file-format">
+<h3>File Format<a class="headerlink" href="#file-format" title="Permalink to this heading"></a></h3>
+<p>Written in dictionary format with server names as keys. An example is shown below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
+<span class="w">  </span><span class="nt">queuing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">file_manager_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/data/workflow</span>
+<span class="w">  </span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash</span>
+<span class="w">  </span><span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ps</span>
+<span class="w">  </span><span class="nt">jobnum_index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">remotesrv</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">remote</span>
+<span class="w">  </span><span class="nt">queuing</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">computation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">file_manager_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/work/flow/data</span>
+<span class="w">  </span><span class="nt">jobsubmit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qsub</span>
+<span class="w">  </span><span class="nt">jobcheck</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qstat</span>
+<span class="w">  </span><span class="nt">jobdel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/pbs/bin/qdel</span>
+<span class="w">  </span><span class="nt">jobnum_index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-parameters">
+<h3>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this heading"></a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">machine_type</span></code></dt><dd><p><strong>Type</strong>: String (<code class="docutils literal notranslate"><span class="pre">local</span></code> or <code class="docutils literal notranslate"><span class="pre">remote</span></code>)</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the type of machine.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">local</span></code>: Local machine (executed on the same host)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">remote</span></code>: Remote machine (connected via SSH)</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">queuing</span></code></dt><dd><p><strong>Type</strong>: Boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies whether to use a job scheduler.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code>: Use a job scheduler (executed as batch jobs)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code>: Do not use a job scheduler (direct execution)</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">computation</span></code></dt><dd><p><strong>Type</strong>: Boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies whether to execute computations on this machine.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code>: Execute computations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code>: Do not execute computations (file management only, etc.)</p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code></dt><dd><p><strong>Type</strong>: String (directory path)</p>
+<p><strong>Required</strong>: When using a remote server, or when file transfer is needed</p>
+<p><strong>Description</strong>: Specifies the root directory for file management. When transferring files, file paths are treated as relative paths from this directory.</p>
+<p><strong>Note</strong>: When using a remote server, you need to set <code class="docutils literal notranslate"><span class="pre">file_manager_root</span></code> on both localhost and the remote server.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jobsubmit</span></code></dt><dd><p><strong>Type</strong>: String (command path)</p>
+<p><strong>Required</strong>: When executing computations</p>
+<p><strong>Description</strong>: Specifies the path to the command for submitting jobs.</p>
+<p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p>PBS/Torque: <code class="docutils literal notranslate"><span class="pre">qsub</span></code></p></li>
+<li><p>Slurm: <code class="docutils literal notranslate"><span class="pre">sbatch</span></code></p></li>
+<li><p>Local execution: <code class="docutils literal notranslate"><span class="pre">bash</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jobcheck</span></code></dt><dd><p><strong>Type</strong>: String (command path)</p>
+<p><strong>Required</strong>: When executing computations</p>
+<p><strong>Description</strong>: Specifies the path to the command for checking job execution status.</p>
+<p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p>PBS/Torque: <code class="docutils literal notranslate"><span class="pre">qstat</span></code>, or <code class="docutils literal notranslate"><span class="pre">qstat</span> <span class="pre">-u</span> <span class="pre">username</span></code>, etc.</p></li>
+<li><p>SLURM: <code class="docutils literal notranslate"><span class="pre">squeue</span></code>, or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--noheader</span></code>, etc.</p></li>
+<li><p>Local execution: <code class="docutils literal notranslate"><span class="pre">ps</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jobdel</span></code></dt><dd><p><strong>Type</strong>: String (command path)</p>
+<p><strong>Required</strong>: When <code class="docutils literal notranslate"><span class="pre">queuing:</span> <span class="pre">true</span></code></p>
+<p><strong>Description</strong>: Specifies the path to the command for deleting (canceling) jobs.</p>
+<p><strong>Examples</strong>:</p>
+<ul class="simple">
+<li><p>PBS/Torque: <code class="docutils literal notranslate"><span class="pre">qdel</span></code></p></li>
+<li><p>SLURM: <code class="docutils literal notranslate"><span class="pre">scancel</span></code></p></li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">jobnum_index</span></code></dt><dd><p><strong>Type</strong>: Integer</p>
+<p><strong>Required</strong>: When executing computations</p>
+<p><strong>Description</strong>: Specifies the index for extracting the job number from the job submission command output. Specifies the position of the job number (0-based) when the command output is split by whitespace.</p>
+<p><strong>Examples</strong>:</p>
+<ul>
+<li><p>For SLURM:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sbatch<span class="w"> </span>job.sh
+Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"> </span><span class="m">42</span>
+</pre></div>
+</div>
+<p>Since the job number (42) is in the 3rd column (0-based), specify <code class="docutils literal notranslate"><span class="pre">jobnum_index:</span> <span class="pre">3</span></code>.</p>
+</li>
+<li><p>For PBS:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>qsub<span class="w"> </span>job.sh
+<span class="m">42</span>.server-pbs
+</pre></div>
+</div>
+<p>Since the job number (42.server-pbs) is in the first column, specify <code class="docutils literal notranslate"><span class="pre">jobnum_index:</span> <span class="pre">0</span></code>.</p>
+</li>
+</ul>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ip</span></code></dt><dd><p><strong>Type</strong>: String (IP address)</p>
+<p><strong>Required</strong>: (Not used)</p>
+<p><strong>Description</strong>: Specifies the IP address of the remote machine. Usually, <code class="docutils literal notranslate"><span class="pre">HostName</span></code> is specified in SSH configuration (<code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>), so this parameter is no longer used.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="package-yaml">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">package.yaml</a><a class="headerlink" href="#package-yaml" title="Permalink to this heading"></a></h2>
+<p>Configure program package settings for each server. Written in YAML format.</p>
+<p>Packages are mainly specified within Workflow classes and are used to manage external programs used by Workflows. Currently, the keys <code class="docutils literal notranslate"><span class="pre">turborvb</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code> are used.</p>
+<section id="id1">
+<h3>File Format<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Written in dictionary format with package names as keys.
+An example is shown below.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/stable/bin</span>
+<span class="w">    </span><span class="nt">latest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/latest/bin</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-mpi.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-mpi.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">makefort10.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">convertfort10mol.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">convertfort10.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">readforward-serial.x</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">readforward-mpi.x</span>
+<span class="w">  </span><span class="nt">job_template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_mpi.sh</span>
+<span class="w">    </span><span class="nt">nompi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_nompi.sh</span>
+
+<span class="nt">python</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python</span>
+<span class="w">  </span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">stable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin</span>
+<span class="w">  </span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python3</span>
+<span class="w">  </span><span class="nt">job_template</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">mpi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_mpi.sh</span>
+<span class="w">    </span><span class="nt">nompi</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit_nompi.sh</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Configuration Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<dl>
+<dt>Package Entry (e.g., <code class="docutils literal notranslate"><span class="pre">turborvb</span></code>, <code class="docutils literal notranslate"><span class="pre">python</span></code>)</dt><dd><p><strong>Type</strong>: Dictionary</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Describes the package settings with the package name as the key.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">name</span></code></dt><dd><p><strong>Type</strong>: String</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the package name. Usually, this is the same value as the key.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">binary_path</span></code></dt><dd><p><strong>Type</strong>: Dictionary</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the binary path for each version with version names as keys. Multiple versions can be managed.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">binary_path</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">stable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/stable/bin</span>
+<span class="w">  </span><span class="nt">latest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/latest/bin</span>
+<span class="w">  </span><span class="nt">v1.0</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt/turborvb/v1.0/bin</span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: It is recommended to specify absolute paths. When using relative paths, be aware that they depend on the current directory at execution time.</p>
+<p><strong>Empty Value</strong>: When an empty string (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> or blank) is specified, binaries are searched from the PATH environment variable.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">binary_list</span></code></dt><dd><p><strong>Type</strong>: List (list of strings)</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies a list of binary file names used by this package.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">binary_list</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-serial.x</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">turborvb-mpi.x</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">prep-serial.x</span>
+</pre></div>
+</div>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">job_template</span></code></dt><dd><p><strong>Type</strong>: Dictionary</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the template file name for job scripts.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">mpi</span></code></dt><dd><p><strong>Type</strong>: String</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the template file name for MPI parallel jobs (e.g., <code class="docutils literal notranslate"><span class="pre">submit_mpi.sh</span></code>).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">nompi</span></code></dt><dd><p><strong>Type</strong>: String</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the template file name for serial jobs (e.g., <code class="docutils literal notranslate"><span class="pre">submit_nompi.sh</span></code>).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="version-management">
+<h3>Version Management<a class="headerlink" href="#version-management" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">binary_path</span></code> can manage multiple versions. The version used in workflows is specified with the <code class="docutils literal notranslate"><span class="pre">version</span></code> parameter (e.g., <code class="docutils literal notranslate"><span class="pre">version=&quot;stable&quot;</span></code>).</p>
+</section>
+</section>
+<section id="queue-data-toml">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">queue_data.toml</a><a class="headerlink" href="#queue-data-toml" title="Permalink to this heading"></a></h2>
+<p>Configure batch queue settings for each server. Written in TOML format.</p>
+<section id="id3">
+<h3>File Format<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Written in dictionary format with queue labels as keys. An example is shown below.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[default]</span>
+<span class="w">    </span><span class="n">mpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="n">max_job_submit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">num_cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">omp_num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">cpns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">mpi_per_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="k">[large]</span>
+<span class="w">    </span><span class="n">mpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="n">max_job_submit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="n">num_cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span>
+<span class="w">    </span><span class="n">omp_num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">cpns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span>
+<span class="w">    </span><span class="n">cores_per_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span>
+<span class="w">    </span><span class="n">mpi_per_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">24</span>
+<span class="w">    </span><span class="n">max_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24:00:00&quot;</span>
+<span class="w">    </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;large&quot;</span>
+<span class="w">    </span><span class="n">account</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;myaccount&quot;</span>
+<span class="w">    </span><span class="n">partition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Configuration Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<dl>
+<dt>Queue Label (e.g., <code class="docutils literal notranslate"><span class="pre">[default]</span></code>, <code class="docutils literal notranslate"><span class="pre">[large]</span></code>)</dt><dd><p><strong>Type</strong>: TOML table</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Describes the queue settings with the queue label as the key. Specified with the <code class="docutils literal notranslate"><span class="pre">queue_label</span></code> parameter of the Workflow class.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mpi</span></code></dt><dd><p><strong>Type</strong>: Boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies whether to perform MPI parallelization.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code>: Execute as an MPI parallel job. Uses <code class="docutils literal notranslate"><span class="pre">mpi</span></code> from <code class="docutils literal notranslate"><span class="pre">job_template</span></code> in package settings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code>: Execute as a serial job. Uses <code class="docutils literal notranslate"><span class="pre">nompi</span></code> from <code class="docutils literal notranslate"><span class="pre">job_template</span></code> in package settings.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">max_job_submit</span></code></dt><dd><p><strong>Type</strong>: Integer</p>
+<p><strong>Required</strong>: Yes</p>
+<p><strong>Description</strong>: Specifies the maximum number of jobs that can be submitted to the job scheduler. The limit varies by system.</p>
+</dd>
+<dt>Custom Variables</dt><dd><p><strong>Type</strong>: Any (string, integer, floating point number, boolean)</p>
+<p><strong>Required</strong>: No</p>
+<p><strong>Description</strong>: Any key-value pairs can be defined. These are used as parameters in job templates, and <code class="docutils literal notranslate"><span class="pre">_KEY_</span></code> is replaced with the value corresponding to the key (case-insensitive).</p>
+<p><strong>Examples of commonly used variables</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">queue</span></code>: Queue name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: Number of nodes to use</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_cores</span></code>: Number of cores to use</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">omp_num_threads</span></code>: Number of OpenMP threads</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cores_per_node</span></code> or <code class="docutils literal notranslate"><span class="pre">cpns</span></code>: Number of cores per node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpi_per_node</span></code>: Number of MPI processes per node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_time</span></code>: Maximum execution time (specified as a string, e.g., <code class="docutils literal notranslate"><span class="pre">&quot;24:00:00&quot;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">account</span></code>: Account name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">partition</span></code>: Partition name (Slurm)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code>: Memory amount (e.g., <code class="docutils literal notranslate"><span class="pre">&quot;32GB&quot;</span></code>)</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</section>
+<section id="toml-format-notes">
+<h3>TOML Format Notes<a class="headerlink" href="#toml-format-notes" title="Permalink to this heading"></a></h3>
+<p>TOML format describes data in key/value pairs. Values have types and can be quite strict, so care must be taken. Some things to note are listed below. For details, refer to the <a class="reference external" href="https://toml.io/en/v1.1.0">TOML specification</a>.</p>
+<ul>
+<li><p><strong>Numbers</strong>: Both integers and floating point numbers can be used. Floating point numbers require digits before and after the decimal point. Do not write 1.0 as 1., nor do not write 0.1 as .1.</p></li>
+<li><p><strong>Strings</strong>: Must be enclosed in quotes (e.g., <code class="docutils literal notranslate"><span class="pre">queue</span> <span class="pre">=</span> <span class="pre">&quot;small&quot;</span></code>).</p></li>
+<li><p><strong>Booleans</strong>: Write in lowercase <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>. <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">no</span></code>, etc. are unacceptable.</p></li>
+<li><p><strong>Time</strong>: When setting the maximum execution time, the value must be enclosed in quotes and treated as a string. TOML has a type for representing time (local time), so errors may occur if it is mistakenly interpreted as such.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="n">max_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24:00:00&quot;</span><span class="w">  </span><span class="c1"># Correct</span>
+<span class="n">max_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ld">24:00:00</span><span class="w">    </span><span class="c1"># Error (interpreted as time)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="job-script-templates-submit-mpi-sh-submit-nompi-sh">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a><a class="headerlink" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh" title="Permalink to this heading"></a></h2>
+<p>Prepare job script templates. Templates can be separated by package and by the presence or absence of MPI parallelization.</p>
+<section id="id5">
+<h3>File Format<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>Written in shell script format. Embedded parameters in templates are written in the format <code class="docutils literal notranslate"><span class="pre">_KEY_</span></code>.</p>
+</section>
+<section id="predefined-variables">
+<h3>Predefined Variables<a class="headerlink" href="#predefined-variables" title="Permalink to this heading"></a></h3>
+<p>The predefined variables that are automatically replaced by TurboWorkflows are as follows.</p>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">_INPUT_</span></code></dt><dd><p><strong>Description</strong>: Path to the input file</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_OUTPUT_</span></code></dt><dd><p><strong>Description</strong>: Path to the output file</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_PREOPTION_</span></code></dt><dd><p><strong>Description</strong>: Options to be placed before <code class="docutils literal notranslate"><span class="pre">_INPUT_</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_POSTOPTION_</span></code></dt><dd><p><strong>Description</strong>: Options to be placed after <code class="docutils literal notranslate"><span class="pre">_INPUT_</span></code></p>
+<p><strong>Usage Example</strong>:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">$BINARY</span> <span class="pre">$PREOPTION</span> <span class="pre">&lt;</span> <span class="pre">$INPUT</span> <span class="pre">$POSTOPTION</span> <span class="pre">&gt;</span> <span class="pre">$OUTPUT</span></code></p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">_INPUT_</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">$INPUT</span></code> part is removed.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">_PREOPTION_</span></code> or <code class="docutils literal notranslate"><span class="pre">_POSTOPTION_</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the corresponding variable is replaced with an empty string.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_JOBNAME_</span></code></dt><dd><p><strong>Description</strong>: Job name</p>
+<p><strong>Usage Example</strong>: <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--job-name=_JOBNAME_</span></code> or <code class="docutils literal notranslate"><span class="pre">#PBS</span> <span class="pre">-N</span> <span class="pre">_JOBNAME_</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_BINARY_ROOT_</span></code></dt><dd><p><strong>Description</strong>: Root directory path of the binary</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">_BINARY_</span></code></dt><dd><p><strong>Description</strong>: Binary file name</p>
+<p><strong>Usage Example</strong>: <code class="docutils literal notranslate"><span class="pre">BINARY=_BINARY_ROOT_/_BINARY_</span></code></p>
+</dd>
+</dl>
+</section>
+<section id="using-custom-variables">
+<h3>Using Custom Variables<a class="headerlink" href="#using-custom-variables" title="Permalink to this heading"></a></h3>
+<p>Variables defined in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> can be used in job script templates.
+Keywords in templates are the variable names in uppercase enclosed by <code class="docutils literal notranslate"><span class="pre">_</span></code> (e.g., num_cores → <code class="docutils literal notranslate"><span class="pre">_NUM_CORES_</span></code>).</p>
+<p><strong>Example</strong>:</p>
+<p>When defined in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> as follows:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[default]</span>
+<span class="w">    </span><span class="n">num_cores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">48</span>
+<span class="w">    </span><span class="n">omp_num_threads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="n">nodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">max_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;24:00:00&quot;</span>
+</pre></div>
+</div>
+<p>They can be used in job script templates as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span>_OMP_NUM_THREADS_
+<span class="nv">CORES</span><span class="o">=</span>_NUM_CORES_
+<span class="c1">#SBATCH --time=_MAX_TIME_</span>
+</pre></div>
+</div>
+<p>For template examples, see <a class="reference internal" href="../appendix/config_examples.html#turboworkflows-config-examples"><span class="std std-ref">Configuration File Examples</span></a>.</p>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>The format of job scripts varies by system. Refer to the system’s user manual.</p></li>
+<li><p>Some systems may require additional information such as account group specifications.</p></li>
+<li><p>Variable replacement is case-insensitive, but it is recommended to write in uppercase for readability.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="variable.html" class="btn btn-neutral float-left" title="class Variable" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="job_manager_cli.html" class="btn btn-neutral float-right" title="turbo-jobmanager command" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

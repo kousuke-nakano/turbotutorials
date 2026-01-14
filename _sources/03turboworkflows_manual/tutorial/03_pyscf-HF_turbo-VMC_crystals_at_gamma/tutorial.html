@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HF-VMC Calculation for Crystals at Gamma Point &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="HF-VMC Calculation for Crystals at Complex k-Point" href="../04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html" />
+    <link rel="prev" title="HF-VMC Calculation for Molecules" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01_Water-dimer/tutorial.html">Water Dimer Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01_CO-dimer/tutorial.html">CO Molecule Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html">HF-VMC Calculation for Molecules</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HF-VMC Calculation for Crystals at Gamma Point</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-steps">Execution Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#program-overview">Program Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#result-structure">Result Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html">HF-VMC Calculation for Crystals at Complex k-Point</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/00index.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboWorkflows manual</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">HF-VMC Calculation for Crystals at Gamma Point</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/03turboworkflows_manual/tutorial/03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hf-vmc-calculation-for-crystals-at-gamma-point">
+<span id="turboworkflows-tutorial-crystal-at-gamma"></span><h1>HF-VMC Calculation for Crystals at Gamma Point<a class="headerlink" href="#hf-vmc-calculation-for-crystals-at-gamma-point" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This tutorial explains how to perform Hartree-Fock (HF) calculations using PySCF and Variational Monte Carlo (VMC) calculations using TurboRVB for crystal structures at k=gamma point (Γ point) using TurboWorkflows, using <code class="docutils literal notranslate"><span class="pre">crystal_at_gamma</span></code> as an example.</p>
+<p>This tutorial automatically executes the following workflow for multiple crystal structures listed in the CSV file (<code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code>):</p>
+<ol class="arabic simple">
+<li><p><strong>PySCF Calculation</strong>: Generate initial wavefunctions using HF calculations at k=gamma point</p></li>
+<li><p><strong>TREXIO Conversion</strong>: Convert PySCF results from TREXIO format to TurboRVB format</p></li>
+<li><p><strong>VMC Calculation</strong>: Perform VMC calculations using the converted wavefunctions</p></li>
+</ol>
+<p>This tutorial can be used for sanity checks of TurboRVB VMC calculations. By converting HF wavefunctions to TurboRVB and performing VMC calculations, we can verify that the calculation results from both methods are consistent.
+The complete set of files for this tutorial is available at <a class="reference download internal" download="" href="../../../../_downloads/0caaacb1bc8b3e2c8f5e5333efe4ad87/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">file.tar.gz</span></code></a>.</p>
+</section>
+<section id="execution-steps">
+<h2>Execution Steps<a class="headerlink" href="#execution-steps" title="Permalink to this heading"></a></h2>
+<section id="environment-setup">
+<h3>1. Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading"></a></h3>
+<p>Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.
+The following files are required:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code>: CSV file containing crystal structure information for calculations</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometry/</span></code> directory: CIF files (crystal structure files)</p></li>
+</ul>
+</section>
+<section id="script-execution">
+<h3>2. Script Execution<a class="headerlink" href="#script-execution" title="Permalink to this heading"></a></h3>
+<p>Execute <code class="docutils literal notranslate"><span class="pre">task.py</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>task.py
+</pre></div>
+</div>
+<p>The script automatically performs the following operations:</p>
+<ol class="arabic simple">
+<li><p>Reads crystal structure information from <code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code></p></li>
+<li><p>Executes calculations for crystal structures with <code class="docutils literal notranslate"><span class="pre">Flag==TRUE</span></code></p></li>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory and saves results for each crystal structure</p></li>
+<li><p>Sequentially executes PySCF calculation, TREXIO conversion, and VMC calculation for each crystal structure</p></li>
+</ol>
+</section>
+</section>
+<section id="program-overview">
+<h2>Program Overview<a class="headerlink" href="#program-overview" title="Permalink to this heading"></a></h2>
+<section id="script-structure">
+<h3>Script Structure<a class="headerlink" href="#script-structure" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> consists of the following main parts:</p>
+<ol class="arabic simple">
+<li><p><strong>Crystal Structure Information Reading</strong> (lines 22-24)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># read molecules and its info.</span>
+<span class="n">mol_info</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data_sanity_check.csv&quot;</span><span class="p">)</span>
+<span class="n">mol_calc</span><span class="o">=</span><span class="n">mol_info</span><span class="p">[</span><span class="n">mol_info</span><span class="p">[</span><span class="s2">&quot;Flag&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Reads crystal structure information from the CSV file and only processes structures with <code class="docutils literal notranslate"><span class="pre">Flag==TRUE</span></code>.</p>
+<section id="file-format-of-data-sanity-check-csv">
+<h4>File Format of <code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code><a class="headerlink" href="#file-format-of-data-sanity-check-csv" title="Permalink to this heading"></a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code> is a CSV file containing crystal structure information for calculations. It includes the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Flag</span></code>: Flag indicating whether to execute the calculation (<code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>). Calculations are executed only when <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CODID</span></code>: Crystallography Open Database (COD) ID. Used as an index for CIF files. The file <code class="docutils literal notranslate"><span class="pre">{CODID}.cif</span></code> in the <code class="docutils literal notranslate"><span class="pre">geometry/</span></code> directory will be used</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Label</span></code>: Label (used for result directory name)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf_basis</span></code>: Basis set name used in PySCF (e.g., <code class="docutils literal notranslate"><span class="pre">ccecp-ccpvqz</span></code>, <code class="docutils literal notranslate"><span class="pre">ccecp-ccpv6z</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf_ecp</span></code>: ECP (Effective Core Potential) name used in PySCF (e.g., <code class="docutils literal notranslate"><span class="pre">ccecp</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Charge</span></code>: Crystal charge (integer)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Neldiff</span></code>: Spin (number of unpaired electrons, integer)</p></li>
+</ul>
+<p>Example CSV file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Flag,CODID,Label,pyscf_basis,pyscf_ecp,Charge,Neldiff
+TRUE,1234567,LiH,ccecp-ccpvqz,ccecp,0,0
+TRUE,2345678,LiF,ccecp-ccpvqz,ccecp,0,0
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Result Directory Preparation</strong> (lines 26-32)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pid</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;turboworkflows.pid&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">result_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;results&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">result_dir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Creates <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory and changes the working directory.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Workflow Generation for Each Crystal Structure</strong> (lines 36-127)</p></li>
+</ol>
+<p>For each crystal structure (each row in <code class="docutils literal notranslate"><span class="pre">mol_calc</span></code>), the following workflows are generated:</p>
+</section>
+<section id="a-crystal-structure-information-retrieval-and-cif-file-copying-lines-36-46">
+<h4>a. Crystal Structure Information Retrieval and CIF File Copying (lines 36-46)<a class="headerlink" href="#a-crystal-structure-information-retrieval-and-cif-file-copying-lines-36-46" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mol_calc</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">codid</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;CODID&quot;</span><span class="p">]</span>
+    <span class="n">label</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Label&quot;</span><span class="p">]</span>
+    <span class="n">pyscf_basis</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;pyscf_basis&quot;</span><span class="p">]</span>
+    <span class="n">pyscf_ecp</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;pyscf_ecp&quot;</span><span class="p">]</span>
+    <span class="n">charge</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Charge&quot;</span><span class="p">]</span>
+    <span class="n">neldiff</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Neldiff&quot;</span><span class="p">]</span>
+
+    <span class="n">mol_root_dir</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span><span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Retrieves information for each crystal structure from the CSV file (CODID, label, charge, spin, etc.)</p></li>
+<li><p>Reads and copies the CIF file from the <code class="docutils literal notranslate"><span class="pre">geometry/</span></code> directory to the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory</p></li>
+</ul>
+</section>
+<section id="b-pyscf-hf-calculation-workflow-lines-48-77">
+<h4>b. PySCF HF Calculation Workflow (lines 48-77)<a class="headerlink" href="#b-pyscf-hf-calculation-workflow-lines-48-77" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#pyscf</span>
+    <span class="n">pyscf_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow&#39;</span><span class="p">),</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">PySCF_workflow</span><span class="p">(</span>
+        <span class="c1">## structure file (mandatory)</span>
+        <span class="n">structure_file</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">codid</span><span class="si">}</span><span class="s2">.cif&quot;</span><span class="p">,</span>
+        <span class="c1">## job</span>
+        <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+        <span class="n">queue_label</span><span class="o">=</span><span class="s2">&quot;i8cpu-thread&quot;</span><span class="p">,</span>
+        <span class="n">sleep_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+        <span class="c1">## pyscf</span>
+        <span class="n">pyscf_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">charge</span><span class="o">=</span><span class="n">charge</span><span class="p">,</span>
+        <span class="n">spin</span><span class="o">=</span><span class="n">neldiff</span><span class="p">,</span>
+        <span class="n">basis</span><span class="o">=</span><span class="n">pyscf_basis</span><span class="p">,</span>
+        <span class="n">ecp</span><span class="o">=</span><span class="n">pyscf_ecp</span><span class="p">,</span>
+        <span class="n">scf_method</span><span class="o">=</span><span class="s2">&quot;HF&quot;</span><span class="p">,</span>
+        <span class="n">dft_xc</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+        <span class="n">pyscf_output</span><span class="o">=</span><span class="s2">&quot;out.pyscf&quot;</span><span class="p">,</span>
+        <span class="n">pyscf_chkfile</span><span class="o">=</span><span class="s2">&quot;pyscf.chk&quot;</span><span class="p">,</span>
+        <span class="n">solver_newton</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">exp_to_discard</span><span class="o">=</span><span class="mf">0.10</span><span class="p">,</span>
+        <span class="n">kpt</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>  <span class="c1"># scaled_kpts!! i.e., crystal coord.</span>
+        <span class="n">use_jkmethod</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">cworkflows_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pyscf_HF_workflow</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Executes HF calculation using PySCF_workflow</p></li>
+<li><p>Calculation parameters are retrieved from the CSV file (basis set, ECP, charge, spin, etc.)</p></li>
+<li><p>Calculates at k=gamma point (<code class="docutils literal notranslate"><span class="pre">kpt=[0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0]</span></code>)</p></li>
+<li><p>Results are saved as <code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code></p></li>
+</ul>
+<p>Main parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scf_method=&quot;HF&quot;</span></code>: Executes HF calculation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charge</span></code>, <code class="docutils literal notranslate"><span class="pre">spin</span></code>: Charge and spin retrieved from CSV file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basis</span></code>, <code class="docutils literal notranslate"><span class="pre">ecp</span></code>: Basis set and ECP retrieved from CSV file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kpt=[0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0]</span></code>: k=gamma point (scaled k-points in crystal coordinates)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">twist_average=False</span></code>: No k-point averaging</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_jkmethod=True</span></code>: Use JK method (for crystal calculations)</p></li>
+</ul>
+</section>
+<section id="c-trexio-conversion-workflow-lines-81-95">
+<h4>c. TREXIO Conversion Workflow (lines 81-95)<a class="headerlink" href="#c-trexio-conversion-workflow-lines-81-95" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#trexio</span>
+    <span class="n">trexio_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow&#39;</span><span class="p">),</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;trexio.hdf5&#39;</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">TREXIO_convert_to_turboWF</span><span class="p">(</span>
+            <span class="n">trexio_filename</span><span class="o">=</span><span class="s2">&quot;trexio.hdf5&quot;</span><span class="p">,</span>
+            <span class="n">twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">jastrow_basis_dict</span><span class="o">=</span><span class="p">{},</span>
+            <span class="n">max_occ_conv</span><span class="o">=</span><span class="mf">1.0e-4</span><span class="p">,</span>
+            <span class="n">trexio_rerun</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Converts PySCF calculation results (<code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code>) to TurboRVB format (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code>)</p></li>
+<li><p>Jastrow factors are initialized as empty (no optimization) with <code class="docutils literal notranslate"><span class="pre">jastrow_basis_dict={}</span></code></p></li>
+</ul>
+</section>
+<section id="d-vmc-calculation-workflow-lines-99-125">
+<h4>d. VMC Calculation Workflow (lines 99-125)<a class="headerlink" href="#d-vmc-calculation-workflow-lines-99-125" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1">#vmc</span>
+    <span class="n">vmc_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow&#39;</span><span class="p">),</span>
+        <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fort.10&#39;</span><span class="p">),</span>
+            <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;pseudo.dat&#39;</span><span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">workflow</span><span class="o">=</span><span class="n">VMC_workflow</span><span class="p">(</span>
+            <span class="c1">## job</span>
+            <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+            <span class="n">queue_label</span><span class="o">=</span><span class="s2">&quot;i8cpu&quot;</span><span class="p">,</span>
+            <span class="n">sleep_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+            <span class="n">mpi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="c1">## vmc</span>
+            <span class="n">vmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+            <span class="n">vmc_target_error_bar</span><span class="o">=</span><span class="mf">5.0e-5</span><span class="p">,</span> <span class="c1"># Ha</span>
+            <span class="n">vmc_trial_steps</span><span class="o">=</span> <span class="mi">150</span><span class="p">,</span>
+            <span class="n">vmc_bin_block</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="n">vmc_warmupblocks</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="n">vmc_num_walkers</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># default -1 -&gt; num of MPI process.</span>
+            <span class="n">vmc_twist_average</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmc_kpoints</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">vmc_force_calc_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">vmc_maxtime</span><span class="o">=</span><span class="mi">172000</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Performs VMC calculation using wavefunctions generated by TREXIO conversion</p></li>
+<li><p>Calculates energy expectation values</p></li>
+</ul>
+<p>Main parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_target_error_bar=5.0e-5</span></code>: Target error bar (Ha)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_trial_steps=150</span></code>: Number of trial steps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_bin_block=10</span></code>: Bin size</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_num_walkers=-1</span></code>: Number of walkers (-1 means automatically set to the number of MPI processes)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_twist_average=False</span></code>: No k-point averaging</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p><strong>Workflow Execution</strong> (lines 129-130)</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">launcher</span><span class="o">=</span><span class="n">Launcher</span><span class="p">(</span><span class="n">cworkflows_list</span><span class="o">=</span><span class="n">cworkflows_list</span><span class="p">,</span> <span class="n">dependency_graph_draw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">launcher</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Registers all workflows with the <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class, draws the dependency graph (<code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code>), and then executes them.</p>
+</section>
+</section>
+<section id="workflow-dependencies">
+<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Permalink to this heading"></a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">task.py</span></code> is executed, a dependency graph is automatically generated due to <code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code>.
+By referring to the generated dependency graph (<code class="docutils literal notranslate"><span class="pre">graphs.png</span></code>), you can visually confirm the dependencies between workflows.</p>
+<p>Main dependency flow:</p>
+<ul class="simple">
+<li><p>For each crystal structure, <code class="docutils literal notranslate"><span class="pre">pyscf-HF-workflow-{label}</span></code> is executed first, performing PySCF calculation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trexio-HF-workflow-{label}</span></code> depends on the output (<code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code>) of <code class="docutils literal notranslate"><span class="pre">pyscf-HF-workflow-{label}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc-HF-workflow-{label}</span></code> depends on the output (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code>) of <code class="docutils literal notranslate"><span class="pre">trexio-HF-workflow-{label}</span></code></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically executes workflows in the appropriate order based on this dependency graph.</p>
+</section>
+</section>
+<section id="result-structure">
+<h2>Result Structure<a class="headerlink" href="#result-structure" title="Permalink to this heading"></a></h2>
+<section id="output-directory-structure">
+<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Permalink to this heading"></a></h3>
+<p>After execution, results are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory with the following structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>results/
+├── 1234567.cif
+├── 2345678.cif
+├── ...
+├── LiH/
+│   ├── pyscf-HF-workflow/
+│   │   ├── trexio.hdf5
+│   │   ├── out.pyscf
+│   │   └── ...
+│   ├── trexio-HF-workflow/
+│   │   ├── fort.10
+│   │   ├── pseudo.dat
+│   │   └── ...
+│   └── vmc-HF-workflow/
+│       ├── fort.10
+│       └── ...
+├── LiF/
+│   └── ... (similar structure)
+└── ...
+</pre></div>
+</div>
+<p>For each crystal structure, the following directories are created:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">{label}/pyscf-HF-workflow/</span></code>: PySCF calculation results</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code>: Wavefunction data in TREXIO format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out.pyscf</span></code>: PySCF calculation output file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf.chk</span></code>: PySCF checkpoint file</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{label}/trexio-HF-workflow/</span></code>: TREXIO conversion results</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fort.10</span></code>: Wavefunction file in TurboRVB format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code>: Pseudopotential file</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{label}/vmc-HF-workflow/</span></code>: VMC calculation results</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fort.10</span></code>: Wavefunction file after VMC calculation</p></li>
+<li><p>VMC calculation log files and output files</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="checking-calculation-results">
+<h3>Checking Calculation Results<a class="headerlink" href="#checking-calculation-results" title="Permalink to this heading"></a></h3>
+<p>Results from each workflow can be checked from log files and output files in the corresponding directories.</p>
+<ul class="simple">
+<li><p>PySCF calculation results: <code class="docutils literal notranslate"><span class="pre">{label}/pyscf-HF-workflow/out.pyscf</span></code></p></li>
+<li><p>VMC calculation results: By referring to the <code class="docutils literal notranslate"><span class="pre">pip0.d</span></code> file in <code class="docutils literal notranslate"><span class="pre">{label}/vmc-HF-workflow/</span></code>, you can obtain VMC calculation results such as energy expectation values</p></li>
+</ul>
+<p>By comparing PySCF HF energies with TurboRVB VMC energies, you can verify the validity of the calculations.
+A plot summarizing the calculation results is shown below.</p>
+<img alt="Comparison of PySCF HF energy and TurboRVB VMC energy" class="align-center" src="../../../../_images/pyscf_turborvb_sanity_check_HF1.png" />
+<p>This plot compares PySCF HF energies with TurboRVB VMC energies for each crystal structure, confirming consistency between the two methods.</p>
+</section>
+</section>
+<section id="parameter-adjustment">
+<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Permalink to this heading"></a></h2>
+<section id="job-execution-parameters">
+<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Permalink to this heading"></a></h3>
+<p>For VMC calculation and other workflows, the following job execution parameters need to be set:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">queue_label</span></code>: Queue label for the job queue system. References queue settings defined in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code>. Examples: <code class="docutils literal notranslate"><span class="pre">&quot;i8cpu&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;i8cpu-thread&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sleep_time</span></code>: Wait time between job status checks (seconds). While waiting for job completion, status is checked at this interval.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpi</span></code>: Whether to use MPI version of the binary. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, parallel computation is possible.</p></li>
+</ul>
+</section>
+<section id="calculation-accuracy-parameters">
+<h3>Calculation Accuracy Parameters<a class="headerlink" href="#calculation-accuracy-parameters" title="Permalink to this heading"></a></h3>
+<p>To adjust VMC calculation accuracy, modify parameters of <code class="docutils literal notranslate"><span class="pre">VMC_workflow</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_target_error_bar</span></code>: Target error bar (smaller is more accurate)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_trial_steps</span></code>: Number of trial steps (more steps is more accurate)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmc_bin_block</span></code>: Bin size</p></li>
+</ul>
+</section>
+<section id="pyscf-calculation-parameters">
+<h3>PySCF Calculation Parameters<a class="headerlink" href="#pyscf-calculation-parameters" title="Permalink to this heading"></a></h3>
+<p>PySCF calculation parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kpt=[0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0]</span></code>: k-point (scaled k-points in crystal coordinates). To calculate at k-points other than gamma, change this value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">twist_average</span></code>: Whether to perform k-point averaging</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exp_to_discard</span></code>: Threshold for discarding orbitals</p></li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="when-pyscf-calculation-fails">
+<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Verify that PySCF and required packages are correctly installed</p></li>
+<li><p>Check that computational resources (memory, CPU) are sufficient</p></li>
+<li><p>Verify that the basis set (<code class="docutils literal notranslate"><span class="pre">ccecp-ccpvqz</span></code>, etc.) is available</p></li>
+<li><p>Check that the CIF file format is correct</p></li>
+</ul>
+</section>
+<section id="when-workflow-fails">
+<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Check log files for each workflow</p></li>
+<li><p>Verify that dependencies are correctly set (especially <code class="docutils literal notranslate"><span class="pre">Variable</span></code> references)</p></li>
+<li><p>Check computational resources (especially cluster settings)</p></li>
+<li><p>Check the dependency graph generated by <code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code></p></li>
+</ul>
+</section>
+<section id="when-trexio-conversion-fails">
+<h3>When TREXIO Conversion Fails<a class="headerlink" href="#when-trexio-conversion-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Verify that <code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code> is correctly generated</p></li>
+<li><p>Check that TREXIO is correctly installed</p></li>
+<li><p>Try adjusting the <code class="docutils literal notranslate"><span class="pre">max_occ_conv</span></code> parameter (e.g., from <code class="docutils literal notranslate"><span class="pre">1.0e-3</span></code> to <code class="docutils literal notranslate"><span class="pre">1.0e-4</span></code>)</p></li>
+</ul>
+</section>
+<section id="when-calculation-time-is-too-long">
+<h3>When Calculation Time is Too Long<a class="headerlink" href="#when-calculation-time-is-too-long" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Increase <code class="docutils literal notranslate"><span class="pre">vmc_target_error_bar</span></code> (lower accuracy)</p></li>
+<li><p>Reduce <code class="docutils literal notranslate"><span class="pre">vmc_trial_steps</span></code></p></li>
+<li><p>Check computational resources (CPU count, memory) being used</p></li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<p>In this tutorial, we performed HF-VMC calculations for multiple crystal structures at k=gamma point through the following steps:</p>
+<ol class="arabic simple">
+<li><p>Read crystal structure information from CSV file</p></li>
+<li><p>Generated HF wavefunctions using PySCF calculations for each crystal structure</p></li>
+<li><p>Converted to TurboRVB format via TREXIO conversion</p></li>
+<li><p>Calculated energy expectation values using VMC calculations</p></li>
+</ol>
+<p>Results for each crystal structure are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory and can be used to compare PySCF HF energies with TurboRVB VMC energies. The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically manages dependencies and executes workflows in the appropriate order.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html" class="btn btn-neutral float-left" title="HF-VMC Calculation for Molecules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html" class="btn btn-neutral float-right" title="HF-VMC Calculation for Crystals at Complex k-Point" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

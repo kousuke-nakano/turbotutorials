@@ -1,0 +1,608 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water Dimer Calculation &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="CO Molecule Calculation" href="../01_CO-dimer/tutorial.html" />
+    <link rel="prev" title="Tutorials" href="../00index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_tutorial/00index.html">Turbo-Genius tutorials</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboWorkflows manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Water Dimer Calculation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-pyscf-calculation">Step 1: PySCF Calculation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-turborvb-workflow-execution">Step 2: TurboRVB Workflow Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../01_CO-dimer/tutorial.html">CO Molecule Calculation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02_pyscf-HF_turbo-VMC_molecules/tutorial.html">HF-VMC Calculation for Molecules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.html">HF-VMC Calculation for Crystals at Gamma Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04_pyscf-HF_turbo-VMC_crystals_at_complex/tutorial.html">HF-VMC Calculation for Crystals at Complex k-Point</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/00index.html">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting.html">Troubleshooting Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboWorkflows manual</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Water Dimer Calculation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/03turboworkflows_manual/tutorial/01_Water-dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="water-dimer-calculation">
+<span id="turboworkflows-tutorial-water-dimer"></span><h1>Water Dimer Calculation<a class="headerlink" href="#water-dimer-calculation" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This tutorial explains the workflow for Quantum Monte Carlo (QMC) calculations using TurboWorkflows, with Water Dimer as an example.
+This tutorial is based on the sample presented in J. Chem. Phys. 159, 224801 (2023).
+The files used in this tutorial can be found in <a class="reference download internal" download="" href="../../../../_downloads/652f791666f5bb07b763776fd5b01066/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">file.tar.gz</span></code></a>.</p>
+<p>This tutorial performs QMC calculations for Water Dimer through the following steps:</p>
+<ol class="arabic simple">
+<li><p><strong>PySCF Calculation</strong>: Generate initial wavefunction using DFT calculation</p></li>
+<li><p><strong>TREXIO Conversion</strong>: Convert PySCF results from TREXIO format to TurboRVB format</p></li>
+<li><p><strong>VMC Optimization</strong>: Optimize Jastrow factors</p></li>
+<li><p><strong>VMC Calculation</strong>: Perform VMC calculation with optimized wavefunction</p></li>
+<li><p><strong>LRDMC Calculation</strong>: Perform LRDMC calculations with multiple <em>a</em> values and extrapolate to <em>a</em>→0</p></li>
+</ol>
+</section>
+<section id="step-1-pyscf-calculation">
+<h2>Step 1: PySCF Calculation<a class="headerlink" href="#step-1-pyscf-calculation" title="Permalink to this heading"></a></h2>
+<p>As the first step, we perform a DFT calculation using PySCF to generate the initial wavefunction.</p>
+<section id="input-files">
+<h3>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">water_dimer.xyz</span></code>: Molecular structure file (XYZ format)</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>6
+
+O  -1.551007  -0.114520   0.000000
+H  -1.934259   0.762503   0.000000
+H  -0.599677   0.040712   0.000000
+O   1.350625   0.111469   0.000000
+H   1.680398  -0.373741  -0.758561
+H   1.680398  -0.373741   0.758561
+</pre></div>
+</div>
+</section>
+<section id="pyscf-calculation-script">
+<h3>PySCF Calculation Script<a class="headerlink" href="#pyscf-calculation-script" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pyscf_water_dimer.py</span></code> performs DFT calculation with the following settings:</p>
+<ul class="simple">
+<li><p>Basis set: <code class="docutils literal notranslate"><span class="pre">ccecp-ccpvtz</span></code></p></li>
+<li><p>ECP: <code class="docutils literal notranslate"><span class="pre">ccecp</span></code></p></li>
+<li><p>Method: DFT (LDA)</p></li>
+<li><p>Output: PySCF checkpoint file (<code class="docutils literal notranslate"><span class="pre">pyscf.chk</span></code>)</p></li>
+</ul>
+</section>
+<section id="execution-method">
+<h3>Execution Method<a class="headerlink" href="#execution-method" title="Permalink to this heading"></a></h3>
+<p>Execute the PySCF calculation using the <code class="docutils literal notranslate"><span class="pre">do.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span><span class="k">do</span>.sh
+</pre></div>
+</div>
+<p>This script performs the following operations:</p>
+<ol class="arabic simple">
+<li><p>Execute <code class="docutils literal notranslate"><span class="pre">pyscf_water_dimer.py</span></code> to perform PySCF calculation</p></li>
+<li><p>Convert PySCF checkpoint file (<code class="docutils literal notranslate"><span class="pre">pyscf.chk</span></code>) to TREXIO format (<code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code>)</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1"># Execute PySCF calculation</span>
+python3<span class="w"> </span>pyscf_water_dimer.py<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>out.o
+
+<span class="c1"># Convert to TREXIO format</span>
+trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class="w"> </span>pyscf<span class="w"> </span>-i<span class="w"> </span>pyscf.chk<span class="w"> </span>-b<span class="w"> </span>hdf5<span class="w"> </span>water.hdf5
+</pre></div>
+</div>
+</section>
+<section id="output-files">
+<h3>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf.chk</span></code>: PySCF checkpoint file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code>: Wavefunction data in TREXIO format (used in the next step)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out.pyscf</span></code>, <code class="docutils literal notranslate"><span class="pre">out.o</span></code>: PySCF calculation log output and error output</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This step will be simplified in the upcoming version of PySCF that directly generates outputs in TREXIO format.</p>
+</div>
+</section>
+</section>
+<section id="step-2-turborvb-workflow-execution">
+<h2>Step 2: TurboRVB Workflow Execution<a class="headerlink" href="#step-2-turborvb-workflow-execution" title="Permalink to this heading"></a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">task.py</span></code> script to execute a series of workflows from conversion to TurboRVB format to the final LRDMC calculation.</p>
+<section id="workflow-class-overview">
+<h3>Workflow Class Overview<a class="headerlink" href="#workflow-class-overview" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> uses the following four workflow classes:</p>
+<ul class="simple">
+<li><p><strong>TREXIO_convert_to_turboWF</strong>: A workflow that converts TREXIO format files to TurboRVB format wavefunction (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>). It converts results from electronic structure calculations such as PySCF into a format usable by TurboRVB and also initializes Jastrow factors.</p></li>
+<li><p><strong>VMCopt_workflow</strong>: A workflow that performs VMC (Variational Monte Carlo) optimization. It optimizes wavefunction parameters (especially Jastrow factors) to generate a more accurate wavefunction. Through automatic continuation, it continues optimization until the target error bar is achieved.</p></li>
+<li><p><strong>VMC_workflow</strong>: A workflow that performs VMC calculations. It uses optimized wavefunctions to calculate physical quantities such as energy expectation values. Through automatic continuation, it continues calculation until the target error bar is achieved.</p></li>
+<li><p><strong>LRDMC_ext_workflow</strong>: A workflow that performs LRDMC (Lattice Regularized Diffusion Monte Carlo) calculations with multiple <em>a</em> values and extrapolates to <em>a</em>→0. It calculates energies at each <em>a</em> value and finally obtains the energy at the <em>a</em>→0 limit through extrapolation.</p></li>
+</ul>
+<p>For detailed parameters of each workflow class, please refer to <a class="reference internal" href="../../reference/00index.html#turboworkflows-reference"><span class="std std-ref">the reference manual</span></a>.</p>
+</section>
+<section id="encapsulated-workflow-class">
+<h3>Encapsulated_Workflow Class<a class="headerlink" href="#encapsulated-workflow-class" title="Permalink to this heading"></a></h3>
+<p>In TurboWorkflows, each calculation workflow is wrapped by the <code class="docutils literal notranslate"><span class="pre">Encapsulated_Workflow</span></code> class. This class manages workflow execution in isolated directories and automatically handles input file copying and output file tracking.</p>
+<p>Main parameters of <code class="docutils literal notranslate"><span class="pre">Encapsulated_Workflow</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: Workflow identifier. Used when referencing from other workflows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dirname</span></code>: Directory name for workflow execution. Each workflow runs in an independent directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_files</span></code>: List of input files. Can specify file paths (strings) or <code class="docutils literal notranslate"><span class="pre">Variable</span></code> objects.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">workflow</span></code>: Workflow instance that performs the actual calculation (e.g., <code class="docutils literal notranslate"><span class="pre">TREXIO_convert_to_turboWF</span></code>, <code class="docutils literal notranslate"><span class="pre">VMCopt_workflow</span></code>).</p></li>
+</ul>
+<p>In <code class="docutils literal notranslate"><span class="pre">input_files</span></code>, you can specify normal file paths (strings) or use <code class="docutils literal notranslate"><span class="pre">Variable</span></code> objects to reference outputs from other workflows.</p>
+</section>
+<section id="describing-dependencies-with-variable-class">
+<h3>Describing Dependencies with Variable Class<a class="headerlink" href="#describing-dependencies-with-variable-class" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Variable</span></code> class is used to describe dependencies between workflows. By using <code class="docutils literal notranslate"><span class="pre">Variable</span></code>, you can automatically pass outputs from one workflow as inputs to another workflow.</p>
+<p>Parameters of <code class="docutils literal notranslate"><span class="pre">Variable</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">label</span></code>: Specifies the <code class="docutils literal notranslate"><span class="pre">label</span></code> of the source workflow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vtype</span></code>: Specifies the variable type. One of the following:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;file&quot;</span></code>: Reference a single file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;file-list&quot;</span></code>: Reference a list of multiple files</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;value&quot;</span></code>: Reference a calculated value (numeric, etc.)</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Specifies the filename or value label to reference.</p></li>
+</ul>
+<p>Locations where <code class="docutils literal notranslate"><span class="pre">Variable</span></code> can be used:</p>
+<ol class="arabic">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_files</span></code> parameter: When specifying output files from other workflows as inputs</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fort.10&quot;</span><span class="p">),</span>
+    <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pseudo.dat&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Within <code class="docutils literal notranslate"><span class="pre">workflow</span></code> parameter: When using output values from other workflows as workflow parameters</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">workflow</span><span class="o">=</span><span class="n">LRDMC_ext_workflow</span><span class="p">(</span>
+    <span class="n">lrdmc_trial_etry</span><span class="o">=</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmc-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;energy&quot;</span><span class="p">),</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically resolves <code class="docutils literal notranslate"><span class="pre">Variable</span></code> objects, retrieves appropriate file paths or values, and passes them to workflows. This automatically manages dependencies between workflows and executes them in the appropriate order.</p>
+</section>
+<section id="workflow-configuration">
+<h3>Workflow Configuration<a class="headerlink" href="#workflow-configuration" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> executes the following four workflows sequentially:</p>
+<section id="conversion-from-trexio-to-turborvb-format">
+<h4>1. Conversion from TREXIO to TurboRVB Format<a class="headerlink" href="#conversion-from-trexio-to-turborvb-format" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert from a TREXIO file to a WF with TurboRVB format</span>
+<span class="n">trexio_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span> <span class="s2">&quot;water.hdf5&quot;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">TREXIO_convert_to_turboWF</span><span class="p">(</span>
+        <span class="n">trexio_filename</span><span class="o">=</span><span class="s2">&quot;water.hdf5&quot;</span><span class="p">,</span>
+        <span class="n">jastrow_basis_dict</span><span class="o">=</span><span class="n">jastrow_basis_dict</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This workflow:</p>
+<ul class="simple">
+<li><p>Takes <code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code> as input</p></li>
+<li><p>Defines Jastrow basis functions (for H and O atoms)</p></li>
+<li><p>Generates TurboRVB format wavefunction file (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>)</p></li>
+</ul>
+<p>In this example, a normal file path (<code class="docutils literal notranslate"><span class="pre">os.path.join(root_dir,</span> <span class="pre">&quot;water.hdf5&quot;)</span></code>) is specified in <code class="docutils literal notranslate"><span class="pre">input_files</span></code>. This is an example of using external files (PySCF calculation results) as input. On the other hand, subsequent workflows use <code class="docutils literal notranslate"><span class="pre">Variable</span></code> to reference outputs from previous workflows.</p>
+</section>
+<section id="vmc-optimization">
+<h4>2. VMC Optimization<a class="headerlink" href="#vmc-optimization" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># VMC optimization of Jastrow factor</span>
+<span class="c1"># One-, two-, and three-body Jastrow are optimized</span>
+<span class="n">vmcopt_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fort.10&quot;</span><span class="p">),</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pseudo.dat&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">VMCopt_workflow</span><span class="p">(</span>
+        <span class="c1"># cluster information</span>
+        <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+        <span class="n">queue_label</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">sleep_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+        <span class="n">mpi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="c1"># vmc optimization parameters</span>
+        <span class="n">vmcopt_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">vmcopt_num_walkers</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">vmcopt_target_error_bar</span><span class="o">=</span><span class="mf">7.5e-3</span><span class="p">,</span>
+        <span class="n">vmcopt_trial_optsteps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">vmcopt_trial_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">vmcopt_production_optsteps</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+        <span class="n">vmcopt_optwarmupsteps_ratio</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">vmcopt_bin_block</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">vmcopt_warmupblocks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">vmcopt_optimizer</span><span class="o">=</span><span class="s2">&quot;lr&quot;</span><span class="p">,</span>
+        <span class="n">vmcopt_learning_rate</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span>
+        <span class="n">vmcopt_regularization</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">vmcopt_onebody</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">vmcopt_twobody</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">vmcopt_det_mat</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vmcopt_jas_mat</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">vmcopt_det_basis_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vmcopt_jas_basis_exp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vmcopt_det_basis_coeff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vmcopt_jas_basis_coeff</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">vmcopt_maxtime</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This workflow:</p>
+<ul class="simple">
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code> generated in the previous step as input</p></li>
+<li><p>Optimizes one-body, two-body, and three-body Jastrow factors</p></li>
+<li><p>Outputs optimized wavefunction</p></li>
+</ul>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">Variable(label=&quot;trexio-workflow&quot;,</span> <span class="pre">vtype=&quot;file&quot;,</span> <span class="pre">name=&quot;fort.10&quot;)</span></code> is used to reference the <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> file generated by <code class="docutils literal notranslate"><span class="pre">trexio-workflow</span></code>. The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> automatically retrieves the <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> file from the output directory after <code class="docutils literal notranslate"><span class="pre">trexio-workflow</span></code> execution completes and copies it as input for this workflow.</p>
+<p>Job execution parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">server_machine_name=&quot;localhost&quot;</span></code>: Name of the server machine where jobs will run. Specify a machine name defined in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code>. In this example, <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code> (execution on local machine) is specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue_label=&quot;default&quot;</span></code>: Queue label for the job queue system. References queue settings defined in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sleep_time=60</span></code>: Wait time (seconds) between job status checks. While waiting for job completion, status is checked at this interval.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpi=True</span></code>: Whether to use MPI version of the binary. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, parallel computation is possible.</p></li>
+</ul>
+<p>Calculation parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_num_walkers=128</span></code>: Number of walkers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_target_error_bar=7.5e-3</span></code>: Target error bar</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_optimizer=&quot;lr&quot;</span></code>: Optimization method (linear method with conjugate gradient)</p></li>
+<li><p>(See the reference manual for other parameters.)</p></li>
+</ul>
+</section>
+<section id="vmc-calculation">
+<h4>3. VMC Calculation<a class="headerlink" href="#vmc-calculation" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># VMC calculation with the optimized WF</span>
+<span class="n">vmc_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmc-workflow&quot;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="s2">&quot;vmc-workflow&quot;</span><span class="p">,</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fort.10&quot;</span><span class="p">),</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pseudo.dat&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">VMC_workflow</span><span class="p">(</span>
+        <span class="c1"># cluster information</span>
+        <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+        <span class="n">queue_label</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">sleep_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+        <span class="n">mpi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="c1"># vmc parameters</span>
+        <span class="n">vmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">vmc_num_walkers</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">vmc_target_error_bar</span><span class="o">=</span><span class="mf">5.0e-3</span><span class="p">,</span>
+        <span class="n">vmc_trial_steps</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+        <span class="n">vmc_bin_block</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">vmc_warmupblocks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">vmc_maxtime</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This workflow:</p>
+<ul class="simple">
+<li><p>Performs VMC calculation using optimized wavefunction</p></li>
+<li><p>Calculates energy expectation value</p></li>
+<li><p>Results are used as initial energy for the next LRDMC calculation</p></li>
+</ul>
+<p>This workflow uses the wavefunction (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>) optimized by <code class="docutils literal notranslate"><span class="pre">vmcopt-workflow</span></code>. The energy value obtained as a result of VMC calculation is saved in <code class="docutils literal notranslate"><span class="pre">output_values</span></code> with the key <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code> and is referenced in the next LRDMC calculation as <code class="docutils literal notranslate"><span class="pre">Variable(label=&quot;vmc-workflow&quot;,</span> <span class="pre">vtype=&quot;value&quot;,</span> <span class="pre">name=&quot;energy&quot;)</span></code>.</p>
+<p>In this example, job execution parameters such as <code class="docutils literal notranslate"><span class="pre">server_machine_name=&quot;localhost&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">queue_label=&quot;default&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">sleep_time=60</span></code>, and <code class="docutils literal notranslate"><span class="pre">mpi=True</span></code> are set. These parameters should be set appropriately according to the computational environment used, similar to VMC optimization.</p>
+</section>
+<section id="lrdmc-calculation-and-a0-extrapolation">
+<h4>4. LRDMC Calculation and a→0 Extrapolation<a class="headerlink" href="#lrdmc-calculation-and-a0-extrapolation" title="Permalink to this heading"></a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LRDMC calculations with the optimized WF</span>
+<span class="c1"># LRDMC energies are computed with a = 0.20, 0.30, 0.40 and 0.50,</span>
+<span class="c1"># and then, extrapolated to a-&gt;0 limit.</span>
+<span class="n">lrdmc_ext_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lrdmc-ext-workflow&quot;</span><span class="p">,</span>
+    <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;lrdmc-ext-workflow&quot;</span><span class="p">,</span>
+    <span class="n">input_files</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;fort.10&quot;</span><span class="p">),</span>
+        <span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmcopt-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;file&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pseudo.dat&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">workflow</span><span class="o">=</span><span class="n">LRDMC_ext_workflow</span><span class="p">(</span>
+        <span class="c1"># cluster information</span>
+        <span class="n">server_machine_name</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+        <span class="n">queue_label</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+        <span class="n">sleep_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+        <span class="n">mpi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="c1"># lrdmc parameters</span>
+        <span class="n">lrdmc_max_continuation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">lrdmc_num_walkers</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">lrdmc_target_error_bar</span><span class="o">=</span><span class="mf">5.0e-3</span><span class="p">,</span>
+        <span class="n">lrdmc_trial_steps</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+        <span class="n">lrdmc_bin_block</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">lrdmc_warmupblocks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">lrdmc_correcting_factor</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">lrdmc_trial_etry</span><span class="o">=</span><span class="n">Variable</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmc-workflow&quot;</span><span class="p">,</span> <span class="n">vtype</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;energy&quot;</span><span class="p">),</span>
+        <span class="n">lrdmc_alat_list</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.20</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.30</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.40</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.50</span><span class="p">],</span>
+        <span class="n">lrdmc_nonlocalmoves</span><span class="o">=</span><span class="s2">&quot;tmove&quot;</span><span class="p">,</span>
+        <span class="n">lrdmc_maxtime</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>This workflow:</p>
+<ul class="simple">
+<li><p>Performs LRDMC calculations with multiple <em>a</em> values (0.20, 0.30, 0.40, 0.50)</p></li>
+<li><p>Uses VMC calculation energy as initial value</p></li>
+<li><p>Calculates energy at each <em>a</em> value and performs extrapolation to <em>a</em>→0</p></li>
+</ul>
+<p>In this example, not only are file dependencies specified in <code class="docutils literal notranslate"><span class="pre">input_files</span></code>, but also <code class="docutils literal notranslate"><span class="pre">Variable(label=&quot;vmc-workflow&quot;,</span> <span class="pre">vtype=&quot;value&quot;,</span> <span class="pre">name=&quot;energy&quot;)</span></code> is specified in <code class="docutils literal notranslate"><span class="pre">lrdmc_trial_etry</span></code> within the <code class="docutils literal notranslate"><span class="pre">workflow</span></code> parameter to use the energy value obtained from VMC calculation as the initial value for LRDMC calculation. This allows not only files but also calculated values to be passed between workflows.</p>
+<p>Job execution parameters (<code class="docutils literal notranslate"><span class="pre">server_machine_name</span></code>, <code class="docutils literal notranslate"><span class="pre">queue_label</span></code>, <code class="docutils literal notranslate"><span class="pre">sleep_time</span></code>, <code class="docutils literal notranslate"><span class="pre">mpi</span></code>, etc.) are set similarly to VMC optimization and VMC calculation.</p>
+</section>
+</section>
+<section id="workflow-execution">
+<h3>Workflow Execution<a class="headerlink" href="#workflow-execution" title="Permalink to this heading"></a></h3>
+<p>Register all workflows with the <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class and execute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the workflows to the Launcher class</span>
+<span class="n">cworkflows_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">trexio_workflow</span><span class="p">,</span>
+    <span class="n">vmcopt_workflow</span><span class="p">,</span>
+    <span class="n">vmc_workflow</span><span class="p">,</span>
+    <span class="n">lrdmc_ext_workflow</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">launcher</span> <span class="o">=</span> <span class="n">Launcher</span><span class="p">(</span><span class="n">cworkflows_list</span><span class="o">=</span><span class="n">cworkflows_list</span><span class="p">,</span> <span class="n">dependency_graph_draw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Launch the jobs</span>
+<span class="n">launcher</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Execution Method<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>task.py
+</pre></div>
+</div>
+</section>
+<section id="workflow-dependencies">
+<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Permalink to this heading"></a></h3>
+<p>Workflows are executed with the following dependencies:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>water.hdf5
+    ↓
+trexio-workflow (TREXIO → TurboRVB conversion)
+    ↓
+vmcopt-workflow (VMC optimization)
+    ↓
+vmc-workflow (VMC calculation) ──┐
+    ↓                            │
+lrdmc-ext-workflow (LRDMC calculation and extrapolation)
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> automatically resolves dependencies and executes workflows in the appropriate order.</p>
+</section>
+<section id="output-directory-structure">
+<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Permalink to this heading"></a></h3>
+<p>After execution, results are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory with the following structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>results/
+├── trexio-workflow/
+│   ├── fort.10          # TurboRVB format wavefunction
+│   └── pseudo.dat       # Pseudopotential file
+├── vmcopt-workflow/
+│   ├── fort.10          # Optimized wavefunction
+│   └── ...
+├── vmc-workflow/
+│   └── ...              # VMC calculation results
+└── lrdmc-ext-workflow/
+    └── ...              # LRDMC calculation results and extrapolation results
+</pre></div>
+</div>
+</section>
+</section>
+<section id="parameter-adjustment">
+<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Permalink to this heading"></a></h2>
+<section id="job-execution-parameters">
+<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Permalink to this heading"></a></h3>
+<p>For calculation workflows such as VMC, VMC optimization, and LRDMC, the following job execution parameters need to be set:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">server_machine_name</span></code>: Name of the server machine where jobs will run. Specify a machine name defined in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code>. Default is <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code> (execution on local machine). In the <code class="docutils literal notranslate"><span class="pre">task.py</span></code> example, this parameter is explicitly set to <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code>. When executing on a remote server, this parameter needs to be set to an appropriate machine name.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">queue_label</span></code>: Queue label for the job queue system (PBS, SLURM, etc.). References queue settings defined in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code>. In the <code class="docutils literal notranslate"><span class="pre">task.py</span></code> example, <code class="docutils literal notranslate"><span class="pre">&quot;default&quot;</span></code> is used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mpi</span></code>: Whether to use MPI version of the binary. If <code class="docutils literal notranslate"><span class="pre">True</span></code>, parallel computation becomes possible. Default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code>: Version of TurboRVB to use. Default is <code class="docutils literal notranslate"><span class="pre">&quot;stable&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sleep_time</span></code>: Wait time (seconds) between job status checks. While waiting for job completion, status is checked at this interval. Default is <code class="docutils literal notranslate"><span class="pre">1800</span></code> (30 minutes).</p></li>
+</ul>
+<p>These parameters need to be set appropriately according to the computational environment used. When executing on a remote server, set <code class="docutils literal notranslate"><span class="pre">server_machine_name</span></code> to an appropriate machine name and define the machine settings (IP address, SSH connection information, queue system settings, etc.) in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> is a configuration file that defines settings for each server machine. This file contains information such as machine type (local/remote), IP address, whether to use queue system, job management commands (<code class="docutils literal notranslate"><span class="pre">jobsubmit</span></code>, <code class="docutils literal notranslate"><span class="pre">jobcheck</span></code>, <code class="docutils literal notranslate"><span class="pre">jobdel</span></code>, etc.). Similarly, <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> defines settings for each queue (number of CPUs, memory, execution time limit, etc.).</p>
+</section>
+<section id="jastrow-basis-functions">
+<h3>Jastrow Basis Functions<a class="headerlink" href="#jastrow-basis-functions" title="Permalink to this heading"></a></h3>
+<p>Jastrow basis functions can be defined in <code class="docutils literal notranslate"><span class="pre">jastrow_basis_dict</span></code> in <code class="docutils literal notranslate"><span class="pre">task.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary of Jastrow basis (GAMESS format)</span>
+<span class="n">jastrow_basis_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      1.873529  1.00000000</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      0.802465  1.00000000</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      0.147217  1.00000000</span>
+<span class="s2">       &quot;&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      1.686633  1.00000000</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      0.237997  1.00000000</span>
+<span class="s2">       S  1</span>
+<span class="s2">       1      0.125346  1.00000000</span>
+<span class="s2">       P  1</span>
+<span class="s2">       1      1.331816  1.00000000</span>
+<span class="s2">       &quot;&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="vmc-optimization-parameters">
+<h3>VMC Optimization Parameters<a class="headerlink" href="#vmc-optimization-parameters" title="Permalink to this heading"></a></h3>
+<p>By adjusting parameters of <code class="docutils literal notranslate"><span class="pre">VMCopt_workflow</span></code>, you can control optimization accuracy and computation time:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_num_walkers</span></code>: Number of walkers (affects calculation accuracy)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_target_error_bar</span></code>: Target error bar (smaller is more accurate)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_learning_rate</span></code>: Learning rate (affects optimization convergence speed)</p></li>
+</ul>
+</section>
+<section id="lrdmc-parameters">
+<h3>LRDMC Parameters<a class="headerlink" href="#lrdmc-parameters" title="Permalink to this heading"></a></h3>
+<p>Parameters of <code class="docutils literal notranslate"><span class="pre">LRDMC_ext_workflow</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_alat_list</span></code>: List of <em>a</em> values to calculate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_target_error_bar</span></code>: Target error bar</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_nonlocalmoves</span></code>: Non-local move method (“tmove”, etc.)</p></li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="when-pyscf-calculation-fails">
+<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Check the format of <code class="docutils literal notranslate"><span class="pre">water_dimer.xyz</span></code></p></li>
+<li><p>Verify that PySCF and required packages are correctly installed</p></li>
+<li><p>Check that computational resources (memory, CPU) are sufficient</p></li>
+</ul>
+</section>
+<section id="when-trexio-conversion-fails">
+<h3>When TREXIO Conversion Fails<a class="headerlink" href="#when-trexio-conversion-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code> is correctly generated</p></li>
+<li><p>Verify that TREXIO is correctly installed</p></li>
+</ul>
+</section>
+<section id="when-workflow-fails">
+<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Check log files for each workflow</p></li>
+<li><p>Verify that dependencies are correctly set</p></li>
+<li><p>Check computational resources (especially cluster settings)</p></li>
+</ul>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<p>In this tutorial, we performed QMC calculations for Water Dimer through the following steps:</p>
+<ol class="arabic simple">
+<li><p>Generate initial wavefunction with PySCF calculation (<code class="docutils literal notranslate"><span class="pre">do.sh</span></code>)</p></li>
+<li><p>Execute a series of QMC calculations with TurboWorkflows (<code class="docutils literal notranslate"><span class="pre">task.py</span></code>)</p>
+<ul class="simple">
+<li><p>Conversion from TREXIO to TurboRVB format</p></li>
+<li><p>VMC optimization</p></li>
+<li><p>VMC calculation</p></li>
+<li><p>LRDMC calculation and <em>a</em>→0 extrapolation</p></li>
+</ul>
+</li>
+</ol>
+<p>Results from each step are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory and used as input for the next step. The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically manages dependencies and executes workflows in the appropriate order.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../00index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../01_CO-dimer/tutorial.html" class="btn btn-neutral float-right" title="CO Molecule Calculation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -12,6 +12,6 @@ If you have any question and request, please contact Kosuke Nakano [kousuke_1123
 
    _sources/00installation/00installation.rst
    _sources/01turborvb_manual/00index.rst
-   _sources/02turbogenius_manual/00index.rst
-   _sources/03turboworkflows_tutorial/00index.rst
+   _sources/02turbogenius_tutorial/00index.rst
+   _sources/03turboworkflows_manual/00index.rst
 
