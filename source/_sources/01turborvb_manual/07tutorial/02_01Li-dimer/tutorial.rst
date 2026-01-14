@@ -15,8 +15,8 @@
 
 .. contents:: Table of Contents
    :depth: 3
-   
-From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the Li\ :sub:`2` dimer with various ansatz. JDFT, JSD, JsAGPs, JAGPu, and JAGP(JPf). 
+
+From this tutorial, you can learn how to calculate all-electron Variational Monte Carlo (VMC) and lattice regularized diffusion Monte Carlo (LRDMC) energies of the Li\ :sub:`2` dimer with various ansatz. JDFT, JSD, JsAGPs, JAGPu, and JAGP(JPf).
 
 Reference values (https://aip.scitation.org/doi/suppl/10.1063/1.3288054)
 
@@ -29,7 +29,7 @@ Li\ :sub:`2` dimer
  - HF = -14.8715 Ha
  - Exact = -14.9951 Ha
  - E\ :sub:`bond` = 24.4 kcal/mol = 38.9 mHa
- 
+
 .. You can download all the input and output files from :download:`here  <./file.tar.gz>`.
 
 .. _review: https://doi.org/10.1063/5.0005037
@@ -49,7 +49,7 @@ Prepare Li\ :sub:`2` dimer structure, :download:`Li2.xyz <data/Li2.xyz>`:
 .. literalinclude:: data/Li2.xyz
    :language: text
 
-and prepare ``makefort10.input`` and ``convertfort10mol.input`` and 
+and prepare ``makefort10.input`` and ``convertfort10mol.input`` and
 
 .. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input
    :language: fortran
@@ -60,7 +60,7 @@ and prepare ``makefort10.input`` and ``convertfort10mol.input`` and
 You may obtain makefort10.input. Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
-  
+
     ./makefort10.sh
 
 which contains
@@ -79,7 +79,7 @@ The next step is to generate a trial wave function using the built-in DFT code.
 This is the minimal input file:
 
 .. literalinclude:: data/01JDFT/01Li2_dimer/01trial_wavefunction/01DFT/prep.input
-   :language: fortran    
+   :language: fortran
 
 Then, you can run DFT by typing:
 
@@ -92,7 +92,7 @@ You can optimize one-body Jastrow.
 .. code-block:: bash
 
     b_onebody_list="0.5 0.6 0.7 0.8 0.9 1.0 1.1 1.2 1.3 1.4 1.5"
-    
+
     root_dir=`pwd`
     for b_onebody in $b_onebody_list
     do
@@ -104,9 +104,9 @@ You can optimize one-body Jastrow.
         prep-serial.x < prep.input > out_prep
         cd $root_dir
     done
-    
+
     echo "b_onebody dft energy" > result.out
-    
+
     for b_onebody in $b_onebody_list
     do
         cd onebody_$b_onebody
@@ -114,12 +114,12 @@ You can optimize one-body Jastrow.
         echo "${b_onebody}  ${energy}" >> ../result.out
         cd $root_dir
     done
-    
+
 You may get
 
 .. code-block:: bash
-    
-    % cat result.out 
+
+    % cat result.out
     b_onebody dft energy
     0.5  -14.740030455469444
     0.6  -14.746632760686529
@@ -188,9 +188,9 @@ Here, only needed commands are shown.
    .. code-block:: bash
 
       readalles.x << ____EOS
-      1 41 1 0 
-      0 
-      1000 
+      1 41 1 0
+      0
+      1000
       ____EOS
 
 
@@ -205,7 +205,7 @@ Here, only needed commands are shown.
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd 03vmc/
       cp ../02optimization/fort.10 ./
 
@@ -235,7 +235,7 @@ Here, only needed commands are shown.
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -323,15 +323,15 @@ And then, run each LRDMC calculation after generating initial electron configura
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -340,13 +340,13 @@ And then, run each LRDMC calculation after generating initial electron configura
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
-One has collected all LRDMC energis into evsa.in 
+One has collected all LRDMC energis into evsa.in
 
 .. code-block:: bash
-    
+
     # Z=3 (Li)
     2  4  4  1
     0.22222 -14.9907899448815       3.101461151525789E-004  <- 1/(1.5*Z)
@@ -364,8 +364,8 @@ You can see
 
 .. code-block:: bash
 
-  Reduced chi^2  =  0.258290367368527     
-  Coefficient found 
+  Reduced chi^2  =  0.258290367368527
+  Coefficient found
            1  -14.9894036676827       1.126607950073031E-003  <- E_0
            2 -2.333404434142712E-002  2.310746587271902E-002  <- k_1
            3 -0.116381701497219       0.102032433967512       <- k_2
@@ -397,7 +397,7 @@ convertfort10mol.input:
 Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
-  
+
     % ./makefort10.sh
 
 which contains
@@ -468,8 +468,8 @@ Here, only needed commands are shown.
 
       readalles.x << ____EOS
       1 41 1 0
-      0 
-      1000 
+      0
+      1000
       ____EOS
 
 
@@ -484,7 +484,7 @@ Here, only needed commands are shown.
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd 03vmc/
       cp ../02optimization/fort.10 ./
 
@@ -514,7 +514,7 @@ Here, only needed commands are shown.
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -566,12 +566,12 @@ Prepare different working directories for each value of alat, copy ``fort.10`` t
     alat_1.5Z
 
 Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
-    
+
 .. code-block:: bash
 
     cd 03lrdmc/
     cp ../02vmc/fort.10 .
-    
+
     lrdmc_root_dir=`pwd`
 
     alat_list="0.8Z 1.0Z 1.2Z 1.5Z"
@@ -579,15 +579,15 @@ Then, run each LRDMC calculation after generating initial electron configuration
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -596,13 +596,13 @@ Then, run each LRDMC calculation after generating initial electron configuration
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
-One has collected all LRDMC energis into evsa.in 
+One has collected all LRDMC energis into evsa.in
 
 .. code-block:: bash
-    
+
     # Z=3 (Li)
     2  4  4  1
     0.22222 -7.47824129633644       1.450042242028465E-004  <- 1/(1.5*Z)
@@ -620,8 +620,8 @@ You can see
 
 .. code-block:: bash
 
-  Reduced chi^2  =   1.52438473425829     
-  Coefficient found 
+  Reduced chi^2  =   1.52438473425829
+  Coefficient found
            1  -7.47794022870940       5.344739888993537E-004  <- E_0
            2 -1.467218812266460E-003  1.107590136996555E-002  <- k_1
            3 -7.145382242986854E-002  4.939621583555785E-002  <- k_2
@@ -629,7 +629,7 @@ You can see
 Li\ :sub:`2` dimer
  - :blue:`LRDMC(JDFT) = -14.9894(11) Ha`
  - :blue:`LRDMC(JDFT) = -7.4779(5) Ha`
- 
+
  - E\ :sub:`bond` = 38.9 mHa (experiment)
  - E\ :sub:`bond` = 25.1 mHa (VMC-JDFT)
  - E\ :sub:`bond` = 33.6 mHa (LRDMC-JDFT)
@@ -645,9 +645,9 @@ Li\ :sub:`2` dimer
 02-01 Li\ :sub:`2` dimer and Li atom: VMC-optimization (WF=JSD)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-One can optimize the determinant part of the JDFT ansatz, the resultant 
+One can optimize the determinant part of the JDFT ansatz, the resultant
 ansatz is called JSD.
-In this case, one does not have to convert the ansatz, just put the 
+In this case, one does not have to convert the ansatz, just put the
 following section in ``datasmin.input`` at the optimization step.
 
 datasmin.input for the Li dimer:
@@ -728,7 +728,7 @@ Here, only needed commands are shown.
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd 02vmc/
       cp ../01optimization/fort.10 .
 
@@ -758,7 +758,7 @@ Here, only needed commands are shown.
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -795,7 +795,7 @@ Prepare different working directories for each value of alat, copy ``fort.10`` t
     alat_1.5Z
 
 Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
-    
+
 .. code-block:: bash
 
     cd ../03lrdmc/
@@ -808,15 +808,15 @@ Then, run each LRDMC calculation after generating initial electron configuration
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -825,7 +825,7 @@ Then, run each LRDMC calculation after generating initial electron configuration
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
     funvsa.x < evsa.in > evsa.out
@@ -861,7 +861,7 @@ Binding energy
 03 Li\ :sub:`2` dimer and Li atom - JsAGPs ansatz
 -----------------------------------------------------------------------
 
-The procedure is the almost same as in the Hydrogen-dimer tutorial. 
+The procedure is the almost same as in the Hydrogen-dimer tutorial.
 Three hybrid-orbitals (``nhyb=2``) were employed here.
 
 
@@ -886,7 +886,7 @@ Li\ :sub:`2` dimer
 2. copy ``makefort10.input`` from JDFT ansatz, and edit:
 
    .. code-block:: bash
-      
+
       cp ../../../01JDFT/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input .
 
       set `grep -A1 "Parameters Jastrow two body" ./fort.10_in | tail -1`
@@ -940,7 +940,7 @@ Li atom
 2. copy ``makefort10.input`` from JDFT ansatz, and edit:
 
    .. code-block:: bash
-      
+
       cp ../../../01JDFT/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input .
 
       set `grep -A1 "Parameters Jastrow two body" ./fort.10_in | tail -1`
@@ -995,10 +995,10 @@ Here, only needed commands are shown.
     cp ../01convert_WF_JSD_to_JAGP/fort.10 .
     cp ../01convert_WF_JSD_to_JAGP/fort.10_in fort.10_corr
 
-    turborvb-serial.x < datasvmc.input > out_vmc;
-    readforward-serial.x < datasvmc.input > out_read;
-    
-    cat corrsampling.dat 
+    turborvb-serial.x < datasvmc.input > out_vmc
+    readforward-serial.x < datasvmc.input > out_read
+
+    cat corrsampling.dat
 
 
 .. _turborvbtutorial_0201_03_03:
@@ -1060,7 +1060,7 @@ Here, only needed commands are shown.
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd ../04vmc/
       cp ../03optimization/fort.10 .
 
@@ -1090,7 +1090,7 @@ Here, only needed commands are shown.
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -1127,7 +1127,7 @@ Prepare different working directories for each value of alat, copy ``fort.10`` t
     alat_1.5Z
 
 Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
-    
+
 .. code-block:: bash
 
     cd ../05lrdmc/
@@ -1140,15 +1140,15 @@ Then, run each LRDMC calculation after generating initial electron configuration
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -1157,7 +1157,7 @@ Then, run each LRDMC calculation after generating initial electron configuration
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
     funvsa.x < evsa.in > evsa.out
@@ -1186,7 +1186,7 @@ Li atom
  - :blue:`VMC(JsAGPs)   = -7.477(2) Ha`
  - :blue:`LRDMC(JsAGPs) = -7.4783(4) Ha`
  - Exact = -7.4781 Ha
- 
+
 Binding energy
 
  - E\ :sub:`bond` = 38.9 mHa (experiment)
@@ -1205,7 +1205,7 @@ Binding energy
 04-01 Li\ :sub:`2` dimer: prepration of a wave function
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As in the JDFT procedure, prepare Li\ :sub:`2` dimer structure, 
+As in the JDFT procedure, prepare Li\ :sub:`2` dimer structure,
 :download:`Li2.xyz <data/Li2.xyz>` :
 
 .. literalinclude:: data/Li2.xyz
@@ -1217,14 +1217,14 @@ The point is that you should set ``twobody=-22`` and ``symmagp=.false.`` in ``ma
    :language: fortran
 
 ``convertfort10mol.input`` reads as follows:
-	      
+
 .. literalinclude:: data/04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/convertfort10mol.input
    :language: fortran
 
 The other procedure is the same. You may obtain makefort10.input. Next, you can run ``makefort10.sh``:
 
 .. code-block:: bash
-  
+
     % ./makefort10.sh
 
 which contains
@@ -1241,7 +1241,7 @@ The generated wave function ``fort.10`` is a Jastrow Antisymmetrized Geminal Pow
 
 .. note::
 
-    If you want to use a more general spin-dependent Jastrow, i.e., independent parameters for the parallel and opposite spins (``twobody`` = ``-27``), you should manually put variational parameters for the two-body Jastrow part after generating ``fort.10``. Since ``makefort10.x`` supports only one variable for the two-body part at present, while ``-27`` has two independent two-body Jastrow variational parameters. 
+    If you want to use a more general spin-dependent Jastrow, i.e., independent parameters for the parallel and opposite spins (``twobody`` = ``-27``), you should manually put variational parameters for the two-body Jastrow part after generating ``fort.10``. Since ``makefort10.x`` supports only one variable for the two-body part at present, while ``-27`` has two independent two-body Jastrow variational parameters.
 
 Indeed, If you want to use a more general spin-dependent Jastrow, whenever you generate a new ``fort.10`` file, you should replace
 
@@ -1287,7 +1287,7 @@ Then, you can run DFT by typing:
 .. code-block:: bash
 
     prep-serial.x < prep.input > out_prep
-    
+
 .. _turborvbtutorial_0201_04_03:
 
 04-03 Li\ :sub:`2` dimer: Check local magnetic moments
@@ -1302,33 +1302,33 @@ First, copy fort.10 obtained by DFT calculation:
    cp ../01DFT/fort.10_new fort.10
 
 Then, plot spin density:
-   
+
 .. code-block:: bash
 
    % plot_orbitals.x
-  
+
    Number of molecular orbitals :            6
-   Choose box size (x,y,z) 
+   Choose box size (x,y,z)
    15 15 15
-   15.0000000000000        15.0000000000000        15.0000000000000     
-   Choose number of mesh points (x,y,z) : 
+   15.0000000000000        15.0000000000000        15.0000000000000
+   Choose number of mesh points (x,y,z) :
    61 61 61
    61          61          61
-   Choose orbitals to tabulate (possible answers all, partial, charge, spin) : 
+   Choose orbitals to tabulate (possible answers all, partial, charge, spin) :
    spin
    spin
    Please give  the lowest molecular orbital within 1 and            6
    1
    Number of fully occupied molecular orbital/total number occupied by up and down?
    3 3
-   Momentum magnetization ? (unit 2pi/cellscale) 
+   Momentum magnetization ? (unit 2pi/cellscale)
    0 0 0
-  
+
 You may obtain --xsf output_spin000000.xsf. Depict it using xcrysden:
 
 .. code-block:: bash
-  
-   % xcrysden --xsf output_spin000000.xsf 
+
+   % xcrysden --xsf output_spin000000.xsf
 
 .. image:: image/Li2_dft_mag.png
    :scale: 25%
@@ -1343,7 +1343,7 @@ Thus, one can obtain an AFM trial wavefunction.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Next step is to convert the optimized JDFT ansatz to a JAGPu one.
 You should check the consistency after conversion.
- 
+
 1. copy ``fort.10`` obtained from DFT calculation:
 
    .. code-block:: bash
@@ -1353,7 +1353,7 @@ You should check the consistency after conversion.
 2. copy ``makefort10.input``, and edit:
 
    .. code-block:: bash
-      
+
       cp ../01trial_wavefunction/00makefort10/makefort10.input .
 
       sed -i -e '/&symmetries/a nosym_contr=.true.' makefort10.input
@@ -1388,19 +1388,19 @@ Li\ :sub:`2` dimer:
 
 .. code-block:: text
 
-   % cat corrsampling.dat 
+   % cat corrsampling.dat
 
    Number of bins                146
    reference energy: E(fort.10)  -0.149056547E+02     0.903277814E-02
    reweighted energy: E(fort.10_corr)  -0.149153980E+02     0.890288018E-02
    reweighted difference: E(fort.10)-E(fort.10_corr)    0.974326537E-02     0.795833755E-03
    Overlap square : (fort.10,fort.10_corr)    0.993230204E+00     0.284523743E-03
- 
+
 Li atom:
 
 .. code-block:: text
 
-   % cat corrsampling.dat 
+   % cat corrsampling.dat
 
    Number of bins                146
    reference energy: E(fort.10)  -0.148896680E+02     0.929468673E-02
@@ -1414,7 +1414,7 @@ Li atom:
 04-05 Li\ :sub:`2` dimer and Li atom: Optimization (WF=JAGPu)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Now that you have obtained a good trial JAGPu wavefunction, 
+Now that you have obtained a good trial JAGPu wavefunction,
 you can optimize its nodal surface at the VMC level.
 
 Then, copy the converted WF.
@@ -1422,23 +1422,23 @@ Then, copy the converted WF.
 .. code-block:: bash
 
     cp ../02convert_WF_JDFT_to_JAGP/fort.10 ./
-    cp fort.10 fort.10_dft 
+    cp fort.10 fort.10_dft
 
 Prepare ``datasmin.input``:
 
 .. literalinclude:: data/04JAGPu/01Li2_dimer/04optimization/datasmin.input
    :language: fortran
 
-The difference from datasmin.input in ``03JsAGPs/03optimization`` is ``iessw``, 
+The difference from datasmin.input in ``03JsAGPs/03optimization`` is ``iessw``,
 because we optimize the determinant part (nodal surface) at this step.
 
 Run a VMC-opt run.
 
 .. code-block:: bash
-    
+
     #run vmc-opt
     turborvb-serial.x < datasmin.input > out_min
-    
+
     #average fort.10
     readalles.x << ____EOS
     1 81 1 0
@@ -1465,7 +1465,7 @@ VMC
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd ../05vmc/
       cp ../04ptimization/fort.10 .
 
@@ -1495,7 +1495,7 @@ VMC
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -1525,7 +1525,7 @@ Prepare different working directories for each value of alat, copy ``fort.10`` t
     alat_1.5Z
 
 Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
-    
+
 .. code-block:: bash
 
     cd ../06lrdmc/
@@ -1538,15 +1538,15 @@ Then, run each LRDMC calculation after generating initial electron configuration
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -1555,11 +1555,11 @@ Then, run each LRDMC calculation after generating initial electron configuration
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
     funvsa.x < evsa.in > evsa.out
-    
+
 Li\ :sub:`2` dimer
 
  - HF = -14.8715 Ha
@@ -1581,7 +1581,7 @@ Li atom
  - :blue:`VMC(JAGPu)   = -7.477(3) Ha`
  - :blue:`LRDMC(JAGPu) = -7.4791(4) Ha`
  - Exact = -7.4781 Ha
- 
+
 Binding energy
 
  - E\ :sub:`bond` = 38.9 mHa (experiment)
@@ -1600,15 +1600,15 @@ Binding energy
 The most important procedure in a Pfaffian calculation is to convert a JDFT or JAGPu
 ansatz to JAGP(JPf) ansatz.
 Since the JAGP ansatz is a special case of the JPf one,  where only :math:`G_{ud}` and :math:`G_{du}` terms are defined as described in the section review_ paper, the conversion can be realized just by direct substitution. Therefore, the main challenge is to find a reasonable initialization for the two spin-triplet sectors :math:`G_{uu}` and :math:`G_{dd}` that are not described in the JAGP and that otherwise have to be set to 0.
-There are two possible approaches to convert an ansatz: 
+There are two possible approaches to convert an ansatz:
 (i)
-for polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of 
-:math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough 
-to occupy certainly  these unpaired states, as in  the standard Slater determinant used 
+for polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of
+:math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough
+to occupy certainly  these unpaired states, as in  the standard Slater determinant used
 for our initialization.
 Again, we emphasize that  this works only for polarized systems.
 (ii)
-The second approach that also works in a spin-unpolarized case is to determine 
+The second approach that also works in a spin-unpolarized case is to determine
 a standard broken symmetry single determinant ansatz (*e.g.*, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, *i.e.*, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity.
 A particularly important case is when  a rotation of :math:`\pi/2` is applied around the :math:`y` direction. This operation maps :math:`|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).` One can convert from a AGP the pairing function that is obtained from a VMC optimization :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}` to a Pf one :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).` This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this ansatz.
 
@@ -1627,7 +1627,7 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
       rm fort.10
 
 2. Convert wavefunction from JDFT ansatz to uncontracted JAGP ansatz:
-      
+
    .. code-block:: bash
 
       cp ../../../04JAGPu/01Li2_dimer/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
@@ -1639,7 +1639,7 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
       mv fort.10_new fort.10_agp_uncont
 
    Run correlated sampling
-      
+
    .. code-block:: bash
 
       cp fort.10_dft fort.10
@@ -1649,17 +1649,17 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
       rm fort.10
 
    .. code-block:: bash
-      
+
       % cat corrsampling_dft_agp_uncont.dat
-    
+
       Number of bins                146
       reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
       reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
       reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
       Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
-    
+
 3. Convert wavefunction from uncontracted JAGP ansatz to uncontracted JPf (norotate) ansatz:
-      
+
    .. code-block:: bash
 
       cp fort.10_agp_uncont fort.10_in
@@ -1674,12 +1674,12 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
    Convert wavefunction
 
    .. code-block:: bash
-    
+
       makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
       mv fort.10_new fort.10_out
-    
+
       convertpfaff.x norotate > out_conv_pfaff_norotate
-    
+
       cp fort.10_new fort.10_pfaff_uncont
 
    Run correlated sampling
@@ -1695,7 +1695,7 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
    .. code-block:: bash
 
       % cat corrsampling_agp_pfaff_uncont.dat
-    
+
       Number of bins                146
       reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
       reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
@@ -1703,12 +1703,12 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
       Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
 
 4. Convert wavefunction from uncontracted JPf ansatz to contracted JPf ansatz:
-      
+
    .. code-block:: bash
 
       cp fort.10_pfaff_uncont fort.10_in
       cp makefort10_pf_uncont.input makefort10_pf_cont.input
-    
+
    Edit makefort10_pf_cont.input
 
    .. code-block:: bash
@@ -1721,9 +1721,9 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
 
       makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
       mv fort.10_new fort.10_out
-    
+
       convertfort10-serial.x < convertfort10.input > out_conv_pfaff_cont
-    
+
       cp fort.10_new fort.10_pfaff_cont
       cp fort.10_pfaff_cont fort.10_corr
 
@@ -1748,7 +1748,7 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
 5. Rotate wavefunction by 1/8 pi:
 
    .. code-block:: bash
-    
+
       cp fort.10_pfaff_cont fort.10_in
       cp fort.10_pfaff_cont fort.10_out
       echo "-0.125" | convertpfaff.x > out_conv_pfaff_rot
@@ -1756,11 +1756,11 @@ The strategy (ii) is employed for the Li dimer (i.e., unpolarized case) while (i
       cp fort.10_new fort.10_pfaff_cont_rot
 
    Clean fort.10
-      
+
    .. code-block:: bash
 
       cp fort.10_pfaff_cont_rot fort.10
-      cleanfort10.x 
+      cleanfort10.x
       mv fort.10_clean fort.10
 
       cp fort.10 fort.10_final
@@ -1800,18 +1800,18 @@ The total energy was a bit lost by the rotation.
 1. First, copy ``fort.10`` from JAGPu ansatz, and run VMC for correlated sampling.
 
    .. code-block:: bash
-   
+
       cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/01DFT/fort.10_new fort.10_in
       cp fort.10_in fort.10_dft
       cp fort.10_dft fort.10
 
       turborvb-serial.x < datasvmc.input > out_vmc
       rm fort.10
-    
+
 2. Convert wavefunction from JDFT ansatz to uncontracted JAGP ansatz:
 
    .. code-block:: bash
-		   
+
       cp ../../../04JAGPu/02Li_atom/01trial_wavefunction/00makefort10/makefort10.input makefort10_agp_uncont.input
 
       makefort10.x < makefort10_agp_uncont.input > out_make_agp_uncont
@@ -1823,7 +1823,7 @@ The total energy was a bit lost by the rotation.
    Run correlated sampling
 
    .. code-block:: bash
-      
+
       cp fort.10_dft fort.10
       cp fort.10_agp_uncont fort.10_corr
 
@@ -1834,7 +1834,7 @@ The total energy was a bit lost by the rotation.
    .. code-block:: bash
 
       % cat corrsampling_dft_agp_uncont.dat
-    
+
       Number of bins                146
       reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
       reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
@@ -1842,12 +1842,12 @@ The total energy was a bit lost by the rotation.
       Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
 
 3. Convert wavefunction from uncontracted JAGP ansatz to uncontracted JPf (norotate) ansatz:
-      
+
    .. code-block:: bash
 
       cp fort.10_agp_uncont fort.10_in
       cp makefort10_agp_uncont.input makefort10_pf_uncont.input
-    
+
    Edit makefort10_pf_uncont.input
 
    .. code-block:: bash
@@ -1860,9 +1860,9 @@ The total energy was a bit lost by the rotation.
 
       makefort10.x < makefort10_pf_uncont.input > out_make_pfaff_uncont
       mv fort.10_new fort.10_out
-    
+
       echo "10000" | convertpfaff.x norotate > out_conv_pfaff_norotate
-    
+
       cp fort.10_new fort.10_pfaff_uncont
 
    Run correlated sampling
@@ -1876,22 +1876,22 @@ The total energy was a bit lost by the rotation.
       mv corrsampling.dat corrsampling_agp_pfaff_uncont.dat
 
    .. code-block:: bash
-      
+
       % cat corrsampling_agp_pfaff_uncont.dat
-    
+
       Number of bins                146
       reference energy: E(fort.10)  -0.148896680E+02     0.929468674E-02
       reweighted energy: E(fort.10_corr)  -0.148896681E+02     0.929468647E-02
       reweighted difference: E(fort.10)-E(fort.10_corr)    0.122986368E-07     0.316227766E-07
       Overlap square : (fort.10,fort.10_corr)    0.999999997E+00     0.316227766E-07
-    
+
 4. Convert wavefunction from uncontracted JPf ansatz to contracted JPf ansatz:
 
    .. code-block:: bash
 
       cp fort.10_pfaff_uncont fort.10_in
       cp makefort10_pf_uncont.input makefort10_pf_cont.input
-    
+
    Edit makefort10_pf_cont.input
 
    .. code-block:: bash
@@ -1904,9 +1904,9 @@ The total energy was a bit lost by the rotation.
 
       makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
       mv fort.10_new fort.10_out
-    
+
       convertfort10-serial.x < convertfort10.input > out_conv_pfaff_cont
-    
+
       cp fort.10_new fort.10_pfaff_cont
 
    Clean wavefunction
@@ -1914,7 +1914,7 @@ The total energy was a bit lost by the rotation.
    .. code-block:: bash
 
       cp fort.10_pfaff_cont fort.10
-      cleanfort10.x 
+      cleanfort10.x
       mv fort.10_clean fort.10
 
       cp fort.10 fort.10_final
@@ -1964,7 +1964,7 @@ The total energy was a bit lost by the rotation.
 2. Run optimization
 
    .. code-block:: bash
-   
+
       turborvb-serial.x < datasmin.input > out_min
 
       cleanfort10.x
@@ -1980,7 +1980,7 @@ The total energy was a bit lost by the rotation.
       0
       1000
       ____EOS
-    
+
       # average
       readalles.x << ____EOS
       1 81 1 0
@@ -1988,7 +1988,9 @@ The total energy was a bit lost by the rotation.
       1000
       ____EOS
 
-3. If you find many warnings in your output during optimization, do the following stabilization and continue optimization.
+3. (optional) If you find many warnings in your output during optimization, do the following stabilization and continue optimization.
+
+  3.1 Perform stabilization
 
    .. code-block:: bash
 
@@ -2001,12 +2003,12 @@ The total energy was a bit lost by the rotation.
       # If this value is set negative, a generated molecular orbitals are random.
       # You can start from nmolmin=1, until nmolmin=N_el/ 2.
       # and check you do not loose much energy.
-      
+
       convertfort10mol-serial.x < convertfort10mol.input > out_mol_stabilized
       cp fort.10_new fort.10
 
-4. Run correlated sampling (aftre the above conversion)
-      
+  3.2. Run correlated sampling (aftre the above conversion)
+
    .. code-block:: bash
 
       cp fort.10_in fort.10_corr
@@ -2017,8 +2019,8 @@ The total energy was a bit lost by the rotation.
 
       cat corrsampling_pfaff_stabilized.dat
 
-5. Convert back to a geminal (JAGP)
-      
+  3.3. Convert back to a geminal (JAGP)
+
    .. code-block:: bash
 
       cp ../01convert_WF_JDFT_to_JAGP/makefort10_pf_cont.input .
@@ -2029,23 +2031,50 @@ The total energy was a bit lost by the rotation.
       onebodyjas=$3
 
       echo "twobodyjas=${twobodyjas} onebodyjas=${onebodyjas}"
-    
+
       sed -i \
           -e "/twobodypar/c\ twobodypar=${twobodyjas}" \
           -e "/onebodypar/c\ onebodypar=${onebodyjas}" \
           makefort10_pf_cont.input
-            
+
       makefort10.x < makefort10_pf_cont.input > out_make_pfaff_cont
       mv fort.10_new fort.10_out
 
       convertfort10-serial.x < convertfort10.input > out_conv
-    
+
       cp fort.10_new fort.10
       cleanfort10.x
       mv fort.10_clean fort.10
       cp fort.10_opt fort.10_new
 
-      copyjas.x
+      copyjas.x > out_copyjas
+
+  3.4. Run optimization again
+
+   .. code-block:: bash
+
+      turborvb-serial.x < datasmin.input > out_min
+
+      cleanfort10.x
+      mv fort.10_clean fort.10
+
+   Check convergence and average
+
+   .. code-block:: bash
+
+      # check convergence
+      readalles.x << ____EOS
+      1 1 0 1
+      0
+      1000
+      ____EOS
+
+      # average
+      readalles.x << ____EOS
+      1 81 1 0
+      0
+      1000
+      ____EOS
 
 .. note::
 
@@ -2062,9 +2091,9 @@ Here, only needed commands are shown.
 1. First, create a working directory, and copy the trial wavefunction:
 
    .. code-block:: bash
-		   
+
       cd ../03vmc/
-      cp ../02optimization/fort.10_new ./fort.10
+      cp ../02optimization/fort.10 ./fort.10
 
    Then, copy ``datasmin.input`` and rename it as ``ave.in``:
 
@@ -2092,7 +2121,7 @@ Here, only needed commands are shown.
 2. Run the dummy VMC by typing
 
    .. code-block:: bash
-      
+
       turborvb-serial.x < ave.in > out_ave
 
 3. Next step is to run VMC for calculating the total energy.
@@ -2129,7 +2158,7 @@ Prepare different working directories for each value of alat, copy ``fort.10`` t
     alat_1.5Z
 
 Then, run each LRDMC calculation after generating initial electron configurations at the VMC level.
-    
+
 .. code-block:: bash
 
     cd ../04lrdmc/
@@ -2142,15 +2171,15 @@ Then, run each LRDMC calculation after generating initial electron configuration
     do
         cd alat_${alat}
         cp ${lrdmc_root_dir}/fort.10 ./fort.10
-        turborvb-serial.x < datasvmc.input > out_vmc;
-        turborvb-serial.x < datasfn.input > out_fn;
+        turborvb-serial.x < datasvmc.input > out_vmc
+        turborvb-serial.x < datasfn.input > out_fn
         cd ${lrdmc_root_dir}
     done
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
-    do  
+    do
         cd alat_${alat}
         num=`expr ${num} + 1`
         echo "10 20 5 1" | readf.x
@@ -2159,7 +2188,7 @@ Then, run each LRDMC calculation after generating initial electron configuration
         tail -n 1 fort.20 | awk '{print $1, $2}' >> ${lrdmc_root_dir}/evsa.gnu
         cd ${lrdmc_root_dir}
     done
-    
+
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa.in
 
     funvsa.x < evsa.in > evsa.out
@@ -2192,7 +2221,7 @@ Li atom
  - :blue:`VMC(JAGP)   = -7.4766(3) Ha`
  - :blue:`LRDMC(JAGP) = -7.4784(4) Ha`
  - Exact = -7.4781 Ha
- 
+
 Binding energy
 
  - E\ :sub:`bond` = 38.9 mHa (experiment)

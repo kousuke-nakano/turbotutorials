@@ -20,6 +20,17 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
 
 .. _review: https://doi.org/10.1063/5.0005037
 
+This is a workflow of this tutorial:
+
+.. image:: image/workflow_detailed.jpeg
+   :scale: 80%
+   :align: center
+
+This is the detailed workflow of this tutorial:
+
+.. image:: image/turbo_flow.jpg
+   :scale: 20%
+   :align: center
 
 .. _turborvbtutorial_0101_01:
 
