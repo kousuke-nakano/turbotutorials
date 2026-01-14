@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC) &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=938023e0"></script>
+      <script src="../../../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)" href="../02NH3/tutorial.html" />
+    <link rel="prev" title="Tutorials" href="../00index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">00 Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction-using-pyscf">01 Preparing a JDFT trial wavefunction using PySCF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jastrow-factor-optimization-wf-jdft">02 Jastrow factor optimization (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vmc-wf-jdft">03 VMC (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lrdmc-wf-jdft">04 LRDMC (WF=JDFT)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lrdmc-wf-jdft-extrapolation">05 LRDMC (WF=JDFT) Extrapolation.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#summary">06 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/02turbogenius_manual/tutorial/01Hydrogen_dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-simplest-example-the-hydrogen-dimer-with-a-jastrowslater-single-determinant-ansatz-via-variational-monte-carlo-vmc-and-lattice-regularized-diffusion-monte-carlo-lrdmc">
+<span id="turbogeniustutorial-0101"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a><a class="headerlink" href="#the-simplest-example-the-hydrogen-dimer-with-a-jastrowslater-single-determinant-ansatz-via-variational-monte-carlo-vmc-and-lattice-regularized-diffusion-monte-carlo-lrdmc" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>In this tutorial, you will compute all-electron VMC and LRDMC energies of the hydrogen dimer (H2) using Turbo-genius. You will begin with a DFT calculation in PySCF, construct a Slater determinant from the DFT results, add a Jastrow factor, and optimize the Jastrow parameters via stochastic reconfiguration (natural-gradient) optimization. After the variational optimization, you will evaluate observables with Markov chain Monte Carlo (MCMC) and, finally, perform an LRDMC calculation using the optimized wave function. All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../_downloads/4ab650683a757802075d0224235f2844/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-simplest-example-the-hydrogen-dimer-with-a-jastrowslater-single-determinant-ansatz-via-variational-monte-carlo-vmc-and-lattice-regularized-diffusion-monte-carlo-lrdmc" id="id2">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id3">00 Introduction</a></p></li>
+<li><p><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction-using-pyscf" id="id4">01 Preparing a JDFT trial wavefunction using PySCF</a></p></li>
+<li><p><a class="reference internal" href="#jastrow-factor-optimization-wf-jdft" id="id5">02 Jastrow factor optimization (WF=JDFT)</a></p></li>
+<li><p><a class="reference internal" href="#vmc-wf-jdft" id="id6">03 VMC (WF=JDFT)</a></p></li>
+<li><p><a class="reference internal" href="#lrdmc-wf-jdft" id="id7">04 LRDMC (WF=JDFT)</a></p></li>
+<li><p><a class="reference internal" href="#lrdmc-wf-jdft-extrapolation" id="id8">05 LRDMC (WF=JDFT) Extrapolation.</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id9">06 Summary</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+</section>
+<section id="preparing-a-jdft-trial-wavefunction-using-pyscf">
+<span id="turbogeniustutorial-0101-01"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">01 Preparing a JDFT trial wavefunction using PySCF</a><a class="headerlink" href="#preparing-a-jdft-trial-wavefunction-using-pyscf" title="Permalink to this heading"></a></h2>
+<p>First, we will generate a JDFT trial wavefunction by starting from the Hartree-Fock or DFT calcualtion using PySCF. We assume that you already have a working copy of PySCF, e.g. by pip install pyscf.</p>
+<p>The procedure is as follows:</p>
+<ol class="arabic simple">
+<li><p>Run the PySCF calculation by typing:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyscf calculation</span>
+<span class="nb">cd</span><span class="w"> </span>01_trial_wavefunction
+python3<span class="w"> </span>pyscf_H2.py
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Convert the generated PySCF checkpoint file to a TREXIO file by typing:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># pyscf chkfile to TREXIO</span>
+trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class="w"> </span>pyscf<span class="w"> </span>-i<span class="w"> </span>H2.chk<span class="w"> </span>-b<span class="w"> </span>hdf5<span class="w"> </span>H2.hdf5
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Convert from the TREXIO file to the TurboRVB wavefunction file by typing:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>trexio-to-turborvb<span class="w"> </span>H2.hdf5<span class="w"> </span>-jasbasis<span class="w"> </span>cc-pVDZ<span class="w"> </span>-jascutbasis
+</pre></div>
+</div>
+<p>Then, you will have the TurboRVB wavefunction file <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> as well as the pseudopotential file <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The basis set files will be downloaded from the basis set exchange website for the first time turbogenius is executed, and stored in the <code class="docutils literal notranslate"><span class="pre">.turbo_genius_tmp</span></code> directory in the user’s home directory.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the PySCF calculation fails:</p>
+<ul class="simple">
+<li><p>Check if the basis set is available,</p></li>
+<li><p>Verify the molecular geometry file exists,</p></li>
+<li><p>Ensure that the sufficient memory allocation is available.</p></li>
+</ul>
+</div>
+<section id="notes-on-the-pyscf-script">
+<h3>Notes on the PySCF script<a class="headerlink" href="#notes-on-the-pyscf-script" title="Permalink to this heading"></a></h3>
+<p>The Python code for the PySCF calculation is given as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># coding: utf-8</span>
+
+<span class="c1"># pySCF -&gt; pyscf checkpoint file (NH3 molecule)</span>
+
+<span class="c1"># load python packages</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># load pyscf packages</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">tools</span>
+
+<span class="c1">#open boundary condition</span>
+<span class="n">checkpoint_file</span><span class="o">=</span><span class="s2">&quot;H2.chk&quot;</span>
+<span class="n">output</span><span class="o">=</span><span class="s2">&quot;out_H2&quot;</span>
+<span class="n">charge</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">spin</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">basis</span><span class="o">=</span><span class="s2">&quot;ccecp-ccpvtz&quot;</span>
+<span class="n">ecp</span><span class="o">=</span><span class="s1">&#39;ccecp&#39;</span>
+<span class="c1">#scf_method=&quot;HF&quot;  # HF or DFT</span>
+<span class="n">scf_method</span><span class="o">=</span><span class="s2">&quot;DFT&quot;</span>  <span class="c1"># HF or DFT</span>
+<span class="n">dft_xc</span><span class="o">=</span><span class="s2">&quot;LDA_X,LDA_C_PZ&quot;</span> <span class="c1"># XC for DFT</span>
+
+<span class="c1"># build a molecule</span>
+<span class="n">mol</span> <span class="o">=</span> <span class="n">gto</span><span class="o">.</span><span class="n">Mole</span><span class="p">()</span>
+<span class="c1">#mol.atom     = &#39;&#39;&#39;</span>
+<span class="c1">#               H    0.00000000   0.00000000  -0.360000000</span>
+<span class="c1">#               H    0.00000000   0.00000000   0.360000000</span>
+<span class="c1">#               &#39;&#39;&#39;</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">atom</span> <span class="o">=</span> <span class="s1">&#39;H2_dimer.xyz&#39;</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">output</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">unit</span> <span class="o">=</span> <span class="s1">&#39;A&#39;</span> <span class="c1"># angstrom</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">charge</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">spin</span> <span class="o">=</span> <span class="n">spin</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">symmetry</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># basis set</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">basis</span>
+
+<span class="c1"># define ecp</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">ecp</span> <span class="o">=</span> <span class="n">ecp</span>
+
+<span class="c1"># molecular build</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">cart</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># cart = False =&gt; use spherical basis!!</span>
+
+<span class="c1"># calc type setting</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scf_method = </span><span class="si">{</span><span class="n">scf_method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># HF/DFT</span>
+
+<span class="k">if</span> <span class="n">scf_method</span> <span class="o">==</span> <span class="s2">&quot;HF&quot;</span><span class="p">:</span>
+    <span class="c1"># HF calculation</span>
+    <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">spin</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HF kernel = RHF&quot;</span><span class="p">)</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">RHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">checkpoint_file</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HF kernel = ROHF&quot;</span><span class="p">)</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROHF</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">checkpoint_file</span>
+
+<span class="k">elif</span> <span class="n">scf_method</span> <span class="o">==</span> <span class="s2">&quot;DFT&quot;</span><span class="p">:</span>
+    <span class="c1"># DFT calculation</span>
+    <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">spin</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DFT kernel = RKS&quot;</span><span class="p">)</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">KS</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span><span class="o">.</span><span class="n">density_fit</span><span class="p">()</span>
+        <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">checkpoint_file</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DFT kernel = ROKS&quot;</span><span class="p">)</span>
+        <span class="n">mf</span> <span class="o">=</span> <span class="n">scf</span><span class="o">.</span><span class="n">ROKS</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+        <span class="n">mf</span><span class="o">.</span><span class="n">chkfile</span> <span class="o">=</span> <span class="n">checkpoint_file</span>
+    <span class="n">mf</span><span class="o">.</span><span class="n">xc</span> <span class="o">=</span> <span class="n">dft_xc</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="n">total_energy</span> <span class="o">=</span> <span class="n">mf</span><span class="o">.</span><span class="n">kernel</span><span class="p">()</span>
+
+<span class="c1"># HF/DFT energy</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total HF/DFT energy = </span><span class="si">{</span><span class="n">total_energy</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HF/DFT calculation is done.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySCF calculation is done.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;checkpoint file = </span><span class="si">{</span><span class="n">checkpoint_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This program performs electronic structure calculations for an H2 molecule using the PySCF (Python-based Simulations of Chemistry Framework) library.</p>
+<section id="configuration-parameters">
+<h4>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Checkpoint File</strong>: <code class="docutils literal notranslate"><span class="pre">H2.chk</span></code></p></li>
+<li><p><strong>Output File</strong>: <code class="docutils literal notranslate"><span class="pre">out_H2</span></code></p></li>
+<li><p><strong>Molecular Properties</strong>:</p>
+<ul>
+<li><p>Charge: 0 (neutral molecule)</p></li>
+<li><p>Spin: 0 (closed-shell system)</p></li>
+<li><p>Basis Set: <code class="docutils literal notranslate"><span class="pre">ccecp-ccpvtz</span></code> (relativistic basis set)</p></li>
+<li><p>ECP (Effective Core Potential): <code class="docutils literal notranslate"><span class="pre">ccecp</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="calculation-method">
+<h4>Calculation Method<a class="headerlink" href="#calculation-method" title="Permalink to this heading"></a></h4>
+<p>The program supports two calculation methods:</p>
+<ol class="arabic simple">
+<li><p><strong>Hartree-Fock (HF)</strong></p>
+<ul class="simple">
+<li><p>Restricted Hartree-Fock (RHF) for closed-shell systems</p></li>
+<li><p>Restricted Open-shell Hartree-Fock (ROHF) for open-shell systems</p></li>
+</ul>
+</li>
+<li><p><strong>Density Functional Theory (DFT)</strong></p>
+<ul class="simple">
+<li><p>Currently configured to use DFT</p></li>
+<li><p>Exchange-correlation functional: <code class="docutils literal notranslate"><span class="pre">LDA_X,LDA_C_PZ</span></code> (Local Density Approximation)</p></li>
+<li><p>Restricted Kohn-Sham (RKS) for closed-shell systems</p></li>
+<li><p>Restricted Open-shell Kohn-Sham (ROKS) for open-shell systems</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="molecular-structure">
+<h4>Molecular Structure<a class="headerlink" href="#molecular-structure" title="Permalink to this heading"></a></h4>
+<ul>
+<li><p>Structure is read from <code class="docutils literal notranslate"><span class="pre">H2_dimer.xyz</span></code> file that contains:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2
+H2_dimer 
+  H      0.00000000          0.00000000         -0.37050000000000000000
+  H      0.00000000          0.00000000          0.37050000000000000000
+</pre></div>
+</div>
+</li>
+<li><p>Units: Angstroms (Å)</p></li>
+<li><p>Symmetry: Disabled</p></li>
+<li><p>Uses spherical harmonics (<code class="docutils literal notranslate"><span class="pre">cart=False</span></code>)</p></li>
+</ul>
+</section>
+<section id="program-flow">
+<h4>Program Flow<a class="headerlink" href="#program-flow" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Load required Python and PySCF packages</p></li>
+<li><p>Configure molecular parameters</p></li>
+<li><p>Build molecular structure</p></li>
+<li><p>Select and execute calculation method</p></li>
+<li><p>Calculate total energy</p></li>
+<li><p>Save results to checkpoint file</p></li>
+</ol>
+</section>
+<section id="output">
+<h4>Output<a class="headerlink" href="#output" title="Permalink to this heading"></a></h4>
+<p>The program outputs:</p>
+<ul class="simple">
+<li><p>Total HF/DFT energy</p></li>
+<li><p>Calculation status messages</p></li>
+<li><p>Checkpoint file location</p></li>
+</ul>
+</section>
+<section id="notes">
+<h4>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h4>
+<ul class="simple">
+<li><p>The program serves as a template for basic electronic structure calculations</p></li>
+<li><p>Particularly suitable for simple molecular systems like H2</p></li>
+<li><p>Results are saved in a checkpoint file for potential further analysis</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="jastrow-factor-optimization-wf-jdft">
+<span id="turbogeniustutorial-0101-02"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">02 Jastrow factor optimization (WF=JDFT)</a><a class="headerlink" href="#jastrow-factor-optimization-wf-jdft" title="Permalink to this heading"></a></h2>
+<p>In this step, Jastrow factors are optimized at the VMC level using <code class="docutils literal notranslate"><span class="pre">vmcopt</span></code> module of Turbo-Genius.</p>
+<p>First, copy the trial wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> generated by the DFT calculation, as well as the pseudo potential file <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code>, to <code class="docutils literal notranslate"><span class="pre">02_optimization</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../02_optimization/
+cp<span class="w"> </span>../01_trial_wavefunction/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../01_trial_wavefunction/pseudo.dat<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To generate <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code>, which is a minimal input file for a VMC-optimization:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">200</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+<p>There are command-line variables <code class="docutils literal notranslate"><span class="pre">-opt_XXXXX</span></code> which can be used to specify the type of VMC optimization to be used. Currently the following options are implemented:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_onebody</span></code> (default:True): optimize the homogenius and imhomogenius one-body Jastrow part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_twobody</span></code> (default:True): optimize the two-body Jastrow part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_det_mat</span></code> (default:False): optimize the matrix element of the determinant part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_jas_mat</span></code> (default:True): optimize the matrix element of the Jastrow part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_det_basis_exp</span></code> (default:False): optimize the exponents of the determinant part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_jas_basis_exp</span></code> (default:False): optimize the exponents of the Jastrow part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_det_basis_coeff</span></code> (default:False): optimize the coefficients of the determinant part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-opt_jas_basis_coeff</span></code> (default:False): optimize the coefficients of the Jastrow part.</p></li>
+</ul>
+</div></blockquote>
+<p>You can also specify an optimization algorithm via <code class="docutils literal notranslate"><span class="pre">-optimizer</span></code> command-line variable.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sr</span></code> : Stochastic Reconfiguration method. See <a class="reference external" href="https://doi.org/10.1063/1.2746035">J. Chem. Phys. 127, 014105 (2007)</a> and the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lr</span></code> : Linear method with natural gradients. See <a class="reference external" href="https://doi.org/10.1103/PhysRevB.71.241103">Phys. Rev. B 71, 241103(R) (2005)</a>, <a class="reference external" href="https://doi.org/10.1103/PhysRevLett.98.110201">Phys. Rev. Lett. 98, 110201 (2007)</a>, and <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper.</p></li>
+</ul>
+</div></blockquote>
+<p>There are other command-line options to specify the calculation conditions, such as:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-vmcoptsteps</span></code>: The number of optimization steps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-steps</span></code>: MCMC steps per optimization step. The actual number of sampling points is <code class="docutils literal notranslate"><span class="pre">steps</span></code> times <code class="docutils literal notranslate"><span class="pre">nw</span></code> below.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-nw</span></code>: The number of workers. When the calculation is carried out in parallel, the number of MPI processes Np must be a divisor of <code class="docutils literal notranslate"><span class="pre">nw</span></code>. If <code class="docutils literal notranslate"><span class="pre">nw</span></code> is omitted, it is set equal to the number of Np.</p></li>
+</ul>
+</div></blockquote>
+<p>See the command reference for the detailed description of commandline options. The uses may consult the wavefunction optimization section for parameter choices.</p>
+<p>The input file <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code> should look something like:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">simulation</span>
+<span class="w">    </span><span class="n">itestr4</span><span class="o">=-</span><span class="mi">4</span>
+<span class="w">    </span><span class="n">ngen</span><span class="o">=</span><span class="mi">20000</span>
+<span class="w">    </span><span class="n">iopt</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">maxtime</span><span class="o">=</span><span class="mi">3600</span>
+<span class="w">    </span><span class="n">disk_io</span><span class="o">=</span><span class="s1">&#39;mpiio&#39;</span>
+<span class="w">    </span><span class="n">nw</span><span class="o">=</span><span class="mi">128</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">pseudo</span>
+<span class="w">    </span><span class="n">npsamax</span><span class="o">=</span><span class="mi">4</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">vmc</span>
+<span class="w">    </span><span class="n">epscut</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">optimization</span>
+<span class="w">    </span><span class="n">ncg</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">nweight</span><span class="o">=</span><span class="mi">100</span>
+<span class="w">    </span><span class="n">nbinr</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">iboot</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">    </span><span class="n">tpar</span><span class="o">=</span><span class="mf">0.35</span>
+<span class="w">    </span><span class="n">parr</span><span class="o">=</span><span class="mf">0.001</span>
+<span class="w">    </span><span class="n">iesdonebodyoff</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">    </span><span class="n">iesdtwobodyoff</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="w">    </span><span class="n">twobodyoff</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">readio</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">parameters</span>
+<span class="w">    </span><span class="n">iesd</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">iesfree</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">iessw</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">    </span><span class="n">iesup</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">    </span><span class="n">iesm</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">kpoints</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">dynamic</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p>Now you can launch the VMC optimization:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are several ways to run the optimization calculation:</p>
+<ol class="arabic">
+<li><p>Using TurboGenius interface</p>
+<blockquote>
+<div><p>by typing as follows to run the serial version</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+</pre></div>
+</div>
+<p>or by specifying the internal command by an environment variable as follows to run the parallel version</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np XX turborvb-mpi.x&quot;</span>
+turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+</pre></div>
+</div>
+<p>where XX is the number of MPI processes.
+The MPI execution command (<cite>mpirun</cite> and the options) should be replaced according to the type of the MPI library.</p>
+</div></blockquote>
+</li>
+<li><p>Using directly the TurboRVB executables</p>
+<blockquote>
+<div><p>to run the serial version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>or to run the parallel version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mpirun<span class="w"> </span>-np<span class="w"> </span>XX<span class="w"> </span>turborvb-mpi.x<span class="w"> </span>&lt;<span class="w"> </span>datasmin.input<span class="w"> </span>&gt;<span class="w"> </span>out_min
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Using the batch job scheduler</p>
+<blockquote>
+<div><p>on a cluster machine running the PBS job scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>on a cluster machine running the Slurm job scheduler:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>submit.sh
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">submit.sh</span></code> is an appropriate job script that invokes the serial or parallel version of TurboRVB executables or TurboGenius interface.</p>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can stop the optimization by writing <code class="docutils literal notranslate"><span class="pre">0</span></code> into <code class="docutils literal notranslate"><span class="pre">stop.dat</span></code>.</p>
+</div>
+<p>Now, for post-processing, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">80</span><span class="w"> </span>-plot
+<span class="c1"># and then please follow the instructions.</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The corresponding command in turborvb is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>readalles.x<span class="w"> </span>&lt;<span class="w"> </span>readalles.input<span class="w"> </span>&gt;<span class="w"> </span>out_read
+</pre></div>
+</div>
+</div>
+<p>It plots energy with the error bars and devmax w.r.t. optimization steps (plot_energy_and_devmax.png).
+e.g.,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>eog<span class="w"> </span>plot_energy_and_devmax.png
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../../../../_images/vmcopt_Energy_devmax.png"><img alt="../../../../_images/vmcopt_Energy_devmax.png" class="align-center" src="../../../../_images/vmcopt_Energy_devmax.png" style="width: 70%;" /></a>
+<p>In the plot, <code class="docutils literal notranslate"><span class="pre">devmax</span></code> is below the converged criteria of devmax = 4.5, hence we can say the convergence is achieved.</p>
+<p>Post-processing performs three important functions:</p>
+<ol class="arabic">
+<li><p>The parameters of Jastrow were optimized over <cite>ngen</cite> / <cite>nweight</cite> ( = <cite>vmcoptsteps</cite> ) iterations. When <code class="docutils literal notranslate"><span class="pre">--plot</span></code> option is specified, the post-processing plots all the parameters with respect to iterations which is saved in all_parameters_saved. Check png files in parameters_graphs directory (e.g., eog parameters_graphs/Parameter_No*_averaged.png). Here, we show the plots of first two parameters:</p>
+<a class="reference internal image-reference" href="../../../../_images/parameter_No_1.png"><img alt="../../../../_images/parameter_No_1.png" class="align-center" src="../../../../_images/parameter_No_1.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/parameter_No_2.png"><img alt="../../../../_images/parameter_No_2.png" class="align-center" src="../../../../_images/parameter_No_2.png" style="width: 70%;" /></a>
+</li>
+<li><p>In the second step post-processing averages optimized variational parameters. In our case, this is done over the last several thousands optimisation steps. If you wish to change the number of steps you can specify the <code class="docutils literal notranslate"><span class="pre">-optwarmup</span></code> option. The average values of parameters are stored in the file Average_parameters.dat.</p></li>
+<li><p>Finally a dummy VMC calculation is done in ave_temp to write these averaged parameters in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>. The final averaged WF is <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>. The original WF is renamed as <code class="docutils literal notranslate"><span class="pre">fort.10_bak</span></code></p></li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For a real run, one should optimize variational parameters much more carefully. We recommend that one consult to an expert or a developer of TurboRVB.</p>
+</div>
+</section>
+<section id="vmc-wf-jdft">
+<span id="turbogeniustutorial-0101-03"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">03 VMC (WF=JDFT)</a><a class="headerlink" href="#vmc-wf-jdft" title="Permalink to this heading"></a></h2>
+<p>The next step is to run a single-shot VMC calculation
+This is done using the <code class="docutils literal notranslate"><span class="pre">vmc</span></code> module of Turbo-Genius.</p>
+<p>First, copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">pseudo.dat</span></code> from <code class="docutils literal notranslate"><span class="pre">02_optimization</span></code> to <code class="docutils literal notranslate"><span class="pre">03_VMC</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../03_vmc/
+cp<span class="w"> </span>../02_optimization/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../02_optimization/pseudo.dat<span class="w"> </span>.
+</pre></div>
+</div>
+<p>Now generate an input file <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code> using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-force
+</pre></div>
+</div>
+<p>The option <code class="docutils literal notranslate"><span class="pre">-force</span></code> (default: False) allows us to compute VMC forces.</p>
+<p>It should look something like the following:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">simulation</span>
+<span class="w">    </span><span class="n">itestr4</span><span class="o">=</span><span class="mi">2</span>
+<span class="w">    </span><span class="n">ngen</span><span class="o">=</span><span class="mi">10000</span>
+<span class="w">    </span><span class="n">maxtime</span><span class="o">=</span><span class="mi">86400</span>
+<span class="w">    </span><span class="n">iopt</span><span class="o">=</span><span class="mi">1</span>
+<span class="w">    </span><span class="n">disk_io</span><span class="o">=</span><span class="s1">&#39;mpiio&#39;</span>
+<span class="w">    </span><span class="n">nw</span><span class="o">=</span><span class="mi">128</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">pseudo</span>
+<span class="w">    </span><span class="n">npsamax</span><span class="o">=</span><span class="mi">4</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">vmc</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">readio</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">parameters</span>
+<span class="w">    </span><span class="n">ieskin</span><span class="o">=</span><span class="mi">1</span>
+<span class="o">/</span>
+
+<span class="p">&amp;</span><span class="n">kpoints</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p>Run the VMC calculation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
+</pre></div>
+</div>
+<p>See Note in the <a class="reference internal" href="#turbogeniustutorial-0101-02"><span class="std std-ref">optimization step</span></a> for the ways to run the calculations.</p>
+<p>After the VMC run finishes, use post-processing to check the total energy:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This corresponds to running <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span> <span class="pre">10</span> <span class="pre">5</span> <span class="pre">1</span></code>
+by using the values in this example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bin length = 10
+init bin = 5
+pulay = 1 (default)
+
+Chosen values: bin=10, init_bin=5, pulay=1, =&gt; equil_steps=50
+</pre></div>
+</div>
+</div>
+<p>Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive. The reblocked total energy and error are written in the file <code class="docutils literal notranslate"><span class="pre">pip0.d</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>% cat pip0.d
+Energy =  -1.17284117753204       1.253988599211879E-004
+</pre></div>
+</div>
+<p>The obtained forces are written in the file <code class="docutils literal notranslate"><span class="pre">forces_vmc.dat</span></code>.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>% cat forces_vmc.dat
+Force component 1
+Force   =  2.966615810205714E-003  1.199178968598954E-003  2.752792621302076E-005
+Der Eloc =  3.335617738742622E-002  1.231330962370900E-003
+&lt;OH&gt; =  0.590121966419686       7.112041263498287E-004
+&lt;O&gt;&lt;H&gt; = -0.605316747208296       7.014897543031068E-004
+2*(&lt;OH&gt; - &lt;O&gt;&lt;H&gt;) = -3.038956157722050E-002  1.214861001943852E-004
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Force component 1 refers to the <strong>sum</strong> of the forces of the first line (i.e.,  2 1 3 -2 3) in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>. The first index is the number of force components and the second and third are the nucleus index and the direction (x:1, y:2, z:3 for a positive nucleus index whereas -x:1, -y:2, -z:3 for a negative nucleus index). Indeed, the forces in the z-direction acting on the first and second hydrogen atoms are -2.74e-4 Ha/Bohr and +2.74e-4 Ha/Bohr, respectively. <em>Not</em> -5.48e-4 Ha/Bohr and +5.48e-4 Ha/Bohr.</p>
+</div>
+</section>
+<section id="lrdmc-wf-jdft">
+<span id="turbogeniustutorial-0101-04"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">04 LRDMC (WF=JDFT)</a><a class="headerlink" href="#lrdmc-wf-jdft" title="Permalink to this heading"></a></h2>
+<p>Lattice regularized diffusion Monte Carlo (LRDMC) is a projection technique that
+can improve a trial wavefunction obtained by a DFT calculation or a VMC optimization systematically. Indeed, this method filters out the ground state wavefunction from a given trial wavefunction. See <a class="reference external" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.95.100201">the original Casula’s paper</a>, or the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper in detail.</p>
+<p>There is the so-called lattice-space error in LRDMC because the Hamiltonian is regularized by allowing electrons hopping with finite step size <code class="docutils literal notranslate"><span class="pre">alat</span></code> (Bohr). Therefore, one should extrapolate energies calculated by several lattice spaces (<code class="docutils literal notranslate"><span class="pre">alat</span></code>) to obtain an unbiased energy (<span class="math notranslate nohighlight">\(alat \to 0\)</span>).</p>
+<p>Please create a folder for each <code class="docutils literal notranslate"><span class="pre">alat</span></code>, and copy an optimized <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and pseudopotential file from <code class="docutils literal notranslate"><span class="pre">03_vmc</span></code> to the current <code class="docutils literal notranslate"><span class="pre">alat</span></code> directory. To generate lrdmc input files for a LRDMC calc.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../04_lrdmc
+cp<span class="w"> </span>../../03_vmc/fort.10<span class="w"> </span>.
+cp<span class="w"> </span>../../03_vmc/pseudo.dat<span class="w"> </span>.
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-1.10<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-steps<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-etry</span></code>: Put an obtained DFT or VMC energy. <span class="math notranslate nohighlight">\(\Gamma\)</span> in Eq. 6 of the <a class="reference external" href="https://doi.org/10.1063/5.0005037">review</a> paper is set 2 <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">etry</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-alat</span></code>: The lattice space for discretizing the Hamiltonian. If you do a single grid calculation (i.e., alat2=0.0d0), please put a negative value. If you do a double-grid calculation (See <a class="reference external" href="https://doi.org/10.1103/PhysRevB.101.155106">the Nakano’s paper</a>), put a positive value and set <code class="docutils literal notranslate"><span class="pre">iesrandoma=.true.</span></code>. This trick is needed for satisfying the detailed-balance condition.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently, TurboGenius automatically sets double grid calculations for all electron systems with <span class="math notranslate nohighlight">\(Z &gt; 2\)</span>, and single-grid otherwise. If you want to do something different, please change the input files manually.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">alat2</span></code>: The corser lattice space used in the double-grid calculation. If you put 0.0d0, Turbo does a single grid calculation. If you want to do a double-grid calculation for a compound include Z &gt; 2 element, please comment out <code class="docutils literal notranslate"><span class="pre">alat2</span></code> because <code class="docutils literal notranslate"><span class="pre">alat2</span></code> is automatically set. See <a class="reference external" href="https://doi.org/10.1103/PhysRevB.101.155106">the Nakano’s paper</a>.</p>
+<p>The input file <code class="docutils literal notranslate"><span class="pre">datasfn.input</span></code> should look something like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&amp;simulation
+    itestr4=-6
+    ngen=10000
+    iopt=1
+    maxtime=86400
+    disk_io=&#39;mpiio&#39;
+    nw=128
+/
+
+&amp;pseudo
+    npsamax=4
+/
+
+&amp;dmclrdmc
+    tbra=0.1
+    etry=-1.1
+    Klrdmc=0.0
+    alat=-0.2
+    alat2=0.0
+    gamma=0.0
+    parcutg=1
+    typereg=0
+    npow=0.0
+/
+
+&amp;readio
+/
+
+&amp;parameters
+/
+
+&amp;kpoints
+/
+</pre></div>
+</div>
+<p>Now run the LRDMC calculation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
+</pre></div>
+</div>
+<p>See Note in the <a class="reference internal" href="#turbogeniustutorial-0101-02"><span class="std std-ref">optimization step</span></a> for the ways to run the calculations.</p>
+<p>For post-processing use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This corresponds to <code class="docutils literal notranslate"><span class="pre">forcefn.sh</span> <span class="pre">20</span> <span class="pre">3</span> <span class="pre">5</span> <span class="pre">1</span></code>.</p>
+</div>
+<p>The total energy and error are written in the file <code class="docutils literal notranslate"><span class="pre">pip0_fn.d</span></code>.
+Thus, we get <span class="math notranslate nohighlight">\(E (a=0.20 {\rm bohr})\)</span> = -1.1744(7) Ha.</p>
+</section>
+<section id="lrdmc-wf-jdft-extrapolation">
+<span id="turbogeniustutorial-0101-05"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">05 LRDMC (WF=JDFT) Extrapolation.</a><a class="headerlink" href="#lrdmc-wf-jdft-extrapolation" title="Permalink to this heading"></a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For the hydrogen dimer, extrapolation is not needed because the energies are almost constant in the region. Try to plot evsa.gnu with gnuplot later.</p>
+</div>
+<p>If you want to extrapolate energies, collect all LRDMC energies into <code class="docutils literal notranslate"><span class="pre">evsa.in</span></code> in the 05_lrdmc_extrapolation directory, and perform the extrapolation.</p>
+<ol class="arabic">
+<li><p>First, prepare the input files for all alat.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>./05_lrdmc_extrapolation
+<span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.40 0.60&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>cp<span class="w"> </span>../../03_vmc/fort.10<span class="w"> </span>.
+<span class="w">    </span>cp<span class="w"> </span>../../03_vmc/pseudo.dat<span class="w"> </span>.
+<span class="w">    </span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-1.10<span class="w"> </span>-alat<span class="w"> </span>-<span class="nv">$alat</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">10000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Second, run the LRDMC calculations.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.40 0.60&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</li>
+<li><p>Third, run the postprocessing.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">alat_list</span><span class="o">=</span><span class="s2">&quot;0.10 0.20 0.40 0.60&quot;</span>
+<span class="nv">lrdmc_root_dir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+
+<span class="nv">num</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="k">for</span><span class="w"> </span>alat<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$alat_list</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>alat_<span class="si">${</span><span class="nv">alat</span><span class="si">}</span>
+<span class="w">    </span><span class="nv">num</span><span class="o">=</span><span class="sb">`</span>expr<span class="w"> </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="sb">`</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">alat</span><span class="si">}</span><span class="s2"> &quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span>grep<span class="w"> </span><span class="s2">&quot;Energy =&quot;</span><span class="w"> </span>pip0_fn.d<span class="w">  </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $3, $4}&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>/evsa.gnu
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span><span class="si">${</span><span class="nv">lrdmc_root_dir</span><span class="si">}</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>The results can be shown, e.g. by using gnuplot:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gnuplot
+<span class="c1">#  p &quot;evsa.gnu&quot; u 1:2:3 with yerr</span>
+</pre></div>
+</div>
+</li>
+<li><p>Finally, perform extrapolation of the obtained energies.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sed<span class="w"> </span><span class="s2">&quot;1i 1  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa_lin.in<span class="w">   </span><span class="c1"># linear fitting</span>
+sed<span class="w"> </span><span class="s2">&quot;1i 2  </span><span class="si">${</span><span class="nv">num</span><span class="si">}</span><span class="s2">  4  1&quot;</span><span class="w"> </span>evsa.gnu<span class="w"> </span>&gt;<span class="w"> </span>evsa_quad.in<span class="w">  </span><span class="c1"># quadratic fitting</span>
+
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa_lin.in<span class="w"> </span>&gt;<span class="w"> </span>evsa_lin.out
+funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa_quad.in<span class="w"> </span>&gt;<span class="w"> </span>evsa_quad.out
+</pre></div>
+</div>
+</li>
+</ol>
+<p>It performs a curve fitting for energies vs alat. turbo-genius asks for the degree of polynomial to be used for curve fitting. The result of fitting is written to the file <code class="docutils literal notranslate"><span class="pre">evsa.out</span></code></p>
+<p>For a quartic fitting i.e. <span class="math notranslate nohighlight">\(E(a) = E(0) + k_{1} \cdot a^2 + k_{2} \cdot a^4\)</span>, the result is like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Reduced chi^2  =   1.35815628495656
+Coefficient found
+         1  -1.17457320365212       1.485265256941217E-004
+         2 -1.273655937056194E-004  2.470000944108354E-003
+         3 -3.607514624666779E-003  6.502831469706190E-003
+</pre></div>
+</div>
+<p>where the first coefficient corresponds to <span class="math notranslate nohighlight">\(E(0)\)</span>, the second to <span class="math notranslate nohighlight">\(k_{1}\)</span>, and the third to <span class="math notranslate nohighlight">\(k_{2}\)</span>.</p>
+<p>For a linear fitting i.e. <span class="math notranslate nohighlight">\(E(a) = E(0) + k_{1} \cdot a^2\)</span>, the result is like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.843282581592029
+Coefficient<span class="w"> </span>found
+<span class="w">         </span><span class="m">1</span><span class="w">  </span>-1.17452274148461<span class="w">       </span><span class="m">1</span>.148177538465624E-004
+<span class="w">         </span><span class="m">2</span><span class="w"> </span>-1.454427631174857E-003<span class="w">  </span><span class="m">6</span>.339354112508461E-004
+</pre></div>
+</div>
+<p>where the first coefficient corresponds to <span class="math notranslate nohighlight">\(E(0)\)</span>, and the second to <span class="math notranslate nohighlight">\(k_{1}\)</span>.</p>
+<a class="reference internal image-reference" href="../../../../_images/LRDMC_extrapolation.png"><img alt="../../../../_images/LRDMC_extrapolation.png" class="align-center" src="../../../../_images/LRDMC_extrapolation.png" style="width: 70%;" /></a>
+</section>
+<section id="summary">
+<span id="turbogeniustutorial-0101-06"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">06 Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<p>The total energy obtained at the steps above and the reference value are summarized as follows:</p>
+<ul class="simple">
+<li><p>DFT (LDA) = -1.1373 Ha</p></li>
+<li><p>VMC (JDFT) = -1.1727(7) Ha</p></li>
+<li><p>LRDMC (JDFT at a=0.20 bohr) = -1.1744(7) Ha.</p></li>
+<li><p>LRDMC (JDFT extrapolated to a <span class="math notranslate nohighlight">\(\to 0\)</span>) = -1.174(5) Ha.</p></li>
+<li><p>CCSD(T)=FULL/cc-pVQZ = -1.173793 Ha (Computational Chemistry Comparison and Benchmark DataBase)</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../00index.html" class="btn btn-neutral float-left" title="Tutorials" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../02NH3/tutorial.html" class="btn btn-neutral float-right" title="Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
