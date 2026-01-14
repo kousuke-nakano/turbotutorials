@@ -3,17 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-TurboWorkflows tutorials 
+Tutorials
 ===========================================
-
-.. figure:: /_static/07logo/logo3.jpg
-    :width: 600px
 
 Here are examples of various TurboWorkflows calculations.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    
+   ./01_Water-dimer/tutorial.rst
    ./01_CO-dimer/tutorial.rst
    ./02_pyscf-HF_turbo-VMC_molecules/tutorial.rst
    ./03_pyscf-HF_turbo-VMC_crystals_at_gamma/tutorial.rst
