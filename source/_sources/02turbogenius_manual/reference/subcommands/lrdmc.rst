@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_lrdmc:
+.. _turbogenius_reference_subcommand_lrdmc:
 
 lrdmc
 ====================================================================

@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_vmcopt:
+.. _turbogenius_reference_subcommand_vmcopt:
 
 vmcopt
 ====================================================================
@@ -20,9 +20,9 @@ ACTION is one or any combination of ``-g`` (generate an input file), ``-r`` (run
 .. code-block:: bash
 
    turbogenius vmcopt --help
-   
+
 This command shows the list of available options.
-   
+
 
 Options
 --------------------------------
@@ -30,7 +30,7 @@ Options
 general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
-   
+
 .. csv-table::
    :header: "option", "default value", "description"
 
@@ -66,7 +66,7 @@ These options affect the generation of the input file. The correspondence betwee
    "-twist",               "false",  "flag for twist_average"
    "-kpts INTEGER...",     "[0, 0, 0, 0, 0, 0]", "Specify Monkhorst-Pack grids and shifts, [nkx,nky,nkz,kx,ky,kz]"
    "-num_opt_param INTEGER", 0,   "Specify the number of optimized parameters. 0 means all the parameters are optimized."
-   
+
 
 postprocess (-post) options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,7 +86,7 @@ These options affect the postprocess.
 ``-interactive``
   When this flag is enabled, the program waits for the user to press a key before showing the next plot.
 
-   
+
 Environment variables
 --------------------------------
 
@@ -151,30 +151,90 @@ Corresponding input parameters
 The correspondence between the options and the input parameters in ``datasmin.input`` is summarized as follows.
 
 .. csv-table::
-   :header: "section", "paramter", "turbogenius option"
+   :header: "turbogenius option", "section", "paramter"
 
-   "&simulation", itestr4, *optimization number* (see below)
-                , ngen,    vmcoptsteps :math:`\times` steps
-		, maxtime, maxtime (-maxtime)
-		, nw,      num_walkers (-nw)
-   "&optimization", nweight, steps (-steps)
-                  , nbinr,   bin_block (-bin)
-		  , iboot,   warmupblocks (-warmup)
-		  , tpar,    learning_rate (-learn)
-		  , parr,    regularization (-reg)
-		  , npbra,   num_opt_param (-num_opt_param)
-		  , iesdonebodyoff, (see below)
-		  , iesdtwobodyoff, (see below)
-		  , twobodyoff,     (see below)
-   "&parameters", iesd,    (see below)
-                , iesfree, (see below)
-                , iessw,   (see below)
-                , iesup,   (see below)
-                , iesm,    (see below)
+   "
+   vmcoptsteps (-vmcoptsteps)
+
+   steps (-steps)
+   ", "&simulation", "ngen = vmcoptsteps × steps"
+   "steps (-steps)", "&optimization", "nweight"
+   "num_walkers (-nw)", "&simulation", "nw"
+   "maxtime (-maxtime)", "&simulation", "maxtime"
+   "bin_block (-bin)", "&optimization", "nbinr"
+   "warmupblocks (-warmup)", "&optimization", "iboot"
+   "learning_rate (-learn)", "&optimization", "tpar"
+   "regularization (-reg)", "&optimization", "parr"
+   "num_opt_param (-num_opt_param)", "&optimization", "npbra"
+   "
+   optimizer (-optimizer)
+
+   opt_basis_coeff (-opt_det_basis_coeff or -opt_jas_basis_coeff)
+   ", "&simulation", "itestr4 (optimization number; see below)"
+   "
+   opt_onebody (-opt_onebody)
+
+   opt_twobody (-opt_twobody)
+   ", "", "
+   - &parameters iesd
+   - &optimization iesdonebodyoff
+   - &optimization iesdtwobodyoff
+   (see below)
+   "
+   "
+   opt_onebody (-opt_onebody)
+
+   opt_jas_mat (-opt_jas_mat)
+   ", "", "
+   - &parameters iesfree
+   - &optimization twobodyoff
+   (see below)
+   "
+   "
+   opt_det_mat (-opt_det_mat)
+   ", "", "
+   - &parameters iessw
+   (see below)
+   "
+   "
+   opt_det_basis_exp (-opt_det_basis_exp)
+
+   opt_det_basis_coeff (-opt_det_basis_coeff)
+   ", "", "
+   - &parameters iesup
+   (see below)
+   "
+   "
+   opt_jas_basis_exp (-opt_jas_basis_exp)
+
+   opt_jas_basis_coeff (-opt_jas_basis_exp)
+   ", "", "
+   - &parameters iesm
+   (see below)
+   "
+   "
+   twist_average (-twist)
+
+   kpoints (-kpts)
+   ", "", "(see below)"
+   "
+   opt_structure (-opt_structure)
+
+   str_learning_rate (-strlearn)
+   ", "", "
+   - &parameters ieskin
+   - &optimization idyn
+   - &optimization tion
+   - &dynamic temp
+   - &dynamic iskipdyn
+   - &dynamic maxdev_dyn
+   - &simulation ngen
+   (see below)
+   "
 
 optimizer and optimized terms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-		
+
 *optimization number* depends on optimizer (-optimizer) and opt_basis_coeff (-opt_det_basis_coeff or -opt_jas_basis_coeff):
 
 .. csv-table::
@@ -198,7 +258,7 @@ optimizer and optimized terms
 .. csv-table::
    :header: "opt_onebody", "opt_jas_mat", "iesfree", "twobodyoff"
    :stub-columns: 2
-		 
+
    ON,  ON,  1,  .false.
    ON,  OFF, 1,  .true.
    OFF, ON,  1,  .false.
@@ -231,7 +291,7 @@ optimizer and optimized terms
 
 kpoints
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   
+
 When twist_average is 0 or False, no additional parameters concerning kpoints are set.
 When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the following parameters are set, where kpoints is an array of integers containing nkx, nky, nkz, kx, ky, and kz:
 
@@ -241,9 +301,9 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
    "&parameters", yes_kpoints,      .true.
    "&kpoints",    kp_type,          1
              ,    "nk1, nk2, nk3",  "nkx, nky, nkz"
-	     ,    "k1, k2, k3",     "kx, ky, kz"
-	     ,    skip_equivalence, .true.
-	     ,    double_kpgrid,    .true.
+             ,    "k1, k2, k3",     "kx, ky, kz"
+             ,    skip_equivalence, .true.
+             ,    double_kpgrid,    .true.
 
 When twist_average is 2, i.e. the user-defined parameters are used, the following parameters are set:
 
@@ -253,10 +313,10 @@ When twist_average is 2, i.e. the user-defined parameters are used, the followin
    "&parameters", yes_kpoints,      .true.
    "&kpoints",    kp_type,          2
              ,    nk1,              length of kpoints_up or kpoints_dn
-	     ,    double_kpgrid,    .true.
+             ,    double_kpgrid,    .true.
 
 kpoints should contain two arrays kpoints_up and kpoints_dn, each holds an array of 4-component arrays having [kx, ky, kz, wkp].
-	     
+
 KPOINTS section is added to the input file datasmin.input.
 
 structure optimization
@@ -272,5 +332,5 @@ When opt_structure is enabled, the following parameters concerning the structura
                   , tion,        str_learning_rate (-strlearn)
    "&dynamic",      temp,        0.0
              ,      iskipdyn,    5
-	     ,      maxdev_dyn,  6.0
+             ,      maxdev_dyn,  6.0
    "&simulation",   ngen,        vmcoptsteps :math:`\times` steps :math:`\times` 5 (iskipdyn)
