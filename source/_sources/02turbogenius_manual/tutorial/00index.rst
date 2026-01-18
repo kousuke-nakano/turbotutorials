@@ -9,7 +9,7 @@ Tutorials
 .. figure:: /_static/07logo/logo2.png
     :width: 600px
 
-Here are examples of various calculations with TurboRVB via Turbo-Genius.
+Here are examples of various calculations with TurboRVB via TurboGenius.
 
 .. toctree::
    :maxdepth: 1

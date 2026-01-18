@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_trouble_shooting:
+.. _turbogenius_troubleshooting:
 
 Trouble shooting
 ======================================================
