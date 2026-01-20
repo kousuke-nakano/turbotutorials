@@ -36,5 +36,6 @@ K.\  Nakano et al., TurboGenius: Python suite for high-throughput calculations o
    ./getting_started/00index.rst
    ./tutorial/00index.rst
    ./reference/00index.rst
+   ./tips/00index.rst
    ./appendix/00index.rst
 
