@@ -40,21 +40,14 @@ To run the tutorials, the users also need to install the following software:
 
 * PySCF
 
-  
-TurboRVB installation
---------------------------------------------
 
-See our documents for installation of TurboRVB :ref:`turborvb_installation`.
-
-
-
-TurboGenius installation
+Installation procedure
 --------------------------------------------
 
 Let's make a conda environment to install turbogenius (if you prefer)
 
 .. code-block:: bash
-    
+
     % conda create -n turborvb python=3.8
     % conda activate turborvb
 
@@ -90,45 +83,45 @@ Common issues and solutions:
 
    .. code-block:: plain
 
-	$ turbogenius --help
-	Traceback (most recent call last):
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py", line 46, in <module>
-	    os.path.dirname(subprocess.check_output(cmd, shell=True, env=sys_env))
-	                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	  File "/envs/turborvb/lib/python3.11/subprocess.py", line 466, in check_output
-	    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
-	           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	  File "/envs/turborvb/lib/python3.11/subprocess.py", line 571, in run
-	    raise CalledProcessError(retcode, process.args,
-	subprocess.CalledProcessError: Command 'which readalles.x' returned non-zero exit status 1.
+        $ turbogenius --help
+        Traceback (most recent call last):
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py", line 46, in <module>
+            os.path.dirname(subprocess.check_output(cmd, shell=True, env=sys_env))
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          File "/envs/turborvb/lib/python3.11/subprocess.py", line 466, in check_output
+            return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+          File "/envs/turborvb/lib/python3.11/subprocess.py", line 571, in run
+            raise CalledProcessError(retcode, process.args,
+        subprocess.CalledProcessError: Command 'which readalles.x' returned non-zero exit status 1.
 
-	During handling of the above exception, another exception occurred:
+        During handling of the above exception, another exception occurred:
 
-	Traceback (most recent call last):
-	  File "/envs/turborvb/bin/turbogenius", line 3, in <module>
-	    from turbogenius.turbo_genius_cli import cli
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/__init__.py", line 11, in <module>
-	    from . import *
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/correlated_sampling_genius.py", line 21, in <module>
-	    from turbogenius.pyturbo.vmc import VMC
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/__init__.py", line 10, in <module>
-	    from . import *
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/lrdmc.py", line 20, in <module>
-	    from turbogenius.pyturbo.namelist import Namelist
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/namelist.py", line 23, in <module>
-	    from turbogenius.pyturbo.utils.utility import get_str_variable_type_auto
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/utility.py", line 29, in <module>
-	    from .env import pyturbo_root
-	  File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py", line 50, in <module>
-	    raise ValueError(
-	ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)
-	        
+        Traceback (most recent call last):
+          File "/envs/turborvb/bin/turbogenius", line 3, in <module>
+            from turbogenius.turbo_genius_cli import cli
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/__init__.py", line 11, in <module>
+            from . import *
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/correlated_sampling_genius.py", line 21, in <module>
+            from turbogenius.pyturbo.vmc import VMC
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/__init__.py", line 10, in <module>
+            from . import *
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/lrdmc.py", line 20, in <module>
+            from turbogenius.pyturbo.namelist import Namelist
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/namelist.py", line 23, in <module>
+            from turbogenius.pyturbo.utils.utility import get_str_variable_type_auto
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/utility.py", line 29, in <module>
+            from .env import pyturbo_root
+          File "/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py", line 50, in <module>
+            raise ValueError(
+        ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)
+
    it occurs when TurboRVB is not installed or the executables of TurboRVB are not included in the command search paths. Please make sure that you have installed TurboRVB following the inststruction :ref:`turborvb_installation`. Then, add the directory to the ``PATH`` environment variable where the TurboRVB executables are installed, or set it to ``TURBORVB_ROOT`` as shown in the error message.
 
-2. **Python environment issues**
-   
+2. Python environment issues
+
    If you have problems with the Python environment:
-   
+
    * Ensure you're using the correct Python version
    * Try creating a fresh conda environment
    * Check that pip is up to date: ``pip install --upgrade pip``

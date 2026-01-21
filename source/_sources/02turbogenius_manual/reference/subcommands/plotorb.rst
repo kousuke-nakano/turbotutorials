@@ -1,3 +1,5 @@
+.. _turbogenius_reference_subcommand_plotorb:
+
 plotorb
 ====================================================================
 

@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_makefort10:
+.. _turbogenius_reference_subcommand_makefort10:
 
 makefort10
 ====================================================================

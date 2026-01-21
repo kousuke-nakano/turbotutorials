@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_convertfort10mol:
+.. _turbogenius_reference_subcommand_convertfort10mol:
 
 convertfort10mol
 ====================================================================

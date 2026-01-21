@@ -1,3 +1,5 @@
+.. _turbogenius_reference_general_description:
+
 General description
 ===========================================
 
@@ -10,10 +12,10 @@ try to type the following command:
 
     % turbogenius --help
     Usage: turbogenius [OPTIONS] COMMAND [ARGS]...
-    
+
     Options:
     --help  Show this message and exit.
-    
+
     Commands:
     convertfort10        convertfort10_genius
     convertfort10mol     convertfort10mol_genius
@@ -36,7 +38,7 @@ e.g., vmcopt:
 
     % turbogenius vmcopt --help
     Usage: turbogenius vmcopt [OPTIONS]
-    
+
     Options:
     -post                 Postprocess
     -r                    Run a program

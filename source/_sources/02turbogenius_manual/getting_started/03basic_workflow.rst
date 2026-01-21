@@ -1,3 +1,5 @@
+.. _turbogenius_basic_workflow:
+
 Basic workflow
 ======================================================
 
@@ -12,7 +14,7 @@ Reference link
    - :ref:`turbogeniustutorial_subcommand_makefort10`
 
 2. Conversion
-     
+
    - :ref:`turbogeniustutorial_subcommand_convertfort10mol`
 
 3. DFT

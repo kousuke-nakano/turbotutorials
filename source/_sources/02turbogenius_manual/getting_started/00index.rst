@@ -1,3 +1,5 @@
+.. _turbogenius_getting_started:
+
 Getting started
 ===========================================
 
