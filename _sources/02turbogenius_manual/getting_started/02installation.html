@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation of TurboGenius &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+  <title>Installation of TurboGenius &mdash; Turbotutorials Updated on 21/01/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=938023e0"></script>
+      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=853fee55"></script>
       <script src="../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -50,8 +50,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Getting started</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Installation of TurboGenius</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#turborvb-installation">TurboRVB installation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id1">TurboGenius installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-procedure">Installation procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
@@ -60,6 +59,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tips/00index.html">Tips and trouble shooting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
@@ -125,12 +125,8 @@ If you have any problem on the installation, please visit <a class="reference ex
 <li><p>PySCF</p></li>
 </ul>
 </section>
-<section id="turborvb-installation">
-<h2>TurboRVB installation<a class="headerlink" href="#turborvb-installation" title="Permalink to this heading"></a></h2>
-<p>See our documents for installation of TurboRVB <span class="xref std std-ref">turborvb_installation</span>.</p>
-</section>
-<section id="id1">
-<h2>TurboGenius installation<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<section id="installation-procedure">
+<h2>Installation procedure<a class="headerlink" href="#installation-procedure" title="Permalink to this heading"></a></h2>
 <p>Let’s make a conda environment to install turbogenius (if you prefer)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>turborvb<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
 %<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>turborvb
@@ -193,7 +189,7 @@ ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)
 </div>
 <p>it occurs when TurboRVB is not installed or the executables of TurboRVB are not included in the command search paths. Please make sure that you have installed TurboRVB following the inststruction <span class="xref std std-ref">turborvb_installation</span>. Then, add the directory to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable where the TurboRVB executables are installed, or set it to <code class="docutils literal notranslate"><span class="pre">TURBORVB_ROOT</span></code> as shown in the error message.</p>
 </li>
-<li><p><strong>Python environment issues</strong></p>
+<li><p>Python environment issues</p>
 <p>If you have problems with the Python environment:</p>
 <ul class="simple">
 <li><p>Ensure you’re using the correct Python version</p></li>

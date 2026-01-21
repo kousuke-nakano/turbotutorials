@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_vmc:
+.. _turbogenius_reference_subcommand_vmc:
 
 vmc
 ====================================================================
@@ -20,7 +20,7 @@ ACTION is one or any combination of ``-g`` (generate an input file), ``-r`` (run
 .. code-block:: bash
 
    turbogenius vmc --help
-   
+
 This command shows the list of available options.
 
 
@@ -30,7 +30,7 @@ Options
 general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
-   
+
 .. csv-table::
    :header: "option", "default value", "description"
 
@@ -142,6 +142,11 @@ The correspondence between the options and the input parameters in ``datasvmc.in
      - &vmc epscut = 0.0
    "
    "kpoints (-kpts)", "&kpoints", "(see below)"
+   "force_calc_flag (-force)", "", "
+   - &vmc epscut
+   - &parameters typedyncell
+   - &parameters yespress"
+
 
 kpoints (advanced)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -155,9 +160,9 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
    "&parameters", yes_kpoints,      .true.
    "&kpoints",    kp_type,          1
              ,    "nk1, nk2, nk3",  "nkx, nky, nkz"
-	     ,    "k1, k2, k3",     "kx, ky, kz"
-	     ,    skip_equivalence, .true.
-	     ,    double_kpgrid,    .true.
+             ,    "k1, k2, k3",     "kx, ky, kz"
+             ,    skip_equivalence, .true.
+             ,    double_kpgrid,    .true.
 
 When twist_average is 2, i.e. the user-defined parameters are used, the following parameters are set:
 
@@ -167,6 +172,6 @@ When twist_average is 2, i.e. the user-defined parameters are used, the followin
    "&parameters", yes_kpoints,      .true.
    "&kpoints",    kp_type,          2
              ,    nk1,              length of kpoints_up or kpoints_dn
-	     ,    double_kpgrid,    .true.
+             ,    double_kpgrid,    .true.
 
 kpoints should contain two arrays kpoints_up and kpoints_dn, each holds an array of 4-component arrays having [kx, ky, kz, wkp].

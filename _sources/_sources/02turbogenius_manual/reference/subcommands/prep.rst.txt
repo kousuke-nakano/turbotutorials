@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_prep:
+.. _turbogenius_reference_subcommand_prep:
 
 prep
 ====================================================================

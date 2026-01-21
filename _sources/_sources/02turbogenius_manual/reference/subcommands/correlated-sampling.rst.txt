@@ -1,4 +1,4 @@
-.. _turbogeniustutorial_subcommand_correlated-sampling:
+.. _turbogenius_reference_subcommand_correlated-sampling:
 
 correlated-sampling
 ====================================================================

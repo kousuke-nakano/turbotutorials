@@ -1,7 +1,10 @@
+.. _turbogenius_reference:
+
 Reference guide
 ======================================================
 
-Here are references for formats of input file, executions, and scripts with TurboRVB.
+Here are references for TurboGenius commandline interface, including descriptions of optional parameters, and lists of input and output files.
+
 
 .. toctree::
    :maxdepth: 1

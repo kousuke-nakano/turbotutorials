@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurboGenius manual &mdash; Turbotutorials Updated on 14/01/2026 documentation</title>
+  <title>TurboGenius manual &mdash; Turbotutorials Updated on 21/01/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=153a98d2" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=938023e0"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=853fee55"></script>
       <script src="../../_static/doctools.js?v=888ff710"></script>
       <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started/00index.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/00index.html">Tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/00index.html">Tips and trouble shooting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
@@ -81,16 +82,24 @@
            <div itemprop="articleBody">
              
   <section id="turbogenius-manual">
-<h1>TurboGenius manual<a class="headerlink" href="#turbogenius-manual" title="Permalink to this heading"></a></h1>
+<span id="turbogenius-manual-index"></span><h1>TurboGenius manual<a class="headerlink" href="#turbogenius-manual" title="Permalink to this heading"></a></h1>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/logo2.png"><img alt="../../_images/logo2.png" src="../../_images/logo2.png" style="width: 600px;" /></a>
 </figure>
 <p>TurboGenius is a Python package designed to fully control <em>ab initio</em> quantum Monte Carlo (QMC) calculations using a Python script, which allows one to perform high-throughput calculations combined with TurboRVB.</p>
+<p><strong>Features of turbogenius</strong></p>
+<p>One can manage any job of TurboRVB on python scripts, or on your terminal using the provided command line tool turbogenius.</p>
+<p>For python users, several one-to-one corresponding python modules (classes) are provided, i.e., makefort10.x → Makefort10_genius class in makefort10_genius.py, turborvb.x → VMC_genius class in vmc_genius.py. TurboGenius is designed as a higher layer package that provide several complicated procedures and functions such as fully automatic workflows. TurboGenius is implemented based on the lower layer packages pyturbo and TurboRVB. You can see several examples of TurboGenius scripts in the tests directory. You can also see several simple workflows using TurboGenius in the tests directory.</p>
+<p><strong>Features of pyturbo</strong></p>
+<p>One can manage any job of TurboRVB on python scripts. There are one-to-one corresponding python modules (classes), i.e., makefort10.x → Makefort10 class in makefort10.py, convertfort10.x → Convertfort10mol class in convertfort10mol.py. pyturbo is designed as a lower layer package such that the modules can be used as components of higher-level packages. Indeed, the classes are implemented as simple but flexible as possible. Other complicated methods and modules such as fully automatic workflows should be provided at the higher-level packages such as TurboGenius. You can see several examples of pyturbo scripts in the tests directory.</p>
+<p><strong>Reference</strong></p>
+<p>K. Nakano et al., TurboGenius: Python suite for high-throughput calculations of ab initio quantum Monte Carlo methods, J. Chem. Phys. 159, 224801 (2023).</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started/00index.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial/00index.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference/00index.html">Reference guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tips/00index.html">Tips and trouble shooting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
 </ul>
 </div>

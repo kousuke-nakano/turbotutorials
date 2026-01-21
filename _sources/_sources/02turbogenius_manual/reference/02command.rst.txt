@@ -1,9 +1,11 @@
+.. _turbogenius_reference_subcommand:
+
 Subcommand reference
 ===========================================
 
 .. toctree::
    :maxdepth: 1
-   
+
    ./subcommands/convertfort10.rst
    ./subcommands/convertfort10mol.rst
    ./subcommands/convertpfaff.rst
