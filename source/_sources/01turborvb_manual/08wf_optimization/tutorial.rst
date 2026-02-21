@@ -177,22 +177,65 @@ For the SR method, one should set ``tpar`` much smaller, typically 1.0d-4.
 05-03 parr
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``parr`` is a regularization parameter which is added to the diagonal elements of a preconditioning matrix S, in Eq.128 of the review_ paper.
-In the LR method, XXX
+In the LR method (corresponding to ``kl=6`` or ``kl=7`` in TurboRVB), ``parr`` is added to the diagonal elements of the SR matrix to regularize small or near-zero eigenvalues, preventing numerical instabilities when the matrix becomes ill-conditioned.
 
-:red:`KN is now working...`
+The regularization is applied as:
+
+.. math::
+
+    S'_{ii} = S_{ii} (1 + \varepsilon)
+
+where :math:`\varepsilon` = ``parr`` and :math:`S'` is the regularized matrix.
+
+When ``parr < 0``, the Umrigar regularization method is activated, which provides more robust but computationally expensive regularization.
+
+For the LR method, ``parr`` = 0.01 - 0.1 is typically recommended. The value of ``parr`` can be automatically adjusted during optimization when ``change_parr=.true.``, decreasing when convergence is good (``devmaxc ≤ parcutpar + 1.5`` for 3+ iterations) and increasing when convergence is poor (``devmaxc > parcutpar + 3`` for 15+ iterations).
+
+Default value: ``0.0d0`` (no regularization). Larger ``parr`` values provide more stability but slower convergence.
 
 .. _turborvbtutorial_98_05_04:
 
 05-04 ncg
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This works only for the LR method. 
+``ncg`` is an integer parameter that specifies the number of collective parameters (conjugate gradient directions) to be stored and used for Hessian computation to accelerate convergence. It represents the number of previous SR (Stochastic Reconfiguration) directions that are kept in memory to build an approximate Hessian matrix.
 
-:red:`KN is now working...`
+When ``ncg = 1`` (default), only the current SR direction is used, which corresponds to the standard Stochastic Reconfiguration method. This is the most stable and commonly used setting.
+
+When ``ncg > 1``, previous ``ncg`` SR directions are stored and used to compute an approximate Hessian matrix, which accelerates convergence toward the minimum. **Note**: This only works with Linear Method (``itestrr = -4``), not with standard SR method. If ``ncg > 1`` and ``itestrr ≠ -4``, ``ncg`` is automatically set to ``1``.
+
+The total number of parameters considered in optimization is:
+
+.. math::
+
+    n_{\rm binmax} = ncg + npbra
+
+where ``npbra`` is the maximum number of normal parameters.
+
+Default value: ``1`` (simple SR method). For accelerated convergence with Linear Method, ``ncg = 4`` or larger can be used, but this requires more memory (stores ``ncg × np`` values) and may be less stable than ``ncg = 1``.
 
 .. _turborvbtutorial_98_05_05:
 
-05-05 npbra and parcurpar
+05-05 npbra and parcutpar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This works only for the LR method.
+``npbra`` is an integer parameter that specifies the maximum number of normal (non-collective) parameters to be included in the optimization. It is used in conjunction with ``ncg`` (number of collective parameters) to determine the total number of parameters considered: ``nbinmax = ncg + npbra``.
 
-:red:`KN is now working...`
+In the optimization process, parameters are selected based on their importance (measured by :math:`|f_k/\sigma_{f_k}|`). The ``npbra`` most important normal parameters are included, in addition to the ``ncg`` collective parameters.
+
+``parcutpar`` is a cutoff threshold parameter used to select which normal parameters are included in the optimization. Parameters with a normalized force-to-error ratio :math:`|f_k/\sigma_{f_k}|` greater than ``parcutpar`` are considered for optimization. It is also used in convergence criteria for automatic adjustment of ``parr``.
+
+The parameter selection criterion is:
+
+.. math::
+
+    {\rm cost} = \left| \frac{f_k}{\sigma_{f_k}} \right| > {\rm parcutpar}
+
+where :math:`f_k` is the force (gradient) for parameter :math:`k` and :math:`\sigma_{f_k}` is the error (standard deviation).
+
+Together, ``parcutpar`` determines **which** parameters are selected (based on importance), while ``npbra`` determines **how many** normal parameters can be selected (maximum count). Only parameters with :math:`|f_k/\sigma_{f_k}| > {\rm parcutpar}` are considered, up to a maximum of ``npbra`` normal parameters.
+
+``parcutpar`` is also used in convergence detection for automatic ``parr`` adjustment:
+
+- Good convergence: ``devmaxc ≤ parcutpar + 1.5`` (triggers decrease of ``parr``)
+- Poor convergence: ``devmaxc > parcutpar + 3`` (triggers increase of ``parr``)
+
+Default values: ``npbra = 0`` (only collective parameters are used), ``parcutpar = 0.0d0`` (no cutoff). Typical values: ``npbra = 20``, ``parcutpar = 4.0``.
