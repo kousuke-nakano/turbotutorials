@@ -29,3 +29,33 @@ initialization parameters
    "mo_num_conv", "int ", "-1", "number of molecular orbitals to use for convergence. default is -1 (use all)."
    "mo_occ", "list ", "[]", "list of molecular orbital occupation eigenvalues."
    "mo_occ_delta", "float ", "0.05", "delta value for initializing occupation numbers."
+
+
+Description
+--------------------------------
+
+In the :class:`Init_occ_workflow` class,
+the initial occupation workflow is executed asynchronously (via :meth:`async_launch`).
+The workflow initializes molecular orbital occupations in ``fort.10`` for
+LRDMC optimization by setting occupation numbers and constraint flags (no job
+submission; runs locally).
+
+If the pkl file already exists and :attr:`init_occ_rerun` is :const:`False`,
+the operation is skipped. Otherwise, the workflow:
+
+- Reads ``fort.10`` with :class:`turbogenius.pyturbo.io_fort10.IO_fort10`,
+  selects MO indices from :attr:`mo_occ_thr` or :attr:`mo_num_conv`, and
+  optionally fixes occupied orbitals via :attr:`mo_occ_fixed_list` and
+  :attr:`mo_occ_fixed_occupied`.
+- Updates constraint and coefficient data (with :attr:`mo_occ_delta` for
+  non-fixed orbitals) and writes the modified fort.10 in place.
+- Persists state in a pkl file under the ``pkl`` directory.
+
+On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).
+
+See also
+--------------------------------
+
+- :class:`turbogenius.pyturbo.io_fort10.IO_fort10` — fort.10 I/O used for
+  occupation and constraint updates.

@@ -60,3 +60,34 @@ pyscf parameters
    "smearing_sigma", "float ", "0.00", "smearing width in Ha."
    "force_wf_complex", "bool ", "False", "force complex wavefunction."
    "use_jkmethod", "bool", "False", "use JK method for integrals."
+
+
+Description
+--------------------------------
+
+In the :class:`PySCF_workflow` class, the PySCF workflow is executed
+asynchronously (via :meth:`async_launch`). The workflow runs an electronic
+structure calculation with PySCF (HF, DFT, optionally MP2/CCSD) and converts
+the results to TREXIO format for use in TurboRVB.
+
+If the pkl file already exists and :attr:`pyscf_rerun` is :const:`False`, the
+calculation is skipped. Otherwise, the workflow:
+
+- Writes a ``run.py`` script that calls the PySCF wrapper with the configured
+  options (structure, basis, ECP, SCF method, twist averaging, etc.).
+- Submits the job as a Python run (no TurboRVB binary), waits for submission
+  and completion using :func:`asyncio.sleep`, then fetches output files (e.g.
+  PySCF output, checkpoint, ``int1e_ovlp.npy``).
+- Loads the SCF result from the checkpoint, stores the total energy in
+  ``output_values["energy"]``, and runs :func:`pyscf_to_trexio` to produce the
+  TREXIO file (e.g. ``trexio.hdf5``).
+- Persists state in a pkl file under the ``pkl`` directory.
+
+On success, the method returns (status, list of output file paths under the
+root directory, and an output-values dict containing ``"energy"``).
+
+See also
+--------------------------------
+
+- :func:`turboworkflows.pyscf_tools.pyscf_to_trexio.pyscf_to_trexio` — PySCF
+  to TREXIO conversion.
