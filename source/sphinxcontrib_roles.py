@@ -37,7 +37,7 @@ def html_page_context(app, pagename, templatename, context, doctree):
 
 
 def setup(app):
-    app.add_config_value('roles', [], 'html')
+    app.add_config_value('roles', {}, 'html')
     app.connect("builder-inited", on_builder_inited)
     app.connect("html-collect-pages", on_html_collect_pages)
     app.connect("html-page-context", html_page_context)
