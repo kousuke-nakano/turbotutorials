@@ -57,3 +57,61 @@ vmcopt parameters
    "vmcopt_twist_average", "bool", "False", "flag for twist average"
    "vmcopt_kpoints", "list", "[]", "Monkhorst-Pack k-grids, [kx,ky,kz,nx,ny,nz], kx,ky,kz for grids, nx,ny,nz for shift=0, noshift=1."
    "vmcopt_maxtime", "int", "172000", "maximum time (sec.)"
+
+
+Description
+--------------------------------
+
+In the :class:`VMCopt_workflow` class, the VMC optimization workflow is
+executed asynchronously (via :meth:`async_launch`). The workflow runs VMC
+optimization in a continuation loop (up to :attr:`vmcopt_max_continuation`
+runs). For each continuation index :math:`i_{\mathrm{cont}}`:
+
+**test run (icont = 0)**
+
+- Uses fixed trial parameters (:attr:`vmcopt_trial_optsteps`,
+  :attr:`vmcopt_trial_steps`) to produce energy and error-bar data.
+- No step estimation is performed.
+- Results are used by the next run to estimate required VMC steps.
+
+**production run (icont ≥ 1)**
+
+- Loads the previous run's results from the corresponding pkl file.
+- Estimates the VMC steps required to reach :attr:`vmcopt_target_error_bar`
+  via the relation
+
+  .. math::
+
+     N_{\mathrm{steps}} \propto \left( \frac{\sigma}{E_{\mathrm{target}}}
+     \right)^2
+
+  where :math:`\sigma` is the error bar from the previous run and
+  :math:`E_{\mathrm{target}}` is the target error bar.
+- Applies a minimum-step floor using :attr:`vmcopt_minimum_blocks` and
+  :attr:`vmcopt_warmupblocks`.
+- Estimates total runtime from the previous run's
+  ``estimated_time_for_1_generation`` and logs it.
+- Builds a :class:`VMCopt_genius` instance with the estimated ``steps`` and
+  fixed :attr:`vmcopt_production_optsteps`, then generates input and submits
+  the job.
+
+For each run, the method:
+
+- Waits for job submission and completion using :func:`asyncio.sleep`.
+- Fetches output files (e.g. ``fort.10``, ``fort.11``, ``out_min_*``,
+  ``parminimized.d``, ``forces.dat``).
+- Stores and plots results; for :math:`i_{\mathrm{cont}} > 0`, computes
+  parameter averages discarding an initial fraction
+  (:attr:`vmcopt_optwarmupsteps_ratio`).
+- Persists state in pkl files under the ``pkl`` directory.
+
+If all continuation pkl files already exist and :attr:`vmcopt_rerun` is
+:const:`False`, the calculation is skipped. On success, the method returns
+(status, list of output file paths under the root directory, and an empty
+output-values dict).
+
+See also
+--------------------------------
+
+- :class:`turbogenius.vmc_opt_genius.VMCopt_genius` — VMC optimization driver
+  used for input generation and result handling.

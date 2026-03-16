@@ -51,3 +51,37 @@ LRDMC extrapolation parameters
    "lrdmc_pw_regularization", "float ", "0.0", "if it is > 0.0, the Pathak-Wager regularization is turned on."
    "lrdmc_maxtime", "int ", "172000", "maximum time (sec.)"
    "degree_poly", "int ", "2", "degree of polynomial for extrapolation."
+
+
+Description
+--------------------------------
+
+In the :class:`LRDMC_ext_workflow` class, the LRDMC extrapolation workflow
+is executed asynchronously (via :meth:`async_launch`). The workflow runs LRDMC
+at multiple time step (alat) values and extrapolates the energy to the
+:math:`a \to 0` limit using polynomial fitting.
+
+The workflow:
+
+- For each value in :attr:`lrdmc_alat_list`, creates a subdirectory
+  ``alat_{value}``, copies :attr:`lrdmc_input_files` (e.g. ``fort.10``,
+  ``pseudo.dat``) into it, and launches an :class:`LRDMC_workflow` instance
+  with that alat. All alat runs are launched concurrently with
+  :func:`asyncio.gather`.
+- After all runs complete, collects energies and errors from each alat
+  directory, writes ``evsa.in`` and ``evsa.gnu``, and runs ``funvsa.x`` to
+  fit energy vs. :math:`a^2` with a polynomial of degree :attr:`degree_poly`.
+- Reads the extrapolated energy and error (constant term) from ``evsa.out``,
+  stores them in ``output_values["energy"]`` and ``output_values["error"]``,
+  and generates a plot ``Energy_vs_alat.png``.
+
+No pkl-based skip logic is applied at the top level; each inner
+:class:`LRDMC_workflow` uses its own continuation and pkl state. On success,
+the method returns (status, list of output file paths under the root
+directory, and an output-values dict containing the extrapolated
+``"energy"`` and ``"error"``).
+
+See also
+--------------------------------
+
+- :class:`LRDMC_workflow` — inner workflow used for each alat value.

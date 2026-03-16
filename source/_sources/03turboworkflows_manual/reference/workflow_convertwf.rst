@@ -29,3 +29,33 @@ conversion parameters
    "clean_flag", "bool ", "True", "clean temporary files."
    "only_generate_template", "bool ", "False", "only generate template without full conversion."
    "change_contr", "bool ", "True", "enable to change contraction coefficients."
+
+
+Description
+--------------------------------
+
+In the :class:`Conversion_wf_workflow` class,
+the wavefunction conversion workflow is executed asynchronously (via
+:meth:`async_launch`). The workflow converts wavefunctions between formats
+(sd, agps, agpu, pf) using :meth:`Wavefunction.to_agp` for AGP singlet/triplet
+(no job submission; runs locally).
+
+If the pkl file already exists and :attr:`conversion_wf_rerun` is
+:const:`False`, the conversion is skipped. Otherwise, the workflow:
+
+- Reads ``fort.10`` with :class:`Wavefunction`. Depending on :attr:`to_wf`:
+  conversion to ``sd`` or ``pf`` raises :exc:`NotImplementedError`; for
+  ``agps`` or ``agpu``, calls :meth:`to_agp` with :attr:`grid_size`,
+  :attr:`additional_hyb`, :attr:`nosym`, :attr:`clean_flag`,
+  :attr:`only_generate_template`, and :attr:`change_contr`.
+- Persists state in a pkl file under the ``pkl`` directory.
+
+On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).
+
+
+See also
+--------------------------------
+
+- :class:`turbogenius.wavefunction.Wavefunction` — wavefunction I/O and
+  conversion (e.g. :meth:`to_agp`).

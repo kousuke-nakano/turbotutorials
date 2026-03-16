@@ -61,3 +61,49 @@ LRDMCopt parameters
    "lrdmcopt_twist_average", "bool ", "False", "flag for twist average"
    "lrdmcopt_kpoints", "list ", "[]", "Monkhorst-Pack k-grids, [kx,ky,kz,nx,ny,nz], kx,ky,kz for grids, nx,ny,nz for shift=0, noshift=1."
    "lrdmcopt_maxtime", "int ", "172000", "maximum time (sec.)"
+
+
+Description
+--------------------------------
+
+In the :class:`LRDMCopt_workflow` class, the LRDMC optimization workflow is
+executed asynchronously (via :meth:`async_launch`). The workflow runs LRDMC
+optimization in a continuation loop (up to
+:attr:`lrdmcopt_max_continuation` runs). For each continuation index
+:math:`i_{\mathrm{cont}}`:
+
+**test run (icont = 0)**
+
+- Uses fixed trial parameters (:attr:`lrdmcopt_trial_optsteps`,
+  :attr:`lrdmcopt_trial_steps`) to produce energy and error-bar data.
+- No step estimation is performed.
+- Results are used by the next run to estimate required LRDMC steps.
+
+**production run (icont ≥ 1)**
+
+- Loads the previous run's results from the corresponding pkl file.
+- Estimates the LRDMC steps required to reach
+  :attr:`lrdmcopt_target_error_bar` via
+  :math:`N_{\mathrm{steps}} \propto (\sigma / E_{\mathrm{target}})^2`.
+- Applies a minimum-step floor using :attr:`lrdmcopt_minimum_blocks` and
+  :attr:`lrdmcopt_warmupblocks`.
+- Estimates total runtime and builds a :class:`LRDMCopt_genius` instance with
+  the estimated ``steps`` and fixed :attr:`lrdmcopt_production_optsteps`,
+  then generates input and submits the job.
+
+For each run, the workflow waits for job submission and completion (using
+:func:`asyncio.sleep`), fetches output files (e.g. ``fort.10``, ``fort.11``,
+``fort.12``, ``out_fn_opt_*``, ``parminimized.d``), stores and plots results,
+and for :math:`i_{\mathrm{cont}} > 0` computes parameter averages discarding
+an initial fraction (:attr:`lrdmcopt_optwarmupsteps_ratio`). State is
+persisted in pkl files under the ``pkl`` directory.
+
+If all continuation pkl files already exist and :attr:`lrdmcopt_rerun` is
+:const:`False`, the calculation is skipped. On success, the method returns
+(status, list of output file paths, and an empty output-values dict).
+
+See also
+--------------------------------
+
+- :class:`turbogenius.lrdmc_opt_genius.LRDMCopt_genius` — LRDMC optimization
+  driver used for input generation and result handling.
