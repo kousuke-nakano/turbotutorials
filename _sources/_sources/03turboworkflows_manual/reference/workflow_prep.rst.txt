@@ -47,3 +47,33 @@ DFT parameters
    "dft_independent_kpoints", "bool ", "False", "flag for independent k-point calculation"
    "dft_thr_lindep", "float ", "1.0e-13", "inverse of the condition number of basis sets. prep cuts the redundancy."
    "dft_kpoints", "list ", "[1, 1, 1, 0, 0, 0]", "Monkhorst-Pack k-grids, [kx,ky,kz,nx,ny,nz], kx,ky,kz for grids, nx,ny,nz for shift=0, noshift=1."
+
+
+Description
+--------------------------------
+
+In the :class:`DFT_workflow` class, the DFT (prep) workflow is executed
+asynchronously (via :meth:`async_launch`). The workflow runs a single DFT
+calculation using the prep.x binary from TurboRVB, with support for
+twist-averaged boundary conditions and k-point sampling.
+
+If the pkl file already exists and :attr:`dft_rerun` is :const:`False`, the
+calculation is skipped. Otherwise, the workflow:
+
+- Builds a :class:`DFT_genius` instance from the constructor parameters (grid
+  size, box, smearing, XC, twist averaging, etc.) and generates ``prep.input``.
+- Submits the job (prep-mpi.x or prep-serial.x), waits for submission and
+  completion using :func:`asyncio.sleep`, then fetches output files (e.g.
+  ``out_prep``, ``occupationlevels.dat``, ``EDFT_vsk.dat``, and optionally
+  ``fort.10_new`` or twist-averaging scratch files).
+- Persists state in a pkl file under the ``pkl`` directory.
+
+On success, the method returns (status, list of output file paths under the
+root directory, and an output-values dict with ``"energy"`` and ``"error"``
+set to :const:`None`).
+
+See also
+--------------------------------
+
+- :class:`turbogenius.prep_genius.DFT_genius` — DFT/prep driver used for
+  input generation.

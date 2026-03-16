@@ -158,6 +158,34 @@
 </table>
 </section>
 </section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">Init_occ_workflow</span></code> class,
+the initial occupation workflow is executed asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>).
+The workflow initializes molecular orbital occupations in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> for
+LRDMC optimization by setting occupation numbers and constraint flags (no job
+submission; runs locally).</p>
+<p>If the pkl file already exists and <code class="xref py py-attr docutils literal notranslate"><span class="pre">init_occ_rerun</span></code> is <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>,
+the operation is skipped. Otherwise, the workflow:</p>
+<ul class="simple">
+<li><p>Reads <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> with <code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.pyturbo.io_fort10.IO_fort10</span></code>,
+selects MO indices from <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_occ_thr</span></code> or <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_num_conv</span></code>, and
+optionally fixes occupied orbitals via <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_occ_fixed_list</span></code> and
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_occ_fixed_occupied</span></code>.</p></li>
+<li><p>Updates constraint and coefficient data (with <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_occ_delta</span></code> for
+non-fixed orbitals) and writes the modified fort.10 in place.</p></li>
+<li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.pyturbo.io_fort10.IO_fort10</span></code> — fort.10 I/O used for
+occupation and constraint updates.</p></li>
+</ul>
+</section>
 </section>
 
 

@@ -173,6 +173,49 @@
 </table>
 </section>
 </section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">TREXIO_convert_to_turboWF</span></code> class, the TREXIO-to-TurboRVB
+conversion workflow is executed asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>).
+The workflow converts TREXIO format files to TurboRVB wavefunction format
+(fort.10) with Jastrow factor initialization (no job submission; runs locally).</p>
+<p>If the pkl file already exists and <code class="xref py py-attr docutils literal notranslate"><span class="pre">trexio_rerun</span></code> is <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>,
+the calculation is skipped. Otherwise, the workflow:</p>
+<ul class="simple">
+<li><p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">twist_average</span></code> is enabled, reads <code class="docutils literal notranslate"><span class="pre">kp_info.dat</span></code> to get the number
+of k-points and, for each k-point, uses the corresponding TREXIO file
+(e.g. <code class="docutils literal notranslate"><span class="pre">k{num}_trexio.hdf5</span></code>). Builds Jastrow basis sets from
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">jastrow_basis_dict</span></code> (if non-empty) via
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Jas_Basis_sets</span></code>, then calls <code class="xref py py-func docutils literal notranslate"><span class="pre">trexio_to_turborvb_wf()</span></code> with
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">jastrow_1body</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">jastrow_2body</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">jastrow_4body</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">max_occ_conv</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_num_conv</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">only_mol</span></code>, and
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">nosymmetry</span></code>. Moves each resulting <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> into
+<code class="docutils literal notranslate"><span class="pre">turborvb.scratch/fort.10_{num}</span></code>, then copies <code class="docutils literal notranslate"><span class="pre">fort.10_000000</span></code> back
+to the working directory as <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>. Reads <code class="docutils literal notranslate"><span class="pre">kp_info.dat</span></code> again and
+sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">output_values[&quot;kpoints&quot;]</span></code> to the k-point lists for up/down
+spins.</p></li>
+<li><p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">twist_average</span></code> is disabled, uses the single TREXIO file
+(<code class="xref py py-attr docutils literal notranslate"><span class="pre">trexio_filename</span></code>), runs <code class="xref py py-func docutils literal notranslate"><span class="pre">trexio_to_turborvb_wf()</span></code> once, and
+sets <code class="xref py py-attr docutils literal notranslate"><span class="pre">output_values[&quot;mo_occ&quot;]</span></code> from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Trexio_wrapper_r</span></code>‘s <code class="xref py py-attr docutils literal notranslate"><span class="pre">mo_occupation</span></code> (twist-averaged
+<code class="docutils literal notranslate"><span class="pre">mo_occ</span></code> is noted as to be implemented).</p></li>
+<li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>On success, the method returns (status, list of output file paths under the
+root directory, and an output-values dict containing <code class="docutils literal notranslate"><span class="pre">&quot;mo_occ&quot;</span></code> and,
+when <code class="xref py py-attr docutils literal notranslate"><span class="pre">twist_average</span></code> is enabled, <code class="docutils literal notranslate"><span class="pre">&quot;kpoints&quot;</span></code>).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">turbogenius.trexio_to_turborvb.trexio_to_turborvb_wf()</span></code> — TREXIO to
+TurboRVB wavefunction conversion.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.trexio_wrapper.Trexio_wrapper_r</span></code> — TREXIO file reader
+used for MO occupation and labels.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.pyturbo.basis_set.Jas_Basis_sets</span></code> — Jastrow basis
+sets used when <code class="xref py py-attr docutils literal notranslate"><span class="pre">jastrow_basis_dict</span></code> is provided.</p></li>
+</ul>
+</section>
 </section>
 
 

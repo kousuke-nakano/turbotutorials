@@ -158,6 +158,33 @@
 </table>
 </section>
 </section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">Conversion_wf_workflow</span></code> class,
+the wavefunction conversion workflow is executed asynchronously (via
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>). The workflow converts wavefunctions between formats
+(sd, agps, agpu, pf) using <code class="xref py py-meth docutils literal notranslate"><span class="pre">Wavefunction.to_agp()</span></code> for AGP singlet/triplet
+(no job submission; runs locally).</p>
+<p>If the pkl file already exists and <code class="xref py py-attr docutils literal notranslate"><span class="pre">conversion_wf_rerun</span></code> is
+<code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>, the conversion is skipped. Otherwise, the workflow:</p>
+<ul class="simple">
+<li><p>Reads <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> with <code class="xref py py-class docutils literal notranslate"><span class="pre">Wavefunction</span></code>. Depending on <code class="xref py py-attr docutils literal notranslate"><span class="pre">to_wf</span></code>:
+conversion to <code class="docutils literal notranslate"><span class="pre">sd</span></code> or <code class="docutils literal notranslate"><span class="pre">pf</span></code> raises <code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code>; for
+<code class="docutils literal notranslate"><span class="pre">agps</span></code> or <code class="docutils literal notranslate"><span class="pre">agpu</span></code>, calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">to_agp()</span></code> with <code class="xref py py-attr docutils literal notranslate"><span class="pre">grid_size</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">additional_hyb</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">nosym</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">clean_flag</span></code>,
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">only_generate_template</span></code>, and <code class="xref py py-attr docutils literal notranslate"><span class="pre">change_contr</span></code>.</p></li>
+<li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.wavefunction.Wavefunction</span></code> — wavefunction I/O and
+conversion (e.g. <code class="xref py py-meth docutils literal notranslate"><span class="pre">to_agp()</span></code>).</p></li>
+</ul>
+</section>
 </section>
 
 

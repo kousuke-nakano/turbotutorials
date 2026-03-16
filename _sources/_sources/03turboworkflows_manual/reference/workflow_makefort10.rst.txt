@@ -42,3 +42,30 @@ makefort10 parameters
    "same_phase_up_dn", "bool ", "False", "forced phase_up == phase_dn. valid only for gamma point. it is automatically detected for other points."
    "neldiff", "int ", "0", "difference in number of up and down electrons."
    "symmetry", "bool ", "True", "if false, nosym=.true., meaning that no symmetry is used."
+
+
+Description
+--------------------------------
+
+In the :class:`Makefort10_workflow` class,
+the makefort10 workflow is executed asynchronously (via :meth:`async_launch`).
+The workflow generates a fort.10 wavefunction file from a structure file
+using the makefort10.x binary with specified basis sets and Jastrow factors
+(no job submission; runs locally via :meth:`Makefort10_genius.run_all`).
+
+If the pkl file already exists and :attr:`makefort10_rerun` is :const:`False`,
+the calculation is skipped. Otherwise, the workflow:
+
+- Builds a :class:`Makefort10_genius` instance from the constructor parameters
+  (structure file, supercell, basis sets, Jastrow type, phase, etc.) and calls
+  :meth:`run_all` to generate fort.10 and related files.
+- Persists state in a pkl file under the ``pkl`` directory.
+
+On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).
+
+See also
+--------------------------------
+
+- :class:`turbogenius.makefort10_genius.Makefort10_genius` — makefort10
+  driver used for generation.

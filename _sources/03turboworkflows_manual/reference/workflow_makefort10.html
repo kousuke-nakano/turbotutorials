@@ -223,6 +223,31 @@
 </table>
 </section>
 </section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">Makefort10_workflow</span></code> class,
+the makefort10 workflow is executed asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>).
+The workflow generates a fort.10 wavefunction file from a structure file
+using the makefort10.x binary with specified basis sets and Jastrow factors
+(no job submission; runs locally via <code class="xref py py-meth docutils literal notranslate"><span class="pre">Makefort10_genius.run_all()</span></code>).</p>
+<p>If the pkl file already exists and <code class="xref py py-attr docutils literal notranslate"><span class="pre">makefort10_rerun</span></code> is <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>,
+the calculation is skipped. Otherwise, the workflow:</p>
+<ul class="simple">
+<li><p>Builds a <code class="xref py py-class docutils literal notranslate"><span class="pre">Makefort10_genius</span></code> instance from the constructor parameters
+(structure file, supercell, basis sets, Jastrow type, phase, etc.) and calls
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">run_all()</span></code> to generate fort.10 and related files.</p></li>
+<li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>On success, the method returns (status, list of output file paths under the
+root directory, and an empty output-values dict).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.makefort10_genius.Makefort10_genius</span></code> — makefort10
+driver used for generation.</p></li>
+</ul>
+</section>
 </section>
 
 

@@ -232,6 +232,34 @@
 </table>
 </section>
 </section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">DFT_workflow</span></code> class, the DFT (prep) workflow is executed
+asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>). The workflow runs a single DFT
+calculation using the prep.x binary from TurboRVB, with support for
+twist-averaged boundary conditions and k-point sampling.</p>
+<p>If the pkl file already exists and <code class="xref py py-attr docutils literal notranslate"><span class="pre">dft_rerun</span></code> is <code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>, the
+calculation is skipped. Otherwise, the workflow:</p>
+<ul class="simple">
+<li><p>Builds a <code class="xref py py-class docutils literal notranslate"><span class="pre">DFT_genius</span></code> instance from the constructor parameters (grid
+size, box, smearing, XC, twist averaging, etc.) and generates <code class="docutils literal notranslate"><span class="pre">prep.input</span></code>.</p></li>
+<li><p>Submits the job (prep-mpi.x or prep-serial.x), waits for submission and
+completion using <code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.sleep()</span></code>, then fetches output files (e.g.
+<code class="docutils literal notranslate"><span class="pre">out_prep</span></code>, <code class="docutils literal notranslate"><span class="pre">occupationlevels.dat</span></code>, <code class="docutils literal notranslate"><span class="pre">EDFT_vsk.dat</span></code>, and optionally
+<code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> or twist-averaging scratch files).</p></li>
+<li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>On success, the method returns (status, list of output file paths under the
+root directory, and an output-values dict with <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;error&quot;</span></code>
+set to <code class="xref py py-const docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.prep_genius.DFT_genius</span></code> — DFT/prep driver used for
+input generation.</p></li>
+</ul>
+</section>
 </section>
 
 

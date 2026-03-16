@@ -17,6 +17,7 @@
       <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
       <script src="../../../_static/doctools.js?v=888ff710"></script>
       <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -216,6 +217,63 @@
 </tbody>
 </table>
 </section>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">VMC_workflow</span></code> class, the VMC (Variational Monte Carlo) workflow
+is executed asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>). The workflow runs VMC
+in a continuation loop (up to <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_max_continuation</span></code> runs). For each
+continuation index <span class="math notranslate nohighlight">\(i_{\mathrm{cont}}\)</span>:</p>
+<p><strong>test run (icont = 0)</strong></p>
+<ul class="simple">
+<li><p>Uses fixed trial steps (<code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_trial_steps</span></code>) to produce energy and
+error-bar data. Optionally enforces a minimum trial length when
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_safe_trial_steps</span></code> is <code class="xref py py-const docutils literal notranslate"><span class="pre">True</span></code> (40 blocks plus warmup).</p></li>
+<li><p>No step estimation is performed.</p></li>
+<li><p>Results are used by the next run to estimate required VMC steps.</p></li>
+</ul>
+<p><strong>production run (icont ≥ 1)</strong></p>
+<ul>
+<li><p>Loads the previous run’s results from the corresponding pkl file and reads
+the number of MCMC steps from <code class="docutils literal notranslate"><span class="pre">fort.12</span></code> (with twist-averaging adjustment
+when <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_twist_average</span></code> is enabled).</p></li>
+<li><p>If the current error bar is below 1.1 × <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_target_error_bar</span></code>, the
+workflow exits early and returns the current energy and error (target
+achieved).</p></li>
+<li><p>Otherwise, estimates the total steps required to reach
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_target_error_bar</span></code> via</p>
+<div class="math notranslate nohighlight">
+\[N_{\mathrm{total}} \propto \left( \frac{\sigma}{E_{\mathrm{target}}}
+\right)^2\]</div>
+<p>then sets the <em>additional</em> steps for this run to
+<span class="math notranslate nohighlight">\(\max(N_{\mathrm{total}} - N_{\mathrm{done}}, 1)\)</span>.</p>
+</li>
+<li><p>Estimates runtime from the previous run’s
+<code class="docutils literal notranslate"><span class="pre">estimated_time_for_1_generation</span></code> and logs it.</p></li>
+<li><p>Builds a <code class="xref py py-class docutils literal notranslate"><span class="pre">VMC_genius</span></code> instance with the (additional) <code class="docutils literal notranslate"><span class="pre">vmcsteps</span></code>,
+generates input, and submits the job.</p></li>
+</ul>
+<p>For each run, the workflow:</p>
+<ul class="simple">
+<li><p>Waits for job submission and completion using <code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.sleep()</span></code>.</p></li>
+<li><p>Fetches output files (e.g. <code class="docutils literal notranslate"><span class="pre">fort.11</span></code>, <code class="docutils literal notranslate"><span class="pre">fort.12</span></code>, <code class="docutils literal notranslate"><span class="pre">out_vmc_*</span></code>,
+<code class="docutils literal notranslate"><span class="pre">parminimized.d</span></code>).</p></li>
+<li><p>Computes energy and forces (<code class="xref py py-meth docutils literal notranslate"><span class="pre">compute_energy_and_forces()</span></code>), then
+stores results with the configured <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_bin_block</span></code> and
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_warmupblocks</span></code>.</p></li>
+<li><p>Persists state in pkl files under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
+</ul>
+<p>If all continuation pkl files already exist and <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_rerun</span></code> is
+<code class="xref py py-const docutils literal notranslate"><span class="pre">False</span></code>, the calculation is skipped. On success, the method returns
+(status, list of output file paths under the root directory, and an
+output-values dict containing <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;error&quot;</span></code>).</p>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.vmc_genius.VMC_genius</span></code> — VMC driver used for input
+generation and result handling.</p></li>
+</ul>
 </section>
 </section>
 
