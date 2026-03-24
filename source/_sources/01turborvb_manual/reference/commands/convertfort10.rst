@@ -5,143 +5,220 @@ convertfort10.x
 ==================================================
 
 --------------------
-description
+Description
 --------------------
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Wavefunction conversions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**convertfort10** is a TurboRVB utility that **converts a wave function from
+one basis to another**: it takes **fort.10_in** (source wave function, e.g. from
+DFT or another code) and **fort.10_out** (target basis definition), and writes
+**fort.10_new** with coefficients that best approximate the source wave
+function in the target basis (maximum overlap).
 
-TurboRVB implements different types of *Ansatz*:
+- **Input**: **fort.10_in** (source wave function in TurboRVB format),
+  **fort.10_out** (target-basis structure: ions, orbitals, Jastrow type, etc.),
+  and **namelists** from standard input (``&OPTION``, ``&CONTROL``,
+  ``&mesh_info``). Use **template/convertfort10.input** as reference.
+- **Output**: **fort.10_new** — same structure as fort.10_out, with Det (λ) and
+  optionally Jastrow coefficients computed so as to best match fort.10_in on a
+  real-space mesh. Suitable as initial wave function for VMC/DMC.
+- The program computes overlap matrices on a real-space grid between the two
+  bases, then solves for the best-fit coefficients and writes them with
+  ``write_fort10``.
 
-#. Pfaffian (Pf)
-#. Pfaffian with a constrained number of molecular orbitals (Pfn)
-#. Antisymmetrized Geminal Power (AGP)
-#. Antisymmetrized Geminal Power with a constrained number of molecular orbitals (AGPn)
-#. Single Slater determinant (SD)
+The program supports **MPI**: overlap and linear algebra are parallelized; file
+I/O and namelist reading are done by rank 0. See the Notes section for MPI
+usage.
 
-One can go back and forth between various *Ansatz* using the modules implemented in TurboRVB.
-Figures below show the hierarchy of *Ansatz* implemented in TurboRVB and their inter-conversion.
-
-.. image:: /_static/01schematic_figures/ansatz_hierarchy.png
-   :scale: 40%
-   :align: center
-
-.. image:: /_static/01schematic_figures/ansatz_conversion.png
-   :scale: 40%
-   :align: center
-
-* Adding molecular orbitals to an *Ansatz* (convertfort10mol.x): The first case is to add molecular orbitals to an *Ansatz*, i.e. JAGP => JSD, JAGP => JAGPn, or JPf => JPfn.
-  In TurboRVB, this is done by rewriting the expansion of the geminal in terms of molecular orbitals.
-
-* The second important case is to convert an *Ansatz* among the available ones, i.e.,
-  JSD, JAGP, or JAGPn => JAGP.
-  This is done using the convertfort10.x tool and is achieved by maximizing the overlap
-  between the two WFs (the input ``fort.10_in`` and the output ``fort.10_out``) to be filled
-  by new geminal matrix coefficients (``fort.10_new``).
-  The following overlap between two geminals is maximized:
-
- .. math::
-
-    max \: Q = \frac{\left \langle g^{new}|g^{ori} \right \rangle^2}{\left \langle g^{new}|g^{new} \right \rangle \left \langle g^{ori}|g^{ori} \right \rangle} \,,
-
-in order to obtain new geminal matrix coefficients :math:`A^{new}_{\mu,\nu}`, defining
-the new pairing function as
-
-.. math::
-
-    g^{new}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{new}_{\mu.\nu} \psi^{new}_\mu(\mathbf{i}) \psi^{new}_\nu(\mathbf{j}) \,,
-
-while the original geminal was given in terms of the parameter matrix :math:`A^{ori}_{\mu, \nu}`,
-
-.. math::
-
-    g^{ori}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{ori}_{\mu.\nu} \psi^{ori}_\mu(\mathbf{i}) \psi^{ori}_\nu(\mathbf{j}) .
-
-.. note::
-
-    :math:`0 \leq Q \leq 1`; so, the larger the :math:`Q`, the better is the conversion.
-    :math:`Q` approaches unity if the conversion is perfect.
-
-* The final case is to convert a JAGP *ansatz* to JPf. Since the JAGP *ansatz* is a special case
-  of the JPf *ansatz*, where only :math:`G_{ud}` and :math:`G_{du}` terms are defined, the
-  conversion can just be realized by direct substitution.
-  The primary challenge is to find a reasonable initialization for the two spin-triplet sectors,
-  :math:`G_{uu}` and :math:`G_{dd}` that are not described in the JAGP and that otherwise
-  have to be set to 0. There are two possible approaches:
-
-    #. For polarized systems, we can build the :math:`G_{uu}` block of the matrix by using an even number of :math:`\{ \phi_i\}` and build an antisymmetric :math:`g_{uu}`, where the eigenvalues :math:`\lambda_k` are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization. Again, we emphasize that  this works only for polarized systems.
-    #. The second approach that also works in a spin-unpolarized case is to determine a standard broken symmetry single determinant *ansatz* (*e.g.*, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, *i.e.*, the :math:`z` quantization axis. In this way one can obtain reasonable initializations for  :math:`G_{uu}` and :math:`G_{dd}`. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of :math:`\pi/2` is applied around the :math:`y` direction. This operation maps :math:`|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).` One can convert from a AGP the pairing function that is obtained from a VMC optimization :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i}, {{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}` to a Pf one :math:`{g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).` This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this *ansatz*.
-
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Converting a WF to AGP
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Rename a ``fort.10`` that you want to convert AGP as  ``fort.10_in``
-
-2. Prepare a template of an AGP ``fort.10`` with new basis/new exponents... as ``fort.10_out``
-
-3. Run ``convertfort10.x < convertfort10.input``
-
-The output is the ``fort.10_new`` is the converted file (with maximum
-overlap with the input) in the basis set you have decided in ``fort.10_out``
-
-
-.. note::
-
-    It works also with molecular orbitals. The unpaired orbitals are
-    always assumed to be the last molecular orbitals in the order written
-    in ``fort.10_out`` ``fort.10_in``
-
-.. note::
-
-    The numerical version of the algorithm (real_agp=.true. or rmax=xx) works
-    only with AGPs, if you want to use it with molecular orbitals, convert the
-    molecular WF in a AGP and then use the numerical version
+Run with ``--help``, ``-help``, or ``help`` to show online help (serial build
+only; ``help_online('convertfort10')``).
 
 --------------------
-input/output
+Input and output
 --------------------
-TBD
+
+Input
+-----
+
+- **fort.10_in** (required): Source wave function file (TurboRVB format). Read
+  in ``load_fort10in`` via ``read_fort10_fast``, ``read_pseudo``, ``read_fort10``.
+  If pseudopotentials are used, **pseudo.dat** is opened (by rank 0).
+
+- **fort.10_out** (required): Target basis definition. Defines the structure of
+  the output (ions, atomic orbitals, Jastrow type). The program reads this file,
+  then computes coefficients that best approximate fort.10_in in this basis and
+  writes **fort.10_new**. Pseudopotentials: **pseudo.dat** when ``eqion=.true.``,
+  **pseudo_out** when ``eqion=.false.``.
+
+- **Standard input**: Namelists **&OPTION** (e.g. ``wherescratch``, ``eqion``,
+  ``bigram``, ``symiesup``), **&CONTROL** (e.g. ``change_contr``, ``change_jas``,
+  ``yespardiag``, ``real_agp``, ``rmax``, ``max_iter``, ``prec``, ``epsdgel``),
+  **&mesh_info** (e.g. ``nx``, ``ny``, ``nz``, ``nbufd``, ``ax``, ``ay``, ``az``).
+  Only rank 0 reads stdin; values are broadcast in parallel runs.
+
+Output
+------
+
+- **fort.10_new**: Converted wave function. Same format and structure as
+  fort.10_out, with Det matrix (and optionally Jastrow) set to the best-fit
+  coefficients. Written by rank 0 only. Overwrites existing file.
+
+- **outmesh.bin**, **outmeshj.bin**: Temporary files for mesh/overlap data
+  (created by rank 0). Deleted on normal exit.
+
+- When **bigram=.false.**, scratch files under **wherescratch** are used to
+  reduce memory; they are removed after use.
+
+
+.. _turborvbtutorial_command_convertfort10.x_input_parameters:
 
 --------------------
-note
---------------------
-TBD
-
---------------------
-namelist
+Input parameters
 --------------------
 
 Variable are read from standard input.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 option section
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-.. csv-table:: Parameter List
+.. csv-table::
    :file: /_static/csv/rvb/turborvb_namelist_convertfort10_option.csv
    :encoding: utf8
    :header-rows: 1
    :widths: auto
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 control section
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-.. csv-table:: Parameter List
+.. csv-table::
    :file: /_static/csv/rvb/turborvb_namelist_convertfort10_control.csv
    :encoding: utf8
    :header-rows: 1
    :widths: auto
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 mesh_info section
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-.. csv-table:: Parameter List
+.. csv-table::
    :file: /_static/csv/rvb/turborvb_namelist_convertfort10_mesh_info.csv
    :encoding: utf8
    :header-rows: 1
    :widths: auto
+
+
+--------------------
+Notes
+--------------------
+
+Compatibility (fort.10_in vs fort.10_out)
+-----------------------------------------
+
+- **ipf** (Pfaffian) and **ipc** (real vs complex) must **match** between
+  fort.10_in and fort.10_out. If they differ, the program stops with a message
+  suggesting **convertpfaff.x** (for Pfaffian) or **real_to_complex.x** (for
+  real/complex).
+
+- **eqion=.true.** (default): Ion order and atomic numbers must match between
+  the two files; ion coordinates in the output are taken from fort.10_out. If
+  matching fails, the program suggests ``eqion=.false.`` and using
+  **pseudo_out**.
+
+- **eqion=.false.**: Relaxes ion ordering; **pseudo_out** is used for
+  pseudopotentials. Prepare pseudo_out accordingly if you use ECPs.
+
+- **change_jas** is forced to .false. for Jastrow type -12/-22 (ipj=2); a
+  warning is printed.
+
+MPI (parallel runs)
+-------------------
+
+- **convertfort10** is built with MPI support (``PARALLEL``). Run with
+  ``mpirun -np N ./convertfort10.x < input`` (or equivalent). All ranks must
+  participate; the same input stream is usually given to all (rank 0 reads the
+  namelists and broadcasts).
+
+- **File I/O**: Only **rank 0** opens and reads **fort.10_in**, **fort.10_out**,
+  and **pseudo.dat** / **pseudo_out**, and only rank 0 writes **fort.10_new** and
+  **outmesh.bin** / **outmeshj.bin**. Ensure these files are visible to the
+  process running as rank 0 (e.g. run in a shared working directory).
+
+- **yespardiag** (default .true.): Uses parallelized matrix operations for
+  diagonalization/linear algebra. Set ``yespardiag=.false.`` in ``&CONTROL`` to
+  force serial matrix ops (e.g. for debugging).
+
+- When **bigram=.false.**, each rank may write its own scratch files under
+  **wherescratch**; avoid overlapping paths if running multiple jobs in the same
+  directory.
+
+--------------------------------
+Related programs
+--------------------------------
+
+- **makefort10**: Builds an initial fort.10. Used to create the target
+  structure (fort.10_out) for convertfort10.
+
+- **cleanfort10**: Orthogonalizes and optionally relaxes constraints in a
+  fort.10. Can be used after convertfort10 to clean **fort.10_new**.
+
+- **convertpfaff**: Converts between Pfaffian and non-Pfaffian forms. Use
+  before/after convertfort10 if in/out wave functions have different Pfaffian
+  flags.
+
+- **real_to_complex**: Converts real ↔ complex wave functions. Use to align
+  ipc before running convertfort10.
+
+
+--------------------------------
+Troubleshooting
+--------------------------------
+
+Fatal errors (program stops)
+----------------------------
+
+- **ERROR reading option / control / mesh_info** — Namelist syntax or invalid
+  variable. Check ``&OPTION``, ``&CONTROL``, ``&mesh_info`` in the input file;
+  use **template/convertfort10.input** as reference.
+
+- **ERROR in the mesh input nx>0,ny>0,nz>0** — At least one of ``nx``, ``ny``,
+  ``nz`` is 0 or missing. Set positive integers in ``&mesh_info``.
+
+- **ERROR buffer dimension nbufd>0** — ``nbufd`` is 0. Set ``nbufd`` to a
+  positive integer or -1 for default.
+
+- **ERROR Volmesh =0** — Mesh volume is zero (e.g. ``ax``, ``ay``, ``az`` zero
+  for a molecule). Set positive ``ax``, ``ay``, ``az`` or use PBC so mesh is
+  derived from the cell.
+
+- **The two wf should have the same number of ions** — ``eqion=.true.`` but
+  fort.10_in and fort.10_out have different ``nion``. Make them match or set
+  ``eqion=.false.`` and provide **pseudo_out** if using pseudos.
+
+- **The input wf do not match with fort.10_out, try eqion=.false.** —
+  ``eqion=.true.`` but ion types/order cannot be matched. Align ion order or set
+  ``eqion=.false.`` and use **pseudo_out**.
+
+- **Pfaffian in/out =/ ... please transform both with convertpfaff.x** — ipf
+  differs between the two files. Use convertpfaff to make them both Pfaffian or
+  both non-Pfaffian, then run convertfort10 again.
+
+- **Complex in/out =/ ... please transform both in complex with
+  real_to_complex.x** — ipc (real vs complex) differs. Use real_to_complex to
+  align, then run convertfort10 again.
+
+- **SDV failed !!!** — Singular-value or inverse computation failed (ill-
+  conditioned overlap). Try a finer mesh (larger ``nx``, ``ny``, ``nz``), or
+  relax ``epsdgel`` in ``&CONTROL``; check that the input bases are not nearly
+  linearly dependent.
+
+- **ERROR load_fort10in AGP/Jas check input nbufd and/or code** — Mesh or
+  buffer too small for overlap computation. Increase **nbufd** or mesh density.
+
+- **ERROR not implemented option real_agp/rmax with pfaffian** — Options
+  ``real_agp`` / ``rmax`` are not supported for Pfaffian. Disable them.
+
+Other notes
+-----------
+
+- **fort.10_new** is overwritten if it exists. Back it up if needed.
+
+- Mesh choice: too coarse reduces overlap accuracy; too fine increases memory
+  and time. Use the DFT mesh as a guide when converting from DFT.

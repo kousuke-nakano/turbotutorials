@@ -1,95 +1,211 @@
+.. _turborvbtutorial_command_funvsa.x:
+
 ==============================================================================
 funvsa.x
 ==============================================================================
 
 --------------------
-description
+Description
 --------------------
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Quantum Monte Carlo calculations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-We describe input files that control variational and diffusion Monte Carlo simulations.
-TurboRVB input files are built using fortran namelists.
-Keywords are divided in different sections according to their meaning.
+**funvsa** is a TurboRVB utility that **fits (x, y) data with a weighted
+least-squares linear model** in a power-law basis and computes **coefficients,
+predictions, derivatives, and bootstrap errors**. It reads only from **standard
+input** and writes only to **standard output**.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Please collect all LRDMC energies into ``evsa.in``
+- **Input**: **Standard input** only. First line: **order** (polynomial order),
+  **N** (number of data points), **iopt** (input format and x-transform option),
+  **power** (exponent in the fit basis). If **iopt=2**, a second line gives
+  **errscale**. Then **N** data lines (x, y, wy or x, wx, y, wy depending on
+  iopt).
+- **Output**: **Standard output** only. Reports numeric precision, reduced χ²,
+  coefficients and their errors, fit value and derivative (and errors) at each
+  point, and maximum residual.
+- **Fit model**: :math:`y = c_1 + c_2·x^{\rm power} + c_3 x^{({\rm power}+1)} + \cdots` (or :math:`1/x^{|{\rm power}|}` - type basis when power < 0).
+  With **power=1** this is a standard polynomial.
+- **Machine-learning mode**: If **N** is read as negative, the program sets
+  N = \|N\| and **map=1**, enabling a regularized Bayesian-style fit with
+  iterative α/β updates and Evidence. If **order** is negative, **fixbeta** is
+  set (β fixed, only α updated). Otherwise (map=0) the weighted normal
+  equations are solved by LU factorization.
 
-.. code-block:: bash
+Typical use: fitting ''parameter vs energy'' (or similar) data from VMC with a
+polynomial or 1/r-type function. See **template/funvsa.input** for an example.
 
-    2  4  4  1
-    0.10 -1.13810148463746       1.081107885639917E-004
-    0.20 -1.13799520203238       9.985034545291718E-005
-    0.40 -1.13811591303364       1.092139729594029E-004
-    0.60 -1.13785055959330       1.244613258193110E-004
-
-wherein
-
-.. code-block:: bash
-
-    # See. Readme of funvsa.x in detail.
-    # 2  number of data 4 1
-      2  4  4  1
-
-for a quadratic fitting i.e., :math:`E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4` and
-
-.. code-block:: bash
-
-    # alat    LRDMC energy            Its error bar
-      0.10    -1.13810148463746       1.081107885639917E-004
-
-``funvsa.x`` is a tool for a quadratic fitting:
-
-.. code-block:: bash
-
-    funvsa.x < evsa.in > evsa.out
-
-You can see
-
-.. code-block:: bash
-
-      Reduced chi^2  =   0.876592055494152
-      Coefficient found
-       1  -1.13803097957683       1.045060026486010E-004  <- E_0
-       2 -1.039867020790643E-003  1.780475364652620E-003  <- k_1
-       3  4.237124912102820E-003  4.688879337831868E-003  <- k_2
-
-If you want to do a linear fitting, i.e, i.e., :math:`E(a)=E(0) + k_{1} \cdots a^2`, put evsa.in
-
-.. code-block:: bash
-
-    1  4  4  1
-    0.10 -1.13810148463746       1.081107885639917E-004
-    0.20 -1.13799520203238       9.985034545291718E-005
-    0.40 -1.13811591303364       1.092139729594029E-004
-    0.60 -1.13785055959330       1.244613258193110E-004
-
-``funvsa.x`` can also do a linear fitting:
-
-.. code-block:: bash
-
-    funvsa.x < evsa.in > evsa.out
-
-Check evsa.out
-
-.. code-block:: bash
-
-      Reduced chi^2  =  0.873603895738953
-      Coefficient found
-       1  -1.13808947524004       8.025420272361147E-005  <- E_0
-       2  5.210500236482952E-004  4.472096760481409E-004  <- k_1
-
-Thus, we get :math:`E(a \to 0)` = -1.13808(8) Ha.
+**Command line**: ``--help``, ``-help``, or ``help`` prints online help and
+exits (``help_online('funvsa')``).
 
 --------------------
-input/output
+Input and output
 --------------------
-TBD
+
+Input
+-----
+
+- **First line**: **order**, **N**, **iopt**, **power** (four numbers).
+  **order+1** is the number of coefficients. **N** is the number of data
+  lines. If **N &lt; 0**, the program uses N = \|N\| and **map=1** (machine-
+  learning mode). If **order &lt; 0**, it uses order = \|order\| and
+  **fixbeta=.true.**
+
+- **Second line (only when iopt=2)**: **errscale** (real). All weights wy are
+  set to this value.
+
+- **Next N lines**: Data. Format depends on **iopt**. Points with **wy(i)=0**
+  are excluded from the fit and from χ² (effective count is **Ntrue**).
+
+**iopt — data format and x transform**
+
+  .. list-table::
+     :header-rows: 1
+     :widths: 8 30 42
+
+     * - **iopt**
+       - **Data per line**
+       - **x transform / notes**
+     * - 0
+       - x, y, wy
+       - x unchanged.
+     * - 1
+       - x, wx, y, wy
+       - x unchanged; bootstrap adds Gaussian noise to x using wx.
+     * - 2
+       - After errscale line: x, y, wy (wy overwritten by errscale).
+       - x unchanged.
+     * - 3
+       - x, y, wy
+       - x replaced by √x.
+     * - 4
+       - x, y, wy
+       - x replaced by x².
+     * - 5
+       - x, y, wy
+       - x replaced by 1/√x.
+     * - 6
+       - x, y, wy
+       - x replaced by 1/x.
+     * - 7
+       - x, y, wy
+       - x replaced by 1/x².
+     * - 8
+       - x, y, wy
+       - x replaced by 1/log(x).
+     * - Other
+       - x, y only (wy=1)
+       - x unchanged. If iopt=2 was used, wy set from errscale.
+      
+**power**: Exponent in the basis. Model is
+  :math:`y = c_1 + c_2 x^{\rm power} + c_3 x^{({\rm power}+1)} + \cdots` (power=1 gives a standard polynomial).
+
+Output
+------
+
+- **Standard output** only (no output files). Lines include:
+
+  - ``Program with precision =`` — numeric precision (dlamch).
+  - ``Read data OK`` — data read completed.
+  - ``Machine learning alpha,beta =`` — when map≠0, final α(=map) and β.
+  - ``Reduced chi^2 =`` — res/(Ntrue − orderp). If Ntrue ≤ orderp, only
+    ``Warning, no degrees of freedom`` is printed.
+  - ``Machine learning Evidence =`` — when map≠0, Evidence mean ± std dev
+    (bootstrap).
+  - ``Coefficient found`` — each coefficient and its bootstrap error.
+  - ``Predicted error / measured error`` — per point: index, original x, fit
+    value, prediction error, derivative, derivative error, measured y, wy (y
+    and wy omitted when wy=0).
+  - ``Max error in fit =`` — max \|fit(x_i) − y_i\| over points with wy≠0.
 
 --------------------
-note
+Notes
 --------------------
-TBD
+
+Effective points (Ntrue) and degrees of freedom
+------------------------------------------------
+
+- Only points with **wy(i) ≠ 0** are used in the fit and in χ². **Ntrue** is
+  the count of such points. If **Ntrue ≤ orderp** (order+1), there are no
+  degrees of freedom and the program prints ``Warning, no degrees of freedom``
+  instead of reduced χ².
+
+Singular normal equations (map=0)
+---------------------------------
+
+- When **map=0**, the weighted normal equations are solved by LU
+  (dgetrf/dgetrs). If the design matrix is singular (linear dependence),
+  dgetrf returns info≠0 and the program prints ``There is depdendency !!!``.
+  Reduce **order** or change the data/basis so that the columns are linearly
+  independent.
+
+Machine-learning mode (map≠0)
+------------------------------
+
+- When **N &lt; 0** is given, **map=1** and the program uses an iterative
+  Bayesian-style fit: diagonalize the matrix, then update α (=map) and β (unless
+  **fixbeta** from negative order). Minimum eigenvalue is clipped by machine
+  epsilon. Iteration stops when the change in α is below a tolerance or after
+  **maxit=100** steps. If it does not converge, ``ERROR not converged`` is
+  printed.
+
+Output x values
+---------------
+
+- In the ``Predicted error / measured error`` block, the **x** printed for
+  each point is the **original** x (before the iopt transform), e.g. for iopt=3
+  the stored x is √(input x), but the output shows the original input x.
+
+Template
+--------
+
+- **template/funvsa.input** contains an example: first line and data lines.
+  Example first line ``2 -6 3 1`` means order=6, N=6, iopt=3, power=1 (with
+  map=1 and fixbeta from the negative values); x is transformed as √x.
+
+
+--------------------------------
+Related programs
+--------------------------------
+
+- **template/funvsa.input**: Example standard input for funvsa.
+
+- **evsa**: Related tool; funvsa is focused on regression fit and bootstrap
+  errors.
+
+- **corrvar**, **corrforza** / **corrforzap**: Other tools that use bootstrap
+  for errors; funvsa is dedicated to curve fitting.
+
+
+--------------------------------
+Troubleshooting
+--------------------------------
+
+Warnings
+--------
+
+- **Warning, no degrees of freedom** — Ntrue (number of points with wy≠0) ≤
+  orderp (order+1). Increase the number of valid data points or decrease
+  **order**.
+
+- **Warning accuracy diag/cond numb.** — In machine-learning mode, the
+  smallest eigenvalue is ≤ 0 after diagonalization. Indicates near-singular or
+  ill-conditioned matrix; check for linear dependence in the data or basis.
+
+Fatal / error messages
+----------------------
+
+- **ERROR not converged** — Machine-learning mode (map≠0): the α/β iteration
+  did not converge within maxit=100 steps. Try different data, lower order, or
+  check input.
+
+- **There is depdendency !!!** — map=0 and the normal-equation matrix is
+  singular (dgetrf info≠0). Reduce **order** or change the basis/data so that
+  the design matrix has full rank.
+
+Other notes
+-----------
+
+- The program has **no file arguments**; all input is from standard input. Use
+  e.g. ``./funvsa.x < template/funvsa.input`` or pipe input.
+
+- **Bootstrap** uses 200 iterations (nbin=200) with Gaussian noise (Box–
+  Muller) on y (and on x when iopt=1) to estimate coefficient and prediction
+  errors.
