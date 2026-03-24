@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Advanced topics
+[Table of Contents] Advanced topics
 ================================================================
 
 Here are advanced examples of various calculations with TurboRVB via Turbo-Genius, starting from the built-in DFT code, prep.

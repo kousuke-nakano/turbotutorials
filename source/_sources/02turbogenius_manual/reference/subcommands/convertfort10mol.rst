@@ -11,15 +11,15 @@ It internally calls ``convertfort10mol.x``.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius convertfort10mol [ACTION] [OPTIONS]
+   % turbogenius convertfort10mol [ACTION] [OPTIONS]
 
 ACTION is one or any combination of ``-g`` (generate an input file), ``-r`` (run a program), or ``-post`` (perform postprocess). It is mandatory.
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius convertfort10mol --help
+   % turbogenius convertfort10mol --help
    
 This command shows the list of available options.
 
@@ -31,23 +31,29 @@ general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
    
-.. csv-table::
-   :header: "option", "default value", "description"
-
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+.. include:: ./list-table/general_option.rst
 
 
 generate (-g) options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 These options affect the generation of the input file. The correspondence between the options and the input parameters are described in the note section.
 
-.. csv-table::
-   :header: "option", "default value", "description"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   "\-\-random_mo", "true", "flag for adding random molecular orbitals (MO). to disable this feature, specify ``--no-random_mo``."
-   "\-\-add_mo INTEGER", 0, "Specify the number of additional molecular orbitals."
-   "\-\-grid_size FLOAT", 0.10, "Specify grid_size"
-
+   * - option
+     - default value
+     - description
+   * - --random_mo
+     - true
+     - flag for adding random molecular orbitals (MO). to disable this feature, specify ``--no-random_mo``.
+   * - --add_mo INTEGER
+     - 0
+     - Specify the number of additional molecular orbitals.
+   * - --grid_size FLOAT
+     - 0.10
+     - Specify grid_size
 
 Environment variables
 --------------------------------
@@ -63,31 +69,41 @@ This subcommand generates a namelist ``convertfort10mol.input``, each variable i
 
 .. |leftarrow| unicode:: U+2192
 
-.. csv-table::
-   :header: "action", "input", "output", "rename"
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
 
-   ``-g``, "
-   - fort.10_in
-   - pseudo.dat
-   ", "
-   - convertfort10mol.input
-   - convertfort10mol_genius_cli.pkl
-   ",
-   ``-r``, "
-   - convertfort10mol.input
-   - fort.10_in
-   - pseudo.dat
-   - convertfort10mol_genius_cli.pkl
-   ", "
-   - fort.10_new
-   - out_mol
-   ",
-   ``-post``, "
-   - out_mol
-   - convertfort10mol_genius_cli.pkl
-   ",,"
-   - fort.10_new |leftarrow| fort.10
-   "
+   * - action
+     - input
+     - output
+     - rename
+   * - ``-g``
+     -
+       - fort.10_in
+       - pseudo.dat
+     -
+       - convertfort10mol.input
+       - convertfort10mol_genius_cli.pkl
+     -
+
+   * - ``-r``
+     -
+       - convertfort10mol.input
+       - fort.10_in
+       - pseudo.dat
+       - convertfort10mol_genius_cli.pkl
+     -
+       - fort.10_new
+       - out_mol
+     -
+
+   * - ``-post``
+     -
+       - out_mol
+       - convertfort10mol_genius_cli.pkl
+     -
+     -
+       - fort.10_new |leftarrow| fort.10
 
 Notes
 --------------------------------
@@ -97,20 +113,26 @@ Corresponding input parameters
 
 The correspondence between the options and the input parameters in ``convertfort10mol.input`` is summarized as follows.
 
-.. csv-table::
-   :header: "turbogenius option", "section", "paramter"
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
 
-   "additional_mo (--add_mo)", "&molec_info", "nmol (neldn in fort.10 + additonal_mo)"
-   "grid_size (-grid)", "&mesh_info", "
-   - when add_random_mo is false
-
-     - nx, ny, nz for periodic systems
-
-       &molecul nx, ny, nz are given by Lx/ax, Ly/ay, Lz/az (round up to even integers), respectively, where Lx, Ly, Lz are norms of lattice vectors, and ax, ay, az are grid_size, though ax, ay, az are commented out.
-     
-     - ax, ay, az, nx, ny, nz for open systems
-
-       &molecul ax, ay, az are specified by grid_size.
-     
-       &molecul nx, ny, nz are given by Lx/ax, Ly/ay, Lz/az (round up to even integers), respectively, where Lx, Ly, Lz are the sum of the extent of the molecule along x, y, z axes plus 15.0, representing that the box is taken by :math:`\pm` 7.5 bohr from the edges of the molecules.
-   "
+   * - turbogenius option
+     - section
+     - paramter
+   * - additional_mo (--add_mo)
+     - &molec_info
+     - nmol (neldn in fort.10 + additonal_mo)
+   * - grid_size (-grid)
+     - &mesh_info
+     -
+       - when add_random_mo is false
+       
+         - nx, ny, nz for periodic systems
+       
+           &molecul nx, ny, nz are given by Lx/ax, Ly/ay, Lz/az (round up to even integers), respectively, where Lx, Ly, Lz are norms of lattice vectors, and ax, ay, az are grid_size, though ax, ay, az are commented out.
+         - ax, ay, az, nx, ny, nz for open systems
+       
+           &molecul ax, ay, az are specified by grid_size.
+       
+           &molecul nx, ny, nz are given by Lx/ax, Ly/ay, Lz/az (round up to even integers), respectively, where Lx, Ly, Lz are the sum of the extent of the molecule along x, y, z axes plus 15.0, representing that the box is taken by :math:`\pm` 7.5 bohr from the edges of the molecules.

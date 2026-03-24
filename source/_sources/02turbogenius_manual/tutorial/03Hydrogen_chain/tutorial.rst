@@ -36,10 +36,10 @@ The procedure is as follows:
 
 1. Run the PySCF calculation by typing:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      cd 01_trial_wavefunction
-      python3 pyscf_H-chain.py
+      % cd 01_trial_wavefunction
+      % python3 pyscf_H-chain.py
 
    .. note::
 
@@ -52,15 +52,15 @@ The procedure is as follows:
 
 2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      trexio convert-from -t pyscf -i H-chain.chk -b hdf5 H-chain.hdf5
+      % trexio convert-from -t pyscf -i H-chain.chk -b hdf5 H-chain.hdf5
 
 3. Convert from TREXIO file to the TurboRVB wavefunction file by typing:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      trexio-to-turborvb H-chain.hdf5 -jasbasis cc-pVDZ -jascutbasis
+      % trexio-to-turborvb H-chain.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
@@ -83,33 +83,33 @@ Here, only needed commands are shown.
 
 1. Copy the wavefunction file and the pseudopotential file:
 
-  .. code-block:: bash
+  .. code-block:: console
 
-    cd ../02_optimization/
-    cp ../01_trial_wavefunction/fort.10 .
-    cp ../01_trial_wavefunction/pseudo.dat .
-    cp fort.10 fort.10_dft
+    % cd ../02_optimization/
+    % cp ../01_trial_wavefunction/fort.10 .
+    % cp ../01_trial_wavefunction/pseudo.dat .
+    % cp fort.10 fort.10_dft
 
 2. Generate an input file `datasmin.input`:
 
-  .. code-block:: bash
+  .. code-block:: console
 
-    turbogenius vmcpot -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100 -nw 128
+    % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100 -nw 128
 
 3. Run the optimization:
 
-  .. code-block:: bash
+  .. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmcopt -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmcopt -r
 
   See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
 
 4. Perform the postprocess and plot the results:
 
-  .. code-block:: bash
+  .. code-block:: console
 
-    turbogenius vmcopt -post -optwarmup 80 -plot
+    % turbogenius vmcopt -post -optwarmup 80 -plot
 
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
@@ -122,32 +122,30 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
 The next step is to run a single-shot VMC calculation. This is done using the ``vmc`` module of TurboGenius.
 First, prepare the wavefunction and pseudopotential files:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../03_vmc/
-    cp ../02_optimization/fort.10 fort.10
-    cp ../02_optimization/pseudo.dat .
+    % cd ../03_vmc/
+    % cp ../02_optimization/fort.10 fort.10
+    % cp ../02_optimization/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -g -steps 1000 -nw 128
+    % turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation:
 
-.. code-block:: bash
+.. code-block:: console
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    export TURBOVMC_RUN_COMMAND
-
-    turbogenius vmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmc -r
 
 Finally, run the postprocess:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -post -bin 10 -warmup 5
+    % turbogenius vmc -post -bin 10 -warmup 5
 
 Check the reblocked total energy and error in the file `pip0.d`.
 
@@ -163,33 +161,31 @@ One should refer to the :ref:`Hydrogen tutorial <turbogeniustutorial_0101_04>` f
 In this section, we will perform the calculation at the lattice constant `alat=0.50`.
 First, copy the prepared wavefunction and the pseudopotential files:
 
-.. code-block:: bash
+.. code-block:: console
 
-    # LRDMC run
-    cd ../04_lrdmc/
-    cp ../03_vmc/fort.10 .
-    cp ../03_vmc/pseudo.dat .
+    % # LRDMC run
+    % cd ../04_lrdmc/
+    % cp ../03_vmc/fort.10 .
+    % cp ../03_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius lrdmc -g -etry -5.500 -alat -0.50 -steps 10000 -nw 128
+    % turbogenius lrdmc -g -etry -5.500 -alat -0.50 -steps 10000 -nw 128
 
 Then, run the calculation by typing:
 
-.. code-block:: bash
+.. code-block:: console
 
-    TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    export TURBOVMC_RUN_COMMAND
-
-    turbogenius lrdmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius lrdmc -r
 
 Finally, run the postprocess:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
+    % turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
 
 We wil get E at a=0.50 bohr in `pip0_fn.d`.
 

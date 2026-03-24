@@ -15,20 +15,16 @@
 import os
 import sys
 import subprocess
-import glob
-import re
-import shutil
 
 sys.path.insert(0, os.path.abspath('.'))
 source_root=os.path.abspath('.')
 
-import sphinx_rtd_theme
 import datetime
 
 # -- Project information -----------------------------------------------------
 
 project = 'Turbotutorials'
-copyright = '2022, Kosuke Nakano (SISSA/JAIST) and collaborators'
+copyright = '2022, Kosuke Nakano (SISSA/JAIST) and collaborators.'
 author = 'Kosuke Nakano'
 
 # The short X.Y version
@@ -54,12 +50,10 @@ extensions = [
 'sphinx.ext.napoleon',
 'sphinx.ext.viewcode',
 'sphinxcontrib_roles',
+'linuxdoc.rstFlatTable',
+'sphinx_copybutton',
 #'sphinx.ext.imgmath'
 ]
-
-# imgmath_latex_preamble = r'''
-# \usepackage{braket}
-# '''
 
 # configuration case.1: define roles as list (define only roles)
 #roles = ['strike', 'red', 'blue']
@@ -97,13 +91,28 @@ exclude_patterns = ['**/99rubbish', '**/99archived']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# disable smartquotes for compile options `--option`
+smartquotes = False
+
+# set select-none `% `, `$ `, `> `
+copybutton_prompt_text = r"[%$>] "
+copybutton_prompt_is_regexp = True
+copybutton_here_doc_delimiter = "____EOS"
+
 # sphinx.ext.jsmath
-# extensions += ['sphinx.ext.imgmath']
-# imgmath_image_format='svg'
 #extensions += ['sphinx.ext.jsmath']
 
 # jsMath path
 #jsmath_path = 'jsMath-3.6e/easy/load.js'
+
+# MathJax settings
+mathjax3_config = {
+    'loader': {'load': ['[tex]/ams', '[tex]/boldsymbol', '[tex]/tagformat']},
+    'tex': {'macros': {'bm': ['\\boldsymbol{#1}', 1]},
+            'packages': {'[+]': ['ams', 'boldsymbol', 'tagformat']},
+            'tags': 'ams',
+            },
+}
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -116,6 +125,9 @@ pygments_style = 'sphinx'
 
 html_theme = "sphinx_rtd_theme"
 #html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme_options = {
+    "navigation_depth": 6,     #  depth of left navigation
+}
 html_style = "css/my_theme.css"
 
 # Theme options are theme-specific and customize the look and feel of a theme
@@ -195,3 +207,14 @@ texinfo_documents = [
      author, 'Turbotutorials', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+def run_scripts(app):
+    """Run the script(s) to split the original CSV file into separate CSV files."""
+
+    script_path = os.path.join(app.srcdir, "scripts/split_csv_for_namelist.py")
+    if os.path.exists(script_path):
+        print(f"Running {script_path}...")
+        subprocess.call(["python", script_path], cwd=os.path.dirname(script_path))
+
+def setup(app):
+    app.connect("builder-inited", run_scripts)

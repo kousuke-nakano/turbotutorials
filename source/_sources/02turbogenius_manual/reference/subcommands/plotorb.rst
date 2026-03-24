@@ -11,13 +11,13 @@ It internally calls ``plot_orbitals.x`` of TurboRVB.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius plotorb [OPTIONS]
+   % turbogenius plotorb [OPTIONS]
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius plotorb --help
+   % turbogenius plotorb --help
    
 This command shows the list of available options.
 
@@ -29,10 +29,7 @@ general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
    
-.. csv-table::
-   :header: "option", "default value", "description"
-
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+.. include:: ./list-table/general_option.rst
 
 Environment variables
 --------------------------------

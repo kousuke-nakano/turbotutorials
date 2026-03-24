@@ -30,34 +30,34 @@ This section describes the procedure for preparing a JAGP wavefunction for the H
 
 1. Run the PySCF calculation
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      cd 12_jagp_wf_shorter_distance
-      python3 pyscf_H2.py
+      % cd 12_jagp_wf_shorter_distance
+      % python3 pyscf_H2.py
 
 2. Convert the generated PySCF checkpoint file to a TREXIO file
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
+      % trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
 
 3. Convert from the TREXIO file to the TurboRVB wavefunction
 
-   .. code-block:: bash
+   .. code-block:: console
     
-      trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
+      % trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 4. Convert from JDFT wavefunction to JAGP wavefunction
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      turbogenius convertwf -to agps
+      % turbogenius convertwf -to agps
 
    then, check the conversion by typing:
 
-   .. code-block:: bash
+   .. code-block:: console
 
-      grep Overlap out_conv
+      % grep Overlap out_conv
 
 
 .. _turbogeniustutorial_9802_13:
@@ -69,31 +69,31 @@ In this step, the Jastrow factors and the determinant part are optimized at the 
 
 First, copy the converted wavefunction ``fort.10``
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../13_nodal_surface_optimization/
-    cp ../12_jagp_wf_shorter_distance/fort.10 .
-    cp ../12_jagp_wf_shorter_distance/pseudo.dat .
+    % cd ../13_nodal_surface_optimization/
+    % cp ../12_jagp_wf_shorter_distance/fort.10 .
+    % cp ../12_jagp_wf_shorter_distance/pseudo.dat .
 
 Next, generate the input file for VMC optimization ``datasmin.input`` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
+    % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
 
 Run the VMC optimization.
 Note that there are several options for running the VMC optimization. See :ref:`turbogeniustutorial_9802_12`.
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmcopt -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmcopt -r
 
 Finally, run the post-processing using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmcopt -post -optwarmup 80 -plot
+    % turbogenius vmcopt -post -optwarmup 80 -plot
 
 .. _turbogeniustutorial_9802_14:
 
@@ -104,36 +104,36 @@ In this step, a single-shot VMC calculation is performed before the structural o
 
 First, copy fort.10 from the previous step.
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../14_vmc_before_structural_optimization/
-    cp ../13_nodal_surface_optimization/fort.10 .
-    cp ../13_nodal_surface_optimization/pseudo.dat .
+    % cd ../14_vmc_before_structural_optimization/
+    % cp ../13_nodal_surface_optimization/fort.10 .
+    % cp ../13_nodal_surface_optimization/pseudo.dat .
 
 Next, generate the input file for VMC calculation ``datasvmc.input`` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -g -steps 1000 -nw 128 -force
+    % turbogenius vmc -g -steps 1000 -nw 128 -force
 
 Run the VMC calculation, for example, using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmc -r
 
 Finally, run the post-processing using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -post -bin 10 -warmup 5
+    % turbogenius vmc -post -bin 10 -warmup 5
 
 and check the force term:
 
-.. code-block:: bash
+.. code-block:: console
 
-    $ cat forces_vmc.dat
+    % cat forces_vmc.dat
     Force component 1 
     Force   = -0.581448055902718       3.012635556421040E-002
     1.943226397097583E-003
@@ -151,32 +151,32 @@ In this step, the structural optimization is performed using the ``vmcopt`` modu
 
 First, copy fort.10 from the previous step.
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../15_structural_optimization
-    cp ../13_nodal_surface_optimization/fort.10 .
-    cp ../13_nodal_surface_optimization/pseudo.dat .
+    % cd ../15_structural_optimization
+    % cp ../13_nodal_surface_optimization/fort.10 .
+    % cp ../13_nodal_surface_optimization/pseudo.dat .
 
 Next, generate the input file for VMC optimization ``datasmin.input`` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128 -opt_structure -strlearn 1.0e-6
+    % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128 -opt_structure -strlearn 1.0e-6
 
 Note that the ``-opt_structure`` option is used to perform the structural optimization. The learning rate is set to 10\ :sup:`-6`.
 
 Run the VMC optimization, for example, using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmcopt -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmcopt -r
 
 Finally, run the post-processing using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmcopt -post -optwarmup 80 -plot
+    % turbogenius vmcopt -post -optwarmup 80 -plot
 
 .. _turbogeniustutorial_9802_16:
 
@@ -187,36 +187,36 @@ In this step, the VMC calculation is performed after the structural optimization
 
 First, copy fort.10 from the previous step.
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../16_vmc_after_structural_optimization/
-    cp ../15_structural_optimization/fort.10 .
-    cp ../15_structural_optimization/pseudo.dat .
+    % cd ../16_vmc_after_structural_optimization/
+    % cp ../15_structural_optimization/fort.10 .
+    % cp ../15_structural_optimization/pseudo.dat .
 
 Next, generate the input file for VMC calculation ``datasvmc.input`` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -g -steps 1000 -nw 128 -force
+    % turbogenius vmc -g -steps 1000 -nw 128 -force
 
 Run the VMC calculation, for example, using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmc -r
 
 Finally, run the post-processing using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -post -bin 10 -warmup 5
+    % turbogenius vmc -post -bin 10 -warmup 5
 
 and check the force term:
 
-.. code-block:: bash
+.. code-block:: console
 
-    $ cat forces_vmc.dat
+    % cat forces_vmc.dat
     Force component 1 
     Force   =  8.845943906431761E-003  2.073719499651680E-002
     1.397654468993750E-003

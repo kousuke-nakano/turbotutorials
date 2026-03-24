@@ -11,15 +11,15 @@ This command generates a wavefunction file ``fort.10``.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius makefort10 [ACTION] [OPTIONS]
+   % turbogenius makefort10 [ACTION] [OPTIONS]
 
 ACTION is one or any combination of ``-g`` (generate an input file), ``-r`` (run a program), or ``-post`` (perform postprocess). It is mandatory.
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius makefort10 --help
+   % turbogenius makefort10 --help
    
 This command shows the list of available options.
 
@@ -31,33 +31,63 @@ general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
    
-.. csv-table::
-   :header: "option", "default value", "description"
-
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+.. include:: ./list-table/general_option.rst
 
 
 generate (-g) options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 These options affect the generation of the input file datasvmc.input.
 
-.. csv-table::
-   :header: "option", "default value", "description"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   "-str TEXT", "", "Specify a structure file."
-   "-s INTEGER...", "", "Specify a supercell."
-   "-detbasis STR", "", "Specify a basis set for the determinant part. See below."
-   "-jasbasis STR", "", "Specify a bais set for the Jastrow part. See below."
-   "-detcont", "false", "flag for contraction of the determinant part"
-   "-jascont", "false", "flag for contraction of the Jastrow part"
-   "-jasallele", "false", "flag for all-electron for the Jastrow basis set"
-   "-pp STR", "", "Specify pseudopotential. BDF or ccECP"
-   "-detcutbasis", "false", "flag for cutting the determinant basis set according to a default criteria"
-   "-jascutbasis", "false", "flag for cutting the Jastrow basis set according to a default criteria"
-   "-complex", "false", "flag for a complex wavefunction"
-   "-phaseup FLOAT...", "[]", "Specify a phase. e.g. 0.0 0.0 0.0"
-   "-phasedn FLOAT...", "[]", "Specify a phase. e.g. 0.0 0.0 0.0"
-   "-neldiff INTEGER", 0, "Specify difference between up and down electrons"
+   * - option
+     - default value
+     - description
+   * - -str TEXT
+     -
+     - Specify a structure file.
+   * - -s INTEGER...
+     -
+     - Specify a supercell.
+   * - -detbasis STR
+     -
+     - Specify a basis set for the determinant part. See below.
+   * - -jasbasis STR
+     -
+     - Specify a bais set for the Jastrow part. See below.
+   * - -detcont
+     - false
+     - flag for contraction of the determinant part
+   * - -jascont
+     - false
+     - flag for contraction of the Jastrow part
+   * - -jasallele
+     - false
+     - flag for all-electron for the Jastrow basis set
+   * - -pp STR
+     -
+     - Specify pseudopotential. BDF or ccECP
+   * - -detcutbasis
+     - false
+     - flag for cutting the determinant basis set according to a default criteria
+   * - -jascutbasis
+     - false
+     - flag for cutting the Jastrow basis set according to a default criteria
+   * - -complex
+     - false
+     - flag for a complex wavefunction
+   * - -phaseup FLOAT...
+     - []
+     - Specify a phase. e.g. 0.0 0.0 0.0
+   * - -phasedn FLOAT...
+     - []
+     - Specify a phase. e.g. 0.0 0.0 0.0
+   * - -neldiff INTEGER
+     - 0
+     - Specify difference between up and down electrons
+
 
 - The available basis sets for the determinant part are:
    
@@ -94,28 +124,36 @@ This subcommand generates ``makefort10.input``, each variable is described in :r
 
 .. |leftarrow| unicode:: U+2192
 
-.. csv-table::
-   :header: "action", "input", "output", "rename"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   ``-g``, "
-   - a structure file specified by ``-str`` option
-   ", "
-   - makefort10.input
-   - pseudo.dat
-   - makefort10_genius_cli.pkl
-   ",
-   ``-r``, "
-   - makefort10.input
-   - makefort10_genius_cli.pkl
-   ", "
-   - fort.10_new
-   - out_make
-   - structure.xsf
-   - symmetries.dat
-   ",
-   ``-post``, "
-   - out_make
-   - makefort10_genius_cli.pkl
-   ",, "
-   - fort.10_new |leftarrow| fort.10
-   "
+   * - action
+     - input
+     - output
+     - rename
+   * - ``-g``
+     -
+       - a structure file specified by ``-str`` option
+     -
+       - makefort10.input
+       - pseudo.dat
+       - makefort10_genius_cli.pkl
+     -
+   * - ``-r``
+     -
+       - makefort10.input
+       - makefort10_genius_cli.pkl
+     -
+       - fort.10_new
+       - out_make
+       - structure.xsf
+       - symmetries.dat
+     -
+   * - ``-post``
+     -
+       - out_make
+       - makefort10_genius_cli.pkl
+     -
+     -
+       - fort.10_new |leftarrow| fort.10

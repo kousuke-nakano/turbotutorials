@@ -10,13 +10,13 @@ This command visualizes a molecule or crystal structure written in fort.10.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius view [OPTIONS]
+   % turbogenius view [OPTIONS]
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius view --help
+   % turbogenius view --help
    
 This command shows the list of available options.
 
@@ -28,10 +28,7 @@ general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
    
-.. csv-table::
-   :header: "option", "default value", "description"
-
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+.. include:: ./list-table/general_option.rst
 
 Input and output files
 --------------------------------

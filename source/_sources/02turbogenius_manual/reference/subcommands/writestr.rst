@@ -11,13 +11,13 @@ This command generates a structure file from ``fort.10``.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius writestr [OPTIONS]
+   % turbogenius writestr [OPTIONS]
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius writestr --help
+   % turbogenius writestr --help
    
 This command shows the list of available options.
 
@@ -25,11 +25,19 @@ This command shows the list of available options.
 Options
 --------------------------------
 
-.. csv-table::
-   :header: "option", "default value", "description"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
-   "-s TEXT", , "Specify structure file name."
+   * - option
+     - default value
+     - description
+   * - -log TEXT
+     - INFO
+     - Specify log level. The argument is DEBUG, INFO, or ERROR.
+   * - -s TEXT
+     -
+     - Specify structure file name.
 
 The format of the structure file is identified from the filename.
 Any format that is supported by ASE is accepted.
