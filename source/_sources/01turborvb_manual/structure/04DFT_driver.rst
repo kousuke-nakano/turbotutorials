@@ -13,108 +13,71 @@ You can use external quantum chemistry and DFT codes such as Gaussian, GAMESS, a
 
 Built-in DFT code (prep.x)
 ------------------------------------------------
-In this section, we describe the INPUT file that controls DFT calculation. The input file is built using Fortran namelists. Keywords are divided into different sections according to their meanings.
+In this section, we describe the input file that controls DFT calculation. The input file is built using Fortran namelists. Keywords are divided into different sections according to their meanings. See :ref:`Reference section <turborvbtutorial_command_prep.x>` for the full description of the parameters.
+
 
 Simulation section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The sections and the main parameters are listed and shortly described in the following. Keywords that are not required can be omitted in the input file: they will assume a default value.
+This block sets the overall run mode of the built-in DFT driver: which accuracy / basis variant to use for the Hartree piece, and whether the job is a cold start from a flat potential or a continuation that reads ``fort.10_new`` and ``occupationlevels.dat``.
 
-.. csv-table:: Simulation section
-   :header: "Parameter", "Datatype", "Default", "Description"
-
-   "itest4", "NA", "NA", "``itest4 = -4``: Standard DFT run.
-
-   ``itest4 = -8``: DFT calculation with twice larger basis for the Hartree potential."
-   "iopt", "NA", "NA", "``iopt = 1``: Initialize with no potential (no Hartree, xc, correlation).
-
-   ``iopt = 0``: Continuation, starting from wavefunctions read from ``fort.10_new`` and occupation read from ``occupationlevels.dat`` (both generated after ``iopt = 1`` run).
-
-   ``iopt = 2``: Same as ``iopt = 0``, but write main matrices (basis set/Hamiltonian overlaps, charge/spin density)."
+- ``itest4`` — Selects the DFT mode: ``-4`` = standard DFT; ``-8`` = DFT with a doubled basis for the Hartree potential.
+- ``iopt`` — Initialization / continuation: ``1`` = start from no potential (no Hartree, XC, correlation); ``0`` = continue from ``fort.10_new`` and ``occupationlevels.dat`` produced after an ``iopt=1`` run; ``2`` = like ``0`` but also writes main matrices (basis/Hamiltonian overlaps, charge and spin density).
 
 Pseudo section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Pseudo section (summary)
-   :header: "Parameter", "Datatype", "Default", "Description"
+This block configures the nonlocal pseudopotential integration: how many quadrature points to use, whether to use a stochastic mesh suited to QMC-style accuracy, and how to scale the point count if the run asks for more.
 
-   "``nintpsa``", "NA", "NA", "Number of integer points for pseudopotential if present."
-   "``pseudorandom``", "NA", "NA", "Use a random integration mesh for pseudo with the algorithm for QMC by R. Fahy."
-   "``npsamax``", "NA", "NA", "Multiplication factor for the number of pseudo integration points. Note that, use ``npsmax > 2`` if the code terminates with the error 'Increase npsamax'."
+- ``nintpsa`` — Number of integer grid points for the pseudopotential (if used).
+- ``pseudorandom`` — Use a random QMC-style integration mesh for the pseudo (Fahy algorithm).
+- ``npsamax`` — Scales the number of pseudo integration points; increase (e.g. ``> 2``) if the code stops with “Increase npsamax”.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Optimization section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Optimization section
-   :header: "Parameter", "Datatype", "Default", "Description"
+This block nominally relates to orbital optimization flags in the broader code; for prep.x the driver is fixed to molecular orbitals—the table reduces to a do-not-change reminder.
 
-   "``molopt``", "NA", "NA", "Do not change this value, as DFT works with molecular orbitals only."
+- ``molopt`` — Do not change; the built-in DFT driver is tied to molecular orbitals only.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Readio section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Readio section
-   :header: "parameter name", "datatype", "default", "description"
+This block controls scratch I/O: whether large intermediate files (per-rank overlaps/densities and saved wavefunctions) are written so you can restart, run non-self-consistent steps, or use post-processing tools.
 
-   "writescratch", "NA", "NA", "``writescratch = 0``: Writes binary scratch files on disk to speed up continuation and allow non-self-consistent calculations and post-processing tools. The following files are written:
+- ``writescratch`` — ``0`` = write scratch (per-rank ``tmp*``, ``total_densities.sav``, ``wavefunction.sav``) to speed restarts and enable non-SCF / post-processing; ``1`` = no disk scratch (cannot continue or run non-SCF from saved data).
 
-   - **tmp000xxx:** One for each processor. These files contain basis/Hamiltonian overlap matrix elements in the first record. In the second record, they contain charge/spin density distributed matrices.
-
-   - **total_densities.sav:** A single file containing the total (i.e., not distributed over the real space integration grid) charge density in the first record and the total spin density in the second record (in the case of LSDA calculations).
-
-   - **wavefunction.sav:** A single file containing the final Kohn-Sham eigenvectors for all the bands. If k-points are present, each record contains the eigenvectors for a single k-point in the order as they appear in the **occupationlevels.dat** file.
-
-   ``writescratch = 1``: Does not write any scratch file on disk. Continuing from previous runs and non-self-consistent calculations will not be possible."
-
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Parameters section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Parameters section
-   :header: "Parameter", "Datatype", "Default", "Description"
+This block holds cross-cutting switches for periodic / multi-k calculations: turn k-point sampling on or off, optionally run independent SCF per k (for twist workflows), set the real-space cutoff of the periodic basis, and optionally fold k-points by crystal symmetry.
 
-   "``decoupled_run``", "NA", "NA", "If ``.true.`` the code starts a k-independent calculation. When k-points are activated, this option allows performing an independent self-consistent cycle for each k-point without performing the k-points average of electronic density. To be used before a twist average calculation in QMC."
-   "``yes_kpoints``", "NA", "NA", "Set it to ``.true.`` if you plan to do a calculation with k-points sampling. In this case, the phase of the wavefunction fort.10 is disregarded."
-   "``epsbas``", "NA", "NA", "Real space cutoff for the periodic basis set (keyword PBC_C in the first record of the wave function fort.10). Note that, if DFT energy is different from what is expected, then try decreasing the cutoff."
-   "``skip_equivalence``", "logic", "``.true.``", "Set it to ``.false.`` the code looks for the k-points equivalent by symmetry and takes only one of them in the star of the Brillouin zone, by taking into account their degeneracy in the k summation. It is useful to reduce the number of k points explicitly calculated."
+- ``decoupled_run`` — If ``.true.``, run k-independent SCF (no density average over k); use as a precursor to twist-averaged QMC.
+- ``yes_kpoints`` — Enable k-point sampling; the phase in ``fort.10`` is ignored when active.
+- ``epsbas`` — Real-space cutoff for the periodic basis (PBC_C in ``fort.10``); lower it if the DFT energy looks wrong.
+- ``skip_equivalence`` — If ``.false.``, fold the k-mesh using symmetry (one k per star, weights by degeneracy) to reduce explicit k-points.
     
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Molecule section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Molecule section
-   :header: "parameter name", "datatype", "default", "description"
+This block defines the real-space simulation cell and integration grid: number of FFT/grid points, physical box size (open vs periodic), and buffer sizing that affects memory—especially in the complex code path.
 
-   "nx", "NA", "NA", "Number of lattice points for the real space integration grid in the :math:`x` direction. By default, ``nx = ny = nz``"
-   "ax", "NA", "NA", "Space (a.u.) for an open system in the :math:`x` direction; for periodic systems, it is chosen as the cell parameter in the same direction and need not be specified. By default, ``ax = ay = az``"
-   "nbufd", "NA", "NA", "Input value for the buffer dimension. Note that, in the complex code, the buffer dimension is automatically doubled. In this case, consider decreasing the buffer dimension if you have a memory problem."
+- ``nx`` (and ``ny``, ``nz``) — Real-space integration grid size; default cubic ``nx = ny = nz``.
+- ``ax`` (and ``ay``, ``az``) — Box size (a.u.) for open systems; for periodic systems it follows the cell (often omitted); default cubic ``ax = ay = az``.
+- ``nbufd`` — Buffer dimension; in the complex code the buffer is auto-doubled—reduce if memory is tight.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Kpoints section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Kpoints section
-   :header: "parameter name", "datatype", "default", "description"
+This block specifies Brillouin-zone sampling: how k-points are chosen (Γ-only, Monkhorst–Pack, explicit list, band path, or random), the grid sizes or counts, and optional shifts for Monkhorst–Pack meshes.
 
-   "kp_type", "NA", "NA", "This integer specifies the type of k-points which will be chosen in the calculation.
+- ``kp_type`` — Chooses the k scheme: ``0`` = single k (phase from ``fort.10``); ``1`` = Monkhorst–Pack grid ``nk1,nk2,nk3`` (with optional symmetry reduction via ``skip_equivalence``; use ``find_kpoints.x`` to plan parallelism); ``2`` = user k-list (``nk1`` = count, KPOINTS block); ``3`` = path along high-symmetry lines (extrema in KPOINTS, ``nk1`` / ``nk2`` control counts); ``4`` = random k in the BZ (``nk1`` points, no KPOINTS).
+- ``nk1``, ``nk2``, ``nk3`` — Meaning depends on ``kp_type`` (grid size, counts, or path parameters).
+- ``k1``, ``k2``, ``k3`` — For ``kp_type=1``, MP grid offset (often set to 1).
 
-   - ``kp_type = 0``: Do not perform any k-points sampling and use the phase specified in the ``fort.10`` as the unique k-point.
-
-   - ``kp_type = 1``: Use the Monkhorst-Pack algorithm to generate equally-spaced k-points in the first Brillouin zone. The size of the grid in the three Cartesian directions is determined by the integers ``nk1, nk2, nk3``. Note that ``nk1`` must be set to a value > 0. If ``nk2, nk3`` are not set, then they are taken to be equal to ``nk1``. Also, if skip_equivalence (see below) is set to ``.false.`` the number of k-points might be reduced.
-                   In this case, run the tool ``find_kpoints.x`` with the desired input in order to know how many processors must be allocated.
-
-   - ``kp_type = 2``: When this is used, k-points are set by the user and their number is specified by the integer ``nk1``. In this case, the section **KPOINTS** is needed (see below).
-
-   - ``kp_type = 3``: Generates k-points path along high-symmetry lines in the first Brillouin zone. The initial and final points of these segments are specified in the section **KPOINTS** (see below). The number of extremal points is specified by the integer ``nk1`` and the number of points in each segment is specified by the integer ``nk2``.
-
-   - ``kp_type = 4``: Generate k-points randomly within the first Brillouin zone. The number of k-points is specified by ``nk1``. **KPOINTS** section is not needed."
-   "nk1, nk2, nk3", "NA", "NA", "Meanings depend on the value of ``kp_type``, see above for a detailed explanation."
-   "k1, k2, k3", "NA", "NA", "For ``kp_type = 1``, set ``k1, k2, k3`` equal to 1 in order to apply an offset to the k-point grid generated by the Monkhorst-Pack algorithm. In some cases, this can help to reach"
 
 Additional information:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Monkhorst-Pack mesh:
 
@@ -146,58 +109,70 @@ Additional information:
     -0.1667 -0.1667 -0.5000  0.5
     -0.5000 -0.5000 -0.5000  0.5
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 DFT section
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. csv-table:: Parameter List
-   :header: "Parameter Name", "Datatype", "Default", "Description"
+This is the main &dft namelist: it sets the self-consistent cycle (mixing, convergence), the exchange–correlation model, occupations and smearing, spin/magnetization initialization, numerical safeguards (overlap conditioning), and hooks to TurboRVB objects (Jastrow, densities, k-density fixes).
 
-   "contracted_on", "NA", "NA", "If ``.true.`` it acts on the contracted basis (considerably faster)."
-   "maxit", "NA", "NA", "Maximum number of iterations in the self-consistent cycle."
-   "epsdft", "NA", "NA", "Tolerance in the convergence of total energy."
-   "typeopt", "NA", "NA", "- ``typeopt = 0``: Use self consistency method with standard mixing.
-   - ``typeopt = 2``: Linear mixing scheme.
-   - ``typeopt = 3``: Conjugate gradients method with SR acceleration.
-   - ``typeopt = 4``: Anderson mixing scheme with Jacobian acceleration, no use of mixing is made; this method looks to be the faster and therefore the preferred among the available ones. For information on the algorithm see doc/tex/parbcs.tex, Ch. V"
-   "mixing", "NA", "NA", "Choose a small value for better convergence. If even in this way it does not converge, switch on the smearing technique setting ``optocc=1`` (suggested for open shell systems). Alternatively you can change iteration method with ``typeopt=3`` (conjugate gradients) which will certainly converge for mixing small enough. In these cases mixing means just the maximum amplitude in the step."
-   "mixingder (abbr)", "NA", "NA", "- Case 1 (``typeopt = 3``): Used to evaluate numerically the first and second derivatives.
-   - Case 2 (``typeopt = 4``): Used to be closer to the linear regime for the evaluation of the Jacobian (``mixingder`` << 1)."
-   "tfcut", "NA", "NA", "Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u."
-   "orthodiag", "NA", "NA", "``.false.`` the Kohn-Sham eigenvectors are not orthogonalized after each Hamiltonian diagonalization."
-   "maxold", "NA", "NA", "The number of previous iterations to be considered in the numerical evaluation of Jacobian with ``typeopt = 4``."
-   "typedft", "NA", "NA", "- ``typedft = 0``: DFT calculation with Hartree potential only.
-   - ``typedft = 1``: LDA (PZ 1981).
-   - ``typedft = 2``: LDA (OB 1994).
-   - ``typedft = -1,-2``: Same as the two above, but with the corresponding fit performed by imposing continuity in the correlation energy at :math:`rs = 1`.
-   - ``typedft = 3``: KZK finite volume DFT: should be more accurate for finite volume.
-   - ``typedft = -3``: Different fitting procedure, suitable for open systems. Could be used with periodic systems too, but it is less stable.
-   - ``typedft = 4``: Standard LSDA.
-   - ``typedft = -4``: Standard LSDA, but with the corresponding fit performed by imposing continuity in the correlation energy at :math:`rs = 1`.
-   - ``typedft = 5``: LSDA + KZK (not applied on spin) (``typedft = -5`` similar to ``typedft = -3``)."
-   "weightvh", "NA", "NA", "Weight of the hartree potential. Setting ``weightvh`` :math:`\neq 1` is used just for testing."
-   "weightxc", "NA", "NA", "Weight of the exchange energy. When ``weightxc`` :math:`= 0` no exchange and when :math:`weightcorr = 1` standard LDA is used."
-   "weightcorr", "NA", "NA", "Weight of the correlation energy, e.g. ``weightcorr`` :math:`= 0` no correlation, ``weightcorr`` :math:`= 1` standard LDA."
-   "optocc", "NA", "NA", "- ``optocc = 0``: Use standard occupation of levels. It works well only for closed shell systems (insulators or special cases). Occupations are read from standard input (see below); the number of occupations read is chosen by the parameter ``nelocc`` (``neloccdo`` for down spin electrons) which must be specified in input. In this case we have ``occupations(1:nelocc) = 2`` for LDA; ``occupations(1:nelocc) = 1`` && ``occupationdo(1:neloccdo) = 1`` for LSDA.
-   - ``optocc = 1``: Use a smeared Fermi distribution with a spread given by the parameter ``epsshell`` (see below). In this case:  :math:`occupations(i) = \exp{ \frac{eig(i)-ef}{epsshell}+1}` where the Fermi energy :math:`ef` is determined by the constraint, sum(occupations(1:bands)) = no. of electrons via bisection method . For LSDA (``|typedft| = 4, 5``) two Fermi distributions are introduced for up and down electrons. In the case of k-points sampling, the Fermi energy is determined by averaging over :math:`ef` computed for each k-point."
-   "epsshell", "NA", "NA", "Spread of the Fermi distribution used when ``optocc = 1``. The unit is Ha."
-   "memlarge", "NA", "NA", "Optimize speed at the cost of much greater memory requirements. The whole basis set is saved on disk!"
-   "epsover", "NA", "NA", "Minimum tolerance for the lowest eigenvalues of the overlap matrix. If ``epsover`` < 0  no orthogonalization is implemented (faster but less stable)."
-   "mincond", "NA", "NA", "Disregard the first ``mincond``-1 direction regardless of the condition number limited by ``epsover``. This is useful to have better cancellation errors as a function e.g. of pressure."
-   "maxcg", "NA", "NA", "With ``typeopt = 3`` (conjugate gradient) each ``maxcg`` steps restart the conj. grad. procedure. If ``maxcg = 0`` no restarting is performed (discouraged since numerically unstable)."
-   "bands", "NA", "NA", "The number of lowest eigenvalues of Khon-Sham equations to be evaluated. By default ``bands = nelup + 7`` where ``nelup`` is the number of spin up electrons. This corresponds to assuming at most an 8-fold degenerancy in the last occupied shell."
-   "nelocc", "NA", "NA", "If ``nelocc`` > 0, it is the number of occupations that are read in the last record of the input file. Occupation values can only be (0,2] (paired orbitals), -1 (unpaired at the end) or 0 (unoccupied). If ``nxs`` :math:`\times` ``nys`` :math:`\times` ``nzs`` > 0 this record is just after the ones to read the input magnetization (see below)."
-   "neloccdo", "NA", "NA", "It is similar to ``nelocc`` but for the spin down electrons which are assumed with no unpaired orbitals. Another record with ``neloccdo`` integers be written below. Note that, in this case occupations for up spin can take values 1 (occupied paired orbital), -1 (unpaired), 0 (unoccupied orbital). Instead occupations for down spin electrons can take values 1 (occupied paired orbital) and 0 (unoccupied orbital)."
-   "randspin", "NA", "NA", "Used for initializing magnetization. If ``randspin`` > 0, add random component to the orbitals. If ``randspin`` < 0 initialize with maximum possible spin given density and grid (see below). If zero no action."
-   "jaccond", "NA", "NA", "Minimum threshold for the condition matrix in the self-consistent approach ``typeopt = 4``."
-   "nxs nys nzs", "NA", "NA", "Dimension of the grid where the magnetization is defined along the :math:`x`, :math:`y`, :math:`z` direction. The format is written below."
-   "h_field", "NA", "NA", "If ``h\_field`` > (<) 0 put a magnetic field increasing (decreasing) the magnetization with the staggering given by the table sxyz defined for ``randspin``."
-   "optimize_overs", "NA", "NA", "If ``.true.`` optimize the overlap matrices calculation if the phase for spin down electrons is equal or opposite to the phase for up spin electrons. Otherwise it is automatically set to ``.false.``."
-   "write_den", "NA", "NA", "If ``.true.`` write the overlap matrix elements for effective Hamiltonian calculations to the disk."
-   "zero_jas", "NA", "NA", "If ``.true.`` set the one-body Jastrow to zero at the end of the DFT calculation."
-   "fix_density", "NA", "NA", "If the flag ``decoupled_run`` is set to ``.true.`` (&parameters card) as well as the ``yes_kpoints`` flag (&kpoints card), the k-points are evolved independently but using the averaged electronic density."
+**SCF loop and mixing**
+
+These keywords control how the KS equations are iterated to self-consistency: iteration count, tolerance, mixing / Jacobian / CG algorithms, and diagonalization hygiene.
+
+- ``maxit`` — Maximum SCF iterations.
+- ``epsdft`` — Total-energy convergence tolerance.
+- ``typeopt`` — Mixing / optimization algorithm: ``0`` standard mixing; ``2`` linear mixing; ``3`` conjugate gradients + SR; ``4`` Anderson + Jacobian (often fastest / preferred).
+- ``mixing`` — Step amplitude; use small values for stability; if needed, try smearing (``optocc=1``) or CG (``typeopt=3``).
+- ``mixingder`` — For ``typeopt=3``: finite-difference derivatives; for ``typeopt=4``: keep steps in the linear regime for the Jacobian (``mixingder << 1``).
+- ``tfcut`` — Thomas–Fermi-style preconditioning (``typeopt`` 0/2/4); suggested :math:`\sim 1/\xi_{\mathrm{TF}}^2` (a.u.).
+- ``orthodiag`` — If ``.false.``, skip re-orthogonalization of KS vectors after each diagonalization.
+- ``maxold`` — History length for Jacobian with ``typeopt=4``.
+- ``maxcg`` — Restart period for CG (``typeopt=3``); ``0`` = no restart (unstable).
+
+**Functional and energy weights**
+
+Here you pick the DFT energy model (Hartree-only, LDA/LSDA variants, finite-volume/KZK options) and optional scaling of Hartree / XC terms for tests; contracted_on speeds up the basis pipeline.
+
+- ``typedft`` — Functional choice: Hartree-only ``0``; LDA variants ``1``, ``2``, ``-1``, ``-2``; finite-volume / KZK ``3``, open-system fit ``-3``; LSDA ``4``, ``-4``; LSDA+KZK ``5``, ``-5``, etc.
+- ``contracted_on`` — If ``.true.``, use contracted basis (much faster).
+- ``weightvh``, ``weightxc``, ``weightcorr`` — Scale Hartree / exchange / correlation (mainly testing; ``weightxc``/``weightcorr`` = 0 turns off X or C).
+
+**Occupations and bands**
+
+These options define how bands are filled (fixed integers vs Fermi smearing), how many bands are solved, and how occupation records are read for closed/open shells.
+
+- ``optocc`` — ``0`` = fixed occupations from input (good for closed shells; use ``nelocc`` / ``neloccdo``); ``1`` = Fermi smearing with width ``epsshell`` (and k-averaged Fermi level when using k-points).
+- ``epsshell`` — Smearing width (Ha) for ``optocc=1``.
+- ``bands`` — Number of lowest KS bands solved (default tied to ``nelup`` and assumed degeneracy).
+- ``nelocc``, ``neloccdo`` — How many occupation numbers to read (spin-up / spin-down rules differ for LSDA).
+
+**Magnetization and grids (spin)**
+
+Use this group to seed or constrain collinear magnetism: random or extreme spin initialization, optional spatial magnetization grid, and a staggered field pattern.
+
+- ``randspin`` — Initialize magnetization (random perturbation, or extreme spin from density/grid).
+- ``nxs``, ``nys``, ``nzs`` — Grid for magnetization density (see input layout in ``04DFT_driver.rst``).
+- ``h_field`` — Staggered magnetic field bias (coupled to the same tables as ``randspin``).
+
+**Performance / numerics**
+
+These flags trade speed vs memory, control overlap-matrix conditioning, and tune the Jacobian solver used by some mixing modes.
+
+- ``memlarge`` — Faster but much more memory (full basis on disk).
+- ``epsover``, ``mincond`` — Overlap eigenvalue cutoff and direction skipping for stability vs. cancellation (e.g. pressure).
+- ``jaccond`` — Condition threshold for ``typeopt=4`` Jacobian workflow.
+
+**I/O and wavefunction hooks**
+
+Miscellaneous switches for efficiency (overlap reuse across spins), export of matrices for effective Hamiltonians, zeroing the Jastrow after DFT, and how the density couples k-points when ``decoupled_run`` is on.
+
+- ``optimize_overs`` — Speed up overlap work when spin-down phase matches or opposes spin-up phase.
+- ``write_den`` — Write overlap data for effective Hamiltonian post-processing.
+- ``zero_jas`` — Zero the one-body Jastrow after DFT finishes.
+- ``fix_density`` — With ``decoupled_run`` and ``yes_kpoints``, evolve k-points independently but using the k-averaged density.
+
 
 Additional information:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - ``nxs`` ``nys`` ``nzs``
 
@@ -219,16 +194,29 @@ Additional information:
         ! ...
         ! s1nysnzs ... ... ... snxsnysnzs
 
-..
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  Band_structure section
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  This card should be used if and only if the flag ``compute_bands`` is set to ``.true.`` in the **&simulation** card.
-  ``task`` (default: `0`) Flag to specify which quantity to compute after a non self-consistent run. It is ignored if ``type_comp_dft = 0``.
-      ``task = 0`` Do not compute anything.
-      ``task = 1`` Band structure plot (use ``kp_type = 2/3`` in the k-points card to specify the path in the Brillouin zone).
-      ``task = 2`` Density of States calculations using smearing parameter given by ``epsshell``. The integer ``optocc`` must be set to 1.
-  ``emin`` min(eigenvalue): minimum value of the energy to be included in band structure or DOS plot.
-  ``emax`` max(eigenvalue): maximum value of the energy to be included in band structure or DOS plot.
-  ``deltaE`` Energy bin for computing the density of states (task = 2).
 
+..
+   Band_structure section
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   This optional block is documented only as a comment in ``04DFT_driver.rst`` (not a ``csv-table``). It configures post-processing after a non-self-consistent DFT step: band-structure plots along a k-path or DOS with smearing, plus the energy window and DOS binning. Turn it on from &simulation with ``compute_bands = .true.`` when you run band-structure or DOS workflows in prep.x.
+
+   Prerequisites
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   - Activate this card only if ``compute_bands`` is set to ``.true.`` in the &simulation namelist.
+   - The ``task`` flag controls what is computed after a non-self-consistent run. It is ignored if ``type_comp_dft = 0``.
+
+   ``task`` (default ``0``)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   - ``task = 0`` — Do not compute any extra post-processing quantity.
+   - ``task = 1`` — Band structure plot. In the &kpoints card, use ``kp_type = 2`` (user k-list) or ``kp_type = 3`` (high-symmetry path) to define the route in the Brillouin zone.
+   - ``task = 2`` — Density of states (DOS) using the smearing width ``epsshell``. You must set ``optocc = 1`` (Fermi smearing) in the DFT section.
+
+   Energy range and DOS binning
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   - ``emin`` — Minimum eigenvalue (energy) included in the band-structure or DOS plot.
+   - ``emax`` — Maximum eigenvalue included.
+   - ``deltaE`` — Energy bin width for the DOS histogram when ``task = 2``.

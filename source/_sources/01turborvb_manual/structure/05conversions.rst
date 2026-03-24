@@ -81,34 +81,7 @@ Converting a WF to AGP (convertfort10.x)
 The output is the ``fort.10_new`` is the converted file (with maximum
 overlap with the input) in the basis set you have decided in ``fort.10_out``
 
-The input parameters are as follows
-
-.. csv-table:: OPTION
-   :header: "parameter name", "datatype", "default", "description"
-
-   "bigram", "NA", "NA", "Logical value. If set to .true., it uses RAM to store the initial file."
-   "symiesup", "NA", "NA", "Logical value. If set to .true., it uses symmetries for contracted orbitals in AGP."
-   "eqion", "NA", "NA", "Logical value. When set to .false., you can allow for a permutation of ions but the corresponding pseudo to fort.10_out has to be defined (if pseudos are used) named pseudo_out."
-
-.. csv-table:: CONTROL
-   :header: "parameter name", "datatype", "default", "description"
-
-   "change_jas", "NA", "NA", "Logical value. If set to .false., it does not compute the output Jastrow (read in fort.10_out)."
-   "change_contr", "NA", "NA", "Logical value. If set to .true., it does not compute contracted coefficient Det (read in fort.10_out)."
-   "force_real", "NA", "NA", "Logical value. If set to .true., the output contracted orbitals are real."
-   "real_agp", "NA", "NA", "Logical value. If set to .true., it uses the numerical algorithm to obtain a real AGP with the maximum overlap."
-   "rmax", "NA", "NA", "Numeric value. It uses the numerical algorithm to obtain an AGP with a cutoff radius of rmax (bohr) and with the maximum overlap."
-   "max_iter", "NA", "NA", "Integer value. It represents the maximum number of iterations for the numerical algorithm (not much more than 10000 is suggested)."
-   "prec", "NA", "NA", "Numeric value. It represents the required precision for the numerical version of the algorithm."
-   "epsdgel", "NA", "NA", "Numeric value. The default is 1d-15."
-   "yespardiag", "NA", "NA", "Logical value. If set to .true., it uses the parallelized matrix-matrix multiplication."
-
-.. csv-table:: Mesh information
-   :header: "parameter name", "datatype", "default", "description"
-
-   "nx", "NA", "NA", "Numeric value. It is not necessary with optbin=.true. (the mesh is given)."
-   "ax", "NA", "NA", "Numeric value. This is the IMPORTANT section you have always to define (the default is OK for the rest) use DFT mesh as an hint."
-   "nbufd", "NA", "NA", "Numeric value. You can reduce the size of nbufd for reducing the RAM memory used."
+The input parameters are described in :ref:`Reference section <turborvbtutorial_command_convertfort10.x_input_parameters>`.
 
 .. note::
 
@@ -172,31 +145,4 @@ It is  not allowed for AGP optimization,  rather for DFT or VMC/DMC at fixed var
 
 add_offmol=.true./.false.  If the above is true , add also off diagonal elements in the molecular orbital basis defined by the above option.
 
-The input parameters are as follows:
-
-.. csv-table::
-   :header: "Parameter", "Datatype", "Default", "Description"
-
-   "molopt", "NA", "0", "Numeric value. If molopt>2, the best atomic contracted are evaluated using DMRG. molopt=2 for only AGP, molopt=3 for AGP and Jastrow."
-   "epsdgm", "NA", "1d-14", "Numeric value. If epsdgm<0, fast routine with no diag is used. Only filling random molecular orbitals. When epsdgm=-1.0, it converts a symmagp=.true. to a symmagp=.false fort.10."
-   "orthoyes", "NA", "NA", "Logical value. If set to .true., orthogonalization of unpaired orbitals is employed."
-   "membig", "NA", "NA", "Logical value. If set to .false., coefficients of molecular orbitals are changed to allow stable optimization."
-   "only_molecular", "NA", "NA", "Logical value. If set to .true., only molecular orbitals are assumed in the contracted basis to minimize memory. It is not allowed for full AGP optimization, rather for DFT or VMC/DMC at fixed variational parameters."
-
-.. csv-table::
-   :header: "Parameter", "Datatype", "Default", "Description"
-
-   "ax", "NA", "0.1", "Numeric value. Lattice mesh on the x direction, not used for PBC."
-   "nx", "NA", "20", "Numeric value. Number of mesh points in the x direction to evaluate overlaps."
-   "ny", "NA", "NA", "Numeric value. Default is nx."
-   "nz", "NA", "NA", "Numeric value. Default is ny."
-   "nbufd", "NA", "10000", "Numeric value. Represents buffer default."
-
-.. csv-table::
-   :header: "Parameter", "Datatype", "Default", "Description"
-
-   "nmol", "NA", "136", "Numeric value. Number of molecular orbitals in fort.10 in the AGP, if nmol>0 and unpaired orbitals are present the total number of molecular orbitals in fort.10 is molecular = nmol+#unpaired orbitals (nelup-neldo)"
-   "nmolmax", "NA", "136", "Numeric value. Used in projection (default nmolmax=nmol)."
-   "nmolmin", "NA", "128", "Numeric value. The first nmolmin molecular eigenvalue are set to one. If nmolmin=nmolmax=Nel/2, a perfect Slater determinant is projected."
-   "printoverlap", "NA", "NA", "Logical value. If set to .true., it prints overlaps between nmolmin, nmolmax orbitals."
-
+The input parameters are described in :ref:`Reference section <turborvbtutorial_command_convertfort10mol.x_input_parameters>`.
