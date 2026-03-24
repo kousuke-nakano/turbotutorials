@@ -14,12 +14,12 @@ SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via V
 --------------------------------------------------------------------
 
 In this tutorial, you will perform a VMC/LRDMC workflow for crystalline SiO2 under PBCs, starting from a PySCF DFT calculation with ccECPs. You will use Gamma-point sampling. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
-   
+
 .. _review: https://doi.org/10.1063/5.0005037
 
 .. contents:: Table of Contents
    :depth: 3
-   
+
 .. _turbogeniustutorial_0401_01:
 
 01 PySCF calculation and its conversion to a TREXIO file
@@ -33,17 +33,17 @@ The first step of this tutorial is to generate a JDFT ansatz using PySCF.
 Run a PySCF calculation by typing as follows. The Python script will be presented later.
 
 .. code-block:: console
-    
+
     % cd 01_pyscf_calculation
     % python3 pyscf_SiO2.py
 
 You can convert the generated PySCF checkpoint file to a TREXIO file
 
 .. code-block:: console
-    
+
     % # pyscf chkfile to TREXIO
     % trexio convert-from -t pyscf -i SiO2.chk -b hdf5 SiO2.hdf5
-    
+
 
 .. _turbogeniustutorial_0401_02:
 
@@ -54,19 +54,19 @@ Next, we convert the TREXIO file to a TurboRVB wavefunction file.
 It can be done by using ``trexio-to-turborvb`` program in the TurboGenius package as follows:
 
 .. code-block:: console
-    
+
     % trexio-to-turborvb SiO2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 .. note::
-    
+
     If you want to specify Jastrow basis set, you can use the following python script to convert the TREXIO file.
 
     .. code-block:: console
 
        % vi trexio_turborvb_wf_converter.py # define your Jastrow basis
        % python trexio_turborvb_wf_converter.py
-      
-            
+
+
 .. _turbogeniustutorial_0401_03:
 
 03 JDFT ansatz - Jastrow optimization
@@ -83,7 +83,7 @@ Here, only needed commands are shown.
       % cp ../01_pyscf_calculation/fort.10 fort.10
       % cp ../01_pyscf_calculation/pseudo.dat .
       % cp fort.10 fort.10_pyscf
-    
+
 2. Generate an input file `datasmin.input`:
 
   .. code-block:: console
@@ -104,7 +104,7 @@ Here, only needed commands are shown.
   .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 80 -plot
-    
+
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
 .. note::
@@ -113,16 +113,16 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
 
   - In the natural gradient method, a matrix :math:`S` is regularized as
     :math:`{\rm diag}(S') = (1 + {\rm parr}) {\rm diag}(S)`
-    before calculating :math:`{S'}^{-1}` 
+    before calculating :math:`{S'}^{-1}`
     for a positive value of the `parr` parameter (specified by the ``-reg`` option).
     When :math:`S` is much ill-conditioned, the above regularization does not work.
-    Instead, by choosing a **negative** value of the `parr` parameter, 
+    Instead, by choosing a **negative** value of the `parr` parameter,
     :math:`{\rm diag}(S') = {\rm diag}(S) + {\rm parr}` is adopted
     in which the diagonal part is directly enhanced by the `parr` parameter.
     This may stabilize the inversion.
 
   - By adding ``-num_opt_param`` to the turbogenius command line or specifying a parameter ``npbra`` in the ``&optimization`` section of the input parameter ``datasmin.input``, the convergence may speed up. The figure below plots the values of devmax along the optimization steps, with and without specifying ``npbra``.
-    
+
     .. image:: image/optimization_devmax.png
        :width: 70%
        :align: center
@@ -159,7 +159,7 @@ Finally, run the postprocess:
 
 .. code-block:: console
 
-    % turbogenius vmc -post -bin 10 -warmup 5 
+    % turbogenius vmc -post -bin 10 -warmup 5
 
 Check the reblocked total energy and error in the file `pip0.d`.
 

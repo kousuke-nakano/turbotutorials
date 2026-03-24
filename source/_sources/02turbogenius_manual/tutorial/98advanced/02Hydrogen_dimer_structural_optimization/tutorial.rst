@@ -14,7 +14,7 @@ In this tutorial, you will compute atomic forces for the hydrogen dimer (H\ :sub
 
 .. contents:: Table of Contents
    :depth: 2
-   
+
 .. _turbogeniustutorial_9802_12:
 
 12 Preparing a JAGP wavefuction of the H dimer with a shorter bond distance
@@ -44,7 +44,7 @@ This section describes the procedure for preparing a JAGP wavefunction for the H
 3. Convert from the TREXIO file to the TurboRVB wavefunction
 
    .. code-block:: console
-    
+
       % trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 4. Convert from JDFT wavefunction to JAGP wavefunction
@@ -134,7 +134,7 @@ and check the force term:
 .. code-block:: console
 
     % cat forces_vmc.dat
-    Force component 1 
+    Force component 1
     Force   = -0.581448055902718       3.012635556421040E-002
     1.943226397097583E-003
     Der Eloc = -0.566537913456315       2.996930056497041E-002
@@ -217,7 +217,7 @@ and check the force term:
 .. code-block:: console
 
     % cat forces_vmc.dat
-    Force component 1 
+    Force component 1
     Force   =  8.845943906431761E-003  2.073719499651680E-002
     1.397654468993750E-003
     Der Eloc =  6.856205295579485E-003  2.011093288033853E-002
