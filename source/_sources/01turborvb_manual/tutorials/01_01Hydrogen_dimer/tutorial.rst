@@ -22,13 +22,13 @@ From this tutorial, you can learn how to calculate all-electron Variational Mont
 
 This is a workflow of this tutorial:
 
-.. image:: image/workflow_detailed.jpeg
+.. image:: /_static/02basic_workflow/workflow_detailed.jpeg
    :scale: 80%
    :align: center
 
 This is the detailed workflow of this tutorial:
 
-.. image:: image/turbo_flow.jpg
+.. image:: /_static/02basic_workflow/turbo_flow.jpg
    :scale: 20%
    :align: center
 
