@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CO Molecule Calculation &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>CO Molecule Calculation &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
@@ -54,11 +56,40 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">CO Molecule Calculation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#purpose-of-the-script">Purpose of the Script</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#execution-steps">Execution Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#program-overview">Program Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-steps">Execution Steps</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#environment-setup">1. Environment Setup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#script-execution">2. Script Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#program-overview">Program Overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#script-structure">Script Structure</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#a-pyscf-calculation-workflow">a. PySCF Calculation Workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#b-trexio-conversion-workflow">b. TREXIO Conversion Workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#c-jastrow-factor-copy-workflow-for-non-reference-distances">c. Jastrow Factor Copy Workflow (for non-reference distances)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#d-vmc-optimization-workflow">d. VMC Optimization Workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#e-vmc-calculation-workflow">e. VMC Calculation Workflow</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#f-lrdmc-calculation-workflow">f. LRDMC Calculation Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-dependencies">Workflow Dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#output-directory-structure">Output Directory Structure</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#result-analysis">Result Analysis</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#distance-parameters">Distance Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#calculation-accuracy-parameters">Calculation Accuracy Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#job-execution-parameters">Job Execution Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#jastrow-basis-functions">Jastrow Basis Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#when-pyscf-calculation-fails">When PySCF Calculation Fails</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#when-workflow-fails">When Workflow Fails</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#when-jastrow-factor-copying-fails">When Jastrow Factor Copying Fails</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#when-calculation-time-is-too-long">When Calculation Time is Too Long</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
@@ -72,6 +103,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -101,9 +134,9 @@
            <div itemprop="articleBody">
              
   <section id="co-molecule-calculation">
-<span id="turboworkflows-tutorial-co-dimer"></span><h1>CO Molecule Calculation<a class="headerlink" href="#co-molecule-calculation" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-tutorial-co-dimer"></span><h1>CO Molecule Calculation<a class="headerlink" href="#co-molecule-calculation" title="Link to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>This tutorial explains the workflow for Quantum Monte Carlo (QMC) calculations using TurboWorkflows, using <code class="docutils literal notranslate"><span class="pre">co_dimer</span></code> as an example.
 This tutorial performs QMC calculations for CO molecule (carbon monoxide) at multiple interatomic distances to compute the energy curve.</p>
 <p>This tutorial performs QMC calculations for CO molecule through the following steps:</p>
@@ -117,24 +150,24 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ol>
 </section>
 <section id="purpose-of-the-script">
-<h2>Purpose of the Script<a class="headerlink" href="#purpose-of-the-script" title="Permalink to this heading"></a></h2>
+<h2>Purpose of the Script<a class="headerlink" href="#purpose-of-the-script" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">task.py</span></code> script is designed to efficiently compute energy curves for CO molecule at multiple interatomic distances using QMC calculations.</p>
 <p>Key Features:</p>
 <ul class="simple">
 <li><p><strong>Automatic Multi-Distance Calculation</strong>: Automatically calculates at 11 points from 0.90 Å to 1.30 Å for CO distances</p></li>
 <li><p><strong>Efficient Jastrow Factor Reuse</strong>: Reduces computation time by copying optimized Jastrow factors from the reference distance (center distance) to other distances</p></li>
 <li><p><strong>Fully Automated</strong>: All steps from molecular structure generation to final LRDMC calculation are automated</p></li>
-<li><p><strong>Automatic Dependency Management</strong>: TurboWorkflows’ <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically resolves dependencies between workflows and executes them in the appropriate order</p></li>
+<li><p><strong>Automatic Dependency Management</strong>: TurboWorkflows' <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically resolves dependencies between workflows and executes them in the appropriate order</p></li>
 </ul>
 </section>
 <section id="execution-steps">
-<h2>Execution Steps<a class="headerlink" href="#execution-steps" title="Permalink to this heading"></a></h2>
+<h2>Execution Steps<a class="headerlink" href="#execution-steps" title="Link to this heading"></a></h2>
 <section id="environment-setup">
-<h3>1. Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading"></a></h3>
+<h3>1. Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h3>
 <p>Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.</p>
 </section>
 <section id="script-execution">
-<h3>2. Script Execution<a class="headerlink" href="#script-execution" title="Permalink to this heading"></a></h3>
+<h3>2. Script Execution<a class="headerlink" href="#script-execution" title="Link to this heading"></a></h3>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">task.py</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>task.py
 </pre></div>
@@ -148,9 +181,9 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </section>
 </section>
 <section id="program-overview">
-<h2>Program Overview<a class="headerlink" href="#program-overview" title="Permalink to this heading"></a></h2>
+<h2>Program Overview<a class="headerlink" href="#program-overview" title="Link to this heading"></a></h2>
 <section id="script-structure">
-<h3>Script Structure<a class="headerlink" href="#script-structure" title="Permalink to this heading"></a></h3>
+<h3>Script Structure<a class="headerlink" href="#script-structure" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> consists of the following main parts:</p>
 <ol class="arabic simple">
 <li><p><strong>Distance Parameter Settings</strong> (lines 19-21)</p></li>
@@ -222,7 +255,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ol>
 <p>For each distance (<code class="docutils literal notranslate"><span class="pre">d</span></code>), the following workflows are generated:</p>
 <section id="a-pyscf-calculation-workflow">
-<h4>a. PySCF Calculation Workflow<a class="headerlink" href="#a-pyscf-calculation-workflow" title="Permalink to this heading"></a></h4>
+<h4>a. PySCF Calculation Workflow<a class="headerlink" href="#a-pyscf-calculation-workflow" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">d_list</span><span class="p">:</span>
     <span class="n">H2_molecule</span> <span class="o">=</span> <span class="n">Atoms</span><span class="p">(</span><span class="s1">&#39;CO&#39;</span><span class="p">,</span> <span class="n">positions</span><span class="o">=</span><span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)])</span>
     <span class="n">H2_molecule</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;CO_</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">.xyz&#39;</span><span class="p">)</span>
@@ -260,7 +293,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Generates CO molecule structure using ASE’s <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> class</p></li>
+<li><p>Generates CO molecule structure using ASE's <code class="docutils literal notranslate"><span class="pre">Atoms</span></code> class</p></li>
 <li><p>Automatically generates XYZ file (<code class="docutils literal notranslate"><span class="pre">CO_{d}.xyz</span></code>)</p></li>
 <li><p>Executes DFT calculation using PySCF_workflow</p></li>
 <li><p>Basis set: <code class="docutils literal notranslate"><span class="pre">ccecp-ccpvqz</span></code></p></li>
@@ -268,7 +301,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ul>
 </section>
 <section id="b-trexio-conversion-workflow">
-<h4>b. TREXIO Conversion Workflow<a class="headerlink" href="#b-trexio-conversion-workflow" title="Permalink to this heading"></a></h4>
+<h4>b. TREXIO Conversion Workflow<a class="headerlink" href="#b-trexio-conversion-workflow" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">trexio_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -293,7 +326,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ul>
 </section>
 <section id="c-jastrow-factor-copy-workflow-for-non-reference-distances">
-<h4>c. Jastrow Factor Copy Workflow (for non-reference distances)<a class="headerlink" href="#c-jastrow-factor-copy-workflow-for-non-reference-distances" title="Permalink to this heading"></a></h4>
+<h4>c. Jastrow Factor Copy Workflow (for non-reference distances)<a class="headerlink" href="#c-jastrow-factor-copy-workflow-for-non-reference-distances" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">if</span> <span class="n">d</span><span class="o">!=</span><span class="n">d_ref</span><span class="p">:</span>
         <span class="n">copyjas_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;copyjas-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -322,7 +355,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ul>
 </section>
 <section id="d-vmc-optimization-workflow">
-<h4>d. VMC Optimization Workflow<a class="headerlink" href="#d-vmc-optimization-workflow" title="Permalink to this heading"></a></h4>
+<h4>d. VMC Optimization Workflow<a class="headerlink" href="#d-vmc-optimization-workflow" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">vmcopt_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmcopt-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -376,7 +409,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ul>
 </section>
 <section id="e-vmc-calculation-workflow">
-<h4>e. VMC Calculation Workflow<a class="headerlink" href="#e-vmc-calculation-workflow" title="Permalink to this heading"></a></h4>
+<h4>e. VMC Calculation Workflow<a class="headerlink" href="#e-vmc-calculation-workflow" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">vmc_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -419,7 +452,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </ul>
 </section>
 <section id="f-lrdmc-calculation-workflow">
-<h4>f. LRDMC Calculation Workflow<a class="headerlink" href="#f-lrdmc-calculation-workflow" title="Permalink to this heading"></a></h4>
+<h4>f. LRDMC Calculation Workflow<a class="headerlink" href="#f-lrdmc-calculation-workflow" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">lrdmc_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lrdmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;lrdmc-workflow-</span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -476,7 +509,7 @@ This tutorial performs QMC calculations for CO molecule (carbon monoxide) at mul
 </section>
 </section>
 <section id="workflow-dependencies">
-<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Permalink to this heading"></a></h3>
+<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Link to this heading"></a></h3>
 <p>When <code class="docutils literal notranslate"><span class="pre">task.py</span></code> is executed, a dependency graph is automatically generated by <code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code>.
 You can visually confirm the dependencies between workflows by referring to the generated dependency graph (<code class="docutils literal notranslate"><span class="pre">graphs.png</span></code>).
 In the dependency graph, each workflow is displayed as a node, and dependencies are shown with arrows.</p>
@@ -493,7 +526,7 @@ In the dependency graph, each workflow is displayed as a node, and dependencies 
 <p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically executes workflows in the appropriate order based on this dependency graph.</p>
 </section>
 <section id="output-directory-structure">
-<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Permalink to this heading"></a></h3>
+<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Link to this heading"></a></h3>
 <p>After execution, results are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory with the following structure:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>results/
 ├── CO_0.90.xyz
@@ -523,16 +556,16 @@ In the dependency graph, each workflow is displayed as a node, and dependencies 
 </section>
 </section>
 <section id="result-analysis">
-<h2>Result Analysis<a class="headerlink" href="#result-analysis" title="Permalink to this heading"></a></h2>
+<h2>Result Analysis<a class="headerlink" href="#result-analysis" title="Link to this heading"></a></h2>
 <p>After calculations are completed, LRDMC calculation results are obtained for each distance.
 These results are compiled and visualized as the Potential Energy Surface (PES) for CO molecule, saved as <code class="docutils literal notranslate"><span class="pre">CO_PES.png</span></code>.</p>
 <img alt="CO Molecule Potential Energy Surface" class="align-center" src="../../../../_images/CO_PES.png" />
 <p>This plot shows the energy curve as a function of CO distance, allowing you to confirm information such as bond distance and binding energy.</p>
 </section>
 <section id="parameter-adjustment">
-<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Permalink to this heading"></a></h2>
+<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Link to this heading"></a></h2>
 <section id="distance-parameters">
-<h3>Distance Parameters<a class="headerlink" href="#distance-parameters" title="Permalink to this heading"></a></h3>
+<h3>Distance Parameters<a class="headerlink" href="#distance-parameters" title="Link to this heading"></a></h3>
 <p>To change the distance range or number of points, adjust the following parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">max_d</span><span class="o">=</span><span class="mf">1.30</span>  <span class="c1"># Maximum distance (Å)</span>
 <span class="n">min_d</span><span class="o">=</span><span class="mf">0.90</span>  <span class="c1"># Minimum distance (Å)</span>
@@ -541,7 +574,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </div>
 </section>
 <section id="calculation-accuracy-parameters">
-<h3>Calculation Accuracy Parameters<a class="headerlink" href="#calculation-accuracy-parameters" title="Permalink to this heading"></a></h3>
+<h3>Calculation Accuracy Parameters<a class="headerlink" href="#calculation-accuracy-parameters" title="Link to this heading"></a></h3>
 <p>To adjust VMC optimization accuracy, modify parameters of <code class="docutils literal notranslate"><span class="pre">vmcopt_workflow</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_target_error_bar</span></code>: Target error bar (smaller is more accurate)</p></li>
@@ -556,7 +589,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </ul>
 </section>
 <section id="job-execution-parameters">
-<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Permalink to this heading"></a></h3>
+<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Link to this heading"></a></h3>
 <p>Adjust the following parameters according to your computational environment:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">server_machine_name</span></code>: Server machine name (default: <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code>)</p></li>
@@ -566,14 +599,14 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </ul>
 </section>
 <section id="jastrow-basis-functions">
-<h3>Jastrow Basis Functions<a class="headerlink" href="#jastrow-basis-functions" title="Permalink to this heading"></a></h3>
+<h3>Jastrow Basis Functions<a class="headerlink" href="#jastrow-basis-functions" title="Link to this heading"></a></h3>
 <p>You can define Jastrow basis functions for C and O atoms in <code class="docutils literal notranslate"><span class="pre">jastrow_basis_dict</span></code>. For higher accuracy calculations, you can add more basis functions.</p>
 </section>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
 <section id="when-pyscf-calculation-fails">
-<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Permalink to this heading"></a></h3>
+<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Verify that PySCF and required packages are correctly installed</p></li>
 <li><p>Check that computational resources (memory, CPU) are sufficient</p></li>
@@ -581,7 +614,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </ul>
 </section>
 <section id="when-workflow-fails">
-<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Permalink to this heading"></a></h3>
+<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Check log files for each workflow</p></li>
 <li><p>Verify that dependencies are correctly set (especially <code class="docutils literal notranslate"><span class="pre">Variable</span></code> references)</p></li>
@@ -590,14 +623,14 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </ul>
 </section>
 <section id="when-jastrow-factor-copying-fails">
-<h3>When Jastrow Factor Copying Fails<a class="headerlink" href="#when-jastrow-factor-copying-fails" title="Permalink to this heading"></a></h3>
+<h3>When Jastrow Factor Copying Fails<a class="headerlink" href="#when-jastrow-factor-copying-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Verify that <code class="docutils literal notranslate"><span class="pre">vmcopt-workflow</span></code> for the reference distance (<code class="docutils literal notranslate"><span class="pre">d_ref</span></code>) has completed successfully</p></li>
 <li><p>Check that input files (<code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>) for <code class="docutils literal notranslate"><span class="pre">copyjas-workflow</span></code> are correctly referenced</p></li>
 </ul>
 </section>
 <section id="when-calculation-time-is-too-long">
-<h3>When Calculation Time is Too Long<a class="headerlink" href="#when-calculation-time-is-too-long" title="Permalink to this heading"></a></h3>
+<h3>When Calculation Time is Too Long<a class="headerlink" href="#when-calculation-time-is-too-long" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Increase <code class="docutils literal notranslate"><span class="pre">vmcopt_target_error_bar</span></code> (lower accuracy)</p></li>
 <li><p>Reduce <code class="docutils literal notranslate"><span class="pre">vmcopt_production_optsteps</span></code></p></li>
@@ -606,7 +639,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>In this tutorial, we performed QMC calculations for CO molecule at multiple distances through the following steps:</p>
 <ol class="arabic simple">
 <li><p>Generated initial wavefunctions using PySCF calculations for multiple CO distances</p></li>
@@ -617,7 +650,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
 <li><p>Calculated high-precision energies with LRDMC calculation</p></li>
 </ol>
 <p>Results for each distance are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory and can be used for energy curve analysis. Calculation results are visualized as <code class="docutils literal notranslate"><span class="pre">CO_PES.png</span></code>, allowing you to examine the potential energy surface of CO molecule. The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically manages dependencies and executes workflows in the appropriate order.</p>
-<p>The feature of “Jastrow factor reuse at the reference distance” in this script introduces nontrivial dependency between otherwise-independent calculations at different distances.</p>
+<p>The feature of &quot;Jastrow factor reuse at the reference distance&quot; in this script introduces nontrivial dependency between otherwise-independent calculations at different distances.</p>
 </section>
 </section>
 
@@ -632,7 +665,7 @@ These results are compiled and visualized as the Potential Energy Surface (PES) 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

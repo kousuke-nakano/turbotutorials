@@ -1,0 +1,25 @@
+Parameter name,Datatype,Default,Description
+ncore,``integer``,automatic,WIP
+np3,``integer``,"- ``0`` if no input
+
+- ignore input or above value
+
+  + if np == -1
+
+    - ``0`` if itestr == -5
+    - ``iese + abs(isfix) + 2*(abs(iesinv) + iesm + iesd + abs(iesfree) + abs(iessw) + iesup + iesking) + 3*ieskin`` if itestr /= -5
+",WIP
+np,``integer``,automatic,WIP
+iread,``integer``,"- if no input
+
+  + ``6`` if optbra > 3
+  + ``0`` if optbra <= 3
+
+- ``3`` if io_level == 2 and iread == 2
+","For correlated sampling or measuring correlation functions with readforward, use iread=3."
+writescratch,``integer``,``1``,Writes binary scratch files on disk to speed up continuation and allow non-self-consistent calculations and post-processing tools. The following files are written:
+wherescratch,``character(60 + lchlen)``,automatic('./' or 'old'),WIP
+unreliable,``integer``,``0``,WIP
+ifreqdump,``integer``,``1``,WIP
+nowrite12,``logical``,``.false.``,WIP
+flush_write,``logical``,automatic(.true. or .false.),WIP

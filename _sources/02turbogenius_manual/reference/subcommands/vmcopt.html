@@ -1,23 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vmcopt &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>vmcopt &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -44,11 +48,56 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../00index.html">TurboGenius manual</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01general_description.html">General description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Subcommand reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertwf.html">convertwf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlated-sampling.html">correlated-sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lrdmc.html">lrdmc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lrdmcopt.html">lrdmcopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotorb.html">plotorb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="view.html">view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vmc.html">vmc</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">vmcopt</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#general-option">general option</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#generate-g-options">generate (-g) options</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#postprocess-post-options">postprocess (-post) options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output-files">Input and output files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#corresponding-input-parameters">Corresponding input parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="writestr.html">writestr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips/00index.html">Tips and trouble shooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -67,6 +116,7 @@
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../00index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Subcommand reference</a></li>
       <li class="breadcrumb-item active">vmcopt</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/02turbogenius_manual/reference/subcommands/vmcopt.rst.txt" rel="nofollow"> View page source</a>
@@ -78,27 +128,27 @@
            <div itemprop="articleBody">
              
   <section id="vmcopt">
-<span id="turbogenius-reference-subcommand-vmcopt"></span><h1>vmcopt<a class="headerlink" href="#vmcopt" title="Permalink to this heading"></a></h1>
+<span id="turbogenius-reference-subcommand-vmcopt"></span><h1>vmcopt<a class="headerlink" href="#vmcopt" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>This command manages the VMC optimization.
 It internally calls <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> for the calculation, and <code class="docutils literal notranslate"><span class="pre">readalles.x</span></code> for the averaging in the postprocess.</p>
 </section>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span><span class="o">[</span>ACTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span><span class="o">[</span>ACTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 <p>ACTION is one or any combination of <code class="docutils literal notranslate"><span class="pre">-g</span></code> (generate an input file), <code class="docutils literal notranslate"><span class="pre">-r</span></code> (run a program), or <code class="docutils literal notranslate"><span class="pre">-post</span></code> (perform postprocess). It is mandatory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>--help
 </pre></div>
 </div>
 <p>This command shows the list of available options.</p>
 </section>
 <section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
 <section id="general-option">
-<h3>general option<a class="headerlink" href="#general-option" title="Permalink to this heading"></a></h3>
+<h3>general option<a class="headerlink" href="#general-option" title="Link to this heading"></a></h3>
 <p>This option affects all actions.</p>
 <table class="docutils align-default">
 <thead>
@@ -116,7 +166,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </table>
 </section>
 <section id="generate-g-options">
-<h3>generate (-g) options<a class="headerlink" href="#generate-g-options" title="Permalink to this heading"></a></h3>
+<h3>generate (-g) options<a class="headerlink" href="#generate-g-options" title="Link to this heading"></a></h3>
 <p>These options affect the generation of the input file. The correspondence between the options and the input parameters are described in the note section.</p>
 <table class="docutils align-default">
 <thead>
@@ -206,7 +256,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 <td><p>false</p></td>
 <td><p>flag for twist_average</p></td>
 </tr>
-<tr class="row-even"><td><p>-kpts INTEGER…</p></td>
+<tr class="row-even"><td><p>-kpts INTEGER...</p></td>
 <td><p>[0, 0, 0, 0, 0, 0]</p></td>
 <td><p>Specify Monkhorst-Pack grids and shifts, [nkx,nky,nkz,kx,ky,kz]</p></td>
 </tr>
@@ -218,7 +268,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </table>
 </section>
 <section id="postprocess-post-options">
-<h3>postprocess (-post) options<a class="headerlink" href="#postprocess-post-options" title="Permalink to this heading"></a></h3>
+<h3>postprocess (-post) options<a class="headerlink" href="#postprocess-post-options" title="Link to this heading"></a></h3>
 <p>These options affect the postprocess.</p>
 <table class="docutils align-default">
 <thead>
@@ -252,7 +302,7 @@ If enabled, the plots are generated in the <code class="docutils literal notrans
 </section>
 </section>
 <section id="environment-variables">
-<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading"></a></h2>
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">TURBOVMC_RUN_COMMAND</span></code></dt><dd><p>This specifies the execution command used in the VMC optimization. The default is <code class="docutils literal notranslate"><span class="pre">turborvb-serial.x</span></code>. If the MPI parallel version is to be used, set the variable, for example, to <code class="docutils literal notranslate"><span class="pre">mpiexec</span> <span class="pre">-n</span> <span class="pre">16</span> <span class="pre">turborvb-mpi.x</span></code>, where <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> is the MPI launch command, and <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">16</span></code> specifies the number of MPI processes (16 in this case).</p>
 </dd>
@@ -261,7 +311,7 @@ If enabled, the plots are generated in the <code class="docutils literal notrans
 </dl>
 </section>
 <section id="input-and-output-files">
-<h2>Input and output files<a class="headerlink" href="#input-and-output-files" title="Permalink to this heading"></a></h2>
+<h2>Input and output files<a class="headerlink" href="#input-and-output-files" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>action</p></th>
@@ -331,9 +381,9 @@ If enabled, the plots are generated in the <code class="docutils literal notrans
 </table>
 </section>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
 <section id="corresponding-input-parameters">
-<h3>Corresponding input parameters<a class="headerlink" href="#corresponding-input-parameters" title="Permalink to this heading"></a></h3>
+<h3>Corresponding input parameters<a class="headerlink" href="#corresponding-input-parameters" title="Link to this heading"></a></h3>
 <p>The correspondence between the options and the input parameters in <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code> is summarized as follows.</p>
 <table class="docutils align-default">
 <thead>
@@ -387,83 +437,88 @@ If enabled, the plots are generated in the <code class="docutils literal notrans
 <td><p>&amp;simulation</p></td>
 <td><p>itestr4 (optimization number; see below)</p></td>
 </tr>
-<tr class="row-even"><td><p>opt_onebody (-opt_onebody)</p>
+<tr class="row-even"><td rowspan="3"><p>
+opt_onebody (-opt_onebody)</p>
 <p>opt_twobody (-opt_twobody)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-optimizer"><span class="std std-ref">below</span></a>)</p>
 </td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters iesd</p></li>
-<li><p>&amp;optimization iesdonebodyoff</p></li>
-<li><p>&amp;optimization iesdtwobodyoff</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<td><p>&amp;parameters</p></td>
+<td><p>iesd</p></td>
 </tr>
-<tr class="row-odd"><td><p>opt_onebody (-opt_onebody)</p>
+<tr class="row-odd"><td><p>&amp;optimization</p></td>
+<td><p>iesdonebodyoff</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;optimization</p></td>
+<td><p>iesdtwobodyoff</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>
+opt_onebody (-opt_onebody)</p>
 <p>opt_jas_mat (-opt_jas_mat)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-optimizer"><span class="std std-ref">below</span></a>)</p>
 </td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters iesfree</p></li>
-<li><p>&amp;optimization twobodyoff</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<td><p>&amp;parameters</p></td>
+<td><p>iesfree</p></td>
 </tr>
-<tr class="row-even"><td><p>opt_det_mat (-opt_det_mat)</p></td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters iessw</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<tr class="row-even"><td><p>&amp;optimization</p></td>
+<td><p>twobodyoff</p></td>
 </tr>
-<tr class="row-odd"><td><p>opt_det_basis_exp (-opt_det_basis_exp)</p>
+<tr class="row-odd"><td><p>opt_det_mat (-opt_det_mat)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-optimizer"><span class="std std-ref">below</span></a>)</p>
+</td>
+<td><p>&amp;parameters</p></td>
+<td><p>iessw</p></td>
+</tr>
+<tr class="row-even"><td><p>opt_det_basis_exp (-opt_det_basis_exp)</p>
 <p>opt_det_basis_coeff (-opt_det_basis_coeff)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-optimizer"><span class="std std-ref">below</span></a>)</p>
 </td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters iesup</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<td><p>&amp;parameters</p></td>
+<td><p>iesup</p></td>
 </tr>
-<tr class="row-even"><td><p>opt_jas_basis_exp (-opt_jas_basis_exp)</p>
+<tr class="row-odd"><td><p>opt_jas_basis_exp (-opt_jas_basis_exp)</p>
 <p>opt_jas_basis_coeff (-opt_jas_basis_exp)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-optimizer"><span class="std std-ref">below</span></a>)</p>
 </td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters iesm</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<td><p>&amp;parameters</p></td>
+<td><p>iesm</p></td>
 </tr>
-<tr class="row-odd"><td><p>twist_average (-twist)</p>
+<tr class="row-even"><td><p>twist_average (-twist)</p>
 <p>kpoints (-kpts)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-kpoints"><span class="std std-ref">below</span></a>)</p>
 </td>
 <td></td>
-<td><p>(see below)</p></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p>opt_structure (-opt_structure)</p>
+<tr class="row-odd"><td rowspan="7"><p>
+opt_structure (-opt_structure)</p>
 <p>str_learning_rate (-strlearn)</p>
+<p>(see <a class="reference internal" href="#turbogenius-reference-subcommand-vmcopt-structure"><span class="std std-ref">below</span></a>)</p>
 </td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;parameters ieskin</p></li>
-<li><p>&amp;optimization idyn</p></li>
-<li><p>&amp;optimization tion</p></li>
-<li><p>&amp;dynamic temp</p></li>
-<li><p>&amp;dynamic iskipdyn</p></li>
-<li><p>&amp;dynamic maxdev_dyn</p></li>
-<li><p>&amp;simulation ngen</p></li>
-</ul>
-<p>(see below)</p>
-</td>
+<td><p>&amp;parameters</p></td>
+<td><p>ieskin</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;optimization</p></td>
+<td><p>idyn</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;optimization</p></td>
+<td><p>tion</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;dynamic</p></td>
+<td><p>temp</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;dynamic</p></td>
+<td><p>iskipdyn</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;dynamic</p></td>
+<td><p>maxdev_dyn</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;simulation</p></td>
+<td><p>ngen</p></td>
 </tr>
 </tbody>
 </table>
 <section id="optimizer-and-optimized-terms">
-<h4>optimizer and optimized terms<a class="headerlink" href="#optimizer-and-optimized-terms" title="Permalink to this heading"></a></h4>
+<span id="turbogenius-reference-subcommand-vmcopt-optimizer"></span><h4>optimizer and optimized terms<a class="headerlink" href="#optimizer-and-optimized-terms" title="Link to this heading"></a></h4>
 <p><em>optimization number</em> depends on optimizer (-optimizer) and opt_basis_coeff (-opt_det_basis_coeff or -opt_jas_basis_coeff):</p>
 <table class="docutils align-default">
 <thead>
@@ -620,7 +675,7 @@ If enabled, the plots are generated in the <code class="docutils literal notrans
 </table>
 </section>
 <section id="kpoints">
-<h4>kpoints<a class="headerlink" href="#kpoints" title="Permalink to this heading"></a></h4>
+<span id="turbogenius-reference-subcommand-vmcopt-kpoints"></span><h4>kpoints<a class="headerlink" href="#kpoints" title="Link to this heading"></a></h4>
 <p>When twist_average is 0 or False, no additional parameters concerning kpoints are set.
 When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the following parameters are set, where kpoints is an array of integers containing nkx, nky, nkz, kx, ky, and kz:</p>
 <table class="docutils align-default">
@@ -635,24 +690,20 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <td><p>yes_kpoints</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;kpoints</p></td>
+<tr class="row-odd"><td rowspan="5"><p> &amp;kpoints</p></td>
 <td><p>kp_type</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>nk1, nk2, nk3</p></td>
+<tr class="row-even"><td><p>nk1, nk2, nk3</p></td>
 <td><p>nkx, nky, nkz</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>k1, k2, k3</p></td>
+<tr class="row-odd"><td><p>k1, k2, k3</p></td>
 <td><p>kx, ky, kz</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>skip_equivalence</p></td>
+<tr class="row-even"><td><p>skip_equivalence</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>double_kpgrid</p></td>
+<tr class="row-odd"><td><p>double_kpgrid</p></td>
 <td><p>.true.</p></td>
 </tr>
 </tbody>
@@ -670,16 +721,14 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <td><p>yes_kpoints</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;kpoints</p></td>
+<tr class="row-odd"><td rowspan="3"><p> &amp;kpoints</p></td>
 <td><p>kp_type</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>nk1</p></td>
+<tr class="row-even"><td><p>nk1</p></td>
 <td><p>length of kpoints_up or kpoints_dn</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>double_kpgrid</p></td>
+<tr class="row-odd"><td><p>double_kpgrid</p></td>
 <td><p>.true.</p></td>
 </tr>
 </tbody>
@@ -688,7 +737,7 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <p>KPOINTS section is added to the input file datasmin.input.</p>
 </section>
 <section id="structure-optimization">
-<h4>structure optimization<a class="headerlink" href="#structure-optimization" title="Permalink to this heading"></a></h4>
+<span id="turbogenius-reference-subcommand-vmcopt-structure"></span><h4>structure optimization<a class="headerlink" href="#structure-optimization" title="Link to this heading"></a></h4>
 <p>When opt_structure is enabled, the following parameters concerning the structural optimization are set:</p>
 <table class="docutils align-default">
 <thead>
@@ -702,24 +751,21 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <td><p>ieskin</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;optimization</p></td>
+<tr class="row-odd"><td rowspan="2"><p> &amp;optimization</p></td>
 <td><p>idyn</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>tion</p></td>
+<tr class="row-even"><td><p>tion</p></td>
 <td><p>str_learning_rate (-strlearn)</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;dynamic</p></td>
+<tr class="row-odd"><td rowspan="3"><p> &amp;dynamic</p></td>
 <td><p>temp</p></td>
 <td><p>0.0</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>iskipdyn</p></td>
+<tr class="row-even"><td><p>iskipdyn</p></td>
 <td><p>5</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>maxdev_dyn</p></td>
+<tr class="row-odd"><td><p>maxdev_dyn</p></td>
 <td><p>6.0</p></td>
 </tr>
 <tr class="row-even"><td><p>&amp;simulation</p></td>
@@ -744,7 +790,7 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

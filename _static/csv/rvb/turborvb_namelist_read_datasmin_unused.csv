@@ -1,0 +1,4 @@
+Parameter name,Datatype,Default,Description
+rsignr,``real*8``,``0.d0``,WIP
+beta,``real*8``,``0.d0``,WIP
+testderiv,``integer``,``0``,WIP

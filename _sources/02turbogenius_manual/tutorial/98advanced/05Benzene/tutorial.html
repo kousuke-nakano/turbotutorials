@@ -1,23 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Benzene: Kekulé vs. Resonating Structures &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Benzene: Kekulé vs. Resonating Structures &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -44,11 +48,50 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../00index.html">[Table of Contents] Advanced topics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Benzene: Kekulé vs. Resonating Structures</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#introduction">00 Introduction</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals">01 Extracting carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals and plotting molecular orbitals</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#emulating-the-kekule-structure">02 Emulating the Kekulé structure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#optimization-kekule">03 Optimization (Kekulé)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#energy-evaluation-kekule">04 Energy evaluation (Kekulé)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#emulating-the-fully-resonating-aromatic-structure">05 Emulating the fully resonating aromatic structure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#optimization-resonating">06 Optimization (Resonating)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#energy-evaluation-resonating">07 Energy evaluation (Resonating)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#comparing-energies">08 Comparing energies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips/00index.html">Tips and trouble shooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -67,6 +110,7 @@
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">Tutorials</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">[Table of Contents] Advanced topics</a></li>
       <li class="breadcrumb-item active">Benzene: Kekulé vs. Resonating Structures</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/02turbogenius_manual/tutorial/98advanced/05Benzene/tutorial.rst.txt" rel="nofollow"> View page source</a>
@@ -78,7 +122,7 @@
            <div itemprop="articleBody">
              
   <section id="benzene-kekule-vs-resonating-structures">
-<span id="turbogeniustutorial-9805"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">Benzene: Kekulé vs. Resonating Structures</a><a class="headerlink" href="#benzene-kekule-vs-resonating-structures" title="Permalink to this heading"></a></h1>
+<span id="turbogeniustutorial-9805"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">Benzene: Kekulé vs. Resonating Structures</a><a class="headerlink" href="#benzene-kekule-vs-resonating-structures" title="Link to this heading"></a></h1>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -98,29 +142,30 @@
 </ul>
 </nav>
 <section id="introduction">
-<span id="turbogeniustutorial-9805-00"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-00"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>In this tutorial, following the benzene calculation from the <a class="reference internal" href="../../10Benzene/tutorial.html#turbogeniustutorial-1001"><span class="std std-ref">previous chapter</span></a>, we handle a slightly more <em>advanced</em> task. Concretely, we will <em>schematically</em> estimate the energy difference between (i) the classical electronic description of benzene (the <strong>Kekulé</strong> structure) and (ii) the <strong>resonating aromatic</strong> structure (the correct delocalized picture). To do so, we first extract the carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals that form the <span class="math notranslate nohighlight">\(\pi\)</span> electron cloud.
 All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../../_downloads/68c861df38830e306d7640da26f1798d/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </section>
 <section id="extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals">
-<span id="turbogeniustutorial-9805-01"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">01 Extracting carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals and plotting molecular orbitals</a><a class="headerlink" href="#extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-01"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">01 Extracting carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals and plotting molecular orbitals</a><a class="headerlink" href="#extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals" title="Link to this heading"></a></h2>
 <p>From the obtained wavefunction file <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, we will construct the <em>hybrid orbitals</em> for each C and H atom. For the procedure to build hybrid orbitals (GEO method), please refer to Ref. <a class="footnote-reference brackets" href="#geo-ref" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</p>
 <p>Based on physical considerations, assign <strong>four</strong> hybrid orbitals to each carbon and <strong>one</strong> hybrid orbital to each hydrogen using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>10_hybrid_orbitals
-cp<span class="w"> </span>../04_vmc/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../04_vmc/pseudo.dat<span class="w"> </span>.
-turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps<span class="w"> </span>-nosym<span class="w"> </span>-hyb<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>10_hybrid_orbitals
+<span class="gp">% </span>cp<span class="w"> </span>../04_vmc/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../04_vmc/pseudo.dat<span class="w"> </span>.
+<span class="gp">% </span>turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps<span class="w"> </span>-nosym<span class="w"> </span>-hyb<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">1</span>
 </pre></div>
 </div>
 <p>This projects the wavefunction onto an <strong>AGP</strong> (Antisymmetrized Geminal Power) form <strong>based on hybrid orbitals</strong> rather than on atomic-orbital (AO) basis functions. You can visualize the generated hybrid orbitals with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>plotorb
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>plotorb
 </pre></div>
 </div>
 <p>The obtained hybrid orbitals are visualized in <strong>XSF</strong> format, which can be visualized with <strong>VESTA</strong>.</p>
-<a class="reference internal image-reference" href="../../../../../_images/orbital_atom_1_hyb_2.jpg"><img alt="../../../../../_images/orbital_atom_1_hyb_2.jpg" class="align-center" src="../../../../../_images/orbital_atom_1_hyb_2.jpg" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="../../../../../_images/orbital_atom_1_hyb_2.jpg"><img alt="../../../../../_images/orbital_atom_1_hyb_2.jpg" class="align-center" src="../../../../../_images/orbital_atom_1_hyb_2.jpg" style="width: 70%;" />
+</a>
 <p>From the generated <code class="docutils literal notranslate"><span class="pre">.xsf</span></code> files, you can identify the carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals (which form the <span class="math notranslate nohighlight">\(\pi\)</span> cloud) as follows:</p>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Identified carbon <span class="math notranslate nohighlight">\(p_z\)</span> hybrid orbitals</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Identified carbon <span class="math notranslate nohighlight">\(p_z\)</span> hybrid orbitals</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"><p>atom</p></th>
 <th class="head"><p>hyb</p></th>
@@ -160,12 +205,12 @@ turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span cla
 </div>
 </section>
 <section id="emulating-the-kekule-structure">
-<span id="turbogeniustutorial-9805-02"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">02 Emulating the Kekulé structure</a><a class="headerlink" href="#emulating-the-kekule-structure" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-02"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">02 Emulating the Kekulé structure</a><a class="headerlink" href="#emulating-the-kekule-structure" title="Link to this heading"></a></h2>
 <p>In the <strong>Kekulé</strong> picture of benzene, double and single bonds alternate around the ring. Interpreted in AGP pairing terms, this corresponds to <strong>finite</strong> <span class="math notranslate nohighlight">\(\lambda\)</span> couplings only for <strong>three</strong> carbon–carbon pairs, while the others are set to <strong>zero</strong>. We will enforce this pattern directly in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../11_Kekule_vmcopt
-cp<span class="w"> </span>../10_hybrid_orbitals/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../10_hybrid_orbitals/pseudo.dat<span class="w"> </span>.
-vi<span class="w"> </span>fort.10
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../11_Kekule_vmcopt
+<span class="gp">% </span>cp<span class="w"> </span>../10_hybrid_orbitals/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../10_hybrid_orbitals/pseudo.dat<span class="w"> </span>.
+<span class="gp">% </span>vi<span class="w"> </span>fort.10
 </pre></div>
 </div>
 <ol class="arabic">
@@ -202,26 +247,24 @@ Here, columns 2 and 3 are the pair indices (as above), and <strong>column 1</str
 </ol>
 </section>
 <section id="optimization-kekule">
-<span id="turbogeniustutorial-9805-03"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">03 Optimization (Kekulé)</a><a class="headerlink" href="#optimization-kekule" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-03"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">03 Optimization (Kekulé)</a><a class="headerlink" href="#optimization-kekule" title="Link to this heading"></a></h2>
 <p>After editing, run the wavefunction optimization in this directory (your usual VMC optimization workflow).
 Once optimized, evaluate the energy with the optimized wavefunction:</p>
 <ol class="arabic">
 <li><p>Generate an input file for VMC optimization:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../11_Kekule_vmcopt
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005<span class="w"> </span>-num_opt_param<span class="w"> </span><span class="m">10</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../11_Kekule_vmcopt
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005<span class="w"> </span>-num_opt_param<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 </li>
 <li><p>Run the VMC optimization, e,g, as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-<span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
-
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
 </pre></div>
 </div>
 </li>
 <li><p>Perform the postprocess by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">30</span><span class="w"> </span>-plot
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">30</span><span class="w"> </span>-plot
 </pre></div>
 </div>
 </li>
@@ -229,37 +272,35 @@ turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
 <p>Check <cite>plot_energy_and_devmax.png</cite> and the files in the <cite>parameters_graphs</cite> directory.</p>
 </section>
 <section id="energy-evaluation-kekule">
-<span id="turbogeniustutorial-9805-04"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">04 Energy evaluation (Kekulé)</a><a class="headerlink" href="#energy-evaluation-kekule" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-04"></span><h2><a class="toc-backref" href="#id8" role="doc-backlink">04 Energy evaluation (Kekulé)</a><a class="headerlink" href="#energy-evaluation-kekule" title="Link to this heading"></a></h2>
 <p>Then, you can evaluate the energy.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../12_Kekule_vmc
-cp<span class="w"> </span>../11_Kekule_vmcopt/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../11_Kekule_vmcopt/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../12_Kekule_vmc
+<span class="gp">% </span>cp<span class="w"> </span>../11_Kekule_vmcopt/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../11_Kekule_vmcopt/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Next, generate an input file <cite>datasvmc.input</cite> using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Then, run the VMC calculation, e.g., by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-<span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
-
-turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>Finally, run the postprocess:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">10</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 <p>Check the reblocked total energy and error in the file <cite>pip0.d</cite>.</p>
 </section>
 <section id="emulating-the-fully-resonating-aromatic-structure">
-<span id="turbogeniustutorial-9805-05"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">05 Emulating the fully resonating aromatic structure</a><a class="headerlink" href="#emulating-the-fully-resonating-aromatic-structure" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-05"></span><h2><a class="toc-backref" href="#id9" role="doc-backlink">05 Emulating the fully resonating aromatic structure</a><a class="headerlink" href="#emulating-the-fully-resonating-aromatic-structure" title="Link to this heading"></a></h2>
 <p>Now set up the <strong>resonating</strong> (fully delocalized) <span class="math notranslate nohighlight">\(\pi\)</span>-bond picture by allowing <strong>all six</strong> nearest-neighbor <span class="math notranslate nohighlight">\(p_z\)</span> pairs to be optimized (finite):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
-cp<span class="w"> </span>../12_Kekule_vmc/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../12_Kekule_vmc/pseudo.dat<span class="w"> </span>.
-vi<span class="w"> </span>fort.10
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
+<span class="gp">% </span>cp<span class="w"> </span>../12_Kekule_vmc/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../12_Kekule_vmc/pseudo.dat<span class="w"> </span>.
+<span class="gp">% </span>vi<span class="w"> </span>fort.10
 </pre></div>
 </div>
 <p>For the six <span class="math notranslate nohighlight">\(p_z\)</span> indices (2, 7, 12, 17, 22, 27), enable optimization for <strong>all</strong> ring-adjacent pairs:</p>
@@ -279,25 +320,23 @@ Use the six <strong>nearest-neighbor</strong> pairs consistently around the ring
 </div>
 </section>
 <section id="optimization-resonating">
-<span id="turbogeniustutorial-9805-06"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">06 Optimization (Resonating)</a><a class="headerlink" href="#optimization-resonating" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-06"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">06 Optimization (Resonating)</a><a class="headerlink" href="#optimization-resonating" title="Link to this heading"></a></h2>
 <p>Optimize this resonating AGP wavefunction, then evaluate the energy as in the Kekulé case.</p>
 <ol class="arabic">
 <li><p>Generate an input file for VMC optimization:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005<span class="w"> </span>-num_opt_param<span class="w"> </span><span class="m">10</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../13_Resonating_vmcopt
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">400</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span><span class="w"> </span>-reg<span class="w"> </span>-0.005<span class="w"> </span>-num_opt_param<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 </li>
 <li><p>Run the VMC optimization, e,g, as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-<span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
-
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
 </pre></div>
 </div>
 </li>
 <li><p>Perform the postprocess by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">30</span><span class="w"> </span>-plot
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">30</span><span class="w"> </span>-plot
 </pre></div>
 </div>
 </li>
@@ -305,37 +344,35 @@ turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
 <p>Check <cite>plot_energy_and_devmax.png</cite> and the files in the <cite>parameters_graphs</cite> directory.</p>
 </section>
 <section id="energy-evaluation-resonating">
-<span id="turbogeniustutorial-9805-07"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">07 Energy evaluation (Resonating)</a><a class="headerlink" href="#energy-evaluation-resonating" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-07"></span><h2><a class="toc-backref" href="#id11" role="doc-backlink">07 Energy evaluation (Resonating)</a><a class="headerlink" href="#energy-evaluation-resonating" title="Link to this heading"></a></h2>
 <p>Then, you can evaluate the energy.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../14_Resonating_vmc
-cp<span class="w"> </span>../13_Resonating_vmcopt/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../13_Resonating_vmcopt/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../14_Resonating_vmc
+<span class="gp">% </span>cp<span class="w"> </span>../13_Resonating_vmcopt/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../13_Resonating_vmcopt/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Next, generate an input file <cite>datasvmc.input</cite> using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Then, run the VMC calculation, e.g., by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-<span class="nb">export</span><span class="w"> </span>TURBOVMC_RUN_COMMAND
-
-turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>Finally, run the postprocess:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">10</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">10</span>
 </pre></div>
 </div>
 <p>Check the reblocked total energy and error in the file <cite>pip0.d</cite>.</p>
 </section>
 <section id="comparing-energies">
-<span id="turbogeniustutorial-9805-08"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">08 Comparing energies</a><a class="headerlink" href="#comparing-energies" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9805-08"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">08 Comparing energies</a><a class="headerlink" href="#comparing-energies" title="Link to this heading"></a></h2>
 <p>With both <strong>Kekulé</strong> and <strong>resonating</strong> AGP wavefunctions optimized and their energies computed, compare the two total energies to obtain a schematic measure of the stabilization due to aromatic resonance in benzene.</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Kekule: -37.322… Ha</p></li>
-<li><p>Resonating: -37.353… Ha</p></li>
+<li><p>Kekule: -37.322... Ha</p></li>
+<li><p>Resonating: -37.353... Ha</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition tip">
@@ -367,7 +404,7 @@ turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,0 +1,174 @@
+Parameter name,Datatype,Default,Description
+tpar,``real*8``,``0.35d0``,"Optimization step; in the case of the linear method (itestr4 = -4, -8) reduces the step from its ideal value (tpar = 1) that is unfortunately unstable for large number of variational parameters or small statistics. In the simpler SR method tpar has to be set by hand as in the standard steepest descent method."
+nfat,``integer``,``0``,WIP
+iboot,``integer``,"- ``0`` no input
+- ignore input
+
+  + ``0`` if nmore_force > 1
+  + ``0`` if iboot < 0
+",Number of step before making averages in the bin of length nweight. nweight-iboot has to be a multiple of nbinr.
+nweight,``integer``,``1``,Number of sampling used for each iteration of the optimization steps.
+nmore_force,``integer``,``1``,"If dynamics is employed, the number of samples used during the last step of optimization is increased by a factor (nmore_force+1)."
+epsi,``real*8``,``10000d0``,Cutoff for reducing too large changes of WF such that Δpsi/\|psi\| > epsi.
+eps_dyn5,``real*8``,``0.d0``,WIP
+epsdgel,``real*8``,``0.001d0``,WIP
+kl,``integer``,"- ``-7`` if no input
+- with input value
+
+  + if npar /= 0 or nparsw /= 0 or nparinv /= 0 or npower /= 0
+
+    - ``7`` if kl > 0
+    - ``-7`` if kl <= 0
+","Method used for the solution of the linear equation Sx = f, where f are energy derivatives and x parameters change in the stochastic reconfiguration. kl=-7 is mandatory for signalnoise=.true. optimization method. It is faster for large number of parameters and small number of sampling per processor. kl=-6 may be useful for small systems/computers when the number of sampling per processor is very large."
+idyn,``integer``,"- ``0`` if no input
+
+- if yesquantum is .true. and yesturboq is .true.
+
+  + ``7`` if idyn /= 5, 6, 7, 8
+","description(QMC):
+
+To choose the type of ion dynamics. The available options are:
+
+   - idyn=0: No dynamic option specified, i.e. standard optimization at fixed ion positions.
+   - idyn=1: First order standard steepest descent dynamics.
+   - idyn=2: Second order standard with damping.
+   - idyn=3: More accurate.
+   - idyn=5: New accelerated molecular dynamics.
+   - idyn=6: Even more accurate but never published.
+   - idyn=7: New second order Ornstein Uhlenbeck damped Newton dynamics.
+   - idyn=8: Standard Ceriotti's second order damped Newton dynamics.
+"
+nbinr,``integer``,``1``,Number of bins used in the optimization step of length nweight-iboot. This binning is used to estimate error bars during the simulation.
+npbra,``integer``,``0``,"If npbra > 0 in the linear method, npbra parameters with the largest signal to noise ratio are also included."
+ncg,``integer``,"- ``1`` if no input
+- ignore input
+
+  + ``1`` if ncg > 1 and itestrr /= -4
+  + ``np`` if ncg > np
+  + ``iskipdyn`` if stepcg_recount is .true. and ncg > iskipdyn
+","If ncg > 1, a conjugate gradient approach is used with ncg gradients (generated on fly during the run) to accelerate convergence. ncg > 1 can be used only with the linear method (itestr4 = -4, -8)."
+minz,``real*8``,``1.d-5``,Minimum/Maximum AGP orbital exponent Z allowed.
+maxz,``real*8``,``-1000.d0``,Minimum/Maximum AGP orbital exponent Z allowed.
+minzj,``real*8``,"- ``1.d-5`` if no input
+- use input value
+
+  + ``minz`` if minzj == -1000.d0 and minz /= -1000.d0
+",Minimum/Maximum Jastrow orbital exponent Z allowed.
+maxzj,``real*8``,"- if no input
+
+  + ``maxz`` if minz /= -1000.d0
+  + ``-1000.d0`` if minz == -1000.d0
+",Minimum/Maximum Jastrow orbital exponent Z allowed.
+parr,``real*8``,"``0.0d0``
+","Determines the accuracy in the calculationa of the inverse of the SR matrix. The smaller the value, the more accurate (and fast) is the optimization, but the stability of the method gets worse. It should be decreased systematically up to at least 0.001 for fairly accurate wavefunction optimizations."
+parcute,``real*8``,``0.d0``,WIP
+parcut,``real*8``,"``epsmach*100.d0``
+",WIP
+parcutmin,``real*8``,``0.d0``,"If ncg > 1 is used in the minimization only the gradients that have a signal/noise ratio larger than parcutmin. If ncg = 0, the standard linear method with all parameters included in the optimization is used."
+parcutpar,``real*8``,"``0.d0``
+","If npbra > 0, among the npbra selected, only the parameters with signal/noise ratio > parcutpar are optimized."
+tion,``real*8``,"- if no input
+
+    + ``tpar`` if signalnoise is .true.
+    + ``-1.d0`` if signalnoise is .false.
+","When dynamics is on (idyn > 0) it represents the time-step of the molecular dynamics. With idyn=5, has the scale of an energy and should be set small enough inversely proportional to the number of samples used to evaluate the covariance matrix."
+tcell,``real*8``,"- if no input
+
+  + ``tion`` if ncore < 0 and tion /= -1.d0 and typedyncell /= 0
+  + ``0.d0``
+",WIP
+molopt,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``1`` if molopt /= 0 and (itestr == -5 or read_molecul is .true.)
+","- description(DFT): Do not change this value, as DFT works with molecular orbitals only.
+- description(QMC): If molopt = -1 optimization with fixed number of molecular orbitals is performed (nmolmax in the &molecul section should be defined in this case). If not specified, the standard optimization is employed."
+epstion,``real*8``,``0.d0``,WIP
+onebodysz,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.true.`` if twobodyoff is .true. and iessz is .true.","If .true., optimize only the one body part of the spin Jastrow factor."
+twobodyoff,``logical``,``.false.``,WIP
+iesdtwobodyoff,``logical``,``.false.``,WIP
+iesdonebodyoff,``logical``,``.false.``,WIP
+tolcg,``real*8``,``1d-6``,WIP
+minjonetwobody,``real*8``,``0.05d0``,WIP
+symiesup,``logical``,``.false.``,WIP
+yescutjas,``logical``,``.true.``,WIP
+yescutdet,``logical``,``.true.``,WIP
+fixpar,``logical``,``.false.``,WIP
+symmetrize_agp,``logical``,``.true.``,"If .true. (default), symmetrize the agp at each iteration step, as it can deteriorate due to numerical accuracy."
+yesquantum,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.true.`` if idyn == 8 and nbead > 1",If yesquantum=.true. quantum effects are included. No kaverage is possible for the time being.
+nbead,``integer``,"- if no input
+
+  + ``min(nproc, 16)`` idyn /= 0 and yesquantum is .true.
+  + ``-1`` otherwise
+","When yesquantum is true, one has to specify the number of beads of the corresponding path integral. The larger this number, the more accurate the Trotter approximation is (error vanishing as 1/nbead^2)."
+yeswrite10,``logical``,``.false.``,WIP
+oldscaling,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.true.`` if idyn == 8
+",WIP
+srcomplex,``logical``,"- ``.true.`` if no input
+
+- ignore input
+
+  + ``.false.`` ipc == 1
+",WIP
+power,``real*8``,``1.d0``,WIP
+signalnoise,``logical``,``.false.``,"If signalnoise=.true., one optimizes all the parameters (including atomic positions with ieskin ≠ 0) by following the direction of maximum signal to noise ratio. parr is also effective in this case to regularize the inversion."
+gauge_fixing,``logical``,"- no initialize if no input
+
+- ignore input
+
+  + ``.false.`` if itest == 1 or itestr4 == -7
+",WIP
+beta_learning,``real(8)``,``0.d0``,WIP
+noopt_onebody,``logical``,``.false.``,WIP
+scalermax,``logical``,"- no initialize if no input
+
+- ignore input
+
+  + ``.false.`` if itest == 1 or itestr4 == -7",WIP
+yeswritebead,``logical``,``.false.``,WIP
+yesread10,``logical``,``.false.``,WIP
+change_parr,``logical``,``.false.``,WIP
+parr_max,``real*8``,``1d-1``,WIP
+parr_min,``real*8``,`` 1d-4``,WIP
+delay_changeparr,``integer``,``20``,WIP
+maxiter_changeparr,``integer``,``-1``,WIP
+k6gen,``logical``,automatic(.false.),WIP
+max_ortho,``integer``,``-1``,WIP
+prep,``integer``,automatic(-1 or others),WIP
+change_tpar,``logical``,``.false.``,WIP
+inc_tpar_frequency,``integer``,"- ``100`` if no input
+
+- ignore input
+
+  + ``50`` if use_stable_tpar is .true.",WIP
+use_stable_tpar,``logical``,``.true.``,WIP
+eps_umrigar,``real*8``,"- if parr < 0.d0
+
+  + ``-parr/10.d0`` if no input
+
+- if parr > 0.d0
+
+  + ``0.d0`` if no input
+  + ``0.d0`` if eps_umrigar /= 0.d0 (ignore input)",WIP
+yes_adams,``logical``,``.false.``,WIP
+divide_tpar,``real(8)``,``4.0d0``,WIP
+multiply_tpar,``real(8)``,automatic,WIP
+tpar_buffer_len,``integer``,``40``,WIP
+tpar_max,``real(8)``,``1.d0``,WIP
+cut_sigma,``real(8)``,``3.5d0``,WIP
+n_sigmas_tpar,``real(8)``,``5.0d0``,WIP
+len_tpar_stable_list,``integer``,``10``,WIP
+yes_dgelscut,``logical``,``.true.``,WIP

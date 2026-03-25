@@ -10,16 +10,16 @@ This command converts a wavefunction to a format specified by an option ``-to [s
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius convertwf [ACTION] [OPTIONS]
+   % turbogenius convertwf [ACTION] [OPTIONS]
 
 ACTION specifies the target wavefunction ansatz in a form ``-to [sd|agps|agpu|pf]``.
 It is mandatory.
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius convertwf --help
+   % turbogenius convertwf --help
    
 This command shows the list of available options.
 
@@ -27,14 +27,28 @@ This command shows the list of available options.
 Options
 --------------------------------
 
-.. csv-table::
-   :header: "option", "default value", "description"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   "-hyb LIST", "[]", "Specify the number of added hybrid orbitals for each atom (0, 5, ...)"
-   "-nosym", "false", "flag for nosymmetry"
-   "-rot FLOAT", 0.0, "Specify rotate angle (-0.5 - + 0.5)"
-   "-grid FLOAT", 0.0, "Specify grid size"
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+   * - option
+     - default value
+     - description
+   * - -hyb LIST
+     - []
+     - Specify the number of added hybrid orbitals for each atom (0, 5, ...)
+   * - -nosym
+     - false
+     - flag for nosymmetry
+   * - -rot FLOAT
+     - 0.0
+     - Specify rotate angle (-0.5 - + 0.5)
+   * - -grid FLOAT
+     - 0.0
+     - Specify grid size
+   * - -log TEXT
+     - INFO
+     - Specify log level. The argument is DEBUG, INFO, or ERROR.
 
 Note that the general options ``-g``, ``-r``, ``-post`` are available but not used.
 

@@ -1,0 +1,2 @@
+Parameter name,Datatype,Default,Description
+KPOINTS,WIP,Required for a calculation with a k-grid.,"User-defined k-points are written in the following manner. wkp(i) denotes the weight corresponding to the kpoint xkp(:,i) if the total weight is different from one.:"

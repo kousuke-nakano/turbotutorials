@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation of TurboWorkflows &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Installation of TurboWorkflows &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Getting started</a><ul class="current">
@@ -64,6 +66,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -93,9 +97,9 @@
            <div itemprop="articleBody">
              
   <section id="installation-of-turboworkflows">
-<span id="turboworkflows-installation"></span><h1>Installation of TurboWorkflows<a class="headerlink" href="#installation-of-turboworkflows" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-installation"></span><h1>Installation of TurboWorkflows<a class="headerlink" href="#installation-of-turboworkflows" title="Link to this heading"></a></h1>
 <section id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading"></a></h2>
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>Python 3.8 or later</p></li>
 <li><p>TurboRVB</p></li>
@@ -124,7 +128,7 @@
 </ul>
 </section>
 <section id="installation-procedure">
-<h2>Installation Procedure<a class="headerlink" href="#installation-procedure" title="Permalink to this heading"></a></h2>
+<h2>Installation Procedure<a class="headerlink" href="#installation-procedure" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>If you created a conda environment when installing TurboGenius, activate it.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>turborvb
@@ -148,7 +152,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To explicitly install in a local environment, for example when permission-related errors occur, add –user.</p>
+<p>To explicitly install in a local environment, for example when permission-related errors occur, add --user.</p>
 </div>
 </li>
 <li><p>On the first run of the turbo-jobmanager command, configuration files will be copied to .turbofilemanager_config in the home directory.</p>
@@ -171,7 +175,7 @@ plz.<span class="w"> </span>edit<span class="w"> </span>/home/user/.turbofileman
 </ol>
 </section>
 <section id="upgrade-and-uninstallation">
-<h2>Upgrade and Uninstallation<a class="headerlink" href="#upgrade-and-uninstallation" title="Permalink to this heading"></a></h2>
+<h2>Upgrade and Uninstallation<a class="headerlink" href="#upgrade-and-uninstallation" title="Link to this heading"></a></h2>
 <ul>
 <li><p><strong>Upgrade</strong></p>
 <p>To upgrade to the latest version, execute the following commands.</p>
@@ -217,7 +221,7 @@ To completely remove them, please delete them manually.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

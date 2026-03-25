@@ -1,23 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>class VMC_workflow &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>class VMC_workflow &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -45,15 +49,36 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="00index.html#api-reference">API reference</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="00index.html#workflow-items">workflow items</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="00index.html#workflow-items">workflow items</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="workflow_convertfort10.html">class Convertfort10_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_convertfort10mol.html">class Convertfort10mol_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_convertwf.html">class Conversion_wf_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_prep.html">class DFT_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_init_occ.html">class Init_occ_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_jastrowcopy.html">class Jastrowcopy_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmc.html">class LRDMC_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmc_ext.html">class LRDMC_ext_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmcopt.html">class LRDMCopt_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_makefort10.html">class Makefort10_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_pyscf.html">class PySCF_workflow</a></li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_trexio.html">class TREXIO_convert_to_turboWF</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">class VMC_workflow</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#module-usage">Module usage</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#constructor-arguments">Constructor arguments</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="workflow_vmcopt.html">class VMCopt_workflow</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="00index.html#workflow-management">workflow management</a></li>
 </ul>
 </li>
@@ -65,6 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -94,18 +121,18 @@
            <div itemprop="articleBody">
              
   <section id="class-vmc-workflow">
-<span id="turboworkflows-class-workflow-vmc"></span><h1>class VMC_workflow<a class="headerlink" href="#class-vmc-workflow" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-class-workflow-vmc"></span><h1>class VMC_workflow<a class="headerlink" href="#class-vmc-workflow" title="Link to this heading"></a></h1>
 <p>This class manages the workflow of VMC calculations.</p>
 <section id="module-usage">
-<h2>Module usage<a class="headerlink" href="#module-usage" title="Permalink to this heading"></a></h2>
+<h2>Module usage<a class="headerlink" href="#module-usage" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">turboworkflows.workflow_vmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">VMC_workflow</span>
 </pre></div>
 </div>
 </section>
 <section id="constructor-arguments">
-<h2>Constructor arguments<a class="headerlink" href="#constructor-arguments" title="Permalink to this heading"></a></h2>
+<h2>Constructor arguments<a class="headerlink" href="#constructor-arguments" title="Link to this heading"></a></h2>
 <section id="job-parameters">
-<h3>job parameters<a class="headerlink" href="#job-parameters" title="Permalink to this heading"></a></h3>
+<h3>job parameters<a class="headerlink" href="#job-parameters" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>argument</p></th>
@@ -144,7 +171,7 @@
 </table>
 </section>
 <section id="vmc-parameters">
-<h3>vmc parameters<a class="headerlink" href="#vmc-parameters" title="Permalink to this heading"></a></h3>
+<h3>vmc parameters<a class="headerlink" href="#vmc-parameters" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>argument</p></th>
@@ -219,7 +246,7 @@
 </section>
 </section>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>In the <code class="xref py py-class docutils literal notranslate"><span class="pre">VMC_workflow</span></code> class, the VMC (Variational Monte Carlo) workflow
 is executed asynchronously (via <code class="xref py py-meth docutils literal notranslate"><span class="pre">async_launch()</span></code>). The workflow runs VMC
 in a continuation loop (up to <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_max_continuation</span></code> runs). For each
@@ -234,7 +261,7 @@ error-bar data. Optionally enforces a minimum trial length when
 </ul>
 <p><strong>production run (icont ≥ 1)</strong></p>
 <ul>
-<li><p>Loads the previous run’s results from the corresponding pkl file and reads
+<li><p>Loads the previous run's results from the corresponding pkl file and reads
 the number of MCMC steps from <code class="docutils literal notranslate"><span class="pre">fort.12</span></code> (with twist-averaging adjustment
 when <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_twist_average</span></code> is enabled).</p></li>
 <li><p>If the current error bar is below 1.1 × <code class="xref py py-attr docutils literal notranslate"><span class="pre">vmc_target_error_bar</span></code>, the
@@ -248,7 +275,7 @@ achieved).</p></li>
 <p>then sets the <em>additional</em> steps for this run to
 <span class="math notranslate nohighlight">\(\max(N_{\mathrm{total}} - N_{\mathrm{done}}, 1)\)</span>.</p>
 </li>
-<li><p>Estimates runtime from the previous run’s
+<li><p>Estimates runtime from the previous run's
 <code class="docutils literal notranslate"><span class="pre">estimated_time_for_1_generation</span></code> and logs it.</p></li>
 <li><p>Builds a <code class="xref py py-class docutils literal notranslate"><span class="pre">VMC_genius</span></code> instance with the (additional) <code class="docutils literal notranslate"><span class="pre">vmcsteps</span></code>,
 generates input, and submits the job.</p></li>
@@ -269,7 +296,7 @@ stores results with the configured <code class="xref py py-attr docutils literal
 output-values dict containing <code class="docutils literal notranslate"><span class="pre">&quot;energy&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;error&quot;</span></code>).</p>
 </section>
 <section id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading"></a></h2>
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">turbogenius.vmc_genius.VMC_genius</span></code> — VMC driver used for input
 generation and result handling.</p></li>
@@ -288,7 +315,7 @@ generation and result handling.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

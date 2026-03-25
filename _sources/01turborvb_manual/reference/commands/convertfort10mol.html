@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>convertfort10mol.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="convertpfaff.x" href="convertpfaff.html" />
+    <link rel="prev" title="convertfort10.x" href="convertfort10.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">convertfort10mol.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#converting-a-wf-to-agpn-sd">Converting a WF to AGPn/SD</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#control-section">control section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mesh-info-section">mesh_info section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#molec-info-section">molec_info section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">convertfort10mol.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/convertfort10mol.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="convertfort10mol-x">
+<span id="turborvbtutorial-command-convertfort10mol-x"></span><h1>convertfort10mol.x<a class="headerlink" href="#convertfort10mol-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<section id="converting-a-wf-to-agpn-sd">
+<h3>Converting a WF to AGPn/SD<a class="headerlink" href="#converting-a-wf-to-agpn-sd" title="Link to this heading"></a></h3>
+<p>This tool converts a generic input wf (<code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>) written with generic
+atomic orbitals into a new wf (<code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>) that includes  the corresponding
+molecular orbitals. The unpaired orbitals are always assumed to be the last molecular orbitals in fort.10_new. The number of molecular orbitals  appended in <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>
+is  the sum of <code class="docutils literal notranslate"><span class="pre">nmol</span></code> (input)  and the number of
+unpaired orbitals= <code class="docutils literal notranslate"><span class="pre">nelup</span></code>-<code class="docutils literal notranslate"><span class="pre">neldo</span></code>.</p>
+<p>Only the parameter <code class="docutils literal notranslate"><span class="pre">molopt</span></code> requires detailed explanation in this tool.</p>
+<p>After running this tool the coefficient of the contracted atomic orbitals
+are  arbitrary because all the original  wave function (in <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>)
+is rewritten (in <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>)  in terms of molecular orbitals defined
+in the original primitive basis (e.g. all independent atomic gaussian basis
+defining the original <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code>).</p>
+<p>if molopt&gt;= 2  then the coefficients of the contracted atomic
+orbitals will no longer be optimizable in a subsequent minimization.
+Otherwise all contracted atomic orbitals will be optimized with
+the corresponding option molopt=1 in datasminmol.input
+or molopt=0 (default) in datasmin.input</p>
+<p>By using abs(molopt)&gt;=2 this subroutine initialize the coefficients
+of the contracted atomic orbitals,using dmrg (the system
+has to represent at best the universe) to evaluate
+the best atomic contracted orbitals (the system) that can be connected
+to the full AGP matrix squared  (the universe now written in terms
+of molecular orbitals). See the DMRG paper by S.R. White PRB 48, 10345 (1993).
+The algorithm is: be f(r1,r) the AGP obtained by restricting r1 to all
+atomic orbitals of given type (s,p,d) acting on a given atom.
+The density matrix is DMRG(r1,r2)=int_(r' in universe)  f(r1,r') f(r2,r').
+The best atomic orbitals are the eigenvector of the density matrix
+with highest eigenvalue.</p>
+<p>In the code care should be taken because the localized basis used is
+not orthonormal, being the overlap matrix between atomic orbitals
+a generic full symmetric matrix.
+If unpaired orbitals are used (nelup&gt; neldo) the DMRG is modified by
+adding the contribution of unpaired orbitals normalized to nelup-neldo
+vs a total norm = nelup+neldo.</p>
+<p>When preparing input to DFT useful parameter input in the control section  are:</p>
+<p>only_molecular=.true./.false. ! If .true. only molecular orbitals are assumed in  the contracted basis in order to minimize memory.
+It is  not allowed for AGP optimization,  rather for DFT or VMC/DMC at fixed variational parameters or optimization in the restricted molecular orbital basis.</p>
+<p>add_offmol=.true./.false.  If the above is true , add also off diagonal elements in the molecular orbital basis defined by the above option.</p>
+</section>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="namelist">
+<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+<p>Variable are read from standard input.</p>
+<section id="control-section">
+<h3>control section<a class="headerlink" href="#control-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>epsdgm</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-14</span></code></p></td>
+<td><p>Numeric value. If epsdgm&lt;0, fast routine with no diag is used. Only filling random molecular orbitals. When epsdgm=-1.0, it converts a symmagp=.true. to a symmagp=.false fort.10.</p></td>
+</tr>
+<tr class="row-odd"><td><p>molopt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Numeric value. If molopt&gt;2, the best atomic contracted are evaluated using DMRG. molopt=2 for only AGP, molopt=3 for AGP and Jastrow.</p></td>
+</tr>
+<tr class="row-even"><td><p>weight_loc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>power</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>orthoyes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Logical value. If set to .true., orthogonalization of unpaired orbitals is employed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesbig</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>membig</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Logical value. If set to .false., coefficients of molecular orbitals are changed to allow stable optimization.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramyes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>epsbas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-6</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>allowed_averagek</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>add_onebody2det</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>only_molecular</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. If set to .true., only molecular orbitals are assumed in the contracted basis to minimize memory. It is not allowed for full AGP optimization, rather for DFT or VMC/DMC at fixed variational parameters.</p></td>
+</tr>
+<tr class="row-even"><td><p>add_offmol</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>add_offmol=.true./.false. If the above is true , add also off diagonal elements in the molecular orbital basis defined by the above option.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mesh-info-section">
+<h3>mesh_info section<a class="headerlink" href="#mesh-info-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nbufd</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if epsdgm &gt;= 0.d0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1000</span></code> if nelorb &lt; 2000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code> if nelorb &gt;= 2000</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if epsdgm &lt; 0.d0</p></li>
+</ul>
+</td>
+<td><p>Numeric value. Represents buffer default.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nx</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Numeric value. Number of mesh points in the x direction to evaluate overlaps.</p></td>
+</tr>
+<tr class="row-even"><td><p>ny</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nx</span></code></p></td>
+<td><p>Numeric value. Default is nx.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ny</span></code></p></td>
+<td><p>Numeric value. Default is ny.</p></td>
+</tr>
+<tr class="row-even"><td><p>ax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.1d0</span></code></p></td>
+<td><p>Numeric value. Lattice mesh on the x direction, not used for PBC.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>az</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shift_origin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>shiftx</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shifty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>shiftz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="molec-info-section">
+<h3>molec_info section<a class="headerlink" href="#molec-info-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nmol</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">molecular</span> <span class="pre">-</span> <span class="pre">nelup</span> <span class="pre">+</span> <span class="pre">neldo</span></code></p></td>
+<td><p>Numeric value. Number of molecular orbitals in fort.10 in the AGP, if nmol&gt;0 and unpaired orbitals are present the total number of molecular orbitals in fort.10 is molecular = nmol+#unpaired orbitals (nelup-neldo)</p></td>
+</tr>
+<tr class="row-odd"><td><p>nmolmin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Numeric value. The first nmolmin molecular eigenvalue are set to one. If nmolmin=nmolmax=Nel/2, a perfect Slater determinant is projected.</p></td>
+</tr>
+<tr class="row-even"><td><p>nmolmax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nmol</span></code></p></td>
+<td><p>Numeric value. Used in projection (default nmolmax=nmol).</p></td>
+</tr>
+<tr class="row-odd"><td><p>printoverlap</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. If set to .true., it prints overlaps between nmolmin, nmolmax orbitals.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="convertfort10.html" class="btn btn-neutral float-left" title="convertfort10.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="convertpfaff.html" class="btn btn-neutral float-right" title="convertpfaff.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

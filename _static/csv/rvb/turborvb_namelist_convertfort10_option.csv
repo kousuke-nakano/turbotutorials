@@ -1,0 +1,5 @@
+Parameter name,Datatype,Default,Description
+wherescratch,``character(60 + lchlen)`` (lchlen = 1000),``'./'``,WIP
+eqion,``logical``,``.true.``,"Logical value. When set to .false., you can allow for a permutation of ions but the corresponding pseudo to fort.10_out has to be defined (if pseudos are used) named pseudo_out."
+bigram,``logical``,``.true.``,"Logical value. If set to .true., it uses RAM to store the initial file."
+symiesup,``logical``,``.true.``,"Logical value. If set to .true., it uses symmetries for contracted orbitals in AGP."

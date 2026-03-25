@@ -1,0 +1,14 @@
+Parameter name,Datatype,Default,Description
+epsdgm,``real*8``,``1d-14``,"Numeric value. If epsdgm<0, fast routine with no diag is used. Only filling random molecular orbitals. When epsdgm=-1.0, it converts a symmagp=.true. to a symmagp=.false fort.10."
+molopt,``integer``,``0``,"Numeric value. If molopt>2, the best atomic contracted are evaluated using DMRG. molopt=2 for only AGP, molopt=3 for AGP and Jastrow."
+weight_loc,``real*8``,``-1.d0``,WIP
+power,``real*8``,``1.d0``,WIP
+orthoyes,``logical``,``.true.``,"Logical value. If set to .true., orthogonalization of unpaired orbitals is employed."
+yesbig,``logical``,``.false.``,WIP
+membig,``logical``,``.true.``,"Logical value. If set to .false., coefficients of molecular orbitals are changed to allow stable optimization."
+gramyes,``logical``,``.false.``,WIP
+epsbas,``real*8``,``1d-6``,WIP
+allowed_averagek,``logical``,``.true.``,WIP
+add_onebody2det,``logical``,``.true.``,WIP
+only_molecular,``logical``,``.false.``,"Logical value. If set to .true., only molecular orbitals are assumed in the contracted basis to minimize memory. It is not allowed for full AGP optimization, rather for DFT or VMC/DMC at fixed variational parameters."
+add_offmol,``logical``,``.false.``,"add_offmol=.true./.false. If the above is true , add also off diagonal elements in the molecular orbital basis defined by the above option."

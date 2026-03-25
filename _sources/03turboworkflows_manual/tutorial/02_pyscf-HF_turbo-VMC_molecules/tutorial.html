@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HF-VMC Calculation for Molecules &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>HF-VMC Calculation for Molecules &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
@@ -54,9 +56,28 @@
 <li class="toctree-l3"><a class="reference internal" href="../01_CO-dimer/tutorial.html">CO Molecule Calculation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">HF-VMC Calculation for Molecules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#execution-steps">Execution Steps</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#program-overview">Program Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#result-structure">Result Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-steps">Execution Steps</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#environment-setup">1. Environment Setup</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#script-execution">2. Script Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#program-overview">Program Overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#script-structure">Script Structure</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#file-format-of-data-sanity-check-csv">File Format of <code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#a-molecular-information-retrieval-and-xyz-file-generation-lines-37-62">a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#b-pyscf-hf-calculation-workflow-lines-64-91">b. PySCF HF Calculation Workflow (lines 64-91)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#c-trexio-conversion-workflow-lines-97-110">c. TREXIO Conversion Workflow (lines 97-110)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#d-vmc-calculation-workflow-lines-112-137">d. VMC Calculation Workflow (lines 112-137)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-dependencies">Workflow Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#result-structure">Result Structure</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#output-directory-structure">Output Directory Structure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#checking-calculation-results">Checking Calculation Results</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
@@ -69,6 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -98,9 +121,9 @@
            <div itemprop="articleBody">
              
   <section id="hf-vmc-calculation-for-molecules">
-<span id="turboworkflows-tutorial-molecule"></span><h1>HF-VMC Calculation for Molecules<a class="headerlink" href="#hf-vmc-calculation-for-molecules" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-tutorial-molecule"></span><h1>HF-VMC Calculation for Molecules<a class="headerlink" href="#hf-vmc-calculation-for-molecules" title="Link to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>This tutorial explains how to perform Hartree-Fock (HF) calculations using PySCF and Variational Monte Carlo (VMC) calculations using TurboRVB for multiple molecules using TurboWorkflows, and perform consistency checks between the two methods.</p>
 <p>This tutorial automatically executes the following workflow for multiple molecules listed in the CSV file (<code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code>):</p>
 <ol class="arabic simple">
@@ -112,9 +135,9 @@
 The complete set of files for this tutorial is available at <a class="reference download internal" download="" href="../../../../_downloads/d71076067031d96da3cd90c380062497/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">file.tar.gz</span></code></a>.</p>
 </section>
 <section id="execution-steps">
-<h2>Execution Steps<a class="headerlink" href="#execution-steps" title="Permalink to this heading"></a></h2>
+<h2>Execution Steps<a class="headerlink" href="#execution-steps" title="Link to this heading"></a></h2>
 <section id="environment-setup">
-<h3>1. Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading"></a></h3>
+<h3>1. Environment Setup<a class="headerlink" href="#environment-setup" title="Link to this heading"></a></h3>
 <p>Ensure that TurboRVB, TurboGenius, TurboWorkflows, and PySCF are correctly installed.
 The following files are required:</p>
 <ul class="simple">
@@ -123,7 +146,7 @@ The following files are required:</p>
 </ul>
 </section>
 <section id="script-execution">
-<h3>2. Script Execution<a class="headerlink" href="#script-execution" title="Permalink to this heading"></a></h3>
+<h3>2. Script Execution<a class="headerlink" href="#script-execution" title="Link to this heading"></a></h3>
 <p>Execute <code class="docutils literal notranslate"><span class="pre">task.py</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>task.py
 </pre></div>
@@ -138,9 +161,9 @@ The following files are required:</p>
 </section>
 </section>
 <section id="program-overview">
-<h2>Program Overview<a class="headerlink" href="#program-overview" title="Permalink to this heading"></a></h2>
+<h2>Program Overview<a class="headerlink" href="#program-overview" title="Link to this heading"></a></h2>
 <section id="script-structure">
-<h3>Script Structure<a class="headerlink" href="#script-structure" title="Permalink to this heading"></a></h3>
+<h3>Script Structure<a class="headerlink" href="#script-structure" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> consists of the following main parts:</p>
 <ol class="arabic simple">
 <li><p><strong>Molecular Information Reading</strong> (lines 22-23)</p></li>
@@ -151,7 +174,7 @@ The following files are required:</p>
 </div>
 <p>Reads molecular information from the CSV file and only processes molecules with <code class="docutils literal notranslate"><span class="pre">Flag==TRUE</span></code>.</p>
 <section id="file-format-of-data-sanity-check-csv">
-<h4>File Format of <code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code><a class="headerlink" href="#file-format-of-data-sanity-check-csv" title="Permalink to this heading"></a></h4>
+<h4>File Format of <code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code><a class="headerlink" href="#file-format-of-data-sanity-check-csv" title="Link to this heading"></a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">data_sanity_check.csv</span></code> is a CSV file containing molecular information for calculations. It includes the following columns:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Flag</span></code>: Flag indicating whether to execute the calculation (<code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>). Calculations are executed only when <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p></li>
@@ -194,7 +217,7 @@ TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129
 <p>For each molecule (each row in <code class="docutils literal notranslate"><span class="pre">mol_calc</span></code>), the following workflows are generated:</p>
 </section>
 <section id="a-molecular-information-retrieval-and-xyz-file-generation-lines-37-62">
-<h4>a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)<a class="headerlink" href="#a-molecular-information-retrieval-and-xyz-file-generation-lines-37-62" title="Permalink to this heading"></a></h4>
+<h4>a. Molecular Information Retrieval and XYZ File Generation (lines 37-62)<a class="headerlink" href="#a-molecular-information-retrieval-and-xyz-file-generation-lines-37-62" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># info data</span>
     <span class="n">species</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Species&quot;</span><span class="p">]</span>
     <span class="n">xtype</span><span class="o">=</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;Type&quot;</span><span class="p">]</span>
@@ -230,7 +253,7 @@ TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129
 </ul>
 </section>
 <section id="b-pyscf-hf-calculation-workflow-lines-64-91">
-<h4>b. PySCF HF Calculation Workflow (lines 64-91)<a class="headerlink" href="#b-pyscf-hf-calculation-workflow-lines-64-91" title="Permalink to this heading"></a></h4>
+<h4>b. PySCF HF Calculation Workflow (lines 64-91)<a class="headerlink" href="#b-pyscf-hf-calculation-workflow-lines-64-91" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">pyscf_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;pyscf-HF-workflow&#39;</span><span class="p">),</span>
@@ -275,7 +298,7 @@ TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129
 </ul>
 </section>
 <section id="c-trexio-conversion-workflow-lines-97-110">
-<h4>c. TREXIO Conversion Workflow (lines 97-110)<a class="headerlink" href="#c-trexio-conversion-workflow-lines-97-110" title="Permalink to this heading"></a></h4>
+<h4>c. TREXIO Conversion Workflow (lines 97-110)<a class="headerlink" href="#c-trexio-conversion-workflow-lines-97-110" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">trexio_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;trexio-HF-workflow&#39;</span><span class="p">),</span>
@@ -298,7 +321,7 @@ TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129
 </ul>
 </section>
 <section id="d-vmc-calculation-workflow-lines-112-137">
-<h4>d. VMC Calculation Workflow (lines 112-137)<a class="headerlink" href="#d-vmc-calculation-workflow-lines-112-137" title="Permalink to this heading"></a></h4>
+<h4>d. VMC Calculation Workflow (lines 112-137)<a class="headerlink" href="#d-vmc-calculation-workflow-lines-112-137" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">vmc_HF_workflow</span> <span class="o">=</span> <span class="n">eWorkflow</span><span class="p">(</span>
         <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow-</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
         <span class="n">dirname</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">mol_root_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;vmc-HF-workflow&#39;</span><span class="p">),</span>
@@ -349,7 +372,7 @@ TRUE,H2O,molecule,H2O,simple molecule,FALSE,ccecp-ccpvqz,ccecp,0,0,JChemPhys.129
 </section>
 </section>
 <section id="workflow-dependencies">
-<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Permalink to this heading"></a></h3>
+<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Link to this heading"></a></h3>
 <p>When <code class="docutils literal notranslate"><span class="pre">task.py</span></code> is executed, a dependency graph is automatically generated due to <code class="docutils literal notranslate"><span class="pre">dependency_graph_draw=True</span></code>.
 By referring to the generated dependency graph (<code class="docutils literal notranslate"><span class="pre">graphs.png</span></code>), you can visually confirm the dependencies between workflows.</p>
 <p>Main dependency flow:</p>
@@ -362,9 +385,9 @@ By referring to the generated dependency graph (<code class="docutils literal no
 </section>
 </section>
 <section id="result-structure">
-<h2>Result Structure<a class="headerlink" href="#result-structure" title="Permalink to this heading"></a></h2>
+<h2>Result Structure<a class="headerlink" href="#result-structure" title="Link to this heading"></a></h2>
 <section id="output-directory-structure">
-<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Permalink to this heading"></a></h3>
+<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Link to this heading"></a></h3>
 <p>After execution, results are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory with the following structure:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>results/
 ├── H.xyz
@@ -412,7 +435,7 @@ By referring to the generated dependency graph (<code class="docutils literal no
 </ul>
 </section>
 <section id="checking-calculation-results">
-<h3>Checking Calculation Results<a class="headerlink" href="#checking-calculation-results" title="Permalink to this heading"></a></h3>
+<h3>Checking Calculation Results<a class="headerlink" href="#checking-calculation-results" title="Link to this heading"></a></h3>
 <p>Results from each workflow can be checked from log files and output files in the corresponding directories.</p>
 <ul class="simple">
 <li><p>PySCF calculation results: <code class="docutils literal notranslate"><span class="pre">{label}/pyscf-HF-workflow/out.pyscf</span></code></p></li>
@@ -425,7 +448,7 @@ A plot summarizing the calculation results is shown below.</p>
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>In this tutorial, we performed HF-VMC calculations for multiple molecules through the following steps:</p>
 <ol class="arabic simple">
 <li><p>Read molecular information from CSV file</p></li>
@@ -448,7 +471,7 @@ A plot summarizing the calculation results is shown below.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

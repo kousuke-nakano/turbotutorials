@@ -1,0 +1,74 @@
+Parameter name,Datatype,Default,Description
+etry,``real*8``,``0.d0``,Trial total energy. Please put the DFT or VMC energy.
+npow,``real*8``,``0.d0``,The parameter npow gradually sets the degree of localization used in the effective Hamiltonian. npow = 0 corresponds to a Fixed Node Hamiltonian whereas npow = 1 corresponds to the local approximation. Accept default.
+tbra,``real*8``,required,DMC time between consecutive branchings. Do not define when nbra > 0 in the simulation section.
+gamma,``real*8``,``0.d0``,The γ parameter in LRDMC. Accept default.
+plat,``real*8 plat(3)``,automatic,"a function p(r) dividing the dense and coarse regions. Default value is 0.0 for the single-grid LRDMC (i.e., alat2=0.0), automatically adjusted for the double-grid LRDMC (i.e., alat2=finite value)"
+alat2,``real*8``,"if `alat` > 0, `alat2` is set automatically (double-grid scheme), else (i.e., `alat` < 0), the default value of `alat2` is 0.","Double-grid Lattice space. alat2 = a’/a, where a is the smallest regularization grid and a’ is the larger one used in the valence region (i.e., far from nuclei). When you put a negative value for alat, you should not specify alat2 (i.e., please comment it out). The default value of alat2 is determined by Nakano’s algorithm."
+alat,``real*8``,"- if no input
+
+  + ``0`` if itestr /= -6 and itestr4 /= -7 and itestr4 >= -20
+  + ``-1.d0/zmax`` otherwise
+","Z_max is the largest effective nuclear charge in the system. Lattice space a of the smallest regularization grid. Accept default. If you want to do a single-grid LRDMC calculation, please put a negative value to satisfy the detailed-balance. If you want to do a double-grid LRDMC, please put a positive value and switch on iesrandoma."
+tstepfn,``real*8``,``0.d0``,"0.0 -> Fixed-node, 1.0 -> LRDMC becomes a VMC calc."
+Klrdmc,``real*8``,``0.d0``,η parameter of LRDMC. η = 1 + Ka^2
+optbra,``integer``,``0``,unclear
+parcutg,``integer``,"1 for LRDMC, otherwise 0","Use parcutg=1. parcutg=0 for standard LRDMC with no cutoff (energy unbounded), but it now works."
+novar,``integer``,"- ``0`` or ``-1`` if no input
+
+- ignore input
+
+  + ``0`` if parcutg == 0
+  + ``0`` if parcutg /= 0 and itestr /= -6 and itestr4 /= -7 and itestr4 >= -20
+","unclear, used for evaluating local energies in the subroutines updiag/updiag_complex compute the local energy both diagonal and off-diagonal part. Regularization of the Coulomb potential is also computed."
+epscutdmc,``real*8``,``0.d0``,regularization used in a DMC calculation. the detail is under investigation.
+typereg,``integer``,``0``,"How to deal with the spin-flip term, 0: Standard (Det. + Jas.), 6: only Det."
+epstldmc,``real*8``,"- if no input
+
+  + if itest == 1 or itestr4 == -7
+
+    - ``0.d0`` if epscutdmc /= 0.d0
+    - ``0.d0`` if epscutdmc == 0.d0 (ignore input)
+    - ``-1.d0`` otherwise
+","psidetln(j) is smaller than epstldmc, then kill the walker."
+rejweight,``logical``,"- if no input
+
+  + ``.true.`` if itest == 1 or itestr4 == -7
+
+- ignore input
+
+  + ``.false.`` if (itest == 1 or itestr4 == -7) and itestr == -3",rejecting or rescaling the weights according to the acceptance/rejection step) in standard dmc or non local dmc with heat bath after all electron diffusion rejecting or rescaling the weights according to acceptance should be the best choice. In non local dmc with heat bath after single particle diffusion the best choice is not to reject the weights.
+cutreg,``real*8``,automatic,DMC cutoff on local energy (Ry).
+cutweight,``real*8``,automatic,"regularization parameter in eq.4 of S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]"
+better_dmc,``logical``,"- ``.true.`` if itest == 1 or itestr4 == -7
+",unclear
+yesalfe,``logical``,"- if itest == 1 or itestr4 == -7
+
+  + ``.false.`` itestr == -3
+  + ``.true.`` itestr /= -3
+",unclear
+safelrdmc,``logical``,``.false.``,unclear
+changelambda,``logical``,"- ``.true.`` if itest == 1 or itestr4 == -7
+- ``.false.`` otherwise
+",unclear
+noblocking,``logical``,- ``.false.`` if itest == 1 or itestr4 == -7,unclear
+add_diff,``logical``,``.true.``,unclear
+nbra_cyrus,``integer``,- ``0`` if itest == 1 or itestr4 == -7,"A parameter to compute forces using the practical scheme developed by S. Moroni et al. (originally devised by Cyrus Umrigar), corresponding n in Eqs. 12 and 13 of the paper [J. Chem. Theory Comput. 2014, 10, 11, 4823–4829]"
+lrdmc_der,``logical``,``.false.``,unclear
+lrdmc_nonodes,``logical``,``.false.``,unclear
+enforce_detailb,``logical``,``.false.``,the detailed-balance
+iesrandoma,``logical``,"- ``.true.`` if no input
+- ignore input
+
+  - ``.true.`` if enforce_detailb is .true. or alat < 0.d0
+",flag to randomize the direction of the electron’s diffusion.
+zmin,``real*8``,- ``0.d0`` if itest == 1 or itestr4 == -7,the minimum effective Z for which the double-grid LRDMC is applied.
+yes_fastbranch,``logical``,- ``.false.`` if itest == 1 or itestr4 == -7,unclear
+l0_kousuke,``real*8``,"- ``2.d0`` if itest == 1 or itestr4 == -7
+","a parameter for the double-grid LRDMC. See “l” in the Eq.6 of the paper (Phys. Rev. B 101, 155106 (2020))."
+nw_max,``integer``,- ``-1`` if itest == 1 or itestr4 == -7,max number of. walker
+true_wagner,``integer``,"- if no input
+
+  + ``2`` lrdmc_der is .true. and lrdmc_nonodes is .false.
+  + ``-1`` otherwise","if true_wagner=2, the regularization developed by S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]"
+weight_moroni,``real*8``,``1.0d0``,unclear

@@ -1,0 +1,2 @@
+Parameter name,Datatype,Default,Description
+occupations,"``real(8), dimension(:), allocatable`` :: occupations",automatic,WIP

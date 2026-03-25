@@ -1,0 +1,35 @@
+Parameter name,Datatype,Default,Description
+nbufd,``integer``,"- if no input
+
+  + ``1000`` if nelorb < 2000
+  + ``100`` if nelorb >= 2000
+",WIP
+nx,``integer``,- error if no input,WIP
+ny,``integer``,``nx``,WIP
+nz,``integer``,``ny``,WIP
+ax,``real*8``,"- if no input
+
+  + ``0.1d0`` if iespbc is .false.
+
+- ignore input
+
+  + ``cellscale(1)/nx`` if iespbc is .true.",WIP
+ay,``real*8``,"- if no input
+
+  + ``ax`` if iespbc is .false.
+
+- ignore input
+
+  + ``cellscale(2)/ny`` if iespbc is .true.
+",WIP
+az,``real*8``,"- if no input
+
+  + ``ay`` if iespbc is .false.
+
+- ignore input
+
+  + ``cellscale(3)/nz`` if iespbc is .true.",WIP
+shift_origin,``logical``,``.true.``,WIP
+shiftx,``logical``,``.false.``,WIP
+shifty,``logical``,``.false.``,WIP
+shiftz,``logical``,``.false.``,WIP

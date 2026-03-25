@@ -1,0 +1,113 @@
+Parameter name,Datatype,Default,Description
+itestr4,``integer``,``2``,"- description(DFT):
+
+``itest4 = -4``: Standard DFT run.
+
+``itest4 = -8``: DFT calculation with twice larger basis for the Hartree potential.
+
+
+
+- description(VMC):
+
+This keyword decides the optimization scheme and its kernel. It can assume an integer value according to the following scheme:
+
+   - ``itestr4 = 2`` (VMC) Variational Monte Carlo.
+
+   - ``itestr4 = -4`` (VMC-opt) Wavefunction optimization by Hessian matrix method. Only the **lambda** parameters and the coefficients of the contracted orbitals are optimized.
+
+   - ``itestr4 = -8`` (VMC-opt) Wavefunction optimization by Hessian matrix method. All the parameters are optimized.
+
+   - ``itestr4 = -9, -5`` (VMC-opt) Same as -4, -8, respectively, but using Stochastic reconfiguration (SR) wavefunction optimization method.
+
+   - ``itestr4 = -6`` (LRDMC) Lattice Regularized Diffusion Monte Carlo.
+
+   - ``itestr4 = -24, -28`` (LRDMC-opt) Same as -4, -8, respectively, but the derivatives are computed using LRDMC.
+
+   - ``itestr4 = -29, -25`` (LRDMC-opt) Same as -9, -5, respectively, but the derivatives are computed using LRDMC.
+"
+iopt,``integer``,``1``,"- description(DFT):
+
+``iopt = 1``: Initialize with no potential (no Hartree, xc, correlation).
+
+``iopt = 0``: Continuation, starting from wavefunctions read from ``fort.10_new`` and occupation read from ``occupationlevels.dat`` (both generated after ``iopt = 1`` run).
+
+``iopt = 2``: Same as ``iopt = 0``, but write main matrices (basis set/Hamiltonian overlaps, charge/spin density).
+
+
+
+-description(VMC):
+
+    This keyword controls the starting of the run. It can assume the following integer values:
+
+       - ``iopt = 1``: New run from scratch.
+
+       - ``iopt = 0``: Continue from previous run.
+
+       - ``iopt = 2``: Initialize the optimization from the initial values given by fort.10, but read the previous equilibrated configuration.
+
+       - ``iopt = 3``: Same as 2, but when combined with molopt=-1, recomputes from scratch the projection matrices required to enforce a given number of molecular orbitals.
+"
+ngen,``integer``,automatic,"The number of iterations of any chosen method. Represents the total number of samples for the local energy or energy derivatives. In case of optimization, it must be a multiple of nweight given in the &optimization section."
+nscra,``integer``,"- if no input
+
+  + ``nel / 2`` if ipf == 2
+  + ``2*nel + 2`` if ipf /= 2
+","Inside an MC step, the determinant is usually updated instead of being recalculated from scratch. To avoid error summation, it’s necessary to calculate it from scratch every nscra accepted moves."
+nbra,``integer``,"automatic (4*nel, 2*nel, nel, 1, or 0)","In VMC, it indicates the number of Metropolis steps before computing a new sample. In LRDMC, if > 0, it uses the new more efficient method with perfect load balancing. Should be large enough (#electrons) to guarantee an efficient branching (% independent walkers / # walkers between 80% and 95%)."
+iseedr,``integer``,``236413883``,Seed of the random number generator.
+nw,``integer``,``nproc``,"Number of walkers. If not specified, it coincides with the number of processors. Otherwise, it must be a multiple of their number."
+kSq,``double precision``,"- if no input
+
+  + ``1.d-8`` if iespbc is .true.
+  + ``0d0``  if iespbc is .false.
+",Precision for the Ewald summation.
+kappar,``real*8``,automatic,"Coefficient in the Ewald summation. The default value depends on the crystal type (orthorombic, nonorthorohmbic)."
+freqcheck,``integer``,"- if no input
+
+  + ``-1`` if nproc == 1
+  + if nproc > 1
+
+    - ``100`` if ngen > 1000
+    - ``10`` if ngen > 100
+    - ``0`` if ngen <= 100
+",Frequency for checking flag error.
+membig,``logical``,``.true.``,Large memory is given or not.
+membigcpu,``logical``,"``.true.``
+
+",Large memory is given or not.
+developer,``integer``,``0``,Unidentified (This will be removed in the future).
+yesfast,``integer``,"- ``-1`` if no input
+- ignore input
+
+  + ``-1`` if ireadminr > 0 and yesfast > 0
+",Fast I/O (This will be moved to /developer/ namelist).
+maxtime,``real*8``,- ``86000`` if no input,The program will stop after maxtime (sec.)
+nproc_diag,``integer``,``0``,The number of intra MPI communicators. 0 means no intra communicator (this will be removed in the future).
+disk_io,"``character(len=80)``
+",``'default'``,"‘default’: default I/O, temporary files for each MPI process, ‘nocont’: minimal I/O no continuation, ‘mpiio’: temporary files are not generated for each MPI rank. They are gathered to single file."
+ip_reshuff,``integer``,``-1``,Unidentified (This will be moved to /developer/ namelist).
+compute_bands,``logical``,``.false.``,WIP
+double_mesh,``logical``,``.false.``,WIP
+min_block,``integer``,automatic (1000 or 100),"The minimum block size for computational efficiency at expense of memory, used for SCALAPACK. A smaller value will require less memory. (This will be removed in the future)."
+max_target,``integer``,automatic (200000 or 0),Unidentified (This will be moved to /developer/ namelist).
+max_targetsr,``integer``,``max_target``,Unidentified (This will be moved to /developer/ namelist).
+dielectric_ratio,``real*8``,``1.d0``,Parameter for dielectric constant: see dielectric.f90 (not tested).
+dielectric_length,``real*8``,``1.d0``,Parameter for dielectric constant: see dielectric.f90 (not tested).
+case_diel,``integer``,"- if no input
+
+  + ``2`` if dielectric_ratio /= 1.d0
+
+- ignore input
+
+  + ``0`` if dielectric_ratio == 1.d0
+  + ``0`` if input case_diel < 0 or case_diel > 2
+",Flag for dielectric constant: see dielectric.f90 (not tested).
+neigh,"``integer``
+","- if no input
+
+  + ``1`` if iespbc is .true.",Neighbors in the Ewald summation (but not used?) unidentified.
+novec_loop1,``logical``,``.true.``,Vectorize of subroutine upnewwf (This will be moved to /developer/ namelist).
+yes_sparse,``logical``,``.false.``,Unidentified (This will be moved to /developer/ namelist).
+yes_sparse_choose,``logical``,"- ``.false.`` if yesdft is .true.
+- ``.true.`` if yesdft is .false.",Unidentified (This will be moved to /developer/ namelist).
+max_sparse_choice,``integer``,automatic (100 or 20),Unidentified (This will be moved to /developer/ namelist).

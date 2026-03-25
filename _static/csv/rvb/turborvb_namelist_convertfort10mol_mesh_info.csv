@@ -1,0 +1,18 @@
+Parameter name,Datatype,Default,Description
+nbufd,``integer``,"- if epsdgm >= 0.d0
+
+  + ``1000`` if nelorb < 2000
+  + ``100`` if nelorb >= 2000
+
+- ``1`` if epsdgm < 0.d0
+",Numeric value. Represents buffer default.
+nx,``integer``,``0``,Numeric value. Number of mesh points in the x direction to evaluate overlaps.
+ny,``integer``,``nx``,Numeric value. Default is nx.
+nz,``integer``,``ny``,Numeric value. Default is ny.
+ax,``real*8``,``0.1d0``,"Numeric value. Lattice mesh on the x direction, not used for PBC."
+ay,``real*8``,``0.d0``,WIP
+az,``real*8``,``0.d0``,WIP
+shift_origin,``logical``,``.true.``,WIP
+shiftx,``logical``,``.false.``,WIP
+shifty,``logical``,``.false.``,WIP
+shiftz,``logical``,``.false.``,WIP

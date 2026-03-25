@@ -1,0 +1,800 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>prep.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="pseudo.x" href="pseudo.html" />
+    <link rel="prev" title="plot_orbitals.x" href="plot_orbitals.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">prep.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#dft-section">DFT section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#band-structure-section">band_structure section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#lastline-of-file-section">lastline of file section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">prep.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/prep.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="prep-x">
+<span id="turborvbtutorial-command-prep-x"></span><h1>prep.x<a class="headerlink" href="#prep-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="namelist">
+<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+<p>Variable are read from standard input.
+Read the variables of the same <a class="reference internal" href="turborvb.html#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">namelist</span></a> as <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> from standard input.</p>
+<section id="dft-section">
+<h3>DFT section<a class="headerlink" href="#dft-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>mixing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.25d0</span></code> if typeopt == 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.25d0</span></code> if typeopt == 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> if typeopt == 4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.01d0</span></code> otherwise</p></li>
+</ul>
+</td>
+<td><p>Choose a small value for better convergence. If even in this way it does not converge, switch on the smearing technique setting <code class="docutils literal notranslate"><span class="pre">optocc=1</span></code> (suggested for open shell systems). Alternatively you can change iteration method with <code class="docutils literal notranslate"><span class="pre">typeopt=3</span></code> (conjugate gradients) which will certainly converge for mixing small enough. In these cases mixing means just the maximum amplitude in the step.</p></td>
+</tr>
+<tr class="row-odd"><td><p>typedft</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if (abs(typedft) == 4 or abs(typedft) == 5) and (symmagp is .false. or ipc == 2)
++ <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p>otherwise</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if typedft == 4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if typedft == -4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> if typedft == 5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-3</span></code> if typedft == -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">0</span></code>: DFT calculation with Hartree potential only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">1</span></code>: LDA (PZ 1981).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">2</span></code>: LDA (OB 1994).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">-1,-2</span></code>: Same as the two above, but with the corresponding fit performed by imposing continuity in the correlation energy at <span class="math notranslate nohighlight">\(rs = 1\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">3</span></code>: KZK finite volume DFT: should be more accurate for finite volume.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">-3</span></code>: Different fitting procedure, suitable for open systems. Could be used with periodic systems too, but it is less stable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">4</span></code>: Standard LSDA.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">-4</span></code>: Standard LSDA, but with the corresponding fit performed by imposing continuity in the correlation energy at <span class="math notranslate nohighlight">\(rs = 1\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">5</span></code>: LSDA + KZK (not applied on spin) (<code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">-5</span></code> similar to <code class="docutils literal notranslate"><span class="pre">typedft</span> <span class="pre">=</span> <span class="pre">-3</span></code>).</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>maxit</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">100</span></code></p></td>
+<td><p>Maximum number of iterations in the self-consistent cycle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsdft</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d-7</span></code></p></td>
+<td><p>Tolerance in the convergence of total energy.</p></td>
+</tr>
+<tr class="row-even"><td><p>optocc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">optocc</span> <span class="pre">=</span> <span class="pre">0</span></code>: Use standard occupation of levels. It works well only for closed shell systems (insulators or special cases). Occupations are read from standard input (see below); the number of occupations read is chosen by the parameter <code class="docutils literal notranslate"><span class="pre">nelocc</span></code> (<code class="docutils literal notranslate"><span class="pre">neloccdo</span></code> for down spin electrons) which must be specified in input. In this case we have <code class="docutils literal notranslate"><span class="pre">occupations(1:nelocc)</span> <span class="pre">=</span> <span class="pre">2</span></code> for LDA; <code class="docutils literal notranslate"><span class="pre">occupations(1:nelocc)</span> <span class="pre">=</span> <span class="pre">1</span></code> &amp;&amp; <code class="docutils literal notranslate"><span class="pre">occupationdo(1:neloccdo)</span> <span class="pre">=</span> <span class="pre">1</span></code> for LSDA.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optocc</span> <span class="pre">=</span> <span class="pre">1</span></code>: Use a smeared Fermi distribution with a spread given by the parameter <code class="docutils literal notranslate"><span class="pre">epsshell</span></code> (see below). In this case:  <span class="math notranslate nohighlight">\(occupations(i) = \exp{ \frac{eig(i)-ef}{epsshell}+1}\)</span> where the Fermi energy <span class="math notranslate nohighlight">\(ef\)</span> is determined by the constraint, sum(occupations(1:bands)) = no. of electrons via bisection method . For LSDA (<code class="docutils literal notranslate"><span class="pre">|typedft|</span> <span class="pre">=</span> <span class="pre">4,</span> <span class="pre">5</span></code>) two Fermi distributions are introduced for up and down electrons. In the case of k-points sampling, the Fermi energy is determined by averaging over <span class="math notranslate nohighlight">\(ef\)</span> computed for each k-point.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>typeopt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code> if no input</p></li>
+<li><p>ignore input or above value</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if compute_bands is .true.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">0</span></code>: Use self consistency method with standard mixing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">2</span></code>: Linear mixing scheme.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">3</span></code>: Conjugate gradients method with SR acceleration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">4</span></code>: Anderson mixing scheme with Jacobian acceleration, no use of mixing is made; this method looks to be the faster and therefore the preferred among the available ones. For information on the algorithm see doc/tex/parbcs.tex, Ch. V</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>memlarge</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Optimize speed at the cost of much greater memory requirements. The whole basis set is saved on disk!</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsover</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-13</span></code></p></td>
+<td><p>Minimum tolerance for the lowest eigenvalues of the overlap matrix. If <code class="docutils literal notranslate"><span class="pre">epsover</span></code> &lt; 0  no orthogonalization is implemented (faster but less stable).</p></td>
+</tr>
+<tr class="row-even"><td><p>nelocc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">nelocc</span></code> &gt; 0, it is the number of occupations that are read in the last record of the input file. Occupation values can only be (0,2] (paired orbitals), -1 (unpaired at the end) or 0 (unoccupied). If <code class="docutils literal notranslate"><span class="pre">nxs</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nys</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">nzs</span></code> &gt; 0 this record is just after the ones to read the input magnetization (see below).</p></td>
+</tr>
+<tr class="row-odd"><td><p>neloccdo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>It is similar to <code class="docutils literal notranslate"><span class="pre">nelocc</span></code> but for the spin down electrons which are assumed with no unpaired orbitals. Another record with <code class="docutils literal notranslate"><span class="pre">neloccdo</span></code> integers be written below. Note that, in this case occupations for up spin can take values 1 (occupied paired orbital), -1 (unpaired), 0 (unoccupied orbital). Instead occupations for down spin electrons can take values 1 (occupied paired orbital) and 0 (unoccupied orbital).</p></td>
+</tr>
+<tr class="row-even"><td><p>bands</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2*neldo</span> <span class="pre">+</span> <span class="pre">nelup</span> <span class="pre">-</span> <span class="pre">neldo</span></code> if no input</p></li>
+<li><p>with input value or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*neldo</span> <span class="pre">+</span> <span class="pre">nelup</span> <span class="pre">-</span> <span class="pre">neldo</span></code> if bands &lt; nelup</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nelocc</span></code> if nelocc /= 0 and bands &lt; nelocc</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nelorbh</span></code> if bands &gt; nelorbh and contracted_on is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nelorb_at</span></code> if bands &gt; nelorb_at and contracted_on is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>The number of lowest eigenvalues of Khon-Sham equations to be evaluated. By default <code class="docutils literal notranslate"><span class="pre">bands</span> <span class="pre">=</span> <span class="pre">nelup</span> <span class="pre">+</span> <span class="pre">7</span></code> where <code class="docutils literal notranslate"><span class="pre">nelup</span></code> is the number of spin up electrons. This corresponds to assuming at most an 8-fold degenerancy in the last occupied shell.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mixingder</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.05d0</span></code> if typeopt is even</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">100.0d0</span></code> if typeopt is odd</p></li>
+</ul>
+</li>
+<li><p>with input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs(mixingder)</span></code> if mixingder &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>Case 1 (<code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">3</span></code>): Used to evaluate numerically the first and second derivatives.</p></li>
+<li><p>Case 2 (<code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">4</span></code>): Used to be closer to the linear regime for the evaluation of the Jacobian (<code class="docutils literal notranslate"><span class="pre">mixingder</span></code> &lt;&lt; 1).</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>epssr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if typeopt is even</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if typeopt is odd and no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxcg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">40</span></code></p></td>
+<td><p>With <code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">3</span></code> (conjugate gradient) each <code class="docutils literal notranslate"><span class="pre">maxcg</span></code> steps restart the conj. grad. procedure. If <code class="docutils literal notranslate"><span class="pre">maxcg</span> <span class="pre">=</span> <span class="pre">0</span></code> no restarting is performed (discouraged since numerically unstable).</p></td>
+</tr>
+<tr class="row-even"><td><p>weightcorr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Weight of the correlation energy, e.g. <code class="docutils literal notranslate"><span class="pre">weightcorr</span></code> <span class="math notranslate nohighlight">\(= 0\)</span> no correlation, <code class="docutils literal notranslate"><span class="pre">weightcorr</span></code> <span class="math notranslate nohighlight">\(= 1\)</span> standard LDA.</p></td>
+</tr>
+<tr class="row-odd"><td><p>weightxc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Weight of the exchange energy. When <code class="docutils literal notranslate"><span class="pre">weightxc</span></code> <span class="math notranslate nohighlight">\(= 0\)</span> no exchange and when <span class="math notranslate nohighlight">\(weightcorr = 1\)</span> standard LDA is used.</p></td>
+</tr>
+<tr class="row-even"><td><p>maxold</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p>The number of previous iterations to be considered in the numerical evaluation of Jacobian with <code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">4</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsshell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(qp)</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.005d0</span></code> if no input</p></li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.0d0</span></code> if optocc == 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Spread of the Fermi distribution used when <code class="docutils literal notranslate"><span class="pre">optocc</span> <span class="pre">=</span> <span class="pre">1</span></code>. The unit is Ha.</p></td>
+</tr>
+<tr class="row-even"><td><p>weightvh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Weight of the hartree potential. Setting <code class="docutils literal notranslate"><span class="pre">weightvh</span></code> <span class="math notranslate nohighlight">\(\neq 1\)</span> is used just for testing.</p></td>
+</tr>
+<tr class="row-odd"><td><p>orthodiag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> the Kohn-Sham eigenvectors are not orthogonalized after each Hamiltonian diagonalization.</p></td>
+</tr>
+<tr class="row-even"><td><p>mincond</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Disregard the first <code class="docutils literal notranslate"><span class="pre">mincond</span></code>-1 direction regardless of the condition number limited by <code class="docutils literal notranslate"><span class="pre">epsover</span></code>. This is useful to have better cancellation errors as a function e.g. of pressure.</p></td>
+</tr>
+<tr class="row-odd"><td><p>randspin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if iopt == 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code> if iopt /= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Used for initializing magnetization. If <code class="docutils literal notranslate"><span class="pre">randspin</span></code> &gt; 0, add random component to the orbitals. If <code class="docutils literal notranslate"><span class="pre">randspin</span></code> &lt; 0 initialize with maximum possible spin given density and grid (see below). If zero no action.</p></td>
+</tr>
+<tr class="row-even"><td><p>nzs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction. The format is written below.</p>
+<p>Additional information:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nxs</span></code> <code class="docutils literal notranslate"><span class="pre">nys</span></code> <code class="docutils literal notranslate"><span class="pre">nzs</span></code></p>
+<p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction:
+The format is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!<span class="w">  </span>After<span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;occupation list&quot;</span>
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s111<span class="w"> </span>s211<span class="w"> </span>s311<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s121<span class="w"> </span>s221<span class="w"> </span>s321<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s1nys1<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnys1
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s112<span class="w"> </span>s212<span class="w"> </span>s312<span class="w"> </span>...<span class="w"> </span>snxs12
+!<span class="w"> </span>...
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s11nzs<span class="w"> </span>s21nzs<span class="w"> </span>s31nzs<span class="w"> </span>...<span class="w"> </span>snxs1nzs
+!<span class="w"> </span>...
+!<span class="w"> </span>s1nysnzs<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnysnzs
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>nys</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction. The format is written below.</p>
+<p>Additional information:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nxs</span></code> <code class="docutils literal notranslate"><span class="pre">nys</span></code> <code class="docutils literal notranslate"><span class="pre">nzs</span></code></p>
+<p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction:
+The format is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!<span class="w">  </span>After<span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;occupation list&quot;</span>
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s111<span class="w"> </span>s211<span class="w"> </span>s311<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s121<span class="w"> </span>s221<span class="w"> </span>s321<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s1nys1<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnys1
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s112<span class="w"> </span>s212<span class="w"> </span>s312<span class="w"> </span>...<span class="w"> </span>snxs12
+!<span class="w"> </span>...
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s11nzs<span class="w"> </span>s21nzs<span class="w"> </span>s31nzs<span class="w"> </span>...<span class="w"> </span>snxs1nzs
+!<span class="w"> </span>...
+!<span class="w"> </span>s1nysnzs<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnysnzs
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>nxs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction. The format is written below.</p>
+<p>Additional information:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nxs</span></code> <code class="docutils literal notranslate"><span class="pre">nys</span></code> <code class="docutils literal notranslate"><span class="pre">nzs</span></code></p>
+<p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction:
+The format is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!<span class="w">  </span>After<span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;occupation list&quot;</span>
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s111<span class="w"> </span>s211<span class="w"> </span>s311<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s121<span class="w"> </span>s221<span class="w"> </span>s321<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s1nys1<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnys1
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s112<span class="w"> </span>s212<span class="w"> </span>s312<span class="w"> </span>...<span class="w"> </span>snxs12
+!<span class="w"> </span>...
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s11nzs<span class="w"> </span>s21nzs<span class="w"> </span>s31nzs<span class="w"> </span>...<span class="w"> </span>snxs1nzs
+!<span class="w"> </span>...
+!<span class="w"> </span>s1nysnzs<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnysnzs
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>jaccond</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Minimum threshold for the condition matrix in the self-consistent approach <code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">4</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>h_field</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">h\_field</span></code> &gt; (&lt;) 0 put a magnetic field increasing (decreasing) the magnetization with the staggering given by the table sxyz defined for <code class="docutils literal notranslate"><span class="pre">randspin</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>eps_mach</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DLAMCH('E')</span></code> (defined in <cite>lapack</cite>) if no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>rmax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>write_den</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> write the overlap matrix elements for effective Hamiltonian calculations to the disk.</p></td>
+</tr>
+<tr class="row-odd"><td><p>contracted_on</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> it acts on the contracted basis (considerably faster).</p></td>
+</tr>
+<tr class="row-even"><td><p>task</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>deltaE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>emin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>emax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>optimize_overs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if double_overs is .false.</p></li>
+</ul>
+</li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if double_overs is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> optimize the overlap matrices calculation if the phase for spin down electrons is equal or opposite to the phase for up spin electrons. Otherwise it is automatically set to <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>shift_origin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if skip_equivalence is .true. or yes_tilted is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>try_translation</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero_jas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">.true.</span></code> set the one-body Jastrow to zero at the end of the DFT calculation.</p></td>
+</tr>
+<tr class="row-even"><td><p>write_matrix</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>fix_density</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p>-<code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input
+- ignore input</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if decoupled_run is .false.</p></li>
+</ul>
+</div></blockquote>
+</td>
+<td><p>If the flag <code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code> is set to <code class="docutils literal notranslate"><span class="pre">.true.</span></code> (&amp;parameters card) as well as the <code class="docutils literal notranslate"><span class="pre">yes_kpoints</span></code> flag (&amp;kpoints card), the k-points are evolved independently but using the averaged electronic density.</p></td>
+</tr>
+<tr class="row-even"><td><p>newj_onebody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span> <span class="pre">::</span> <span class="pre">newj_onebody(100)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>setj_onebody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span> <span class="pre">::</span> <span class="pre">setj_onebody(100)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>h_charge</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shiftx</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>shifty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shiftz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>l0_at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale_z</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if double_mesh is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if double_mesh is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>linear</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>corr_hartree</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.`</span></code> if no input</p></li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if do_hartree is .true. or double_mesh is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>rion_from</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span> <span class="pre">::</span> <span class="pre">rion_from(3)</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>minz_at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>vmax0_in</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-100.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nx_at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>ny_at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nz_at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>from_ions</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale_hartree</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> if double_mesh is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code> if double_mesh is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>do_hartree</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if double_mesh is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nproc_fft</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">maxdiv</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>tfcut(プログラムに存在しない)</p></td>
+<td></td>
+<td></td>
+<td><p>Used only with <code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">0/2/4</span></code>. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of <code class="docutils literal notranslate"><span class="pre">tfcut</span></code> <span class="math notranslate nohighlight">\(= \frac{1}{{xi_{TF}}^2}\)</span>  where <span class="math notranslate nohighlight">\(xi\)</span> is the Thomas-Fermi length expressed in a.u.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="band-structure-section">
+<h3>band_structure section<a class="headerlink" href="#band-structure-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>task</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Flag to specify which quantity to compute after a non self-consistent run. It is ignored if ``type_comp_dft = 0``.
+  ``task = 0`` Do not compute anything.
+  ``task = 1`` Band structure plot (use ``kp_type = 2/3`` in the k-points card to specify the path in the Brillouin zone).
+  ``task = 2`` Density of States calculations using smearing parameter given by ``epsshell``. The integer ``optocc`` must be set to 1.
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>deltaE</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Energy bin for computing the density of states (task = 2).</p></td>
+</tr>
+<tr class="row-even"><td><p>emin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>min(eigenvalue): minimum value of the energy to be included in band structure or DOS plot.</p></td>
+</tr>
+<tr class="row-odd"><td><p>emax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>max(eigenvalue): maximum value of the energy to be included in band structure or DOS plot.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lastline-of-file-section">
+<h3>lastline of file section<a class="headerlink" href="#lastline-of-file-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>occupations</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8),</span> <span class="pre">dimension(:),</span> <span class="pre">allocatable</span></code> :: occupations</p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="plot_orbitals.html" class="btn btn-neutral float-left" title="plot_orbitals.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pseudo.html" class="btn btn-neutral float-right" title="pseudo.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

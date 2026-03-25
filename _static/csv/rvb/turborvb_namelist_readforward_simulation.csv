@@ -1,0 +1,6 @@
+Parameter name,Datatype,Default,Description
+ngen,``integer``,``0``,WIP
+iopt,``integer``,``1``,WIP
+longio,``logical``,``.false.``,WIP
+decouple_k,``logical``,``.true.``,WIP
+decouple_files,``logical``,``.false.``,WIP

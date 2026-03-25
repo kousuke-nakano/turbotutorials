@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>turbo-jobmanager command &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>turbo-jobmanager command &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
@@ -54,7 +56,31 @@
 <li class="toctree-l3"><a class="reference internal" href="00index.html#api-reference">API reference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="00index.html#configurations">Configurations</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="00index.html#command-line-tools">Command-line tools</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">turbo-jobmanager command</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">turbo-jobmanager command</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#command-line-syntax">Command-Line Syntax</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#show">show</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#check">check</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#del">del</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#usage-examples">Usage Examples</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#basic-usage-examples">Basic Usage Examples</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#using-debug-mode">Using Debug Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes-and-troubleshooting">Notes and Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#configuration-file-check">Configuration File Check</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#job-file-search">Job File Search</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#job-id-verification">Job ID Verification</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#deleting-continuation-jobs">Deleting Continuation Jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-documentation">Related Documentation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -63,6 +89,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -92,15 +120,15 @@
            <div itemprop="articleBody">
              
   <section id="turbo-jobmanager-command">
-<span id="turboworkflows-reference-job-manager-cli"></span><h1>turbo-jobmanager command<a class="headerlink" href="#turbo-jobmanager-command" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-reference-job-manager-cli"></span><h1>turbo-jobmanager command<a class="headerlink" href="#turbo-jobmanager-command" title="Link to this heading"></a></h1>
 <p>This document describes the detailed usage of the <code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span></code> command for job management in TurboWorkflows.</p>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span></code> is a command-line tool for monitoring, checking, and deleting computational jobs managed by TurboWorkflows.
 It searches for job information in the current directory and its subdirectories, and can display job trees, check the status of individual jobs, and delete jobs.</p>
 </section>
 <section id="command-line-syntax">
-<h2>Command-Line Syntax<a class="headerlink" href="#command-line-syntax" title="Permalink to this heading"></a></h2>
+<h2>Command-Line Syntax<a class="headerlink" href="#command-line-syntax" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>&lt;action&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
@@ -112,9 +140,9 @@ It searches for job information in the current directory and its subdirectories,
 </ul>
 </section>
 <section id="commands">
-<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this heading"></a></h2>
+<h2>Commands<a class="headerlink" href="#commands" title="Link to this heading"></a></h2>
 <section id="show">
-<h3>show<a class="headerlink" href="#show" title="Permalink to this heading"></a></h3>
+<h3>show<a class="headerlink" href="#show" title="Link to this heading"></a></h3>
 <p>Displays the job tree. It recursively searches the current directory and its subdirectories, and displays all found jobs in a tree format.</p>
 <p><strong>Syntax:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>show<span class="w"> </span><span class="o">[</span>-id<span class="w"> </span>JOBID<span class="o">]</span><span class="w"> </span><span class="o">[</span>-log<span class="w"> </span>LOG_LEVEL<span class="o">]</span>
@@ -173,7 +201,7 @@ Detail of the jobID = 0
 </div>
 </section>
 <section id="check">
-<h3>check<a class="headerlink" href="#check" title="Permalink to this heading"></a></h3>
+<h3>check<a class="headerlink" href="#check" title="Link to this heading"></a></h3>
 <p>Checks the execution status of jobs. It queries the job scheduler on the server to determine whether jobs are running or completed.</p>
 <p><strong>Syntax:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>check<span class="w"> </span><span class="o">[</span>-id<span class="w"> </span>JOBID<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="w"> </span>SERVER_MACHINE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-log<span class="w"> </span>LOG_LEVEL<span class="o">]</span>
@@ -201,7 +229,7 @@ Detail of the jobID = 0
 </ul>
 </section>
 <section id="del">
-<h3>del<a class="headerlink" href="#del" title="Permalink to this heading"></a></h3>
+<h3>del<a class="headerlink" href="#del" title="Link to this heading"></a></h3>
 <p>Deletes a job. It deletes job files (<code class="docutils literal notranslate"><span class="pre">job_manager*.pkl</span></code> and <code class="docutils literal notranslate"><span class="pre">*_genius*.pkl</span></code>) corresponding to the specified job ID.</p>
 <p><strong>Syntax:</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span class="w"> </span>JOBID<span class="w"> </span><span class="o">[</span>-log<span class="w"> </span>LOG_LEVEL<span class="o">]</span>
@@ -242,8 +270,8 @@ Detail of the jobID = 0
 </section>
 </section>
 <section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
-<p><strong>-id</strong>, <strong>–jobid</strong> <em>job_ID</em></p>
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
+<p><strong>-id</strong>, <strong>--jobid</strong> <em>job_ID</em></p>
 <blockquote>
 <div><p><strong>Type</strong>: Integer</p>
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">-1</span></code> (unspecified)</p>
@@ -255,7 +283,7 @@ turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span clas
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>-s</strong>, <strong>–server_machine</strong> <em>server_machine_name</em></p>
+<p><strong>-s</strong>, <strong>--server_machine</strong> <em>server_machine_name</em></p>
 <blockquote>
 <div><p><strong>Type</strong>: String</p>
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">localhost</span></code></p>
@@ -265,7 +293,7 @@ turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span clas
 </pre></div>
 </div>
 </div></blockquote>
-<p><strong>-log</strong>, <strong>–log_level</strong> <em>log_level</em></p>
+<p><strong>-log</strong>, <strong>--log_level</strong> <em>log_level</em></p>
 <blockquote>
 <div><p><strong>Type</strong>: String (<code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> or <code class="docutils literal notranslate"><span class="pre">INFO</span></code>)</p>
 <p><strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">INFO</span></code></p>
@@ -281,9 +309,9 @@ turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span clas
 </div></blockquote>
 </section>
 <section id="usage-examples">
-<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Permalink to this heading"></a></h2>
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
 <section id="basic-usage-examples">
-<h3>Basic Usage Examples<a class="headerlink" href="#basic-usage-examples" title="Permalink to this heading"></a></h3>
+<h3>Basic Usage Examples<a class="headerlink" href="#basic-usage-examples" title="Link to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Display all jobs:</p></li>
 </ol>
@@ -322,7 +350,7 @@ turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span clas
 </div>
 </section>
 <section id="using-debug-mode">
-<h3>Using Debug Mode<a class="headerlink" href="#using-debug-mode" title="Permalink to this heading"></a></h3>
+<h3>Using Debug Mode<a class="headerlink" href="#using-debug-mode" title="Link to this heading"></a></h3>
 <p>When problems occur, running in debug mode displays detailed information:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbo-jobmanager<span class="w"> </span>show<span class="w"> </span>-log<span class="w"> </span>DEBUG<span class="w"> </span>-id<span class="w"> </span><span class="m">0</span>
 </pre></div>
@@ -330,33 +358,33 @@ turbo-jobmanager<span class="w"> </span>del<span class="w"> </span>-id<span clas
 </section>
 </section>
 <section id="notes-and-troubleshooting">
-<h2>Notes and Troubleshooting<a class="headerlink" href="#notes-and-troubleshooting" title="Permalink to this heading"></a></h2>
+<h2>Notes and Troubleshooting<a class="headerlink" href="#notes-and-troubleshooting" title="Link to this heading"></a></h2>
 <section id="configuration-file-check">
-<h3>Configuration File Check<a class="headerlink" href="#configuration-file-check" title="Permalink to this heading"></a></h3>
+<h3>Configuration File Check<a class="headerlink" href="#configuration-file-check" title="Link to this heading"></a></h3>
 <p>To run <code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span></code>, the <code class="docutils literal notranslate"><span class="pre">~/.turbofilemanager_config/machine_data.yaml</span></code> file must exist.
 If this file does not exist on first run, template files are automatically copied.
 After that, edit <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> to configure server machines.</p>
 <p>For details, refer to <a class="reference internal" href="../getting_started/settings.html#turboworkflows-installation-settings"><span class="std std-ref">Environment Configuration</span></a>.</p>
 </section>
 <section id="job-file-search">
-<h3>Job File Search<a class="headerlink" href="#job-file-search" title="Permalink to this heading"></a></h3>
+<h3>Job File Search<a class="headerlink" href="#job-file-search" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">turbo-jobmanager</span></code> recursively searches the current directory and its subdirectories for <code class="docutils literal notranslate"><span class="pre">job_manager*.pkl</span></code> files.
 If jobs are not found, make sure you are in the correct directory.</p>
 </section>
 <section id="job-id-verification">
-<h3>Job ID Verification<a class="headerlink" href="#job-id-verification" title="Permalink to this heading"></a></h3>
+<h3>Job ID Verification<a class="headerlink" href="#job-id-verification" title="Link to this heading"></a></h3>
 <p>The job ID is the number in <code class="docutils literal notranslate"><span class="pre">(JOB-ID:number)</span></code> displayed by the <code class="docutils literal notranslate"><span class="pre">show</span></code> command.
 This ID is dynamically assigned based on the current directory structure, so moving to a different directory may result in different IDs being assigned.</p>
 </section>
 <section id="deleting-continuation-jobs">
-<h3>Deleting Continuation Jobs<a class="headerlink" href="#deleting-continuation-jobs" title="Permalink to this heading"></a></h3>
+<h3>Deleting Continuation Jobs<a class="headerlink" href="#deleting-continuation-jobs" title="Link to this heading"></a></h3>
 <p>When deleting continuation jobs (<code class="docutils literal notranslate"><span class="pre">job_manager_*.pkl</span></code>), all jobs from the specified job ID onwards are deleted.
 In particular, deleting <code class="docutils literal notranslate"><span class="pre">job_manager_0.pkl</span></code> will delete all jobs in that directory.
 It is recommended to check the job tree with the <code class="docutils literal notranslate"><span class="pre">show</span></code> command before deletion.</p>
 </section>
 </section>
 <section id="related-documentation">
-<h2>Related Documentation<a class="headerlink" href="#related-documentation" title="Permalink to this heading"></a></h2>
+<h2>Related Documentation<a class="headerlink" href="#related-documentation" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="configuration.html#turboworkflows-reference-configuration"><span class="std std-ref">Configuration Files</span></a>: Detailed specification of configuration files</p></li>
 <li><p><a class="reference internal" href="../getting_started/settings.html#turboworkflows-installation-settings"><span class="std std-ref">Environment Configuration</span></a>: Environment configuration basics</p></li>
@@ -375,7 +403,7 @@ It is recommended to check the job tree with the <code class="docutils literal n
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

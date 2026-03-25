@@ -1,0 +1,101 @@
+Parameter name,Datatype,Default,Description
+corr_factors,``integer``,``0``,WIP
+fwd_propagations,``integer``,``0``,WIP
+bin_length,``integer``,``ngen/100``,WIP
+initial_bin,``integer``,``2``,WIP
+fwd_skip,``integer``,``1``,WIP
+corrfun_dim,``integer``,``3``,WIP
+k_cutoff,``real*8``,``3.d0``,WIP
+assar_density,``logical``,"``.false.``
+",WIP
+grid_points,``integer``,"- ``ngrid(1)*ngrid(2)*ngrid(3)`` if no input
+
+- with input value
+
+  + ``ngrid(1)*ngrid(2)*ngrid(3)`` if grid_points <= 0",WIP
+assar_parr,``real*8``,``1.d0``,WIP
+charge_density,``logical``,"- ``.false.`` if no input
+- ignore input 
+
+  + ``.false.`` if ifrho_assar is .true.",WIP
+new_density,``logical``,"``.false.``
+",WIP
+spin_density,``logical``,"- ``.false.`` if no input
+- ignore input 
+
+  + ``.false.`` if ifrho_assar is .true.
+",WIP
+pair_corr_fun,``logical``,"- ``.false.`` if no input
+- ignore input 
+
+  + ``.false.`` if ifrho_assar is .true.
+",WIP
+structure_factor,``logical``,"- ``.false.`` if no input
+- ignore input 
+
+  + ``.false.`` if ifrho_assar is .true.
+",WIP
+ngrid,``integer :: ngrid(3)``,``ngrid(1:3) = 0``,WIP
+cart_axes,``integer :: cart_axes(3)``,"``cart_axes(1:3) = [1, 2, 3]``",WIP
+offset,``real*8 :: offset(3)``,automatic,WIP
+correlated_samp,``logical``,"- ``.false.`` if no input
+- ignore input 
+
+  + ``.false.`` if ifrho_assar is .true.
+
+",WIP
+shiftlog,``real*8``,``0.d0``,WIP
+ifkspin,``logical``,"- ``.false.`` if no input
+- ignore input
+
+  + sphere_radius /= 0.d0
+
+    - ``.false.`` if ifpair is .true.
+    - ``.false.`` if ifspin is .true.
+    - ``.false.`` if ifrho is .true.
+    - ``.false.`` if grid_points == 0 and ifrho_assar is .true.
+",WIP
+kspin,``real(8) :: kspin(3)``,``kspin(1:3) = 0.d0``,WIP
+assar_cut,``real*8``,``1000.d0``,WIP
+noeloc,``logical``,``.false.``,WIP
+kswitch,``real*8``,"``0.1d0``
+",WIP
+nswitch,``integer``,``8``,WIP
+compute_spin2,``logical``,"- ``.false.`` if no input
+- ignore input
+
+  + ``.false.`` if ifrho_assar is .true.
+
+",WIP
+radial_grid,``integer``,``0``,WIP
+sphere_radius,``real*8``,``0.d0``,WIP
+quasi_particle,"``logical``
+","- ``.false.`` if no input
+- ignore input
+
+  + ``.false.`` if ifrho_assar is .true.
+",WIP
+quasi_hole,"``logical``
+","- ``.false.`` if no input
+- ignore input
+
+  + ``.false.`` if ifrho_assar is .true.
+
+",WIP
+quasi_hole_k,"``logical``
+","- ``.false.`` if no input
+- ignore input
+
+  + ``.false.`` if ifrho_assar is .true.
+
+",WIP
+quasi_hole_extr,"``logical``
+",``.false.``,WIP
+dipole_moment,``logical``,"``.false.``
+",WIP
+allshells,``logical``,``.false.``,WIP
+fluctuations,``logical``,``.false.``,WIP
+ifberry,``logical``,``.false.``,WIP
+outofplane,``real(8)``,``0.d0``,WIP
+rdf_for_atom,``logical``,"``.false.``
+",WIP

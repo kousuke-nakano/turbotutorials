@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuration Files &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Configuration Files &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
@@ -53,7 +55,34 @@
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="00index.html#api-reference">API reference</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="00index.html#configurations">Configurations</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Configuration Files</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Configuration Files</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#configuration-file-structure">Configuration File Structure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#machine-data-yaml">machine_data.yaml</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#file-format">File Format</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#configuration-parameters">Configuration Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#package-yaml">package.yaml</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id1">File Format</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id2">Configuration Parameters</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#version-management">Version Management</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#queue-data-toml">queue_data.toml</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id3">File Format</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id4">Configuration Parameters</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#toml-format-notes">TOML Format Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id5">File Format</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#predefined-variables">Predefined Variables</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#using-custom-variables">Using Custom Variables</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="00index.html#command-line-tools">Command-line tools</a></li>
@@ -63,6 +92,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -92,7 +123,7 @@
            <div itemprop="articleBody">
              
   <section id="configuration-files">
-<span id="turboworkflows-reference-configuration"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Configuration Files</a><a class="headerlink" href="#configuration-files" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-reference-configuration"></span><h1><a class="toc-backref" href="#id6" role="doc-backlink">Configuration Files</a><a class="headerlink" href="#configuration-files" title="Link to this heading"></a></h1>
 <p>This document describes the detailed specifications of TurboWorkflows configuration files.
 For an overview and basic usage of configuration files, see <a class="reference internal" href="../getting_started/settings.html#turboworkflows-installation-settings"><span class="std std-ref">Environment Configuration</span></a>.</p>
 <nav class="contents" id="table-of-contents">
@@ -110,7 +141,7 @@ For an overview and basic usage of configuration files, see <a class="reference 
 </ul>
 </nav>
 <section id="configuration-file-structure">
-<h2><a class="toc-backref" href="#id7" role="doc-backlink">Configuration File Structure</a><a class="headerlink" href="#configuration-file-structure" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Configuration File Structure</a><a class="headerlink" href="#configuration-file-structure" title="Link to this heading"></a></h2>
 <p>Configuration files are managed in the following directory structure.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>~/.turbofilemanager_config/
 ├── machine_data.yaml          # Server machine settings
@@ -129,10 +160,10 @@ For an overview and basic usage of configuration files, see <a class="reference 
 </div>
 </section>
 <section id="machine-data-yaml">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">machine_data.yaml</a><a class="headerlink" href="#machine-data-yaml" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">machine_data.yaml</a><a class="headerlink" href="#machine-data-yaml" title="Link to this heading"></a></h2>
 <p>A YAML file that describes settings for server machines.</p>
 <section id="file-format">
-<h3>File Format<a class="headerlink" href="#file-format" title="Permalink to this heading"></a></h3>
+<h3>File Format<a class="headerlink" href="#file-format" title="Link to this heading"></a></h3>
 <p>Written in dictionary format with server names as keys. An example is shown below.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">localhost</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">machine_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">local</span>
@@ -156,7 +187,7 @@ For an overview and basic usage of configuration files, see <a class="reference 
 </div>
 </section>
 <section id="configuration-parameters">
-<h3>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Permalink to this heading"></a></h3>
+<h3>Configuration Parameters<a class="headerlink" href="#configuration-parameters" title="Link to this heading"></a></h3>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">machine_type</span></code></dt><dd><p><strong>Type</strong>: String (<code class="docutils literal notranslate"><span class="pre">local</span></code> or <code class="docutils literal notranslate"><span class="pre">remote</span></code>)</p>
 <p><strong>Required</strong>: Yes</p>
@@ -245,11 +276,11 @@ Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"
 </section>
 </section>
 <section id="package-yaml">
-<h2><a class="toc-backref" href="#id9" role="doc-backlink">package.yaml</a><a class="headerlink" href="#package-yaml" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id9" role="doc-backlink">package.yaml</a><a class="headerlink" href="#package-yaml" title="Link to this heading"></a></h2>
 <p>Configure program package settings for each server. Written in YAML format.</p>
 <p>Packages are mainly specified within Workflow classes and are used to manage external programs used by Workflows. Currently, the keys <code class="docutils literal notranslate"><span class="pre">turborvb</span></code> and <code class="docutils literal notranslate"><span class="pre">python</span></code> are used.</p>
 <section id="id1">
-<h3>File Format<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>File Format<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <p>Written in dictionary format with package names as keys.
 An example is shown below.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">turborvb</span><span class="p">:</span>
@@ -284,7 +315,7 @@ An example is shown below.</p>
 </div>
 </section>
 <section id="id2">
-<h3>Configuration Parameters<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Configuration Parameters<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <dl>
 <dt>Package Entry (e.g., <code class="docutils literal notranslate"><span class="pre">turborvb</span></code>, <code class="docutils literal notranslate"><span class="pre">python</span></code>)</dt><dd><p><strong>Type</strong>: Dictionary</p>
 <p><strong>Required</strong>: Yes</p>
@@ -335,15 +366,15 @@ An example is shown below.</p>
 </dl>
 </section>
 <section id="version-management">
-<h3>Version Management<a class="headerlink" href="#version-management" title="Permalink to this heading"></a></h3>
+<h3>Version Management<a class="headerlink" href="#version-management" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">binary_path</span></code> can manage multiple versions. The version used in workflows is specified with the <code class="docutils literal notranslate"><span class="pre">version</span></code> parameter (e.g., <code class="docutils literal notranslate"><span class="pre">version=&quot;stable&quot;</span></code>).</p>
 </section>
 </section>
 <section id="queue-data-toml">
-<h2><a class="toc-backref" href="#id10" role="doc-backlink">queue_data.toml</a><a class="headerlink" href="#queue-data-toml" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">queue_data.toml</a><a class="headerlink" href="#queue-data-toml" title="Link to this heading"></a></h2>
 <p>Configure batch queue settings for each server. Written in TOML format.</p>
 <section id="id3">
-<h3>File Format<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h3>File Format<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>Written in dictionary format with queue labels as keys. An example is shown below.</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[default]</span>
 <span class="w">    </span><span class="n">mpi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
@@ -371,7 +402,7 @@ An example is shown below.</p>
 </div>
 </section>
 <section id="id4">
-<h3>Configuration Parameters<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<h3>Configuration Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <dl>
 <dt>Queue Label (e.g., <code class="docutils literal notranslate"><span class="pre">[default]</span></code>, <code class="docutils literal notranslate"><span class="pre">[large]</span></code>)</dt><dd><p><strong>Type</strong>: TOML table</p>
 <p><strong>Required</strong>: Yes</p>
@@ -413,7 +444,7 @@ An example is shown below.</p>
 </dl>
 </section>
 <section id="toml-format-notes">
-<h3>TOML Format Notes<a class="headerlink" href="#toml-format-notes" title="Permalink to this heading"></a></h3>
+<h3>TOML Format Notes<a class="headerlink" href="#toml-format-notes" title="Link to this heading"></a></h3>
 <p>TOML format describes data in key/value pairs. Values have types and can be quite strict, so care must be taken. Some things to note are listed below. For details, refer to the <a class="reference external" href="https://toml.io/en/v1.1.0">TOML specification</a>.</p>
 <ul>
 <li><p><strong>Numbers</strong>: Both integers and floating point numbers can be used. Floating point numbers require digits before and after the decimal point. Do not write 1.0 as 1., nor do not write 0.1 as .1.</p></li>
@@ -429,14 +460,14 @@ An example is shown below.</p>
 </section>
 </section>
 <section id="job-script-templates-submit-mpi-sh-submit-nompi-sh">
-<h2><a class="toc-backref" href="#id11" role="doc-backlink">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a><a class="headerlink" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Job Script Templates (submit_mpi.sh, submit_nompi.sh)</a><a class="headerlink" href="#job-script-templates-submit-mpi-sh-submit-nompi-sh" title="Link to this heading"></a></h2>
 <p>Prepare job script templates. Templates can be separated by package and by the presence or absence of MPI parallelization.</p>
 <section id="id5">
-<h3>File Format<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>File Format<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <p>Written in shell script format. Embedded parameters in templates are written in the format <code class="docutils literal notranslate"><span class="pre">_KEY_</span></code>.</p>
 </section>
 <section id="predefined-variables">
-<h3>Predefined Variables<a class="headerlink" href="#predefined-variables" title="Permalink to this heading"></a></h3>
+<h3>Predefined Variables<a class="headerlink" href="#predefined-variables" title="Link to this heading"></a></h3>
 <p>The predefined variables that are automatically replaced by TurboWorkflows are as follows.</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">_INPUT_</span></code></dt><dd><p><strong>Description</strong>: Path to the input file</p>
@@ -466,7 +497,7 @@ An example is shown below.</p>
 </dl>
 </section>
 <section id="using-custom-variables">
-<h3>Using Custom Variables<a class="headerlink" href="#using-custom-variables" title="Permalink to this heading"></a></h3>
+<h3>Using Custom Variables<a class="headerlink" href="#using-custom-variables" title="Link to this heading"></a></h3>
 <p>Variables defined in <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> can be used in job script templates.
 Keywords in templates are the variable names in uppercase enclosed by <code class="docutils literal notranslate"><span class="pre">_</span></code> (e.g., num_cores → <code class="docutils literal notranslate"><span class="pre">_NUM_CORES_</span></code>).</p>
 <p><strong>Example</strong>:</p>
@@ -487,9 +518,9 @@ Keywords in templates are the variable names in uppercase enclosed by <code clas
 <p>For template examples, see <a class="reference internal" href="../appendix/config_examples.html#turboworkflows-config-examples"><span class="std std-ref">Configuration File Examples</span></a>.</p>
 </section>
 <section id="notes">
-<h3>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h3>
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>The format of job scripts varies by system. Refer to the system’s user manual.</p></li>
+<li><p>The format of job scripts varies by system. Refer to the system's user manual.</p></li>
 <li><p>Some systems may require additional information such as account group specifications.</p></li>
 <li><p>Variable replacement is case-insensitive, but it is recommended to write in uppercase for readability.</p></li>
 </ul>
@@ -508,7 +539,7 @@ Keywords in templates are the variable names in uppercase enclosed by <code clas
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

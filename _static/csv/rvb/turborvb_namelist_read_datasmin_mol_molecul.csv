@@ -1,0 +1,68 @@
+Parameter name,Datatype,Default,Description
+epsdgm,``real*8``,``1d-14``,WIP
+nx,``integer``,"``0`` (error, input required)","Number of lattice points for the real space integration grid in the x direction. By default, nx = ny = nz"
+ny,``integer``,- ``nx`` if no input,WIP
+nz,``integer``,- ``ny`` if no input,WIP
+nbufd,``integer``,automatic,"Input value for the buffer dimension. Note that, in the complex code, the buffer dimension is automatically doubled. In this case, consider decreasing the buffer dimension if you have a memory problem."
+ax,``real*8``,"- if no input
+
+  + ``0.d0``
+
+- ignore input
+
+  + ``cellscale(1)/nx`` if iespbc is .true.
+
+","Space (a.u.) for an open system in the x direction; for periodic systems, it is chosen as the cell parameter in the same direction and need not be specified. By default, ax = ay = az"
+ay,``real*8``,"- if no input
+
+  + ``ax``
+
+- ignore input
+
+  + ``cellscale(2)/ny`` if iespbc is .true.
+
+",WIP
+az,``real*8``,"- if no input
+
+  + ``ay``
+
+-  ignore input
+
+  + ``cellscale(3)/nz`` if iespbc is .true.
+
+",WIP
+nmolmin,``integer``,- ``neldo`` if no input,WIP
+smearing,``real*8``,``1d-5``,WIP
+nmolmax,``integer``,"- if no input
+
+  + ``nmol`` if ``neldo == 0``
+  + ``neldo`` otherwise
+
+- error if nmolmax < neldo
+",WIP
+weight_loc,``real*8``,"- ``-1.d0`` if no input
+
+- if weight_loc == 0
+
+  + ``epsdgm**2`` if epsdgm == 0.d0
+  + ``1d-8`` if epsdgm /= 0.d0
+",WIP
+orthoyes,``logical``,"- if no input
+
+  + ``.true.``
+
+- ignore input
+
+  + ``.true.`` if gramyes is .true.",WIP
+epsrem_contr,``real*8``,``epsdgel``,WIP
+nmolmaxw,``integer``,"- ``nmolmax`` if no input
+",WIP
+gramyes,``logical``,``.true.``,WIP
+add_onebody2det,``logical``,"- if no input
+
+  + ``.false.`` npsar > 0
+  + ``.true.`` npsar <= 0",WIP
+shift_origin,``logical``,``.true.``,WIP
+shiftx,``logical``,``.false.``,WIP
+shifty,``logical``,``.false.``,WIP
+shiftz,``logical``,``.false.``,WIP

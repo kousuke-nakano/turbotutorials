@@ -1,0 +1,15 @@
+Parameter name,Datatype,Default,Description
+nbufd,``integer``,``1024``,Numeric value. You can reduce the size of nbufd for reducing the RAM memory used.
+nx,``integer``,``0``,Numeric value. It is not necessary with optbin=.true. (the mesh is given).
+ny,``integer``,``nx``,WIP
+nz,``integer``,``ny``,WIP
+ax,``real*8``,``0``,Numeric value. This is the IMPORTANT section you have always to define (the default is OK for the rest) use DFT mesh as an hint.
+ay,``real*8``,``ax``,WIP
+az,``real*8``,``ay``,WIP
+add_onebody2det,``logical``,"- ``.true.`` if n_body_on /= 0
+- ``.false.`` if n_body_on == 0
+",WIP
+shift_origin,``logical``,``.true.``,WIP
+shiftx,``logical``,``.false.``,WIP
+shifty,``logical``,``.false.``,WIP
+shiftz,``logical``,``.false.``,WIP

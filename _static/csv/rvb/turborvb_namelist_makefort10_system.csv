@@ -1,0 +1,36 @@
+Parameter name,Datatype,Default,Description
+natoms,``integer``,uninitialized(maybe 0)?,Number of atoms.
+posunits,``character(len=10) :: posunits``,"``""bohr""``","Unit used when specifying molecular structures, crystal structures, and lattice constants. Choose from bohr, crystal, or angstrom."
+nxyz,``integer :: nxyz(3)``,``nxyz(:) = 1``,"Supercell size. You can independently specify integer values for nxyz(1), nxyz(2), and nxyz(3). Supercell extensions that deform the unit cell are not supported."
+celldm,``real(8) :: celldm(6)``,".. code-block:: fortran
+
+    celldm(1) = -1.d0
+    celldm(2) = 1.d0
+    celldm(3) = 1.d0
+    celldm(4:6) = Pi/2.d0
+",celldm. Specifies the lattice-vector lengths and inter-vector angles when defining a crystal structure. Follows the same convention as Quantum ESPRESSO.
+at,"``real(8) :: at(3, 3)``",``at = 0.0``,Not used.
+phase,``double precision :: phase(3)``,``phase(:) = 0.d0``,"Specifies the phase (k-vector) attached to spin-up electrons. The unit is the reciprocal lattice vector; i.e., the Brillouin-zone boundary corresponds to 0.5. Independent values can be set for the x, y, and z directions via phase(1), phase(2), and phase(3)."
+phasedo,``double precision :: phasedo(3)``,``phasedo(:) = 0.d0``,"Specifies the phase (k-vector) attached to spin-down electrons. The unit is the reciprocal lattice vector; i.e., the Brillouin-zone boundary corresponds to 0.5. Independent values can be set for the x, y, and z directions via phase(1), phase(2), and phase(3)."
+pbcfort10,``logical``,``.true.``,Whether periodic boundary conditions are applied to the wave function.
+complexfort10,``logical``,complexfort10 = ``.false.`` ! flag for creating a complex wave function,Whether the wave function is treated as complex-valued.
+real_contracted,``logical``,``.false.``,Not used.
+ntyp,``integer`` :: ntyp ! Number of atomic types,ntyp = ``0`` ! not used if fort.10 are not read,Total number of element types in the system.
+rs_read,``real(8)``,``-1.d0``,Not used.
+write_log,``logical``,``.false.``,Not used.
+axyz,"``integer :: axyz(3, 3)``","3x3 Identity matrix
+
+.. code-block:: fortran
+
+    axyz = 0
+    do i = 1, 3
+        axyz(i, i) = 1.d0
+    end do
+",Not used.
+nel_read,``integer``,ignore input value?,Not used.
+L_read,``real(8)``,``-1.d0``,Not used.
+yes_pfaff,``logical``,``.false.``,Pfaffian wave function.
+nodownpfaff,``logical``,``.false.``,Not used.
+nouppfaff,``logical``,``.false.``,Not used.
+yes_tilted,``logical``,``.false.``,Set to .true. when using a non-orthorhombic cell.
+unit_crystal,``character(len=12) :: unit_crystal``,``'conventional'``,Not used.

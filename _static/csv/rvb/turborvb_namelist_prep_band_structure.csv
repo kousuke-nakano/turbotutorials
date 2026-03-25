@@ -1,0 +1,12 @@
+Parameter name,Datatype,Default,Description
+task,"``integer``
+",``0``,".. code-block:: text
+
+    Flag to specify which quantity to compute after a non self-consistent run. It is ignored if ``type_comp_dft = 0``.
+      ``task = 0`` Do not compute anything.
+      ``task = 1`` Band structure plot (use ``kp_type = 2/3`` in the k-points card to specify the path in the Brillouin zone).
+      ``task = 2`` Density of States calculations using smearing parameter given by ``epsshell``. The integer ``optocc`` must be set to 1.
+"
+deltaE,``real(8)``,``0.d0``,Energy bin for computing the density of states (task = 2).
+emin,``real(8)``,``0.d0``,min(eigenvalue): minimum value of the energy to be included in band structure or DOS plot.
+emax,``real(8)``,``0.d0``,max(eigenvalue): maximum value of the energy to be included in band structure or DOS plot.

@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vmc &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>vmc &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -43,11 +46,56 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../00index.html">TurboGenius manual</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/00index.html">Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01general_description.html">General description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Subcommand reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertwf.html">convertwf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="correlated-sampling.html">correlated-sampling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lrdmc.html">lrdmc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lrdmcopt.html">lrdmcopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plotorb.html">plotorb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="view.html">view</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">vmc</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#options">Options</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#general-option">general option</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#generate-g-options">generate (-g) options</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#postprocess-post-options">postprocess (-post) options</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#environment-variables">Environment variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output-files">Input and output files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#corresponding-input-parameters">Corresponding input parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="vmcopt.html">vmcopt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="writestr.html">writestr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips/00index.html">Tips and trouble shooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -66,6 +114,7 @@
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../00index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Subcommand reference</a></li>
       <li class="breadcrumb-item active">vmc</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/02turbogenius_manual/reference/subcommands/vmc.rst.txt" rel="nofollow"> View page source</a>
@@ -77,27 +126,27 @@
            <div itemprop="articleBody">
              
   <section id="vmc">
-<span id="turbogenius-reference-subcommand-vmc"></span><h1>vmc<a class="headerlink" href="#vmc" title="Permalink to this heading"></a></h1>
+<span id="turbogenius-reference-subcommand-vmc"></span><h1>vmc<a class="headerlink" href="#vmc" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading"></a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>This command manages the VMC calculation.
 It internally calls <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> for the calculation, and <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">forcevmc_kpoints.sh</span></code>, or <code class="docutils literal notranslate"><span class="pre">forcevmc_kpoints_paralle.sh</span></code> for the postprocess.</p>
 </section>
 <section id="synopsis">
-<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span><span class="o">[</span>ACTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span><span class="o">[</span>ACTION<span class="o">]</span><span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
 </pre></div>
 </div>
 <p>ACTION is one or any combination of <code class="docutils literal notranslate"><span class="pre">-g</span></code> (generate an input file), <code class="docutils literal notranslate"><span class="pre">-r</span></code> (run a program), or <code class="docutils literal notranslate"><span class="pre">-post</span></code> (perform postprocess). It is mandatory.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>--help
 </pre></div>
 </div>
 <p>This command shows the list of available options.</p>
 </section>
 <section id="options">
-<h2>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h2>
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading"></a></h2>
 <section id="general-option">
-<h3>general option<a class="headerlink" href="#general-option" title="Permalink to this heading"></a></h3>
+<h3>general option<a class="headerlink" href="#general-option" title="Link to this heading"></a></h3>
 <p>This option affects all actions.</p>
 <table class="docutils align-default">
 <thead>
@@ -115,7 +164,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </table>
 </section>
 <section id="generate-g-options">
-<h3>generate (-g) options<a class="headerlink" href="#generate-g-options" title="Permalink to this heading"></a></h3>
+<h3>generate (-g) options<a class="headerlink" href="#generate-g-options" title="Link to this heading"></a></h3>
 <p>These options affect the generation of the input file datasvmc.input.</p>
 <table class="docutils align-default">
 <thead>
@@ -141,7 +190,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 <td><p>false</p></td>
 <td><p>flag for twist_average</p></td>
 </tr>
-<tr class="row-even"><td><p>-kpts INTEGER…</p></td>
+<tr class="row-even"><td><p>-kpts INTEGER...</p></td>
 <td><p>[0, 0, 0, 0, 0, 0]</p></td>
 <td><p>Specify Monkhorst-Pack grids and shifts, [nkx,nky,nkz,kx,ky,kz]</p></td>
 </tr>
@@ -153,7 +202,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </table>
 </section>
 <section id="postprocess-post-options">
-<h3>postprocess (-post) options<a class="headerlink" href="#postprocess-post-options" title="Permalink to this heading"></a></h3>
+<h3>postprocess (-post) options<a class="headerlink" href="#postprocess-post-options" title="Link to this heading"></a></h3>
 <p>These options affect the postprocess.</p>
 <table class="docutils align-default">
 <thead>
@@ -176,7 +225,7 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </section>
 </section>
 <section id="environment-variables">
-<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Permalink to this heading"></a></h2>
+<h2>Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">TURBOVMC_RUN_COMMAND</span></code></dt><dd><p>This specifies the execution command used in the VMC calculation. The default is <code class="docutils literal notranslate"><span class="pre">turborvb-serial.x</span></code>. If the MPI parallel version is to be used, set the variable, for example, to <code class="docutils literal notranslate"><span class="pre">mpiexec</span> <span class="pre">-n</span> <span class="pre">16</span> <span class="pre">turborvb-mpi.x</span></code>, where <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> is the MPI launch command, and <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">16</span></code> specifies the number of MPI processes (16 in this case).</p>
 </dd>
@@ -185,9 +234,9 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </section>
 <section id="input-and-output-files">
-<h2>Input and output files<a class="headerlink" href="#input-and-output-files" title="Permalink to this heading"></a></h2>
+<h2>Input and output files<a class="headerlink" href="#input-and-output-files" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>This subcommand generates <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code>, each variable is described in <span class="xref std std-ref">turborvbtutorial_command_turborvb.x</span>.</p></li>
+<li><p>This subcommand generates <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code>, each variable is described in <a class="reference internal" href="../../../01turborvb_manual/reference/commands/turborvb.html#turborvbtutorial-command-turborvb-x"><span class="std std-ref">turborvb.x</span></a>.</p></li>
 </ul>
 <table class="docutils align-default">
 <thead>
@@ -254,9 +303,9 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 </table>
 </section>
 <section id="notes">
-<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this heading"></a></h2>
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
 <section id="corresponding-input-parameters">
-<h3>Corresponding input parameters<a class="headerlink" href="#corresponding-input-parameters" title="Permalink to this heading"></a></h3>
+<h3>Corresponding input parameters<a class="headerlink" href="#corresponding-input-parameters" title="Link to this heading"></a></h3>
 <p>The correspondence between the options and the input parameters in <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code> is summarized as follows.</p>
 <table class="docutils align-default">
 <thead>
@@ -278,41 +327,42 @@ It internally calls <code class="docutils literal notranslate"><span class="pre"
 <td><p>&amp;simulation</p></td>
 <td><p>maxtime</p></td>
 </tr>
-<tr class="row-odd"><td><p>twist_average (-twist)</p></td>
-<td></td>
-<td><ul class="simple">
-<li><p>True or nonzero</p>
-<ul>
-<li><p>&amp;parameters ieskin = 1</p></li>
-<li><p>&amp;parameters typedyncell = 2 (periodic case)</p></li>
-<li><p>&amp;parameters yespress = .true. (periodic case)</p></li>
-</ul>
-</li>
-<li><p>False or 0</p>
-<ul>
-<li><p>&amp;vmc epscut = 0.0</p></li>
-</ul>
-</li>
-</ul>
+<tr class="row-odd"><td rowspan="3"><p> twist_average (-twist)</p>
+<p>(True or nonzero)</p>
 </td>
+<td><p>&amp;parameters</p></td>
+<td><p>ieskin = 1</p></td>
 </tr>
-<tr class="row-even"><td><p>kpoints (-kpts)</p></td>
+<tr class="row-even"><td><p>&amp;parameters</p></td>
+<td><p>typedyncell = 2 (periodic case)</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;parameters</p></td>
+<td><p>yespress = .true. (periodic case)</p></td>
+</tr>
+<tr class="row-even"><td><p>twist_average (-twist)</p>
+<p>(False or 0)</p>
+</td>
+<td><p>&amp;vmc</p></td>
+<td><p>epscut = 0.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>kpoints (-kpts)</p></td>
 <td><p>&amp;kpoints</p></td>
 <td><p>(see below)</p></td>
 </tr>
-<tr class="row-odd"><td><p>force_calc_flag (-force)</p></td>
-<td></td>
-<td><ul class="simple">
-<li><p>&amp;vmc epscut</p></li>
-<li><p>&amp;parameters typedyncell</p></li>
-<li><p>&amp;parameters yespress</p></li>
-</ul>
-</td>
+<tr class="row-even"><td rowspan="3"><p> force_calc_flag (-force)</p></td>
+<td><p>&amp;vmc</p></td>
+<td><p>epscut</p></td>
+</tr>
+<tr class="row-odd"><td><p>&amp;parameters</p></td>
+<td><p>typedyncell</p></td>
+</tr>
+<tr class="row-even"><td><p>&amp;parameters</p></td>
+<td><p>yespress</p></td>
 </tr>
 </tbody>
 </table>
 <section id="kpoints-advanced">
-<h4>kpoints (advanced)<a class="headerlink" href="#kpoints-advanced" title="Permalink to this heading"></a></h4>
+<h4>kpoints (advanced)<a class="headerlink" href="#kpoints-advanced" title="Link to this heading"></a></h4>
 <p>When twist_average is 0 or False, no additional parameters concerning kpoints are set.
 When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the following parameters are set, where kpoints is an array of integers containing nkx, nky, nkz, kx, ky, and kz:</p>
 <table class="docutils align-default">
@@ -327,24 +377,20 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <td><p>yes_kpoints</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;kpoints</p></td>
+<tr class="row-odd"><td rowspan="5"><p> &amp;kpoints</p></td>
 <td><p>kp_type</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>nk1, nk2, nk3</p></td>
+<tr class="row-even"><td><p>nk1, nk2, nk3</p></td>
 <td><p>nkx, nky, nkz</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>k1, k2, k3</p></td>
+<tr class="row-odd"><td><p>k1, k2, k3</p></td>
 <td><p>kx, ky, kz</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>skip_equivalence</p></td>
+<tr class="row-even"><td><p>skip_equivalence</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>double_kpgrid</p></td>
+<tr class="row-odd"><td><p>double_kpgrid</p></td>
 <td><p>.true.</p></td>
 </tr>
 </tbody>
@@ -362,16 +408,14 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
 <td><p>yes_kpoints</p></td>
 <td><p>.true.</p></td>
 </tr>
-<tr class="row-odd"><td><p>&amp;kpoints</p></td>
+<tr class="row-odd"><td rowspan="3"><p> &amp;kpoints</p></td>
 <td><p>kp_type</p></td>
 <td><p>2</p></td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>nk1</p></td>
+<tr class="row-even"><td><p>nk1</p></td>
 <td><p>length of kpoints_up or kpoints_dn</p></td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>double_kpgrid</p></td>
+<tr class="row-odd"><td><p>double_kpgrid</p></td>
 <td><p>.true.</p></td>
 </tr>
 </tbody>
@@ -393,7 +437,7 @@ When twist_average is 1 or True, i.e. Monkhorst-Pack algorithm is enabled, the f
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Water Dimer Calculation &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Water Dimer Calculation &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -44,18 +47,50 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Tutorials</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Water Dimer Calculation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#step-1-pyscf-calculation">Step 1: PySCF Calculation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#step-2-turborvb-workflow-execution">Step 2: TurboRVB Workflow Execution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-1-pyscf-calculation">Step 1: PySCF Calculation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#input-files">Input Files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pyscf-calculation-script">PySCF Calculation Script</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#execution-method">Execution Method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#output-files">Output Files</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2-turborvb-workflow-execution">Step 2: TurboRVB Workflow Execution</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-class-overview">Workflow Class Overview</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#encapsulated-workflow-class">Encapsulated_Workflow Class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#describing-dependencies-with-variable-class">Describing Dependencies with Variable Class</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-configuration">Workflow Configuration</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#conversion-from-trexio-to-turborvb-format">1. Conversion from TREXIO to TurboRVB Format</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#vmc-optimization">2. VMC Optimization</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#vmc-calculation">3. VMC Calculation</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#lrdmc-calculation-and-a0-extrapolation">4. LRDMC Calculation and a→0 Extrapolation</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-execution">Workflow Execution</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Execution Method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow-dependencies">Workflow Dependencies</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#output-directory-structure">Output Directory Structure</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-adjustment">Parameter Adjustment</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#job-execution-parameters">Job Execution Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#jastrow-basis-functions">Jastrow Basis Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#vmc-optimization-parameters">VMC Optimization Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#lrdmc-parameters">LRDMC Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#when-pyscf-calculation-fails">When PySCF Calculation Fails</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#when-trexio-conversion-fails">When TREXIO Conversion Fails</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#when-workflow-fails">When Workflow Fails</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
@@ -70,6 +105,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -99,9 +136,9 @@
            <div itemprop="articleBody">
              
   <section id="water-dimer-calculation">
-<span id="turboworkflows-tutorial-water-dimer"></span><h1>Water Dimer Calculation<a class="headerlink" href="#water-dimer-calculation" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-tutorial-water-dimer"></span><h1>Water Dimer Calculation<a class="headerlink" href="#water-dimer-calculation" title="Link to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
 <p>This tutorial explains the workflow for Quantum Monte Carlo (QMC) calculations using TurboWorkflows, with Water Dimer as an example.
 This tutorial is based on the sample presented in J. Chem. Phys. 159, 224801 (2023).
 The files used in this tutorial can be found in <a class="reference download internal" download="" href="../../../../_downloads/652f791666f5bb07b763776fd5b01066/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">file.tar.gz</span></code></a>.</p>
@@ -115,10 +152,10 @@ The files used in this tutorial can be found in <a class="reference download int
 </ol>
 </section>
 <section id="step-1-pyscf-calculation">
-<h2>Step 1: PySCF Calculation<a class="headerlink" href="#step-1-pyscf-calculation" title="Permalink to this heading"></a></h2>
+<h2>Step 1: PySCF Calculation<a class="headerlink" href="#step-1-pyscf-calculation" title="Link to this heading"></a></h2>
 <p>As the first step, we perform a DFT calculation using PySCF to generate the initial wavefunction.</p>
 <section id="input-files">
-<h3>Input Files<a class="headerlink" href="#input-files" title="Permalink to this heading"></a></h3>
+<h3>Input Files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">water_dimer.xyz</span></code>: Molecular structure file (XYZ format)</p></li>
 </ul>
@@ -134,7 +171,7 @@ H   1.680398  -0.373741   0.758561
 </div>
 </section>
 <section id="pyscf-calculation-script">
-<h3>PySCF Calculation Script<a class="headerlink" href="#pyscf-calculation-script" title="Permalink to this heading"></a></h3>
+<h3>PySCF Calculation Script<a class="headerlink" href="#pyscf-calculation-script" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">pyscf_water_dimer.py</span></code> performs DFT calculation with the following settings:</p>
 <ul class="simple">
 <li><p>Basis set: <code class="docutils literal notranslate"><span class="pre">ccecp-ccpvtz</span></code></p></li>
@@ -144,7 +181,7 @@ H   1.680398  -0.373741   0.758561
 </ul>
 </section>
 <section id="execution-method">
-<h3>Execution Method<a class="headerlink" href="#execution-method" title="Permalink to this heading"></a></h3>
+<h3>Execution Method<a class="headerlink" href="#execution-method" title="Link to this heading"></a></h3>
 <p>Execute the PySCF calculation using the <code class="docutils literal notranslate"><span class="pre">do.sh</span></code> script:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span><span class="k">do</span>.sh
 </pre></div>
@@ -164,7 +201,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 </div>
 </section>
 <section id="output-files">
-<h3>Output Files<a class="headerlink" href="#output-files" title="Permalink to this heading"></a></h3>
+<h3>Output Files<a class="headerlink" href="#output-files" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pyscf.chk</span></code>: PySCF checkpoint file</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code>: Wavefunction data in TREXIO format (used in the next step)</p></li>
@@ -177,10 +214,10 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 </section>
 </section>
 <section id="step-2-turborvb-workflow-execution">
-<h2>Step 2: TurboRVB Workflow Execution<a class="headerlink" href="#step-2-turborvb-workflow-execution" title="Permalink to this heading"></a></h2>
+<h2>Step 2: TurboRVB Workflow Execution<a class="headerlink" href="#step-2-turborvb-workflow-execution" title="Link to this heading"></a></h2>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">task.py</span></code> script to execute a series of workflows from conversion to TurboRVB format to the final LRDMC calculation.</p>
 <section id="workflow-class-overview">
-<h3>Workflow Class Overview<a class="headerlink" href="#workflow-class-overview" title="Permalink to this heading"></a></h3>
+<h3>Workflow Class Overview<a class="headerlink" href="#workflow-class-overview" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> uses the following four workflow classes:</p>
 <ul class="simple">
 <li><p><strong>TREXIO_convert_to_turboWF</strong>: A workflow that converts TREXIO format files to TurboRVB format wavefunction (<code class="docutils literal notranslate"><span class="pre">fort.10</span></code>). It converts results from electronic structure calculations such as PySCF into a format usable by TurboRVB and also initializes Jastrow factors.</p></li>
@@ -191,7 +228,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 <p>For detailed parameters of each workflow class, please refer to <a class="reference internal" href="../../reference/00index.html#turboworkflows-reference"><span class="std std-ref">the reference manual</span></a>.</p>
 </section>
 <section id="encapsulated-workflow-class">
-<h3>Encapsulated_Workflow Class<a class="headerlink" href="#encapsulated-workflow-class" title="Permalink to this heading"></a></h3>
+<h3>Encapsulated_Workflow Class<a class="headerlink" href="#encapsulated-workflow-class" title="Link to this heading"></a></h3>
 <p>In TurboWorkflows, each calculation workflow is wrapped by the <code class="docutils literal notranslate"><span class="pre">Encapsulated_Workflow</span></code> class. This class manages workflow execution in isolated directories and automatically handles input file copying and output file tracking.</p>
 <p>Main parameters of <code class="docutils literal notranslate"><span class="pre">Encapsulated_Workflow</span></code>:</p>
 <ul class="simple">
@@ -203,7 +240,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 <p>In <code class="docutils literal notranslate"><span class="pre">input_files</span></code>, you can specify normal file paths (strings) or use <code class="docutils literal notranslate"><span class="pre">Variable</span></code> objects to reference outputs from other workflows.</p>
 </section>
 <section id="describing-dependencies-with-variable-class">
-<h3>Describing Dependencies with Variable Class<a class="headerlink" href="#describing-dependencies-with-variable-class" title="Permalink to this heading"></a></h3>
+<h3>Describing Dependencies with Variable Class<a class="headerlink" href="#describing-dependencies-with-variable-class" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Variable</span></code> class is used to describe dependencies between workflows. By using <code class="docutils literal notranslate"><span class="pre">Variable</span></code>, you can automatically pass outputs from one workflow as inputs to another workflow.</p>
 <p>Parameters of <code class="docutils literal notranslate"><span class="pre">Variable</span></code>:</p>
 <ul class="simple">
@@ -239,10 +276,10 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 <p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class automatically resolves <code class="docutils literal notranslate"><span class="pre">Variable</span></code> objects, retrieves appropriate file paths or values, and passes them to workflows. This automatically manages dependencies between workflows and executes them in the appropriate order.</p>
 </section>
 <section id="workflow-configuration">
-<h3>Workflow Configuration<a class="headerlink" href="#workflow-configuration" title="Permalink to this heading"></a></h3>
+<h3>Workflow Configuration<a class="headerlink" href="#workflow-configuration" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">task.py</span></code> executes the following four workflows sequentially:</p>
 <section id="conversion-from-trexio-to-turborvb-format">
-<h4>1. Conversion from TREXIO to TurboRVB Format<a class="headerlink" href="#conversion-from-trexio-to-turborvb-format" title="Permalink to this heading"></a></h4>
+<h4>1. Conversion from TREXIO to TurboRVB Format<a class="headerlink" href="#conversion-from-trexio-to-turborvb-format" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert from a TREXIO file to a WF with TurboRVB format</span>
 <span class="n">trexio_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
     <span class="n">label</span><span class="o">=</span><span class="s2">&quot;trexio-workflow&quot;</span><span class="p">,</span>
@@ -266,7 +303,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 <p>In this example, a normal file path (<code class="docutils literal notranslate"><span class="pre">os.path.join(root_dir,</span> <span class="pre">&quot;water.hdf5&quot;)</span></code>) is specified in <code class="docutils literal notranslate"><span class="pre">input_files</span></code>. This is an example of using external files (PySCF calculation results) as input. On the other hand, subsequent workflows use <code class="docutils literal notranslate"><span class="pre">Variable</span></code> to reference outputs from previous workflows.</p>
 </section>
 <section id="vmc-optimization">
-<h4>2. VMC Optimization<a class="headerlink" href="#vmc-optimization" title="Permalink to this heading"></a></h4>
+<h4>2. VMC Optimization<a class="headerlink" href="#vmc-optimization" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># VMC optimization of Jastrow factor</span>
 <span class="c1"># One-, two-, and three-body Jastrow are optimized</span>
 <span class="n">vmcopt_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
@@ -331,7 +368,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 </ul>
 </section>
 <section id="vmc-calculation">
-<h4>3. VMC Calculation<a class="headerlink" href="#vmc-calculation" title="Permalink to this heading"></a></h4>
+<h4>3. VMC Calculation<a class="headerlink" href="#vmc-calculation" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># VMC calculation with the optimized WF</span>
 <span class="n">vmc_workflow</span> <span class="o">=</span> <span class="n">Encapsulated_Workflow</span><span class="p">(</span>
     <span class="n">label</span><span class="o">=</span><span class="s2">&quot;vmc-workflow&quot;</span><span class="p">,</span>
@@ -368,7 +405,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 <p>In this example, job execution parameters such as <code class="docutils literal notranslate"><span class="pre">server_machine_name=&quot;localhost&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">queue_label=&quot;default&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">sleep_time=60</span></code>, and <code class="docutils literal notranslate"><span class="pre">mpi=True</span></code> are set. These parameters should be set appropriately according to the computational environment used, similar to VMC optimization.</p>
 </section>
 <section id="lrdmc-calculation-and-a0-extrapolation">
-<h4>4. LRDMC Calculation and a→0 Extrapolation<a class="headerlink" href="#lrdmc-calculation-and-a0-extrapolation" title="Permalink to this heading"></a></h4>
+<h4>4. LRDMC Calculation and a→0 Extrapolation<a class="headerlink" href="#lrdmc-calculation-and-a0-extrapolation" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LRDMC calculations with the optimized WF</span>
 <span class="c1"># LRDMC energies are computed with a = 0.20, 0.30, 0.40 and 0.50,</span>
 <span class="c1"># and then, extrapolated to a-&gt;0 limit.</span>
@@ -412,7 +449,7 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 </section>
 </section>
 <section id="workflow-execution">
-<h3>Workflow Execution<a class="headerlink" href="#workflow-execution" title="Permalink to this heading"></a></h3>
+<h3>Workflow Execution<a class="headerlink" href="#workflow-execution" title="Link to this heading"></a></h3>
 <p>Register all workflows with the <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> class and execute:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add the workflows to the Launcher class</span>
 <span class="n">cworkflows_list</span> <span class="o">=</span> <span class="p">[</span>
@@ -430,13 +467,13 @@ trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class=
 </div>
 </section>
 <section id="id1">
-<h3>Execution Method<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Execution Method<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>task.py
 </pre></div>
 </div>
 </section>
 <section id="workflow-dependencies">
-<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Permalink to this heading"></a></h3>
+<h3>Workflow Dependencies<a class="headerlink" href="#workflow-dependencies" title="Link to this heading"></a></h3>
 <p>Workflows are executed with the following dependencies:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>water.hdf5
     ↓
@@ -452,7 +489,7 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 <p>The <code class="docutils literal notranslate"><span class="pre">Launcher</span></code> automatically resolves dependencies and executes workflows in the appropriate order.</p>
 </section>
 <section id="output-directory-structure">
-<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Permalink to this heading"></a></h3>
+<h3>Output Directory Structure<a class="headerlink" href="#output-directory-structure" title="Link to this heading"></a></h3>
 <p>After execution, results are saved in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory with the following structure:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>results/
 ├── trexio-workflow/
@@ -470,9 +507,9 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 </section>
 </section>
 <section id="parameter-adjustment">
-<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Permalink to this heading"></a></h2>
+<h2>Parameter Adjustment<a class="headerlink" href="#parameter-adjustment" title="Link to this heading"></a></h2>
 <section id="job-execution-parameters">
-<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Permalink to this heading"></a></h3>
+<h3>Job Execution Parameters<a class="headerlink" href="#job-execution-parameters" title="Link to this heading"></a></h3>
 <p>For calculation workflows such as VMC, VMC optimization, and LRDMC, the following job execution parameters need to be set:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">server_machine_name</span></code>: Name of the server machine where jobs will run. Specify a machine name defined in <code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code>. Default is <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code> (execution on local machine). In the <code class="docutils literal notranslate"><span class="pre">task.py</span></code> example, this parameter is explicitly set to <code class="docutils literal notranslate"><span class="pre">&quot;localhost&quot;</span></code>. When executing on a remote server, this parameter needs to be set to an appropriate machine name.</p></li>
@@ -485,7 +522,7 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 <p><code class="docutils literal notranslate"><span class="pre">machine_data.yaml</span></code> is a configuration file that defines settings for each server machine. This file contains information such as machine type (local/remote), IP address, whether to use queue system, job management commands (<code class="docutils literal notranslate"><span class="pre">jobsubmit</span></code>, <code class="docutils literal notranslate"><span class="pre">jobcheck</span></code>, <code class="docutils literal notranslate"><span class="pre">jobdel</span></code>, etc.). Similarly, <code class="docutils literal notranslate"><span class="pre">queue_data.toml</span></code> defines settings for each queue (number of CPUs, memory, execution time limit, etc.).</p>
 </section>
 <section id="jastrow-basis-functions">
-<h3>Jastrow Basis Functions<a class="headerlink" href="#jastrow-basis-functions" title="Permalink to this heading"></a></h3>
+<h3>Jastrow Basis Functions<a class="headerlink" href="#jastrow-basis-functions" title="Link to this heading"></a></h3>
 <p>Jastrow basis functions can be defined in <code class="docutils literal notranslate"><span class="pre">jastrow_basis_dict</span></code> in <code class="docutils literal notranslate"><span class="pre">task.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># dictionary of Jastrow basis (GAMESS format)</span>
 <span class="n">jastrow_basis_dict</span> <span class="o">=</span> <span class="p">{</span>
@@ -512,7 +549,7 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 </div>
 </section>
 <section id="vmc-optimization-parameters">
-<h3>VMC Optimization Parameters<a class="headerlink" href="#vmc-optimization-parameters" title="Permalink to this heading"></a></h3>
+<h3>VMC Optimization Parameters<a class="headerlink" href="#vmc-optimization-parameters" title="Link to this heading"></a></h3>
 <p>By adjusting parameters of <code class="docutils literal notranslate"><span class="pre">VMCopt_workflow</span></code>, you can control optimization accuracy and computation time:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">vmcopt_num_walkers</span></code>: Number of walkers (affects calculation accuracy)</p></li>
@@ -521,19 +558,19 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 </ul>
 </section>
 <section id="lrdmc-parameters">
-<h3>LRDMC Parameters<a class="headerlink" href="#lrdmc-parameters" title="Permalink to this heading"></a></h3>
+<h3>LRDMC Parameters<a class="headerlink" href="#lrdmc-parameters" title="Link to this heading"></a></h3>
 <p>Parameters of <code class="docutils literal notranslate"><span class="pre">LRDMC_ext_workflow</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_alat_list</span></code>: List of <em>a</em> values to calculate</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_target_error_bar</span></code>: Target error bar</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_nonlocalmoves</span></code>: Non-local move method (“tmove”, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lrdmc_nonlocalmoves</span></code>: Non-local move method (&quot;tmove&quot;, etc.)</p></li>
 </ul>
 </section>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
 <section id="when-pyscf-calculation-fails">
-<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Permalink to this heading"></a></h3>
+<h3>When PySCF Calculation Fails<a class="headerlink" href="#when-pyscf-calculation-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Check the format of <code class="docutils literal notranslate"><span class="pre">water_dimer.xyz</span></code></p></li>
 <li><p>Verify that PySCF and required packages are correctly installed</p></li>
@@ -541,14 +578,14 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 </ul>
 </section>
 <section id="when-trexio-conversion-fails">
-<h3>When TREXIO Conversion Fails<a class="headerlink" href="#when-trexio-conversion-fails" title="Permalink to this heading"></a></h3>
+<h3>When TREXIO Conversion Fails<a class="headerlink" href="#when-trexio-conversion-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Check that <code class="docutils literal notranslate"><span class="pre">water.hdf5</span></code> is correctly generated</p></li>
 <li><p>Verify that TREXIO is correctly installed</p></li>
 </ul>
 </section>
 <section id="when-workflow-fails">
-<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Permalink to this heading"></a></h3>
+<h3>When Workflow Fails<a class="headerlink" href="#when-workflow-fails" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Check log files for each workflow</p></li>
 <li><p>Verify that dependencies are correctly set</p></li>
@@ -557,7 +594,7 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
 </section>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>In this tutorial, we performed QMC calculations for Water Dimer through the following steps:</p>
 <ol class="arabic simple">
 <li><p>Generate initial wavefunction with PySCF calculation (<code class="docutils literal notranslate"><span class="pre">do.sh</span></code>)</p></li>
@@ -585,7 +622,7 @@ lrdmc-ext-workflow (LRDMC calculation and extrapolation)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

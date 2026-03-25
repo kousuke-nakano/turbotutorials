@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>readalles.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="readf.x, readffn.x" href="readf_readffn.html" />
+    <link rel="prev" title="pseudo.x" href="pseudo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">readalles.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-calculations">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">readalles.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/readalles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="readalles-x">
+<span id="turborvbtutorial-command-readalles-x"></span><h1>readalles.x<a class="headerlink" href="#readalles-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<section id="quantum-monte-carlo-calculations">
+<h3>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h3>
+<p>We describe input files that control variational and diffusion Monte Carlo simulations.
+TurboRVB input files are built using fortran namelists.
+Keywords are divided in different sections according to their meaning.</p>
+</section>
+<section id="how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">
+<h3>How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)<a class="headerlink" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x" title="Link to this heading"></a></h3>
+<p>You can confirm energy convergence by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_Energy.sh<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Alternatively, you may check the convergence using row data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>New<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Next, check the convergence of devmax by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_devmax.sh<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Alternatively, you may check the convergence using row data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>devmax<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Next step is to average optimized variational parameters.
+First of all, you can check variational parameters v.s. optimization step:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%readalles.x
+bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
+<span class="m">0</span>
+max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
+<span class="m">1000</span>
+</pre></div>
+</div>
+<p>Here:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code> is the number of steps per bin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ibinit</span></code> is the number of disregarded steps for averaging, i.e, , 1 to (<code class="docutils literal notranslate"><span class="pre">ibinit</span></code> - 1) steps are discarded, and remaining steps starting from <code class="docutils literal notranslate"><span class="pre">ibinit</span></code> are averaged. This is used at the next step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">fort.10</span> <span class="pre">(0/1)</span></code> indicates whether the averaged variational parameters is written to fort.10.</p>
+<p><code class="docutils literal notranslate"><span class="pre">draw</span> <span class="pre">(0/1)</span></code> plot optimized parameters using gnuplot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">ind</span> <span class="pre">par</span></code> is the number of the parameters plotted using gnuplot.</p>
+<p>You may know the number of steps that required to obtain converged parameters (e.g, 201-).
+Since QMC calculations always suffers from statistical noises, the variational parameters also fluctuate.
+Therefore, one should average the optimized variational parameters in the converged region (e.g, 201-300).
+The average can be also done by <cite>readalles.x</cite> module.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>readalles.x
+bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span><span class="m">201</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
+<span class="m">0</span>
+max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
+<span class="m">1000</span>
+
+...
+
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">290</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">291</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">292</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">293</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">294</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">295</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">296</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">297</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">298</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">299</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">300</span>
+number<span class="w"> </span>of<span class="w"> </span>measures<span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">100</span><span class="w">  </span>&lt;-<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>averaged<span class="w"> </span>steps
+</pre></div>
+</div>
+<p>Thus, variational parameters will be averaged over the remaining last 100 steps.
+<code class="docutils literal notranslate"><span class="pre">readalles.x</span></code> writes the averaged variational parameters in the end of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fort.10</span>
+
+...
+<span class="c1"># new parameters</span>
+<span class="m">0</span>.290626442260694E+00<span class="w">   </span><span class="m">0</span>.108521356525542E+01<span class="w">  </span>-0.301131622319121E+00<span class="w">  </span>-0.102380295055131E+01<span class="w">   </span><span class="m">0</span>.229700639835700E+01<span class="w">  </span>-0.220409737565913E-02<span class="w">  </span>-0.609584028614942E-02<span class="w">   </span><span class="m">0</span>.272306548035257E-01<span class="w">   </span><span class="m">0</span>.734700209267177E-01<span class="w">  </span>-0.182065664321832E-01<span class="w">   </span><span class="m">0</span>.453293541473009E+00<span class="w">   </span><span class="m">0</span>.164648614827512E+00<span class="w">   </span><span class="m">0</span>.173486608007203E-02<span class="w">   </span><span class="m">0</span>.583308470999047E-02<span class="w">  </span>-0.188429085081367E-01<span class="w">   </span><span class="m">0</span>.248889135790375E-01<span class="w">  </span>-0.138300779564990E+00<span class="w">   </span><span class="m">0</span>.440777377680407E+00<span class="w">  </span>-0.134604374717883E+01<span class="w">  </span>-0.707524794465785E-03<span class="w">   </span><span class="m">0</span>.780729515612661E-03<span class="w">  </span>-0.151361566539925E-01<span class="w">  </span>-0.522035153211261E-01<span class="w">   </span><span class="m">0</span>.366708625842555E-01<span class="w">  </span>-0.175477073796467E+00<span class="w">   </span><span class="m">0</span>.211200067156240E+00<span class="w">   </span><span class="m">0</span>.925206078797516E-03<span class="w">   </span><span class="m">0</span>.334330184442289E-02<span class="w">  </span>-0.556589712590827E-02<span class="w">   </span><span class="m">0</span>.324861920952639E-01<span class="w">   </span><span class="m">0</span>.941094689163063E-01<span class="w">  </span>-0.387403732714091E+01<span class="w">  </span>-0.872987341975953E+01<span class="w">  </span>-0.489666531788676E-01<span class="w">   </span><span class="m">0</span>.509954432475785E-01<span class="w">  </span>-0.151442414
+</pre></div>
+</div>
+<p>The next step is to write the optimized parameters. Run a dummy VMCopt/LRDMCopt calculation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>./datasmin.input<span class="w"> </span>ave.in
+</pre></div>
+</div>
+<p>You must rewrite value of <code class="docutils literal notranslate"><span class="pre">ngen</span></code> in <code class="docutils literal notranslate"><span class="pre">ave.in</span></code> as <code class="docutils literal notranslate"><span class="pre">ngen</span> <span class="pre">=</span> <span class="pre">1</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ngen</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Next, replace the following line of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
+<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
+<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">I/O</span> <span class="pre">flag</span></code> is changed to <code class="docutils literal notranslate"><span class="pre">1</span></code>, which allows us to write the optimized variational parameters.</p>
+<p>Run the dummy VMCopt/LRDMCopt calculation by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>ave.in<span class="w"> </span>&gt;<span class="w"> </span>out_ave
+</pre></div>
+</div>
+<p>If you do a twist-averaged calculation, you should copy the averaged Jastrow parameters for all the k point files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>turborvb.scratch
+cp<span class="w"> </span>../fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../fort.10<span class="w"> </span>./fort.10_new
+copyjas.x<span class="w"> </span>kpoints
+</pre></div>
+</div>
+</section>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pseudo.html" class="btn btn-neutral float-left" title="pseudo.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="readf_readffn.html" class="btn btn-neutral float-right" title="readf.x, readffn.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

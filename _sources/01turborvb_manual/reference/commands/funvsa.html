@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>funvsa.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="makefort10.x" href="makefort10.html" />
+    <link rel="prev" title="forcevmc.sh" href="forcevmc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">funvsa.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-calculations">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">funvsa.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/funvsa.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="funvsa-x">
+<h1>funvsa.x<a class="headerlink" href="#funvsa-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<section id="quantum-monte-carlo-calculations">
+<h3>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h3>
+<p>We describe input files that control variational and diffusion Monte Carlo simulations.
+TurboRVB input files are built using fortran namelists.
+Keywords are divided in different sections according to their meaning.</p>
+</section>
+<section id="extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">
+<h3>Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)<a class="headerlink" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x" title="Link to this heading"></a></h3>
+<p>Please collect all LRDMC energies into <code class="docutils literal notranslate"><span class="pre">evsa.in</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
+<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
+<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
+</pre></div>
+</div>
+<p>wherein</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
+<span class="c1"># 2  number of data 4 1</span>
+<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># alat    LRDMC energy            Its error bar</span>
+<span class="w">  </span><span class="m">0</span>.10<span class="w">    </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> is a tool for a quadratic fitting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<p>You can see</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">0</span>.876592055494152
+Coefficient<span class="w"> </span>found
+<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13803097957683<span class="w">       </span><span class="m">1</span>.045060026486010E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="w"> </span><span class="m">2</span><span class="w"> </span>-1.039867020790643E-003<span class="w">  </span><span class="m">1</span>.780475364652620E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+<span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="m">4</span>.237124912102820E-003<span class="w">  </span><span class="m">4</span>.688879337831868E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_2
+</pre></div>
+</div>
+<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
+<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
+<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> can also do a linear fitting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<p>Check evsa.out</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.873603895738953
+Coefficient<span class="w"> </span>found
+<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13808947524004<span class="w">       </span><span class="m">8</span>.025420272361147E-005<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="m">5</span>.210500236482952E-004<span class="w">  </span><span class="m">4</span>.472096760481409E-004<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+</pre></div>
+</div>
+<p>Thus, we get <span class="math notranslate nohighlight">\(E(a \to 0)\)</span> = -1.13808(8) Ha.</p>
+</section>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="forcevmc.html" class="btn btn-neutral float-left" title="forcevmc.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="makefort10.html" class="btn btn-neutral float-right" title="makefort10.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

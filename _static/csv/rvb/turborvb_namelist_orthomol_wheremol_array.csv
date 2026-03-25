@@ -1,0 +1,4 @@
+Parameter name,Datatype,Default,Description
+wehremol,"``integer, allocatable, dimension(:) :: wheremol``","- read wheremol(1:nummol) if nummol > 0
+- ``wheremol(1:abs(nummol)) = nelorb_c - molecular`` if nummol < 0
+",WIP

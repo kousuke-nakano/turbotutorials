@@ -1,0 +1,17 @@
+Parameter name,Datatype,Default,Description
+epsdgel,``real*8``,``1d-13``,Numeric value. The default is 1d-15.
+epsvpot,``real*8``,``0.d0``,WIP
+overlap,``logical``,``.false.``,WIP
+change_contr,``logical``,``.true.``,"Logical value. If set to .true., it does not compute contracted coefficient Det (read in fort.10_out)."
+change_jas,``logical``,``.false.``,"Logical value. If set to .false., it does not compute the output Jastrow (read in fort.10_out)."
+yespardiag,``logical``,``.true.``,"Logical value. If set to .true., it uses the parallelized matrix-matrix multiplication."
+epsbas,``real*8``,``1d-7``,WIP
+double_kpgrid,``logical``,``.true.``,WIP
+scale_unp,``real*8``,``1.d0``,WIP
+force_real,``logical``,``.false.``,"Logical value. If set to .true., the output contracted orbitals are real."
+real_agp,``logical``,``.false.``,"Logical value. If set to .true., it uses the numerical algorithm to obtain a real AGP with the maximum overlap."
+rmax,``real*8``,``-1.d0``,Numeric value. It uses the numerical algorithm to obtain an AGP with a cutoff radius of rmax (bohr) and with the maximum overlap.
+rmaxj,``real*8``,``-1.d0``,WIP
+rmaxinv,``real*8``,``-1.d0``,WIP
+max_iter,``integer``,``25000``,Integer value. It represents the maximum number of iterations for the numerical algorithm (not much more than 10000 is suggested).
+prec,``real*8``,``1.d-6``,Numeric value. It represents the required precision for the numerical version of the algorithm.

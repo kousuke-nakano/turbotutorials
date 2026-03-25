@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reference guide &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Reference guide &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,28 +47,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboGenius manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reference guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="01general_description.html">General description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/convertfort10.html">convertfort10</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/convertfort10mol.html">convertfort10mol</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/convertpfaff.html">convertpfaff</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/convertwf.html">convertwf</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/correlated-sampling.html">correlated-sampling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/lrdmc.html">lrdmc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/lrdmcopt.html">lrdmcopt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/makefort10.html">makefort10</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/plotorb.html">plotorb</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/prep.html">prep</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/readforward.html">readforward</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/view.html">view</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/vmc.html">vmc</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/vmcopt.html">vmcopt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="subcommands/writestr.html">writestr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02command.html">Subcommand reference</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../tips/00index.html">Tips and trouble shooting</a></li>
@@ -73,6 +61,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -101,26 +91,12 @@
            <div itemprop="articleBody">
              
   <section id="reference-guide">
-<span id="turbogenius-reference"></span><h1>Reference guide<a class="headerlink" href="#reference-guide" title="Permalink to this heading"></a></h1>
+<span id="turbogenius-reference"></span><h1>Reference guide<a class="headerlink" href="#reference-guide" title="Link to this heading"></a></h1>
 <p>Here are references for TurboGenius commandline interface, including descriptions of optional parameters, and lists of input and output files.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="01general_description.html">General description</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/convertfort10.html">convertfort10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/convertfort10mol.html">convertfort10mol</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/convertpfaff.html">convertpfaff</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/convertwf.html">convertwf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/correlated-sampling.html">correlated-sampling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/lrdmc.html">lrdmc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/lrdmcopt.html">lrdmcopt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/makefort10.html">makefort10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/plotorb.html">plotorb</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/prep.html">prep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/readforward.html">readforward</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/view.html">view</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/vmc.html">vmc</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/vmcopt.html">vmcopt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="subcommands/writestr.html">writestr</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02command.html">Subcommand reference</a></li>
 </ul>
 </div>
 </section>
@@ -136,7 +112,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

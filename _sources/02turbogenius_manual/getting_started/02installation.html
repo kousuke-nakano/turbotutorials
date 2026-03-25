@@ -1,22 +1,25 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation of TurboGenius &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Installation of TurboGenius &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -44,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboGenius manual</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Getting started</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Installation of TurboGenius</a><ul>
@@ -64,6 +66,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -93,11 +97,11 @@
            <div itemprop="articleBody">
              
   <section id="installation-of-turbogenius">
-<span id="turbogenius-installation"></span><h1>Installation of TurboGenius<a class="headerlink" href="#installation-of-turbogenius" title="Permalink to this heading"></a></h1>
+<span id="turbogenius-installation"></span><h1>Installation of TurboGenius<a class="headerlink" href="#installation-of-turbogenius" title="Link to this heading"></a></h1>
 <p>The following is an instruction to install TurboGenius.
 If you have any problem on the installation, please visit <a class="reference external" href="https://github.com/kousuke-nakano/turbogenius/discussions">TurboGenius Discussions</a> and please post your problem.</p>
 <section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <p>Before installing the packages, ensure you have the following prerequisites:</p>
 <ul class="simple">
 <li><p>TurboRVB</p></li>
@@ -105,11 +109,21 @@ If you have any problem on the installation, please visit <a class="reference ex
 <li><p>Conda (optional, recommended for Python environment management)</p></li>
 </ul>
 <p>TurboGenius also depends on the following Python packages, which will be automatically installed during the installation process:</p>
-<ul class="simple">
+<ul>
 <li><p>numpy (version 1.x)</p></li>
-<li><p>pandas</p></li>
+<li><p>pandas&lt;=2.3</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>being updated for pandas==3.0</p>
+</div>
+</li>
 <li><p>matplotlib</p></li>
-<li><p>trexio</p></li>
+<li><p>trexio&lt;=2.5.0</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Something wrong in trexio==2.6.0</p>
+</div>
+</li>
 <li><p>trexio-tools</p></li>
 <li><p>basis-set-exchange</p></li>
 <li><p>ase</p></li>
@@ -121,78 +135,91 @@ If you have any problem on the installation, please visit <a class="reference ex
 <li><p>setuptools_scm (for developers)</p></li>
 </ul>
 <p>To run the tutorials, the users also need to install the following software:</p>
-<ul class="simple">
+<ul>
 <li><p>PySCF</p></li>
+<li><p>tools for HDF5</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libhdf5-dev</span></code> (debian, ubuntu)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">hdf5</span></code> (mac)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must install libhdf5-dev before installing trexio and build trexio with</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>pip<span class="w"> </span>install<span class="w"> </span>--no-binary<span class="o">=</span>trexio<span class="w"> </span><span class="s2">&quot;trexio==2.5.0&quot;</span>
+</pre></div>
+</div>
+</div>
+</li>
 </ul>
 </section>
 <section id="installation-procedure">
-<h2>Installation procedure<a class="headerlink" href="#installation-procedure" title="Permalink to this heading"></a></h2>
-<p>Let’s make a conda environment to install turbogenius (if you prefer)</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>turborvb<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
-%<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>turborvb
+<h2>Installation procedure<a class="headerlink" href="#installation-procedure" title="Link to this heading"></a></h2>
+<p>Let's make a conda environment to install turbogenius (if you prefer)</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>turborvb<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+<span class="gp">% </span>conda<span class="w"> </span>activate<span class="w"> </span>turborvb
 </pre></div>
 </div>
 <p>Please download the source codes from the GitHub repository.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/applications
-%<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kousuke-nakano/turbogenius.git
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>~/applications
+<span class="gp">% </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/kousuke-nakano/turbogenius.git
 </pre></div>
 </div>
-<p>Let’s install turbogenius via pip</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>turbogenius
-%<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w">    </span><span class="c1"># Install in development mode</span>
+<p>Let's install turbogenius via pip</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>turbogenius
+<span class="gp">% </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w">    </span><span class="c1"># Install in development mode</span>
 </pre></div>
 </div>
 <p>Test if it works.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>turbogenius<span class="w"> </span>--help
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>--help
 </pre></div>
 </div>
 <p>If you see the help output, TurboGenius has been successfully installed!</p>
 </section>
 <section id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
 <p>Common issues and solutions:</p>
 <ol class="arabic">
 <li><p>If the help output is not shown, and the following error messages are produced instead:</p>
-<div class="highlight-plain notranslate"><div class="highlight"><pre><span></span>$ turbogenius --help
-Traceback (most recent call last):
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py&quot;, line 46, in &lt;module&gt;
-    os.path.dirname(subprocess.check_output(cmd, shell=True, env=sys_env))
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/envs/turborvb/lib/python3.11/subprocess.py&quot;, line 466, in check_output
-    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File &quot;/envs/turborvb/lib/python3.11/subprocess.py&quot;, line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command &#39;which readalles.x&#39; returned non-zero exit status 1.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>turbogenius<span class="w"> </span>--help
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py&quot;, line 46, in &lt;module&gt;</span>
+<span class="go">    os.path.dirname(subprocess.check_output(cmd, shell=True, env=sys_env))</span>
+<span class="go">                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/subprocess.py&quot;, line 466, in check_output</span>
+<span class="go">    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,</span>
+<span class="go">           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/subprocess.py&quot;, line 571, in run</span>
+<span class="go">    raise CalledProcessError(retcode, process.args,</span>
+<span class="go">subprocess.CalledProcessError: Command &#39;which readalles.x&#39; returned non-zero exit status 1.</span>
 
-During handling of the above exception, another exception occurred:
+<span class="go">During handling of the above exception, another exception occurred:</span>
 
-Traceback (most recent call last):
-  File &quot;/envs/turborvb/bin/turbogenius&quot;, line 3, in &lt;module&gt;
-    from turbogenius.turbo_genius_cli import cli
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/__init__.py&quot;, line 11, in &lt;module&gt;
-    from . import *
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/correlated_sampling_genius.py&quot;, line 21, in &lt;module&gt;
-    from turbogenius.pyturbo.vmc import VMC
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/__init__.py&quot;, line 10, in &lt;module&gt;
-    from . import *
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/lrdmc.py&quot;, line 20, in &lt;module&gt;
-    from turbogenius.pyturbo.namelist import Namelist
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/namelist.py&quot;, line 23, in &lt;module&gt;
-    from turbogenius.pyturbo.utils.utility import get_str_variable_type_auto
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/utility.py&quot;, line 29, in &lt;module&gt;
-    from .env import pyturbo_root
-  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py&quot;, line 50, in &lt;module&gt;
-    raise ValueError(
-ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)
+<span class="go">Traceback (most recent call last):</span>
+<span class="go">  File &quot;/envs/turborvb/bin/turbogenius&quot;, line 3, in &lt;module&gt;</span>
+<span class="go">    from turbogenius.turbo_genius_cli import cli</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/__init__.py&quot;, line 11, in &lt;module&gt;</span>
+<span class="go">    from . import *</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/correlated_sampling_genius.py&quot;, line 21, in &lt;module&gt;</span>
+<span class="go">    from turbogenius.pyturbo.vmc import VMC</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/__init__.py&quot;, line 10, in &lt;module&gt;</span>
+<span class="go">    from . import *</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/lrdmc.py&quot;, line 20, in &lt;module&gt;</span>
+<span class="go">    from turbogenius.pyturbo.namelist import Namelist</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/namelist.py&quot;, line 23, in &lt;module&gt;</span>
+<span class="go">    from turbogenius.pyturbo.utils.utility import get_str_variable_type_auto</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/utility.py&quot;, line 29, in &lt;module&gt;</span>
+<span class="go">    from .env import pyturbo_root</span>
+<span class="go">  File &quot;/envs/turborvb/lib/python3.11/site-packages/turbogenius/pyturbo/utils/env.py&quot;, line 50, in &lt;module&gt;</span>
+<span class="go">    raise ValueError(</span>
+<span class="go">ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)</span>
 </pre></div>
 </div>
-<p>it occurs when TurboRVB is not installed or the executables of TurboRVB are not included in the command search paths. Please make sure that you have installed TurboRVB following the inststruction <span class="xref std std-ref">turborvb_installation</span>. Then, add the directory to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable where the TurboRVB executables are installed, or set it to <code class="docutils literal notranslate"><span class="pre">TURBORVB_ROOT</span></code> as shown in the error message.</p>
+<p>it occurs when TurboRVB is not installed or the executables of TurboRVB are not included in the command search paths. Please make sure that you have installed TurboRVB following the inststruction <a class="reference internal" href="../../01turborvb_manual/getting_started/02installation.html#turborvb-installation"><span class="std std-ref">Installation of TurboRVB</span></a>. Then, add the directory to the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable where the TurboRVB executables are installed, or set it to <code class="docutils literal notranslate"><span class="pre">TURBORVB_ROOT</span></code> as shown in the error message.</p>
 </li>
 <li><p>Python environment issues</p>
 <p>If you have problems with the Python environment:</p>
 <ul class="simple">
-<li><p>Ensure you’re using the correct Python version</p></li>
+<li><p>Ensure you're using the correct Python version</p></li>
 <li><p>Try creating a fresh conda environment</p></li>
 <li><p>Check that pip is up to date: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pip</span></code></p></li>
 </ul>
@@ -213,7 +240,7 @@ ValueError: Set TURBORVB_ROOT (e.g., export TURBORVB_ROOT=XXX in ~.bashrc)
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

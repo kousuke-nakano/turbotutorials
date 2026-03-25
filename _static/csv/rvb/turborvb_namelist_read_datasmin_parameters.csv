@@ -1,0 +1,172 @@
+Parameter name,Datatype,Default,Description
+ieser,``integer``,"- if no input
+
+  + ``0`` if itestr == -5
+
+  + if itestr /= -5
+
+    - ``6`` itestr == -6 or itestr4 == -7
+    - ``1`` otherwise
+",WIP
+iesinv,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``abs(iesinv)`` if iesinv < 0
+","Integer (-1, 0 or 1). If \neq 0, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10. If < 0, a range can be defined in the &fitpar section with rmaxinv."
+iesm,``integer``,``0``,"Integer (0 or 1). If \neq 0, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized. When itestr4 = -4,-9, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true. is switched on and exponents are optimized."
+iesd,``integer``,``0``,Integer (0 or 1). It acts as a switch for the 1-body and 2-body Jastrow.
+isfix,``integer``,"- if itestr == -5
+
+  + ``0`` (ignore input)
+
+- if itestr /= -5
+
+  + if no input
+
+    + ``1`` if parcutg == 0
+    + if parcutg /= 0
+
+      - ``3`` if gamma /= 0.d0 and optbra /= 3
+      - ``1`` otherwise
+","Integer (0 or 1). If iesfix = 1, the variance of the energy is printed out (no optimization assumed)."
+iesfree,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``abs(iesfree)`` if iesfree < 0","Integer (-1, 0 or 1). If \neq 0, the density Jastrow factor matrix is optimized. If < 0, a range can be defined in the &fitpar section with rmaxj."
+iessw,``integer``,"- ``0`` no input
+
+- ignore input
+
+  + ``abs(iessw)`` if iessw < 0
+","Integer (-1, 0 or 1). If \neq 0, the AGP matrix on the localized basis is optimized. If < 0, a range can be defined in the &fitpar section with rmax."
+iesup,``integer``,``0``,"Integer (0 or 1). Same as the above, but for the determinantal part. yeszagp=.true. replaces yeszj in this case."
+ieskin,``integer``,"- ``0`` if no input
+
+- use input value or above value
+
+  + ``ieskin = ieskin + 1`` if yespress is .true. and iespbc is .true. and itestr /= -5 then
+
+  + use above value if ieskinold /= 0
+
+    - ``ieskin = ieskin + 2`` if typedyncell == 1
+
+    - ``ieskin = ieskin + 3`` if typedyncell == 2
+
+    - ``ieskin = ieskin + 1`` if typedyncell == 3
+","Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics idyn > 0), set ieskin > 0."
+yespress,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if iespbc is .false.
+  + ``.false.`` if ieskinold == 0
+",WIP
+warp,``logical``,``.true.``,WIP
+powerwarp,``real*8``,``4.d0``,WIP
+add_pulay,``integer``,``2``,WIP
+yespulay,``logical``,``.true.``,WIP
+typedyncell,``integer``,"automatic (-2, -1, 0, or 3)","Integer value. typedyncell=0 means Standard NVT ensemble with no optimization of cell. typedyncell=1 implies fixed volume, but optimization of b/a and c/a at fixed volume V = a \times b \times c. typedyncell=2 stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant. typedyncell=3 represents constant pressure and variable volume but without modifying b/a and c/a."
+scalepulay,``real*8``,"- ``0.d0`` lrdmc_der is .true. and lrdmc_nonodes is .false.
+- ``1.d0`` otherwise
+",WIP
+ext_pot,``logical``,``.false.``,WIP
+vdw,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if exp_pot is .false.
+  + ``.true.`` if link_atom is .true.
+",WIP
+link_atom,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if ext_pot is .false.
+  + ``.false.`` if mm_restr is .true.
+",WIP
+mm_restr,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if link_atom is .true.",WIP
+write_rwalk,``logical``,``.false.``,WIP
+yes_correct,``logical``,``.true.``,WIP
+yesavopt,``logical``,"- if no input
+
+  + ``.true.`` itestr = -5
+  + ``.false.`` itestr /= -5
+
+- ignore input or above value
+
+  + ``.false.`` if nrep_bead > 1 and yesquantum is .true.
+  + ``.false.`` if kaverage is .true. and decoupled_run is .false. and molyes is .true. and yesavsr is .true.
+  + ``.false.`` (with mol optimiz.)
+",WIP
+yesavsr,``logical``,"- ``.true.`` if no input
+
+- ignore input
+
+  +  ``.true.`` if kaverage is .true. and decoupled_run is .false.
+  + ``.false.`` if nrep_bead > 1 and yesquantum is .true.
+",WIP
+yesavcov,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if kaverage is .true. and decoupled_run is .false.
+",WIP
+nrep_bead,``integer``,``1``,WIP
+yesperiodize,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if idyn /= 0 and yesquantum is .true. and yesturboq is .true. and yesperiodize is .true.
+",WIP
+yes_kpoints,``logical``,``.false.``,WIP
+epsbas,``real*8``,"- if no input
+
+  + if yes_scemama is .true.
+
+    - ``1.0d-9`` if yesdft is .true.
+    - ``1.0d-8`` if yesdft is .false.
+
+  + if yes_scemama is .false.
+
+    - ``1.0d-8`` if yesdft is .true.
+    - ``1.0d-7`` if yesdft is .false.
+",WIP
+yeszj,``logical``,"- if no input
+
+  + ``.true.`` itestr3 == -8 .or. itestr3 == -5
+  + ``.false.`` otherwise","Logical value. If yeszj=.true., exponents of the Jastrow basis are optimized if iesm \neq 0 even if itestr4 = -4, -9."
+yeszagp,``logical``,"- if no input
+
+  + ``.true.`` itestr3 == -8 .or. itestr3 == -5
+  + ``.false.`` otherwise
+","Logical value. Same as above, but for the determinantal part."
+decoupled_run,``logical``,"- if no input
+
+  + ``.false.`` yesdft is .true.
+  + yesdft is .false.
+
+    - ``.true.`` itestr /= -5
+    - ``.false.`` itestr == -5
+
+- ignore input or above value
+
+  + ``.false.`` if kaverage is .false",WIP
+scaleeloc,``real*8``,``-1.d0``,WIP
+cutoff_p,``real(8)``,``9.d0``,WIP
+fixa,``logical``,``.false.``,"Logical value. If fixa = .true., a is kept fixed during dynamics."
+fixb,``logical``,``.false.``,"Logical value. If fixb = .true., b is kept fixed during dynamics."
+fixc,``logical``,``.false.``,"Logical value. If fixc = .true., c is kept fixed during dynamics."
+real_contracted,``logical``,``.true.``,"Logical value. For complex wf, if real_contracted=.true., only the real part of the contracted coefficient of the basis is optimized."
+real_agp,``logical``,``.false.``,"Logical value. For complex wf, if real_agp=.true. and iessw=\neq 0, only the real part of the complex agp matrix is optimized. The imaginary part is assumed and set to zero."
+no_sjbra,``logical``,``.false.``,WIP
+pressfixed,``real*8``,``0.d0``,"Value of the pressure in a.u., for dynamics at fixed pressure. Note: the classical value is not included."
+read_molecul,``logical``,``.false.``,WIP
+epsder,``real*8``,``1d-5``,WIP
+yes_scemama,``logical``,``.true.``,WIP
+yes_scemama_open,``logical``,``.false.``,WIP

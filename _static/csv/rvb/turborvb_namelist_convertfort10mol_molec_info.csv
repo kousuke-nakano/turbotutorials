@@ -1,0 +1,5 @@
+Parameter name,Datatype,Default,Description
+nmol,``integer``,``molecular - nelup + neldo``,"Numeric value. Number of molecular orbitals in fort.10 in the AGP, if nmol>0 and unpaired orbitals are present the total number of molecular orbitals in fort.10 is molecular = nmol+#unpaired orbitals (nelup-neldo)"
+nmolmin,``integer``,``1``,"Numeric value. The first nmolmin molecular eigenvalue are set to one. If nmolmin=nmolmax=Nel/2, a perfect Slater determinant is projected."
+nmolmax,``integer``,``nmol``,Numeric value. Used in projection (default nmolmax=nmol).
+printoverlap,``logical``,``.false.``,"Logical value. If set to .true., it prints overlaps between nmolmin, nmolmax orbitals."

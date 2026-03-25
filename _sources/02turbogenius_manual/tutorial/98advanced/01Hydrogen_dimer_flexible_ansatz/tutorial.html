@@ -1,28 +1,32 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC) &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC) &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="Structural optimization of the hydrogen dimer" href="../02Hydrogen_dimer_structural_optimization/tutorial.html" />
-    <link rel="prev" title="Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)" href="../../10Benzene/tutorial.html" /> 
+    <link rel="prev" title="[Table of Contents] Advanced topics" href="../00index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,11 +48,47 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../00index.html">[Table of Contents] Advanced topics</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#convert-jdft-wf-to-jagp-one">06 Convert JDFT WF to JAGP one</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#conversion-check">07 Conversion check</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#nodal-surface-optimization-wf-jsagps">08 Nodal surface optimization (WF=JsAGPs)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#vmc-wf-jsagps">09 VMC (WF=JsAGPs)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#lrdmc-wf-jsagps">10 LRDMC (WF=JsAGPs)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#summary">11 Summary</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips/00index.html">Tips and trouble shooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -67,6 +107,7 @@
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">Tutorials</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">[Table of Contents] Advanced topics</a></li>
       <li class="breadcrumb-item active">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/02turbogenius_manual/tutorial/98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.rst.txt" rel="nofollow"> View page source</a>
@@ -78,7 +119,7 @@
            <div itemprop="articleBody">
              
   <section id="a-more-flexible-ansatz-the-hydrogen-dimer-with-a-jastrowantisymmetrized-geminal-power-jagp-ansatz-via-vmc-and-lattice-regularized-dmc-lrdmc">
-<span id="turbogeniustutorial-9801"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a><a class="headerlink" href="#a-more-flexible-ansatz-the-hydrogen-dimer-with-a-jastrowantisymmetrized-geminal-power-jagp-ansatz-via-vmc-and-lattice-regularized-dmc-lrdmc" title="Permalink to this heading"></a></h1>
+<span id="turbogeniustutorial-9801"></span><h1><a class="toc-backref" href="#id1" role="doc-backlink">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a><a class="headerlink" href="#a-more-flexible-ansatz-the-hydrogen-dimer-with-a-jastrowantisymmetrized-geminal-power-jagp-ansatz-via-vmc-and-lattice-regularized-dmc-lrdmc" title="Link to this heading"></a></h1>
 <p>In this tutorial, you will compute all-electron VMC and LRDMC energies of the hydrogen dimer (<span class="math notranslate nohighlight">\(H_2\)</span>). You will go beyond the Jastrow–Slater single-determinant ansatz by adopting a JAGP wave function. All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../../_downloads/6cbd7221175459300c14c1368b47cbcb/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -96,15 +137,15 @@
 </ul>
 </nav>
 <section id="convert-jdft-wf-to-jagp-one">
-<span id="turbogeniustutorial-9801-06"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">06 Convert JDFT WF to JAGP one</a><a class="headerlink" href="#convert-jdft-wf-to-jagp-one" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-06"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">06 Convert JDFT WF to JAGP one</a><a class="headerlink" href="#convert-jdft-wf-to-jagp-one" title="Link to this heading"></a></h2>
 <p>We assume that we have finished all JDFT calculations following the steps described in the <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101"><span class="std std-ref">previous tutorial</span></a>.
 The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be done using <code class="docutils literal notranslate"><span class="pre">convertfort10</span></code> module of Turbo-Genius. Basically, we require two fort.10 files: the JDFT one (that we want to convert) and a JAGPs fort10 file which we will use as a template for conversion. The JDFT one should be named as <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> and the JAGPs one should be named as <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code>.</p>
 <p>Copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> in <code class="docutils literal notranslate"><span class="pre">03_vmc</span></code> to <code class="docutils literal notranslate"><span class="pre">06_convert</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>./06_convert/
-cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>./06_convert/
+<span class="gp">% </span>cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat<span class="w"> </span>.
 
-turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps
+<span class="gp">% </span>turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span class="w"> </span>agps
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -112,28 +153,28 @@ turbogenius<span class="w"> </span>convertwf<span class="w"> </span>-to<span cla
 <p>the original <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> is renamed to <code class="docutils literal notranslate"><span class="pre">fort.10_bak</span></code></p>
 </div>
 <p>Please check the overlap square in out_conv:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># grep Overlap out_conv</span>
-....
-Overlap<span class="w"> </span>square<span class="w"> </span>with<span class="w"> </span>no<span class="w"> </span>zero<span class="w">  </span><span class="m">0</span>.9999....
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>grep<span class="w"> </span>Overlap<span class="w"> </span>out_conv
+<span class="go">....</span>
+<span class="go">Overlap square with no zero  0.9999....</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Overlap</span> <span class="pre">square</span></code> should be close to unity, i.e., if the conversion is perfect, this becomes unity.</p>
 <p>The conversion has finished. The obtained JAGPs wavefunction is <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
 </section>
 <section id="conversion-check">
-<span id="turbogeniustutorial-9801-07"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">07 Conversion check</a><a class="headerlink" href="#conversion-check" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-07"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">07 Conversion check</a><a class="headerlink" href="#conversion-check" title="Link to this heading"></a></h2>
 <p>We recommend you should check if the above conversion was successful.
 This can be checked using the so-called correlated sampling method.
 Indeed, one can check the difference in energies of WFs using a VMC calculation.</p>
 <p>Copy the obtained JAGPs wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>, and the optimized JDFT wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> as <code class="docutils literal notranslate"><span class="pre">fort.10_corr</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../07_conversion_check/
-cp<span class="w"> </span>../06_convert/fort.10<span class="w"> </span>./fort.10
-cp<span class="w"> </span>../06_convert/fort.10_bak<span class="w"> </span>./fort.10_corr
-cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../07_conversion_check/
+<span class="gp">% </span>cp<span class="w"> </span>../06_convert/fort.10<span class="w"> </span>./fort.10
+<span class="gp">% </span>cp<span class="w"> </span>../06_convert/fort.10_bak<span class="w"> </span>./fort.10_corr
+<span class="gp">% </span>cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Prepare input files using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>For the correlating sampling, we need two input files, for a vmc calculation (i.e., generation of Markov chain) and a correlated sampling itself.</p>
@@ -178,33 +219,33 @@ cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Now run the calculation using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">TURBOREADFORWARD_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 readforward-mpi.x&quot;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOREADFORWARD_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 readforward-mpi.x&quot;</span>
 
-turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-r
+<span class="gp">% </span>turbogenius<span class="w"> </span>correlated-sampling<span class="w"> </span>-r
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">corrsampling.dat</span></code> contains the output.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># corrsampling.dat</span>
-Energy<span class="w"> </span><span class="o">(</span>fort10<span class="w"> </span>ref.<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1.17606202<span class="w"> </span>Ha<span class="w"> </span>+-<span class="w"> </span><span class="m">0</span>.00119647941<span class="w"> </span>Ha
-Energy<span class="w"> </span><span class="o">(</span>fort10<span class="w"> </span>corr.<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1.17606265<span class="w"> </span>Ha<span class="w"> </span>+-<span class="w"> </span><span class="m">0</span>.00119634713<span class="w"> </span>Ha
-Energy<span class="w"> </span><span class="nv">difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span>.26299353e-07<span class="w"> </span>Ha<span class="w"> </span>+-<span class="w"> </span><span class="m">2</span>.29651078e-06<span class="w"> </span>Ha
-Overlap<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.999999977<span class="w"> </span>+-<span class="w"> </span><span class="m">6</span>.05288029e-08
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>cat<span class="w"> </span>corrsampling.dat
+<span class="go">Energy (fort10 ref.) = -1.17606202 Ha +- 0.00119647941 Ha</span>
+<span class="go">Energy (fort10 corr.) = -1.17606265 Ha +- 0.00119634713 Ha</span>
+<span class="go">Energy difference = 6.26299353e-07 Ha +- 2.29651078e-06 Ha</span>
+<span class="go">Overlap square = 0.999999977 +- 6.05288029e-08</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">reweighted</span> <span class="pre">difference</span></code> indicates the difference in energies of the WFs, <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> and <code class="docutils literal notranslate"><span class="pre">fort.10_corr</span></code>. This should be close to zero. <code class="docutils literal notranslate"><span class="pre">Overlap</span> <span class="pre">square</span></code> should be close to unity, i.e., if a conversion is perfect, this becomes unity.</p>
 </section>
 <section id="nodal-surface-optimization-wf-jsagps">
-<span id="turbogeniustutorial-9801-08"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">08 Nodal surface optimization (WF=JsAGPs)</a><a class="headerlink" href="#nodal-surface-optimization-wf-jsagps" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-08"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">08 Nodal surface optimization (WF=JsAGPs)</a><a class="headerlink" href="#nodal-surface-optimization-wf-jsagps" title="Link to this heading"></a></h2>
 <p>In this step, the Jastrow factors and the determinant part are optimized at the VMC level using <code class="docutils literal notranslate"><span class="pre">vmcopt</span></code> module of Turbo-Genius. The procedure is almost the same as in <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101-02"><span class="std std-ref">02 Jastrow factor optimization (WF=JDFT)</span></a></p>
 <p>First of all, copy the converted wavefunction <code class="docutils literal notranslate"><span class="pre">fort.10</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../08_nodal_surface_optimization/
-cp<span class="w"> </span>../06_convert/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../08_nodal_surface_optimization/
+<span class="gp">% </span>cp<span class="w"> </span>../06_convert/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>To generate <code class="docutils literal notranslate"><span class="pre">datasmin.input</span></code>, which is a minimal input file for a VMC-optimization use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-g<span class="w"> </span>-opt_onebody<span class="w"> </span>-opt_twobody<span class="w"> </span>-opt_jas_mat<span class="w"> </span>-opt_det_mat<span class="w"> </span>-optimizer<span class="w"> </span>lr<span class="w"> </span>-vmcoptsteps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-steps<span class="w"> </span><span class="m">100</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>The input file should look something like:</p>
@@ -254,85 +295,86 @@ cp<span class="w"> </span>../06_convert/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Now run VMC optimization using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>Now for post-processing use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">80</span><span class="w"> </span>-plot
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmcopt<span class="w"> </span>-post<span class="w"> </span>-optwarmup<span class="w"> </span><span class="m">80</span><span class="w"> </span>-plot
 </pre></div>
 </div>
 <p>It plots energy with the error bars and devmax wrt optimization steps (<code class="docutils literal notranslate"><span class="pre">plot_energy_and_devmax.png</span></code>).</p>
 <blockquote>
-<div><a class="reference internal image-reference" href="../../../../../_images/plot_energy_and_devmax1.png"><img alt="../../../../../_images/plot_energy_and_devmax1.png" class="align-center" src="../../../../../_images/plot_energy_and_devmax1.png" style="width: 70%;" /></a>
+<div><a class="reference internal image-reference" href="../../../../../_images/plot_energy_and_devmax1.png"><img alt="../../../../../_images/plot_energy_and_devmax1.png" class="align-center" src="../../../../../_images/plot_energy_and_devmax1.png" style="width: 70%;" />
+</a>
 </div></blockquote>
 <p>For the hydrogen dimer, the JDFT ansatz is enough accurate, so nothing has gained.</p>
 </section>
 <section id="vmc-wf-jsagps">
-<span id="turbogeniustutorial-9801-09"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">09 VMC (WF=JsAGPs)</a><a class="headerlink" href="#vmc-wf-jsagps" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-09"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">09 VMC (WF=JsAGPs)</a><a class="headerlink" href="#vmc-wf-jsagps" title="Link to this heading"></a></h2>
 <p>The same as in the JDFT case. See <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101-03"><span class="std std-ref">03 VMC (WF=JDFT)</span></a></p>
 <p>First, copy <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> from <code class="docutils literal notranslate"><span class="pre">08_nodal_surface_optimization</span></code> to <code class="docutils literal notranslate"><span class="pre">09_vmc</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../09_vmc
-cp<span class="w"> </span>../08_nodal_surface_optimization/fort.10<span class="w"> </span>fort.10
-cp<span class="w"> </span>../08_nodal_surface_optimization/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../09_vmc
+<span class="gp">% </span>cp<span class="w"> </span>../08_nodal_surface_optimization/fort.10<span class="w"> </span>fort.10
+<span class="gp">% </span>cp<span class="w"> </span>../08_nodal_surface_optimization/pseudo.dat<span class="w"> </span>.
 </pre></div>
 </div>
 <p>Now generate the input file for vmc <code class="docutils literal notranslate"><span class="pre">datasvmc.input</span></code> using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-g<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Run a VMC calculation by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>After the VMC run finishes, use post-processing to check the total energy:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
-<span class="c1"># this corresponds to forcevmc.sh 10 5 1</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>vmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">10</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+<span class="gp">% </span><span class="c1"># this corresponds to forcevmc.sh 10 5 1</span>
 </pre></div>
 </div>
 <p>Use the following values in this example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bin<span class="w"> </span><span class="nv">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
-init<span class="w"> </span><span class="nv">bin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<span class="nv">pulay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>default<span class="o">)</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bin length = 10
+init bin = 5
+pulay = 1 (default)
 
-Chosen<span class="w"> </span>values:<span class="w"> </span><span class="nv">bin</span><span class="o">=</span><span class="m">10</span>,<span class="w"> </span><span class="nv">init_bin</span><span class="o">=</span><span class="m">5</span>,<span class="w"> </span><span class="nv">pulay</span><span class="o">=</span><span class="m">1</span>,<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="nv">equil_steps</span><span class="o">=</span><span class="m">50</span>
+Chosen values: bin=10, init_bin=5, pulay=1, =&gt; equil_steps=50
 
-<span class="c1"># Note: this corresponds to ``forces_vmc.sh 10 5 1``</span>
+# Note: this corresponds to ``forces_vmc.sh 10 5 1``
 </pre></div>
 </div>
 <p>Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive.
 The reblocked total energy and error are written to the file <code class="docutils literal notranslate"><span class="pre">energy_error.out</span></code>.
 More details are provided in the file <code class="docutils literal notranslate"><span class="pre">pip0.d</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>pip0.d
-<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-1.17399712181874<span class="w">  </span><span class="m">4</span>.494314925096871E-004
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>cat<span class="w"> </span>pip0.d
+<span class="go">Energy =  -1.17399712181874  4.494314925096871E-004</span>
 </pre></div>
 </div>
 </section>
 <section id="lrdmc-wf-jsagps">
-<span id="turbogeniustutorial-9801-10"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">10 LRDMC (WF=JsAGPs)</a><a class="headerlink" href="#lrdmc-wf-jsagps" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-10"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">10 LRDMC (WF=JsAGPs)</a><a class="headerlink" href="#lrdmc-wf-jsagps" title="Link to this heading"></a></h2>
 <p>The same as in the JDFT case. See <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101-04"><span class="std std-ref">04 LRDMC (WF=JDFT)</span></a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../10_lrdmc/
-cp<span class="w"> </span>../09_vmc/fort.10<span class="w"> </span>.
-cp<span class="w"> </span>../09_vmc/pseudo.dat<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../10_lrdmc/
+<span class="gp">% </span>cp<span class="w"> </span>../09_vmc/fort.10<span class="w"> </span>.
+<span class="gp">% </span>cp<span class="w"> </span>../09_vmc/pseudo.dat<span class="w"> </span>.
 
-turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-1.10<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-g<span class="w"> </span>-etry<span class="w"> </span>-1.10<span class="w"> </span>-alat<span class="w"> </span>-0.20<span class="w"> </span>-steps<span class="w"> </span><span class="m">1000</span><span class="w"> </span>-nw<span class="w"> </span><span class="m">128</span>
 </pre></div>
 </div>
 <p>Now run the LRDMC calculation:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
-turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOVMC_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 16 turborvb-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
 </pre></div>
 </div>
 <p>For post-processing use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
-<span class="c1"># This corresponds to forcefn.sh 20 3 5 1</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-post<span class="w"> </span>-bin<span class="w"> </span><span class="m">20</span><span class="w"> </span>-corr<span class="w"> </span><span class="m">3</span><span class="w"> </span>-warmup<span class="w"> </span><span class="m">5</span>
+<span class="gp">% </span><span class="c1"># This corresponds to forcefn.sh 20 3 5 1</span>
 </pre></div>
 </div>
 <p>Thus, we get <span class="math notranslate nohighlight">\(E (a=0.20 {\rm bohr})\)</span> = -1.1739(4) Ha.</p>
 </section>
 <section id="summary">
-<span id="turbogeniustutorial-9801-11"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">11 Summary</a><a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9801-11"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">11 Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>Total energy:</p>
 <ul class="simple">
 <li><p>DFT (PZ-LDA) = -1.1373 Ha</p></li>
@@ -349,14 +391,14 @@ turbogenius<span class="w"> </span>lrdmc<span class="w"> </span>-r
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../10Benzene/tutorial.html" class="btn btn-neutral float-left" title="Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../00index.html" class="btn btn-neutral float-left" title="[Table of Contents] Advanced topics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../02Hydrogen_dimer_structural_optimization/tutorial.html" class="btn btn-neutral float-right" title="Structural optimization of the hydrogen dimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

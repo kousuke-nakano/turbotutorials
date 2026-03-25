@@ -1,23 +1,27 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hydrogen dimer calculation starting from the built-in DFT code ‘prep’ &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Hydrogen dimer calculation starting from the built-in DFT code &#39;prep&#39; &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../../../_static/sphinx_highlight.js?v=4825356b"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
@@ -44,11 +48,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a></li>
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../00index.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../00index.html">[Table of Contents] Advanced topics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction">01 Preparing a JDFT trial wavefunction</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#preparing-a-makefort10-input-file">01-01 Preparing a makefort10.input file</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#generating-a-jagps-template">01-02 Generating a JAGPs template</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#adding-molecular-orbitals-to-the-jagps-template">01-03 Adding molecular orbitals to the JAGPs template</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#run-dft">01-04 Run DFT</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/00index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips/00index.html">Tips and trouble shooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -67,7 +109,8 @@
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">Tutorials</a></li>
-      <li class="breadcrumb-item active">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</li>
+          <li class="breadcrumb-item"><a href="../00index.html">[Table of Contents] Advanced topics</a></li>
+      <li class="breadcrumb-item active">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/02turbogenius_manual/tutorial/98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,12 +121,12 @@
            <div itemprop="articleBody">
              
   <section id="hydrogen-dimer-calculation-starting-from-the-built-in-dft-code-prep">
-<span id="turbogeniustutorial-9803"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</a><a class="headerlink" href="#hydrogen-dimer-calculation-starting-from-the-built-in-dft-code-prep" title="Permalink to this heading"></a></h1>
+<span id="turbogeniustutorial-9803"></span><h1><a class="toc-backref" href="#id2" role="doc-backlink">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a><a class="headerlink" href="#hydrogen-dimer-calculation-starting-from-the-built-in-dft-code-prep" title="Link to this heading"></a></h1>
 <p>In this tutorial, you will perform a hydrogen dimer calculation starting from the built-in DFT code prep. All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../../_downloads/fb6eb963888268987a7617b92e0ed56c/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#hydrogen-dimer-calculation-starting-from-the-built-in-dft-code-prep" id="id2">Hydrogen dimer calculation starting from the built-in DFT code ‘prep’</a></p>
+<li><p><a class="reference internal" href="#hydrogen-dimer-calculation-starting-from-the-built-in-dft-code-prep" id="id2">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></p>
 <ul>
 <li><p><a class="reference internal" href="#preparing-a-jdft-trial-wavefunction" id="id3">01 Preparing a JDFT trial wavefunction</a></p></li>
 <li><p><a class="reference internal" href="#next-steps" id="id4">Next steps</a></p></li>
@@ -92,22 +135,22 @@
 </ul>
 </nav>
 <section id="preparing-a-jdft-trial-wavefunction">
-<span id="turbogeniustutorial-9803-01"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">01 Preparing a JDFT trial wavefunction</a><a class="headerlink" href="#preparing-a-jdft-trial-wavefunction" title="Permalink to this heading"></a></h2>
+<span id="turbogeniustutorial-9803-01"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">01 Preparing a JDFT trial wavefunction</a><a class="headerlink" href="#preparing-a-jdft-trial-wavefunction" title="Link to this heading"></a></h2>
 <section id="preparing-a-makefort10-input-file">
-<span id="turbogeniustutorial-9803-01-01"></span><h3>01-01 Preparing a makefort10.input file<a class="headerlink" href="#preparing-a-makefort10-input-file" title="Permalink to this heading"></a></h3>
+<span id="turbogeniustutorial-9803-01-01"></span><h3>01-01 Preparing a makefort10.input file<a class="headerlink" href="#preparing-a-makefort10-input-file" title="Link to this heading"></a></h3>
 <p>The first step of this tutorial is to generate an antisymmetrized Geminal Power (AGP) ansatz, which will be convert to a Slater determinant (SD) ansatz later. First, one should prepare <code class="docutils literal notranslate"><span class="pre">makefort10.input</span></code> to generate an AGP ansatz. The <code class="docutils literal notranslate"><span class="pre">makefort10</span></code> module of Turbo-Genius can be used to generate AGP ansatz. Use the following command to generate a makefort10.input file. Remember that the structure file is also required at this step. Note: If you are interested in a pseudo-potential calculation, please refer to <a class="reference internal" href="../04Carbon_dimer/tutorial.html#turbogeniustutorial-9804"><span class="std std-ref">A challenging case: the spin-singlet carbon dimer with various ansätze</span></a>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>01_trial_wavefunction/00_makefort10/
-turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-g<span class="w"> </span>-str<span class="w"> </span>H2_dimer.xyz<span class="w"> </span>-detbasis<span class="w"> </span>cc-pVTZ<span class="w"> </span>-jasbasis<span class="w"> </span>cc-pVDZ<span class="w"> </span>-detcutbasis<span class="w"> </span>-jascutbasis
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>01_trial_wavefunction/00_makefort10/
+<span class="gp">% </span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-g<span class="w"> </span>-str<span class="w"> </span>H2_dimer.xyz<span class="w"> </span>-detbasis<span class="w"> </span>cc-pVTZ<span class="w"> </span>-jasbasis<span class="w"> </span>cc-pVDZ<span class="w"> </span>-detcutbasis<span class="w"> </span>-jascutbasis
 </pre></div>
 </div>
 <p>The command line options:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">makefort10</span></code> is used to specify the job type.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-g</span></code> is used to generate input files. Alternatively <code class="docutils literal notranslate"><span class="pre">-r</span></code> may be used for running calculations and <code class="docutils literal notranslate"><span class="pre">-post</span></code> is used for postprocessing of results after running.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-str</span></code> is used to indicate the structure file name, which could be in several formats: <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.cif</span></code>, <code class="docutils literal notranslate"><span class="pre">POSCAR</span></code>, <code class="docutils literal notranslate"><span class="pre">.vasp</span></code>, <code class="docutils literal notranslate"><span class="pre">.xsf</span></code>, or whatever <code class="docutils literal notranslate"><span class="pre">ASE</span></code>’s <code class="docutils literal notranslate"><span class="pre">read</span></code> function supports.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-detbasis</span></code> is used to specify the basis set used to construct atomic orbitals for the determinant part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the –help for checking the basis set currently implemented.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-str</span></code> is used to indicate the structure file name, which could be in several formats: <code class="docutils literal notranslate"><span class="pre">.xyz</span></code>, <code class="docutils literal notranslate"><span class="pre">.cif</span></code>, <code class="docutils literal notranslate"><span class="pre">POSCAR</span></code>, <code class="docutils literal notranslate"><span class="pre">.vasp</span></code>, <code class="docutils literal notranslate"><span class="pre">.xsf</span></code>, or whatever <code class="docutils literal notranslate"><span class="pre">ASE</span></code>'s <code class="docutils literal notranslate"><span class="pre">read</span></code> function supports.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-detbasis</span></code> is used to specify the basis set used to construct atomic orbitals for the determinant part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-detcutbasis</span></code> flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below) It makes sense only for an all-electron calculation.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-jasbasis</span></code> is used to specify the basis set used to construct atomic orbitals for the Jastrow part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the –help for checking the basis set currently implemented.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-jasbasis</span></code> is used to specify the basis set used to construct atomic orbitals for the Jastrow part. Here we are using cc-pVTZ type basis set to construct the atomic orbitals. See the --help for checking the basis set currently implemented.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-jascutbasis</span></code> flag is a command line argument to cut the determinant basis set based on the AZ algorithm (see below). It makes sense only for an all-electron calculation.</p></li>
 </ol>
 <p>This is a generated <code class="docutils literal notranslate"><span class="pre">makefort10.input</span></code>.</p>
@@ -199,32 +242,32 @@ turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-g<span cla
 </div>
 </section>
 <section id="generating-a-jagps-template">
-<span id="turbogeniustutorial-9803-01-02"></span><h3>01-02 Generating a JAGPs template<a class="headerlink" href="#generating-a-jagps-template" title="Permalink to this heading"></a></h3>
+<span id="turbogeniustutorial-9803-01-02"></span><h3>01-02 Generating a JAGPs template<a class="headerlink" href="#generating-a-jagps-template" title="Link to this heading"></a></h3>
 <p>One can generate a JAGPs template using the prepared makefort10.input by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w">         </span><span class="c1"># ``-r`` for running calculations</span>
-turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-post<span class="w">      </span><span class="c1"># ``-post`` for post-analysis or cleanup</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w">         </span><span class="c1"># ``-r`` for running calculations</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-post<span class="w">      </span><span class="c1"># ``-post`` for post-analysis or cleanup</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The corresponding TurboRVB commands are:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>makefort10.x<span class="w"> </span>&lt;<span class="w"> </span>makefort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_make<span class="w">  </span><span class="c1"># turbogenius makefort10 -r</span>
-mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10<span class="w">                      </span><span class="c1"># turbogenius makefort10 -post</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>makefort10.x<span class="w"> </span>&lt;<span class="w"> </span>makefort10.input<span class="w"> </span>&gt;<span class="w"> </span>out_make<span class="w">  </span><span class="c1"># turbogenius makefort10 -r</span>
+<span class="gp">% </span>mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10<span class="w">                      </span><span class="c1"># turbogenius makefort10 -post</span>
 </pre></div>
 </div>
 </div>
 <p>You can also do:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w"> </span>-post
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>makefort10<span class="w"> </span>-r<span class="w"> </span>-post
 </pre></div>
 </div>
 <p>The generated JAGPs template is the file <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
 <p>At the same time, <code class="docutils literal notranslate"><span class="pre">structure.xsf</span></code> is generated. One can check if the input structure is what you expect.</p>
 </section>
 <section id="adding-molecular-orbitals-to-the-jagps-template">
-<span id="turbogeniustutorial-9803-01-03"></span><h3>01-03 Adding molecular orbitals to the JAGPs template<a class="headerlink" href="#adding-molecular-orbitals-to-the-jagps-template" title="Permalink to this heading"></a></h3>
+<span id="turbogeniustutorial-9803-01-03"></span><h3>01-03 Adding molecular orbitals to the JAGPs template<a class="headerlink" href="#adding-molecular-orbitals-to-the-jagps-template" title="Link to this heading"></a></h3>
 <p>One should convert the generated JAGPs template to Jastrow Slater Determinant (JDFT) one to prepare a trial wavefunction using DFT. This can be done using the <code class="docutils literal notranslate"><span class="pre">convertfort10</span></code> module. Generate an input file for convertfort10mol using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>fort.10<span class="w"> </span>fort.10_in
-turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-g
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>mv<span class="w"> </span>fort.10<span class="w"> </span>fort.10_in
+<span class="gp">% </span>turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-g
 </pre></div>
 </div>
 <p>convertfort10 mol input will look like the following:</p>
@@ -256,30 +299,30 @@ turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-g
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">nmol</span></code>, <code class="docutils literal notranslate"><span class="pre">nmolmin</span></code>, <code class="docutils literal notranslate"><span class="pre">nmolmax</span></code>  The numbers of molecular orbitals. When they equals to <span class="math notranslate nohighlight">\(N/2\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the total number of electrons in the system, JAGPs = JDFT.</p>
 <p>After preparing <code class="docutils literal notranslate"><span class="pre">convertfort10mol.input</span></code>, run the calculation by typing the following commands to covert <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> (JAGPs) to <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> (JDFT) by:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-r
-turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-post
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-r
+<span class="gp">% </span>turbogenius<span class="w"> </span>convertfort10mol<span class="w"> </span>-post
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The corresponding turborvb commands are:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>convertfort10mol.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10mol.input<span class="w"> </span>&gt;<span class="w"> </span>out_mol<span class="w">   </span><span class="c1"># turbogenius convertfort10mol -r</span>
-mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10<span class="w">                                  </span><span class="c1"># turbogenius convertfort10mol -post</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>convertfort10mol.x<span class="w"> </span>&lt;<span class="w"> </span>convertfort10mol.input<span class="w"> </span>&gt;<span class="w"> </span>out_mol<span class="w">   </span><span class="c1"># turbogenius convertfort10mol -r</span>
+<span class="gp">% </span>mv<span class="w"> </span>fort.10_new<span class="w"> </span>fort.10<span class="w">                                  </span><span class="c1"># turbogenius convertfort10mol -post</span>
 </pre></div>
 </div>
 </div>
 <p>The new JDFT template is <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>. If you find <code class="docutils literal notranslate"><span class="pre">1000000</span></code> (molecular orbital) in fort.10 and it counts <span class="math notranslate nohighlight">\(N/2\)</span>, you have successfully converted the JAGPs template to a JDFT one.</p>
 </section>
 <section id="run-dft">
-<span id="turbogeniustutorial-9803-01-04"></span><h3>01-04 Run DFT<a class="headerlink" href="#run-dft" title="Permalink to this heading"></a></h3>
+<span id="turbogeniustutorial-9803-01-04"></span><h3>01-04 Run DFT<a class="headerlink" href="#run-dft" title="Link to this heading"></a></h3>
 <p>As written above, the coefficients of the molecular orbitals generated by <code class="docutils literal notranslate"><span class="pre">convertfort10mol.x</span></code> are random. Indeed, the <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> is just a template file. The next step is to optimize coefficients using a build-in DFT code, called <code class="docutils literal notranslate"><span class="pre">prep.x</span></code>. This is done by using the <code class="docutils literal notranslate"><span class="pre">prep</span></code> module of Turbo-Genius.</p>
 <p>Copy the prepared <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> to 01DFT directory:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>../01_dft/
-cp<span class="w"> </span>../00_makefort10/fort.10<span class="w"> </span>.
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">cd</span><span class="w"> </span>../01_dft/
+<span class="gp">% </span>cp<span class="w"> </span>../00_makefort10/fort.10<span class="w"> </span>.
 </pre></div>
 </div>
 <p>To generate input for a DFT calculation type the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span>-lbox<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">10</span>.0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-g<span class="w"> </span>-grid<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span><span class="m">0</span>.2<span class="w"> </span>-lbox<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">10</span>.0<span class="w"> </span><span class="m">10</span>.0
 </pre></div>
 </div>
 <ol class="arabic simple">
@@ -350,8 +393,8 @@ cp<span class="w"> </span>../00_makefort10/fort.10<span class="w"> </span>.
 <p>One should carefully choose the size and the number of grids in DFT calculation. Grid sizes and the numbers should be set so that the rectangular of (<code class="docutils literal notranslate"><span class="pre">ax</span></code> × <code class="docutils literal notranslate"><span class="pre">nx</span></code>)(<code class="docutils literal notranslate"><span class="pre">ay</span></code> × <code class="docutils literal notranslate"><span class="pre">ny</span></code>)(<code class="docutils literal notranslate"><span class="pre">az</span></code> × <code class="docutils literal notranslate"><span class="pre">nz</span></code>) encloses the molecule, and ax, ay, and az are small enough to be consistent with an electronic scale, typically 0.01 Bohr and 0.10 Bohr for all-electron and pseudo-potential calculations. The so-called double-grid scheme avoids us from using the small size of grid for all-electron calculation. <code class="docutils literal notranslate"><span class="pre">-doublegrid</span></code> option activates this. Please refer to <a class="reference external" href="https://doi.org/10.1021/acs.jctc.9b00295">J. Chem. Theory Comput. 2019, 15, 7, 4044-4055</a>.</p>
 </div>
 <p>After preparing <code class="docutils literal notranslate"><span class="pre">prep.input</span></code>, one can start DFT on a local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOPREP_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 4 prep-mpi.x&quot;</span>
-turbogenius<span class="w"> </span>prep<span class="w"> </span>-r
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="nb">export</span><span class="w"> </span><span class="nv">TURBOPREP_RUN_COMMAND</span><span class="o">=</span><span class="s2">&quot;mpirun -np 4 prep-mpi.x&quot;</span>
+<span class="gp">% </span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-r
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -359,27 +402,27 @@ turbogenius<span class="w"> </span>prep<span class="w"> </span>-r
 <p>When you submit a job via a queuing system. Please set always the output <code class="docutils literal notranslate"><span class="pre">out_prep</span></code>. <code class="docutils literal notranslate"><span class="pre">Turbo-Genius</span></code> assumes this output name.</p>
 </div>
 <p>Note that optimized molecular orbitals are written to the file <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>. Now to check convergence, we can use post-processing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-post
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>turbogenius<span class="w"> </span>prep<span class="w"> </span>-post
 </pre></div>
 </div>
-<p>DFT-LDA total energy, the occupations, etc… are written in <code class="docutils literal notranslate"><span class="pre">out_prep</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep<span class="w"> </span>Iter<span class="w"> </span>out_prep
+<p>DFT-LDA total energy, the occupations, etc... are written in <code class="docutils literal notranslate"><span class="pre">out_prep</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>grep<span class="w"> </span>Iter<span class="w"> </span>out_prep
 
-Iter,E,xc,corr<span class="w">     </span><span class="m">1</span><span class="w">        </span>-1.1577548<span class="w">        </span>-0.6705818<span class="w">        </span>-0.1023040<span class="w">         </span><span class="m">1</span>.4094156
-Iter,E,xc,corr<span class="w">     </span><span class="m">2</span><span class="w">        </span>-1.1408581<span class="w">        </span>-0.6015049<span class="w">        </span>-0.0972514<span class="w">         </span><span class="m">0</span>.0168967
-Iter,E,xc,corr<span class="w">     </span><span class="m">3</span><span class="w">        </span>-1.1378899<span class="w">        </span>-0.5764296<span class="w">        </span>-0.0954901<span class="w">         </span><span class="m">0</span>.0029683
-Iter,E,xc,corr<span class="w">     </span><span class="m">4</span><span class="w">        </span>-1.1373530<span class="w">        </span>-0.5661320<span class="w">        </span>-0.0947749<span class="w">         </span><span class="m">0</span>.0005369
-Iter,E,xc,corr<span class="w">     </span><span class="m">5</span><span class="w">        </span>-1.1372555<span class="w">        </span>-0.5618074<span class="w">        </span>-0.0944771<span class="w">         </span><span class="m">0</span>.0000975
-Iter,E,xc,corr<span class="w">     </span><span class="m">6</span><span class="w">        </span>-1.1372385<span class="w">        </span>-0.5600486<span class="w">        </span>-0.0943592<span class="w">         </span><span class="m">0</span>.0000170
-Iter,E,xc,corr<span class="w">     </span><span class="m">7</span><span class="w">        </span>-1.1372355<span class="w">        </span>-0.5593173<span class="w">        </span>-0.0943114<span class="w">         </span><span class="m">0</span>.0000030
-<span class="c1"># Iterations =     7</span>
+<span class="go">Iter,E,xc,corr     1        -1.1577548        -0.6705818        -0.1023040         1.4094156</span>
+<span class="go">Iter,E,xc,corr     2        -1.1408581        -0.6015049        -0.0972514         0.0168967</span>
+<span class="go">Iter,E,xc,corr     3        -1.1378899        -0.5764296        -0.0954901         0.0029683</span>
+<span class="go">Iter,E,xc,corr     4        -1.1373530        -0.5661320        -0.0947749         0.0005369</span>
+<span class="go">Iter,E,xc,corr     5        -1.1372555        -0.5618074        -0.0944771         0.0000975</span>
+<span class="go">Iter,E,xc,corr     6        -1.1372385        -0.5600486        -0.0943592         0.0000170</span>
+<span class="go">Iter,E,xc,corr     7        -1.1372355        -0.5593173        -0.0943114         0.0000030</span>
+<span class="gp"># </span><span class="nv">Iterations</span><span class="w"> </span><span class="o">=</span><span class="w">     </span><span class="m">7</span>
 </pre></div>
 </div>
 <p>The generated <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> is used for the following VMC and DMC calculations as its trial wave function / guiding wave function.</p>
 </section>
 </section>
 <section id="next-steps">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Permalink to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Next steps</a><a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
 <p>Subsequent steps follow <a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html#turbogeniustutorial-0101-02"><span class="std std-ref">02 Jastrow factor optimization of H2_dimer</span></a>.</p>
 </section>
 </section>
@@ -395,7 +438,7 @@ Iter,E,xc,corr<span class="w">     </span><span class="m">7</span><span class="w
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

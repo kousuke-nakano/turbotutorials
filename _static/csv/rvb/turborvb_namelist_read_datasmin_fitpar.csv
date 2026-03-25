@@ -1,0 +1,54 @@
+Parameter name,Datatype,Default,Description
+nparinv,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``0`` if iesinv >= 0",WIP
+initparinv,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``0`` if iesinv >= 0",WIP
+rmaxinv,``real*8``,"- ``1d-10`` if no input
+
+- ignore input
+
+  + ``0.d0`` if iesinv >= 0
+  + ``1d-10`` if rmaxinv <= 0 and iesinv < 0","Real value. If iesinv < 0, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized. The rule is the same as the ones above for the spin Jastrow."
+npar,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``0`` if iesfree >= 0",WIP
+initpar,``integer``,"- ``-1`` if no input
+
+- ignore input
+
+  + ``0`` if iesfree >= 0",WIP
+rmaxj,``real*8``,"- ``1d-10`` if no input
+
+- ignore input
+
+  + ``0.d0`` if iesfree >= 0
+  + ``1d-10`` if iesfree < 0 and rmaxj <= 0","Real value. If iefree < 0, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized. rmaxj = 0 has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized."
+nparsw,``integer``,"- ``0`` if no input
+
+- ignore input
+
+  + ``0`` if iessw >= 0",WIP
+initparsw,``integer``,"- ``-1`` if no input
+
+- ignore input
+
+  + ``0`` if iessw >= 0",WIP
+rmax,``real*8``,"- ``1d-10`` if no input
+
+- ignore input
+
+  + ``0.d0`` if iessw >= 0
+  + ``1d-10`` if rmax <= 0 and iessw < 0","Real value. If iessw < 0, then all matrix elements of the AGP at distance larger than rmax are not optimized. rmax = 0 implies that no matrix elements connecting different atoms are optimized."
+npower,``integer``,``0``,WIP
+powermin,``integer``,``0``,WIP
+npowersz,``integer``,``0``,WIP
+powerminsz,``integer``,``0``,WIP
+allfit,``logical``,``.true.``,WIP

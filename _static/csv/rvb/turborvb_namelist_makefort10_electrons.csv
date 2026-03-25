@@ -1,0 +1,39 @@
+Parameter name,Datatype,Default,Description
+twobody,``integer``,``-6``,Selects the functional form for the one-body and two-body Jastrow factors. See the wave-function format description for details.
+twobodypar(AMDNone),"``double precision, allocatable :: twobodypar(:)``",".. code-block:: fortran
+
+    allocate (twobodypar(2))
+    twobodypar(:) = 1.0d0
+",Selects the initial values for the two-body Jastrow factor.
+filling,``character(20) :: filling``,"``""diagonal""``
+","filling = diagonal: Fill the initial detmat(:,:) and jasmat(:,:) with 1.d0 on the diagonal. filling = random: Fill with random numbers between (0,1.d0). filling = semidiagonal: Fill off-diagonal elements with random numbers between (0,0.1d0) and diagonal elements with 1.d0."
+noonebody,``logical``,``.false.``,Not used.
+readatoms,``logical``,``.false.``,Not used.
+orbtype,``character(20) :: orbtype``,"``""normal""``","orbtype = normal: Use normal orbitals. orbtype = mixed: Use mixed orbitals. orbtype = tempered: Use tempered orbitals. The same applies for Jastrow orbitals with jorbtype.
+"
+nel,``integer``,"``sum(zeta(2, 1:natoms))``
+","Total number of electrons (sum of spin-up and spin-down). If not specified, it is assumed to be equal to the total nuclear charge (i.e., net charge zero)."
+neldiff,``integer``,"By default, the code determines the spin multiplicity from the total number of electrons nel (typically singlet, doublet, or triplet). To set a higher-spin state, you must provide an explicit input value.","In Pfaffian mode (ipf == 2), the file format stores the total electron count with a negative sign (i.e., -nel). Therefore, do not specify neldiff directly as nelup − neldown. Instead, set neldiff from the parity of nel: use neldiff = 0 for even nel (closed-shell) and neldiff = 1 for odd nel (one unpaired electron). For higher-spin states, adjust the number of unpaired electrons accordingly (e.g., neldiff = 2 for two unpaired electrons, neldiff = 3 for three, etc.)."
+numpaired,``integer``,``0``,Not used.
+jorbtype,``character(20) :: jorbtype``,"``""normal""``",Not used.
+onlycontrdet,``logical``,``.false.``,Not used.
+onlycontrjas,``logical``,``.false.``,Not used.
+shiftbeta,``integer``,shiftbeta = ``1`` ! default value for shiftbeta,Not used.
+readunpaired,``logical``,``.false.``,Not used.
+vecpbc,``integer :: vecpbc(3)``,"- vecpbc(1:3) = 1 if apbc(1:3) is .true.
+- vecpbc(1:3) = 0 if apbc(1:3) is .false.",Not used.
+yesbump,``logical``,yesbump = ``.false.`` ! default value for yesbump,Not used.
+"onebodypar(PORT, AMDNone)","``double precision, allocatable :: onebodypar(:)``","allocate (onebodypar(ntyp))
+onebodypar = 0.0d0
+",Selects the initial values for the two-body Jastrow factor.
+niesd,``integer``,"- ignore input value
+- niesd must equal to ``n_onebody + n_twobody``
+- otherwise program fails",Not used.
+yes_crystal,``logical``,"- ``.true.`` if no input
+- ignore input
+
+  + ``.true.`` if complexfort10 is .true. and pbcfort10 is .true.","When periodic boundary conditions are enabled, controls whether CRYSTAL BASIS is used for the determinant orbitals. If not used, the periodic boundary conditions are real-valued."
+yes_crystalj,``logical``,``.false.``,"When periodic boundary conditions are enabled, controls whether CRYSTAL BASIS is used for the Jastrow orbitals. If not used, the periodic boundary conditions are real-valued."
+no_4body_jas,``logical``,``.false.``,"For the three-body/four-body part of the Jastrow factor, controls whether the four-body terms—i.e., Jastrow factors for electron pairs belonging to different atoms—are enabled."
+nopseudo,``logical``,``.false.``,Not used.
+scale_jasfat,``real*8``,``0.d0``,Not used.

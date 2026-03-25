@@ -1,0 +1,78 @@
+Parameter name,Datatype,Default,Description
+temp,``real*8``,"- ``0.d0`` if no input
+
+- use input value
+
+  + ``-0.5*temp*kboltz/rydberg`` if temp <= 0.d0
+","Real value. The temperature in a.u. If temp < 0, then abs(temp) indicates the temperature in Kelvin. temp = 0 can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization."
+friction,``real*8``,``0.d0``,"Real value. It is necessary to keep it non-zero in Newtonian dynamics (idyn=4,7,8) but can be set to zero (recommended) for idyn=5 (the recommended dynamics)."
+delta0,``real*8``,``0.d0``,"Real value. Used with idyn = 5, it is a parameter that can help with convergence in the small time step limit (tion \to 0). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0 \times Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the time step. However, this is chosen by default."
+delta0q,``real*8``,"- if no input
+
+  + ``friction`` if idyn == 7 or idyn == 8
+  + ``0.d0`` otherwise",WIP
+delta0k,``real*8``,"- if no input
+
+  + ``1.d0`` if idyn == 7 or idyn == 8
+  + ``0.d0`` otherwise
+",WIP
+scalecov,``real*8``,"- ``1.d0`` if no input
+
+- ignore input
+
+  + ``1.d0`` if scalecov <= 0.d0
+",WIP
+iskipdyn,``integer``,"- if no input or iskipdyn <= 0
+
+  + ``1 + nmore_force - 1`` if nmore_force > 1
+  + ``1`` if nmore_force <= 1
+
+- if iskipdyn > 0
+
+  + ``iskipdyn + nmore_force - 1`` if nmore_force > 1
+  + ``iskipdyn`` if nmore_force <= 1","Integer value. After iskipdyn times nweight MC steps, check if dev_mat < maxdev_dyn."
+maxdev_dyn,``real*8``,``0.d0``,"Real value. After each WF optimization, it is the maximum value of dev max accepted for an ion move. Deprecated."
+stepcg_recount,``logical``,``.false.``,WIP
+write_cov,``logical``,``.false.``,WIP
+normcorr,``real*8``,``1.d0``,"Real value. If non-zero and equal to one, it applies the noise correction to reduce the bias implied by the statistical evaluation of forces. In theory it should work, but in practice, it has little effects. So it is recommended to set to zero."
+yesturboq,``logical``,"- if no input
+
+  + ``.true.`` if yesquantum is .true.
+  + ``.false.`` if yesquantum is .false.
+
+- ignore input or above value
+
+  + ``.true.`` if idyn == 8 and nbread > 1
+",WIP
+yessecond,``logical``,"- if no input
+
+  + ``.true.`` if yesquantum is .true.
+  + ``.false.`` if yesquantum is .false.
+
+- ignore input  or above value
+
+  + ``.true.`` if idyn == 8",WIP
+smoothcut,``real*8``,``0.d0``,WIP
+killcut,``logical``,``.false.``,WIP
+scale_mass,``real*8``,``1.d0``,WIP
+eqcellab,``logical``,``.false.``,WIP
+eqcellac,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` if eqcellab is .false.
+  + ``.false.`` if eqcellbc is .false.
+",WIP
+eqcellbc,``logical``,"- ``.false.`` if no input
+
+- ignore input
+
+  + ``.false.`` is eqcellab is .true.
+",WIP
+yesrootc,``logical``,``.false.``,WIP
+addrognoso,``logical``,"- if no input
+
+  + ``.true.`` if idyn == 5
+  + ``.false.`` if idyn /= 5
+",Logical value. With idyn = 5 it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for tion \to 0.
+cleanrognoso,``logical``,``.false.``,WIP

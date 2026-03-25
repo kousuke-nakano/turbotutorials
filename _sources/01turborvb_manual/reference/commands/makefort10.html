@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>makefort10.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="orthomol.x" href="orthomol.html" />
+    <link rel="prev" title="funvsa.x" href="funvsa.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">makefort10.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#system-section">system section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#electrons-section">electrons section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#symmetries-section">symmetries section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#shells-section">shells section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#atomic-positions-section">ATOMIC POSITIONS section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#atomic-species-section">ATOMIC SPECIES section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#unpaired-section">UNPAIRED section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#atom-number-section-test">ATOM number section(test)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">makefort10.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/makefort10.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="makefort10-x">
+<span id="turborvbtutorial-command-makefort10-x"></span><h1>makefort10.x<a class="headerlink" href="#makefort10-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="namelist">
+<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+<p>Variable are read from standard input.</p>
+<section id="system-section">
+<h3>system section<a class="headerlink" href="#system-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>natoms</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>uninitialized(maybe 0)?</p></td>
+<td><p>Number of atoms.</p></td>
+</tr>
+<tr class="row-odd"><td><p>posunits</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(len=10)</span> <span class="pre">::</span> <span class="pre">posunits</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;bohr&quot;</span></code></p></td>
+<td><p>Unit used when specifying molecular structures, crystal structures, and lattice constants. Choose from bohr, crystal, or angstrom.</p></td>
+</tr>
+<tr class="row-even"><td><p>nxyz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">nxyz(3)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nxyz(:)</span> <span class="pre">=</span> <span class="pre">1</span></code></p></td>
+<td><p>Supercell size. You can independently specify integer values for nxyz(1), nxyz(2), and nxyz(3). Supercell extensions that deform the unit cell are not supported.</p></td>
+</tr>
+<tr class="row-odd"><td><p>celldm</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span> <span class="pre">::</span> <span class="pre">celldm(6)</span></code></p></td>
+<td><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">celldm</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mf">1.d0</span>
+<span class="n">celldm</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="n">celldm</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="n">celldm</span><span class="p">(</span><span class="mi">4</span><span class="p">:</span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pi</span><span class="o">/</span><span class="mf">2.d0</span>
+</pre></div>
+</div>
+</td>
+<td><p>celldm. Specifies the lattice-vector lengths and inter-vector angles when defining a crystal structure. Follows the same convention as Quantum ESPRESSO.</p></td>
+</tr>
+<tr class="row-even"><td><p>at</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span> <span class="pre">::</span> <span class="pre">at(3,</span> <span class="pre">3)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">at</span> <span class="pre">=</span> <span class="pre">0.0</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>phase</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">precision</span> <span class="pre">::</span> <span class="pre">phase(3)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phase(:)</span> <span class="pre">=</span> <span class="pre">0.d0</span></code></p></td>
+<td><p>Specifies the phase (k-vector) attached to spin-up electrons. The unit is the reciprocal lattice vector; i.e., the Brillouin-zone boundary corresponds to 0.5. Independent values can be set for the x, y, and z directions via phase(1), phase(2), and phase(3).</p></td>
+</tr>
+<tr class="row-even"><td><p>phasedo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">precision</span> <span class="pre">::</span> <span class="pre">phasedo(3)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">phasedo(:)</span> <span class="pre">=</span> <span class="pre">0.d0</span></code></p></td>
+<td><p>Specifies the phase (k-vector) attached to spin-down electrons. The unit is the reciprocal lattice vector; i.e., the Brillouin-zone boundary corresponds to 0.5. Independent values can be set for the x, y, and z directions via phase(1), phase(2), and phase(3).</p></td>
+</tr>
+<tr class="row-odd"><td><p>pbcfort10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Whether periodic boundary conditions are applied to the wave function.</p></td>
+</tr>
+<tr class="row-even"><td><p>complexfort10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p>complexfort10 = <code class="docutils literal notranslate"><span class="pre">.false.</span></code> ! flag for creating a complex wave function</p></td>
+<td><p>Whether the wave function is treated as complex-valued.</p></td>
+</tr>
+<tr class="row-odd"><td><p>real_contracted</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>ntyp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> :: ntyp ! Number of atomic types</p></td>
+<td><p>ntyp = <code class="docutils literal notranslate"><span class="pre">0</span></code> ! not used if fort.10 are not read</p></td>
+<td><p>Total number of element types in the system.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rs_read</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>write_log</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>axyz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">axyz(3,</span> <span class="pre">3)</span></code></p></td>
+<td><p>3x3 Identity matrix</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">axyz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span>
+<span class="w">    </span><span class="n">axyz</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.d0</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+</td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>nel_read</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>ignore input value?</p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>L_read</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_pfaff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Pfaffian wave function.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nodownpfaff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>nouppfaff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_tilted</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Set to .true. when using a non-orthorhombic cell.</p></td>
+</tr>
+<tr class="row-even"><td><p>unit_crystal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(len=12)</span> <span class="pre">::</span> <span class="pre">unit_crystal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'conventional'</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="electrons-section">
+<h3>electrons section<a class="headerlink" href="#electrons-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>twobody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-6</span></code></p></td>
+<td><p>Selects the functional form for the one-body and two-body Jastrow factors. See the wave-function format description for details.</p></td>
+</tr>
+<tr class="row-odd"><td><p>twobodypar(AMDNone)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">precision,</span> <span class="pre">allocatable</span> <span class="pre">::</span> <span class="pre">twobodypar(:)</span></code></p></td>
+<td><div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">twobodypar</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">twobodypar</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0d0</span>
+</pre></div>
+</div>
+</td>
+<td><p>Selects the initial values for the two-body Jastrow factor.</p></td>
+</tr>
+<tr class="row-even"><td><p>filling</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(20)</span> <span class="pre">::</span> <span class="pre">filling</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;diagonal&quot;</span></code></p></td>
+<td><p>filling = diagonal: Fill the initial detmat(:,:) and jasmat(:,:) with 1.d0 on the diagonal. filling = random: Fill with random numbers between (0,1.d0). filling = semidiagonal: Fill off-diagonal elements with random numbers between (0,0.1d0) and diagonal elements with 1.d0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>noonebody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>readatoms</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>orbtype</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(20)</span> <span class="pre">::</span> <span class="pre">orbtype</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;normal&quot;</span></code></p></td>
+<td><p>orbtype = normal: Use normal orbitals. orbtype = mixed: Use mixed orbitals. orbtype = tempered: Use tempered orbitals. The same applies for Jastrow orbitals with jorbtype.</p></td>
+</tr>
+<tr class="row-even"><td><p>nel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sum(zeta(2,</span> <span class="pre">1:natoms))</span></code></p></td>
+<td><p>Total number of electrons (sum of spin-up and spin-down). If not specified, it is assumed to be equal to the total nuclear charge (i.e., net charge zero).</p></td>
+</tr>
+<tr class="row-odd"><td><p>neldiff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>By default, the code determines the spin multiplicity from the total number of electrons nel (typically singlet, doublet, or triplet). To set a higher-spin state, you must provide an explicit input value.</p></td>
+<td><p>In Pfaffian mode (ipf == 2), the file format stores the total electron count with a negative sign (i.e., -nel). Therefore, do not specify neldiff directly as nelup − neldown. Instead, set neldiff from the parity of nel: use neldiff = 0 for even nel (closed-shell) and neldiff = 1 for odd nel (one unpaired electron). For higher-spin states, adjust the number of unpaired electrons accordingly (e.g., neldiff = 2 for two unpaired electrons, neldiff = 3 for three, etc.).</p></td>
+</tr>
+<tr class="row-even"><td><p>numpaired</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>jorbtype</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(20)</span> <span class="pre">::</span> <span class="pre">jorbtype</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;normal&quot;</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>onlycontrdet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>onlycontrjas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>shiftbeta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>shiftbeta = <code class="docutils literal notranslate"><span class="pre">1</span></code> ! default value for shiftbeta</p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>readunpaired</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>vecpbc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">vecpbc(3)</span></code></p></td>
+<td><ul class="simple">
+<li><p>vecpbc(1:3) = 1 if apbc(1:3) is .true.</p></li>
+<li><p>vecpbc(1:3) = 0 if apbc(1:3) is .false.</p></li>
+</ul>
+</td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesbump</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p>yesbump = <code class="docutils literal notranslate"><span class="pre">.false.</span></code> ! default value for yesbump</p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>onebodypar(PORT, AMDNone)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">precision,</span> <span class="pre">allocatable</span> <span class="pre">::</span> <span class="pre">onebodypar(:)</span></code></p></td>
+<td><p>allocate (onebodypar(ntyp))
+onebodypar = 0.0d0</p></td>
+<td><p>Selects the initial values for the two-body Jastrow factor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>niesd</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>ignore input value</p></li>
+<li><p>niesd must equal to <code class="docutils literal notranslate"><span class="pre">n_onebody</span> <span class="pre">+</span> <span class="pre">n_twobody</span></code></p></li>
+<li><p>otherwise program fails</p></li>
+</ul>
+</td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_crystal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if complexfort10 is .true. and pbcfort10 is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>When periodic boundary conditions are enabled, controls whether CRYSTAL BASIS is used for the determinant orbitals. If not used, the periodic boundary conditions are real-valued.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_crystalj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>When periodic boundary conditions are enabled, controls whether CRYSTAL BASIS is used for the Jastrow orbitals. If not used, the periodic boundary conditions are real-valued.</p></td>
+</tr>
+<tr class="row-even"><td><p>no_4body_jas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>For the three-body/four-body part of the Jastrow factor, controls whether the four-body terms—i.e., Jastrow factors for electron pairs belonging to different atoms—are enabled.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nopseudo</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>scale_jasfat</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="symmetries-section">
+<h3>symmetries section<a class="headerlink" href="#symmetries-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nosym</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If true, disables all symmetry operations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>notra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If true, disables translational symmetry.</p></td>
+</tr>
+<tr class="row-even"><td><p>forces_sym</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>notra_forces</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">notra</span></code> if forces_sym is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-even"><td><p>nosym_forces</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> (no input)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nosym</span></code> (ignore input value) if forces_sym is .false.</p></li>
+</ul>
+</td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>eqatoms</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>If eqatoms = .true., set the same value for all the exponents of the atomic basis if acting on the same type of atom. If eqatoms = .false., exponents corresponding to different atomic positions are equal only if related by spatial symmetries.</p></td>
+</tr>
+<tr class="row-even"><td><p>eq_intatoms</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rot_det</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>If true, enforces rotational symmetry on the pairing functions in the determinant part.</p></td>
+</tr>
+<tr class="row-even"><td><p>rot_jas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>If true, enforces rotational symmetry on the pairing functions in the Jastrow part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rot_pfaff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If true, enforces rotational symmetry on the pairing functions in the Pfaffian part.</p></td>
+</tr>
+<tr class="row-even"><td><p>nosym_contr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If true, does not impose symmetry on the contractions in the determinant part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nosym_contrj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If true, does not impose symmetry on the contractions in the Jastrow part.</p></td>
+</tr>
+<tr class="row-even"><td><p>symmagp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>If true, imposes antisymmetry on the AGP matrix, i.e., the state becomes a pure spin singlet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>forcesymm</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>forcesymm: WIP (to be documented).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="shells-section">
+<h3>shells section<a class="headerlink" href="#shells-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nshelljas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Specifies the number of basis-function shells used for the Jastrow part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nshelldet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Specifies the number of basis-function shells used for the determinant part.</p></td>
+</tr>
+<tr class="row-even"><td><p>njas_hyb</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>If specified, adds that many hybrid orbitals to the Jastrow part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ndet_hyb</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>If specified, adds that many hybrid orbitals to the determinant part.</p></td>
+</tr>
+<tr class="row-even"><td><p>no_3body_jas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ncut_hyb</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Not used.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="atomic-positions-section">
+<h3>ATOMIC POSITIONS section<a class="headerlink" href="#atomic-positions-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ATOMIC_POSITIONS</p></td>
+<td><p>WIP</p></td>
+<td><p>WIP</p></td>
+<td><p>Specifies atomic positions, using the same convention as Quantum ESPRESSO.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="atomic-species-section">
+<h3>ATOMIC SPECIES section<a class="headerlink" href="#atomic-species-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ATOMIC_SPECIES</p></td>
+<td><p>WIP</p></td>
+<td><p>WIP</p></td>
+<td><p>Specifies atomic species, using the same convention as Quantum ESPRESSO.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unpaired-section">
+<h3>UNPAIRED section<a class="headerlink" href="#unpaired-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>UNPAIRED</p></td>
+<td><p>WIP</p></td>
+<td><p>WIP</p></td>
+<td><p>Not used.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="atom-number-section-test">
+<h3>ATOM number section(test)<a class="headerlink" href="#atom-number-section-test" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&quot;ATOM_&quot;//trim(intc(zeta(1, i1)))</p></td>
+<td><p>WIP</p></td>
+<td><p>WIP</p></td>
+<td><p>Not used.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="funvsa.html" class="btn btn-neutral float-left" title="funvsa.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="orthomol.html" class="btn btn-neutral float-right" title="orthomol.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

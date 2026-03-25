@@ -1,0 +1,3008 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>turborvb.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Appendix" href="../../appendix/00index.html" />
+    <link rel="prev" title="readforward.x" href="readforward.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">turborvb.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-calculations">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-kernel-turborvb-serial-x-turborvb-mpi-x">Quantum Monte Carlo kernel (turborvb-serial.x, turborvb-mpi.x)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh">How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#simulation-section">simulation section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pseudo-section">pseudo section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#vmc-section">vmc section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#dmclrdmc-section">dmclrdmc section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#optimization-section">optimization section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#readio-section">readio section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#parameters-section">parameters section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#unused-section">unused section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#link-section">link section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#fitpar-section">fitpar section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#dynamic-section">dynamic section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#kpoints-section">kpoints section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#kpoints-lines-section">KPOINTS lines section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#molecul-section">molecul section</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">turborvb.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/turborvb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="turborvb-x">
+<span id="turborvbtutorial-command-turborvb-x"></span><h1>turborvb.x<a class="headerlink" href="#turborvb-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<section id="quantum-monte-carlo-calculations">
+<h3>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h3>
+<p>We describe input files that control variational and diffusion Monte Carlo simulations.
+TurboRVB input files are built using fortran namelists.
+Keywords are divided in different sections according to their meaning.</p>
+</section>
+<section id="quantum-monte-carlo-kernel-turborvb-serial-x-turborvb-mpi-x">
+<h3>Quantum Monte Carlo kernel (turborvb-serial.x, turborvb-mpi.x)<a class="headerlink" href="#quantum-monte-carlo-kernel-turborvb-serial-x-turborvb-mpi-x" title="Link to this heading"></a></h3>
+<p>turborvb.x is a binary to run QMC jobs.
+The input parameters are explained as <a class="reference internal" href="#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">follows</span></a>.</p>
+</section>
+<section id="how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh">
+<h3>How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)<a class="headerlink" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh" title="Link to this heading"></a></h3>
+<p>After a VMC calculation has finished, you can get the total energy
+(i.e., summation of the local energy), i.e.,</p>
+<div class="math notranslate nohighlight">
+\[E_{tot}=\int d {\bf{x}} \pi({\bf{x}}) e_L ({\bf{x}}) \sim \cfrac{1}{M} \sum_{i=1}^{M}e_L(x_i)\]</div>
+<p>by <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcevmc.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>wherein 10, 5, and 1 are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy  and its variance is written in <code class="docutils literal notranslate"><span class="pre">pip0.d</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat pip0.d</span>
+
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">1496</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-1.1379192772188327<span class="w">        </span><span class="m">1</span>.7589095174214898E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.7369139136828382E-003<span class="w">   </span><span class="m">2</span>.7618833870090571E-005
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.7510470092362484E-004<span class="w">   </span><span class="m">3</span>.9800256121536918E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">2</span>.6420266523220208<span class="w">       </span><span class="m">0</span>.10738159557488412
+</pre></div>
+</div>
+<p>If you want to calculate forces, put <code class="docutils literal notranslate"><span class="pre">ieskin=1</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;parameters</span></code> section.
+you may get <code class="docutils literal notranslate"><span class="pre">forcevmc.dat</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat forces_vmc.dat</span>
+
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">1</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.004763869201490E-003<span class="w">  </span><span class="m">4</span>.997922374161991E-005
+<span class="m">6</span>.273565633363322E-007
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.927675852724724E-003<span class="w">  </span><span class="m">4</span>.999242839793062E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.557134685159244<span class="w">       </span><span class="m">7</span>.437283601136703E-005
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.557596141151006<span class="w">       </span><span class="m">7</span>.447559481785158E-005
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-9.229119835232336E-004<span class="w">  </span><span class="m">2</span>.922997214772288E-006
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">2</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w"> </span>-6.004763869201487E-003<span class="w">  </span><span class="m">4</span>.997922374182328E-005
+<span class="m">6</span>.273565633389692E-007
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-6.927675852724721E-003<span class="w">  </span><span class="m">4</span>.999242839840503E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.557134685159244<span class="w">       </span><span class="m">7</span>.437283601136703E-005
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.557596141151006<span class="w">       </span><span class="m">7</span>.447559481785158E-005
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">9</span>.229119835232336E-004<span class="w">  </span><span class="m">2</span>.922997214772288E-006
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">3</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.200952773851219E-002<span class="w">  </span><span class="m">9</span>.995844747822329E-005
+<span class="m">1</span>.254713126751116E-006
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.385535170544853E-002<span class="w">  </span><span class="m">9</span>.998485679843661E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.11426937031852<span class="w">       </span><span class="m">1</span>.487456727691242E-004
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span>-1.11519228230199<span class="w">       </span><span class="m">1</span>.489511903810635E-004
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1.845823966936333E-003<span class="w">  </span><span class="m">5</span>.845994429761913E-006
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">Force</span></code> are total forces, <code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> are Hellman-Feyman contributions, and <code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> are Pulay contributions. In detail,</p>
+<div class="math notranslate nohighlight">
+\[F_{\alpha} = - \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L} - 2 \left(\braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} - \braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)}\right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the Jacobian of the <a class="reference external" href="https://doi.org/10.1063/1.3516208">warp transformation</a> if it is employed:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\bm {r}_i} = \bm{r}_i + \Delta \bm{R}_{a}\omega_{a} \left({\bm{r}_i} \right), {\rm{where}} ,\,\ \omega_{a} = \cfrac{F \left( |\bm{r}-\bm{R_{a}}| \right)}{\sum_{M}^{b=1} F \left( |\bm{r}-\bm{R_{b}}| \right)}.\]</div>
+<p>Indeed,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> corresponds to <span class="math notranslate nohighlight">\(- \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L}\)</span>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> corresponds to <span class="math notranslate nohighlight">\(2 \left(\braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \right)\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p>Note that the obtained force is the sum of force components when you specify the symmetry, i.e.,
+<code class="docutils literal notranslate"><span class="pre">Force</span></code> = <span class="math notranslate nohighlight">\(F_{1,x} + F_{2,z}\)</span> for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraints for forces: ion - coordinate</span>
+           <span class="mi">2</span>      <span class="mi">1</span>      <span class="mi">1</span>      <span class="mi">2</span>      <span class="mi">3</span>
+</pre></div>
+</div>
+<p>By the way, local energies, it derivatives, ... etc are saved in <code class="docutils literal notranslate"><span class="pre">fort.12</span></code>.
+This is a binary file. So, if you want to see it, please use the following python code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>scipy.io<span class="w"> </span>import<span class="w"> </span>FortranFile
+import<span class="w"> </span>numpy<span class="w"> </span>as<span class="w"> </span>np
+
+<span class="c1"># check length of fort.12</span>
+<span class="nv">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FortranFile<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">)</span>
+<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f.read_reals<span class="o">(</span><span class="nv">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="o">)</span>
+<span class="nv">column_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>len<span class="o">(</span>a<span class="o">)</span>
+f.close<span class="o">()</span>
+
+<span class="c1"># start reading fort.12</span>
+<span class="nv">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;head&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;tail&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.dtype<span class="o">([</span>head,<span class="w"> </span><span class="o">(</span><span class="s2">&quot;a&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;{}d&quot;</span>.format<span class="o">(</span>column_length<span class="o">))</span>,<span class="w"> </span>tail<span class="o">])</span>
+<span class="nv">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>open<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s2">&quot;r&quot;</span><span class="o">)</span>
+<span class="nv">fort12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.fromfile<span class="o">(</span>fd,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>dt,<span class="w"> </span><span class="nv">count</span><span class="o">=</span>-1<span class="o">)</span>
+<span class="nv">data_length</span><span class="o">=</span>len<span class="o">(</span>fort12<span class="o">)</span>
+fd.close<span class="o">()</span>
+<span class="c1"># end reading fort.12</span>
+
+print<span class="o">(</span>fort12<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10</span>
+&gt;&gt;&gt;<span class="w"> </span>fort12
+array<span class="o">([(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.23924971,<span class="w"> </span>-11.23924971,<span class="w"> </span><span class="m">126</span>.32073395<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.4465321<span class="w"> </span>,<span class="w"> </span>-11.4465321<span class="w"> </span>,<span class="w"> </span><span class="m">131</span>.02309712<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.25058355,<span class="w"> </span>-11.25058355,<span class="w"> </span><span class="m">126</span>.57563015<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.88021352,<span class="w"> </span>-11.88021352,<span class="w"> </span><span class="m">141</span>.13947319<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.89686295,<span class="w"> </span>-10.89686295,<span class="w"> </span><span class="m">118</span>.74162225<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.8906161<span class="w"> </span>,<span class="w"> </span>-11.8906161<span class="w"> </span>,<span class="w"> </span><span class="m">141</span>.38675112<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.50040878,<span class="w"> </span>-10.50040878,<span class="w"> </span><span class="m">110</span>.25858451<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.85804034,<span class="w"> </span>-10.85804034,<span class="w"> </span><span class="m">117</span>.89704005<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.3042634<span class="w"> </span>,<span class="w"> </span>-11.3042634<span class="w"> </span>,<span class="w"> </span><span class="m">127</span>.78637111<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.86745849,<span class="w"> </span>-10.86745849,<span class="w"> </span><span class="m">118</span>.10165397<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)]</span>,
+<span class="w">    </span><span class="nv">dtype</span><span class="o">=[(</span><span class="s1">&#39;head&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;i4&#39;</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span><span class="s1">&#39;a&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;f8&#39;</span>,<span class="w"> </span><span class="o">(</span><span class="m">5</span>,<span class="o">))</span>,<span class="w"> </span><span class="o">(</span><span class="s1">&#39;tail&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;i4&#39;</span><span class="o">)])</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10, ieskin=1 (force)</span>
+&gt;&gt;&gt;<span class="w"> </span>print<span class="o">(</span>fort12<span class="o">)</span>
+<span class="o">[(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.11415166e+01,<span class="w"> </span>-1.11415166e+01,<span class="w"> </span>-6.76788096e-02,<span class="w"> </span>-3.24756797e-01,<span class="w">  </span><span class="m">7</span>.54044578e-01,<span class="w">  </span><span class="m">1</span>.24133391e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.03517873e+01,<span class="w"> </span>-1.03517873e+01,<span class="w"> </span>-6.11591170e-01,<span class="w"> </span>-1.58829951e-01,<span class="w">  </span><span class="m">6</span>.33106171e+00,<span class="w">  </span><span class="m">1</span>.07159501e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10816574e+01,<span class="w"> </span>-1.10816574e+01,<span class="w"> </span>-9.54555883e-02,<span class="w"> </span>-1.03302282e-01,<span class="w">  </span><span class="m">1</span>.05780612e+00,<span class="w">  </span><span class="m">1</span>.22803130e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10699873e+01,<span class="w"> </span>-1.10699873e+01,<span class="w"> </span>-4.56617640e-01,<span class="w"> </span>-5.06874793e-02,<span class="w">  </span><span class="m">5</span>.05475147e+00,<span class="w">  </span><span class="m">1</span>.22544618e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.11472251e+01,<span class="w"> </span>-1.11472251e+01,<span class="w"> </span>-2.66696199e-01,<span class="w"> </span>-6.23362748e-02,<span class="w">  </span><span class="m">2</span>.97292255e+00,<span class="w">  </span><span class="m">1</span>.24260627e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.12157075e+01,<span class="w"> </span>-1.12157075e+01,<span class="w">  </span><span class="m">1</span>.11745432e-01,<span class="w"> </span>-4.24133841e-02,<span class="w"> </span>-1.25330408e+00,<span class="w">  </span><span class="m">1</span>.25792096e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.21590572e+01,<span class="w"> </span>-1.21590572e+01,<span class="w">  </span><span class="m">7</span>.54759031e-02,<span class="w"> </span>-1.60694240e-01,<span class="w"> </span>-9.17715821e-01,<span class="w">  </span><span class="m">1</span>.47842672e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.06346744e+01,<span class="w"> </span>-1.06346744e+01,<span class="w">  </span><span class="m">1</span>.97122176e-03,<span class="w"> </span>-8.72304548e-01,<span class="w"> </span>-2.09633016e-02,<span class="w">  </span><span class="m">1</span>.13096300e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.09934275e+01,<span class="w"> </span>-1.09934275e+01,<span class="w">  </span><span class="m">4</span>.44874974e-01,<span class="w">  </span><span class="m">5</span>.13646778e-01,<span class="w"> </span>-4.89070079e+00,<span class="w">  </span><span class="m">1</span>.20855449e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10323163e+01,<span class="w"> </span>-1.10323163e+01,<span class="w"> </span>-8.96736584e-02,<span class="w">  </span><span class="m">3</span>.65895834e-02,<span class="w">  </span><span class="m">9</span>.89308167e-01,<span class="w">  </span><span class="m">1</span>.21712004e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)]</span>
+</pre></div>
+</div>
+<p>It is a similar procedure in a LRDMC calculation. After a LRDMC calculation has finished, you can get the total energy by <code class="docutils literal notranslate"><span class="pre">forcefn.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcefn.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>wherein <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">correcting</span> <span class="pre">factor</span></code> (i.e., <span class="math notranslate nohighlight">\(p\)</span> in the above expression), <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps is <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy and its variance is written in pip0_fn.d.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>pip0_fn.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">1201</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0854289356563<span class="w">       </span><span class="m">1</span>.239503202184784E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.126708380716482<span class="w">       </span><span class="m">1</span>.148750765092961E-003
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.234807072779590E-004<span class="w">  </span><span class="m">2</span>.503947626011507E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.85075908836029<span class="w">       </span><span class="m">7</span>.596952532743223E-002
+Energy<span class="w"> </span><span class="o">(</span>ave<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-11.0854159959592<span class="w"> </span><span class="m">1</span>.144905833254917E-004
+</pre></div>
+</div>
+<p>In detail, local energies, it derivatives, ... etc are saved in <code class="docutils literal notranslate"><span class="pre">fort.12</span></code>.
+This is a binary file. So, if you want to see it, please use the following python code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>scipy.io<span class="w"> </span>import<span class="w"> </span>FortranFile
+import<span class="w"> </span>numpy<span class="w"> </span>as<span class="w"> </span>np
+
+<span class="c1"># check length of fort.12</span>
+<span class="nv">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FortranFile<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">)</span>
+<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f.read_reals<span class="o">(</span><span class="nv">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="o">)</span>
+<span class="nv">column_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>len<span class="o">(</span>a<span class="o">)</span>
+f.close<span class="o">()</span>
+
+<span class="c1"># start reading fort.12</span>
+<span class="nv">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;head&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;tail&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.dtype<span class="o">([</span>head,<span class="w"> </span><span class="o">(</span><span class="s2">&quot;a&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;{}d&quot;</span>.format<span class="o">(</span>column_length<span class="o">))</span>,<span class="w"> </span>tail<span class="o">])</span>
+<span class="nv">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>open<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s2">&quot;r&quot;</span><span class="o">)</span>
+<span class="nv">fort12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.fromfile<span class="o">(</span>fd,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>dt,<span class="w"> </span><span class="nv">count</span><span class="o">=</span>-1<span class="o">)</span>
+<span class="nv">data_length</span><span class="o">=</span>len<span class="o">(</span>fort12<span class="o">)</span>
+fd.close<span class="o">()</span>
+<span class="c1"># end reading fort.12</span>
+
+print<span class="o">(</span>fort12<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10</span>
+<span class="o">[(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.86170773e-01,<span class="w">  </span><span class="m">4</span>.99135464e-02,<span class="w">  </span><span class="m">9</span>.86170773e-01,<span class="w"> </span>-1.10385005e+01,<span class="w"> </span>-1.10168388e+01,<span class="w">  </span><span class="m">1</span>.15291960e+01,<span class="w">  </span><span class="m">8</span>.81420567e-01,<span class="w">  </span><span class="m">6</span>.98486471e-01,<span class="w">  </span><span class="m">2</span>.36894962e+01,<span class="w">  </span><span class="m">2</span>.43879827e+01,<span class="w">  </span><span class="m">1</span>.21370738e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.98338830e-01,<span class="w">  </span><span class="m">4</span>.99721051e-02,<span class="w">  </span><span class="m">9</span>.98338830e-01,<span class="w"> </span>-1.10927678e+01,<span class="w"> </span>-1.09222941e+01,<span class="w">  </span><span class="m">1</span>.19273579e+01,<span class="w">  </span><span class="m">8</span>.78528014e-01,<span class="w">  </span><span class="m">3</span>.38981825e+00,<span class="w">  </span><span class="m">2</span>.41699956e+01,<span class="w">  </span><span class="m">2</span>.75598139e+01,<span class="w">  </span><span class="m">1</span>.19296508e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00471589e+00,<span class="w">  </span><span class="m">4</span>.99333686e-02,<span class="w">  </span><span class="m">1</span>.00471589e+00,<span class="w"> </span>-1.10613899e+01,<span class="w"> </span>-1.12830842e+01,<span class="w">  </span><span class="m">1</span>.13634444e+01,<span class="w">  </span><span class="m">8</span>.85749131e-01,<span class="w">  </span><span class="m">1</span>.00489789e+00,<span class="w">  </span><span class="m">1</span>.45340719e+01,<span class="w">  </span><span class="m">1</span>.55389698e+01,<span class="w">  </span><span class="m">1</span>.27307988e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.01299329e+00,<span class="w">  </span><span class="m">5</span>.05361181e-02,<span class="w">  </span><span class="m">1</span>.01299329e+00,<span class="w"> </span>-1.11285545e+01,<span class="w"> </span>-1.09451392e+01,<span class="w">  </span><span class="m">7</span>.04597311e+00,<span class="w">  </span><span class="m">9</span>.31592950e-01,<span class="w">  </span><span class="m">7</span>.90368785e-01,<span class="w">  </span><span class="m">1</span>.20981738e+01,<span class="w">  </span><span class="m">1</span>.28885425e+01,<span class="w">  </span><span class="m">1</span>.19796072e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00768515e+00,<span class="w">  </span><span class="m">5</span>.01575002e-02,<span class="w">  </span><span class="m">1</span>.00768515e+00,<span class="w"> </span>-1.10766102e+01,<span class="w"> </span>-1.10519487e+01,<span class="w">  </span><span class="m">6</span>.23060416e+00,<span class="w">  </span><span class="m">9</span>.38800823e-01,<span class="w">  </span><span class="m">3</span>.91804603e-01,<span class="w">  </span><span class="m">1</span>.15920122e+01,<span class="w">  </span><span class="m">1</span>.19838168e+01,<span class="w">  </span><span class="m">1</span>.22145570e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00453664e+00,<span class="w">  </span><span class="m">5</span>.01341628e-02,<span class="w">  </span><span class="m">1</span>.00453664e+00,<span class="w"> </span>-1.10452450e+01,<span class="w"> </span>-1.11455370e+01,<span class="w">  </span><span class="m">6</span>.20564485e+00,<span class="w">  </span><span class="m">9</span>.37336722e-01,<span class="w">  </span><span class="m">1</span>.41905072e-01,<span class="w">  </span><span class="m">1</span>.17873053e+01,<span class="w">  </span><span class="m">1</span>.19292104e+01,<span class="w">  </span><span class="m">1</span>.24222994e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00089023e+00,<span class="w">  </span><span class="m">5</span>.01634269e-02,<span class="w">  </span><span class="m">1</span>.00089023e+00,<span class="w"> </span>-1.10088733e+01,<span class="w"> </span>-1.08850832e+01,<span class="w">  </span><span class="m">7</span>.46071511e+00,<span class="w">  </span><span class="m">9</span>.24659908e-01,<span class="w">  </span><span class="m">8</span>.62370954e-01,<span class="w">  </span><span class="m">1</span>.72063107e+01,<span class="w">  </span><span class="m">1</span>.80686817e+01,<span class="w">  </span><span class="m">1</span>.18485037e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.75216423e-01,<span class="w">  </span><span class="m">4</span>.94485892e-02,<span class="w">  </span><span class="m">9</span>.75216423e-01,<span class="w"> </span>-1.07494006e+01,<span class="w"> </span>-1.07035718e+01,<span class="w">  </span><span class="m">1</span>.08297761e+01,<span class="w">  </span><span class="m">8</span>.93990117e-01,<span class="w">  </span><span class="m">1</span>.53318195e+00,<span class="w">  </span><span class="m">2</span>.25737265e+01,<span class="w">  </span><span class="m">2</span>.41069084e+01,<span class="w">  </span><span class="m">1</span>.14566449e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00020845e+00,<span class="w">  </span><span class="m">5</span>.00654152e-02,<span class="w">  </span><span class="m">1</span>.00020845e+00,<span class="w"> </span>-1.10020818e+01,<span class="w"> </span>-1.09391772e+01,<span class="w">  </span><span class="m">9</span>.92690439e+00,<span class="w">  </span><span class="m">8</span>.99350239e-01,<span class="w">  </span><span class="m">2</span>.44630615e-01,<span class="w">  </span><span class="m">1</span>.76602181e+01,<span class="w">  </span><span class="m">1</span>.79048487e+01,<span class="w">  </span><span class="m">1</span>.19665598e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.98680471e-01,<span class="w">  </span><span class="m">4</span>.99068560e-02,<span class="w">  </span><span class="m">9</span>.98680471e-01,<span class="w"> </span>-1.09867801e+01,<span class="w"> </span>-1.11478923e+01,<span class="w">  </span><span class="m">1</span>.14530815e+01,<span class="w">  </span><span class="m">9</span>.02006051e-01,<span class="w">  </span><span class="m">5</span>.49970529e+00,<span class="w">  </span><span class="m">1</span>.87028590e+01,<span class="w">  </span><span class="m">2</span>.42025643e+01,<span class="w">  </span><span class="m">1</span>.24275504e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)]</span>
+</pre></div>
+</div>
+<p>When you do LRDMC calculations with several <span class="math notranslate nohighlight">\(a\)</span>, extrapolation <span class="math notranslate nohighlight">\(a \rightarrow 0\)</span> by <code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
+<span class="c1"># 2=(up to a^4) number of data 4 1</span>
+<span class="m">2</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-11.0850188375511<span class="w"> </span><span class="m">1</span>.250592379643920E-004
+<span class="m">0</span>.20<span class="w"> </span>-11.0854289356563<span class="w"> </span><span class="m">1</span>.239503202184784E-004
+<span class="m">0</span>.30<span class="w"> </span>-11.0855955871707<span class="w"> </span><span class="m">1</span>.334024389855123E-004
+<span class="m">0</span>.40<span class="w"> </span>-11.0860656088368<span class="w"> </span><span class="m">1</span>.279739901272860E-004
+<span class="m">0</span>.50<span class="w"> </span>-11.0868942724581<span class="w"> </span><span class="m">1</span>.340429878094154E-004
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>evsa.out
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">3</span>.24139195024559
+Coefficient<span class="w"> </span>found
+<span class="m">1</span><span class="w">  </span>-11.0529822174764<span class="w">       </span><span class="m">1</span>.886835280808058E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="m">2</span><span class="w"> </span>-3.752828455181791E-003<span class="w">  </span><span class="m">3</span>.868657694133935E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+<span class="m">3</span><span class="w"> </span>-2.343738962778753E-002<span class="w">  </span><span class="m">1</span>.487080872118977E-002<span class="w">  </span>&lt;-<span class="w"> </span>k_2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="input-output">
+<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="note">
+<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
+<p>TBD</p>
+</section>
+<section id="namelist">
+<span id="turborvbtutorial-command-turborvb-x-namelist"></span><h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+<p>Variable are read from standard input.</p>
+<section id="simulation-section">
+<h3>simulation section<a class="headerlink" href="#simulation-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>itestr4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><ul class="simple">
+<li><p>description(DFT):</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">itest4</span> <span class="pre">=</span> <span class="pre">-4</span></code>: Standard DFT run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">itest4</span> <span class="pre">=</span> <span class="pre">-8</span></code>: DFT calculation with twice larger basis for the Hartree potential.</p>
+<ul class="simple">
+<li><p>description(VMC):</p></li>
+</ul>
+<p>This keyword decides the optimization scheme and its kernel. It can assume an integer value according to the following scheme:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">2</span></code> (VMC) Variational Monte Carlo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-4</span></code> (VMC-opt) Wavefunction optimization by Hessian matrix method. Only the <strong>lambda</strong> parameters and the coefficients of the contracted orbitals are optimized.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-8</span></code> (VMC-opt) Wavefunction optimization by Hessian matrix method. All the parameters are optimized.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-9,</span> <span class="pre">-5</span></code> (VMC-opt) Same as -4, -8, respectively, but using Stochastic reconfiguration (SR) wavefunction optimization method.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-6</span></code> (LRDMC) Lattice Regularized Diffusion Monte Carlo.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-24,</span> <span class="pre">-28</span></code> (LRDMC-opt) Same as -4, -8, respectively, but the derivatives are computed using LRDMC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-29,</span> <span class="pre">-25</span></code> (LRDMC-opt) Same as -9, -5, respectively, but the derivatives are computed using LRDMC.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>iopt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><ul class="simple">
+<li><p>description(DFT):</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">1</span></code>: Initialize with no potential (no Hartree, xc, correlation).</p>
+<p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">0</span></code>: Continuation, starting from wavefunctions read from <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> and occupation read from <code class="docutils literal notranslate"><span class="pre">occupationlevels.dat</span></code> (both generated after <code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">1</span></code> run).</p>
+<p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">2</span></code>: Same as <code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">0</span></code>, but write main matrices (basis set/Hamiltonian overlaps, charge/spin density).</p>
+<p>-description(VMC):</p>
+<blockquote>
+<div><p>This keyword controls the starting of the run. It can assume the following integer values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">1</span></code>: New run from scratch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">0</span></code>: Continue from previous run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">2</span></code>: Initialize the optimization from the initial values given by fort.10, but read the previous equilibrated configuration.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span> <span class="pre">=</span> <span class="pre">3</span></code>: Same as 2, but when combined with molopt=-1, recomputes from scratch the projection matrices required to enforce a given number of molecular orbitals.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>ngen</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>The number of iterations of any chosen method. Represents the total number of samples for the local energy or energy derivatives. In case of optimization, it must be a multiple of nweight given in the &amp;optimization section.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nscra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nel</span> <span class="pre">/</span> <span class="pre">2</span></code> if ipf == 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*nel</span> <span class="pre">+</span> <span class="pre">2</span></code> if ipf /= 2</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Inside an MC step, the determinant is usually updated instead of being recalculated from scratch. To avoid error summation, it’s necessary to calculate it from scratch every nscra accepted moves.</p></td>
+</tr>
+<tr class="row-even"><td><p>nbra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic (4*nel, 2*nel, nel, 1, or 0)</p></td>
+<td><p>In VMC, it indicates the number of Metropolis steps before computing a new sample. In LRDMC, if &gt; 0, it uses the new more efficient method with perfect load balancing. Should be large enough (#electrons) to guarantee an efficient branching (% independent walkers / # walkers between 80% and 95%).</p></td>
+</tr>
+<tr class="row-odd"><td><p>iseedr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">236413883</span></code></p></td>
+<td><p>Seed of the random number generator.</p></td>
+</tr>
+<tr class="row-even"><td><p>nw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nproc</span></code></p></td>
+<td><p>Number of walkers. If not specified, it coincides with the number of processors. Otherwise, it must be a multiple of their number.</p></td>
+</tr>
+<tr class="row-odd"><td><p>kSq</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">precision</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d-8</span></code> if iespbc is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0d0</span></code>  if iespbc is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Precision for the Ewald summation.</p></td>
+</tr>
+<tr class="row-even"><td><p>kappar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>Coefficient in the Ewald summation. The default value depends on the crystal type (orthorombic, nonorthorohmbic).</p></td>
+</tr>
+<tr class="row-odd"><td><p>freqcheck</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if nproc == 1</p></li>
+<li><p>if nproc &gt; 1</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code> if ngen &gt; 1000</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">10</span></code> if ngen &gt; 100</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if ngen &lt;= 100</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Frequency for checking flag error.</p></td>
+</tr>
+<tr class="row-even"><td><p>membig</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Large memory is given or not.</p></td>
+</tr>
+<tr class="row-odd"><td><p>membigcpu</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Large memory is given or not.</p></td>
+</tr>
+<tr class="row-even"><td><p>developer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Unidentified (This will be removed in the future).</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesfast</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if ireadminr &gt; 0 and yesfast &gt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Fast I/O (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-even"><td><p>maxtime</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">86000</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>The program will stop after maxtime (sec.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>nproc_diag</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>The number of intra MPI communicators. 0 means no intra communicator (this will be removed in the future).</p></td>
+</tr>
+<tr class="row-even"><td><p>disk_io</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(len=80)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">'default'</span></code></p></td>
+<td><p>‘default’: default I/O, temporary files for each MPI process, ‘nocont’: minimal I/O no continuation, ‘mpiio’: temporary files are not generated for each MPI rank. They are gathered to single file.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ip_reshuff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-even"><td><p>compute_bands</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>double_mesh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>min_block</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic (1000 or 100)</p></td>
+<td><p>The minimum block size for computational efficiency at expense of memory, used for SCALAPACK. A smaller value will require less memory. (This will be removed in the future).</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_target</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic (200000 or 0)</p></td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-even"><td><p>max_targetsr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">max_target</span></code></p></td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-odd"><td><p>dielectric_ratio</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Parameter for dielectric constant: see dielectric.f90 (not tested).</p></td>
+</tr>
+<tr class="row-even"><td><p>dielectric_length</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Parameter for dielectric constant: see dielectric.f90 (not tested).</p></td>
+</tr>
+<tr class="row-odd"><td><p>case_diel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if dielectric_ratio /= 1.d0</p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if dielectric_ratio == 1.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if input case_diel &lt; 0 or case_diel &gt; 2</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Flag for dielectric constant: see dielectric.f90 (not tested).</p></td>
+</tr>
+<tr class="row-even"><td><p>neigh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if iespbc is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Neighbors in the Ewald summation (but not used?) unidentified.</p></td>
+</tr>
+<tr class="row-odd"><td><p>novec_loop1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Vectorize of subroutine upnewwf (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_sparse</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_sparse_choose</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if yesdft is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if yesdft is .false.</p></li>
+</ul>
+</td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+<tr class="row-even"><td><p>max_sparse_choice</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic (100 or 20)</p></td>
+<td><p>Unidentified (This will be moved to /developer/ namelist).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pseudo-section">
+<h3>pseudo section<a class="headerlink" href="#pseudo-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nintpsa</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>Number of integer points for pseudopotential, if present.</p></td>
+</tr>
+<tr class="row-odd"><td><p>npsamax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if npsa /= 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if npsa == 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>description(DFT):   Multiplication factor for the number of pseudo integration points. Note that, use npsmax &gt; 2 if the code terminates with the error ‘Increase npsamax’.</p></li>
+<li><p>description(QMC): Multiplication factor for the number of pseudo integration points. Note that, you should use npsmax &gt; 2 if the code terminates with the error ‘Increase npsamax’.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>pseudorandom</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> yesdft is .true. and double_mesh is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> otherwise</p></li>
+</ul>
+</td>
+<td><p>Use a random integration mesh for pseudo with the algorithm for QMC by R. Fahy.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="vmc-section">
+<h3>vmc section<a class="headerlink" href="#vmc-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tstep</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2.d0</span></code> if itest == 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if itest /= 2</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Time step for VMC moves. Adapted automatically.</p></td>
+</tr>
+<tr class="row-odd"><td><p>hopfraction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>The hopping ratio used in the MCMC. See. subroutine hopping in detail.</p></td>
+</tr>
+<tr class="row-even"><td><p>epscut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.00001d0</span></code> if itest /= 1 and itestr4 /= -7</p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p>if itest == 1 or itestr4 == -7</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if epscuttype == 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epscuttype</span></code> if epscuttype &lt; 0</p></li>
+<li><p>error if epscuttype &gt; 0</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>The threshold of regularization. epscut = 0 to be used only in the optimization of the Jastrow, when no regularization is necessary for finite variance energy derivatives. If epscut &gt; 0, a regularization is applied (epscuttype=2) and finite variance forces and energy derivatives can be computed. It is tuned automatically starting from the value in input.</p></td>
+</tr>
+<tr class="row-odd"><td><p>epstlrat</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dsqrt(epsmach)</span></code> if theta_reg == 0.5d0 and epstlrat is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>epstl = epstlrat*epscut. epstl is a precision control parameter used in subroutine ratio_psi() (if zero not used) dlamch(‘e’) is a lapack routine that returns the relative machine precision</p></td>
+</tr>
+<tr class="row-even"><td><p>epscuttype</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if epscut == 0.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if epscut &gt; 0.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1000</span></code> if epscut &lt; 0.d0</p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Accept default (0,2) determined by epscut. The type of regularization applied to the determinant. Type 0: no regularization. Type 2: best one. (Other options are possible but deprecated).</p></td>
+</tr>
+<tr class="row-odd"><td><p>alat2v</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>not used. This will be removed in the future</p></td>
+</tr>
+<tr class="row-even"><td><p>shift</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>unidentified</p></td>
+</tr>
+<tr class="row-odd"><td><p>change_epscut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> ignore input if itest /= 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>automatic adjustment of epscut</p></td>
+</tr>
+<tr class="row-even"><td><p>change_tstep</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> ignore input if itest /= 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>automatic adjustment of tstep</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsvar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0001d0</span></code></p></td>
+<td><p>epsvar is a precision control parameter used in subroutine ratiovar.f90 (if zero not used)</p></td>
+</tr>
+<tr class="row-even"><td><p>theta_reg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.375d0</span></code></p></td>
+<td><p>ratiodet = 1.d0/ratiodet**theta_reg used in subroutine ratiovar.f90. Eq.(121) in the paper [J. Chem. Phys. 152, 204121 (2020)].</p></td>
+</tr>
+<tr class="row-odd"><td><p>true_wagner</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if lrdmc_der is .true. and lrdmc_nonodes is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>cutweight</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>automatic (0.d0, 4*zmax, or others)</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nbra_cyrus</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>typereg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>npow</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dmclrdmc-section">
+<h3>dmclrdmc section<a class="headerlink" href="#dmclrdmc-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>etry</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Trial total energy. Please put the DFT or VMC energy.</p></td>
+</tr>
+<tr class="row-odd"><td><p>npow</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>The parameter npow gradually sets the degree of localization used in the effective Hamiltonian. npow = 0 corresponds to a Fixed Node Hamiltonian whereas npow = 1 corresponds to the local approximation. Accept default.</p></td>
+</tr>
+<tr class="row-even"><td><p>tbra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>required</p></td>
+<td><p>DMC time between consecutive branchings. Do not define when nbra &gt; 0 in the simulation section.</p></td>
+</tr>
+<tr class="row-odd"><td><p>gamma</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>The γ parameter in LRDMC. Accept default.</p></td>
+</tr>
+<tr class="row-even"><td><p>plat</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span> <span class="pre">plat(3)</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>a function p(r) dividing the dense and coarse regions. Default value is 0.0 for the single-grid LRDMC (i.e., alat2=0.0), automatically adjusted for the double-grid LRDMC (i.e., alat2=finite value)</p></td>
+</tr>
+<tr class="row-odd"><td><p>alat2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>if <cite>alat</cite> &gt; 0, <cite>alat2</cite> is set automatically (double-grid scheme), else (i.e., <cite>alat</cite> &lt; 0), the default value of <cite>alat2</cite> is 0.</p></td>
+<td><p>Double-grid Lattice space. alat2 = a’/a, where a is the smallest regularization grid and a’ is the larger one used in the valence region (i.e., far from nuclei). When you put a negative value for alat, you should not specify alat2 (i.e., please comment it out). The default value of alat2 is determined by Nakano’s algorithm.</p></td>
+</tr>
+<tr class="row-even"><td><p>alat</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itestr /= -6 and itestr4 /= -7 and itestr4 &gt;= -20</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0/zmax</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Z_max is the largest effective nuclear charge in the system. Lattice space a of the smallest regularization grid. Accept default. If you want to do a single-grid LRDMC calculation, please put a negative value to satisfy the detailed-balance. If you want to do a double-grid LRDMC, please put a positive value and switch on iesrandoma.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tstepfn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>0.0 -&gt; Fixed-node, 1.0 -&gt; LRDMC becomes a VMC calc.</p></td>
+</tr>
+<tr class="row-even"><td><p>Klrdmc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>η parameter of LRDMC. η = 1 + Ka^2</p></td>
+</tr>
+<tr class="row-odd"><td><p>optbra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-even"><td><p>parcutg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>1 for LRDMC, otherwise 0</p></td>
+<td><p>Use parcutg=1. parcutg=0 for standard LRDMC with no cutoff (energy unbounded), but it now works.</p></td>
+</tr>
+<tr class="row-odd"><td><p>novar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if parcutg == 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if parcutg /= 0 and itestr /= -6 and itestr4 /= -7 and itestr4 &gt;= -20</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>unclear, used for evaluating local energies in the subroutines updiag/updiag_complex compute the local energy both diagonal and off-diagonal part. Regularization of the Coulomb potential is also computed.</p></td>
+</tr>
+<tr class="row-even"><td><p>epscutdmc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>regularization used in a DMC calculation. the detail is under investigation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>typereg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>How to deal with the spin-flip term, 0: Standard (Det. + Jas.), 6: only Det.</p></td>
+</tr>
+<tr class="row-even"><td><p>epstldmc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p>if itest == 1 or itestr4 == -7</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if epscutdmc /= 0.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if epscutdmc == 0.d0 (ignore input)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>psidetln(j) is smaller than epstldmc, then kill the walker.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rejweight</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if (itest == 1 or itestr4 == -7) and itestr == -3</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>rejecting or rescaling the weights according to the acceptance/rejection step) in standard dmc or non local dmc with heat bath after all electron diffusion rejecting or rescaling the weights according to acceptance should be the best choice. In non local dmc with heat bath after single particle diffusion the best choice is not to reject the weights.</p></td>
+</tr>
+<tr class="row-even"><td><p>cutreg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>DMC cutoff on local energy (Ry).</p></td>
+</tr>
+<tr class="row-odd"><td><p>cutweight</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>regularization parameter in eq.4 of S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]</p></td>
+</tr>
+<tr class="row-even"><td><p>better_dmc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesalfe</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if itest == 1 or itestr4 == -7</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> itestr == -3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> itestr /= -3</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-even"><td><p>safelrdmc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-odd"><td><p>changelambda</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if itest == 1 or itestr4 == -7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> otherwise</p></li>
+</ul>
+</td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-even"><td><p>noblocking</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-odd"><td><p>add_diff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-even"><td><p>nbra_cyrus</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>A parameter to compute forces using the practical scheme developed by S. Moroni et al. (originally devised by Cyrus Umrigar), corresponding n in Eqs. 12 and 13 of the paper [J. Chem. Theory Comput. 2014, 10, 11, 4823–4829]</p></td>
+</tr>
+<tr class="row-odd"><td><p>lrdmc_der</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-even"><td><p>lrdmc_nonodes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-odd"><td><p>enforce_detailb</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>the detailed-balance</p></td>
+</tr>
+<tr class="row-even"><td><p>iesrandoma</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if enforce_detailb is .true. or alat &lt; 0.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>flag to randomize the direction of the electron’s diffusion.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zmin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>the minimum effective Z for which the double-grid LRDMC is applied.</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_fastbranch</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>unclear</p></td>
+</tr>
+<tr class="row-odd"><td><p>l0_kousuke</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2.d0</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>a parameter for the double-grid LRDMC. See “l” in the Eq.6 of the paper (Phys. Rev. B 101, 155106 (2020)).</p></td>
+</tr>
+<tr class="row-even"><td><p>nw_max</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</td>
+<td><p>max number of. walker</p></td>
+</tr>
+<tr class="row-odd"><td><p>true_wagner</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> lrdmc_der is .true. and lrdmc_nonodes is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>if true_wagner=2, the regularization developed by S. Pathak and L.K. Wagner [AIP Advances 10, 085213 (2020)]</p></td>
+</tr>
+<tr class="row-even"><td><p>weight_moroni</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.0d0</span></code></p></td>
+<td><p>unclear</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="optimization-section">
+<h3>optimization section<a class="headerlink" href="#optimization-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.35d0</span></code></p></td>
+<td><p>Optimization step; in the case of the linear method (itestr4 = -4, -8) reduces the step from its ideal value (tpar = 1) that is unfortunately unstable for large number of variational parameters or small statistics. In the simpler SR method tpar has to be set by hand as in the standard steepest descent method.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nfat</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>iboot</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if nmore_force &gt; 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iboot &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Number of step before making averages in the bin of length nweight. nweight-iboot has to be a multiple of nbinr.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nweight</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Number of sampling used for each iteration of the optimization steps.</p></td>
+</tr>
+<tr class="row-even"><td><p>nmore_force</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>If dynamics is employed, the number of samples used during the last step of optimization is increased by a factor (nmore_force+1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsi</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10000d0</span></code></p></td>
+<td><p>Cutoff for reducing too large changes of WF such that Δpsi/|psi| &gt; epsi.</p></td>
+</tr>
+<tr class="row-even"><td><p>eps_dyn5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsdgel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.001d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>kl</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-7</span></code> if no input</p></li>
+<li><p>with input value</p>
+<ul>
+<li><p>if npar /= 0 or nparsw /= 0 or nparinv /= 0 or npower /= 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">7</span></code> if kl &gt; 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-7</span></code> if kl &lt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Method used for the solution of the linear equation Sx = f, where f are energy derivatives and x parameters change in the stochastic reconfiguration. kl=-7 is mandatory for signalnoise=.true. optimization method. It is faster for large number of parameters and small number of sampling per processor. kl=-6 may be useful for small systems/computers when the number of sampling per processor is very large.</p></td>
+</tr>
+<tr class="row-odd"><td><p>idyn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>if yesquantum is .true. and yesturboq is .true.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">7</span></code> if idyn /= 5, 6, 7, 8</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>description(QMC):</p>
+<p>To choose the type of ion dynamics. The available options are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>idyn=0: No dynamic option specified, i.e. standard optimization at fixed ion positions.</p></li>
+<li><p>idyn=1: First order standard steepest descent dynamics.</p></li>
+<li><p>idyn=2: Second order standard with damping.</p></li>
+<li><p>idyn=3: More accurate.</p></li>
+<li><p>idyn=5: New accelerated molecular dynamics.</p></li>
+<li><p>idyn=6: Even more accurate but never published.</p></li>
+<li><p>idyn=7: New second order Ornstein Uhlenbeck damped Newton dynamics.</p></li>
+<li><p>idyn=8: Standard Ceriotti's second order damped Newton dynamics.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>nbinr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Number of bins used in the optimization step of length nweight-iboot. This binning is used to estimate error bars during the simulation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>npbra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>If npbra &gt; 0 in the linear method, npbra parameters with the largest signal to noise ratio are also included.</p></td>
+</tr>
+<tr class="row-even"><td><p>ncg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if ncg &gt; 1 and itestrr /= -4</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">np</span></code> if ncg &gt; np</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iskipdyn</span></code> if stepcg_recount is .true. and ncg &gt; iskipdyn</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>If ncg &gt; 1, a conjugate gradient approach is used with ncg gradients (generated on fly during the run) to accelerate convergence. ncg &gt; 1 can be used only with the linear method (itestr4 = -4, -8).</p></td>
+</tr>
+<tr class="row-odd"><td><p>minz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d-5</span></code></p></td>
+<td><p>Minimum/Maximum AGP orbital exponent Z allowed.</p></td>
+</tr>
+<tr class="row-even"><td><p>maxz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1000.d0</span></code></p></td>
+<td><p>Minimum/Maximum AGP orbital exponent Z allowed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>minzj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d-5</span></code> if no input</p></li>
+<li><p>use input value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">minz</span></code> if minzj == -1000.d0 and minz /= -1000.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Minimum/Maximum Jastrow orbital exponent Z allowed.</p></td>
+</tr>
+<tr class="row-even"><td><p>maxzj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxz</span></code> if minz /= -1000.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1000.d0</span></code> if minz == -1000.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Minimum/Maximum Jastrow orbital exponent Z allowed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>parr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.0d0</span></code></p></td>
+<td><p>Determines the accuracy in the calculationa of the inverse of the SR matrix. The smaller the value, the more accurate (and fast) is the optimization, but the stability of the method gets worse. It should be decreased systematically up to at least 0.001 for fairly accurate wavefunction optimizations.</p></td>
+</tr>
+<tr class="row-even"><td><p>parcute</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>parcut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">epsmach*100.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>parcutmin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>If ncg &gt; 1 is used in the minimization only the gradients that have a signal/noise ratio larger than parcutmin. If ncg = 0, the standard linear method with all parameters included in the optimization is used.</p></td>
+</tr>
+<tr class="row-odd"><td><p>parcutpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>If npbra &gt; 0, among the npbra selected, only the parameters with signal/noise ratio &gt; parcutpar are optimized.</p></td>
+</tr>
+<tr class="row-even"><td><p>tion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul>
+<li><p>if no input</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tpar</span></code> if signalnoise is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code> if signalnoise is .false.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+<td><p>When dynamics is on (idyn &gt; 0) it represents the time-step of the molecular dynamics. With idyn=5, has the scale of an energy and should be set small enough inversely proportional to the number of samples used to evaluate the covariance matrix.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tcell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">tion</span></code> if ncore &lt; 0 and tion /= -1.d0 and typedyncell /= 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>molopt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if molopt /= 0 and (itestr == -5 or read_molecul is .true.)</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><ul class="simple">
+<li><p>description(DFT): Do not change this value, as DFT works with molecular orbitals only.</p></li>
+<li><p>description(QMC): If molopt = -1 optimization with fixed number of molecular orbitals is performed (nmolmax in the &amp;molecul section should be defined in this case). If not specified, the standard optimization is employed.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>epstion</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>onebodysz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if twobodyoff is .true. and iessz is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>If .true., optimize only the one body part of the spin Jastrow factor.</p></td>
+</tr>
+<tr class="row-odd"><td><p>twobodyoff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>iesdtwobodyoff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>iesdonebodyoff</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>tolcg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-6</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>minjonetwobody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.05d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>symiesup</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yescutjas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yescutdet</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>fixpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>symmetrize_agp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>If .true. (default), symmetrize the agp at each iteration step, as it can deteriorate due to numerical accuracy.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesquantum</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if idyn == 8 and nbead &gt; 1</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>If yesquantum=.true. quantum effects are included. No kaverage is possible for the time being.</p></td>
+</tr>
+<tr class="row-even"><td><p>nbead</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">min(nproc,</span> <span class="pre">16)</span></code> idyn /= 0 and yesquantum is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>When yesquantum is true, one has to specify the number of beads of the corresponding path integral. The larger this number, the more accurate the Trotter approximation is (error vanishing as 1/nbead^2).</p></td>
+</tr>
+<tr class="row-odd"><td><p>yeswrite10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>oldscaling</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if idyn == 8</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>srcomplex</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> ipc == 1</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>power</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>signalnoise</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>If signalnoise=.true., one optimizes all the parameters (including atomic positions with ieskin ≠ 0) by following the direction of maximum signal to noise ratio. parr is also effective in this case to regularize the inversion.</p></td>
+</tr>
+<tr class="row-even"><td><p>gauge_fixing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>no initialize if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>beta_learning</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>noopt_onebody</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>scalermax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>no initialize if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if itest == 1 or itestr4 == -7</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yeswritebead</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesread10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>change_parr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>parr_max</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>parr_min</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p>`` 1d-4``</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay_changeparr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">20</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>maxiter_changeparr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>k6gen</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p>automatic(.false.)</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>max_ortho</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>prep</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic(-1 or others)</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>change_tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>inc_tpar_frequency</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">100</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">50</span></code> if use_stable_tpar is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>use_stable_tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>eps_umrigar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if parr &lt; 0.d0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-parr/10.d0</span></code> if no input</p></li>
+</ul>
+</li>
+<li><p>if parr &gt; 0.d0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if no input</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if eps_umrigar /= 0.d0 (ignore input)</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_adams</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>divide_tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4.0d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>multiply_tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>tpar_buffer_len</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">40</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>tpar_max</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>cut_sigma</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3.5d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>n_sigmas_tpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">5.0d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>len_tpar_stable_list</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">10</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_dgelscut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="readio-section">
+<h3>readio section<a class="headerlink" href="#readio-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ncore</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>np3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p>if np == -1</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itestr == -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iese</span> <span class="pre">+</span> <span class="pre">abs(isfix)</span> <span class="pre">+</span> <span class="pre">2*(abs(iesinv)</span> <span class="pre">+</span> <span class="pre">iesm</span> <span class="pre">+</span> <span class="pre">iesd</span> <span class="pre">+</span> <span class="pre">abs(iesfree)</span> <span class="pre">+</span> <span class="pre">abs(iessw)</span> <span class="pre">+</span> <span class="pre">iesup</span> <span class="pre">+</span> <span class="pre">iesking)</span> <span class="pre">+</span> <span class="pre">3*ieskin</span></code> if itestr /= -5</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>np</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>iread</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> if optbra &gt; 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if optbra &lt;= 3</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> if io_level == 2 and iread == 2</p></li>
+</ul>
+</td>
+<td><p>For correlated sampling or measuring correlation functions with readforward, use iread=3.</p></td>
+</tr>
+<tr class="row-even"><td><p>writescratch</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>Writes binary scratch files on disk to speed up continuation and allow non-self-consistent calculations and post-processing tools. The following files are written:</p></td>
+</tr>
+<tr class="row-odd"><td><p>wherescratch</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">character(60</span> <span class="pre">+</span> <span class="pre">lchlen)</span></code></p></td>
+<td><p>automatic('./' or 'old')</p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>unreliable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>ifreqdump</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nowrite12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>flush_write</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p>automatic(.true. or .false.)</p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="parameters-section">
+<h3>parameters section<a class="headerlink" href="#parameters-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ieser</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if itestr == -5</p></li>
+<li><p>if itestr /= -5</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">6</span></code> itestr == -6 or itestr4 == -7</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>iesinv</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs(iesinv)</span></code> if iesinv &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer (-1, 0 or 1). If neq 0, the spin Jastrow factor matrix is optimized, if allowed in the input fort.10. If &lt; 0, a range can be defined in the &amp;fitpar section with rmaxinv.</p></td>
+</tr>
+<tr class="row-even"><td><p>iesm</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Integer (0 or 1). If neq 0, the exponent and/or the contracted coefficient of the basis defining the Jastrow are optimized. When itestr4 = -4,-9, only contracted coefficients are optimized if the basis contains them, otherwise yeszj=.true. is switched on and exponents are optimized.</p></td>
+</tr>
+<tr class="row-odd"><td><p>iesd</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Integer (0 or 1). It acts as a switch for the 1-body and 2-body Jastrow.</p></td>
+</tr>
+<tr class="row-even"><td><p>isfix</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if itestr == -5</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (ignore input)</p></li>
+</ul>
+</li>
+<li><p>if itestr /= -5</p>
+<ul>
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if parcutg == 0</p></li>
+<li><p>if parcutg /= 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code> if gamma /= 0.d0 and optbra /= 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer (0 or 1). If iesfix = 1, the variance of the energy is printed out (no optimization assumed).</p></td>
+</tr>
+<tr class="row-odd"><td><p>iesfree</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs(iesfree)</span></code> if iesfree &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer (-1, 0 or 1). If neq 0, the density Jastrow factor matrix is optimized. If &lt; 0, a range can be defined in the &amp;fitpar section with rmaxj.</p></td>
+</tr>
+<tr class="row-even"><td><p>iessw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">abs(iessw)</span></code> if iessw &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer (-1, 0 or 1). If neq 0, the AGP matrix on the localized basis is optimized. If &lt; 0, a range can be defined in the &amp;fitpar section with rmax.</p></td>
+</tr>
+<tr class="row-odd"><td><p>iesup</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Integer (0 or 1). Same as the above, but for the determinantal part. yeszagp=.true. replaces yeszj in this case.</p></td>
+</tr>
+<tr class="row-even"><td><p>ieskin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>use input value or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieskin</span> <span class="pre">=</span> <span class="pre">ieskin</span> <span class="pre">+</span> <span class="pre">1</span></code> if yespress is .true. and iespbc is .true. and itestr /= -5 then</p></li>
+<li><p>use above value if ieskinold /= 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieskin</span> <span class="pre">=</span> <span class="pre">ieskin</span> <span class="pre">+</span> <span class="pre">2</span></code> if typedyncell == 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieskin</span> <span class="pre">=</span> <span class="pre">ieskin</span> <span class="pre">+</span> <span class="pre">3</span></code> if typedyncell == 2</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieskin</span> <span class="pre">=</span> <span class="pre">ieskin</span> <span class="pre">+</span> <span class="pre">1</span></code> if typedyncell == 3</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer (0 or 1). If nuclear forces have to be computed (especially with dynamics idyn &gt; 0), set ieskin &gt; 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yespress</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if iespbc is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if ieskinold == 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>warp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>powerwarp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">4.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>add_pulay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yespulay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>typedyncell</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic (-2, -1, 0, or 3)</p></td>
+<td><p>Integer value. typedyncell=0 means Standard NVT ensemble with no optimization of cell. typedyncell=1 implies fixed volume, but optimization of b/a and c/a at fixed volume V = a times b times c. typedyncell=2 stands for constant pressure, variable volume, optimizing a, b and c at pressfixed = constant. typedyncell=3 represents constant pressure and variable volume but without modifying b/a and c/a.</p></td>
+</tr>
+<tr class="row-odd"><td><p>scalepulay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> lrdmc_der is .true. and lrdmc_nonodes is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> otherwise</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>ext_pot</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>vdw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if exp_pot is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if link_atom is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>link_atom</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if ext_pot is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if mm_restr is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>mm_restr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if link_atom is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>write_rwalk</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_correct</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yesavopt</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> itestr = -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> itestr /= -5</p></li>
+</ul>
+</li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if nrep_bead &gt; 1 and yesquantum is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if kaverage is .true. and decoupled_run is .false. and molyes is .true. and yesavsr is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> (with mol optimiz.)</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesavsr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if kaverage is .true. and decoupled_run is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if nrep_bead &gt; 1 and yesquantum is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yesavcov</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if kaverage is .true. and decoupled_run is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nrep_bead</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yesperiodize</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if idyn /= 0 and yesquantum is .true. and yesturboq is .true. and yesperiodize is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_kpoints</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>epsbas</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p>if yes_scemama is .true.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0d-9</span></code> if yesdft is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0d-8</span></code> if yesdft is .false.</p></li>
+</ul>
+</li>
+<li><p>if yes_scemama is .false.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0d-8</span></code> if yesdft is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.0d-7</span></code> if yesdft is .false.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yeszj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> itestr3 == -8 .or. itestr3 == -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Logical value. If yeszj=.true., exponents of the Jastrow basis are optimized if iesm neq 0 even if itestr4 = -4, -9.</p></td>
+</tr>
+<tr class="row-even"><td><p>yeszagp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> itestr3 == -8 .or. itestr3 == -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Logical value. Same as above, but for the determinantal part.</p></td>
+</tr>
+<tr class="row-odd"><td><p>decoupled_run</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> yesdft is .true.</p></li>
+<li><p>yesdft is .false.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> itestr /= -5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> itestr == -5</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if kaverage is .false</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>scaleeloc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>cutoff_p</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real(8)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">9.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>fixa</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. If fixa = .true., a is kept fixed during dynamics.</p></td>
+</tr>
+<tr class="row-odd"><td><p>fixb</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. If fixb = .true., b is kept fixed during dynamics.</p></td>
+</tr>
+<tr class="row-even"><td><p>fixc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. If fixc = .true., c is kept fixed during dynamics.</p></td>
+</tr>
+<tr class="row-odd"><td><p>real_contracted</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>Logical value. For complex wf, if real_contracted=.true., only the real part of the contracted coefficient of the basis is optimized.</p></td>
+</tr>
+<tr class="row-even"><td><p>real_agp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>Logical value. For complex wf, if real_agp=.true. and iessw=neq 0, only the real part of the complex agp matrix is optimized. The imaginary part is assumed and set to zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>no_sjbra</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>pressfixed</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Value of the pressure in a.u., for dynamics at fixed pressure. Note: the classical value is not included.</p></td>
+</tr>
+<tr class="row-odd"><td><p>read_molecul</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>epsder</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-5</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yes_scemama</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yes_scemama_open</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="unused-section">
+<h3>unused section<a class="headerlink" href="#unused-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>rsignr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>beta</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>testderiv</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="link-section">
+<h3>link section<a class="headerlink" href="#link-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id9" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>calpha</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code> calpha(5)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">calpha(:)</span> <span class="pre">=</span> <span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fitpar-section">
+<h3>fitpar section<a class="headerlink" href="#fitpar-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id10" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nparinv</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iesinv &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>initparinv</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iesinv &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>rmaxinv</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if iesinv &gt;= 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if rmaxinv &lt;= 0 and iesinv &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Real value. If iesinv &lt; 0, then all matrix elements of the spin Jastrow at distance larger than rmaxinv are not optimized. The rule is the same as the ones above for the spin Jastrow.</p></td>
+</tr>
+<tr class="row-odd"><td><p>npar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iesfree &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>initpar</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iesfree &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>rmaxj</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if iesfree &gt;= 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if iesfree &lt; 0 and rmaxj &lt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Real value. If iefree &lt; 0, then all matrix elements of the Jastrow at distance larger than rmaxj are not optimized. rmaxj = 0 has the same meaning as above, implying that only the so-called 3-body Jastrow is optimized.</p></td>
+</tr>
+<tr class="row-even"><td><p>nparsw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iessw &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>initparsw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if iessw &gt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>rmax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if iessw &gt;= 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-10</span></code> if rmax &lt;= 0 and iessw &lt; 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Real value. If iessw &lt; 0, then all matrix elements of the AGP at distance larger than rmax are not optimized. rmax = 0 implies that no matrix elements connecting different atoms are optimized.</p></td>
+</tr>
+<tr class="row-odd"><td><p>npower</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>powermin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>npowersz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>powerminsz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>allfit</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dynamic-section">
+<h3>dynamic section<a class="headerlink" href="#dynamic-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id11" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>temp</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> if no input</p></li>
+<li><p>use input value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-0.5*temp*kboltz/rydberg</span></code> if temp &lt;= 0.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Real value. The temperature in a.u. If temp &lt; 0, then abs(temp) indicates the temperature in Kelvin. temp = 0 can be used for structural optimization. If the temperature is set to 0 K, it is purely structural optimization.</p></td>
+</tr>
+<tr class="row-odd"><td><p>friction</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Real value. It is necessary to keep it non-zero in Newtonian dynamics (idyn=4,7,8) but can be set to zero (recommended) for idyn=5 (the recommended dynamics).</p></td>
+</tr>
+<tr class="row-even"><td><p>delta0</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Real value. Used with idyn = 5, it is a parameter that can help with convergence in the small time step limit (tion to 0). It should be set in such a way that the Hessian matrix during the dynamics is well approximated by delta0 times Covariance matrix. For other dynamics, it represents a multiplicative factor applied to the covariance matrix used to decrease the correlation times. In these cases, delta0 has to be larger than a critical value depending on the time step. However, this is chosen by default.</p></td>
+</tr>
+<tr class="row-odd"><td><p>delta0q</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">friction</span></code> if idyn == 7 or idyn == 8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>delta0k</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> if idyn == 7 or idyn == 8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>scalecov</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code> if scalecov &lt;= 0.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>iskipdyn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input or iskipdyn &lt;= 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">nmore_force</span> <span class="pre">-</span> <span class="pre">1</span></code> if nmore_force &gt; 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if nmore_force &lt;= 1</p></li>
+</ul>
+</li>
+<li><p>if iskipdyn &gt; 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">iskipdyn</span> <span class="pre">+</span> <span class="pre">nmore_force</span> <span class="pre">-</span> <span class="pre">1</span></code> if nmore_force &gt; 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iskipdyn</span></code> if nmore_force &lt;= 1</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Integer value. After iskipdyn times nweight MC steps, check if dev_mat &lt; maxdev_dyn.</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxdev_dyn</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>Real value. After each WF optimization, it is the maximum value of dev max accepted for an ion move. Deprecated.</p></td>
+</tr>
+<tr class="row-even"><td><p>stepcg_recount</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>write_cov</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>normcorr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>Real value. If non-zero and equal to one, it applies the noise correction to reduce the bias implied by the statistical evaluation of forces. In theory it should work, but in practice, it has little effects. So it is recommended to set to zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesturboq</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if yesquantum is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if yesquantum is .false.</p></li>
+</ul>
+</li>
+<li><p>ignore input or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if idyn == 8 and nbread &gt; 1</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>yessecond</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if yesquantum is .true.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if yesquantum is .false.</p></li>
+</ul>
+</li>
+<li><p>ignore input  or above value</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if idyn == 8</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>smoothcut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>killcut</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>scale_mass</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.d0</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>eqcellab</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>eqcellac</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if eqcellab is .false.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if eqcellbc is .false.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>eqcellbc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> is eqcellab is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>yesrootc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>addrognoso</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if idyn == 5</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if idyn /= 5</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Logical value. With idyn = 5 it has to be set to .true. in order to eliminate the bias in describing the canonical ensemble for tion to 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>cleanrognoso</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kpoints-section">
+<h3>kpoints section<a class="headerlink" href="#kpoints-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id12" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kp_type</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><ul class="simple">
+<li><p>description(DFT):</p></li>
+</ul>
+<p>This integer specifies the type of k-points which will be chosen in the calculation.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kp_type</span> <span class="pre">=</span> <span class="pre">0</span></code>: Do not perform any k-points sampling and use the phase specified in the <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> as the unique k-point.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">kp_type</span> <span class="pre">=</span> <span class="pre">1</span></code>: Use the Monkhorst-Pack algorithm to generate equally-spaced k-points in the first Brillouin zone. The size of the grid in the three Cartesian directions is determined by the integers <code class="docutils literal notranslate"><span class="pre">nk1,</span> <span class="pre">nk2,</span> <span class="pre">nk3</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">nk1</span></code> must be set to a value &gt; 0. If <code class="docutils literal notranslate"><span class="pre">nk2,</span> <span class="pre">nk3</span></code> are not set, then they are taken to be equal to <code class="docutils literal notranslate"><span class="pre">nk1</span></code>. Also, if skip_equivalence (see below) is set to <code class="docutils literal notranslate"><span class="pre">.false.</span></code> the number of k-points might be reduced.</dt><dd><p>In this case, run the tool <code class="docutils literal notranslate"><span class="pre">find_kpoints.x</span></code> with the desired input in order to know how many processors must be allocated.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kp_type</span> <span class="pre">=</span> <span class="pre">2</span></code>: When this is used, k-points are set by the user and their number is specified by the integer <code class="docutils literal notranslate"><span class="pre">nk1</span></code>. In this case, the section <strong>KPOINTS</strong> is needed (see below).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kp_type</span> <span class="pre">=</span> <span class="pre">3</span></code>: Generates k-points path along high-symmetry lines in the first Brillouin zone. The initial and final points of these segments are specified in the section <strong>KPOINTS</strong> (see below). The number of extremal points is specified by the integer <code class="docutils literal notranslate"><span class="pre">nk1</span></code> and the number of points in each segment is specified by the integer <code class="docutils literal notranslate"><span class="pre">nk2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kp_type</span> <span class="pre">=</span> <span class="pre">4</span></code>: Generate k-points randomly within the first Brillouin zone. The number of k-points is specified by <code class="docutils literal notranslate"><span class="pre">nk1</span></code>. <strong>KPOINTS</strong> section is not needed.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>nk1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-1</span></code></p></td>
+<td><p>Meanings depend on the value of kp_type, see above for a detailed explanation.</p></td>
+</tr>
+<tr class="row-even"><td><p>nk2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nk1</span></code> if manyfort10 is .true. and nbead &lt;= 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Meanings depend on the value of kp_type, see above for a detailed explanation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>nk3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nk1</span></code> if manyfort10 is .true. and nbread &lt;= 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-1</span></code> otherwise</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Meanings depend on the value of kp_type, see above for a detailed explanation.</p></td>
+</tr>
+<tr class="row-even"><td><p>k1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>For kp_type = 1, set k1, k2, k3 equal to 1 in order to apply an offset to the k-point grid generated by the Monkhorst-Pack algorithm. In some cases, this can help to reach</p></td>
+</tr>
+<tr class="row-odd"><td><p>k2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>For kp_type = 1, set k1, k2, k3 equal to 1 in order to apply an offset to the k-point grid generated by the Monkhorst-Pack algorithm. In some cases, this can help to reach</p></td>
+</tr>
+<tr class="row-even"><td><p>k3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>For kp_type = 1, set k1, k2, k3 equal to 1 in order to apply an offset to the k-point grid generated by the Monkhorst-Pack algorithm. In some cases, this can help to reach</p></td>
+</tr>
+<tr class="row-odd"><td><p>time_reversal</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>skip_equivalence</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>double_kpgrid</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> if no input</p></li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if manyfort10 is .true. and nbead &lt;= 1 and abs(kp_type) == 5</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>compute_bands</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="kpoints-lines-section">
+<h3>KPOINTS lines section<a class="headerlink" href="#kpoints-lines-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id13" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>KPOINTS</p></td>
+<td><p>WIP</p></td>
+<td><p>Required for a calculation with a k-grid.</p></td>
+<td><p>User-defined k-points are written in the following manner. wkp(i) denotes the weight corresponding to the kpoint xkp(:,i) if the total weight is different from one.:</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="molecul-section">
+<h3>molecul section<a class="headerlink" href="#molecul-section" title="Link to this heading"></a></h3>
+<table class="docutils align-default" id="id14">
+<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id14" title="Link to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter name</p></th>
+<th class="head"><p>Datatype</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>epsdgm</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-14</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nx</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0</span></code> (error, input required)</p></td>
+<td><p>Number of lattice points for the real space integration grid in the x direction. By default, nx = ny = nz</p></td>
+</tr>
+<tr class="row-even"><td><p>ny</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nx</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>nz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ny</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nbufd</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><p>automatic</p></td>
+<td><p>Input value for the buffer dimension. Note that, in the complex code, the buffer dimension is automatically doubled. In this case, consider decreasing the buffer dimension if you have a memory problem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">0.d0</span></code></p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cellscale(1)/nx</span></code> if iespbc is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>Space (a.u.) for an open system in the x direction; for periodic systems, it is chosen as the cell parameter in the same direction and need not be specified. By default, ax = ay = az</p></td>
+</tr>
+<tr class="row-even"><td><p>ay</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ax</span></code></p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cellscale(2)/ny</span></code> if iespbc is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>az</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ay</span></code></p></li>
+</ul>
+</li>
+<li><p>ignore input</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cellscale(3)/nz</span></code> if iespbc is .true.</p></li>
+</ul>
+</div></blockquote>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nmolmin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">neldo</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>smearing</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1d-5</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nmolmax</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nmol</span></code> if <code class="docutils literal notranslate"><span class="pre">neldo</span> <span class="pre">==</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">neldo</span></code> otherwise</p></li>
+</ul>
+</li>
+<li><p>error if nmolmax &lt; neldo</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>weight_loc</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-1.d0</span></code> if no input</p></li>
+<li><p>if weight_loc == 0</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsdgm**2</span></code> if epsdgm == 0.d0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1d-8</span></code> if epsdgm /= 0.d0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>orthoyes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></li>
+</ul>
+</li>
+<li><p>ignore input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> if gramyes is .true.</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>epsrem_contr</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">real*8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">epsdgel</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>nmolmaxw</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">integer</span></code></p></td>
+<td><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nmolmax</span></code> if no input</p></li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>gramyes</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>add_onebody2det</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><ul class="simple">
+<li><p>if no input</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code> npsar &gt; 0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code> npsar &lt;= 0</p></li>
+</ul>
+</li>
+</ul>
+</td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shift_origin</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.true.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>shiftx</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-odd"><td><p>shifty</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+<tr class="row-even"><td><p>shiftz</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">logical</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.false.</span></code></p></td>
+<td><p>WIP</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="readforward.html" class="btn btn-neutral float-left" title="readforward.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../appendix/00index.html" class="btn btn-neutral float-right" title="Appendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

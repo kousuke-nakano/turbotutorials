@@ -1,0 +1,2 @@
+Parameter name,Datatype,Default,Description
+ATOMIC_POSITIONS,WIP,WIP,"Specifies atomic positions, using the same convention as Quantum ESPRESSO."

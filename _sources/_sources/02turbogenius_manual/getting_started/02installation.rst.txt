@@ -23,9 +23,18 @@ Before installing the packages, ensure you have the following prerequisites:
 TurboGenius also depends on the following Python packages, which will be automatically installed during the installation process:
 
 * numpy (version 1.x)
-* pandas
+* pandas<=2.3
+
+  .. warning::
+
+     being updated for pandas==3.0
 * matplotlib
-* trexio
+* trexio<=2.5.0
+
+  .. note::
+
+     Something wrong in trexio==2.6.0
+
 * trexio-tools
 * basis-set-exchange
 * ase
@@ -39,35 +48,46 @@ TurboGenius also depends on the following Python packages, which will be automat
 To run the tutorials, the users also need to install the following software:
 
 * PySCF
+* tools for HDF5
 
+  * ``apt install libhdf5-dev`` (debian, ubuntu)
+  * ``brew install hdf5`` (mac)
+
+  .. note::
+
+     You must install libhdf5-dev before installing trexio and build trexio with
+
+     .. code-block:: console
+
+        % pip install --no-binary=trexio "trexio==2.5.0"
 
 Installation procedure
 --------------------------------------------
 
 Let's make a conda environment to install turbogenius (if you prefer)
 
-.. code-block:: bash
+.. code-block:: console
 
     % conda create -n turborvb python=3.8
     % conda activate turborvb
 
 Please download the source codes from the GitHub repository.
 
-.. code-block:: bash
+.. code-block:: console
 
     % cd ~/applications
     % git clone https://github.com/kousuke-nakano/turbogenius.git
 
 Let's install turbogenius via pip
 
-.. code-block:: bash
+.. code-block:: console
 
     % cd turbogenius
     % pip install -e .    # Install in development mode
 
 Test if it works.
 
-.. code-block:: bash
+.. code-block:: console
 
     % turbogenius --help
 
@@ -81,7 +101,7 @@ Common issues and solutions:
 
 1. If the help output is not shown, and the following error messages are produced instead:
 
-   .. code-block:: plain
+   .. code-block:: console
 
         $ turbogenius --help
         Traceback (most recent call last):

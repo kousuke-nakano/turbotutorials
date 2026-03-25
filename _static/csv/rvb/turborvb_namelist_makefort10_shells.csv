@@ -1,0 +1,7 @@
+Parameter name,Datatype,Default,Description
+nshelljas,``integer``,``0``,Specifies the number of basis-function shells used for the Jastrow part.
+nshelldet,``integer``,``0``,Specifies the number of basis-function shells used for the determinant part.
+njas_hyb,``integer``,``0``,"If specified, adds that many hybrid orbitals to the Jastrow part."
+ndet_hyb,``integer``,``0``,"If specified, adds that many hybrid orbitals to the determinant part."
+no_3body_jas,``logical``,``.false.``,Not used.
+ncut_hyb,``integer``,``-1``,Not used.

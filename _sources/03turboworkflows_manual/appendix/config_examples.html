@@ -1,25 +1,29 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Configuration File Examples &mdash; Turbotutorials Updated on 16/03/2026 documentation</title>
+  <title>Configuration File Examples &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=153a98d2" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=8c82a8a3"></script>
-      <script src="../../../_static/doctools.js?v=888ff710"></script>
-      <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Acknowledgements" href="../../acknowledgements/00index.html" />
     <link rel="prev" title="Appendix" href="00index.html" /> 
 </head>
 
@@ -43,8 +47,7 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../00installation/00installation.html">Installation of packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manuals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
@@ -53,13 +56,27 @@
 <li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="00index.html">Appendix</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Configuration File Examples</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#job-script-templates">Job Script Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#job-script-templates">Job Script Templates</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#for-slurm">For Slurm</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#submit-mpi-sh">submit_mpi.sh</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#submit-nompi-sh">submit_nompi.sh</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#for-pbs">For PBS</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id1">submit_mpi.sh</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id2">submit_nompi.sh</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
 
         </div>
@@ -89,14 +106,14 @@
            <div itemprop="articleBody">
              
   <section id="configuration-file-examples">
-<span id="turboworkflows-config-examples"></span><h1>Configuration File Examples<a class="headerlink" href="#configuration-file-examples" title="Permalink to this heading"></a></h1>
+<span id="turboworkflows-config-examples"></span><h1>Configuration File Examples<a class="headerlink" href="#configuration-file-examples" title="Link to this heading"></a></h1>
 <section id="job-script-templates">
-<h2>Job Script Templates<a class="headerlink" href="#job-script-templates" title="Permalink to this heading"></a></h2>
+<h2>Job Script Templates<a class="headerlink" href="#job-script-templates" title="Link to this heading"></a></h2>
 <p>Examples of job script templates for each server are shown below.</p>
 <section id="for-slurm">
-<h3>For Slurm<a class="headerlink" href="#for-slurm" title="Permalink to this heading"></a></h3>
+<h3>For Slurm<a class="headerlink" href="#for-slurm" title="Link to this heading"></a></h3>
 <section id="submit-mpi-sh">
-<h4>submit_mpi.sh<a class="headerlink" href="#submit-mpi-sh" title="Permalink to this heading"></a></h4>
+<h4>submit_mpi.sh<a class="headerlink" href="#submit-mpi-sh" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --account=_QUEUE_</span>
 <span class="c1">#SBATCH --partition=_QUEUE_</span>
@@ -127,7 +144,7 @@ srun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$CORES</
 </div>
 </section>
 <section id="submit-nompi-sh">
-<h4>submit_nompi.sh<a class="headerlink" href="#submit-nompi-sh" title="Permalink to this heading"></a></h4>
+<h4>submit_nompi.sh<a class="headerlink" href="#submit-nompi-sh" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 
 <span class="c1"># Note:</span>
@@ -152,9 +169,9 @@ srun<span class="w"> </span>-np<span class="w"> </span><span class="nv">$CORES</
 </section>
 </section>
 <section id="for-pbs">
-<h3>For PBS<a class="headerlink" href="#for-pbs" title="Permalink to this heading"></a></h3>
+<h3>For PBS<a class="headerlink" href="#for-pbs" title="Link to this heading"></a></h3>
 <section id="id1">
-<h4>submit_mpi.sh<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<h4>submit_mpi.sh<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#PBS -q _QUEUE_</span>
 <span class="c1">#PBS -N _JOBNAME_</span>
@@ -186,7 +203,7 @@ mpirun<span class="w"> </span>-machinefile<span class="w"> </span><span class="s
 </div>
 </section>
 <section id="id2">
-<h4>submit_nompi.sh<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<h4>submit_nompi.sh<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#PBS -q _QUEUE_</span>
 <span class="c1">#PBS -N _JOBNAME_</span>
@@ -226,12 +243,13 @@ mpirun<span class="w"> </span>-machinefile<span class="w"> </span><span class="s
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="00index.html" class="btn btn-neutral float-left" title="Appendix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../acknowledgements/00index.html" class="btn btn-neutral float-right" title="Acknowledgements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators.</p>
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

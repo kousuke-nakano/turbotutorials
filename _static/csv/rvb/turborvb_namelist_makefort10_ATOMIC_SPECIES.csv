@@ -1,0 +1,2 @@
+Parameter name,Datatype,Default,Description
+ATOMIC_SPECIES,WIP,WIP,"Specifies atomic species, using the same convention as Quantum ESPRESSO."

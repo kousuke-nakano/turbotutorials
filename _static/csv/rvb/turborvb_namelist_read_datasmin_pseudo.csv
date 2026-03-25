@@ -1,0 +1,10 @@
+Parameter name,Datatype,Default,Description
+nintpsa,``integer``,automatic,"Number of integer points for pseudopotential, if present."
+npsamax,``integer``,"- if no input
+
+  + ``2`` if npsa /= 0
+  + ``1`` if npsa == 0
+","- description(DFT):   Multiplication factor for the number of pseudo integration points. Note that, use npsmax > 2 if the code terminates with the error ‘Increase npsamax’.
+- description(QMC): Multiplication factor for the number of pseudo integration points. Note that, you should use npsmax > 2 if the code terminates with the error ‘Increase npsamax’."
+pseudorandom,``logical``,"- ``.false.`` yesdft is .true. and double_mesh is .true.
+- ``.true.`` otherwise",Use a random integration mesh for pseudo with the algorithm for QMC by R. Fahy.

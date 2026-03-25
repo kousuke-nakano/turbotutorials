@@ -1,0 +1,20 @@
+Parameter name,Datatype,Default,Description
+nosym,``logical``,``.false.``,"If true, disables all symmetry operations."
+notra,``logical``,``.false.``,"If true, disables translational symmetry."
+forces_sym,``logical``,``.false.``,Not used.
+notra_forces,``logical``,"- ``.false.`` if no input
+- ignore input
+
+  + ``notra`` if forces_sym is .false.",Not used.
+nosym_forces,``logical``,"- ``.false.`` (no input)
+- ``nosym`` (ignore input value) if forces_sym is .false.",Not used.
+eqatoms,``logical``,``.true.``,"If eqatoms = .true., set the same value for all the exponents of the atomic basis if acting on the same type of atom. If eqatoms = .false., exponents corresponding to different atomic positions are equal only if related by spatial symmetries.
+"
+eq_intatoms,``logical``,``.true.``,Not used.
+rot_det,``logical``,``.true.``,"If true, enforces rotational symmetry on the pairing functions in the determinant part."
+rot_jas,``logical``,``.true.``,"If true, enforces rotational symmetry on the pairing functions in the Jastrow part."
+rot_pfaff,``logical``,``.false.``,"If true, enforces rotational symmetry on the pairing functions in the Pfaffian part."
+nosym_contr,``logical``,``.false.``,"If true, does not impose symmetry on the contractions in the determinant part."
+nosym_contrj,``logical``,``.false.``,"If true, does not impose symmetry on the contractions in the Jastrow part."
+symmagp,``logical``,``.true.``,"If true, imposes antisymmetry on the AGP matrix, i.e., the state becomes a pure spin singlet."
+forcesymm,``logical``,``.false.``,forcesymm: WIP (to be documented).
