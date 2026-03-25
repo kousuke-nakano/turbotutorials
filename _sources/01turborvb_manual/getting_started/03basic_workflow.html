@@ -23,7 +23,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="TurboRVB tutorials" href="../tutorials/00index.html" />
+    <link rel="next" title="Structure of TurboRVB" href="../structure/00index.html" />
     <link rel="prev" title="Installation of TurboRVB" href="02installation.html" /> 
 </head>
 
@@ -52,11 +52,14 @@
 <li class="toctree-l3"><a class="reference internal" href="01nutshell.html">TurboRVB in a nutshell</a></li>
 <li class="toctree-l3"><a class="reference internal" href="02installation.html">Installation of TurboRVB</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Basic workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-workflow">Detailed workflow</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reference-link">Reference link</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Reference guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
@@ -96,57 +99,74 @@
              
   <section id="basic-workflow">
 <h1>Basic workflow<a class="headerlink" href="#basic-workflow" title="Link to this heading"></a></h1>
-<p>This is a basic workflow:</p>
+<p>This page outlines a <strong>typical path</strong> for running TurboRVB: from building or converting a trial wave function in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> format, through optional DFT-based preparation, variational optimization, and finally production VMC (or related QMC) runs. The exact order depends on your project—for example, you may skip DFT if you already have a suitable <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>—but the diagrams below show how the pieces fit together in many tutorials.</p>
+<p>The workflow is intentionally modular: each box in the figures corresponds to tools and input files documented elsewhere in this manual. Use the reference links at the bottom to jump to command-line details and examples.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>The first figure gives a <strong>high-level</strong> view: data and programs flow from an initial guess for the wave function toward optimized parameters and statistical estimates of energies and other observables.</p>
 <a class="reference internal image-reference" href="../../../_images/workflow_detailed.jpeg"><img alt="../../../_images/workflow_detailed.jpeg" class="align-center" height="819" src="../../../_images/workflow_detailed.jpeg" width="614" />
 </a>
-<p>This is the detailed workflow of this tutorial in this section <a class="reference internal" href="../tutorials/01_01Hydrogen_dimer/tutorial.html#turborvbtutorial-0101"><span class="std std-ref">01_01Hydrogen_dimer</span></a>:</p>
+</section>
+<section id="detailed-workflow">
+<h2>Detailed workflow<a class="headerlink" href="#detailed-workflow" title="Link to this heading"></a></h2>
+<p>The second figure is the <strong>detailed workflow</strong> used in the tutorial (see <a class="reference internal" href="../tutorials/01_01Hydrogen_dimer/tutorial.html#turborvbtutorial-0101"><span class="std std-ref">01_01Hydrogen_dimer</span></a>). It is more granular than the overview above and matches the step-by-step exercises you will follow there.</p>
 <a class="reference internal image-reference" href="../../../_images/turbo_flow.jpg"><img alt="../../../_images/turbo_flow.jpg" class="align-center" height="1343" src="../../../_images/turbo_flow.jpg" width="582" />
 </a>
+<p>If you are working through the tutorial, treat this diagram as a roadmap: complete each stage in order unless the text explicitly says a step is optional.</p>
+</section>
 <section id="reference-link">
 <h2>Reference link<a class="headerlink" href="#reference-link" title="Link to this heading"></a></h2>
+<p>Below, each item names a <strong>stage</strong> in the workflow and points to the commands or scripts that implement it. Open the linked pages for syntax, namelists, and typical use cases.</p>
 <ul>
-<li><p>make <code class="docutils literal notranslate"><span class="pre">fort.10</span></code></p>
+<li><p><strong>Prepare ``fort.10`` (trial wave function)</strong></p>
 <blockquote>
-<div><ul class="simple">
+<div><p>You need a valid <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> before running <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code>. It can be generated from scratch, converted from another format, or adapted from a previous QMC run.</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="../reference/commands/makefort10.html#turborvbtutorial-command-makefort10-x"><span class="std std-ref">makefort10.x</span></a></p></li>
 <li><p><a class="reference internal" href="../reference/commands/convertfort10mol.html#turborvbtutorial-command-convertfort10mol-x"><span class="std std-ref">convertfort10mol.x</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>DFT</p>
+<li><p><strong>DFT (optional initial orbitals)</strong></p>
 <blockquote>
-<div><ul class="simple">
+<div><p>For many molecular or solid setups, a DFT calculation (e.g. with the built-in <strong>prep</strong> machinery) provides molecular orbitals or a reasonable single-particle starting point that is then embedded or converted into TurboRVB’s Jastrow–geminal / AGP style <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="../reference/commands/prep.html#turborvbtutorial-command-prep-x"><span class="std std-ref">prep.x</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>optimization</p>
+<li><p><strong>Wave-function optimization</strong></p>
 <blockquote>
-<div><ul class="simple">
-<li><p><a class="reference internal" href="../reference/commands/plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html#turborvbtutorial-command-plots"><span class="std std-ref">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</span></a></p></li>
+<div><p>VMC with energy minimization improves Jastrow factors, geminal/Pfaffian parameters, and possibly orbital coefficients. Monitoring tools help you judge convergence (energy, <code class="docutils literal notranslate"><span class="pre">devmax</span></code>, etc.) before long production runs.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../reference/commands/turborvb.html#turborvbtutorial-command-turborvb-x"><span class="std std-ref">turborvb.x</span></a></p></li>
+<li><p><a class="reference internal" href="../reference/commands/plot_tools.html#turborvbtutorial-command-plot-tools"><span class="std std-ref">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</span></a></p></li>
 <li><p><a class="reference internal" href="../reference/commands/readalles.html#turborvbtutorial-command-readalles-x"><span class="std std-ref">readalles.x</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>VMC</p>
+<li><p><strong>VMC (sampling and forces)</strong></p>
 <blockquote>
-<div><ul class="simple">
+<div><p>After optimization—or with a fixed trial wave function—you run <strong>turborvb.x</strong> for importance sampling, energies, and optionally forces. Shell helpers can post-process binary outputs.</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="../reference/commands/turborvb.html#turborvbtutorial-command-turborvb-x"><span class="std std-ref">turborvb.x</span></a></p></li>
-<li><p><a class="reference internal" href="../reference/commands/forcevmc.html#turborvbtutorial-command-forcevmc-sh"><span class="std std-ref">forcevmc.sh</span></a></p></li>
+<li><p><a class="reference internal" href="../reference/commands/forcevmc.html#turborvbtutorial-command-forcevmc-sh"><span class="std std-ref">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>convert JDFT wavefunction to JsAGPs one</p>
+<li><p><strong>Convert a JDFT-style wave function to JsAGPs</strong></p>
 <blockquote>
-<div><ul class="simple">
+<div><p>When your starting point is a <strong>JDFT</strong> (Jastrow + DFT-like) form, dedicated converters map it to a <strong>JsAGPs</strong> (Jastrow + symmetrized geminal power) representation that matches TurboRVB’s standard AGP conventions. Copy utilities can merge Jastrow and determinant pieces from different files.</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="../reference/commands/convertfort10.html#turborvbtutorial-command-convertfort10-x"><span class="std std-ref">convertfort10.x</span></a></p></li>
 <li><p><a class="reference internal" href="../reference/commands/copyjas_copydet.html#turborvbtutorial-command-copyjas-copydet-x"><span class="std std-ref">copyjas.x, copydet.x</span></a></p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p>conversion check</p>
+<li><p><strong>Sanity check (conversion / forward-walking data)</strong></p>
 <blockquote>
-<div><ul class="simple">
+<div><p>After nontrivial conversions or when using scratch output, it is good practice to <strong>verify</strong> that files are consistent and that binning or forward-walking data look reasonable before trusting long statistics.</p>
+<ul class="simple">
 <li><p><a class="reference internal" href="../reference/commands/readforward.html#turborvbtutorial-command-readforward-x"><span class="std std-ref">readforward.x</span></a></p></li>
 </ul>
 </div></blockquote>
@@ -160,7 +180,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="02installation.html" class="btn btn-neutral float-left" title="Installation of TurboRVB" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../tutorials/00index.html" class="btn btn-neutral float-right" title="TurboRVB tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../structure/00index.html" class="btn btn-neutral float-right" title="Structure of TurboRVB" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -23,7 +23,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="convertfort10.x" href="convertfort10.html" />
+    <link rel="next" title="cleanfort10.x" href="cleanfort10.html" />
     <link rel="prev" title="Command reference" href="../02command.html" /> 
 </head>
 
@@ -49,30 +49,45 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">assembling_pseudo.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotential-file-format">Pseudopotential file format</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotential-file-not-found-message-printed-run-continues">Pseudopotential file not found (message printed, run continues)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#extension-distance">Extension <code class="docutils literal notranslate"><span class="pre">distance</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -121,18 +136,164 @@
            <div itemprop="articleBody">
              
   <section id="assembling-pseudo-x">
-<h1>assembling_pseudo.x<a class="headerlink" href="#assembling-pseudo-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-assembling-pseudo-x"></span><h1>assembling_pseudo.x<a class="headerlink" href="#assembling-pseudo-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>assembling_pseudo</strong> is a TurboRVB utility that <strong>assembles per-species
+pseudopotential (ECP) files into a single file</strong>, <strong>pseudo.dat</strong>, used by
+TurboRVB VMC/DMC and tools such as readforward.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10</strong> (ion list and valence/core info) and one pseudopotential
+file per atomic species (e.g. Filippi format), placed in a fixed directory.</p></li>
+<li><p><strong>Output</strong>: <strong>pseudo.dat</strong> in ECP format, read by <code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code> in the main
+code and by other tools.</p></li>
+<li><p>For systems with multiple species, you place each species’ pseudopotential
+file under the <strong>pseudo/</strong> directory, run the program from a directory
+containing <strong>fort.10</strong>, and enter the file <strong>extension</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">filippi</span></code>)
+when prompted. The program writes one <strong>pseudo.dat</strong> ordered by ion index
+in fort.10.</p></li>
+</ul>
+<p>Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help
+(<code class="docutils literal notranslate"><span class="pre">help_online('assembling_pseudo')</span></code>).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> (required): Wave function file. Read via <code class="docutils literal notranslate"><span class="pre">read_fort10</span></code> to get
+<code class="docutils literal notranslate"><span class="pre">nion</span></code>, <code class="docutils literal notranslate"><span class="pre">zetar</span></code> (number of valence electrons for the pseudo),
+<code class="docutils literal notranslate"><span class="pre">atom_number</span></code> (atomic number), <code class="docutils literal notranslate"><span class="pre">rion</span></code> (ion coordinates), <code class="docutils literal notranslate"><span class="pre">iespbc</span></code>
+(periodic boundary flag). Must exist in the current working directory.</p></li>
+<li><p><strong>Pseudopotential files</strong>: One file per species. Search directory is fixed at
+build time as <strong>NAME_DIR/pseudo/</strong> (<code class="docutils literal notranslate"><span class="pre">NAME_DIR</span></code> is replaced by
+<code class="docutils literal notranslate"><span class="pre">${CMAKE_SOURCE_DIR}</span></code>). File name must be
+<strong>Z</strong><em>zetar</em><strong>_atomnumber</strong><em>atom_number</em><strong>.</strong><em>extension</em> (e.g. Ne
+with 2 valence electrons: <code class="docutils literal notranslate"><span class="pre">Z10_atomnumber2.filippi</span></code>). <em>zetar</em> and <em>atom_number</em>
+are taken from fort.10 for each ion.</p></li>
+<li><p><strong>Standard input</strong>: One line giving the <strong>extension</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">filippi</span></code>).
+This is the suffix used for pseudopotential file names. You can use the
+template <code class="docutils literal notranslate"><span class="pre">template/assembling_pseudo.input</span></code> as reference.</p></li>
+</ul>
+<p><strong>Which ions are pseudo</strong>: For ion index <em>j</em>, if <code class="docutils literal notranslate"><span class="pre">zetar(j)</span> <span class="pre">≠</span> <span class="pre">atom_number(j)</span></code>
+and <code class="docutils literal notranslate"><span class="pre">atom_number(j)</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>, that ion is treated as a pseudopotential ion and
+its corresponding file is read and appended to pseudo.dat. Ions with
+<code class="docutils literal notranslate"><span class="pre">zetar(j)</span> <span class="pre">=</span> <span class="pre">atom_number(j)</span></code> or <code class="docutils literal notranslate"><span class="pre">atom_number(j)</span> <span class="pre">≤</span> <span class="pre">0</span></code> are skipped.</p>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>pseudo.dat</strong>: ECP-format pseudopotential data. First line is <code class="docutils literal notranslate"><span class="pre">ECP</span></code>.
+Then, for each pseudo ion: ion index <em>j</em>, cutoff, number of shells,
+shell lengths (Gaussians per shell), and parameter lines (three reals per
+line). This file is overwritten if it already exists.</p></li>
+</ul>
+<p><strong>Special case — extension ``distance``</strong>: No pseudopotential files are opened.
+The program prints pairwise distances between all ions (with PBC applied if
+<code class="docutils literal notranslate"><span class="pre">iespbc</span></code> is true) to stdout. Useful to get distances only; for assembling
+pseudos, use the real extension (e.g. <code class="docutils literal notranslate"><span class="pre">filippi</span></code>).</p>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="pseudopotential-file-format">
+<h3>Pseudopotential file format<a class="headerlink" href="#pseudopotential-file-format" title="Link to this heading"></a></h3>
+<p>Each <strong>per-species</strong> input file (e.g. <code class="docutils literal notranslate"><span class="pre">Z10_atomnumber2.filippi</span></code>) must have
+the following structure:</p>
+<ol class="arabic simple">
+<li><p><strong>Line 1</strong>: Pseudopotential name (string). Only the first file’s name is
+read; the assembled <strong>pseudo.dat</strong> always starts with <code class="docutils literal notranslate"><span class="pre">ECP</span></code>.</p></li>
+<li><p><strong>Line 2</strong>: Three values: <code class="docutils literal notranslate"><span class="pre">fake_num</span></code> (integer), <code class="docutils literal notranslate"><span class="pre">ps_cut</span></code> (real),
+<code class="docutils literal notranslate"><span class="pre">num_sh</span></code> (integer). Cutoff and number of angular momentum shells.</p></li>
+<li><p><strong>Line 3</strong>: <code class="docutils literal notranslate"><span class="pre">num_sh</span></code> integers: <code class="docutils literal notranslate"><span class="pre">shwork(1:num_sh)</span></code> — number of Gaussians
+in each shell.</p></li>
+<li><p><strong>Next lines</strong>: Exactly <code class="docutils literal notranslate"><span class="pre">sum(shwork)</span></code> lines. Each line has three reals:
+<code class="docutils literal notranslate"><span class="pre">ps_par1</span></code>, <code class="docutils literal notranslate"><span class="pre">ps_par2</span></code>, <code class="docutils literal notranslate"><span class="pre">ps_par3</span></code> (e.g. Gaussian exponents/coefficients).</p></li>
+</ol>
+<p>These are written to <strong>pseudo.dat</strong> as: ion index <em>j</em>, <code class="docutils literal notranslate"><span class="pre">ps_cut</span></code>, <code class="docutils literal notranslate"><span class="pre">num_sh</span></code>,
+the <code class="docutils literal notranslate"><span class="pre">shwork</span></code> integers, then the parameter lines. TurboRVB’s <code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code>
+expects this ECP layout (<code class="docutils literal notranslate"><span class="pre">kindion</span></code>, <code class="docutils literal notranslate"><span class="pre">rcutoff</span></code>, <code class="docutils literal notranslate"><span class="pre">pshell</span></code>, shell lengths,
+parameters).</p>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>read_pseudo</strong>: Reads <strong>pseudo.dat</strong>
+(ECP/ECS) and builds the pseudopotential data for VMC/DMC.</p></li>
+<li><p><strong>pseudo</strong>: Standalone tool that reads
+<strong>pseudo.dat</strong> for plotting or other analysis.</p></li>
+<li><p><strong>makefort10</strong>, <strong>convertfort10</strong>, etc.: Tools that create or edit <strong>fort.10</strong>.
+For pseudo calculations, set <code class="docutils literal notranslate"><span class="pre">zetar</span></code> and <code class="docutils literal notranslate"><span class="pre">atom_number</span></code> correctly for
+each ion, then run assembling_pseudo to produce <strong>pseudo.dat</strong>.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Cannot open fort.10</strong> — <strong>fort.10</strong> is missing in the current directory.
+Put the wave function file in the run directory or run from the directory
+that contains <strong>fort.10</strong>.</p></li>
+<li><p><strong>Error while reading fort.10</strong> — <strong>fort.10</strong> is corrupted or not in
+TurboRVB format. Regenerate it with makefort10 or convertfort10 and check
+the reported line/field.</p></li>
+<li><p><strong>Error while reading a pseudopotential file</strong> — The file has too few lines,
+wrong number of values per line, or wrong type (e.g. real where an integer
+is expected). Check that the file matches the format above: line 1 (name),
+line 2 (three values), line 3 (num_sh integers), then sum(shwork) lines of
+three reals each.</p></li>
+</ul>
+</section>
+<section id="pseudopotential-file-not-found-message-printed-run-continues">
+<h3>Pseudopotential file not found (message printed, run continues)<a class="headerlink" href="#pseudopotential-file-not-found-message-printed-run-continues" title="Link to this heading"></a></h3>
+<p>If the extension is <strong>not</strong> <code class="docutils literal notranslate"><span class="pre">distance</span></code> and a pseudopotential file cannot be
+opened, the program prints:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">##################################</span>
+<span class="n">Error</span> <span class="n">opening</span> <span class="n">the</span> <span class="n">pseudo</span> <span class="n">potential</span> <span class="n">file</span>
+<span class="n">File</span>   <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">pseudo</span><span class="o">/</span><span class="n">Z10_atomnumber2</span><span class="o">.</span><span class="n">filippi</span> <span class="ow">not</span> <span class="n">found</span>
+<span class="n">Program</span> <span class="n">ends</span>
+<span class="c1">##################################</span>
+</pre></div>
+</div>
+<p>It <strong>does not stop</strong>: that ion is skipped and the loop continues. You may end
+up with an <strong>incomplete pseudo.dat</strong> (missing some species) if you overlook
+this.</p>
+<p><strong>Causes and fixes:</strong></p>
+<ul class="simple">
+<li><p><strong>Wrong directory</strong> — Files are looked up under <strong>NAME_DIR/pseudo/</strong> (build-time
+path, usually the TurboRVB source tree’s <strong>pseudo/</strong>). Put the files there,
+or change the source (<code class="docutils literal notranslate"><span class="pre">name_dir</span></code>) / use a symlink for <strong>pseudo/</strong>.</p></li>
+<li><p><strong>Wrong file name</strong> — Name must be <strong>Z</strong><em>zetar</em><strong>_atomnumber</strong><em>atom_number</em><strong>.</strong><em>extension</em>.
+Example: <code class="docutils literal notranslate"><span class="pre">Z10_atomnumber2.filippi</span></code> for Ne with 2 valence electrons. Check
+spelling, case, and that the extension matches what you type on stdin.</p></li>
+<li><p><strong>Wrong extension on stdin</strong> — The extension you type must match the file
+suffix (e.g. type <code class="docutils literal notranslate"><span class="pre">filippi</span></code> if files are <code class="docutils literal notranslate"><span class="pre">*.filippi</span></code>).</p></li>
+<li><p><strong>Wrong zetar/atom_number in fort.10</strong> — For pseudo ions,
+<code class="docutils literal notranslate"><span class="pre">zetar(j)</span> <span class="pre">≠</span> <span class="pre">atom_number(j)</span></code> and <code class="docutils literal notranslate"><span class="pre">atom_number(j)</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>. Verify with
+makefort10/convertfort10 that valence and atomic numbers are correct.</p></li>
+</ul>
+<p><strong>Tip:</strong> Check the printed <code class="docutils literal notranslate"><span class="pre">dir_pseudo</span> <span class="pre">=</span> <span class="pre">...</span></code> and <code class="docutils literal notranslate"><span class="pre">Extension</span> <span class="pre">read</span> <span class="pre">=</span> <span class="pre">...</span></code>,
+then list that directory to confirm the expected
+<code class="docutils literal notranslate"><span class="pre">Z&lt;zetar&gt;_atomnumber&lt;atom_number&gt;.&lt;extension&gt;</span></code> files exist.</p>
+</section>
+<section id="extension-distance">
+<h3>Extension <code class="docutils literal notranslate"><span class="pre">distance</span></code><a class="headerlink" href="#extension-distance" title="Link to this heading"></a></h3>
+<p>When you enter <code class="docutils literal notranslate"><span class="pre">distance</span></code> as the extension, no pseudopotential files are
+opened; only pairwise distances are printed. Use a real extension (e.g.
+<code class="docutils literal notranslate"><span class="pre">filippi</span></code>) when you want to assemble <strong>pseudo.dat</strong>.</p>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Atomic number or zetar ≥ 1000</strong>: The code builds file names with at most
+3 digits for Z and atom_number. For Z or atom_number ≥ 1000, the file name
+may be wrong and the file will not be found.</p></li>
+<li><p><strong>pseudo.dat already exists</strong>: It is opened with <code class="docutils literal notranslate"><span class="pre">status='unknown'</span></code> and
+<strong>overwritten</strong>. Back it up first if needed.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -141,7 +302,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../02command.html" class="btn btn-neutral float-left" title="Command reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="convertfort10.html" class="btn btn-neutral float-right" title="convertfort10.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cleanfort10.html" class="btn btn-neutral float-right" title="cleanfort10.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

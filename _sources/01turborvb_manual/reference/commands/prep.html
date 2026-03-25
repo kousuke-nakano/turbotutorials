@@ -51,34 +51,53 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">prep.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-parameters">Input parameters</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#dft-section">DFT section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#band-structure-section">band_structure section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#lastline-of-file-section">lastline of file section</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#molecular-orbitals-required">Molecular orbitals required</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#writescratch-and-iopt">writescratch and iopt</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#k-points-and-continuation">k-points and continuation</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#itestr4-and-z-optimization">itestr4 and Z optimization</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mpi-and-openmp">MPI and OpenMP</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotentials">Pseudopotentials</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings-execution-continues">Warnings (execution continues)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
 </ul>
 </li>
 </ul>
@@ -131,25 +150,105 @@
   <section id="prep-x">
 <span id="turborvbtutorial-command-prep-x"></span><h1>prep.x<a class="headerlink" href="#prep-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>prep</strong> is the TurboRVB program that performs <strong>density-functional theory
+(DFT)</strong> calculations. It shares the <strong>same input cards</strong> (standard-input
+namelists) as the QMC driver and uses <strong>molecular orbitals</strong> from <strong>fort.10</strong> or
+<strong>fort.10_new</strong> as the basis to run <strong>self-consistent (SC) DFT</strong> or
+<strong>non-self-consistent (NonSC)</strong> calculations (band structure, DOS, etc.). The
+source program name is <strong>main</strong>; the executable is <strong>prep.x</strong>.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>Standard input</strong> with namelists common to QMC: <strong>&amp;simulation</strong>
+(<code class="docutils literal notranslate"><span class="pre">itestr4</span></code>, <code class="docutils literal notranslate"><span class="pre">iopt</span></code>), <strong>&amp;pseudo</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">npsamax</span></code>), <strong>&amp;vmc</strong>,
+<strong>&amp;optimization</strong> (<code class="docutils literal notranslate"><span class="pre">molopt</span></code>, <code class="docutils literal notranslate"><span class="pre">yeswrite10</span></code>), <strong>&amp;readio</strong> (<strong>writescratch</strong>;
+must be <strong>0</strong> for prep), <strong>&amp;parameters</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">yes_kpoints</span></code>,
+<code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code>), <strong>&amp;molecul</strong> (real-space mesh <strong>nx</strong>, <strong>ny</strong>, <strong>nz</strong>,
+<code class="docutils literal notranslate"><span class="pre">nbufd</span></code>), <strong>&amp;dft</strong> (<code class="docutils literal notranslate"><span class="pre">maxit</span></code>, <code class="docutils literal notranslate"><span class="pre">epsdft</span></code>, <code class="docutils literal notranslate"><span class="pre">typedft</span></code>, <code class="docutils literal notranslate"><span class="pre">mixing</span></code>,
+<code class="docutils literal notranslate"><span class="pre">optocc</span></code>, <code class="docutils literal notranslate"><span class="pre">bands</span></code>, <code class="docutils literal notranslate"><span class="pre">memlarge</span></code>, etc.). When <strong>compute_bands</strong> is used,
+<strong>&amp;band_structure</strong> (<code class="docutils literal notranslate"><span class="pre">task</span></code>, <code class="docutils literal notranslate"><span class="pre">deltaE</span></code>, <code class="docutils literal notranslate"><span class="pre">emin</span></code>, <code class="docutils literal notranslate"><span class="pre">emax</span></code>) is read.
+<strong>fort.10</strong> (when <code class="docutils literal notranslate"><span class="pre">iopt=1</span></code>) or <strong>fort.10_new</strong> (when <code class="docutils literal notranslate"><span class="pre">iopt≠1</span></code>) as the
+wave function; <strong>pseudo.dat</strong> when pseudopotentials are used.</p></li>
+<li><p><strong>Output</strong>: <strong>fort.10_new</strong> (converged wave function; single k-point or first
+k-point). When <strong>manyfort10</strong> and <strong>yeswrite10</strong>, <strong>fort.10_000xxx</strong> per
+k-point under scratch. <strong>occupationlevels.dat</strong> (eigenvalues, occupations,
+mesh and k-point info). <strong>total_densities.sav</strong>, <strong>wavefunction.sav</strong> (for
+continuation and NonSC). <strong>EDFT_vsk.dat</strong> (when <code class="docutils literal notranslate"><span class="pre">print_energies=.true.</span></code>;
+energy per k-point). <strong>TurboDFT.sav</strong> and <strong>tmp00xxxx</strong> under <strong>wherescratch</strong>
+(distributed scratch per MPI rank).</p></li>
+<li><p><strong>Flow</strong>: <strong>read_datasmin</strong> reads SIMULATIONS, PARAMETERS, PSEUDO, VMC,
+K-POINTS → <strong>setup_para</strong> initializes parallel (k-point pools, SCALAPACK) →
+<strong>Initializeall</strong> reads pseudos, fort.10/fort.10_new, <strong>read_datasmin_mol</strong>
+(MOLECULAR), <strong>&amp;dft</strong> / <strong>&amp;band_structure</strong> → QMC arrays are deallocated and
+DFT scratch is allocated → <strong>initialize_environment</strong> (mesh,
+occupationlevels.dat) → <strong>self_consistent_run</strong> or <strong>non_self_consistent_run</strong>
+(if compute_bands) → <strong>write_output_and_finalize</strong> (writes scratch,
+fort.10_new, occupationlevels.dat, etc.).</p></li>
+<li><p><strong>Typical use</strong>: Run LDA/LSDA or Hartree DFT to obtain self-consistent
+molecular orbitals and write <strong>fort.10_new</strong> for use as the initial wave
+function in VMC/DMC. Supports k-point sampling (<strong>kaverage</strong>) and band
+structure (<strong>compute_bands</strong>).</p></li>
+</ul>
+<p>The program supports <strong>MPI</strong> (when built with <code class="docutils literal notranslate"><span class="pre">PARALLEL</span></code>) and <strong>OpenMP</strong>.
+Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help
+(<code class="docutils literal notranslate"><span class="pre">help_online('prep')</span></code>); in a PARALLEL build, <code class="docutils literal notranslate"><span class="pre">--help</span></code> is typically
+available only in the serial executable.</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Standard input</strong>: Read by <strong>read_datasmin</strong> and then in <strong>Initializeall</strong>.
+Namelists <strong>&amp;simulation</strong>, <strong>&amp;pseudo</strong>, <strong>&amp;vmc</strong>, <strong>&amp;optimization</strong>,
+<strong>&amp;readio</strong>, <strong>&amp;parameters</strong>, <strong>&amp;molecul</strong>, <strong>&amp;dft</strong>; when <strong>compute_bands</strong>,
+<strong>&amp;band_structure</strong>. In <strong>&amp;readio</strong>, set <strong>writescratch=0</strong> (required for
+prep). Use <strong>test/.../prep.input</strong> or similar as a template.</p></li>
+<li><p><strong>fort.10</strong> (when <strong>iopt=1</strong>): Initial wave function (TurboRVB format). Must
+contain <strong>molecular orbitals</strong> (<code class="docutils literal notranslate"><span class="pre">contraction</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>).</p></li>
+<li><p><strong>fort.10_new</strong> (when <strong>iopt≠1</strong>): Wave function for continuation. When
+<strong>kaverage</strong> and <strong>yesread10</strong>, per-k-point wave functions may be read from
+<strong>turborvb.scratch/fort.10_00xxxx</strong>.</p></li>
+<li><p><strong>pseudo.dat</strong>: Read by <code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code> when pseudopotentials (ECP) are used.</p></li>
+<li><p><strong>occupationlevels.dat</strong>: When <strong>iopt≠1</strong> or <strong>compute_bands</strong>. Contains
+bandso, nproco, meshproco, nko, etc. from a previous run.</p></li>
+<li><p><strong>Scratch under wherescratch</strong>: For continuation; distributed density and
+matrices (e.g. tmp00xxxx) are read when <code class="docutils literal notranslate"><span class="pre">writescratch=0</span></code>.</p></li>
+<li><p><strong>Command line</strong>: First argument <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints
+online help and exits.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong>: Converged wave function (updated molecular orbitals). Single
+k-point or, when not manyfort10, the first k-point. Written by
+<code class="docutils literal notranslate"><span class="pre">write_fort10(ufort10)</span></code>; rank 0 only when parallel.</p></li>
+<li><p><strong>fort.10_000xxx</strong> (under scratch): When <strong>manyfort10</strong> and <strong>yeswrite10</strong>;
+one wave function file per k-point (unit_scratch_fort10, e.g.
+turborvb.scratch/fort.10_*).</p></li>
+<li><p><strong>occupationlevels.dat</strong>: Eigenvalues, occupations, mesh and k-point
+information for continuation and NonSC runs.</p></li>
+<li><p><strong>total_densities.sav</strong>: Charge (and spin density for LSDA). Written by rank
+0 (unit_scratch_densities).</p></li>
+<li><p><strong>wavefunction.sav</strong>: Eigenvectors, etc. Written by rank 0
+(unit_scratch_eigenvects).</p></li>
+<li><p><strong>EDFT_vsk.dat</strong>: When <code class="docutils literal notranslate"><span class="pre">print_energies=.true.</span></code>; energy per k-point
+(Efree(k), Etot(k), etc.) on unit_print_energies.</p></li>
+<li><p><strong>TurboDFT.sav</strong>: Final density and matrices for continuation.</p></li>
+<li><p><strong>tmp00xxxx</strong> (under wherescratch): Per-MPI-rank distributed mesh density and
+overlap matrices; written and read when <code class="docutils literal notranslate"><span class="pre">writescratch=0</span></code>.</p></li>
+<li><p><strong>Standard output</strong>: Calculation type (print_header), mesh info, convergence
+history, warnings, and final log.</p></li>
+</ul>
 </section>
-<section id="namelist">
-<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+</section>
+<section id="input-parameters">
+<h2>Input parameters<a class="headerlink" href="#input-parameters" title="Link to this heading"></a></h2>
 <p>Variable are read from standard input.
-Read the variables of the same <a class="reference internal" href="turborvb.html#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">namelist</span></a> as <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> from standard input.</p>
+Read the variables of the same <a class="reference internal" href="turborvb.html#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">Input parameters</span></a> as <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> from standard input.</p>
 <section id="dft-section">
 <h3>DFT section<a class="headerlink" href="#dft-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -694,7 +793,7 @@ The format is</p>
 <td><p><code class="docutils literal notranslate"><span class="pre">maxdiv</span></code></p></td>
 <td><p>WIP</p></td>
 </tr>
-<tr class="row-even"><td><p>tfcut(プログラムに存在しない)</p></td>
+<tr class="row-even"><td><p>tfcut (nonexistent)</p></td>
 <td></td>
 <td></td>
 <td><p>Used only with <code class="docutils literal notranslate"><span class="pre">typeopt</span> <span class="pre">=</span> <span class="pre">0/2/4</span></code>. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of <code class="docutils literal notranslate"><span class="pre">tfcut</span></code> <span class="math notranslate nohighlight">\(= \frac{1}{{xi_{TF}}^2}\)</span>  where <span class="math notranslate nohighlight">\(xi\)</span> is the Thomas-Fermi length expressed in a.u.</p></td>
@@ -704,8 +803,7 @@ The format is</p>
 </section>
 <section id="band-structure-section">
 <h3>band_structure section<a class="headerlink" href="#band-structure-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -745,8 +843,7 @@ The format is</p>
 </section>
 <section id="lastline-of-file-section">
 <h3>lastline of file section<a class="headerlink" href="#lastline-of-file-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -762,6 +859,185 @@ The format is</p>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="molecular-orbitals-required">
+<h3>Molecular orbitals required<a class="headerlink" href="#molecular-orbitals-required" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>DFT runs only with <strong>molecular orbitals</strong>: <strong>contraction</strong> must be <strong>&gt; 0</strong>.
+Otherwise the program stops with &quot;DFT works only with molecular orbitals&quot;.
+Use <strong>makefort10</strong> or <strong>convertfort10</strong> to build a fort.10 that contains
+molecular orbitals.</p></li>
+</ul>
+</section>
+<section id="writescratch-and-iopt">
+<h3>writescratch and iopt<a class="headerlink" href="#writescratch-and-iopt" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>writescratch</strong> must be <strong>0</strong> in <strong>&amp;readio</strong>. If not, the program stops with
+&quot;Scratch files not written&quot;.</p></li>
+<li><p><strong>iopt=1</strong>: Start from scratch (no potential); read <strong>fort.10</strong>.
+<strong>iopt=0</strong>: Continuation; read <strong>fort.10_new</strong> and occupationlevels.dat
+(and scratch as needed).</p></li>
+</ul>
+</section>
+<section id="k-points-and-continuation">
+<h3>k-points and continuation<a class="headerlink" href="#k-points-and-continuation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When <strong>kaverage</strong> (k-point sampling from &amp;kpoints): For continuation with
+<strong>yesread10</strong>, per-k-point wave functions are read from fort.10_00xxxx. When
+<strong>manyfort10</strong> and <strong>yeswrite10</strong>, per-k-point fort.10_000xxx are written.</p></li>
+<li><p><strong>compute_bands</strong>: Band-structure and DOS runs assume a prior <strong>converged SC</strong>
+run; use the same mesh and (for NonSC) the same number of processors per
+k-point. Set <strong>decoupled_run</strong> etc. as needed for the NonSC step.</p></li>
+</ul>
+</section>
+<section id="itestr4-and-z-optimization">
+<h3>itestr4 and Z optimization<a class="headerlink" href="#itestr4-and-z-optimization" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If <strong>itestr4=-8</strong> (optimize Z), the program reports &quot;Optimization of Z is not
+possible with DFT&quot;, sets <code class="docutils literal notranslate"><span class="pre">yeszagp=.false.</span></code> and <code class="docutils literal notranslate"><span class="pre">itestr4=-4</span></code>, then
+continues (Z optimization is not performed in DFT).</p></li>
+</ul>
+</section>
+<section id="mpi-and-openmp">
+<h3>MPI and OpenMP<a class="headerlink" href="#mpi-and-openmp" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When built with <strong>PARALLEL</strong>, run with e.g. <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">N</span> <span class="pre">./prep.x</span> <span class="pre">&lt;</span>
+<span class="pre">prep.input</span></code>. Rank 0 typically reads standard input and opens fort.10 /
+fort.10_new and pseudo.dat; ensure these files are visible to rank 0 (e.g.
+shared working directory).</p></li>
+<li><p>For k-point runs: <strong>nproc</strong> must be a <strong>multiple of the number of k-points</strong>
+(nk). Use the same nproc and nk when continuing a run or when running NonSC
+after SC.</p></li>
+<li><p>With <strong>__SCALAPACK</strong>, the build must use <strong>-DPARALLEL</strong>; otherwise
+initialization may fail. Block size and process grid must be consistent with
+matrix dimensions.</p></li>
+</ul>
+</section>
+<section id="pseudopotentials">
+<h3>Pseudopotentials<a class="headerlink" href="#pseudopotentials" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When ECPs are used, <strong>pseudo.dat</strong> is read in <strong>Initializeall</strong> (same
+convention as the main TurboRVB program).</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>makefort10</strong>: Builds an initial fort.10. Use to create the wave function
+(with molecular orbitals) read by prep when <strong>iopt=1</strong>.</p></li>
+<li><p><strong>convertfort10</strong>: Converts a wave function from another basis to TurboRVB.
+The output fort.10_new can be used as input to prep (fort.10 or fort.10_new).</p></li>
+<li><p><strong>TurboRVB main</strong>: QMC (VMC/DMC) driver; shares <strong>read_datasmin</strong>.
+The <strong>fort.10_new</strong> produced by prep is commonly used as the initial wave
+function for VMC/DMC.</p></li>
+<li><p><strong>read_datasmin</strong> / <strong>read_datasmin_mol</strong>: Read main cards and MOLECULAR from
+stdin; prep calls read_datasmin first, then read_datasmin_mol and &amp;dft in
+Initializeall.</p></li>
+<li><p><strong>read_fort10</strong> / <strong>write_fort10</strong>: Fort.10 read/write; prep uses them in
+Initializeall and write_output_and_finalize.</p></li>
+<li><p><strong>template</strong> / <strong>test/.../prep.input</strong>: Example standard input; reference
+for the order and variables of &amp;simulation, &amp;pseudo, &amp;vmc, &amp;optimization,
+&amp;readio, &amp;parameters, &amp;molecul, &amp;dft.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Scratch files not written</strong> — <strong>writescratch</strong> is not 0. Set
+<code class="docutils literal notranslate"><span class="pre">writescratch=0</span></code> in <strong>&amp;readio</strong>.</p></li>
+<li><p><strong>DFT works only with molecular orbitals</strong> — <strong>contraction=0</strong> (no molecular
+orbitals). Provide a fort.10 with molecular orbitals (e.g. from makefort10 or
+convertfort10).</p></li>
+<li><p><strong>Optimization of Z is not possible with DFT</strong> — Started with itestr4=-8. The
+program switches to itestr4=-4 and continues; Z optimization is skipped.</p></li>
+<li><p><strong>Double allocation for complex algorithm</strong> — Mismatch between real/complex
+build or input. Check build options and input flags.</p></li>
+<li><p><strong>Some input k-points are wrong, substituted with WF phase!</strong> — Continuation
+with yesread10; input k-points do not match the phases in fort.10_00xxxx. The
+program substitutes phases and continues; verify k-point input.</p></li>
+<li><p><strong>error in reading DFT card</strong> — Invalid or malformed <strong>&amp;dft</strong> namelist. Check
+syntax and variable names against the template.</p></li>
+<li><p><strong>error in reading band_structure card</strong> — <strong>compute_bands</strong> is set but
+<strong>&amp;band_structure</strong> read failed. Provide &amp;band_structure with task, deltaE,
+emin, emax, etc.</p></li>
+<li><p><strong>ERROR in TurboDFT setup</strong> — Input inconsistency detected in check_dft_input
+or checkiflagerr. Fix the input according to the message printed just before.</p></li>
+<li><p><strong>It is assumed that nelup &gt; neldo</strong> — nelup ≤ neldo in input. Check
+electron numbers.</p></li>
+<li><p><strong>To use LSDA functional, start with a non-symmetric AGP...</strong> — symmagp with
+typedft=4/5 (LSDA). Use a non-symmetric AGP or set typedft to 1/-1 (LDA).</p></li>
+<li><p><strong>compile with PARALLEL option for more than one k-point</strong> — Serial build with
+more than one k-point. Build with PARALLEL or use a single k-point.</p></li>
+<li><p><strong>choose an higher number of processors or decrease the number of k-points!</strong>
+— nproc &lt; nk. Increase MPI processes or decrease the number of k-points.</p></li>
+<li><p><strong>Choose a number of processors multiple of the number of k-points!</strong> —
+nproc is not a multiple of nk. Set <code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span></code> to a multiple of the
+k-point count.</p></li>
+<li><p><strong>occupationlevels.dat not found! Run a self-consistent calculation before
+computing band structure</strong> — <strong>compute_bands</strong> is set but the file is
+missing. Run an SC calculation first to generate it.</p></li>
+<li><p><strong>Use the same mesh as SC calculation!</strong> — NonSC run with a different mesh
+or processor layout than the SC run. Use the same nx, ny, nz and (for
+continuation) the same nproc.</p></li>
+<li><p><strong>one or more k-points read from file do not coincide with input fort.10
+ones</strong> — K-points in the file and in fort.10 differ. Align k-point input with
+the previous SC run.</p></li>
+<li><p><strong>Impossible to continue fast with different # processors</strong> — Continuation
+with a different number of MPI processes. Use the same nproc or force
+noread to recompute.</p></li>
+<li><p><strong>Occupations not defined</strong> — Diagonalization or occupation setup failed
+(e.g. info≠0). Check bands, electron count, and optocc.</p></li>
+<li><p><strong>check input nbufd and/or code</strong> — Buffer or mesh dimension mismatch
+(initialize_matrices, hamiltonian, elec_density). Increase <strong>nbufd</strong> or
+nx, ny, nz in <strong>&amp;molecul</strong>.</p></li>
+<li><p><strong>No tasks required</strong> / <strong>Task type not recognized</strong> — <strong>task</strong> (in
+&amp;band_structure) is 0 or not supported. Set task=1 (bands), 2 (DOS), or 5
+(both).</p></li>
+<li><p><strong>Number of processor per k-point different with respect to self-consistent
+run</strong> — NonSC run with different nproc/nk than SC. Use the same nproc and nk.</p></li>
+<li><p><strong>Use kp_type=2 or kp_type=3 for plotting the DFT band structure</strong> — Band
+plotting requires kp_type 2 or 3 in the k-point input.</p></li>
+<li><p><strong>Error reading spin up/down occupations</strong> / <strong>Provide spin down occupations
+for...</strong> / <strong>ERROR reading occupations!</strong> — occupationlevels.dat or
+occupation input invalid or incomplete. Check file format and record count.</p></li>
+<li><p><strong>Too few molecular orbitals &lt; nelocc</strong> — Fewer orbitals than nelocc.
+Increase <strong>bands</strong> or decrease <strong>nelocc</strong>.</p></li>
+<li><p><strong>ERROR not found molecular orbital #</strong> — Orbital reordering (e.g. momentum
+conservation) could not find a matching orbital. Check symmetry and AGP
+setup.</p></li>
+<li><p><strong>Turbo-DFT terminates without convergence</strong> — SC did not converge within
+<strong>maxit</strong>. Try increasing maxit, adjusting <strong>mixing</strong>, <strong>typeopt</strong>, or
+<strong>optocc</strong>.</p></li>
+</ul>
+</section>
+<section id="warnings-execution-continues">
+<h3>Warnings (execution continues)<a class="headerlink" href="#warnings-execution-continues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Many <strong>Warning</strong> messages are informational (e.g. init. value of threads,
+Point group symmetries not implemented with yes_tilted, # bands restored to
+default, do_hartree/corr_hartree settings, epsover/mixingder/epssr, density
+rescaling or symmetrisation, orbital reordering, occupation defaults, buffer
+size, SVD directions neglected, diagonalization info≠0, charge/spin not
+conserved, DOS smearing defaults). They indicate automatic adjustments or
+conditions to watch; check the message and adjust input or mesh if results
+are unexpected.</p></li>
+<li><p><strong>Warning you should run with a smaller number of processors !!!</strong> — Reducing
+the number of MPI ranks may improve stability.</p></li>
+<li><p><strong>Warning not all orbitals are read from fort10</strong> — Fort.10 did not contain
+as many orbitals as expected; verify the file.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong> is overwritten if it exists. Back it up if needed.</p></li>
+</ul>
 </section>
 </section>
 </section>

@@ -14,12 +14,12 @@ Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz v
 ----------------------------------------------------------------
 
 In this tutorial, you will run VMC and LRDMC calculations for diamond under PBCs, beginning with a PySCF DFT calculation with ccECPs. You will use a general k-point, so the wave functions are complex. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
-   
+
 .. _review: https://doi.org/10.1063/5.0005037
 
 .. contents:: Table of Contents
    :depth: 3
-   
+
 .. _turbogeniustutorial_0501_01:
 
 01 DFT
@@ -32,22 +32,22 @@ The procedure is as follows:
 1. Run the PySCF calculation:
 
   .. code-block:: console
-      
+
       % cd 01_trial_wavefunction
       % python3 pyscf_Diamond_k_twist.py
-    
+
 2. Convert the generated PySCF checkpoint file to a TREXIO file:
-    
+
   .. code-block:: console
 
       % trexio convert-from -t pyscf -i Diamond_k_twist.chk -b hdf5 Diamond_k_twist.hdf5
-    
+
 3. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
 
       % trexio-to-turborvb Diamond_k_twist.hdf5 -jasbasis cc-pVDZ -jascutbasis
-    
+
 Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
 .. note::
@@ -74,38 +74,38 @@ One should refer to the :ref:`Hydrogen dimer tutorial <turbogeniustutorial_0101_
       % cp ../01_trial_wavefunction/fort.10 .
       % cp ../01_trial_wavefunction/pseudo.dat .
       % cp fort.10 fort.10_dft
-    
+
 2. In this tutorial, the optimization is carried out in two steps. First, optimize only one-body and two-body Jastrow factors. Generate an input file for the optimization:
-    
+
   .. code-block:: console
-      
+
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -optimizer lr -vmcoptsteps 10 -steps 200 -nw 128
-    
+
 3. Run the optimization:
-    
+
   .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
-    
+
 4. Second, optimize all Jastrow factors:
-    
+
   .. code-block:: console
 
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 200 -steps 200 -nw 128
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
-    
+
 5. Perform the postprocess and plot the results.
-    
+
   .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 50 -plot
-      
+
   Check `plot_energy_and_devmax.png` and files in the `parameters_graphs` directory to see if the convergence criterion is satisfied.
 
-  
+
 .. _turbogeniustutorial_0501_03:
 
 03 JDFT ansatz - VMC
@@ -122,20 +122,20 @@ First prepare the wavefunction and related files:
     % cp ../02_optimization/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` by typing:
-    
+
 .. code-block:: console
-    
+
     % turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     % turbogenius vmc -r
 
 Finally, run the postprocess:
-    
+
 .. code-block:: console
 
     % turbogenius vmc -post -bin 10 -warmup 5
@@ -159,7 +159,7 @@ First, copy the prepared wavefunction and the pseudopotential files:
     % cd ../04_lrdmc
     % cp ../03_vmc/fort.10 .
     % cp ../03_vmc/pseudo.dat .
-    
+
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
 
 .. code-block:: console

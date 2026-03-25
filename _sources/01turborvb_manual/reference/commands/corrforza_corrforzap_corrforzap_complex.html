@@ -20,6 +20,8 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -49,30 +51,46 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">corrforza.x, corrforzap.x corrforzap_complex.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#preparation-of-fort-21">Preparation of fort.21.*</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#scalepulay-corrforza-only">scalepulay (corrforza only)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#bootstrap-and-bin-count">Bootstrap and bin count</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#complex-corrforzap-complex">Complex (corrforzap_complex)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#warnings">Warnings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -121,18 +139,171 @@
            <div itemprop="articleBody">
              
   <section id="corrforza-x-corrforzap-x-corrforzap-complex-x">
-<h1>corrforza.x, corrforzap.x corrforzap_complex.x<a class="headerlink" href="#corrforza-x-corrforzap-x-corrforzap-complex-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-corrforza-x"></span><h1>corrforza.x, corrforzap.x corrforzap_complex.x<a class="headerlink" href="#corrforza-x-corrforzap-x-corrforzap-complex-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>corrforza</strong>, <strong>corrforzap</strong>, and <strong>corrforzap_complex</strong> are TurboRVB utilities
+that <strong>compute force (Hellmann–Feynman–type) correlation estimates and
+bootstrap errors</strong> from binned VMC/optimization data. They read <strong>fort.21.*</strong>
+files produced by a prior force/VMC run, compute weighted averages and run
+<strong>bootstrap</strong> (200 iterations), then write the force estimate and errors to
+standard output.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: Multiple <strong>fort.21.*</strong> files (bin-by-bin energy, log-derivative of
+the wave function, and their products). <strong>corrforza</strong> also reads <strong>standard
+input</strong> for the Pulay scale <strong>scalepulay</strong> (one line, real number).</p></li>
+<li><p><strong>Output</strong>: Standard output — one or more lines with <strong>Force</strong> (point
+estimate), standard error, and bootstrap error. <strong>corrforza</strong> also prints
+Der Eloc, ⟨OH⟩, ⟨O⟩⟨H⟩, and 2*(⟨OH⟩ − ⟨O⟩⟨H⟩) with errors.</p></li>
+<li><p><strong>Typical use</strong>: Invoked from <strong>bin/forcevmc.sh</strong> or <strong>bin/forcefn.sh</strong>;
+their output is appended to forces_vmc.dat or forces_fn.dat.</p></li>
+</ul>
+<p><strong>Which program to use</strong></p>
+<ul class="simple">
+<li><p><strong>corrforza.x</strong>: <strong>Real</strong> wave function with <strong>Pulay correction</strong>. Reads
+fort.21.1–fort.21.4 (4 files). Requires <strong>scalepulay</strong> on standard input.</p></li>
+<li><p><strong>corrforzap.x</strong>: <strong>Real</strong> wave function, force correlation without Pulay
+(2*(−⟨OH⟩ + ⟨O⟩⟨H⟩)). Reads fort.21.1–fort.21.3 (3 files). No standard input.</p></li>
+<li><p><strong>corrforzap_complex.x</strong>: <strong>Complex</strong> wave function. Outputs <strong>Real Force</strong>
+and <strong>Imag Force</strong> with errors. Reads fort.21.1, fort.21.2, fort.21.3,
+fort.21.4, fort.21.5, fort.21.1i (6 files). No standard input.</p></li>
+</ul>
+<p>All three are <strong>serial</strong> (no MPI). Built as <strong>corrforza.x</strong>, <strong>corrforzap.x</strong>,
+<strong>corrforzap_complex.x</strong> from corrforza.f90, corrforzap.f90,
+corrforzap_complex.f90.</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>corrforza.x</dt><dd><ul class="simple">
+<li><p><strong>fort.21.1</strong> (required): Bin-by-bin <strong>energy</strong> E and weight w (two columns).</p></li>
+<li><p><strong>fort.21.2</strong> (required): Bin-by-bin <strong>energy derivative</strong> (dE/d parameter)
+and weight.</p></li>
+<li><p><strong>fort.21.3</strong> (required): Bin-by-bin <strong>log-derivative × energy</strong> (O×H) and
+weight.</p></li>
+<li><p><strong>fort.21.4</strong> (required): Bin-by-bin additional correlation term and weight.</p></li>
+<li><p><strong>Standard input</strong>: One line with <strong>scalepulay</strong> (real). Pulay scale. If
+negative, special handling (ifneg mode) applies.</p></li>
+</ul>
+</dd>
+<dt>corrforzap.x</dt><dd><ul class="simple">
+<li><p><strong>fort.21.1</strong> (required): Bin-by-bin <strong>energy</strong> E and weight w.</p></li>
+<li><p><strong>fort.21.2</strong> (required): Bin-by-bin <strong>log-derivative</strong> O and weight.</p></li>
+<li><p><strong>fort.21.3</strong> (required): Bin-by-bin <strong>log-derivative × local energy</strong> O×H
+and weight.</p></li>
+<li><p>No standard input.</p></li>
+</ul>
+</dd>
+<dt>corrforzap_complex.x</dt><dd><ul class="simple">
+<li><p><strong>fort.21.1</strong> (required): Local energy <strong>real part</strong> and weight.</p></li>
+<li><p><strong>fort.21.1i</strong> (required): Local energy <strong>imaginary part</strong> and weight.</p></li>
+<li><p><strong>fort.21.2</strong>, <strong>fort.21.3</strong>, <strong>fort.21.4</strong>, <strong>fort.21.5</strong> (required):
+Real/imag derivatives and log-derivative × energy terms with weights.</p></li>
+<li><p>No standard input. All six files must have the <strong>same number of lines</strong>
+(bins).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Maximum number of bins: <strong>corrforza</strong> 20000, <strong>corrforzap</strong> 100000. If the read
+reaches that limit, a warning is printed and the last bin is not used.
+<strong>corrforzap_complex</strong> allocates after the first read pass, so all files must
+be consistent in length.</p>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<p>All three write to <strong>standard output</strong> only (no output files).</p>
+<ul class="simple">
+<li><p><strong>corrforza.x</strong>: Lines <code class="docutils literal notranslate"><span class="pre">Force</span> <span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span> <span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;OH&gt;</span> <span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;O&gt;&lt;H&gt;</span> <span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span> <span class="pre">=</span></code>, each with point estimate, error, and errerr.</p></li>
+<li><p><strong>corrforzap.x</strong>: <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">bins</span> <span class="pre">read</span> <span class="pre">=</span></code>, then <code class="docutils literal notranslate"><span class="pre">Force</span> <span class="pre">=</span></code> with eta0, err, errerr. If <span class="math notranslate nohighlight">\(|\eta0|\)</span> &gt; 3*err, appends <code class="docutils literal notranslate"><span class="pre">Warning</span> <span class="pre">large</span> <span class="pre">fluctuation=</span></code>.</p></li>
+<li><p><strong>corrforzap_complex.x</strong>: <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">bins</span> <span class="pre">read</span> <span class="pre">=</span></code>, then <code class="docutils literal notranslate"><span class="pre">Real</span> <span class="pre">Force</span> <span class="pre">=</span></code> and <code class="docutils literal notranslate"><span class="pre">Imag</span> <span class="pre">Force</span> <span class="pre">=</span></code> with eta0, err, errerr. If <span class="math notranslate nohighlight">\(|\eta|\)</span> &gt; 3*err for either component, prints <code class="docutils literal notranslate"><span class="pre">Warning,</span> <span class="pre">this</span> <span class="pre">parameter</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">at</span> <span class="pre">minimum</span> <span class="pre">!!!</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="preparation-of-fort-21">
+<h3>Preparation of fort.21.*<a class="headerlink" href="#preparation-of-fort-21" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The <strong>fort.21.*</strong> files are <strong>not</strong> created by these programs. They must be
+produced by a previous TurboRVB run (e.g. VMC/force calculation,
+readforward). Run the main code or readforward first so that the required
+fort.21.* files exist and have the expected format (value, weight per line).</p></li>
+</ul>
+</section>
+<section id="scalepulay-corrforza-only">
+<h3>scalepulay (corrforza only)<a class="headerlink" href="#scalepulay-corrforza-only" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>scalepulay</strong> controls the Pulay correction term. Negative values enable
+<strong>ifneg</strong> mode: if scalepulay ≥ −100 it is replaced by −scalepulay; if
+scalepulay &lt; −100 it is replaced by scalepulay + 100. The force formula
+then uses a different combination of the averaged terms. Scripts such as
+<strong>forcevmc.sh</strong> pass <code class="docutils literal notranslate"><span class="pre">${scale_pulay}</span></code> on stdin.</p></li>
+</ul>
+</section>
+<section id="bootstrap-and-bin-count">
+<h3>Bootstrap and bin count<a class="headerlink" href="#bootstrap-and-bin-count" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Each program runs <strong>200 bootstrap iterations</strong> (nmis=200) with fixed random
+seed. Increasing the number of bins improves the statistics; exceeding the
+built-in maximum (20000 or 100000) triggers a warning and the last bin is
+dropped.</p></li>
+</ul>
+</section>
+<section id="complex-corrforzap-complex">
+<h3>Complex (corrforzap_complex)<a class="headerlink" href="#complex-corrforzap-complex" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The six input files must have <strong>matching line counts</strong>. The program counts
+lines in the first read pass, then allocates and rereads. Mismatched files
+can cause wrong results or runtime errors.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>readforward</strong>: Can produce observables and force-related outputs that
+feed into fort.21.* for these tools.</p></li>
+<li><p><strong>bin/forcevmc.sh</strong>: Runs VMC force calculation and calls corrforza.x
+(with scale_pulay on stdin), corrforzap.x, or corrforzap_complex.x,
+appending their output to forces_vmc.dat.</p></li>
+<li><p><strong>bin/forcefn.sh</strong>: Similarly calls corrforza.x and corrforzap.x, appending
+to forces_fn.dat.</p></li>
+<li><p><strong>corrvar</strong>, <strong>corrcov</strong>: Other TurboRVB tools that compute correlations and
+covariances from fort.* data; corrforza/corrforzap are specialized for
+force estimates.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="warnings">
+<h3>Warnings<a class="headerlink" href="#warnings" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning maximum number of bins exceeded !!!</strong> — <strong>corrforza</strong> or
+<strong>corrforzap</strong>: The number of bins read reached the internal limit (20000
+or 100000). The last bin is not used. Reduce the number of bins in the
+upstream run or increase nbinm in the source and rebuild.</p></li>
+<li><p><strong>Warning large fluctuation=</strong> — <strong>corrforzap</strong>: <span class="math notranslate nohighlight">\(|\eta0|\)</span> &gt; 3*err. The force
+estimate is large compared to its error. Consider more samples or bins, or
+check convergence.</p></li>
+<li><p><strong>Warning, this parameter is not at minimum !!!</strong> — <strong>corrforzap_complex</strong>:
+For the real or imaginary force, <span class="math notranslate nohighlight">\(|\eta|\)</span> &gt; 3*err. Same as above; parameter may
+not be at the minimum.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Missing or invalid fort.21.*</strong> — If any required fort.21.* file is
+missing or cannot be opened, the program will stop with a run-time I/O
+error. Ensure the preceding VMC/force run has produced all required
+fort.21.* files in the current directory.</p></li>
+<li><p><strong>Wrong number of columns or format</strong> — Each line of fort.21.* should
+contain the expected values (e.g. value and weight). Incorrect format can
+lead to read errors or wrong results.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

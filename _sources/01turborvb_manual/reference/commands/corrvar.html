@@ -20,10 +20,12 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" href="forcefn_kpoints_forcefn_kpoints_parallel.html" />
+    <link rel="next" title="forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" href="forcefn.html" />
     <link rel="prev" title="corrforza.x, corrforzap.x corrforzap_complex.x" href="corrforza_corrforzap_corrforzap_complex.html" /> 
 </head>
 
@@ -49,30 +51,46 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">corrvar.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#file-consistency-fort-21-vs-fort-22">File consistency (fort.21 vs fort.22)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#parminimized-d-and-bin-length">parminimized.d and bin_length</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#bootstrap-and-memory">Bootstrap and memory</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings">Warnings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -121,18 +139,155 @@
            <div itemprop="articleBody">
              
   <section id="corrvar-x">
-<h1>corrvar.x<a class="headerlink" href="#corrvar-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-corrvar-x"></span><h1>corrvar.x<a class="headerlink" href="#corrvar-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>corrvar</strong> is a TurboRVB utility that <strong>computes the global average and
+standard deviation of energy and variance</strong> from block-averaged data, using
+<strong>bootstrap resampling</strong> (source comment: &quot;Given in input the block averages of
+energy and variance, this program computes the global average and standard
+deviation of these quantities using bootstrap resampling technique&quot;).</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.21</strong> (bin-by-bin energy <span class="math notranslate nohighlight">\(E\)</span> and weight <span class="math notranslate nohighlight">\(w\)</span>), <strong>fort.22</strong>
+(bin-by-bin <span class="math notranslate nohighlight">\(\langle E^2 \rangle\)</span> -related quantity and weight), <strong>parminimized.d</strong> (read
+<strong>nwalk</strong> from the second line), and <strong>standard input</strong> (one line:
+<strong>bin_length</strong>).</p></li>
+<li><p><strong>Output</strong>: <strong>Standard output</strong> only. Prints <strong>Energy</strong> (weighted average
+eav0 and bootstrap standard deviation of the mean), <strong>Variance square</strong>
+(variance <span class="math notranslate nohighlight">\(\langle E^2 \rangle - \langle E \rangle^2\)</span> estimate and its error), <strong>Est. energy error bar</strong>, and
+<strong>Est. corr. time</strong> (correlation-time estimate and error) in four lines.</p></li>
+<li><p><strong>Typical use</strong>: After a VMC or optimization run that has produced fort.21
+and fort.22, run corrvar with the desired bin length to evaluate energy,
+variance, error bar, and correlation time. Unlike <strong>corrforza</strong>/corrforzap
+(which focus on forces), <strong>corrvar</strong> is specialized for energy and variance
+statistics.</p></li>
+</ul>
+<p>The program is <strong>serial</strong> (no MPI). It has <strong>no command-line options</strong>; it
+reads <strong>bin_length</strong> from standard input (one line) when started.</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.21</strong> (required): Block (bin) averages of <strong>energy</strong> <code class="docutils literal notranslate"><span class="pre">e</span></code> and <strong>weight</strong>
+<code class="docutils literal notranslate"><span class="pre">w</span></code>, one line per bin (two numbers per line). Read with <code class="docutils literal notranslate"><span class="pre">read(11,*)</span> <span class="pre">e(i),</span>
+<span class="pre">w(i)</span></code>. If the file is missing or invalid, the program stops with ERROR (101).</p></li>
+<li><p><strong>fort.22</strong> (required): Block averages of the <strong>variance-related quantity</strong>
+<code class="docutils literal notranslate"><span class="pre">es</span></code> (<span class="math notranslate nohighlight">\(\langle E^2 \rangle\)</span>) and weight <strong>wpip</strong>, one line per bin (two numbers per line).
+Must have the <strong>same number of lines</strong> as fort.21. If missing or invalid,
+the program stops with ERROR (102). If <strong>wpip ≠ w(i)</strong> for any bin, the
+program prints &quot;warning the measures are not correlated !!!!&quot; and continues.</p></li>
+<li><p><strong>parminimized.d</strong> (required): First line is skipped; the second line must
+contain <strong>nwalk</strong> (walker count). Used to compute the &quot;Est. corr. time&quot;
+output (<code class="docutils literal notranslate"><span class="pre">eav_*nwalk</span></code>, <code class="docutils literal notranslate"><span class="pre">esav_*nwalk</span></code>). If missing or invalid, the program stops
+with ERROR (100).</p></li>
+<li><p><strong>Standard input</strong>: One line with <strong>bin_length</strong> (real). Bin length used in
+the correlation-time formula (nbin*bin_length*errn²/variance). The program
+waits for this line; provide it via pipe or redirect (e.g. <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;1.0&quot;</span> <span class="pre">|</span>
+<span class="pre">corrvar.x</span></code>).</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Standard output</strong> only (no output files). Lines printed:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">bins</span> <span class="pre">read</span> <span class="pre">=</span></code> <em>nbin</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Energy</span> <span class="pre">=</span></code> <em>eav0</em> <em>esav</em> (weighted average and bootstrap std dev of the mean)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Variance</span> <span class="pre">square</span> <span class="pre">=</span></code> <em>eta</em> <em>err</em> (variance estimate and bootstrap error)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Est.</span> <span class="pre">energy</span> <span class="pre">error</span> <span class="pre">bar</span> <span class="pre">=</span></code> <em>eta_</em> <em>err_</em></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Est.</span> <span class="pre">corr.</span> <span class="pre">time</span> <span class="pre">=</span></code> <code class="docutils literal notranslate"><span class="pre">eav_*nwalk</span></code> <code class="docutils literal notranslate"><span class="pre">esav_*nwalk</span></code> (correlation time estimate and error)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="file-consistency-fort-21-vs-fort-22">
+<h3>File consistency (fort.21 vs fort.22)<a class="headerlink" href="#file-consistency-fort-21-vs-fort-22" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.21</strong> and <strong>fort.22</strong> must have the <strong>same number of lines</strong> (same
+number of bins). The program counts lines by reading both until EOF; a
+mismatch will cause misaligned data or wrong results.</p></li>
+<li><p>The second column of fort.22 (<strong>wpip</strong>) is expected to equal the weight
+<strong>w</strong> in fort.21 for the same bin (correlated measures). If they differ,
+the warning &quot;the measures are not correlated !!!!&quot; is printed. For
+correct variance and correlation-time estimates, generate fort.21 and
+fort.22 from the same binning so that weights match.</p></li>
+</ul>
+</section>
+<section id="parminimized-d-and-bin-length">
+<h3>parminimized.d and bin_length<a class="headerlink" href="#parminimized-d-and-bin-length" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>parminimized.d</strong> is normally written by the main TurboRVB run
+(e.g. optimization). Format: first line arbitrary, second line a single
+integer <strong>nwalk</strong>. Ensure this file exists in the working directory
+before running corrvar.</p></li>
+<li><p><strong>bin_length</strong> must be supplied on standard input. If you run corrvar
+interactively without redirect, it will wait for one line. Use e.g.
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;bin_length_value&quot;</span> <span class="pre">|</span> <span class="pre">./corrvar.x</span></code> or a script that writes
+bin_length to stdin.</p></li>
+</ul>
+</section>
+<section id="bootstrap-and-memory">
+<h3>Bootstrap and memory<a class="headerlink" href="#bootstrap-and-memory" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The program runs <strong>1000 bootstrap iterations</strong> (nmis=1000) with a fixed
+random seed. There is no built-in limit on the number of bins; memory
+use grows with the number of lines in fort.21/fort.22.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>TurboRVB main / read_datas</strong>: Writes parminimized.d. VMC/optimization
+runs may also produce fort.21 and fort.22.</p></li>
+<li><p><strong>readff</strong>, <strong>readf</strong>, <strong>readffn</strong>: Tools that read/write fort.21 and
+related files. The fort.21/fort.22 that corrvar reads are typically
+produced by these or by the main run.</p></li>
+<li><p><strong>corrforza</strong>, <strong>corrforzap</strong>, <strong>corrforzap_complex</strong>: Bootstrap tools for
+force correlations. corrvar is specialized for energy, variance, error bar,
+and correlation time.</p></li>
+<li><p><strong>corrcov</strong>: Computes covariances from fort.21.* files. corrvar uses only
+fort.21 and fort.22 for variance and correlation-time estimates.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR: file parminimized.d not found or wrong!</strong> — parminimized.d
+could not be opened or the read (second line) failed. Run the main
+TurboRVB job first so that parminimized.d is created; check path and
+permissions.</p></li>
+<li><p><strong>ERROR: file fort.21 not found or wrong!</strong> — fort.21 could not be
+opened or a read failed. Ensure a prior VMC/optimization run has produced
+fort.21 in the working directory.</p></li>
+<li><p><strong>ERROR: file fort.22 not found or wrong!</strong> — fort.22 could not be
+opened or a read failed. Ensure a prior run has produced fort.22 with the
+same number of lines as fort.21.</p></li>
+</ul>
+</section>
+<section id="warnings">
+<h3>Warnings<a class="headerlink" href="#warnings" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>warning the measures are not correlated !!!!</strong> — For at least one bin,
+the weight <strong>wpip</strong> read from fort.22 did not equal the weight <strong>w</strong> from
+fort.21. The program continues. Check that fort.21 and fort.22 are
+generated with the same bin structure and weights.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The program has no <code class="docutils literal notranslate"><span class="pre">--help</span></code> option. Standard input is required for
+<strong>bin_length</strong>; without it the program blocks waiting for input.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -141,7 +296,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="corrforza_corrforzap_corrforzap_complex.html" class="btn btn-neutral float-left" title="corrforza.x, corrforzap.x corrforzap_complex.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="forcefn_kpoints_forcefn_kpoints_parallel.html" class="btn btn-neutral float-right" title="forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="forcefn.html" class="btn btn-neutral float-right" title="forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

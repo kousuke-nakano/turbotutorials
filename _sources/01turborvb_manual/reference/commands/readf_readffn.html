@@ -20,6 +20,8 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -49,33 +51,49 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">readf.x, readffn.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#jackknife-and-correction-weights">Jackknife and correction weights</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#readf-vs-readffn">readf vs readffn</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#lbin-ibinit-maxk">lbin, ibinit, maxk</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#k-points">k-points</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
@@ -121,18 +139,263 @@
            <div itemprop="articleBody">
              
   <section id="readf-x-readffn-x">
-<h1>readf.x, readffn.x<a class="headerlink" href="#readf-x-readffn-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-readf-x"></span><h1>readf.x, readffn.x<a class="headerlink" href="#readf-x-readffn-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>readf</strong> and <strong>readffn</strong> are TurboRVB utilities that <strong>read energy (or
+Forward Walking quantities) from fort.12 or fort.12.fn</strong>, form <strong>bins</strong> of
+length <strong>lbin</strong>, compute <strong>weighted bin averages</strong> and <strong>Jackknife error bars</strong>,
+and write <strong>fort.20</strong> (averages and errors) and <strong>fort.21</strong> (per-bin values).
+Both use the same program name <strong>erread</strong> in the source.</p>
+<dl class="simple">
+<dt><strong>readf</strong></dt><dd><p>Reads <strong>fort.12</strong> (or <strong>fort.12.fn</strong> when iskipr &lt; 0). Each record gives
+<strong>wbuf</strong>, <strong>wtot</strong>, optional <strong>eskip</strong>, and <strong>ebuf</strong> (energy). Bins of length
+<strong>lbin</strong> are formed; bins before <strong>ibinit</strong> are discarded. For each <strong>k</strong> =
+0, …, <strong>maxk</strong> (bias correction factor), a different weight is applied
+(see Notes). Jackknife over the <strong>nbin</strong> bins yields <strong>gapjack</strong> (average)
+and <strong>gaps</strong> (standard error), written to fort.20. fort.21 gets one line per
+bin (k = maxk value, weight, bin index).</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>Input</strong>: fort.12 or fort.12.fn; stdin: <strong>maxk</strong>, <strong>lbin</strong>, <strong>ibinitr</strong>,
+<strong>iskipr</strong>. Optional: command-line <strong>k-point index</strong> and <strong>kp_info.dat</strong>.</p></li>
+<li><p><strong>Output</strong>: fort.20 (Independent bins, then “Energy , error, # of bias
+correcting factor” with gapjack, gaps for each k). fort.21 (per-bin line).</p></li>
+<li><p><strong>Typical use</strong>: Post-process fort.12 from VMC or optimization to get
+binned energy average and error bar.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>readffn</strong></dt><dd><p>Extends <strong>readf</strong> by reading <strong>parminimized.d</strong> (optbra, tbra, etry, nsite)
+and supporting <strong>fort.12.fn</strong> format with <strong>pip</strong> (and <strong>pip0</strong>, <strong>pip1</strong> when
+iskip = 0) for Forward Walking. When <strong>iskip = 0</strong> and <strong>tbra ≠ 0</strong>, fort.20
+writes <strong>“Growth estimate (H)”</strong> using <span class="math notranslate nohighlight">\(E_{\mathrm{try}} -
+\ln(\mathtt{gapjack})/t_{\mathrm{bra}}\)</span>. <strong>optbra = -2</strong> sets <strong>nodiv</strong>
+(alternative weight accumulation).</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>parminimized.d</strong> (required), fort.12 or fort.12.fn; stdin same
+as readf. Optional k-point and kp_info.dat.</p></li>
+<li><p><strong>Output</strong>: fort.20 (Growth estimate when iskip=0 and tbra≠0; otherwise
+same as readf). fort.21 same as readf.</p></li>
+<li><p><strong>Typical use</strong>: Post-process <strong>fort.12.fn</strong> from <strong>readforward.x</strong> to get
+energy or Growth estimate with Jackknife error.</p></li>
+</ul>
+<p><strong>Command line</strong> (both): First argument <strong>--help</strong> / <strong>-help</strong> / <strong>help</strong> —
+show help and exit. A single numeric argument is the <strong>k-point index</strong>
+(kp_read); then <strong>kp_info.dat</strong> is opened. <strong>Serial only</strong> (no MPI).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Common to both</dt><dd><ul class="simple">
+<li><p><strong>Standard input</strong> (interactive): Prompt “max k corrections, bin length,
+ibinit, iskip ?” → <strong>maxk</strong>, <strong>lbin</strong>, <strong>ibinitr</strong>, <strong>iskipr</strong>. If
+<strong>maxk &lt; 0</strong>: yes_weight = .true. (replace weights by 1), maxk set to 0.
+If <strong>lbin &lt; 0</strong>: lbin = -lbin, then “ngen max read ?” → <strong>iread</strong>. If
+<strong>ibinitr &lt; 0</strong>: krep = iskip, ibinit = -ibinitr (multi-replica mode).</p></li>
+<li><p><strong>fort.12</strong>: Used when <strong>iskipr ≥ 0</strong>. Unformatted. Record layout differs
+between readf and readffn (see Notes).</p></li>
+<li><p><strong>fort.12.fn</strong>: Used when <strong>iskipr &lt; 0</strong>; iskip = -iskipr - 1. Forward
+Walking output.</p></li>
+<li><p><strong>Command line</strong>: First argument --help / -help / help, or a <strong>k-point
+index</strong>. Then <strong>kp_info.dat</strong> is read (first line: nkps; then k-point
+data). Only the chosen kp_read-th k-point records are used in the
+average.</p></li>
+</ul>
+</dd>
+<dt>readf — fort.12 record layout</dt><dd><ul class="simple">
+<li><p><strong>krep = 1, iskip ≠ 0</strong>: wbuf(j), wtot(j), eskip(1:iskip), ebuf(j,1).</p></li>
+<li><p><strong>krep = 1, iskip = 0</strong>: wbuf(j), wtot(j), ebuf(j,1).</p></li>
+<li><p><strong>krep &gt; 1</strong>: wbuf(j), wtot(j), eskip(1), ebuf(j,1:iskip).</p></li>
+</ul>
+</dd>
+<dt>readffn — fort.12 record layout</dt><dd><ul class="simple">
+<li><p><strong>krep = 1, iskip &gt; 0</strong>: wbuf(j), <strong>pip</strong>, wtot(j), eskip(1:iskip),
+ebuf(j,1).</p></li>
+<li><p><strong>krep = 1, iskip = 0</strong>: wbuf(j), <strong>pip0</strong>, <strong>pip1</strong>. Then wtot(j) = 1
+and ebuf(j,1) is set from wbuf, pip0, pip1 (or pip0/pip1 for sign)
+depending on optbra/iskip (Growth estimate).</p></li>
+<li><p><strong>krep &gt; 1</strong>: wbuf(j), pip, wtot(j), eskip(1), ebuf(j,1:iskip).</p></li>
+</ul>
+</dd>
+<dt>readffn only</dt><dd><ul class="simple">
+<li><p><strong>parminimized.d</strong> (required): First line skipped. Second line: <strong>nwr</strong>,
+<strong>optbra</strong>, <strong>gamma</strong>, <strong>tbra</strong>, <strong>etry</strong>. If optbra = -1 or -2, re-read
+with <strong>nsite</strong>. optbra = -2 → <strong>nodiv</strong> = .true. tbra, etry, nsite are
+used for Growth estimate output.</p></li>
+</ul>
+</dd>
+</dl>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.20</strong>: First line “Independent bins nmis of length lbin”. Then for
+<strong>readf</strong> and <strong>readffn</strong> (when iskip ≠ 0 or tbra = 0): “Energy , error, #
+of bias correcting factor” and for k = 0,…,maxk: (gapjack, gaps), k. For
+<strong>readffn</strong> when <strong>iskip = 0</strong> and <strong>tbra ≠ 0</strong>: “Growth estimate (H) error,
+# of bias correcting factor” with <span class="math notranslate nohighlight">\(E_{\mathrm{try}} -
+\ln(\mathtt{gapjack})/t_{\mathrm{bra}}\)</span> (or divided by nsite when
+optbra = -1) and its error.</p></li>
+<li><p><strong>fort.21</strong>: One line per bin (ibin ≥ ibinit): ek(maxk,k)/wk(maxk) for
+k=1,…,krep, wk(maxk), ibin. Format suitable for block-averaged input (e.g.
+corrvar).</p></li>
+<li><p><strong>Standard output</strong>: “number of measures done =” nmis; with k-point,
+“number of k-points / index read”, “kpoint/weight chosen:”, etc.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="jackknife-and-correction-weights">
+<h3>Jackknife and correction weights<a class="headerlink" href="#jackknife-and-correction-weights" title="Link to this heading"></a></h3>
+<p><strong>Correction weight (bias factor k)</strong></p>
+<blockquote>
+<div><p>For each record the program reads <strong>wbuf</strong>, <strong>wtot</strong>, <strong>ebuf</strong>. It
+accumulates <strong>ek(k,:)</strong> and <strong>wk(k)</strong> using a “correction weight” <strong>wsk</strong>
+that depends on <strong>k</strong> = 0, …, maxk:</p>
+<ul class="simple">
+<li><p><strong>k = 0</strong>: <span class="math notranslate nohighlight">\(w_{\mathrm{sk}} = \mathtt{wtot}(j)\)</span> (current
+measurement weight).</p></li>
+<li><p><strong>k ≥ 1</strong>: <span class="math notranslate nohighlight">\(w_{\mathrm{sk}}\)</span> is wtot(j) times the <strong>product of
+wbuf</strong> from the <strong>previous k steps</strong> (j−1, j−2, …, j−k). When j−k falls
+in the previous block, <strong>wbufm</strong> (copy of previous block’s wbuf) is
+used.</p></li>
+</ul>
+<p>So the <em>k</em>-th correction uses the product of the last <em>k</em> branching
+factors (wbuf) to reduce bias from population control. If <strong>maxk &lt; 0</strong>,
+<strong>yes_weight</strong> sets wbuf and wtot to 1 (equal weights). In <strong>readffn</strong> with
+<strong>nodiv</strong> (optbra = -2), <span class="math notranslate nohighlight">\(w_{\mathrm{sk}} = 1\)</span> and wk is
+accumulated as <span class="math notranslate nohighlight">\(w_{\mathrm{sk}} \times \mathtt{wtot}(j)\)</span>.</p>
+</div></blockquote>
+<p><strong>Per-bin weighted average (ekw, wkw)</strong></p>
+<blockquote>
+<div><p>Each bin has <strong>lbin</strong> measurements. When a bin completes, the accumulated
+<strong>ek(0:maxk,:)</strong> and <strong>wk(0:maxk)</strong> are stored in <strong>ekw</strong> and <strong>wkw</strong>. The
+bin-<em>b</em> average for correction <em>k</em> is:</p>
+<div class="math notranslate nohighlight">
+\[\bar{E}_b^{(k)} = \frac{\mathtt{ek}(k)}{\mathtt{wk}(k)}\]</div>
+<p>(final ek, wk for that bin). <strong>fort.21</strong> writes the <strong>k = maxk</strong> value,
+wk(maxk), and bin index per line.</p>
+</div></blockquote>
+<p><strong>Jackknife formulas</strong></p>
+<blockquote>
+<div><p>The <strong>jack</strong> subroutine uses <strong>nbin</strong> bins:</p>
+<ol class="arabic">
+<li><p><strong>Full weighted average</strong> (stored in <strong>gapjack</strong>, written to fort.20):</p>
+<div class="math notranslate nohighlight">
+\[\bar{E}^{(k)} = \frac{\sum_{b=1}^{n_{\mathrm{bin}}}
+\mathtt{ekw}(k,b,\cdot)}{\sum_b \mathtt{wkw}(k,b)} =
+\frac{\sum_b \mathtt{ekw}(k,b,\cdot)}{W^{(k)}}\]</div>
+</li>
+<li><p><strong>Leave-one-bin-out Jackknife estimate</strong> (bin <em>i</em> excluded):</p>
+<div class="math notranslate nohighlight">
+\[\bar{E}_{(i)}^{(k)} = \frac{ W^{(k)} \bar{E}^{(k)} -
+\mathtt{ekw}(k,i,\cdot) }{ W^{(k)} - \mathtt{wkw}(k,i) }\]</div>
+<p>In code this is <strong>gap</strong> (per bin <em>i</em>).</p>
+</li>
+<li><p><strong>Jackknife standard error</strong> (<strong>gaps</strong>):</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\mathrm{jack}}^{(k)} = \sqrt{ (n_{\mathrm{bin}}-1) \cdot
+\frac{1}{n_{\mathrm{bin}}} \sum_{i=1}^{n_{\mathrm{bin}}}
+\bigl( \bar{E}_{(i)}^{(k)} - \bar{E}_{\mathrm{jack}}^{(k)} \bigr)^2 }\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{E}_{\mathrm{jack}}^{(k)}\)</span> is the mean of the
+<span class="math notranslate nohighlight">\(\bar{E}_{(i)}^{(k)}\)</span>. fort.20 prints <strong>gapjack</strong> (average) and
+<strong>gaps</strong> (this standard error) for each k.</p>
+</li>
+</ol>
+</div></blockquote>
+</section>
+<section id="readf-vs-readffn">
+<h3>readf vs readffn<a class="headerlink" href="#readf-vs-readffn" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>parminimized.d</strong>: Read only by <strong>readffn</strong>; required for Growth estimate
+and nodiv.</p></li>
+<li><p><strong>fort.12 record</strong>: readffn has <strong>pip</strong> (and pip0, pip1 when iskip = 0);
+readf has no pip.</p></li>
+<li><p><strong>fort.20</strong>: readffn writes “Growth estimate (H)” when iskip = 0 and
+tbra ≠ 0; otherwise both write “Energy , error, # of bias correcting
+factor”.</p></li>
+<li><p><strong>nodiv</strong>: readffn only (optbra = -2); weight accumulation differs.</p></li>
+<li><p><strong>Typical source</strong>: readf for standard VMC/optimization fort.12; readffn
+for <strong>readforward</strong> fort.12.fn.</p></li>
+</ul>
+</section>
+<section id="lbin-ibinit-maxk">
+<h3>lbin, ibinit, maxk<a class="headerlink" href="#lbin-ibinit-maxk" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>lbin</strong>: Generations per bin. nbin = countmax/lbin − ibinit + 1. Larger
+lbin → fewer bins, often smaller error but less resolution in fort.21.</p></li>
+<li><p><strong>ibinit</strong>: Bins with index &lt; ibinit are discarded (e.g. equilibration).
+Only bins with ibin ≥ ibinit contribute to ekw/wkw and Jackknife.</p></li>
+<li><p><strong>maxk</strong>: Number of bias correction factors (k = 0,…,maxk). maxk = 0 gives
+plain weighted average; maxk &gt; 0 adds corrections using products of
+previous wbuf. maxk &lt; 0 at input → yes_weight and maxk set to 0.</p></li>
+</ul>
+</section>
+<section id="k-points">
+<h3>k-points<a class="headerlink" href="#k-points" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When the first command-line argument is a number, it is <strong>kp_read</strong> (k-point
+index). <strong>kp_info.dat</strong> must exist; first line is <strong>nkps</strong>. The program
+reads only the kp_read-th k-point’s records (or averages over kave_read
+consecutive k-points if kp_read &gt; nkps). Record count in fort.12 must be a
+<strong>multiple of nkps</strong> (error 107 otherwise).</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>readforward.x</strong>: Produces <strong>fort.12.fn</strong> (Forward Walking). Use
+<strong>readffn</strong> to bin-average and get Growth estimate or energy with
+Jackknife error.</p></li>
+<li><p><strong>corrvar.x</strong>: Reads fort.21 (and fort.22) for bootstrap of energy/variance.
+readf/readffn write <strong>fort.21</strong> in a compatible block-averaged form.</p></li>
+<li><p><strong>parminimized.d</strong>: Written by optimization or readforward; <strong>readffn</strong>
+reads optbra, tbra, etry, nsite from it.</p></li>
+<li><p><strong>template/readf.input</strong>, <strong>template/readffn.input</strong>: Example stdin (one
+line: maxk, lbin, ibinit, iskipr).</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR: file fort.12 not found or empty!</strong> (102) — <strong>readf</strong> or
+<strong>readffn</strong> with <strong>iskipr ≥ 0</strong> could not open fort.12. Use fort.12 from
+the same run, or use <strong>iskipr &lt; 0</strong> and fort.12.fn.</p></li>
+<li><p><strong>ERROR: file fort.12.fn not found or empty!</strong> (103) — <strong>iskipr &lt; 0</strong> but
+fort.12.fn missing. Provide fort.12.fn or run with iskipr ≥ 0 and
+fort.12.</p></li>
+<li><p><strong>ERROR: file kp_info.dat not found or empty!</strong> (104) — First argument
+was a number (k-point index) but kp_info.dat is missing. Run without
+k-point index (or with 1) or create kp_info.dat (e.g. from readforward).</p></li>
+<li><p><strong>ERROR: k-point index out of bounds!</strong> (106) — kp_read out of range.
+Use a valid k-point index (1 to nkps, or see code for kave_read).</p></li>
+<li><p><strong>ERROR: number of measures not multiple of number of k-points!</strong> (107)
+— Record count in fort.12 is not divisible by nkps. Use fort.12 from the
+same k-point run.</p></li>
+<li><p><strong>ERROR: wrong number of bins or k correcting factors!</strong> (108) — nbin ≤ 0
+or maxk &lt; 0 after applying yes_weight. Check lbin, ibinit, and that
+there are enough records; avoid invalid maxk.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.12 vs fort.12.fn format</strong>: Record layout differs between readf and
+readffn (readffn has pip, pip0, pip1). Use <strong>readffn</strong> for fort.12.fn from
+readforward.</p></li>
+<li><p><strong>ibinitr &lt; 0</strong>: Then krep = iskip and ibinit = -ibinitr; multiple
+replicas are averaged. Ensure iskip matches the file layout.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

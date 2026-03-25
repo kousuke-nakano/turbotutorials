@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="prep.x" href="prep.html" />
-    <link rel="prev" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html" /> 
+    <link rel="prev" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" href="plot_tools.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,29 +49,46 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">plot_orbitals.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#molecular-orbitals-required">Molecular orbitals required</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#spin-density-and-symmagp">Spin density and symmagp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mesh-pbc">Mesh (PBC)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#serial-only">Serial only</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotentials-and-one-body-jastrow">Pseudopotentials and one-body Jastrow</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
@@ -121,18 +138,184 @@
            <div itemprop="articleBody">
              
   <section id="plot-orbitals-x">
-<h1>plot_orbitals.x<a class="headerlink" href="#plot-orbitals-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-plot-orbitals-x"></span><h1>plot_orbitals.x<a class="headerlink" href="#plot-orbitals-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>plot_orbitals</strong> is a TurboRVB utility that <strong>evaluates molecular orbitals
+from fort.10 on a real-space mesh</strong> and writes <strong>orbitals, orbital squared,
+charge density, or spin density</strong> in <strong>XCrysDen XSF format</strong> for visualization.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10</strong> (wave function with <strong>molecular orbitals</strong>; <code class="docutils literal notranslate"><span class="pre">molyes</span></code>
+must be .true.), <strong>standard input</strong> in <strong>interactive</strong> form: box size or
+shift (for PBC), mesh points (x,y,z), and orbit option <strong>all</strong> / <strong>partial</strong> /
+<strong>charge</strong> / <strong>spin</strong> with any extra parameters. If pseudopotentials are used,
+<strong>pseudo.dat</strong> is read.</p></li>
+<li><p><strong>Output</strong>: <code class="docutils literal notranslate"><span class="pre">output_&lt;word&gt;&lt;6-digit&gt;.xsf</span></code> — 3D grid files (e.g.
+<code class="docutils literal notranslate"><span class="pre">output_orbital000001.xsf</span></code>, <code class="docutils literal notranslate"><span class="pre">output_orbsqrd000001.xsf</span></code>,
+<code class="docutils literal notranslate"><span class="pre">output_charge000000.xsf</span></code>, <code class="docutils literal notranslate"><span class="pre">output_spin000000.xsf</span></code>) in XSF format,
+viewable with XCrysDen.</p></li>
+<li><p>The program reads fort.10, then asks for mesh and orbit options on stdin. It
+evaluates orbital values at each mesh point via <strong>upnewwf</strong> (with one-body
+Jastrow when applicable) and writes grids with <strong>plot_3d_data</strong> (m_common).</p></li>
+<li><p><strong>Typical use</strong>: Visualize molecular orbitals or charge/spin density from a
+TurboRVB fort.10 with XCrysDen.</p></li>
+</ul>
+<p>The program is <strong>serial only</strong> (no MPI); it always runs with rank=0, nproc=1.
+Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help
+(<code class="docutils literal notranslate"><span class="pre">help_online('plot_orbitals')</span></code>) and exit.</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> (required): Wave function file (TurboRVB format) that <strong>must
+contain molecular orbitals</strong> (<code class="docutils literal notranslate"><span class="pre">molyes=.true.</span></code>). Read via
+<code class="docutils literal notranslate"><span class="pre">read_fort10_fast</span></code>, <code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code>, <code class="docutils literal notranslate"><span class="pre">read_fort10(10)</span></code>.</p></li>
+<li><p><strong>Standard input</strong> (interactive, in order):</p>
+<ol class="arabic simple">
+<li><p><strong>Open system</strong>: &quot;Choose box size (x,y,z)&quot; → three values for the plot box.
+<strong>PBC</strong>: &quot;Choose shift reference unit cell PBC&quot; → three values (fraction of
+cell) for the origin shift.</p></li>
+<li><p>&quot;Choose number of mesh points (x,y,z)&quot; → mesh(1), mesh(2), mesh(3). For
+PBC, the program adds 1 to each mesh dimension internally (for XCrysDen
+compatibility).</p></li>
+<li><p>&quot;Choose orbitals to tabulate (possible answers all, partial, charge, spin)&quot;
+→ one of:</p>
+<ul>
+<li><p><strong>all</strong>: All molecular orbitals (1 to molecular). No further input.</p></li>
+<li><p><strong>partial</strong>: Then &quot;Please give a range between 1 and molecular&quot; → lower,
+upper (inclusive).</p></li>
+<li><p><strong>charge</strong>: &quot;Please give the lowest molecular orbital within 1 and
+molecular&quot; → lower. Then &quot;Number of fully occupied molecular
+orbital/total number occupied by up and down?&quot; → nfil, ntot. Computes
+charge density (weighted sum of ψ² over occupied orbitals).</p></li>
+<li><p><strong>spin</strong>: Same as charge, plus &quot;Momentum magnetization ? (unit
+2π/cellscale)&quot; → kspin(1:3). Computes spin density. <strong>Not allowed</strong> when
+<code class="docutils literal notranslate"><span class="pre">symmagp=.true.</span></code> (program stops with an error).</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>pseudo.dat</strong>: Required when pseudopotentials are used (npsa &gt; 0).</p></li>
+<li><p><strong>Command line</strong>: First argument <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints
+online help and exits.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">output_&lt;word&gt;&lt;6-digit&gt;.xsf</span></code>: 3D data grids. The 6-digit number is
+the orbital index (zero-padded). Examples:</p>
+<ul>
+<li><p><strong>orbital</strong>, <strong>orbsqrd</strong>: Orbital ψ and ψ² (ipf=1). For Pfaffian (ipf=2):
+<strong>orbital_up</strong>, <strong>orbital_down</strong>, <strong>orbsqrd_up</strong>, <strong>orbsqrd_down</strong>,
+<strong>prod_updown</strong>, <strong>orbsqrd_sum</strong>, <strong>orbsqrd_diff</strong>.</p></li>
+<li><p><strong>charge</strong>: Charge density (charge mode only).</p></li>
+<li><p><strong>spin</strong>: Spin density (spin mode only; up − down).</p></li>
+</ul>
+</li>
+<li><p>Output units: lengths in Å (via <code class="docutils literal notranslate"><span class="pre">length_unit</span></code>); grid values scaled
+accordingly.</p></li>
+<li><p>Standard output: Orbital indices, &quot;# of orbitals written&quot;, total charge or
+magnetization in the cell (charge/spin mode), and for spin mode the structure
+factor at K.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="molecular-orbitals-required">
+<h3>Molecular orbitals required<a class="headerlink" href="#molecular-orbitals-required" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>plot_orbitals</strong> works only when <strong>molyes</strong> is .true. in fort.10 (i.e. the
+wave function has molecular orbitals). Otherwise the program stops with
+&quot;This tool work only with molecular orbitals&quot;. Use a fort.10 produced by
+<strong>makefort10</strong> with molecular orbitals, or <strong>convertfort10mol</strong>, etc.</p></li>
+</ul>
+</section>
+<section id="spin-density-and-symmagp">
+<h3>Spin density and symmagp<a class="headerlink" href="#spin-density-and-symmagp" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Spin density</strong> (option <strong>spin</strong>) is <strong>not</strong> available when <strong>symmagp=.true.</strong>
+in fort.10. The program stops with &quot;Spin density is not possible for
+symmagp=.true.&quot;. Use a wave function with <code class="docutils literal notranslate"><span class="pre">symmagp=.false.</span></code> or choose
+<strong>all</strong> / <strong>partial</strong> / <strong>charge</strong> instead.</p></li>
+</ul>
+</section>
+<section id="mesh-pbc">
+<h3>Mesh (PBC)<a class="headerlink" href="#mesh-pbc" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>For <strong>periodic boundary conditions</strong>, the program <strong>increments each mesh
+dimension by 1</strong> so that the grid matches XCrysDen conventions;
+step = cell_loc / (mesh − 1).</p></li>
+</ul>
+</section>
+<section id="serial-only">
+<h3>Serial only<a class="headerlink" href="#serial-only" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>There is <strong>no MPI</strong>; the program runs on a single process. For large meshes,
+runtime can be significant.</p></li>
+</ul>
+</section>
+<section id="pseudopotentials-and-one-body-jastrow">
+<h3>Pseudopotentials and one-body Jastrow<a class="headerlink" href="#pseudopotentials-and-one-body-jastrow" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>If fort.10 uses pseudopotentials (npsa &gt; 0), <strong>pseudo.dat</strong> must be present.</p></li>
+<li><p>Orbital values on the mesh include the <strong>one-body Jastrow</strong> factor
+(jastrow_ei, scale_one_body) when applicable; distances use the same
+conventions as in the main code (e.g. costz, map for PBC).</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>plot_contracted</strong>: Plots <strong>contracted</strong> (atomic) orbitals on a mesh in a
+similar way; input style is comparable to plot_orbitals.</p></li>
+<li><p><strong>plot_3d_data</strong> (m_common): Subroutine that writes 3D grids to XSF files;
+plot_orbitals calls it to produce the <code class="docutils literal notranslate"><span class="pre">output_*.xsf</span></code> files.</p></li>
+<li><p><strong>makefort10</strong>: Builds an initial fort.10; use it to create a wave function
+with molecular orbitals for plot_orbitals.</p></li>
+<li><p><strong>convertfort10mol</strong>: Converts the molecular-orbital part of fort.10; the
+resulting fort.10 can be visualized with plot_orbitals.</p></li>
+<li><p><strong>read_fort10</strong> / <strong>upnewwf</strong>: Fort.10 reading and orbital evaluation at a
+point; plot_orbitals uses upnewwf on each mesh point.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>This tool work only with molecular orbitals</strong> — <strong>molyes</strong> is .false. in
+fort.10 (no molecular orbitals). Use a fort.10 that includes molecular
+orbitals (e.g. from makefort10 with molecular block, or convertfort10mol).</p></li>
+<li><p><strong>Spin density is not possible for symmagp=.true.</strong> — You chose option
+<strong>spin</strong> but fort.10 has <strong>symmagp=.true.</strong>. Use a wave function with
+<code class="docutils literal notranslate"><span class="pre">symmagp=.false.</span></code> for spin density, or use <strong>all</strong> / <strong>partial</strong> / <strong>charge</strong>
+to plot orbitals or charge only.</p></li>
+<li><p><strong>error from open unit in plot_3d_data, unit already opened</strong> — The internal
+unit used by plot_3d_data is already in use (e.g. another part of the code
+opened it). When running plot_orbitals alone this is rare; check for custom
+modifications or linking with other code that might use the same unit.</p></li>
+<li><p><strong>Cannot open fort.10 / read_fort10 fails</strong> — fort.10 is missing or invalid.
+Ensure a valid TurboRVB fort.10 (with molecular orbitals) is in the working
+directory.</p></li>
+<li><p><strong>read_pseudo fails</strong> — Pseudopotentials are used but <strong>pseudo.dat</strong> is
+missing or invalid. Provide pseudo.dat or use a fort.10 without ECPs.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Input is <strong>interactive</strong>; there is no single template file. For batch runs,
+prepare a file with the expected lines and redirect: <code class="docutils literal notranslate"><span class="pre">./plot_orbitals.x</span> <span class="pre">&lt;</span>
+<span class="pre">my_input.txt</span></code>.</p></li>
+<li><p>Output XSF files are overwritten if they already exist. Rename or move
+previous results if you need to keep them.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -140,7 +323,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html" class="btn btn-neutral float-left" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_tools.html" class="btn btn-neutral float-left" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="prep.html" class="btn btn-neutral float-right" title="prep.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

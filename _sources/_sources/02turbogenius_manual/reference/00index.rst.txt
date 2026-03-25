@@ -7,7 +7,7 @@ Here are references for TurboGenius commandline interface, including description
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    01general_description.rst
    02command.rst

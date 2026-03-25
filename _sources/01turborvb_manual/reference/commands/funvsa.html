@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="makefort10.x" href="makefort10.html" />
-    <link rel="prev" title="forcevmc.sh" href="forcevmc.html" /> 
+    <link rel="prev" title="forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh" href="forcevmc.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,34 +51,48 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">funvsa.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-calculations">Quantum Monte Carlo calculations</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#effective-points-ntrue-and-degrees-of-freedom">Effective points (Ntrue) and degrees of freedom</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#singular-normal-equations-map-0">Singular normal equations (map=0)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#machine-learning-mode-map-0">Machine-learning mode (map≠0)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output-x-values">Output x values</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#template">Template</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#warnings">Warnings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-error-messages">Fatal / error messages</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -127,77 +141,228 @@
            <div itemprop="articleBody">
              
   <section id="funvsa-x">
-<h1>funvsa.x<a class="headerlink" href="#funvsa-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-funvsa-x"></span><h1>funvsa.x<a class="headerlink" href="#funvsa-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<section id="quantum-monte-carlo-calculations">
-<h3>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h3>
-<p>We describe input files that control variational and diffusion Monte Carlo simulations.
-TurboRVB input files are built using fortran namelists.
-Keywords are divided in different sections according to their meaning.</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>funvsa</strong> is a TurboRVB utility that <strong>fits (x, y) data with a weighted
+least-squares linear model</strong> in a power-law basis and computes <strong>coefficients,
+predictions, derivatives, and bootstrap errors</strong>. It reads only from <strong>standard
+input</strong> and writes only to <strong>standard output</strong>.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>Standard input</strong> only. First line: <strong>order</strong> (polynomial order),
+<strong>N</strong> (number of data points), <strong>iopt</strong> (input format and x-transform option),
+<strong>power</strong> (exponent in the fit basis). If <strong>iopt=2</strong>, a second line gives
+<strong>errscale</strong>. Then <strong>N</strong> data lines (x, y, wy or x, wx, y, wy depending on
+iopt).</p></li>
+<li><p><strong>Output</strong>: <strong>Standard output</strong> only. Reports numeric precision, reduced χ²,
+coefficients and their errors, fit value and derivative (and errors) at each
+point, and maximum residual.</p></li>
+<li><p><strong>Fit model</strong>: <span class="math notranslate nohighlight">\(y = c_1 + c_2·x^{\rm power} + c_3 x^{({\rm power}+1)} + \cdots\)</span> (or <span class="math notranslate nohighlight">\(1/x^{|{\rm power}|}\)</span> - type basis when power &lt; 0).
+With <strong>power=1</strong> this is a standard polynomial.</p></li>
+<li><p><strong>Machine-learning mode</strong>: If <strong>N</strong> is read as negative, the program sets
+N = |N| and <strong>map=1</strong>, enabling a regularized Bayesian-style fit with
+iterative α/β updates and Evidence. If <strong>order</strong> is negative, <strong>fixbeta</strong> is
+set (β fixed, only α updated). Otherwise (map=0) the weighted normal
+equations are solved by LU factorization.</p></li>
+</ul>
+<p>Typical use: fitting ''parameter vs energy'' (or similar) data from VMC with a
+polynomial or 1/r-type function. See <strong>template/funvsa.input</strong> for an example.</p>
+<p><strong>Command line</strong>: <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints online help and
+exits (<code class="docutils literal notranslate"><span class="pre">help_online('funvsa')</span></code>).</p>
 </section>
-<section id="extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">
-<h3>Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)<a class="headerlink" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x" title="Link to this heading"></a></h3>
-<p>Please collect all LRDMC energies into <code class="docutils literal notranslate"><span class="pre">evsa.in</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
-<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
-<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
-<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
-<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
-</pre></div>
-</div>
-<p>wherein</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
-<span class="c1"># 2  number of data 4 1</span>
-<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
-</pre></div>
-</div>
-<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># alat    LRDMC energy            Its error bar</span>
-<span class="w">  </span><span class="m">0</span>.10<span class="w">    </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> is a tool for a quadratic fitting:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
-</pre></div>
-</div>
-<p>You can see</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">0</span>.876592055494152
-Coefficient<span class="w"> </span>found
-<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13803097957683<span class="w">       </span><span class="m">1</span>.045060026486010E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
-<span class="w"> </span><span class="m">2</span><span class="w"> </span>-1.039867020790643E-003<span class="w">  </span><span class="m">1</span>.780475364652620E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
-<span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="m">4</span>.237124912102820E-003<span class="w">  </span><span class="m">4</span>.688879337831868E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_2
-</pre></div>
-</div>
-<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
-<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
-<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
-<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
-<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> can also do a linear fitting:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
-</pre></div>
-</div>
-<p>Check evsa.out</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.873603895738953
-Coefficient<span class="w"> </span>found
-<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13808947524004<span class="w">       </span><span class="m">8</span>.025420272361147E-005<span class="w">  </span>&lt;-<span class="w"> </span>E_0
-<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="m">5</span>.210500236482952E-004<span class="w">  </span><span class="m">4</span>.472096760481409E-004<span class="w">  </span>&lt;-<span class="w"> </span>k_1
-</pre></div>
-</div>
-<p>Thus, we get <span class="math notranslate nohighlight">\(E(a \to 0)\)</span> = -1.13808(8) Ha.</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>First line</strong>: <strong>order</strong>, <strong>N</strong>, <strong>iopt</strong>, <strong>power</strong> (four numbers).
+<strong>order+1</strong> is the number of coefficients. <strong>N</strong> is the number of data
+lines. If <strong>N &amp;lt; 0</strong>, the program uses N = |N| and <strong>map=1</strong> (machine-
+learning mode). If <strong>order &amp;lt; 0</strong>, it uses order = |order| and
+<strong>fixbeta=.true.</strong></p></li>
+<li><p><strong>Second line (only when iopt=2)</strong>: <strong>errscale</strong> (real). All weights wy are
+set to this value.</p></li>
+<li><p><strong>Next N lines</strong>: Data. Format depends on <strong>iopt</strong>. Points with <strong>wy(i)=0</strong>
+are excluded from the fit and from χ² (effective count is <strong>Ntrue</strong>).</p></li>
+</ul>
+<p><strong>iopt — data format and x transform</strong></p>
+<blockquote>
+<div><table class="docutils align-default">
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 37.5%" />
+<col style="width: 52.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>iopt</strong></p></th>
+<th class="head"><p><strong>Data per line</strong></p></th>
+<th class="head"><p><strong>x transform / notes</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>x, wx, y, wy</p></td>
+<td><p>x unchanged; bootstrap adds Gaussian noise to x using wx.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>After errscale line: x, y, wy (wy overwritten by errscale).</p></td>
+<td><p>x unchanged.</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by √x.</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by x².</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by 1/√x.</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by 1/x.</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by 1/x².</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>x, y, wy</p></td>
+<td><p>x replaced by 1/log(x).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Other</p></td>
+<td><p>x, y only (wy=1)</p></td>
+<td><p>x unchanged. If iopt=2 was used, wy set from errscale.</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl class="simple">
+<dt><strong>power</strong>: Exponent in the basis. Model is</dt><dd><p><span class="math notranslate nohighlight">\(y = c_1 + c_2 x^{\rm power} + c_3 x^{({\rm power}+1)} + \cdots\)</span> (power=1 gives a standard polynomial).</p>
+</dd>
+</dl>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Standard output</strong> only (no output files). Lines include:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">with</span> <span class="pre">precision</span> <span class="pre">=</span></code> — numeric precision (dlamch).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">data</span> <span class="pre">OK</span></code> — data read completed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Machine</span> <span class="pre">learning</span> <span class="pre">alpha,beta</span> <span class="pre">=</span></code> — when map≠0, final α(=map) and β.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Reduced</span> <span class="pre">chi^2</span> <span class="pre">=</span></code> — res/(Ntrue − orderp). If Ntrue ≤ orderp, only
+<code class="docutils literal notranslate"><span class="pre">Warning,</span> <span class="pre">no</span> <span class="pre">degrees</span> <span class="pre">of</span> <span class="pre">freedom</span></code> is printed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Machine</span> <span class="pre">learning</span> <span class="pre">Evidence</span> <span class="pre">=</span></code> — when map≠0, Evidence mean ± std dev
+(bootstrap).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Coefficient</span> <span class="pre">found</span></code> — each coefficient and its bootstrap error.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Predicted</span> <span class="pre">error</span> <span class="pre">/</span> <span class="pre">measured</span> <span class="pre">error</span></code> — per point: index, original x, fit
+value, prediction error, derivative, derivative error, measured y, wy (y
+and wy omitted when wy=0).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">error</span> <span class="pre">in</span> <span class="pre">fit</span> <span class="pre">=</span></code> — max |fit(x_i) − y_i| over points with wy≠0.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="effective-points-ntrue-and-degrees-of-freedom">
+<h3>Effective points (Ntrue) and degrees of freedom<a class="headerlink" href="#effective-points-ntrue-and-degrees-of-freedom" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Only points with <strong>wy(i) ≠ 0</strong> are used in the fit and in χ². <strong>Ntrue</strong> is
+the count of such points. If <strong>Ntrue ≤ orderp</strong> (order+1), there are no
+degrees of freedom and the program prints <code class="docutils literal notranslate"><span class="pre">Warning,</span> <span class="pre">no</span> <span class="pre">degrees</span> <span class="pre">of</span> <span class="pre">freedom</span></code>
+instead of reduced χ².</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="singular-normal-equations-map-0">
+<h3>Singular normal equations (map=0)<a class="headerlink" href="#singular-normal-equations-map-0" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When <strong>map=0</strong>, the weighted normal equations are solved by LU
+(dgetrf/dgetrs). If the design matrix is singular (linear dependence),
+dgetrf returns info≠0 and the program prints <code class="docutils literal notranslate"><span class="pre">There</span> <span class="pre">is</span> <span class="pre">depdendency</span> <span class="pre">!!!</span></code>.
+Reduce <strong>order</strong> or change the data/basis so that the columns are linearly
+independent.</p></li>
+</ul>
+</section>
+<section id="machine-learning-mode-map-0">
+<h3>Machine-learning mode (map≠0)<a class="headerlink" href="#machine-learning-mode-map-0" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When <strong>N &amp;lt; 0</strong> is given, <strong>map=1</strong> and the program uses an iterative
+Bayesian-style fit: diagonalize the matrix, then update α (=map) and β (unless
+<strong>fixbeta</strong> from negative order). Minimum eigenvalue is clipped by machine
+epsilon. Iteration stops when the change in α is below a tolerance or after
+<strong>maxit=100</strong> steps. If it does not converge, <code class="docutils literal notranslate"><span class="pre">ERROR</span> <span class="pre">not</span> <span class="pre">converged</span></code> is
+printed.</p></li>
+</ul>
+</section>
+<section id="output-x-values">
+<h3>Output x values<a class="headerlink" href="#output-x-values" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">Predicted</span> <span class="pre">error</span> <span class="pre">/</span> <span class="pre">measured</span> <span class="pre">error</span></code> block, the <strong>x</strong> printed for
+each point is the <strong>original</strong> x (before the iopt transform), e.g. for iopt=3
+the stored x is √(input x), but the output shows the original input x.</p></li>
+</ul>
+</section>
+<section id="template">
+<h3>Template<a class="headerlink" href="#template" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>template/funvsa.input</strong> contains an example: first line and data lines.
+Example first line <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">-6</span> <span class="pre">3</span> <span class="pre">1</span></code> means order=6, N=6, iopt=3, power=1 (with
+map=1 and fixbeta from the negative values); x is transformed as √x.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>template/funvsa.input</strong>: Example standard input for funvsa.</p></li>
+<li><p><strong>evsa</strong>: Related tool; funvsa is focused on regression fit and bootstrap
+errors.</p></li>
+<li><p><strong>corrvar</strong>, <strong>corrforza</strong> / <strong>corrforzap</strong>: Other tools that use bootstrap
+for errors; funvsa is dedicated to curve fitting.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="warnings">
+<h3>Warnings<a class="headerlink" href="#warnings" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning, no degrees of freedom</strong> — Ntrue (number of points with wy≠0) ≤
+orderp (order+1). Increase the number of valid data points or decrease
+<strong>order</strong>.</p></li>
+<li><p><strong>Warning accuracy diag/cond numb.</strong> — In machine-learning mode, the
+smallest eigenvalue is ≤ 0 after diagonalization. Indicates near-singular or
+ill-conditioned matrix; check for linear dependence in the data or basis.</p></li>
+</ul>
+</section>
+<section id="fatal-error-messages">
+<h3>Fatal / error messages<a class="headerlink" href="#fatal-error-messages" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR not converged</strong> — Machine-learning mode (map≠0): the α/β iteration
+did not converge within maxit=100 steps. Try different data, lower order, or
+check input.</p></li>
+<li><p><strong>There is depdendency !!!</strong> — map=0 and the normal-equation matrix is
+singular (dgetrf info≠0). Reduce <strong>order</strong> or change the basis/data so that
+the design matrix has full rank.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The program has <strong>no file arguments</strong>; all input is from standard input. Use
+e.g. <code class="docutils literal notranslate"><span class="pre">./funvsa.x</span> <span class="pre">&lt;</span> <span class="pre">template/funvsa.input</span></code> or pipe input.</p></li>
+<li><p><strong>Bootstrap</strong> uses 200 iterations (nbin=200) with Gaussian noise (Box–
+Muller) on y (and on x when iopt=1) to estimate coefficient and prediction
+errors.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -205,7 +370,7 @@ Coefficient<span class="w"> </span>found
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="forcevmc.html" class="btn btn-neutral float-left" title="forcevmc.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forcevmc.html" class="btn btn-neutral float-left" title="forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="makefort10.html" class="btn btn-neutral float-right" title="makefort10.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

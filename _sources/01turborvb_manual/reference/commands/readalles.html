@@ -49,36 +49,49 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">readalles.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#quantum-monte-carlo-calculations">Quantum Monte Carlo calculations</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#consistency-of-fort-10-fort-11-fort-12-parminimized-d">Consistency of fort.10, fort.11, fort.12, parminimized.d</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#lbin-and-ibinit">lbin and ibinit</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#maxp">maxp</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#wfort10-and-fort-10-append">wfort10 and fort.10 append</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#drawpar-and-gnuplot">drawpar and gnuplot</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
@@ -127,124 +140,202 @@
   <section id="readalles-x">
 <span id="turborvbtutorial-command-readalles-x"></span><h1>readalles.x<a class="headerlink" href="#readalles-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<section id="quantum-monte-carlo-calculations">
-<h3>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h3>
-<p>We describe input files that control variational and diffusion Monte Carlo simulations.
-TurboRVB input files are built using fortran namelists.
-Keywords are divided in different sections according to their meaning.</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>readalles</strong> is a TurboRVB utility that <strong>reads wave function optimization
+output</strong> (fort.11 and fort.12 written by the main program during VMC
+optimization), <strong>bins the parameter history by generation</strong>, and writes
+<strong>averages and error bars</strong> to <strong>Average_parameters.dat</strong> and bin-by-bin
+values to <strong>story.d</strong>. It can optionally <strong>append the averaged parameters to
+fort.10</strong> and generate <strong>gnuplot</strong> scripts to plot the parameter story.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10</strong> (wave function structure), <strong>parminimized.d</strong>
+(optimization flags: iesinv, iesm, iesd, iesfree, iessw, iesup, ieskin,
+iesking, etc.), <strong>fort.11</strong> (binary header: ngenr, nnozero_read,
+nnozeroj_read, yesmin, …), <strong>fort.12</strong> (binary: one record per generation,
+weight and parameter vector), and <strong>standard input</strong> (interactive: lbin,
+ibinit, wfort10, drawpar; query; optionally ngen; maxp).</p></li>
+<li><p><strong>Output</strong>: <strong>Average_parameters.dat</strong> (number of bins, independent bins,
+then for each parameter: index, average, error bar). <strong>story.d</strong> (bin index
+and parameter values per bin for plotting). If <strong>wfort10=1</strong>, <strong>fort.10</strong> is
+opened in append mode and <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">new</span> <span class="pre">parameters</span></code> plus the averaged parameter
+vector are written. If <strong>drawpar ≥ 1</strong>, <strong>commands.story</strong> (gnuplot script)
+is written; if drawpar=1, gnuplot is run to plot story.d.</p></li>
+<li><p>The program uses <strong>read_fort10_fast</strong> to get the wave function layout and
+computes <strong>ntot</strong> (words per fort.12 record) from parminimized.d and
+fort.11. It then reads fort.12, forms bins of length <strong>lbin</strong>, discards bins
+before <strong>ibinit</strong>, and accumulates weighted averages and variances. Output
+parameter set and order are determined by <strong>defyespar</strong> / <strong>sortpsip</strong> with
+an upper limit <strong>maxp</strong> per parameter block.</p></li>
+<li><p><strong>Typical use</strong>: After a TurboRVB optimization run, obtain binned-averaged
+parameters and error bars, optionally update fort.10 with the average, and
+plot parameter evolution from story.d.</p></li>
+</ul>
+<p>The program is <strong>serial only</strong> (no MPI). Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help (<code class="docutils literal notranslate"><span class="pre">help_online('readalles')</span></code>). The source
+program name is <strong>er0read</strong>; the executable is readalles.x.</p>
 </section>
-<section id="how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">
-<h3>How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)<a class="headerlink" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x" title="Link to this heading"></a></h3>
-<p>You can confirm energy convergence by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_Energy.sh<span class="w"> </span>out_min
-</pre></div>
-</div>
-<p>Alternatively, you may check the convergence using row data:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>New<span class="w"> </span>out_min
-</pre></div>
-</div>
-<p>Next, check the convergence of devmax by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_devmax.sh<span class="w"> </span>out_min
-</pre></div>
-</div>
-<p>Alternatively, you may check the convergence using row data:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>devmax<span class="w"> </span>out_min
-</pre></div>
-</div>
-<p>Next step is to average optimized variational parameters.
-First of all, you can check variational parameters v.s. optimization step:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%readalles.x
-bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
-<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
-number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
-<span class="m">0</span>
-max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
-<span class="m">1000</span>
-</pre></div>
-</div>
-<p>Here:</p>
-<p><code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code> is the number of steps per bin.</p>
-<p><code class="docutils literal notranslate"><span class="pre">ibinit</span></code> is the number of disregarded steps for averaging, i.e, , 1 to (<code class="docutils literal notranslate"><span class="pre">ibinit</span></code> - 1) steps are discarded, and remaining steps starting from <code class="docutils literal notranslate"><span class="pre">ibinit</span></code> are averaged. This is used at the next step.</p>
-<p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">fort.10</span> <span class="pre">(0/1)</span></code> indicates whether the averaged variational parameters is written to fort.10.</p>
-<p><code class="docutils literal notranslate"><span class="pre">draw</span> <span class="pre">(0/1)</span></code> plot optimized parameters using gnuplot.</p>
-<p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">ind</span> <span class="pre">par</span></code> is the number of the parameters plotted using gnuplot.</p>
-<p>You may know the number of steps that required to obtain converged parameters (e.g, 201-).
-Since QMC calculations always suffers from statistical noises, the variational parameters also fluctuate.
-Therefore, one should average the optimized variational parameters in the converged region (e.g, 201-300).
-The average can be also done by <cite>readalles.x</cite> module.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>readalles.x
-bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
-<span class="m">1</span><span class="w"> </span><span class="m">201</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
-number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
-<span class="m">0</span>
-max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
-<span class="m">1000</span>
-
-...
-
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">290</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">291</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">292</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">293</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">294</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">295</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">296</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">297</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">298</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">299</span>
-record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">300</span>
-number<span class="w"> </span>of<span class="w"> </span>measures<span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">100</span><span class="w">  </span>&lt;-<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>averaged<span class="w"> </span>steps
-</pre></div>
-</div>
-<p>Thus, variational parameters will be averaged over the remaining last 100 steps.
-<code class="docutils literal notranslate"><span class="pre">readalles.x</span></code> writes the averaged variational parameters in the end of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fort.10</span>
-
-...
-<span class="c1"># new parameters</span>
-<span class="m">0</span>.290626442260694E+00<span class="w">   </span><span class="m">0</span>.108521356525542E+01<span class="w">  </span>-0.301131622319121E+00<span class="w">  </span>-0.102380295055131E+01<span class="w">   </span><span class="m">0</span>.229700639835700E+01<span class="w">  </span>-0.220409737565913E-02<span class="w">  </span>-0.609584028614942E-02<span class="w">   </span><span class="m">0</span>.272306548035257E-01<span class="w">   </span><span class="m">0</span>.734700209267177E-01<span class="w">  </span>-0.182065664321832E-01<span class="w">   </span><span class="m">0</span>.453293541473009E+00<span class="w">   </span><span class="m">0</span>.164648614827512E+00<span class="w">   </span><span class="m">0</span>.173486608007203E-02<span class="w">   </span><span class="m">0</span>.583308470999047E-02<span class="w">  </span>-0.188429085081367E-01<span class="w">   </span><span class="m">0</span>.248889135790375E-01<span class="w">  </span>-0.138300779564990E+00<span class="w">   </span><span class="m">0</span>.440777377680407E+00<span class="w">  </span>-0.134604374717883E+01<span class="w">  </span>-0.707524794465785E-03<span class="w">   </span><span class="m">0</span>.780729515612661E-03<span class="w">  </span>-0.151361566539925E-01<span class="w">  </span>-0.522035153211261E-01<span class="w">   </span><span class="m">0</span>.366708625842555E-01<span class="w">  </span>-0.175477073796467E+00<span class="w">   </span><span class="m">0</span>.211200067156240E+00<span class="w">   </span><span class="m">0</span>.925206078797516E-03<span class="w">   </span><span class="m">0</span>.334330184442289E-02<span class="w">  </span>-0.556589712590827E-02<span class="w">   </span><span class="m">0</span>.324861920952639E-01<span class="w">   </span><span class="m">0</span>.941094689163063E-01<span class="w">  </span>-0.387403732714091E+01<span class="w">  </span>-0.872987341975953E+01<span class="w">  </span>-0.489666531788676E-01<span class="w">   </span><span class="m">0</span>.509954432475785E-01<span class="w">  </span>-0.151442414
-</pre></div>
-</div>
-<p>The next step is to write the optimized parameters. Run a dummy VMCopt/LRDMCopt calculation.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>./datasmin.input<span class="w"> </span>ave.in
-</pre></div>
-</div>
-<p>You must rewrite value of <code class="docutils literal notranslate"><span class="pre">ngen</span></code> in <code class="docutils literal notranslate"><span class="pre">ave.in</span></code> as <code class="docutils literal notranslate"><span class="pre">ngen</span> <span class="pre">=</span> <span class="pre">1</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ngen</span><span class="o">=</span><span class="m">1</span>
-</pre></div>
-</div>
-<p>Next, replace the following line of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
-<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">0</span>
-</pre></div>
-</div>
-<p>with</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
-<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">1</span>
-</pre></div>
-</div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">I/O</span> <span class="pre">flag</span></code> is changed to <code class="docutils literal notranslate"><span class="pre">1</span></code>, which allows us to write the optimized variational parameters.</p>
-<p>Run the dummy VMCopt/LRDMCopt calculation by typing:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>ave.in<span class="w"> </span>&gt;<span class="w"> </span>out_ave
-</pre></div>
-</div>
-<p>If you do a twist-averaged calculation, you should copy the averaged Jastrow parameters for all the k point files.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>turborvb.scratch
-cp<span class="w"> </span>../fort.10<span class="w"> </span>./
-cp<span class="w"> </span>../fort.10<span class="w"> </span>./fort.10_new
-copyjas.x<span class="w"> </span>kpoints
-</pre></div>
-</div>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> (required): Wave function file (TurboRVB format). Read with
+<strong>read_fort10_fast</strong> to get parameter dimensions and nion. Must match the
+structure used during the optimization that produced fort.11/fort.12.</p></li>
+<li><p><strong>parminimized.d</strong> (required): First line: iesinv, iesm, iesd, iesfree,
+iessw, iesup, ieskin, jj, isfix, ieser, ieser, iesking. Read with
+<code class="docutils literal notranslate"><span class="pre">end=133</span></code> so a short file does not abort. These values are restored after
+read_fort10_fast so that <strong>ntot</strong> matches the optimization run.</p></li>
+<li><p><strong>fort.11</strong> (required): Unformatted. First record: ngenr, nbra, npow, etry,
+nrest, nw, tbra, np, npbra, <strong>nnozero_read</strong>, <strong>nnozeroj_read</strong>, <strong>yesmin</strong>.
+The program sets np = np+1 and aligns nnozero / nnozeroj with these values.</p></li>
+<li><p><strong>fort.12</strong> (required): Unformatted. One record per generation: <strong>wbuf</strong>, tmp,
+<strong>ek(1:ntot)</strong> (weight and parameter vector). If <strong>query=0</strong>, the program
+counts records to get ngen; if <strong>query=1</strong>, ngen is read from stdin.</p></li>
+<li><p><strong>Standard input</strong> (interactive, in order):</p>
+<ol class="arabic simple">
+<li><p>&quot;bin length, ibinit, write fort.10 (0/1), draw (0/1) ?&quot; → <strong>lbin</strong>
+(generations per bin), <strong>ibinit</strong> (first bin index included in the
+average, 0-based), <strong>wfort10</strong> (1 = append averaged parameters to
+fort.10), <strong>drawpar</strong> (1 = write and run gnuplot script, 2 = write only).</p></li>
+<li><p>&quot;number of generations from standard input? (1 yes, 0 no)&quot; → <strong>query</strong>.
+If query=1, then &quot;ngen&quot; → <strong>ngen</strong>.</p></li>
+<li><p>&quot;max number of ind par for each part of the wf&quot; → <strong>maxp</strong>. Maximum
+number of independent parameters to output per block (Jastrow 2-body,
+3-body, orbital, Det, etc.); defyespar uses this to limit and order
+output.</p></li>
+</ol>
+</li>
+<li><p><strong>Command line</strong>: First argument <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints
+online help and exits.</p></li>
+</ul>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Average_parameters.dat</strong>: Number of generations read, number of bins,
+independent bins (nmis) and bin length (lbin). Then for each parameter:
+index, average, error bar (standard deviation / √(nmis−1)), in an order
+that depends on ieskint (e.g. atomic positions, cell derivatives, then
+wave function parameters). Final line: &quot;with no error bars&quot;.</p></li>
+<li><p><strong>story.d</strong>: For each bin with ibin ≥ ibinit, one line: bin index and
+psip(1:nwrite) (bin-averaged parameters in sortpsip order). Suitable for
+plotting bin index vs parameter value (e.g. with gnuplot).</p></li>
+<li><p><strong>fort.10</strong> (append, only if wfort10=1): Opens fort.10 with
+<code class="docutils literal notranslate"><span class="pre">position='append'</span></code> and writes a line <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">new</span> <span class="pre">parameters</span></code> followed by
+the full averaged parameter vector (ebin). Existing content is unchanged.</p></li>
+<li><p><strong>commands.story</strong> (only if drawpar ≥ 1): Gnuplot commands to plot each
+column of story.d. If drawpar=1, the program runs <code class="docutils literal notranslate"><span class="pre">gnuplot</span>
+<span class="pre">commands.story</span></code> (requires gnuplot installed).</p></li>
+<li><p>Standard output: &quot;# words read from unit 11&quot;, &quot;maxp=&quot;, &quot;record read =&quot;,
+&quot;number of measures done =&quot;, &quot;Rejected measures =&quot;, &quot;Rejection ratio =&quot;,
+etc. Records with wbuf=0 are counted as rejected.</p></li>
+</ul>
 </section>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="consistency-of-fort-10-fort-11-fort-12-parminimized-d">
+<h3>Consistency of fort.10, fort.11, fort.12, parminimized.d<a class="headerlink" href="#consistency-of-fort-10-fort-11-fort-12-parminimized-d" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> must be the same wave function structure as used in the
+optimization run that produced fort.11 and fort.12. <strong>fort.11</strong>’s
+nnozero_read, nnozeroj_read and <strong>parminimized.d</strong>’s ies* determine
+<strong>ntot</strong> (length of one fort.12 record). If they do not match the actual
+fort.12 layout, reads will be wrong or the program may crash.</p></li>
+<li><p>Run readalles in the same directory as the optimization, or ensure
+fort.10, parminimized.d, fort.11, and fort.12 all come from the same run.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="lbin-and-ibinit">
+<h3>lbin and ibinit<a class="headerlink" href="#lbin-and-ibinit" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>lbin</strong>: Number of generations per bin. nbin = ngen / lbin. Larger lbin
+gives fewer, longer bins and typically smaller error bars but less
+resolution in story.d.</p></li>
+<li><p><strong>ibinit</strong>: Bins with index &lt; ibinit are discarded (e.g. to drop
+equilibration). Only bins with ibin ≥ ibinit contribute to ebin/ebin2 and
+to the final averages. Larger ibinit reduces nmis and increases error bars.</p></li>
+</ul>
+</section>
+<section id="maxp">
+<h3>maxp<a class="headerlink" href="#maxp" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>maxp</strong> limits how many “independent” parameters are output per block.
+Inside <strong>defyespar</strong>, parameters with identical values are collapsed; only
+distinct values count. If the number of distinct parameters in a block
+exceeds maxp, only the first maxp (in the chosen order) are kept for
+output and plotting. This keeps Average_parameters.dat and story.d
+manageable for large wave functions.</p></li>
+</ul>
+</section>
+<section id="wfort10-and-fort-10-append">
+<h3>wfort10 and fort.10 append<a class="headerlink" href="#wfort10-and-fort-10-append" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When <strong>wfort10=1</strong>, the program <strong>appends</strong> to fort.10; it does not
+overwrite the file. The line <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">new</span> <span class="pre">parameters</span></code> and the following
+numeric lines are added at the end. Whether the main TurboRVB code reads
+this block depends on the version and workflow; check the main program
+documentation if you rely on it.</p></li>
+</ul>
+</section>
+<section id="drawpar-and-gnuplot">
+<h3>drawpar and gnuplot<a class="headerlink" href="#drawpar-and-gnuplot" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>drawpar=1</strong>: Writes <strong>commands.story</strong> and runs <code class="docutils literal notranslate"><span class="pre">gnuplot</span>
+<span class="pre">commands.story</span></code>. Gnuplot must be installed and on the PATH.</p></li>
+<li><p><strong>drawpar=2</strong>: Writes <strong>commands.story</strong> only; you can run <code class="docutils literal notranslate"><span class="pre">gnuplot</span>
+<span class="pre">commands.story</span></code> manually later.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>TurboRVB main</strong>: Writes <strong>fort.11</strong> (header) and <strong>fort.12</strong>
+(one record per generation) during wave function optimization. readalles
+is the post-processor that reads them.</p></li>
+<li><p><strong>parminimized.d</strong>: Written by the optimization run; readalles reads
+iesinv, iesm, iesd, iesfree, iessw, iesup, ieskin, iesking from it.</p></li>
+<li><p><strong>read_fort10_fast</strong>: Used by readalles to read fort.10 structure; then
+ies* are restored from parminimized.d.</p></li>
+<li><p><strong>corrvar</strong>: Post-processes <strong>fort.21</strong> / <strong>fort.22</strong> (block-averaged
+energy and variance) with bootstrap. readalles instead processes the
+<strong>parameter</strong> history in fort.12.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<p>The program not print &quot;ERROR&quot; or &quot;Warning&quot;. Typical failures:</p>
+<ul class="simple">
+<li><p><strong>Cannot open fort.10, parminimized.d, fort.11, or fort.12</strong> — File
+missing or wrong path. Run in the optimization directory or provide the
+files from the same run.</p></li>
+<li><p><strong>read_fort10_fast fails</strong> — fort.10 has wrong or invalid format. Use a
+valid TurboRVB fort.10 from the same run.</p></li>
+<li><p><strong>Wrong or inconsistent read from fort.12</strong> — <strong>ntot</strong> does not match the
+record length in fort.12 (e.g. parminimized.d or fort.11 from a different
+run, or fort.12 from a different optimization). Use fort.10,
+parminimized.d, fort.11, and fort.12 from the <strong>same</strong> optimization.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>&quot;partial file read, ngen =&quot;</strong> — When query=0, the program counts records
+in fort.12; if that count (ngen) differs from fort.11’s ngenr, this
+message is printed. It is informational; fix by ensuring fort.12 is
+complete or by using query=1 and the correct ngen.</p></li>
+<li><p><strong>gnuplot does not run</strong> — When drawpar=1, the program calls <code class="docutils literal notranslate"><span class="pre">gnuplot</span>
+<span class="pre">commands.story</span></code>. If gnuplot is not installed or not on PATH, the call may
+fail. Install gnuplot or use drawpar=2 and run gnuplot manually.</p></li>
+<li><p><strong>Rejected measures</strong> — Generations with wbuf=0 are not used in the bin
+average; they are counted and reported as &quot;Rejected measures&quot; and
+&quot;Rejection ratio&quot; on stdout.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

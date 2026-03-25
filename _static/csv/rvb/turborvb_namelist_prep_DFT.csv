@@ -213,4 +213,4 @@ do_hartree,``logical``,"- ``.false.`` if no input
   + ``.false.`` if double_mesh is .false.
 ",WIP
 nproc_fft,``integer``,``maxdiv``,WIP
-tfcut(プログラムに存在しない),,,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.
+tfcut (nonexistent),,,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.

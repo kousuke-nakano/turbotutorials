@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cleanfort10.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="convertfort10.x" href="convertfort10.html" />
+    <link rel="prev" title="assembling_pseudo.x" href="assembling_pseudo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">cleanfort10.x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#constraints-icp-icq">Constraints (icp / icq)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#singular-dependent-orbitals-message-printed-run-continues">Singular / dependent orbitals (message printed, run continues)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings-informational">Warnings (informational)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">cleanfort10.x</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/cleanfort10.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cleanfort10-x">
+<span id="turborvbtutorial-command-cleanfort10-x"></span><h1>cleanfort10.x<a class="headerlink" href="#cleanfort10-x" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>cleanfort10</strong> is a TurboRVB utility that <strong>cleans and orthogonalizes</strong> a
+wave function file <strong>fort.10</strong> and writes a new file <strong>fort.10_clean</strong> in the
+same TurboRVB format.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10</strong> in the current directory (full wave function: Slater
+determinant / AGP, Jastrow, ions, orbitals, constraints, etc.).</p></li>
+<li><p><strong>Output</strong>: <strong>fort.10_clean</strong> — same format, with orthogonalized contracted
+orbitals and optionally relaxed constraints on contracted coefficients.</p></li>
+<li><p><strong>Main operations</strong>:</p>
+<ul>
+<li><p><strong>Orthogonalization of contracted orbitals</strong>: For each group of contracted
+orbitals (same ion, same type), the overlap matrix is computed. Orbitals
+are transformed to a linearly independent (orthonormal) set, and the
+determinant (λ) matrix is updated accordingly when applicable.</p></li>
+<li><p><strong>Constraints on contracted coefficients</strong>: Optional command-line flags
+can <strong>remove</strong> constraints on Det and/or Jastrow contracted coefficients,
+so that all of them are written as independent parameters in
+<strong>fort.10_clean</strong>.</p></li>
+</ul>
+</li>
+<li><p>Useful when <strong>fort.10</strong> comes from DFT or other codes and contracted
+orbitals are not orthonormal, or when you want to relax constraints before
+VMC/opt.</p></li>
+</ul>
+<p>Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help
+(<code class="docutils literal notranslate"><span class="pre">help_online('cleanfort10')</span></code>).</p>
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> (required): TurboRVB wave function file. The program reads the
+full file (PBC/molecule, real/complex, AGP/Pfaffian, Jastrow 2-body/3-body,
+constraints, etc.), in the same order as <code class="docutils literal notranslate"><span class="pre">read_fort10</span></code>. Must exist in the
+current working directory.</p></li>
+<li><p><strong>Command-line arguments</strong> (optional). If omitted, constraints are preserved.</p>
+<ul>
+<li><p><strong>--help</strong> / <strong>-help</strong> / <strong>help</strong>: Print help and exit.</p></li>
+<li><p><strong>noconstr</strong> / <strong>noconstrains</strong> (case-insensitive): Remove constraints on
+<strong>both</strong> Det and Jastrow contracted coefficients. In <strong>fort.10_clean</strong> they
+are written as independent parameters.</p></li>
+<li><p><strong>noconstrdet</strong> / <strong>noconstrainsdet</strong>: Remove constraints only on <strong>Det</strong>
+contracted coefficients.</p></li>
+<li><p><strong>noconstrjas</strong> / <strong>noconstrainsjas</strong>: Remove constraints only on <strong>Jastrow</strong>
+contracted coefficients.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_clean</strong>: Cleaned wave function in the same format as fort.10.
+Contains orthogonalized contracted orbitals and, depending on the
+command-line flag, unconstrained coefficients. Existing file is overwritten.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="constraints-icp-icq">
+<h3>Constraints (icp / icq)<a class="headerlink" href="#constraints-icp-icq" title="Link to this heading"></a></h3>
+<p>In <strong>fort.10</strong>, contracted coefficients that are subject to constraints (e.g.
+sum to one within a group) are indicated by writing <strong>icp_1</strong> (Det) or
+<strong>icq_1</strong> (Jastrow) as <strong>negative</strong> integers.</p>
+<ul class="simple">
+<li><p><strong>flagconstrains = 0</strong> (default): The read icp/icq signs are preserved in
+<strong>fort.10_clean</strong>. Constraints are kept.</p></li>
+<li><p><strong>flagconstrains = 1</strong>: Det contracted coefficients are written with
+<code class="docutils literal notranslate"><span class="pre">abs(icp_1)</span></code>, i.e. all treated as independent parameters.</p></li>
+<li><p><strong>flagconstrains = 2</strong>: Jastrow contracted coefficients are written with
+<code class="docutils literal notranslate"><span class="pre">abs(icq_1)</span></code>, i.e. constraints removed.</p></li>
+<li><p><strong>flagconstrains = 3</strong>: Both Det and Jastrow constraints are removed.</p></li>
+</ul>
+<p>Removing constraints increases the number of variational parameters and thus
+the cost of subsequent VMC/opt, but allows more flexibility.</p>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>makefort10</strong>: Builds an initial <strong>fort.10</strong>. Often used to create the
+input for cleanfort10.</p></li>
+<li><p><strong>convertfort10</strong>: Converts from other formats to <strong>fort.10</strong>. After
+converting from DFT, cleanfort10 can orthogonalize and optionally remove
+constraints.</p></li>
+<li><p><strong>read_fort10</strong>: Reads <strong>fort.10</strong> or
+<strong>fort.10_clean</strong>; both use the same format, so <strong>fort.10_clean</strong> can be
+used directly as the wave function for TurboRVB or readforward.</p></li>
+<li><p><strong>max_ovlp</strong>: Referenced in comments in the context of
+cleanfort10-style orthogonalization.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Cannot open fort.10</strong> — <strong>fort.10</strong> is missing in the current directory.
+Run from the directory that contains <strong>fort.10</strong>, or create it with
+makefort10 / convertfort10.</p></li>
+<li><p><strong>Error while reading fort.10</strong> — <strong>fort.10</strong> is corrupted or not in
+TurboRVB format. Regenerate with makefort10 or convertfort10 and check the
+reported line/field.</p></li>
+</ul>
+</section>
+<section id="singular-dependent-orbitals-message-printed-run-continues">
+<h3>Singular / dependent orbitals (message printed, run continues)<a class="headerlink" href="#singular-dependent-orbitals-message-printed-run-continues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Singular fort.10 !!!!</strong> — The rank of the overlap matrix of the Det
+contracted orbitals is <strong>less</strong> than the required number of electrons
+(nelup/neldo). The orbitals are linearly dependent and cannot be
+orthogonalized in the usual way. Check the atomic orbital definition,
+occupation, and constraints in <strong>fort.10</strong>; if coming from DFT, review the
+basis and occupation.</p></li>
+<li><p><strong>Orbitals are not independent, ERROR in dgetrf !!!!</strong> <em>info</em> — LU
+factorization (dgetrf) failed during orthogonalization; orbitals are
+linearly dependent. Same checks as above for <strong>fort.10</strong>.</p></li>
+</ul>
+</section>
+<section id="warnings-informational">
+<h3>Warnings (informational)<a class="headerlink" href="#warnings-informational" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning: read flag for NO-constrains on contracted orbitals!</strong> — Argument
+<strong>noconstr</strong> was given; both Det and Jastrow constraints will be removed.</p></li>
+<li><p><strong>Warning: read flag for NO-constrains on contracted orbitals of Jastrow!</strong>
+— Argument <strong>noconstrjas</strong> was given; Jastrow constraints only.</p></li>
+<li><p><strong>Warning: read flag for NO-constrains on contracted orbitals of det. part!</strong>
+— Argument <strong>noconstrdet</strong> was given; Det constraints only.</p></li>
+<li><p><strong>Warning changing contracted and tranforming the Det matrix</strong> — The program
+applied the orthogonalizing transform to the Det contracted coefficients and
+updated the λ matrix. <strong>fort.10_clean</strong> contains this transformed state.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_clean already exists</strong>: It is opened with <code class="docutils literal notranslate"><span class="pre">status='unknown'</span></code> and
+<strong>overwritten</strong>. Back it up first if needed.</p></li>
+<li><p>The source declares <code class="docutils literal notranslate"><span class="pre">program</span> <span class="pre">join</span></code>, but the executable is built as
+<strong>cleanfort10</strong> (CMake TOOLS_LIST_SIMPLE).</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="assembling_pseudo.html" class="btn btn-neutral float-left" title="assembling_pseudo.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="convertfort10.html" class="btn btn-neutral float-right" title="convertfort10.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -14,9 +14,9 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 
 .. contents:: Table of Contents
    :depth: 2
-   
+
 .. _turbogeniustutorial_9801_06:
-	   
+
 06 Convert JDFT WF to JAGP one
 --------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be
 Copy ``fort.10`` in ``03_vmc`` to ``06_convert``.
 
 .. code-block:: console
-    
+
     % cd ./06_convert/
     % cp ../../01Hydrogen_dimer_pyscf/03_vmc/fort.10 .
     % cp ../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat .
@@ -104,7 +104,7 @@ Now run the calculation using:
     Energy difference = 6.26299353e-07 Ha +- 2.29651078e-06 Ha
     Overlap square = 0.999999977 +- 6.05288029e-08
 
-``reweighted difference`` indicates the difference in energies of the WFs, ``fort.10`` and ``fort.10_corr``. This should be close to zero. ``Overlap square`` should be close to unity, i.e., if a conversion is perfect, this becomes unity.  
+``reweighted difference`` indicates the difference in energies of the WFs, ``fort.10`` and ``fort.10_corr``. This should be close to zero. ``Overlap square`` should be close to unity, i.e., if a conversion is perfect, this becomes unity.
 
 
 .. _turbogeniustutorial_9801_08:
@@ -139,13 +139,13 @@ Now run VMC optimization using:
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     % turbogenius vmcopt -r
-    
+
 Now for post-processing use:
 
 .. code-block:: console
 
         % turbogenius vmcopt -post -optwarmup 80 -plot
-        
+
 It plots energy with the error bars and devmax wrt optimization steps (``plot_energy_and_devmax.png``).
 
    .. image:: image/plot_energy_and_devmax.png
@@ -165,11 +165,11 @@ The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_03`
 First, copy ``fort.10`` from ``08_nodal_surface_optimization`` to ``09_vmc``.
 
 .. code-block:: console
-    
+
     % cd ../09_vmc
     % cp ../08_nodal_surface_optimization/fort.10 fort.10
     % cp ../08_nodal_surface_optimization/pseudo.dat .
-    
+
 Now generate the input file for vmc ``datasvmc.input`` using:
 
 .. code-block:: console
@@ -197,9 +197,9 @@ Use the following values in this example:
     bin length = 10
     init bin = 5
     pulay = 1 (default)
-    
+
     Chosen values: bin=10, init_bin=5, pulay=1, => equil_steps=50
-        
+
     # Note: this corresponds to ``forces_vmc.sh 10 5 1``
 
 Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive.
@@ -207,8 +207,8 @@ The reblocked total energy and error are written to the file ``energy_error.out`
 More details are provided in the file ``pip0.d``.
 
 .. code-block:: console
-    
-    % cat pip0.d 
+
+    % cat pip0.d
     Energy =  -1.17399712181874  4.494314925096871E-004
 
 
@@ -225,7 +225,7 @@ The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_04`
     % cp ../09_vmc/pseudo.dat .
 
     % turbogenius lrdmc -g -etry -1.10 -alat -0.20 -steps 1000 -nw 128
-    
+
 Now run the LRDMC calculation:
 
 .. code-block:: console

@@ -1019,7 +1019,7 @@ do_hartree,``logical``,"- ``.false.`` if no input
   + ``.false.`` if double_mesh is .false.
 ",WIP,None,None,None,None,DFT,prep.x,,prep_61,"setup.f90:464, 660 -- 665",
 nproc_fft,``integer``,``maxdiv``,WIP,None,None,None,None,DFT,prep.x,,prep_62,"setup.f90:477, 668 -- 706",
-tfcut(プログラムに存在しない),NA,NA,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.,None,".. code-block:: text
+tfcut (nonexistent),NA,NA,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.,Used only with ``typeopt = 0/2/4``. It is used for preconditioning to improve convergence of small q charge fluctuations. Suggested value of ``tfcut`` :math:`= \frac{1}{{xi_{TF}}^2}`  where :math:`xi` is the Thomas-Fermi length expressed in a.u.,None,".. code-block:: text
 
     Used only with typeopt=0/2/4. Use preconditioning to improve convergence of small q charge fluctuations. Value of tfcut
     ! suggested = 1/ xi_TF^2  where xi is the Thomas-Fermi length expressed in a.u.

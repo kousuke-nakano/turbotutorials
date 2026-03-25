@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generate a Wavefunction file &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Initializations of Wavefunctions" href="04DFT_driver.html" />
+    <link rel="prev" title="Wavefunction format" href="../reference/01wavefunction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Structure of TurboRVB</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../reference/01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Generate a Wavefunction file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#system-section">system section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#electron-section">electron section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#symmetry-section">symmetry section</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#atomic-positions">ATOMIC_POSITIONS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basis-set">Basis set</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="04DFT_driver.html">Initializations of Wavefunctions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05conversions.html">Wavefunction conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06qmc_driver.html">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08optimization.html">Wavefunction optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Structure of TurboRVB</a></li>
+      <li class="breadcrumb-item active">Generate a Wavefunction file</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/01turborvb_manual/structure/07makefort10.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generate-a-wavefunction-file">
+<h1>Generate a Wavefunction file<a class="headerlink" href="#generate-a-wavefunction-file" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">makefort10.x</span></code> is a tool for generating a template JAGP WF(fort.10) from makefort10.input.
+Here, we show a quick description of <code class="docutils literal notranslate"><span class="pre">makefort10.input</span></code>.
+See <a class="reference internal" href="../reference/commands/makefort10.html#turborvbtutorial-command-makefort10-x"><span class="std std-ref">Reference section</span></a> for the details.</p>
+<section id="system-section">
+<h2>system section<a class="headerlink" href="#system-section" title="Link to this heading"></a></h2>
+<p>Specifies global system settings and switches related to periodic boundary conditions.</p>
+<ul class="simple">
+<li><p><strong>Units and size</strong> — units for atomic positions (<code class="docutils literal notranslate"><span class="pre">posunits</span></code>), number of atoms and element types (<code class="docutils literal notranslate"><span class="pre">natoms</span></code>, <code class="docutils literal notranslate"><span class="pre">ntyp</span></code>)</p></li>
+<li><p><strong>Kind of wavefunction file</strong> — complex <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> (<code class="docutils literal notranslate"><span class="pre">complexfort10</span></code>), PBC layout (<code class="docutils literal notranslate"><span class="pre">pbcfort10</span></code>), Pfaffian form (<code class="docutils literal notranslate"><span class="pre">yes_pfaff</span></code>)</p></li>
+<li><p><strong>Lattice</strong> — Quantum ESPRESSO-style <code class="docutils literal notranslate"><span class="pre">celldm(1–6)</span></code>, non-orthogonal cell (<code class="docutils literal notranslate"><span class="pre">yes_tilted</span></code>), cell repetition (<code class="docutils literal notranslate"><span class="pre">nxyz</span></code>) to exploit translational symmetry</p></li>
+<li><p><strong>Spin-resolved phases</strong> — <code class="docutils literal notranslate"><span class="pre">phase</span></code> / <code class="docutils literal notranslate"><span class="pre">phasedo</span></code> for spin-up and spin-down</p></li>
+</ul>
+</section>
+<section id="electron-section">
+<h2>electron section<a class="headerlink" href="#electron-section" title="Link to this heading"></a></h2>
+<p>Specifies the electronic part: initial matrices, orbitals, Jastrow factors, and spin imbalance.</p>
+</section>
+<section id="symmetry-section">
+<h2>symmetry section<a class="headerlink" href="#symmetry-section" title="Link to this heading"></a></h2>
+<p>Specifies how symmetry is used and how parameters are constrained relative to each other.</p>
+<ul class="simple">
+<li><p><strong>Point-group reduction</strong> — restrict to identity and inversion only (<code class="docutils literal notranslate"><span class="pre">nosym</span></code>)</p></li>
+<li><p><strong>Equivalent atoms</strong> — whether basis exponents match for atoms of the same element type (<code class="docutils literal notranslate"><span class="pre">eqatoms</span></code>)</p></li>
+<li><p><strong>Determinant λ matrix</strong> — how much rotational symmetry enters (<code class="docutils literal notranslate"><span class="pre">rot_det</span></code>; behavior differs from <code class="docutils literal notranslate"><span class="pre">nosym</span></code>)</p></li>
+<li><p><strong>AGP λ symmetry</strong> — non-symmetric λ (JAGPu-style) when disabled (<code class="docutils literal notranslate"><span class="pre">symmagp</span></code>)</p></li>
+</ul>
+</section>
+<section id="atomic-positions">
+<h2>ATOMIC_POSITIONS<a class="headerlink" href="#atomic-positions" title="Link to this heading"></a></h2>
+<p>The unit is specified with <code class="docutils literal notranslate"><span class="pre">posunits</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;system</span></code> section.</p>
+<p>ATOMIC_POSITIONS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">4.0</span>  <span class="mf">6.0</span>  <span class="mf">0.31842955585522</span>  <span class="mf">0.63686011171043</span>  <span class="mf">0.00000000000000</span>
+<span class="mf">4.0</span>  <span class="mf">6.0</span>  <span class="mf">0.68157044414478</span>  <span class="mf">0.36313988828957</span>  <span class="mf">0.00000000000000</span>
+
+<span class="c1"># Ion coordinates</span>
+<span class="n">N1</span>  <span class="n">Z1</span>                <span class="n">x1</span>     <span class="n">y1</span>     <span class="n">z1</span>
+<span class="n">N2</span>  <span class="n">Z2</span>                <span class="n">x2</span>     <span class="n">y2</span>     <span class="n">z2</span>
+    <span class="o">..</span>                <span class="o">..</span>     <span class="o">..</span>     <span class="o">..</span>
+<span class="n">Nn</span>  <span class="n">Zn</span>                <span class="n">xn</span>     <span class="n">yn</span>     <span class="n">zn</span>
+</pre></div>
+</div>
+</section>
+<section id="basis-set">
+<h2>Basis set<a class="headerlink" href="#basis-set" title="Link to this heading"></a></h2>
+<p>Basis Sets used for expanding the determinant and jastrow are described. Each shell of the determinant is described by two lines. The first one contains the multiplicity, the number of variational parameters of the shell function and the code describing the function. The code numbers and the description of the corresponding shell are described in the file makefun.f90 of the source code. The multiplicity depends on the shell type: Shells S, P and D have the multiplicities of 1, 3 and 5 respectively. In the second line the index of the nucleus on which the shell is centered is first indicated. Then the parameter values are listed. Keep in mind that the number of parameters to be read is given in the first line.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>ATOM_6
+&amp;shells
+nshelldet=18
+nshelljas=10
+!ndet_hyb=0
+/
+1   1   16
+1   13.073594000000
+1   1   16
+1   6.541187000000
+1   1   16
+1   3.272791000000
+1   1   16
+1   1.637494000000
+1   1   16
+1   0.819297000000
+1   1   16
+1   0.409924000000
+1   1   16
+1   0.205100000000
+1   1   16
+1   0.127852000000
+1   1   16
+1   0.102619000000
+3   1   36
+1   7.480076000000
+3   1   36
+1   3.741035000000
+3   1   36
+1   1.871016000000
+3   1   36
+1   0.935757000000
+3   1   36
+1   0.468003000000
+3   1   36
+1   0.234064000000
+3   1   36
+1   0.149161000000
+3   1   36
+1   0.117063000000
+5   1   68
+1   0.561160000000
+#  Parameters atomic Jastrow wf
+1   1   16
+1   1.637494000000
+1   1   16
+1   0.846879000000
+1   1   16
+1   0.409924000000
+1   1   16
+1   0.269659000000
+1   1   16
+1   0.109576000000
+3   1   36
+1   1.871016000000
+3   1   36
+1   0.935757000000
+3   1   36
+1   0.468003000000
+3   1   36
+1   0.117063000000
+5   1   68
+1   2.013760000000
+</pre></div>
+</div>
+<p>All primitive orbitals are written in the source file makefun.f90 (open boundary), makefun_pbc.f90 (pbc) and makefun_bump.f90 (finite range orbitals). TurboRVB also implements standard contracted orbitals written  as a linear combination of <span class="math notranslate nohighlight">\(p\)</span> primitive orbitals. The definitions are easily found (and can be easily implemented) in the fortran file: ioptorbcontr.f90. In this case, the number corresponding to &quot;Number of par.&quot; is equal to <span class="math notranslate nohighlight">\(2p\)</span>. In the next line, one writes these extra coefficients, <span class="math notranslate nohighlight">\(C_i, i = 1,...2p:\)</span> the coefficient <span class="math notranslate nohighlight">\(C_{i+p}\)</span> acts on the orbital number defined by the contracted orbital written in &quot;Shell code&quot;, with exponent <span class="math notranslate nohighlight">\(Z_i = C_i\)</span> (we omit the normalization, each orbital is assumed to be normalized), for instance a <span class="math notranslate nohighlight">\(2s\)</span> contracted orbital:</p>
+<div class="math notranslate nohighlight">
+\[\phi(r) = 3.231 \exp(-2r^2) + 7.54 \exp(-r^2)\]</div>
+<p>is written as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#       Parameters atomic wf</span>
+        <span class="mi">1</span>          <span class="mi">4</span>         <span class="mi">300</span>
+        <span class="mi">1</span>    <span class="mf">2.0</span>   <span class="mf">1.0</span>  <span class="mf">3.231</span>  <span class="mf">7.54</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ndet_hyb</span></code> is the number of hybrid orbitals:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ATOM_6</span>
+<span class="o">&amp;</span><span class="n">shells</span>
+<span class="n">nshelldet</span><span class="o">=</span><span class="mi">18</span>
+<span class="n">nshelljas</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">ndet_hyb</span><span class="o">=</span><span class="mi">4</span>
+<span class="o">/</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">16</span>
+<span class="mi">1</span>   <span class="mf">13.073594000000</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">16</span>
+<span class="mi">1</span>   <span class="mf">6.541187000000</span>
+<span class="mi">1</span>   <span class="mi">1</span>   <span class="mi">16</span>
+<span class="mi">1</span>   <span class="mf">3.272791000000</span>
+<span class="o">....</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../reference/01wavefunction.html" class="btn btn-neutral float-left" title="Wavefunction format" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04DFT_driver.html" class="btn btn-neutral float-right" title="Initializations of Wavefunctions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>[Table of Contents] Advanced topics &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>Advanced topics &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -20,8 +20,6 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
-      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -63,7 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">[Table of Contents] Advanced topics</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Advanced topics</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></li>
@@ -99,7 +97,7 @@
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
           <li class="breadcrumb-item"><a href="../00index.html">Tutorials</a></li>
-      <li class="breadcrumb-item active">[Table of Contents] Advanced topics</li>
+      <li class="breadcrumb-item active">Advanced topics</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/02turbogenius_manual/tutorial/98advanced/00index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,88 +107,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="table-of-contents-advanced-topics">
-<h1>[Table of Contents] Advanced topics<a class="headerlink" href="#table-of-contents-advanced-topics" title="Link to this heading"></a></h1>
-<p>Here are advanced examples of various calculations with TurboRVB via Turbo-Genius, starting from the built-in DFT code, prep.</p>
+  <section id="advanced-topics">
+<h1>Advanced topics<a class="headerlink" href="#advanced-topics" title="Link to this heading"></a></h1>
+<p>Here are advanced examples of various calculations with TurboRVB via Turbo-Genius.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#convert-jdft-wf-to-jagp-one">06 Convert JDFT WF to JAGP one</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#conversion-check">07 Conversion check</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#nodal-surface-optimization-wf-jsagps">08 Nodal surface optimization (WF=JsAGPs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#vmc-wf-jsagps">09 VMC (WF=JsAGPs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#lrdmc-wf-jsagps">10 LRDMC (WF=JsAGPs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html#summary">11 Summary</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html#preparing-a-jagp-wavefuction-of-the-h-dimer-with-a-shorter-bond-distance">12 Preparing a JAGP wavefuction of the H dimer with a shorter bond distance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html#nodal-surface-optimization-wf-jsagps">13 Nodal surface optimization (WF=JsAGPs)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html#vmc-before-structural-optimization">14 VMC before structural optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html#structural-optimization">15 Structural optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html#vmc-after-structural-optimization">16 VMC after structural optimization</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#preparing-a-jdft-trial-wavefunction">01 Preparing a JDFT trial wavefunction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#preparing-a-makefort10-input-file">01-01 Preparing a makefort10.input file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#generating-a-jagps-template">01-02 Generating a JAGPs template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#adding-molecular-orbitals-to-the-jagps-template">01-03 Adding molecular orbitals to the JAGPs template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#run-dft">01-04 Run DFT</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html#next-steps">Next steps</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="04Carbon_dimer/tutorial.html#introduction">00 Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04Carbon_dimer/tutorial.html#c2-dimer-and-c-atom-jdft-ansatz">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#preparing-a-trial-wave-function">01-01 Preparing a trial wave function</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#generating-a-jagps-template">01-02 Generating a JAGPs template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#generating-a-pseudo-potential-file">01-03 Generating a Pseudo potential file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#adding-molecular-orbitals-to-the-jagps-template">01-04 Adding molecular orbitals to the JAGPs template</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#run-dft">01-05 Run DFT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#jastrow-factor-optimization-wf-jdft">01-06 Jastrow factor optimization (WF=JDFT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#vmc-wf-jdft">01-07 VMC (WF=JDFT)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#lrdmc-wf-jdft">01-08 LRDMC (WF=JDFT)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="04Carbon_dimer/tutorial.html#c2-dimer-and-c-atom-jsagps-ansatz">02 C<sub>2</sub> dimer and C atom - JsAGPs ansatz</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#conversion-of-wf-wf-jsagps">02-01 Conversion of WF (WF=JsAGPs)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#vmc-optimization-wf-jsagps">02-02 VMC-optimization (WF=JsAGPs)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#vmc-wf-jsagps">02-03 VMC (WF=JsAGPs)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#lrdmc-wf-jsagps">02-04 LRDMC (WF=JsAGPs)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="04Carbon_dimer/tutorial.html#c2-dimer-and-c-atom-jagpu-ansatz">03 C<sub>2</sub> dimer and C atom - JAGPu ansatz</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#prepration-of-a-wave-function">03-01 prepration of a wave function</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#generate-a-trial-wave-function-using-dft-with-a-magnetic-moment">03-02 Generate a trial wave function using DFT with a magnetic moment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#check-local-magnetic-moments-c2-dimer">03-03 Check local magnetic moments (C<sub>2</sub> dimer)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#convert-jdft-wf-to-jagpu-one">03-04 Convert JDFT WF to JAGPu one</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#optimization-wf-jagpu">03-05 Optimization (WF=JAGPu)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#vmc-and-lrdmc">03-06 VMC and LRDMC</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="04Carbon_dimer/tutorial.html#c2-dimer-and-c-atom-jagp-jpf-ansatz">04 C<sub>2</sub> dimer and C atom - JAGP (JPf) ansatz</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#spin-singlet-case-c2-dimer-convert-jagpu-wf-to-jagp-one">04-01 (spin-singlet case) C<sub>2</sub> dimer: Convert JAGPu WF to JAGP one</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#spin-triplet-case-c-atom-convert-jagpu-wf-to-jagp-one">04-02 (spin-triplet case) C atom: Convert JAGPu WF to JAGP one</a></li>
-<li class="toctree-l3"><a class="reference internal" href="04Carbon_dimer/tutorial.html#vmc-opt-vmc-and-lrdmc">04-03 VMC-opt, VMC and LRDMC</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#introduction">00 Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#extracting-carbon-p-z-orbitals-and-plotting-molecular-orbitals">01 Extracting carbon <span class="math notranslate nohighlight">\(p_z\)</span> orbitals and plotting molecular orbitals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#emulating-the-kekule-structure">02 Emulating the Kekulé structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#optimization-kekule">03 Optimization (Kekulé)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#energy-evaluation-kekule">04 Energy evaluation (Kekulé)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#emulating-the-fully-resonating-aromatic-structure">05 Emulating the fully resonating aromatic structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#optimization-resonating">06 Optimization (Resonating)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#energy-evaluation-resonating">07 Energy evaluation (Resonating)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05Benzene/tutorial.html#comparing-energies">08 Comparing energies</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04Carbon_dimer/tutorial.html">A challenging case: the spin-singlet carbon dimer with various ansätze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
 </ul>
 </div>
 </section>

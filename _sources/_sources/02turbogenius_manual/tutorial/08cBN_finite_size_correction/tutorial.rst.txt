@@ -14,13 +14,13 @@ c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via V
 ----------------------------------------------------------------
 
 In this tutorial, you will perform VMC/LRDMC calculations for c-BN (conventional cell) under PBCs, starting from PySCF with ccECPs. You will carry out supercell extrapolation using 1×1×1 and 2×2×2 supercells to mitigate the so-called two-body finite-size errors. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
-   
+
 .. _review: https://doi.org/10.1063/5.0005037
 
 .. contents:: Table of Contents
    :depth: 3
-   
-    
+
+
 .. _turbogeniustutorial_0801_01:
 
 01 DFT
@@ -33,22 +33,22 @@ The procedure is as follows:
 1. Run the PySCF calculation:
 
   .. code-block:: console
-      
+
       % cd s_1_1_1/01_trial_wavefunction
       % python3 pyscf_cBN.py
-    
+
 2. Convert the generated PySCF checkpoint file to a TREXIO file:
-    
+
   .. code-block:: console
 
       % trexio convert-from -t pyscf -i cBN.chk -b hdf5 cBN.hdf5
-    
+
 3. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
 
       % trexio-to-turborvb cBN.hdf5 -jasbasis cc-pVDZ -jascutbasis
-    
+
 Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
 .. note::
@@ -135,7 +135,7 @@ Finally, run the postprocess:
 
 Check the reblocked total energy and error in the file `pip0.d`.
 
-    
+
 .. _turbogeniustutorial_0801_04:
 
 04 JDFT ansatz - LRDMC

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>forcevmc.sh &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="funvsa.x" href="funvsa.html" />
-    <link rel="prev" title="forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html" /> 
+    <link rel="prev" title="forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" href="forcefn.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,30 +49,47 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">forcevmc.sh</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input-common-files">Input (common files)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#command-line-arguments">Command-line arguments</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#run-directory-and-basedir">Run directory and BASEDIR</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#initial-bin-2-and-read-once-mode">Initial bin $2 and read-once mode</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#python-and-dependencies">Python and dependencies</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#comparison-of-the-three-scripts">Comparison of the three scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#common-issues">Common issues</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -110,7 +127,7 @@
           <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
           <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
           <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
-      <li class="breadcrumb-item active">forcevmc.sh</li>
+      <li class="breadcrumb-item active">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/01turborvb_manual/reference/commands/forcevmc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,19 +137,301 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="forcevmc-sh">
-<span id="turborvbtutorial-command-forcevmc-sh"></span><h1>forcevmc.sh<a class="headerlink" href="#forcevmc-sh" title="Link to this heading"></a></h1>
+  <section id="forcevmc-sh-forcevmc-kpoints-sh-forcevmc-kpoints-parallel-sh">
+<span id="turborvbtutorial-command-forcevmc-sh"></span><h1>forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh<a class="headerlink" href="#forcevmc-sh-forcevmc-kpoints-sh-forcevmc-kpoints-parallel-sh" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>The <strong>forcevmc</strong> scripts are shell utilities in the <strong>bin</strong> directory that
+<strong>post-process VMC fort.12</strong> to compute <strong>ionic forces and correction forces</strong>
+and <strong>energy/variance</strong>, writing <strong>forces_vmc.dat</strong> and <strong>pip0.d</strong>. They call
+<strong>readf.x</strong> to bin-average fort.12, <strong>corrvar.x</strong> for energy/variance, and
+<strong>corrforza.x</strong> / <strong>corrforzap.x</strong> / <strong>corrforzap_complex.x</strong> for force
+corrections (Pulay and wave function parameters).</p>
+<ul class="simple">
+<li><p><strong>forcevmc.sh</strong>: Core script. Reads <strong>parminimized.d</strong> and <strong>fort.12</strong> (and
+optionally <strong>kp_info.dat</strong> for k-point count). Command-line: <strong>$1</strong> = bin
+length (lbin), <strong>$2</strong> = initial bin for averages (ibinit). If <strong>$2 &lt; 0</strong>, a
+“read-once” mode is used: fort.12 is read once via readf.x with all columns,
+then column-split files are reused so readf.x is not called repeatedly
+(faster). <strong>$3</strong> = scale_pulay (default 1). <strong>$4</strong> = k-point index (optional,
+passed to readf.x). Outputs <strong>pip0.d</strong> (from corrvar.x) and
+<strong>forces_vmc.dat</strong> (ionic forces and corrforzap* results).</p></li>
+<li><p><strong>forcevmc_kpoints.sh</strong>: Runs <strong>forcevmc.sh</strong> once per k-point <strong>in sequence</strong>
+(no parallel). After each run, renames pip0.d → pip0_K$i and
+forces_vmc.dat → forces_K$i. Then calls <strong>energy.py</strong> and <strong>force.py</strong> to
+form k-point-weighted <strong>pip0.d</strong> and <strong>forces_vmc.dat</strong> from the pip0_K* and
+forces_K* files. Requires <strong>kp_info.dat</strong> (k-point count and weights).</p></li>
+<li><p><strong>forcevmc_kpoints_parallel.sh</strong>: Splits <strong>fort.12</strong> into <strong>fort.12_K1</strong>,
+fort.12_K2, ... with <strong>split_fort.12.py</strong>, then runs <strong>forcevmc.sh</strong> for each
+k-point <strong>in parallel</strong> (up to <strong>num_cpu_max</strong> jobs at a time) in separate
+tmp_dir_K* directories. Collects pip0_K* and forces_K* and runs energy.py
+and force.py to produce final pip0.d and forces_vmc.dat. Uses <strong>bash</strong>. If
+kp_info.dat is missing, it creates a single-k-point kp_info.dat.</p></li>
+</ul>
+<p><strong>Typical use</strong>: After a VMC run that outputs fort.12 with forces and
+parameter derivatives, run forcevmc.sh (or the k-point variants) with chosen
+bin length and initial bin to obtain forces_vmc.dat and pip0.d. Use <strong>$2 &lt; 0</strong>
+in forcevmc.sh to speed up when many columns are needed.</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input-common-files">
+<h3>Input (common files)<a class="headerlink" href="#input-common-files" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>parminimized.d</strong> (required): First line is parsed with awk. Fields used:
+$7 = nvar (number of ionic forces), $8 = nfor (VMC parameters), $11 = ipcr
+(complex flag), $1 = iesinv, $2 = iesm, $3 = iesd, $4 = iesfree, $5 = iessw.
+The scripts compute ndimj, ntot, etc., for column indices passed to
+readf.x.</p></li>
+<li><p><strong>fort.12</strong> (required): Binary file produced by VMC/optimization. readf.x
+reads it with stdin <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">lbin</span> <span class="pre">ibinit</span> <span class="pre">maxk</span></code> and optionally a k-point index as
+first argument. For <strong>forcevmc_kpoints_parallel.sh</strong>, fort.12 must contain
+records interleaved by k-point so that <strong>split_fort.12.py</strong> can split it
+into fort.12_K1, fort.12_K2, ... .</p></li>
+<li><p><strong>kp_info.dat</strong>: First line = <strong>nkps</strong> (number of k-points). Used by
+forcevmc_kpoints.sh and forcevmc_kpoints_parallel.sh; <strong>energy.py</strong> and
+<strong>force.py</strong> read k-point weights from lines between “up spin electrons” and
+“down spin electrons” (5th column). If absent, forcevmc.sh assumes nkps=1;
+forcevmc_kpoints_parallel.sh creates a one-k-point kp_info.dat.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="command-line-arguments">
+<h3>Command-line arguments<a class="headerlink" href="#command-line-arguments" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32.6%" />
+<col style="width: 9.3%" />
+<col style="width: 58.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Script</p></th>
+<th class="head"><p>Arg</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>forcevmc.sh</p></td>
+<td><p>$1</p></td>
+<td><p>Bin length (lbin). Passed to readf.x.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>$2</p></td>
+<td><p>Initial bin (ibinit). <strong>≥ 0</strong>: normal mode (readf.x per column). <strong>&lt; 0</strong>: read-once mode; build fort.21_col_* and reuse (faster).</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>$3</p></td>
+<td><p>scale_pulay (default 1). Passed to corrforza.x.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>$4</p></td>
+<td><p>K-point index (optional). Passed to readf.x as first argument.</p></td>
+</tr>
+<tr class="row-even"><td><p>forcevmc_kpoints.sh</p></td>
+<td><p>$1</p></td>
+<td><p>Bin length.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>$2</p></td>
+<td><p>Initial bin.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>$3</p></td>
+<td><p>scale_pulay (default 1).</p></td>
+</tr>
+<tr class="row-odd"><td><p>forcevmc_kpoints_parallel</p></td>
+<td><p>$1</p></td>
+<td><p>Bin length.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>$2</p></td>
+<td><p>Initial bin.</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>$3</p></td>
+<td><p>If $4 is set: scale_pulay. If $4 is unset: num_cpu_max.</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>$4</p></td>
+<td><p>If set: num_cpu_max (max concurrent forcevmc.sh jobs). Omit: then $3 = num_cpu_max, scale_pulay = 1.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>pip0.d</strong>: Output of <strong>corrvar.x</strong> (energy, variance, correlation time).
+For forcevmc_kpoints.sh and forcevmc_kpoints_parallel.sh, <strong>energy.py</strong>
+reads pip0_K1, pip0_K2, ... and kp_info.dat weights and writes the
+k-point-weighted result to stdout, which is redirected to pip0.d.</p></li>
+<li><p><strong>forces_vmc.dat</strong>: Ionic force components (from <strong>corrforza.x</strong> when
+nvar &gt; 0) and Jastrow/parameter correction forces (from <strong>corrforzap.x</strong> /
+<strong>corrforzap_complex.x</strong>). For the k-point scripts, <strong>force.py</strong> aggregates
+forces_K* with k-point weights and writes to stdout → forces_vmc.dat.</p></li>
+<li><p><strong>pip0_K$i</strong>, <strong>forces_K$i</strong>: Per-k-point results saved by
+forcevmc_kpoints.sh and forcevmc_kpoints_parallel.sh; input to energy.py
+and force.py.</p></li>
+<li><p>Standard output: Bin length, initial bin, nkps, nvar, nfor, scale_pulay,
+and (for forcevmc_kpoints_parallel.sh) progress messages and elapsed time.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="run-directory-and-basedir">
+<h3>Run directory and BASEDIR<a class="headerlink" href="#run-directory-and-basedir" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>All scripts expect <strong>parminimized.d</strong> and <strong>fort.12</strong> in the <strong>current
+directory</strong>. Run from the VMC/optimization output directory or ensure these
+files are present.</p></li>
+<li><p>Scripts set <strong>BASEDIR</strong> to the directory of the script (<code class="docutils literal notranslate"><span class="pre">$(dirname</span> <span class="pre">&quot;$0&quot;)</span></code>)
+and run <strong>readf.x</strong>, <strong>corrvar.x</strong>, <strong>corrforza.x</strong>, etc. as
+<code class="docutils literal notranslate"><span class="pre">$BASEDIR/readf.x</span></code>, etc. If you invoke the scripts from elsewhere, ensure
+the bin directory (or a path to it) is in the script’s location so that all
+executables and Python helpers (energy.py, force.py, split_fort.12.py,
+check_fort12_columns_length.py, read_columns_fort21.py) are found.</p></li>
+</ul>
+</section>
+<section id="initial-bin-2-and-read-once-mode">
+<h3>Initial bin $2 and read-once mode<a class="headerlink" href="#initial-bin-2-and-read-once-mode" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>In <strong>forcevmc.sh</strong>, <strong>$2 &lt; 0</strong> enables “read-once” mode: the script calls
+<strong>check_fort12_columns_length.py</strong> to get the fort.12 record length, then
+runs readf.x once with the full column count to produce <strong>fort.21_master</strong>,
+then <strong>read_columns_fort21.py</strong> to split it into fort.21_tmp/fort.21_col_*.
+Later, instead of calling readf.x again for each column, it copies the
+corresponding fort.21_col_$n. This reduces I/O and runtime when many
+columns are needed (change by K. Nakano, 2019).</p></li>
+<li><p><strong>$2 ≥ 0</strong>: Traditional mode; readf.x is invoked for each column index.</p></li>
+</ul>
+</section>
+<section id="python-and-dependencies">
+<h3>Python and dependencies<a class="headerlink" href="#python-and-dependencies" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>forcevmc_kpoints.sh</strong> and <strong>forcevmc_kpoints_parallel.sh</strong> call
+<strong>energy.py</strong> and <strong>force.py</strong> (Python 3; force.py uses numpy). They also
+call <strong>split_fort.12.py</strong> (forcevmc_kpoints_parallel.sh only), which uses
+numpy and scipy.</p></li>
+<li><p><strong>forcevmc.sh</strong> with <strong>$2 &lt; 0</strong> runs <strong>python3</strong> for
+check_fort12_columns_length.py and read_columns_fort21.py (scipy and
+pandas respectively).</p></li>
+<li><p>Ensure the Python interpreter and required modules (numpy, scipy, pandas as
+needed) are available when using the k-point scripts or read-once mode.</p></li>
+</ul>
+</section>
+<section id="comparison-of-the-three-scripts">
+<h3>Comparison of the three scripts<a class="headerlink" href="#comparison-of-the-three-scripts" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14.6%" />
+<col style="width: 25.0%" />
+<col style="width: 27.1%" />
+<col style="width: 33.3%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>forcevmc.sh</p></th>
+<th class="head"><p>forcevmc_kpoints.sh</p></th>
+<th class="head"><p>forcevmc_kpoints_parallel.sh</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Role</p></td>
+<td><p>Single fort.12; run readf/corrvar/corrforza/corrforzap and write pip0.d, forces_vmc.dat.</p></td>
+<td><p>Multiple k-points; run forcevmc.sh once per k-point in sequence; aggregate with energy.py, force.py.</p></td>
+<td><p>Split fort.12 by k-point; run forcevmc.sh in parallel, then aggregate with energy.py and force.py.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Shell</p></td>
+<td><p>sh</p></td>
+<td><p>sh</p></td>
+<td><p>bash</p></td>
+</tr>
+<tr class="row-even"><td><p>Parallel</p></td>
+<td><p>No</p></td>
+<td><p>No (sequential loop)</p></td>
+<td><p>Yes (up to num_cpu_max jobs)</p></td>
+</tr>
+<tr class="row-odd"><td><p>fort.12</p></td>
+<td><p>Read directly by readf.x (k-index $4).</p></td>
+<td><p>Same; forcevmc.sh gets k-index $i per call.</p></td>
+<td><p>Split by split_fort.12.py into fort.12_K*; each tmp_dir has one.</p></td>
+</tr>
+<tr class="row-even"><td><p>kp_info.dat</p></td>
+<td><p>Optional (nkps=1 if missing).</p></td>
+<td><p>Required</p></td>
+<td><p>Optional (creates 1-k-point file if missing).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>readf.x</strong>: Bin-averages fort.12 and writes fort.20 / fort.21. Invoked by
+forcevmc.sh with stdin <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">lbin</span> <span class="pre">ibinit</span> <span class="pre">maxk</span></code> and optional k-point index.</p></li>
+<li><p><strong>corrvar.x</strong>: Energy/variance correction; reads fort.21/fort.22 and bin
+length from stdin; forcevmc.sh redirects its output to pip0.d.</p></li>
+<li><p><strong>corrforza.x</strong>, <strong>corrforzap.x</strong>, <strong>corrforzap_complex.x</strong>: Force
+corrections; forcevmc.sh prepares fort.21.2–.5 and appends their output to
+forces_vmc.dat.</p></li>
+<li><p><strong>energy.py</strong>, <strong>force.py</strong>: Aggregate pip0_K* and forces_K* with k-point
+weights from kp_info.dat; used by forcevmc_kpoints.sh and
+forcevmc_kpoints_parallel.sh. Output is redirected to pip0.d and
+forces_vmc.dat.</p></li>
+<li><p><strong>split_fort.12.py</strong>: Splits fort.12 into fort.12_K1, fort.12_K2, ... using
+kp_info.dat; used only by forcevmc_kpoints_parallel.sh.</p></li>
+<li><p><strong>check_fort12_columns_length.py</strong>, <strong>read_columns_fort21.py</strong>: Used by
+forcevmc.sh in read-once mode ($2 &lt; 0) to get fort.12 column count and to
+split fort.21_master into column files.</p></li>
+<li><p><strong>parminimized.d</strong>: Written by the optimization run; scripts read nvar,
+nfor, ipcr, ies* from its first line for column indexing.</p></li>
+<li><p><strong>forcefn.sh</strong>, <strong>forcefn_kpoints.sh</strong>: Scripts for <strong>Forward Walking</strong>
+(fort.12.fn) using readffn.x; separate from the forcevmc set.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>parminimized.d or fort.12 not found</strong> — Scripts expect these in the
+current directory. Run from the directory that contains the VMC/optimization
+output, or create symlinks.</p></li>
+<li><p><strong>readf.x / corrvar.x / corrforza.x not found</strong> — Scripts run them via
+<strong>$BASEDIR/</strong>; BASEDIR is the directory of the script. Invoke the script
+from a path that keeps the bin directory structure (e.g. <code class="docutils literal notranslate"><span class="pre">bin/forcevmc.sh</span>
+<span class="pre">...</span></code> from the repo root, or add bin to PATH and call
+<code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span> <span class="pre">...</span></code> from a directory that has bin as a subdirectory or
+symlink).</p></li>
+<li><p><strong>Wrong column count or readf.x errors</strong> — <strong>parminimized.d</strong> must match the
+run that produced fort.12. If nvar, nfor, or ies* differ, column indices
+(n) passed to readf.x will be wrong. Use parminimized.d from the same
+optimization.</p></li>
+<li><p><strong>kp_info.dat missing</strong> — forcevmc_kpoints.sh requires it (nkps and
+weights). forcevmc_kpoints_parallel.sh creates a one-k-point kp_info.dat if
+missing. For multi-k-point runs, provide kp_info.dat from the VMC run.</p></li>
+<li><p><strong>energy.py / force.py fail</strong> — They read <strong>kp_info.dat</strong> and look for
+lines between “up spin electrons” and “down spin electrons” to get weights
+(5th column). If kp_info.dat format differs or files pip0_K* / forces_K* are
+missing, the scripts will fail. Ensure forcevmc_kpoints.sh or
+forcevmc_kpoints_parallel.sh completed all k-point runs and left pip0_K* and
+forces_K* in the current directory before energy.py and force.py run.</p></li>
+<li><p><strong>split_fort.12.py fails</strong> — fort.12 must be Fortran unformatted with
+records interleaved by k-point (k1, k2, ..., nkps, k1, ...). kp_info.dat
+first line must give the correct nkps. If the record layout differs,
+split_fort.12.py may need to be adapted or a different workflow used.</p></li>
+<li><p><strong>forcevmc_kpoints_parallel.sh: too many parallel jobs</strong> — num_cpu_max
+jobs run concurrently; if the machine runs out of memory or I/O, reduce
+num_cpu_max (argument $4 or $3 when $4 is omitted).</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>pip0.d</strong> and <strong>forces_vmc.dat</strong> are overwritten. Back them up if needed.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -140,7 +439,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="forcevmc_kpoints_forcevmc_kpoints_parallel.html" class="btn btn-neutral float-left" title="forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forcefn.html" class="btn btn-neutral float-left" title="forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="funvsa.html" class="btn btn-neutral float-right" title="funvsa.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

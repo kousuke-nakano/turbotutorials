@@ -47,8 +47,8 @@ The procedure is as follows:
 
       .. code-block:: python
 
-	 import psutil
-	 MAX_MEMORY = int(psutil.virtual_memory().available / 1e6)
+         import psutil
+         MAX_MEMORY = int(psutil.virtual_memory().available / 1e6)
 
 2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
 

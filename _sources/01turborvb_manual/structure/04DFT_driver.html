@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Initializations of Wavefunctions &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Wavefunction conversions" href="05conversions.html" />
+    <link rel="prev" title="Generate a Wavefunction file" href="07makefort10.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Structure of TurboRVB</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../reference/01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07makefort10.html">Generate a Wavefunction file</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Initializations of Wavefunctions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#external-quantum-chemistry-and-dft-codes-gaussian-gamess-and-pyscf">External quantum chemistry and DFT codes (Gaussian, GAMESS, and pySCF)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#built-in-dft-code-prep-x">Built-in DFT code (prep.x)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#simulation-section">Simulation section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pseudo-section">Pseudo section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#optimization-section">Optimization section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#readio-section">Readio section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#parameters-section">Parameters section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#molecule-section">Molecule section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#kpoints-section">Kpoints section</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#additional-information">Additional information:</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#dft-section">DFT section</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id1">Additional information:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05conversions.html">Wavefunction conversions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06qmc_driver.html">Quantum Monte Carlo calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08optimization.html">Wavefunction optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Structure of TurboRVB</a></li>
+      <li class="breadcrumb-item active">Initializations of Wavefunctions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/01turborvb_manual/structure/04DFT_driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="initializations-of-wavefunctions">
+<h1>Initializations of Wavefunctions<a class="headerlink" href="#initializations-of-wavefunctions" title="Link to this heading"></a></h1>
+<section id="external-quantum-chemistry-and-dft-codes-gaussian-gamess-and-pyscf">
+<h2>External quantum chemistry and DFT codes (Gaussian, GAMESS, and pySCF)<a class="headerlink" href="#external-quantum-chemistry-and-dft-codes-gaussian-gamess-and-pyscf" title="Link to this heading"></a></h2>
+<p>You can use external quantum chemistry and DFT codes such as Gaussian, GAMESS, and pySCF to generate a trail wavefunction. Please refer to the TurboGenius tutorial [<a class="reference external" href="https://github.com/kousuke-nakano/turbotutorials">https://github.com/kousuke-nakano/turbotutorials</a>].</p>
+</section>
+<section id="built-in-dft-code-prep-x">
+<h2>Built-in DFT code (prep.x)<a class="headerlink" href="#built-in-dft-code-prep-x" title="Link to this heading"></a></h2>
+<p>In this section, we describe the input file that controls DFT calculation. The input file is built using Fortran namelists. Keywords are divided into different sections according to their meanings. See <a class="reference internal" href="../reference/commands/prep.html#turborvbtutorial-command-prep-x"><span class="std std-ref">Reference section</span></a> for the full description of the parameters.</p>
+<section id="simulation-section">
+<h3>Simulation section<a class="headerlink" href="#simulation-section" title="Link to this heading"></a></h3>
+<p>This block sets the overall run mode of the built-in DFT driver: which accuracy / basis variant to use for the Hartree piece, and whether the job is a cold start from a flat potential or a continuation that reads <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> and <code class="docutils literal notranslate"><span class="pre">occupationlevels.dat</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">itest4</span></code> — Selects the DFT mode: <code class="docutils literal notranslate"><span class="pre">-4</span></code> = standard DFT; <code class="docutils literal notranslate"><span class="pre">-8</span></code> = DFT with a doubled basis for the Hartree potential.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span></code> — Initialization / continuation: <code class="docutils literal notranslate"><span class="pre">1</span></code> = start from no potential (no Hartree, XC, correlation); <code class="docutils literal notranslate"><span class="pre">0</span></code> = continue from <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> and <code class="docutils literal notranslate"><span class="pre">occupationlevels.dat</span></code> produced after an <code class="docutils literal notranslate"><span class="pre">iopt=1</span></code> run; <code class="docutils literal notranslate"><span class="pre">2</span></code> = like <code class="docutils literal notranslate"><span class="pre">0</span></code> but also writes main matrices (basis/Hamiltonian overlaps, charge and spin density).</p></li>
+</ul>
+</section>
+<section id="pseudo-section">
+<h3>Pseudo section<a class="headerlink" href="#pseudo-section" title="Link to this heading"></a></h3>
+<p>This block configures the nonlocal pseudopotential integration: how many quadrature points to use, whether to use a stochastic mesh suited to QMC-style accuracy, and how to scale the point count if the run asks for more.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nintpsa</span></code> — Number of integer grid points for the pseudopotential (if used).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pseudorandom</span></code> — Use a random QMC-style integration mesh for the pseudo (Fahy algorithm).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npsamax</span></code> — Scales the number of pseudo integration points; increase (e.g. <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">2</span></code>) if the code stops with “Increase npsamax”.</p></li>
+</ul>
+</section>
+<section id="optimization-section">
+<h3>Optimization section<a class="headerlink" href="#optimization-section" title="Link to this heading"></a></h3>
+<p>This block nominally relates to orbital optimization flags in the broader code; for prep.x the driver is fixed to molecular orbitals—the table reduces to a do-not-change reminder.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">molopt</span></code> — Do not change; the built-in DFT driver is tied to molecular orbitals only.</p></li>
+</ul>
+</section>
+<section id="readio-section">
+<h3>Readio section<a class="headerlink" href="#readio-section" title="Link to this heading"></a></h3>
+<p>This block controls scratch I/O: whether large intermediate files (per-rank overlaps/densities and saved wavefunctions) are written so you can restart, run non-self-consistent steps, or use post-processing tools.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">writescratch</span></code> — <code class="docutils literal notranslate"><span class="pre">0</span></code> = write scratch (per-rank <code class="docutils literal notranslate"><span class="pre">tmp*</span></code>, <code class="docutils literal notranslate"><span class="pre">total_densities.sav</span></code>, <code class="docutils literal notranslate"><span class="pre">wavefunction.sav</span></code>) to speed restarts and enable non-SCF / post-processing; <code class="docutils literal notranslate"><span class="pre">1</span></code> = no disk scratch (cannot continue or run non-SCF from saved data).</p></li>
+</ul>
+</section>
+<section id="parameters-section">
+<h3>Parameters section<a class="headerlink" href="#parameters-section" title="Link to this heading"></a></h3>
+<p>This block holds cross-cutting switches for periodic / multi-k calculations: turn k-point sampling on or off, optionally run independent SCF per k (for twist workflows), set the real-space cutoff of the periodic basis, and optionally fold k-points by crystal symmetry.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code> — If <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, run k-independent SCF (no density average over k); use as a precursor to twist-averaged QMC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yes_kpoints</span></code> — Enable k-point sampling; the phase in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> is ignored when active.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsbas</span></code> — Real-space cutoff for the periodic basis (PBC_C in <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>); lower it if the DFT energy looks wrong.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip_equivalence</span></code> — If <code class="docutils literal notranslate"><span class="pre">.false.</span></code>, fold the k-mesh using symmetry (one k per star, weights by degeneracy) to reduce explicit k-points.</p></li>
+</ul>
+</section>
+<section id="molecule-section">
+<h3>Molecule section<a class="headerlink" href="#molecule-section" title="Link to this heading"></a></h3>
+<p>This block defines the real-space simulation cell and integration grid: number of FFT/grid points, physical box size (open vs periodic), and buffer sizing that affects memory—especially in the complex code path.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nx</span></code> (and <code class="docutils literal notranslate"><span class="pre">ny</span></code>, <code class="docutils literal notranslate"><span class="pre">nz</span></code>) — Real-space integration grid size; default cubic <code class="docutils literal notranslate"><span class="pre">nx</span> <span class="pre">=</span> <span class="pre">ny</span> <span class="pre">=</span> <span class="pre">nz</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ax</span></code> (and <code class="docutils literal notranslate"><span class="pre">ay</span></code>, <code class="docutils literal notranslate"><span class="pre">az</span></code>) — Box size (a.u.) for open systems; for periodic systems it follows the cell (often omitted); default cubic <code class="docutils literal notranslate"><span class="pre">ax</span> <span class="pre">=</span> <span class="pre">ay</span> <span class="pre">=</span> <span class="pre">az</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbufd</span></code> — Buffer dimension; in the complex code the buffer is auto-doubled—reduce if memory is tight.</p></li>
+</ul>
+</section>
+<section id="kpoints-section">
+<h3>Kpoints section<a class="headerlink" href="#kpoints-section" title="Link to this heading"></a></h3>
+<p>This block specifies Brillouin-zone sampling: how k-points are chosen (Γ-only, Monkhorst–Pack, explicit list, band path, or random), the grid sizes or counts, and optional shifts for Monkhorst–Pack meshes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kp_type</span></code> — Chooses the k scheme: <code class="docutils literal notranslate"><span class="pre">0</span></code> = single k (phase from <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>); <code class="docutils literal notranslate"><span class="pre">1</span></code> = Monkhorst–Pack grid <code class="docutils literal notranslate"><span class="pre">nk1,nk2,nk3</span></code> (with optional symmetry reduction via <code class="docutils literal notranslate"><span class="pre">skip_equivalence</span></code>; use <code class="docutils literal notranslate"><span class="pre">find_kpoints.x</span></code> to plan parallelism); <code class="docutils literal notranslate"><span class="pre">2</span></code> = user k-list (<code class="docutils literal notranslate"><span class="pre">nk1</span></code> = count, KPOINTS block); <code class="docutils literal notranslate"><span class="pre">3</span></code> = path along high-symmetry lines (extrema in KPOINTS, <code class="docutils literal notranslate"><span class="pre">nk1</span></code> / <code class="docutils literal notranslate"><span class="pre">nk2</span></code> control counts); <code class="docutils literal notranslate"><span class="pre">4</span></code> = random k in the BZ (<code class="docutils literal notranslate"><span class="pre">nk1</span></code> points, no KPOINTS).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nk1</span></code>, <code class="docutils literal notranslate"><span class="pre">nk2</span></code>, <code class="docutils literal notranslate"><span class="pre">nk3</span></code> — Meaning depends on <code class="docutils literal notranslate"><span class="pre">kp_type</span></code> (grid size, counts, or path parameters).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">k1</span></code>, <code class="docutils literal notranslate"><span class="pre">k2</span></code>, <code class="docutils literal notranslate"><span class="pre">k3</span></code> — For <code class="docutils literal notranslate"><span class="pre">kp_type=1</span></code>, MP grid offset (often set to 1).</p></li>
+</ul>
+<section id="additional-information">
+<h4>Additional information:<a class="headerlink" href="#additional-information" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Monkhorst-Pack mesh:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span>kpoints
+<span class="nv">kp_type</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">nk1</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">nk2</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">nk3</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">skip_equivalence</span><span class="o">=</span>.false.
+<span class="nv">double_kpgrid</span><span class="o">=</span>.true.
+</pre></div>
+</div>
+</li>
+<li><p>User-defined k-points are written in the following manner.
+<code class="docutils literal notranslate"><span class="pre">wkp(i)</span></code> denotes the weight corresponding to the kpoint
+<code class="docutils literal notranslate"><span class="pre">xkp(:,i)</span></code> if the total weight is different from one.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wkp<span class="o">(</span>i<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>the<span class="w"> </span>weight<span class="w"> </span>corresponding<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>the<span class="w"> </span>kpoint<span class="w"> </span>xkp<span class="o">(</span>:,i<span class="o">)</span>.
+!<span class="w"> </span>NB:<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>total<span class="w"> </span>weight<span class="w"> </span>is<span class="w"> </span>different<span class="w"> </span>from<span class="w"> </span>on
+!<span class="w"> </span>xkp<span class="o">(</span><span class="m">1</span>,1<span class="o">)</span><span class="w"> </span>xkp<span class="o">(</span><span class="m">2</span>,1<span class="o">)</span><span class="w"> </span>xkp<span class="o">(</span><span class="m">3</span>,1<span class="o">)</span><span class="w"> </span>wkp<span class="o">(</span><span class="m">1</span><span class="o">)</span>
+!<span class="w"> </span>xkp<span class="o">(</span><span class="m">1</span>,2<span class="o">)</span><span class="w"> </span>xkp<span class="o">(</span><span class="m">2</span>,2<span class="o">)</span><span class="w"> </span>xkp<span class="o">(</span><span class="m">3</span>,2<span class="o">)</span><span class="w"> </span>wkp<span class="o">(</span><span class="m">2</span><span class="o">)</span>
+!<span class="w"> </span>......
+KPOINTS
+<span class="m">0</span>.1667<span class="w"> </span><span class="m">0</span>.1667<span class="w"> </span><span class="m">0</span>.5000<span class="w">  </span><span class="m">0</span>.5
+<span class="m">0</span>.5000<span class="w"> </span><span class="m">0</span>.5000<span class="w"> </span><span class="m">0</span>.5000<span class="w">  </span><span class="m">0</span>.5
+<span class="c1"># blank line and after k-points for spin down electrons</span>
+-0.1667<span class="w"> </span>-0.1667<span class="w"> </span>-0.5000<span class="w">  </span><span class="m">0</span>.5
+-0.5000<span class="w"> </span>-0.5000<span class="w"> </span>-0.5000<span class="w">  </span><span class="m">0</span>.5
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="dft-section">
+<h3>DFT section<a class="headerlink" href="#dft-section" title="Link to this heading"></a></h3>
+<p>This is the main &amp;dft namelist: it sets the self-consistent cycle (mixing, convergence), the exchange–correlation model, occupations and smearing, spin/magnetization initialization, numerical safeguards (overlap conditioning), and hooks to TurboRVB objects (Jastrow, densities, k-density fixes).</p>
+<p><strong>SCF loop and mixing</strong></p>
+<p>These keywords control how the KS equations are iterated to self-consistency: iteration count, tolerance, mixing / Jacobian / CG algorithms, and diagonalization hygiene.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maxit</span></code> — Maximum SCF iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsdft</span></code> — Total-energy convergence tolerance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typeopt</span></code> — Mixing / optimization algorithm: <code class="docutils literal notranslate"><span class="pre">0</span></code> standard mixing; <code class="docutils literal notranslate"><span class="pre">2</span></code> linear mixing; <code class="docutils literal notranslate"><span class="pre">3</span></code> conjugate gradients + SR; <code class="docutils literal notranslate"><span class="pre">4</span></code> Anderson + Jacobian (often fastest / preferred).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mixing</span></code> — Step amplitude; use small values for stability; if needed, try smearing (<code class="docutils literal notranslate"><span class="pre">optocc=1</span></code>) or CG (<code class="docutils literal notranslate"><span class="pre">typeopt=3</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mixingder</span></code> — For <code class="docutils literal notranslate"><span class="pre">typeopt=3</span></code>: finite-difference derivatives; for <code class="docutils literal notranslate"><span class="pre">typeopt=4</span></code>: keep steps in the linear regime for the Jacobian (<code class="docutils literal notranslate"><span class="pre">mixingder</span> <span class="pre">&lt;&lt;</span> <span class="pre">1</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tfcut</span></code> — Thomas–Fermi-style preconditioning (<code class="docutils literal notranslate"><span class="pre">typeopt</span></code> 0/2/4); suggested <span class="math notranslate nohighlight">\(\sim 1/\xi_{\mathrm{TF}}^2\)</span> (a.u.).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">orthodiag</span></code> — If <code class="docutils literal notranslate"><span class="pre">.false.</span></code>, skip re-orthogonalization of KS vectors after each diagonalization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxold</span></code> — History length for Jacobian with <code class="docutils literal notranslate"><span class="pre">typeopt=4</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxcg</span></code> — Restart period for CG (<code class="docutils literal notranslate"><span class="pre">typeopt=3</span></code>); <code class="docutils literal notranslate"><span class="pre">0</span></code> = no restart (unstable).</p></li>
+</ul>
+<p><strong>Functional and energy weights</strong></p>
+<p>Here you pick the DFT energy model (Hartree-only, LDA/LSDA variants, finite-volume/KZK options) and optional scaling of Hartree / XC terms for tests; contracted_on speeds up the basis pipeline.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">typedft</span></code> — Functional choice: Hartree-only <code class="docutils literal notranslate"><span class="pre">0</span></code>; LDA variants <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">-1</span></code>, <code class="docutils literal notranslate"><span class="pre">-2</span></code>; finite-volume / KZK <code class="docutils literal notranslate"><span class="pre">3</span></code>, open-system fit <code class="docutils literal notranslate"><span class="pre">-3</span></code>; LSDA <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">-4</span></code>; LSDA+KZK <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">-5</span></code>, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contracted_on</span></code> — If <code class="docutils literal notranslate"><span class="pre">.true.</span></code>, use contracted basis (much faster).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weightvh</span></code>, <code class="docutils literal notranslate"><span class="pre">weightxc</span></code>, <code class="docutils literal notranslate"><span class="pre">weightcorr</span></code> — Scale Hartree / exchange / correlation (mainly testing; <code class="docutils literal notranslate"><span class="pre">weightxc</span></code>/<code class="docutils literal notranslate"><span class="pre">weightcorr</span></code> = 0 turns off X or C).</p></li>
+</ul>
+<p><strong>Occupations and bands</strong></p>
+<p>These options define how bands are filled (fixed integers vs Fermi smearing), how many bands are solved, and how occupation records are read for closed/open shells.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">optocc</span></code> — <code class="docutils literal notranslate"><span class="pre">0</span></code> = fixed occupations from input (good for closed shells; use <code class="docutils literal notranslate"><span class="pre">nelocc</span></code> / <code class="docutils literal notranslate"><span class="pre">neloccdo</span></code>); <code class="docutils literal notranslate"><span class="pre">1</span></code> = Fermi smearing with width <code class="docutils literal notranslate"><span class="pre">epsshell</span></code> (and k-averaged Fermi level when using k-points).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsshell</span></code> — Smearing width (Ha) for <code class="docutils literal notranslate"><span class="pre">optocc=1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bands</span></code> — Number of lowest KS bands solved (default tied to <code class="docutils literal notranslate"><span class="pre">nelup</span></code> and assumed degeneracy).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nelocc</span></code>, <code class="docutils literal notranslate"><span class="pre">neloccdo</span></code> — How many occupation numbers to read (spin-up / spin-down rules differ for LSDA).</p></li>
+</ul>
+<p><strong>Magnetization and grids (spin)</strong></p>
+<p>Use this group to seed or constrain collinear magnetism: random or extreme spin initialization, optional spatial magnetization grid, and a staggered field pattern.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">randspin</span></code> — Initialize magnetization (random perturbation, or extreme spin from density/grid).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nxs</span></code>, <code class="docutils literal notranslate"><span class="pre">nys</span></code>, <code class="docutils literal notranslate"><span class="pre">nzs</span></code> — Grid for magnetization density (see input layout in <code class="docutils literal notranslate"><span class="pre">04DFT_driver.rst</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">h_field</span></code> — Staggered magnetic field bias (coupled to the same tables as <code class="docutils literal notranslate"><span class="pre">randspin</span></code>).</p></li>
+</ul>
+<p><strong>Performance / numerics</strong></p>
+<p>These flags trade speed vs memory, control overlap-matrix conditioning, and tune the Jacobian solver used by some mixing modes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memlarge</span></code> — Faster but much more memory (full basis on disk).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsover</span></code>, <code class="docutils literal notranslate"><span class="pre">mincond</span></code> — Overlap eigenvalue cutoff and direction skipping for stability vs. cancellation (e.g. pressure).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jaccond</span></code> — Condition threshold for <code class="docutils literal notranslate"><span class="pre">typeopt=4</span></code> Jacobian workflow.</p></li>
+</ul>
+<p><strong>I/O and wavefunction hooks</strong></p>
+<p>Miscellaneous switches for efficiency (overlap reuse across spins), export of matrices for effective Hamiltonians, zeroing the Jastrow after DFT, and how the density couples k-points when <code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code> is on.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">optimize_overs</span></code> — Speed up overlap work when spin-down phase matches or opposes spin-up phase.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write_den</span></code> — Write overlap data for effective Hamiltonian post-processing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zero_jas</span></code> — Zero the one-body Jastrow after DFT finishes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fix_density</span></code> — With <code class="docutils literal notranslate"><span class="pre">decoupled_run</span></code> and <code class="docutils literal notranslate"><span class="pre">yes_kpoints</span></code>, evolve k-points independently but using the k-averaged density.</p></li>
+</ul>
+<section id="id1">
+<h4>Additional information:<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">nxs</span></code> <code class="docutils literal notranslate"><span class="pre">nys</span></code> <code class="docutils literal notranslate"><span class="pre">nzs</span></code></p>
+<p>Dimension of the grid where the magnetization is defined along the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span>, <span class="math notranslate nohighlight">\(z\)</span> direction:
+The format is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>!<span class="w">  </span>After<span class="w"> </span><span class="s2">&quot;/&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;occupation list&quot;</span>
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s111<span class="w"> </span>s211<span class="w"> </span>s311<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s121<span class="w"> </span>s221<span class="w"> </span>s321<span class="w"> </span>...<span class="w"> </span>snxs11
+!<span class="w"> </span>s1nys1<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnys1
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s112<span class="w"> </span>s212<span class="w"> </span>s312<span class="w"> </span>...<span class="w"> </span>snxs12
+!<span class="w"> </span>...
+!<span class="w"> </span><span class="c1"># empty line</span>
+!<span class="w"> </span>s11nzs<span class="w"> </span>s21nzs<span class="w"> </span>s31nzs<span class="w"> </span>...<span class="w"> </span>snxs1nzs
+!<span class="w"> </span>...
+!<span class="w"> </span>s1nysnzs<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>...<span class="w"> </span>snxsnysnzs
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="07makefort10.html" class="btn btn-neutral float-left" title="Generate a Wavefunction file" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05conversions.html" class="btn btn-neutral float-right" title="Wavefunction conversions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

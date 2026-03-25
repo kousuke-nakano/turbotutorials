@@ -49,38 +49,59 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">readforward.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input-files">Input files</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output-files">Output files</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#main-features">Main features</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#observables-physical-meaning-enable-option-and-output">Observables: physical meaning, enable option, and output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#details-of-input-parameters">Details of input parameters</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#simulation-section">simulation section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#system-section">system section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#corrfun-section">corrfun section</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#forward-walking-parameters-overview">Forward-walking parameters (overview)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#choosing-parameters-and-their-meaning">Choosing parameters and their meaning</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#connection-with-turborvb-important-points">Connection with TurboRVB — important points</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#parallel-execution">Parallel execution</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#continuation-iopt-0">Continuation (iopt=0)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#scratch-and-generations">Scratch and generations</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings-run-continues">Warnings (run continues)</a></li>
 </ul>
 </li>
 </ul>
@@ -129,25 +150,209 @@
   <section id="readforward-x">
 <span id="turborvbtutorial-command-readforward-x"></span><h1>readforward.x<a class="headerlink" href="#readforward-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>readforward</strong> is a post-processing program of TurboRVB. It reads scratch data
+(walker coordinates, weights, and population history) written by VMC/DMC runs
+and computes expectation values of correlation functions and observables using
+<strong>forward walking</strong>.</p>
+<ul class="simple">
+<li><p><strong>Forward walking</strong>: The population history (which walker branched from which
+parent) is propagated backward in time to obtain unbiased estimates of
+non-local operators.</p></li>
+<li><p>Supported observables include: charge density, spin density, pair correlation
+function, structure factor S(k), STM/QPWF, Assaraf density, local spin²,
+dipole/quadrupole moments, Berry phase, and atom-resolved RDF.</p></li>
+</ul>
+<p>Input is controlled by <strong>readforward.input</strong> (namelists <code class="docutils literal notranslate"><span class="pre">simulation</span></code>,
+<code class="docutils literal notranslate"><span class="pre">system</span></code>, <code class="docutils literal notranslate"><span class="pre">corrfun</span></code>). Scratch files are read from the same path/datasmin
+as used by the VMC/DMC run (e.g. <code class="docutils literal notranslate"><span class="pre">turborvb.scratch/</span></code>).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input-files">
+<h3>Input files<a class="headerlink" href="#input-files" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>readforward.input</strong> (required): Namelists <code class="docutils literal notranslate"><span class="pre">simulation</span></code>, <code class="docutils literal notranslate"><span class="pre">system</span></code>,
+<code class="docutils literal notranslate"><span class="pre">corrfun</span></code>. Specifies which observables to compute, forward-walking
+parameters, grid, and options.</p></li>
+<li><p><strong>fort.10</strong>: Wave function. Used for minimal system info (<code class="docutils literal notranslate"><span class="pre">read_fort10_fast</span></code>)
+or full wave function when correlation features need it (Assaraf, QPWF,
+spin², correlated sampling, etc.).</p></li>
+<li><p><strong>datasmin</strong>: QMC run settings (number of processes, generations, scratch
+path, <code class="docutils literal notranslate"><span class="pre">ifreqdump</span></code>, <code class="docutils literal notranslate"><span class="pre">disk_io</span></code>, etc.). Read by <code class="docutils literal notranslate"><span class="pre">read_datasmin</span></code>.</p></li>
+<li><p><strong>Scratch</strong>: Under <code class="docutils literal notranslate"><span class="pre">turborvb.scratch/</span></code> (or <code class="docutils literal notranslate"><span class="pre">./</span></code> for serial): e.g.
+<code class="docutils literal notranslate"><span class="pre">details_SP.all</span></code>, <code class="docutils literal notranslate"><span class="pre">details_DP.all</span></code>, or <code class="docutils literal notranslate"><span class="pre">details.000001</span></code>, <code class="docutils literal notranslate"><span class="pre">details.000002</span></code>, ...
+Contains per-dump records: walker coordinates (walk), weights (wconf),
+population history (jbra). When correlation features need the wave function,
+pseudopotential files and full fort.10 are also used.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output-files">
+<h3>Output files<a class="headerlink" href="#output-files" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.readforward</strong> (or <strong>fort.readforwardK</strong><em>n</em> for k-point runs): Binary
+(unformatted). Binned averages, variances, and weights (ebin, ebin2, wbin)
+for each forward step and correlation index.</p></li>
+<li><p><strong>bins.dat</strong> (or <strong>binsK</strong><em>n</em>): Text; written when <code class="docutils literal notranslate"><span class="pre">longio</span></code> or
+<code class="docutils literal notranslate"><span class="pre">ifcorrs</span></code> is true.</p></li>
+<li><p>Observable-specific files written by <code class="docutils literal notranslate"><span class="pre">write_corr_fun</span></code>: e.g. <strong>rho.dat</strong>,
+<strong>spin.dat</strong>, <strong>rhorho.dat</strong>, <strong>skvec.dat</strong>, <strong>dipole.dat</strong>, <strong>Berry.dat</strong>,
+<strong>qpwf.dat</strong>, <strong>spinsquare.dat</strong>, <strong>corrsampling.dat</strong>, <strong>rho_assar.dat</strong>,
+<strong>rho_corr.dat</strong>, and 3D visualisation files (e.g. <strong>charge</strong><em>M</em><strong>.xsf</strong>,
+<strong>spin</strong><em>M</em><strong>.xsf</strong>) in xcrysden format. With <code class="docutils literal notranslate"><span class="pre">decouple_files=.true.</span></code>,
+names become <em>name</em><strong>K</strong><em>n</em> per k-point.</p></li>
+</ul>
 </section>
-<section id="namelist">
-<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+</section>
+<section id="main-features">
+<h2>Main features<a class="headerlink" href="#main-features" title="Link to this heading"></a></h2>
+<p>Observables are enabled in <strong>readforward.input</strong> namelist <strong>corrfun</strong>. Main
+options:</p>
+<ul class="simple">
+<li><p><strong>charge_density</strong>: Charge density on a grid or on ion sites (sphere/cylinder).</p></li>
+<li><p><strong>spin_density</strong>: Spin (magnetization) density.</p></li>
+<li><p><strong>pair_corr_fun</strong>: Pair correlation function g(r) or site occupations.</p></li>
+<li><p><strong>structure_factor</strong>: Structure factor S(k); spin-resolved (ss, uu, dd, ud) for
+fermions when applicable.</p></li>
+<li><p><strong>correlated_samp</strong>: Correlated sampling (energy difference and overlap between
+fort.10 and fort.10_corr).</p></li>
+<li><p><strong>fluctuations</strong>: Local charge or spin fluctuations (use with charge_density or
+spin_density).</p></li>
+<li><p><strong>assar_density</strong>: Assaraf charge density (e.g. for STM).</p></li>
+<li><p><strong>quasi_particle / quasi_hole</strong> (QPWF): Quasi-particle/hole weights; STM images.</p></li>
+<li><p><strong>compute_spin2</strong>: Local spin² expectation.</p></li>
+<li><p><strong>dipole_moment</strong>: Dipole and quadrupole moments.</p></li>
+<li><p><strong>ifberry</strong>: Berry phase (e.g. Chern numbers).</p></li>
+<li><p><strong>rdf_for_atom</strong>: Atom-resolved radial distribution function (requires
+<code class="docutils literal notranslate"><span class="pre">corrfun_dim=1</span></code>).</p></li>
+</ul>
+<p>Output file names and formats for each observable are summarised in the
+detailed overview document (see Notes and main manual).</p>
+<section id="observables-physical-meaning-enable-option-and-output">
+<h3>Observables: physical meaning, enable option, and output<a class="headerlink" href="#observables-physical-meaning-enable-option-and-output" title="Link to this heading"></a></h3>
+<p>The following table summarises each observable: its physical meaning, the
+<strong>corrfun</strong> option that enables it, and the main output files or format.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18.0%" />
+<col style="width: 28.0%" />
+<col style="width: 26.0%" />
+<col style="width: 28.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Observable</p></th>
+<th class="head"><p>Physical meaning</p></th>
+<th class="head"><p>Enable option (corrfun)</p></th>
+<th class="head"><p>Main output files / format</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Charge density</strong></p></td>
+<td><p>Electron probability density (rho(mathbf{r})). On a grid or charge
+in sphere/cylinder around ion sites.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">charge_density</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>rho.dat</strong> (or rhoK*n*, rho_ion.dat): coordinates + mean/error per
+forward step. 3D isosurface: <strong>charge</strong><em>M</em><strong>.xsf</strong> (xcrysden). With
+pair_corr: <strong>rhorho.dat</strong>, <strong>rhorho_radial.dat</strong> (radial g(r)).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Spin density</strong></p></td>
+<td><p>Up/down spin spatial difference; magnetization density.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">spin_density</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>spin.dat</strong> (or spinK*n*, spin_ion.dat): same structure as charge. 3D:
+<strong>spin</strong><em>M</em><strong>.xsf</strong>. With pair_corr: <strong>spinspin.dat</strong>,
+<strong>spinspin_radial.dat</strong>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Charge/spin fluctuations</strong></p></td>
+<td><p>Local charge or spin fluctuations; correlation-length indicator.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fluctuations</span> <span class="pre">=</span> <span class="pre">.true.</span></code> (use with charge_density or spin_density)</p></td>
+<td><p>Charge: <strong>chargefluct</strong><em>M</em><strong>.xsf</strong>. Spin: <strong>spinfluct</strong><em>M</em><strong>.xsf</strong>
+(3D grid, xcrysden).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Pair correlation function</strong></p></td>
+<td><p>Two-body correlation g(r) or site occupations (langle n_i n_j
+rangle); structure and spin correlations.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pair_corr_fun</span> <span class="pre">=</span> <span class="pre">.true.</span></code> (charge/spin density also turned on
+automatically)</p></td>
+<td><p>Grid: <strong>rhorho.dat</strong>, <strong>spinspin.dat</strong>. Radial: <strong>rhorho_radial.dat</strong>,
+<strong>spinspin_radial.dat</strong> (r, g(r), error). Site: distance and
+(langle n_i n_j rangle) per ion pair.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Structure factor S(k)</strong></p></td>
+<td><p>S(k) = (langle rho_{mathbf{k}} rho_{-mathbf{k}} rangle / N);
+spin-resolved (ss, uu, dd, ud) for fermions.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">structure_factor</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>skvec.dat</strong>: k components, (|k|), S(k) mean/error per forward
+step. Fermions: <strong>skvec_ss.dat</strong>, <strong>skvec_uu.dat</strong>, <strong>skvec_dd.dat</strong>,
+<strong>skvec_ud.dat</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Correlated sampling</strong></p></td>
+<td><p>Energy difference and overlap between fort.10 and fort.10_corr on the
+same sample.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">correlated_samp</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>corrsampling.dat</strong>: bin count, E(fort.10), E(fort.10_corr), energy
+difference, overlap squared mean/error (bootstrap). Raw per-bin data in
+bins.dat (column 14).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Assaraf density</strong></p></td>
+<td><p>Assaraf et al. charge density (exact as local expectation); e.g. for
+STM.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assar_density</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>rho_assar.dat</strong>: grid (x,y,z) + density and error per forward step.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>QPWF / STM</strong></p></td>
+<td><p>Quasi-particle/hole weights (grid or k-space); STM simulation.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quasi_particle</span> <span class="pre">=</span> <span class="pre">.true.</span></code> / <code class="docutils literal notranslate"><span class="pre">quasi_hole</span> <span class="pre">=</span> <span class="pre">.true.</span></code> /
+<code class="docutils literal notranslate"><span class="pre">quasi_hole_k</span></code> / <code class="docutils literal notranslate"><span class="pre">quasi_hole_extr</span></code></p></td>
+<td><p><strong>qpwf.dat</strong>: grid (x,y,z) + real/imag mean/error; k-space/extrapolation:
+corresponding coordinates and values.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>New density (rho_corr)</strong></p></td>
+<td><p>Correlation-aware charge density (Rho_corr module).</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">new_density</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>rho_corr.dat</strong>: grid coordinates + density and error.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Local S²</strong></p></td>
+<td><p>Local spin (mathbf{S}^2) expectation; spin multiplicity and
+correlation indicator.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">compute_spin2</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>spinsquare.dat</strong>: (langle S^2 rangle) and error per forward step
+(maxf-i).</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Dipole / quadrupole</strong></p></td>
+<td><p>Dipole (mathbf{d}) and quadrupole tensor (Q_{ij}); spectroscopy and
+dielectric response.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dipole_moment</span> <span class="pre">=</span> <span class="pre">.true.</span></code></p></td>
+<td><p><strong>dipole.dat</strong>: per forward step (|d|), d_x,d_y,d_z mean/error,
+nuclear contribution, effective quadrupole (|q|) and (Q_{ij})
+components.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Berry phase</strong></p></td>
+<td><p>Berry phase along a closed path; Chern numbers, topological invariants.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ifberry</span> <span class="pre">=</span> <span class="pre">.true.</span></code> (in namelist system)</p></td>
+<td><p><strong>Berry.dat</strong>: per forward step, 6 components (real/imag etc.)
+mean/error.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Atom-resolved RDF</strong></p></td>
+<td><p>Radial distribution function per atom type.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rdf_for_atom</span> <span class="pre">=</span> <span class="pre">.true.</span></code> (<code class="docutils literal notranslate"><span class="pre">corrfun_dim</span> <span class="pre">=</span> <span class="pre">1</span></code> required)</p></td>
+<td><p>In pair-correlation site mode (rhorho.dat / spinspin.dat), output as
+sectors per atom-pair type.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> When <code class="docutils literal notranslate"><span class="pre">decouple_k</span> <span class="pre">=</span> <span class="pre">.true.</span></code> and <code class="docutils literal notranslate"><span class="pre">decouple_files</span> <span class="pre">=</span> <span class="pre">.true.</span></code>, the
+above .dat files are written per k-point as <em>name</em><strong>K</strong><em>n</em> (e.g. rhoK1,
+skvecK2). 3D visualisation <strong>.xsf</strong> files are written as <em>word</em><em>M</em><strong>.xsf</strong>
+(M = forward step index) when <code class="docutils literal notranslate"><span class="pre">plot_3d_data</span></code> is set; open with xcrysden.</p>
+</section>
+</section>
+<section id="details-of-input-parameters">
+<h2>Details of input parameters<a class="headerlink" href="#details-of-input-parameters" title="Link to this heading"></a></h2>
 <p>Variable are read from <code class="docutils literal notranslate"><span class="pre">readforward.input</span></code>.
-Read the variables of the same <a class="reference internal" href="turborvb.html#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">namelist</span></a> as <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> from standard input.</p>
+Read the variables of the same <a class="reference internal" href="turborvb.html#turborvbtutorial-command-turborvb-x-namelist"><span class="std std-ref">Input parameters</span></a> as <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> from standard input.</p>
 <section id="simulation-section">
 <h3>simulation section<a class="headerlink" href="#simulation-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -186,8 +391,7 @@ Read the variables of the same <a class="reference internal" href="turborvb.html
 </section>
 <section id="system-section">
 <h3>system section<a class="headerlink" href="#system-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -236,8 +440,7 @@ Read the variables of the same <a class="reference internal" href="turborvb.html
 </section>
 <section id="corrfun-section">
 <h3>corrfun section<a class="headerlink" href="#corrfun-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -538,6 +741,179 @@ Read the variables of the same <a class="reference internal" href="turborvb.html
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="forward-walking-parameters-overview">
+<h3>Forward-walking parameters (overview)<a class="headerlink" href="#forward-walking-parameters-overview" title="Link to this heading"></a></h3>
+<p>All are set in <strong>readforward.input</strong> namelist <strong>corrfun</strong>:</p>
+<ul class="simple">
+<li><p><strong>corr_factors</strong> (nbias): Number of recent generations discarded for bias
+correction (population control). ≥ 0.</p></li>
+<li><p><strong>fwd_propagations</strong> (maxf): How many generations to go back in forward
+walking. Larger values include longer-time correlations but need more memory
+and buffer.</p></li>
+<li><p><strong>fwd_skip</strong> (iskip): Sample every iskip generations in the forward direction
+(1 = use all). Must be a positive integer.</p></li>
+<li><p><strong>bin_length</strong> (lbin): Number of generations per bin; output and bin updates
+occur every lbin generations. Must satisfy <code class="docutils literal notranslate"><span class="pre">mod(lbin,</span> <span class="pre">ifreqdump)=0</span></code> for
+continuation.</p></li>
+<li><p><strong>initial_bin</strong> (ibinit): First bin index included in statistics; earlier
+bins are discarded as warm-up.</p></li>
+</ul>
+<p>Internal relations: <code class="docutils literal notranslate"><span class="pre">maxk</span> <span class="pre">=</span> <span class="pre">maxf</span> <span class="pre">+</span> <span class="pre">nbias</span></code>, <code class="docutils literal notranslate"><span class="pre">maxf_r</span> <span class="pre">=</span> <span class="pre">maxf/iskip</span></code>. Number of
+forward steps in output is <code class="docutils literal notranslate"><span class="pre">maxf_r</span> <span class="pre">+</span> <span class="pre">1</span></code>. For correlated sampling, internal
+buffer size is lbin, so require <code class="docutils literal notranslate"><span class="pre">lbin</span> <span class="pre">&gt;</span> <span class="pre">maxf</span> <span class="pre">+</span> <span class="pre">nbias</span></code> (typically
+<code class="docutils literal notranslate"><span class="pre">lbin</span> <span class="pre">≥</span> <span class="pre">maxf</span> <span class="pre">+</span> <span class="pre">nbias</span> <span class="pre">+</span> <span class="pre">1</span></code>).</p>
+</section>
+<section id="choosing-parameters-and-their-meaning">
+<h3>Choosing parameters and their meaning<a class="headerlink" href="#choosing-parameters-and-their-meaning" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>corr_factors (nbias)</strong>: For DMC, often 50–100 to stabilise; for VMC only,
+0 is usually enough.</p></li>
+<li><p><strong>fwd_propagations (maxf)</strong>: Choose larger than the relaxation scale of the
+observable (order tens to hundreds). 0 gives only the “current” step.</p></li>
+<li><p><strong>fwd_skip</strong>: 1 gives full resolution; 2–4 reduces output size when maxf is
+large.</p></li>
+<li><p><strong>bin_length (lbin)</strong>: About 1/50–1/200 of total generations; must be a
+multiple of <code class="docutils literal notranslate"><span class="pre">ifreqdump</span></code>. For correlated sampling, ensure
+<code class="docutils literal notranslate"><span class="pre">lbin</span> <span class="pre">≥</span> <span class="pre">maxf</span> <span class="pre">+</span> <span class="pre">nbias</span> <span class="pre">+</span> <span class="pre">1</span></code>.</p></li>
+<li><p><strong>initial_bin (ibinit)</strong>: 2–5 to drop warm-up; can use 1 for long runs.</p></li>
+</ul>
+<p>Typical combinations: (VMC) nbias=0, maxf=50–100, iskip=1, lbin=ngen/100,
+ibinit=2; (DMC) nbias=50–100, maxf=200–500, iskip=1 or 2, lbin multiple of
+ifreqdump, ibinit=2–3.</p>
+</section>
+<section id="connection-with-turborvb-important-points">
+<h3>Connection with TurboRVB — important points<a class="headerlink" href="#connection-with-turborvb-important-points" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Same datasmin</strong>: Use the same <strong>path</strong>, <strong>nprocr</strong>, <strong>ifreqdump</strong>, and
+<strong>disk_io</strong> so that readforward finds the same scratch layout as the VMC/DMC
+run.</p></li>
+<li><p><strong>Process count</strong>: readforward must run with <strong>number of MPI processes =
+nprocr</strong> (size_run). Otherwise “# of processors must be the same of the vmc !!”
+or “# files must be the same for every process !!”.</p></li>
+<li><p><strong>Scratch location</strong>: With PARALLEL (and not __KCOMP), scratch path is
+<code class="docutils literal notranslate"><span class="pre">path/turborvb.scratch/</span></code>; for serial, <code class="docutils literal notranslate"><span class="pre">./</span></code> and <code class="docutils literal notranslate"><span class="pre">./scratch</span></code>. Same
+<strong>path</strong> in datasmin ensures the same directory.</p></li>
+<li><p><strong>disk_io and io_level</strong>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">disk_io='mpiio'</span></code> → readforward reads <strong>details_SP.all</strong>, <strong>details_DP.all</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disk_io='default'</span></code> → reads <strong>details.000001</strong>, <strong>details.000002</strong>, …
+(total count = nprocr).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disk_io='nocont'</span></code> → io_level=0; continuation not supported.</p></li>
+</ul>
+</li>
+<li><p><strong>ifreqdump</strong>: One scratch record per ifreqdump MC generations.
+<strong>bin_length</strong> must be divisible by ifreqdump (required for continuation and
+consistent binning).</p></li>
+<li><p><strong>nwr</strong>: If set non-zero in readforward.input <code class="docutils literal notranslate"><span class="pre">simulation</span></code>, it overrides the
+walker count (nw) from datasmin.</p></li>
+</ul>
+</section>
+<section id="parallel-execution">
+<h3>Parallel execution<a class="headerlink" href="#parallel-execution" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>MPI</strong>: Walkers are split across ranks; each rank computes correlations for
+its walkers. Forward walking may require sending/receiving correlation
+values when the “parent” walker lives on another rank.</p></li>
+<li><p><strong>Process count</strong>: Must equal <strong>nprocr</strong> (size_run) from the VMC/DMC run.</p></li>
+<li><p><strong>k-point splitting</strong> (namelist <strong>simulation</strong>):</p>
+<ul>
+<li><p><strong>decouple_k</strong> (default true when nk&gt;1): Splits processes by k-point;
+<strong>decouple_files</strong> (default false): If true, writes one set of output
+files per k-point (e.g. fort.readforwardK1, rhoK1). If false, results are
+k-averaged with weights wkp into a single set (fort.readforward, rho.dat).</p></li>
+<li><p>When decouple_k is true, process count must be divisible by the number of
+k-points (nk). Each k-point group has <code class="docutils literal notranslate"><span class="pre">mcol</span> <span class="pre">=</span> <span class="pre">nproc/nk</span></code> processes.</p></li>
+</ul>
+</li>
+<li><p><strong>Continuation with decouple_k</strong>: The code checks only <strong>fort.readforward</strong>
+for continuation, while normal output with decouple_k is
+<strong>fort.readforwardK</strong><em>n</em>. To continue a k-point run, either copy
+fort.readforwardK1 (or the desired k) to fort.readforward or ensure the same
+decouple setup so that fort.readforward is produced.</p></li>
+<li><p><strong>Fort.10 for correlation with decouple_k and molyes</strong>: Wave function is
+read from <strong>turborvb.scratch/fort.10_</strong><em>rankcolrep</em>; k-specific fort.10
+files must be present there.</p></li>
+</ul>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>&quot;I am sorry: something went wrong in reading readforward.input file&quot;</strong> —
+Invalid or inconsistent namelist; fix the error indicated just before (e.g.
+<code class="docutils literal notranslate"><span class="pre">fwd_skip</span></code>, <code class="docutils literal notranslate"><span class="pre">ngrid</span></code>, <code class="docutils literal notranslate"><span class="pre">rdf_for_atom</span></code>/<code class="docutils literal notranslate"><span class="pre">corrfun_dim</span></code>).</p></li>
+<li><p><strong>&quot;fwd_skip must be positive!&quot;</strong> — Set <code class="docutils literal notranslate"><span class="pre">fwd_skip</span></code> ≥ 1 in <code class="docutils literal notranslate"><span class="pre">corrfun</span></code>.</p></li>
+<li><p><strong>&quot;rdf_for_atom is valid only for corrfun_dim=1&quot;</strong> — Use <code class="docutils literal notranslate"><span class="pre">corrfun_dim=1</span></code>
+when <code class="docutils literal notranslate"><span class="pre">rdf_for_atom=.true.</span></code></p></li>
+<li><p><strong>&quot;you must specify ngrid in each direction to compute density and
+pair_corr_fun&quot;</strong> — Set <code class="docutils literal notranslate"><span class="pre">ngrid(1),</span> <span class="pre">ngrid(2),</span> <span class="pre">ngrid(3)</span></code> in <code class="docutils literal notranslate"><span class="pre">corrfun</span></code> when
+using charge/spin density or pair correlation.</p></li>
+<li><p><strong>&quot;# of processors must be the same of the vmc !!&quot;</strong> — Run readforward with
+the same number of MPI processes as the VMC/DMC run (nprocr in datasmin).</p></li>
+<li><p><strong>&quot;# files must be the same for every process !!&quot;</strong> — Process count must
+divide <code class="docutils literal notranslate"><span class="pre">size_run</span></code> (nprocr); use same datasmin and process count as VMC/DMC.</p></li>
+<li><p><strong>&quot;nw must be multiple of number of processors!&quot;</strong> — Walker count must be
+divisible by the number of MPI processes.</p></li>
+<li><p><strong>&quot;ERROR the code does not work for mod(lbin,ifreqdump)=/0&quot;</strong> —
+<code class="docutils literal notranslate"><span class="pre">bin_length</span></code> must be divisible by <code class="docutils literal notranslate"><span class="pre">ifreqdump</span></code> (e.g. ifreqdump=10 →
+lbin=10, 20, 100).</p></li>
+<li><p><strong>&quot;ERROR! Missing turbo_grid.dat file&quot;</strong> — Required when <code class="docutils literal notranslate"><span class="pre">ext_grid=.true.</span></code>
+(Assaraf/QPWF external grid). Provide the file or set <code class="docutils literal notranslate"><span class="pre">ext_grid=.false.</span></code></p></li>
+<li><p><strong>&quot;mnkv too small&quot; / &quot;mnsh too small&quot;</strong> (in shells) — Reduce <code class="docutils literal notranslate"><span class="pre">k_cutoff</span></code> or
+increase internal limits and recompile.</p></li>
+</ul>
+</section>
+<section id="continuation-iopt-0">
+<h3>Continuation (iopt=0)<a class="headerlink" href="#continuation-iopt-0" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>&quot;file fort.1 does not exist&quot;</strong> (checks <strong>fort.readforward</strong>) — No previous
+run output; run once with <code class="docutils literal notranslate"><span class="pre">iopt=1</span></code> to create <strong>fort.readforward</strong>, then
+use <code class="docutils literal notranslate"><span class="pre">iopt=0</span></code> to continue.</p></li>
+<li><p><strong>&quot;you cannot continue the readforward.x run&quot;</strong> — Same as above; ensure
+<strong>fort.readforward</strong> exists and is not removed.</p></li>
+<li><p><strong>&quot;Warning continuing readforward with the same bin length&quot;</strong> — Current
+<code class="docutils literal notranslate"><span class="pre">bin_length</span></code> differs from the one in <strong>fort.readforward</strong>; the code uses
+the previous value. For consistency, use the same <code class="docutils literal notranslate"><span class="pre">bin_length</span></code> as in the
+first run.</p></li>
+</ul>
+</section>
+<section id="scratch-and-generations">
+<h3>Scratch and generations<a class="headerlink" href="#scratch-and-generations" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>&quot;Warning: Max number of generations in last run=&quot;</strong> — Requested <code class="docutils literal notranslate"><span class="pre">ngen</span></code>
+exceeds available generations; reduce ngen or run more VMC/DMC steps.</p></li>
+<li><p>Scratch read errors or EOF — Check that scratch files (details_SP.all /
+details_DP.all or details.*) exist, match datasmin (path, nprocr, ifreqdump,
+disk_io), and that process count equals nprocr.</p></li>
+</ul>
+</section>
+<section id="warnings-run-continues">
+<h3>Warnings (run continues)<a class="headerlink" href="#warnings-run-continues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>&quot;decouple_files only with decouple_k = true!&quot;</strong> — <code class="docutils literal notranslate"><span class="pre">decouple_files</span></code> is
+ignored unless <code class="docutils literal notranslate"><span class="pre">decouple_k=.true.</span></code></p></li>
+<li><p><strong>&quot;to compute local charge or spin fluctuations, you must switch on the
+charge or spin flag&quot;</strong> — Set <code class="docutils literal notranslate"><span class="pre">charge_density</span></code> or <code class="docutils literal notranslate"><span class="pre">spin_density</span></code> when
+using <code class="docutils literal notranslate"><span class="pre">fluctuations=.true.</span></code></p></li>
+<li><p><strong>&quot;charge_density and spin_density switched on&quot;</strong> — Automatic when only
+<code class="docutils literal notranslate"><span class="pre">pair_corr_fun</span></code> is set; safe to ignore if intended.</p></li>
+<li><p><strong>&quot;to compute pair_corr_fun / structure factor we assume translational
+invariance&quot;</strong> — Informational for non-periodic systems.</p></li>
+<li><p><strong>&quot;Warning: site occupation instead of standard density&quot;</strong> — Using
+<code class="docutils literal notranslate"><span class="pre">sphere_radius</span></code>; density is on sites, not full grid.</p></li>
+<li><p><strong>&quot;site occupation not compatible with SDW yet&quot;</strong> — Disable <code class="docutils literal notranslate"><span class="pre">ifkspin</span></code> or
+set <code class="docutils literal notranslate"><span class="pre">sphere_radius=0</span></code>.</p></li>
+<li><p><strong>&quot;Warning use the number below to determine shiftlog input&quot;</strong> — Suggested
+<code class="docutils literal notranslate"><span class="pre">shiftlog</span></code> for next correlated-sampling run.</p></li>
+</ul>
+<p>When in doubt, search stdout for <strong>input fatal error</strong>, <strong>ERROR</strong>, <strong>must</strong>,
+<strong>cannot</strong> and match to the items above or the full manual.</p>
 </section>
 </section>
 </section>

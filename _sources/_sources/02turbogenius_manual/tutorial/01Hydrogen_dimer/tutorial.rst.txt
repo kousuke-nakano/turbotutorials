@@ -17,7 +17,7 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 
 .. contents:: Table of Contents
    :depth: 2
-   
+
 .. _turbogeniustutorial_0101_01:
 
 01 Preparing a JDFT trial wavefunction using PySCF
@@ -30,7 +30,7 @@ The procedure is as follows:
 1. Run the PySCF calculation by typing:
 
 .. code-block:: console
-    
+
     % # pyscf calculation
     % cd 01_trial_wavefunction
     % python3 pyscf_H2.py
@@ -42,11 +42,11 @@ The procedure is as follows:
     % # pyscf chkfile to TREXIO
     % trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
     % # trexio convert-from -t pyscf -i H2.chk -b hdf5 --overwrite H2.hdf5
-    
+
 3. Convert from the TREXIO file to the TurboRVB wavefunction file by typing:
 
 .. code-block:: console
-    
+
     % trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
 Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
@@ -80,7 +80,7 @@ Configuration Parameters
 - **Checkpoint File**: ``H2.chk``
 - **Output File**: ``out_H2``
 - **Molecular Properties**:
-  
+
   - Charge: 0 (neutral molecule)
   - Spin: 0 (closed-shell system)
   - Basis Set: ``ccecp-ccpvtz`` (relativistic basis set)
@@ -92,12 +92,12 @@ Calculation Method
 The program supports two calculation methods:
 
 1. **Hartree-Fock (HF)**
-   
+
    - Restricted Hartree-Fock (RHF) for closed-shell systems
    - Restricted Open-shell Hartree-Fock (ROHF) for open-shell systems
 
 2. **Density Functional Theory (DFT)**
-   
+
    - Currently configured to use DFT
    - Exchange-correlation functional: ``LDA_X,LDA_C_PZ`` (Local Density Approximation)
    - Restricted Kohn-Sham (RKS) for closed-shell systems
@@ -114,7 +114,7 @@ Molecular Structure
 - Units: Angstroms (Å)
 - Symmetry: Disabled
 - Uses spherical harmonics (``cart=False``)
-        
+
 Program Flow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -139,9 +139,9 @@ Notes
 
 - The program serves as a template for basic electronic structure calculations
 - Particularly suitable for simple molecular systems like H2
-- Results are saved in a checkpoint file for potential further analysis 
+- Results are saved in a checkpoint file for potential further analysis
 
-    
+
 .. _turbogeniustutorial_0101_02:
 
 02 Jastrow factor optimization (WF=JDFT)
@@ -169,33 +169,33 @@ There are command-line variables ``-opt_XXXXX`` which can be used to specify the
    * ``-opt_twobody`` (default:True): optimize the two-body Jastrow part.
 
    * ``-opt_det_mat`` (default:False): optimize the matrix element of the determinant part.
-   
+
    * ``-opt_jas_mat`` (default:True): optimize the matrix element of the Jastrow part.
 
    * ``-opt_det_basis_exp`` (default:False): optimize the exponents of the determinant part.
 
    * ``-opt_jas_basis_exp`` (default:False): optimize the exponents of the Jastrow part.
-   
+
    * ``-opt_det_basis_coeff`` (default:False): optimize the coefficients of the determinant part.
-   
+
    * ``-opt_jas_basis_coeff`` (default:False): optimize the coefficients of the Jastrow part.
 
 You can also specify an optimization algorithm via ``-optimizer`` command-line variable.
-   
+
    * ``sr`` : Stochastic Reconfiguration method. See `J. Chem. Phys. 127, 014105 (2007) <https://doi.org/10.1063/1.2746035>`_ and the review_ paper.
-   
+
    * ``lr`` : Linear method with natural gradients. See `Phys. Rev. B 71, 241103(R) (2005) <https://doi.org/10.1103/PhysRevB.71.241103>`_, `Phys. Rev. Lett. 98, 110201 (2007) <https://doi.org/10.1103/PhysRevLett.98.110201>`_, and review_ paper.
-   
+
 There are other command-line options to specify the calculation conditions, such as:
-      
+
    * ``-vmcoptsteps``: The number of optimization steps.
-   
+
    * ``-steps``: MCMC steps per optimization step. The actual number of sampling points is ``steps`` times ``nw`` below.
 
    * ``-nw``: The number of workers. When the calculation is carried out in parallel, the number of MPI processes Np must be a divisor of ``nw``. If ``nw`` is omitted, it is set equal to the number of Np.
 
 See the command reference for the detailed description of commandline options. The uses may consult the wavefunction optimization section for parameter choices.
-     
+
 
 The input file ``datasmin.input`` should look something like:
 
@@ -235,19 +235,19 @@ Now you can launch the VMC optimization:
    2. Using directly the TurboRVB executables
 
         to run the serial version:
-      
+
         .. code-block:: console
 
            % turborvb-serial.x < datasmin.input > out_min
 
-	or to run the parallel version:
-	   
+        or to run the parallel version:
+
         .. code-block:: console
 
            % mpirun -np XX turborvb-mpi.x < datasmin.input > out_min
 
    3. Using the batch job scheduler
-         
+
         on a cluster machine running the PBS job scheduler:
 
         .. code-block:: console
@@ -278,14 +278,14 @@ Now, for post-processing, use:
         The corresponding command in turborvb is:
 
         .. code-block:: console
-        
+
             % readalles.x < readalles.input > out_read
 
 It plots energy with the error bars and devmax w.r.t. optimization steps (plot_energy_and_devmax.png).
 e.g.,
 
 .. code-block:: console
-		
+
     % eog plot_energy_and_devmax.png
 
 .. image:: image/vmcopt_Energy_devmax.png
@@ -326,11 +326,11 @@ This is done using the ``vmc`` module of Turbo-Genius.
 First, copy ``fort.10`` and ``pseudo.dat`` from ``02_optimization`` to ``03_VMC``:
 
 .. code-block:: console
-    
+
     % cd ../03_vmc/
     % cp ../02_optimization/fort.10 .
     % cp ../02_optimization/pseudo.dat .
-    
+
 Now generate an input file ``datasvmc.input`` using:
 
 .. code-block:: console
@@ -352,7 +352,7 @@ Run the VMC calculation:
    % turbogenius vmc -r
 
 See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
-   
+
 After the VMC run finishes, use post-processing to check the total energy:
 
 .. code-block:: console
@@ -369,22 +369,22 @@ After the VMC run finishes, use post-processing to check the total energy:
       bin length = 10
       init bin = 5
       pulay = 1 (default)
-    
+
       Chosen values: bin=10, init_bin=5, pulay=1, => equil_steps=50
 
 Postprocessing basically does reblocking using the binning technique. Here again post-processing has two modes: manual and interactive. The reblocked total energy and error are written in the file ``pip0.d``.
 
 .. code-block:: console
-    
-    % cat pip0.d 
+
+    % cat pip0.d
     Energy =  -1.17284117753204       1.253988599211879E-004
 
 The obtained forces are written in the file ``forces_vmc.dat``.
 
 .. code-block:: console
-    
+
     % cat forces_vmc.dat
-    Force component 1 
+    Force component 1
     Force   =  2.966615810205714E-003  1.199178968598954E-003  2.752792621302076E-005
     Der Eloc =  3.335617738742622E-002  1.231330962370900E-003
     <OH> =  0.590121966419686       7.112041263498287E-004
@@ -408,7 +408,7 @@ There is the so-called lattice-space error in LRDMC because the Hamiltonian is r
 Please create a folder for each ``alat``, and copy an optimized ``fort.10`` and pseudopotential file from ``03_vmc`` to the current ``alat`` directory. To generate lrdmc input files for a LRDMC calc.:
 
 .. code-block:: console
-    
+
     % cd ../04_lrdmc
     % cp ../../03_vmc/fort.10 .
     % cp ../../03_vmc/pseudo.dat .
@@ -439,10 +439,10 @@ Now run the LRDMC calculation:
 
    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
    % turbogenius lrdmc -r
-		
+
 See Note in the :ref:`optimization step <turbogeniustutorial_0101_02>` for the ways to run the calculations.
 
-   
+
 For post-processing use:
 
 .. code-block:: console
@@ -450,7 +450,7 @@ For post-processing use:
     % turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
 
 .. note::
-   
+
     This corresponds to ``forcefn.sh 20 3 5 1``.
 
 The total energy and error are written in the file ``pip0_fn.d``.
@@ -465,7 +465,7 @@ Thus, we get :math:`E (a=0.20 {\rm bohr})` = -1.1744(7) Ha.
 .. warning::
 
     For the hydrogen dimer, extrapolation is not needed because the energies are almost constant in the region. Try to plot evsa.gnu with gnuplot later.
-    
+
 If you want to extrapolate energies, collect all LRDMC energies into ``evsa.in`` in the 05_lrdmc_extrapolation directory, and perform the extrapolation.
 
 0. Change working directory.
@@ -490,7 +490,7 @@ If you want to extrapolate energies, collect all LRDMC energies into ``evsa.in``
     done
 
 2. Second, run the LRDMC calculations.
-    
+
    .. code-block:: bash
 
     export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
@@ -504,12 +504,12 @@ If you want to extrapolate energies, collect all LRDMC energies into ``evsa.in``
     done
 
 3. Third, run the postprocessing.
-    
+
    .. code-block:: bash
 
     alat_list="0.10 0.20 0.40 0.60"
     lrdmc_root_dir=`pwd`
-    
+
     num=0
     echo -n > ${lrdmc_root_dir}/evsa.gnu
     for alat in $alat_list
@@ -528,14 +528,14 @@ If you want to extrapolate energies, collect all LRDMC energies into ``evsa.in``
 
     % gnuplot
     > p "evsa.gnu" u 1:2:3 with yerr
- 
+
 4. Finally, perform extrapolation of the obtained energies.
 
    .. code-block:: bash
-    
+
     sed "1i 1  ${num}  4  1" evsa.gnu > evsa_lin.in   # linear fitting
     sed "1i 2  ${num}  4  1" evsa.gnu > evsa_quad.in  # quadratic fitting
-    
+
     funvsa.x < evsa_lin.in > evsa_lin.out
     funvsa.x < evsa_quad.in > evsa_quad.out
 
@@ -546,25 +546,25 @@ For a quartic fitting i.e. :math:`E(a) = E(0) + k_{1} \cdot a^2 + k_{2} \cdot a^
 
 .. code-block:: text
 
-    Reduced chi^2  =   1.35815628495656     
-    Coefficient found 
+    Reduced chi^2  =   1.35815628495656
+    Coefficient found
              1  -1.17457320365212       1.485265256941217E-004
              2 -1.273655937056194E-004  2.470000944108354E-003
              3 -3.607514624666779E-003  6.502831469706190E-003
 
 where the first coefficient corresponds to :math:`E(0)`, the second to :math:`k_{1}`, and the third to :math:`k_{2}`.
-	     
+
 For a linear fitting i.e. :math:`E(a) = E(0) + k_{1} \cdot a^2`, the result is like:
 
 .. code-block:: text
 
-    Reduced chi^2  =  0.843282581592029     
-    Coefficient found 
+    Reduced chi^2  =  0.843282581592029
+    Coefficient found
              1  -1.17452274148461       1.148177538465624E-004
              2 -1.454427631174857E-003  6.339354112508461E-004
 
 where the first coefficient corresponds to :math:`E(0)`, and the second to :math:`k_{1}`.
-	     
+
 
 .. image:: image/LRDMC_extrapolation.png
     :width: 70%

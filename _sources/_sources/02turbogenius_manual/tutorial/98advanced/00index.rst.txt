@@ -3,13 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-[Table of Contents] Advanced topics
+Advanced topics
 ================================================================
 
-Here are advanced examples of various calculations with TurboRVB via Turbo-Genius, starting from the built-in DFT code, prep.
+Here are advanced examples of various calculations with TurboRVB via Turbo-Genius.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 1
    
    ./01Hydrogen_dimer_flexible_ansatz/tutorial.rst
    ./02Hydrogen_dimer_structural_optimization/tutorial.rst

@@ -5,7 +5,7 @@
 
 .. _turbogeniustutorial_1001:
 
-Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP) 
+Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)
 ===========================================================================================================================
 
 .. contents:: Table of Contents
@@ -78,20 +78,20 @@ Here, only needed commands are shown.
       % cp fort.10 fort.10_pyscf
 
 2. Generate an input file for VMC optimization:
-      
+
    .. code-block:: console
 
        % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 3. Run the VMC optimization, e,g, as follows:
-      
+
    .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
 
 4. Perform the postprocess by typing:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 30 -plot
@@ -120,7 +120,7 @@ Next, generate an input file `datasvmc.input` using:
     % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
@@ -154,20 +154,20 @@ First, copy the prepared wavefunction and the pseudopotential files:
     % cp ../04_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -g -etry -36.00 -alat -0.30 -steps 3000 -nw 128
 
 Then, run the calculation by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     % turbogenius lrdmc -r
 
 Finally, run the postprocess:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -post -bin 20 -corr 10 -warmup 10
@@ -229,20 +229,20 @@ Here, only needed commands are shown.
       % cp ../06_wavefunction_conversion_jsd_jagp/pseudo.dat .
 
 2. Generate an input file for VMC optimization:
-      
+
    .. code-block:: console
 
         % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 50 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 3. Run the VMC optimization, e,g, as follows:
-      
+
    .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
 
 4. Perform the postprocess by typing:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 30 -plot
@@ -272,7 +272,7 @@ Next, generate an input file `datasvmc.input` using:
     % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
@@ -306,20 +306,20 @@ First, copy the prepared wavefunction and the pseudopotential files:
     % cp ../08_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -g -etry -36.00 -alat -0.30 -steps 3000 -nw 128
 
 Then, run the calculation by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     % turbogenius lrdmc -r
 
 Finally, run the postprocess:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -post -bin 20 -corr 10 -warmup 10

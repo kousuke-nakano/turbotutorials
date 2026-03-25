@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="plot_orbitals.x" href="plot_orbitals.html" />
+    <link rel="prev" title="orthomol.x" href="orthomol.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#log-lines-used">Log lines used</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#command-line-summary">Command-line summary</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#behaviour-per-script">Behaviour per script</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#temporary-and-output-files">Temporary and output files</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#typical-use">Typical use</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#caveats">Caveats</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readf_readffn.html">readf.x, readffn.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readforward.html">readforward.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="turborvb.html">turborvb.x</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
+      <li class="breadcrumb-item active">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/01turborvb_manual/reference/commands/plot_tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plot-energy-sh-plot-normcorr-sh-plot-devmax-sh-plot-lr-sh-plot-ratiodyn-sh">
+<span id="turborvbtutorial-command-plot-tools"></span><h1>plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh<a class="headerlink" href="#plot-energy-sh-plot-normcorr-sh-plot-devmax-sh-plot-lr-sh-plot-ratiodyn-sh" title="Link to this heading"></a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p>The <strong>plot_*</strong> shell scripts in the <strong>bin</strong> directory <strong>grep</strong> lines from
+TurboRVB <strong>standard output</strong> (optimization, MD, etc.) and drive <strong>gnuplot</strong>
+to inspect convergence and diagnostics. Five scripts are documented here:</p>
+<ul class="simple">
+<li><p><strong>plot_Energy.sh</strong> — Energy vs optimization step (with optional running average).</p></li>
+<li><p><strong>plot_NormCorr.sh</strong> — Norm correction and effective step size when deceleration warnings occur.</p></li>
+<li><p><strong>plot_devmax.sh</strong> — Several <strong>devmax</strong> traces per step (and ionic devmax when present).</p></li>
+<li><p><strong>plot_lr.sh</strong> — Learning rate before line-search adjustment vs step.</p></li>
+<li><p><strong>plot_ratiodyn.sh</strong> — <strong>Ratio dyn</strong> vs MD step (with optional running average).</p></li>
+</ul>
+<p><strong>plot_Energy.sh</strong>, <strong>plot_NormCorr.sh</strong>, <strong>plot_devmax.sh</strong>, and
+<strong>plot_ratiodyn.sh</strong> can concatenate <strong>multiple log files</strong>. <strong>plot_lr.sh</strong>
+uses only the first argument as the log path.</p>
+<p><strong>Dependencies</strong></p>
+<ul class="simple">
+<li><p><strong>gnuplot</strong> on <strong>PATH</strong> (some scripts comment that <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">gnuplot</span></code> may be needed on HPC systems).</p></li>
+<li><p><strong>running_averages.sh</strong> (same <strong>bin</strong>): used by <strong>plot_Energy.sh</strong> and <strong>plot_ratiodyn.sh</strong>.</p></li>
+<li><p><strong>howmuch.sh</strong> (same <strong>bin</strong>): used by <strong>plot_Energy.sh</strong>, <strong>plot_NormCorr.sh</strong>, and <strong>plot_ratiodyn.sh</strong> for means and errors on stdin tables.</p></li>
+</ul>
+</section>
+<section id="log-lines-used">
+<h2>Log lines used<a class="headerlink" href="#log-lines-used" title="Link to this heading"></a></h2>
+<p>If Fortran <strong>write</strong> formats change between versions, <strong>field positions</strong> may
+shift; the scripts assume fixed <strong>awk</strong> column indices.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29.3%" />
+<col style="width: 46.7%" />
+<col style="width: 24.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Script</p></th>
+<th class="head"><p>Pattern / lines</p></th>
+<th class="head"><p>Columns used</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>plot_Energy.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Energy</span> <span class="pre">=</span></code></p></td>
+<td><p>4, 5 (value, error)</p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_NormCorr.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Norm</span> <span class="pre">correction</span></code>; optionally next line <code class="docutils literal notranslate"><span class="pre">Warning</span> <span class="pre">decelerated</span> <span class="pre">by</span></code></p></td>
+<td><p>4, 5 or dec × normc</p></td>
+</tr>
+<tr class="row-even"><td><p>plot_devmax.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">devmax</span> <span class="pre">par</span> <span class="pre">Normal</span></code>, <code class="docutils literal notranslate"><span class="pre">devmax</span> <span class="pre">SR</span> <span class="pre">step</span></code>, <code class="docutils literal notranslate"><span class="pre">devmax</span> <span class="pre">force</span></code>, <code class="docutils literal notranslate"><span class="pre">devmax</span> <span class="pre">par</span> <span class="pre">ions</span></code></p></td>
+<td><p>See script (4th/5th fields)</p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_lr.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Number</span> <span class="pre">of</span> <span class="pre">mpi</span> <span class="pre">proc</span></code>, <code class="docutils literal notranslate"><span class="pre">nweight</span> <span class="pre">before</span></code>, <code class="docutils literal notranslate"><span class="pre">before</span> <span class="pre">adjust</span></code></p></td>
+<td><p>6, 4, 4</p></td>
+</tr>
+<tr class="row-even"><td><p>plot_ratiodyn.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ratio</span> <span class="pre">dyn</span> <span class="pre">=</span></code></p></td>
+<td><p>4, 5 (or 4 only if NF&lt;5)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="command-line-summary">
+<h2>Command-line summary<a class="headerlink" href="#command-line-summary" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 71.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Script</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>plot_Energy.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plot_Energy.sh</span> <span class="pre">out1</span> <span class="pre">[out2</span> <span class="pre">...]</span> <span class="pre">[bin]</span></code>. Optional last token <strong>bin</strong>:
+if it is <strong>not</strong> an existing path and is an integer <strong>1–500</strong>, it sets
+the running-average window (default <strong>10</strong>). If the last token is a
+<strong>negative</strong> integer, <strong>no gnuplot</strong> is run (summary line only).</p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_NormCorr.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plot_NormCorr.sh</span> <span class="pre">log</span> <span class="pre">[log2</span> <span class="pre">...]</span></code> (only existing files are used).</p></td>
+</tr>
+<tr class="row-even"><td><p>plot_devmax.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plot_devmax.sh</span> <span class="pre">log</span> <span class="pre">[log2</span> <span class="pre">...]</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_lr.sh</p></td>
+<td><p><strong>One argument</strong>: <code class="docutils literal notranslate"><span class="pre">plot_lr.sh</span> <span class="pre">log</span></code> → interactive plot
+(<code class="docutils literal notranslate"><span class="pre">gnuplot</span> <span class="pre">--persist</span></code>). <strong>Two or more arguments</strong>: PNG terminal; if
+<strong>exactly two</strong> arguments, the PNG is <strong>moved</strong> to the second path
+(<code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">*.png</span> <span class="pre">$2</span></code>). Example: <code class="docutils literal notranslate"><span class="pre">plot_lr.sh</span> <span class="pre">run.log</span> <span class="pre">energy_lr.png</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>plot_ratiodyn.sh</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plot_ratiodyn.sh</span> <span class="pre">log</span> <span class="pre">[log2</span> <span class="pre">...]</span> <span class="pre">[bin]</span></code>. Last token <strong>1–1000</strong> (non-file)
+sets running-average <strong>bin</strong> (default <strong>100</strong>). <strong>Negative</strong> last token:
+statistics only, <strong>no plot</strong>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="behaviour-per-script">
+<h2>Behaviour per script<a class="headerlink" href="#behaviour-per-script" title="Link to this heading"></a></h2>
+<p><strong>plot_Energy.sh</strong></p>
+<ul class="simple">
+<li><p>Concatenates all given logs, extracts every <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Energy</span> <span class="pre">=</span></code> line, builds
+<strong>step, energy, error</strong>, prints a one-line summary (step count, first/last
+energy, bin-averaged start/end via <strong>howmuch.sh</strong>, difference).</p></li>
+<li><p>Gnuplot: running average from <strong>running_averages.sh</strong> and raw points with
+error bars. Removes <strong>_XXplotDataXX*</strong> and <strong>_plot.gpl</strong> after exit.</p></li>
+</ul>
+<p><strong>plot_NormCorr.sh</strong></p>
+<ul class="simple">
+<li><p>Plots <strong>|Δwf|/|wf|</strong> and, when deceleration lines follow norm lines,
+<strong>epsi (effective)</strong>. Prints fraction of steps with zero norm correction
+(“rejected” moves) and deceleration statistics (<strong>howmuch.sh</strong> on
+<code class="docutils literal notranslate"><span class="pre">Warning</span> <span class="pre">decelerated</span> <span class="pre">by</span></code>). <strong>Does not remove</strong> <strong>_XXplotDataXX</strong> or
+<strong>_plot.gpl</strong> after gnuplot.</p></li>
+</ul>
+<p><strong>plot_devmax.sh</strong></p>
+<ul class="simple">
+<li><p>Pastes <strong>devmax par Normal</strong>, <strong>devmax SR step</strong>, and <strong>devmax force</strong> by
+row index; adds <strong>devmax par ions</strong> if present. Gnuplot includes a line
+intended as <strong>threshold 4</strong> (<code class="docutils literal notranslate"><span class="pre">repl</span> <span class="pre">4</span></code> — behaviour may depend on gnuplot
+version). <strong>Leaves</strong> <strong>_XXplotDataXX</strong>, optional <strong>_XXplotDataIonXX</strong>, and
+<strong>_plot.gpl</strong> in the working directory.</p></li>
+</ul>
+<p><strong>plot_lr.sh</strong></p>
+<ul class="simple">
+<li><p>Writes <strong>before adjust</strong> column 4 to a temporary file named with <strong>MPI proc
+count</strong> and <strong>nweight</strong> parsed from the log. Removes the data file and
+<strong>gnu_command</strong> after plotting.</p></li>
+</ul>
+<p><strong>plot_ratiodyn.sh</strong></p>
+<ul class="simple">
+<li><p>Plots <strong>Ratio dyn</strong> and its running average; sets y-axis upper limit from
+<strong>howmuch.sh</strong> on column 2. Prints global average ± error. Removes temporary
+data and <strong>_plot.gpl</strong> after exit.</p></li>
+</ul>
+</section>
+<section id="temporary-and-output-files">
+<h2>Temporary and output files<a class="headerlink" href="#temporary-and-output-files" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 15.6%" />
+<col style="width: 58.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Script</p></th>
+<th class="head"><p>Removed?</p></th>
+<th class="head"><p>Files</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>plot_Energy.sh</p></td>
+<td><p>yes</p></td>
+<td><p><strong>_XXplotDataXX</strong>, <strong>_plot.gpl</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_NormCorr.sh</p></td>
+<td><p>no</p></td>
+<td><p><strong>_XXplotDataXX</strong>, <strong>_plot.gpl</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>plot_devmax.sh</p></td>
+<td><p>partial</p></td>
+<td><p><strong>_XXplotDataXX</strong>, <strong>_XXplotDataIonXX</strong> (if ions), <strong>_plot.gpl</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>plot_lr.sh</p></td>
+<td><p>yes (data)</p></td>
+<td><p>PNG when <strong>$#≠1</strong>; intermediate column file and <strong>gnu_command</strong> removed</p></td>
+</tr>
+<tr class="row-even"><td><p>plot_ratiodyn.sh</p></td>
+<td><p>yes</p></td>
+<td><p><strong>_XXplotDataXX</strong>, <strong>_plot.gpl</strong></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="typical-use">
+<h2>Typical use<a class="headerlink" href="#typical-use" title="Link to this heading"></a></h2>
+<p>After an optimization or MD run, redirect or copy <strong>stdout</strong> to a file, then
+from a directory where <strong>bin</strong> is on <strong>PATH</strong> (or call with full paths):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>plot_Energy.sh<span class="w"> </span>opt.log<span class="w"> </span><span class="m">20</span>
+plot_NormCorr.sh<span class="w"> </span>opt.log
+plot_devmax.sh<span class="w"> </span>opt.log
+plot_lr.sh<span class="w"> </span>opt.log
+plot_ratiodyn.sh<span class="w"> </span>md.log<span class="w"> </span><span class="m">150</span>
+</pre></div>
+</div>
+<p>Use <strong>plot_Energy.sh</strong> / <strong>plot_ratiodyn.sh</strong> with a trailing <strong>negative</strong>
+integer to print summaries without opening a plot window.</p>
+</section>
+<section id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Last-argument bin parsing</strong>: For <strong>plot_Energy.sh</strong> and <strong>plot_ratiodyn.sh</strong>,
+the last argument is treated as <strong>bin</strong> only if that path <strong>does not exist</strong>
+and falls in the documented integer range. Avoid ambiguous names.</p></li>
+<li><p><strong>plot_lr.sh</strong> with <strong>two arguments</strong>: the second argument is the <strong>destination
+path for the PNG</strong>, not an arbitrary dummy string.</p></li>
+<li><p><strong>plot_devmax.sh</strong> <code class="docutils literal notranslate"><span class="pre">repl</span> <span class="pre">4</span></code> may not draw a horizontal line at <em>y</em> = 4 on
+all gnuplot versions; adjust the script if needed.</p></li>
+<li><p><strong>Concurrent runs</strong> in the same directory can <strong>clobber</strong> shared names
+(<strong>_XXplotDataXX</strong>, <strong>_plot.gpl</strong>).</p></li>
+</ul>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>running_averages.sh</strong>: Bin-averages a three-column <em>x y dy</em> file and prints
+sliding-window means and errors; <strong>plot_Energy.sh</strong> and <strong>plot_ratiodyn.sh</strong>
+pipe its output into gnuplot.</p></li>
+<li><p><strong>howmuch.sh</strong>: Computes one line of summary statistics from stdin (modes 2,
+3, 4); <strong>plot_Energy.sh</strong>, <strong>plot_NormCorr.sh</strong>, and <strong>plot_ratiodyn.sh</strong> read
+<strong>$10</strong>/<strong>$12</strong> for bin averages and printed summaries.</p></li>
+<li><p><strong>gnuplot</strong>: Plotting program invoked by every <strong>plot_*</strong> script (interactive
+window, persist, or PNG for <strong>plot_lr.sh</strong>); must be on <strong>PATH</strong>.</p></li>
+<li><p><strong>turborvb.x</strong>: VMC/DMC driver; wave-function optimization also
+writes similar diagnostic lines to <strong>stdout</strong>, which can be saved and passed
+to <strong>plot_Energy.sh</strong> / <strong>plot_devmax.sh</strong> / etc.</p></li>
+<li><p><strong>readforward.x</strong>: Optimization / forward driver whose <strong>stdout</strong> typically
+includes <strong>New Energy</strong>, <strong>devmax</strong>, <strong>Norm correction</strong>, and <strong>before adjust</strong>
+lines that the <strong>plot_*</strong> scripts grep.</p></li>
+<li><p><strong>readalles.x</strong>: Reads <strong>fort.12</strong> and writes <strong>story.d</strong> / gnuplot scripts for
+parameter evolution—an alternative to parsing text logs; see <strong>readalles.rst</strong>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="orthomol.html" class="btn btn-neutral float-left" title="orthomol.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="plot_orbitals.html" class="btn btn-neutral float-right" title="plot_orbitals.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

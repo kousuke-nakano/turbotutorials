@@ -49,30 +49,45 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">copyjas.x, copydet.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#copyjas-ion-count-and-modes">copyjas — Ion count and modes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#copydet-cell-and-shell-correspondence">copydet — Cell and shell correspondence</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings-informational">Warnings (informational)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -123,16 +138,204 @@
   <section id="copyjas-x-copydet-x">
 <span id="turborvbtutorial-command-copyjas-copydet-x"></span><h1>copyjas.x, copydet.x<a class="headerlink" href="#copyjas-x-copydet-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>copyjas</strong> and <strong>copydet</strong> are TurboRVB utilities that <strong>copy part of a wave
+function from fort.10_new to another file</strong> (fort.10 or, for copyjas, multiple
+fort.10_* for k-points). Both read <strong>fort.10_new</strong> first as the source, then
+overwrite the target file(s) in place with <code class="docutils literal notranslate"><span class="pre">write_fort10</span></code>. They are typically
+used after <strong>convertfort10</strong> to apply coefficients from fort.10_new to
+existing fort.10(s).</p>
+<dl class="simple">
+<dt><strong>copyjas</strong></dt><dd><p>Copies the <strong>Jastrow</strong> part (vj, vju_c, jasmat/jasmat_c, jasmatsz, shell
+info, etc.) from fort.10_new to fort.10 (or to each fort.10_000xxx in k-point
+mode). Optionally copies <strong>ion positions</strong> (e.g. <strong>kpointsR</strong>, <strong>copyR</strong>) and
+<strong>contracted orbital coefficients</strong> <strong>dup_c</strong> (e.g. <strong>kpointsRd</strong>). With
+<strong>copy_in</strong> / <strong>copy_out</strong>, it can map Jastrow coefficients when the
+Jastrow basis differs between fort.10 and fort.10_new (same ion positions
+required).</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10_new</strong> (source), <strong>fort.10</strong> or <strong>fort.10_000xxx</strong>
+(target(s)). Standard input only for <strong>kpointsK</strong> (number of processors and
+k-points).</p></li>
+<li><p><strong>Output</strong>: fort.10 (or each fort.10_*) is overwritten; only the Jastrow
+(and optionally ions / dup_c) are replaced; the Det part is unchanged.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>copydet</strong></dt><dd><p>Copies the <strong>Det</strong> part (<strong>dup_c</strong> and <strong>detmat</strong> / <strong>detmat_c</strong>) from
+fort.10_new to <strong>fort.10</strong> only. It builds an ion mapping (mapion) using
+periodic boundaries so that fort.10 ions correspond to fort.10_new ions,
+then copies dup_c and detmat entries that match by ion positions and shell
+structure.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10_new</strong> (source), <strong>fort.10</strong> (target). No standard input.</p></li>
+<li><p><strong>Output</strong>: fort.10 is overwritten; only dup_c and detmat/detmat_c are
+replaced; Jastrow and structure remain from the original fort.10.</p></li>
+</ul>
+<p><strong>Command line</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>copyjas</strong>: <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, <code class="docutils literal notranslate"><span class="pre">help</span></code> — show help and exit (<code class="docutils literal notranslate"><span class="pre">help_online('copyjas')</span></code>). First argument can be <strong>kpoints</strong>, <strong>kpointsR</strong>, <strong>copyR</strong>, <strong>kpointsRd</strong>, <strong>kpointsK</strong>, <strong>copy_out</strong>, <strong>copy_in</strong> to select mode (default: copy Jastrow only to a single fort.10).</p></li>
+<li><p><strong>copydet</strong>: <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, <code class="docutils literal notranslate"><span class="pre">help</span></code> — show help and exit (<code class="docutils literal notranslate"><span class="pre">help_online('copydet')</span></code>). No other modes; always copies Det from fort.10_new to fort.10.</p></li>
+</ul>
+</div></blockquote>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Common to both</dt><dd><ul class="simple">
+<li><p><strong>fort.10_new</strong> (required): Source wave function (TurboRVB format). Read
+first with <code class="docutils literal notranslate"><span class="pre">read_fort10(10)</span></code>. If missing or invalid, both programs stop
+with ERROR (label 101).</p></li>
+</ul>
+</dd>
+<dt>copyjas</dt><dd><ul class="simple">
+<li><p><strong>fort.10</strong> (single k-point) or <strong>fort.10_000xxx</strong> (k-point mode): Target(s)
+to update. In k-point mode, the program runs <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">fort.10_*</span></code> to list
+files (excluding fort.10_new) and opens each in turn. If fort.10 cannot be
+opened, stop with ERROR (103).</p></li>
+<li><p><strong>Standard input</strong>: Only when first argument is <strong>kpointsK</strong> — one line
+with number of processors and number of k-points (prompt: &quot;Insert number of
+processors and number of k-points.&quot;).</p></li>
+<li><p><strong>First argument</strong>: <strong>--help</strong> / <strong>-help</strong> / <strong>help</strong>; <strong>kpoints</strong>;  <strong>kpointsR</strong> (also copy ions); <strong>copyR</strong> (ions only); <strong>kpointsRd</strong> (ions + dup_c); <strong>kpointsK</strong>; <strong>copy_out</strong>; <strong>copy_in</strong>.</p></li>
+</ul>
+</dd>
+<dt>copydet</dt><dd><ul class="simple">
+<li><p><strong>fort.10</strong> (required): Single target file. Read after fort.10_new, then
+overwritten with updated dup_c and detmat/detmat_c. If missing, stop with
+ERROR (103).</p></li>
+<li><p>No standard input. No command-line modes other than --help.</p></li>
+</ul>
+</dd>
+</dl>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>copyjas</dt><dd><ul class="simple">
+<li><p><strong>fort.10</strong> or each <strong>fort.10_000xxx</strong>: Overwritten. Det is unchanged;
+Jastrow (and optionally ions, dup_c) are replaced from fort.10_new.</p></li>
+<li><p><strong>temporary_list</strong>: Created in k-point mode (output of <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">fort.10_*</span></code>);
+deleted after use.</p></li>
+</ul>
+</dd>
+<dt>copydet</dt><dd><ul class="simple">
+<li><p><strong>fort.10</strong>: Overwritten. Only <strong>dup_c</strong> and <strong>detmat</strong> / <strong>detmat_c</strong> are
+replaced; ions, Jastrow, and other structure stay as in the original
+fort.10. Ion positions in the output are updated to match fort.10_new
+(mapion).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="copyjas-ion-count-and-modes">
+<h3>copyjas — Ion count and modes<a class="headerlink" href="#copyjas-ion-count-and-modes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>In the default mode (no <strong>copy_in</strong>), the <strong>number of (effective) ions</strong> in
+fort.10_new must equal that in the target fort.10. Otherwise the program
+stops with “ERROR: fort.10_new has a different number of ion, fort.10
+unchanged!” (105).</p></li>
+<li><p><strong>copy_in</strong> / <strong>copy_out</strong> assume <strong>fort.10 and fort.10_new have the same
+ion positions</strong>. If a shell in one file cannot be matched to any ion in the
+other, the program stops with “fort.10 and fort.10_new should have the same
+ion positions”. For <strong>ipj=2</strong> (spin-dependent Jastrow), both files must use
+ipj=2 or both ipj=1; otherwise “ERROR new and old Jastrow not compatible
+with ipj=2 !”.</p></li>
+<li><p>If ghost atoms (atom_number ≤ 0) are present and the mapping from
+fort.10_new to the target is inconsistent, the program stops with “ERROR:
+inconsistency found in the definition of ghost atoms!” (106).</p></li>
+<li><p><strong>dup_c</strong> is copied only when <strong>copydup</strong> is active (e.g. <strong>kpointsRd</strong>); the
+molecular-orbital part of dup_c is never changed (same as copydet).</p></li>
+</ul>
+</section>
+<section id="copydet-cell-and-shell-correspondence">
+<h3>copydet — Cell and shell correspondence<a class="headerlink" href="#copydet-cell-and-shell-correspondence" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10</strong> and <strong>fort.10_new</strong> are assumed to share the <strong>same cell
+(cellscale)</strong> and same atomic species. <strong>mapion</strong> assigns each ion in
+fort.10 to the nearest ion in fort.10_new (with PBC); large displacements
+can lead to wrong correspondence.</p></li>
+<li><p><strong>dup_c</strong> is copied only for shells that match in ion (via mapion), countat,
+and <strong>ioptorb</strong>. If shell layout differs, some elements may not be updated.</p></li>
+<li><p><strong>detmat</strong> non-zero pattern (nozero) is that of fort.10; only the
+coefficients are overwritten where (ion pair + atbasis index) match
+fort.10_new. Unmatched elements are left unchanged (possibly zero).</p></li>
+<li><p>The molecular-orbital part of <strong>dup_c</strong> is excluded from the copy (same
+formula as copyjas: dimdup excludes <code class="docutils literal notranslate"><span class="pre">2*ipc*nelorbh*nmoltot</span></code>).</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>convertfort10</strong>: Produces fort.10_new. Use <strong>copyjas</strong> to copy its
+Jastrow to existing fort.10(s), and <strong>copydet</strong> to copy its Det to
+fort.10.</p></li>
+<li><p><strong>copyjas</strong> / <strong>copydet</strong>: Complementary tools — copyjas updates Jastrow,
+copydet updates Det. Use both if you need to apply both Jastrow and Det
+from fort.10_new to fort.10.</p></li>
+<li><p><strong>read_fort10</strong> / <strong>write_fort10</strong>: Used by both programs to read
+fort.10_new, read the target file(s), and write the updated wave
+function(s).</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR: wavefunction fort.10_new with the new Jastrow not found or wrong!</strong>
+(101) — fort.10_new is missing or invalid. Same message in both programs
+(wording refers to “Jastrow” but in copydet it means the source
+fort.10_new). Ensure fort.10_new exists and is a valid TurboRVB wave
+function file.</p></li>
+<li><p><strong>ERROR: wavefunction fort.10 not found or wrong!</strong> (103) — The target
+fort.10 (or, for copyjas in k-point mode, fort.10) could not be opened.
+Check that the file exists and is readable.</p></li>
+<li><p><strong>ERROR: fort.10_new has a different number of ion, fort.10 unchanged!</strong>
+(105) — <strong>copyjas</strong> only. Effective ion count in fort.10_new differs from
+the target fort.10 (and copy_in is not used). Use files with the same ion
+count or use copy_in mode.</p></li>
+<li><p><strong>ERROR: inconsistency found in the definition of ghost atoms!</strong> (106) —
+<strong>copyjas</strong> only. Ghost-atom mapping between fort.10_new and the target
+is inconsistent. Align ghost definitions (e.g. atom_number) in both
+files.</p></li>
+<li><p><strong>fort.10 and fort.10_new should have the same ion positions</strong> —
+<strong>copyjas</strong> only, in <strong>copy_in</strong> or <strong>copy_out</strong>. A shell in one file could
+not be matched to any ion in the other. Use the same ion configuration in
+both files.</p></li>
+<li><p><strong>ERROR new and old Jastrow not compatible with ipj=2 !</strong> — <strong>copyjas</strong>
+only, in <strong>copy_in</strong> / <strong>copy_out</strong>. One file has ipj=2 and the other
+ipj=1. Use both with ipj=1 or both with ipj=2.</p></li>
+</ul>
+</section>
+<section id="warnings-informational">
+<h3>Warnings (informational)<a class="headerlink" href="#warnings-informational" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning copying ion positions</strong> — <strong>copyjas</strong>: first argument
+<strong>kpointsR</strong> was given. Expected if you requested ion copy.</p></li>
+<li><p><strong>Warning copying ONLY ion positions</strong> — <strong>copyjas</strong>: first argument
+<strong>copyR</strong> was given. Expected if you requested ions only.</p></li>
+<li><p><strong>Warning copying also contracted and ion positions</strong> — <strong>copyjas</strong>: first
+argument <strong>kpointsRd</strong> was given. Expected if you requested ions and
+dup_c.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Target files are overwritten.</strong> Back up fort.10 (and fort.10_*) if
+needed.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

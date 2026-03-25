@@ -20,6 +20,8 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -49,31 +51,47 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">pseudo.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotential-formula">Pseudopotential formula</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#npsa-1-only">npsa=1 only</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#overwrite-of-pseudo-dat">Overwrite of pseudo.dat</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#input-format-vs-ecp-format">Input format vs ECP format</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="readalles.html">readalles.x</a></li>
@@ -121,18 +139,193 @@
            <div itemprop="articleBody">
              
   <section id="pseudo-x">
-<h1>pseudo.x<a class="headerlink" href="#pseudo-x" title="Link to this heading"></a></h1>
+<span id="turborvbtutorial-command-pseudo-x"></span><h1>pseudo.x<a class="headerlink" href="#pseudo-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>pseudo</strong> is a TurboRVB utility that <strong>reads a pseudopotential (ECP) file
+pseudo.dat</strong>, evaluates the <strong>radial pseudopotential</strong> on a grid, writes a
+plot file <strong>pseudo.plot</strong>, and when <strong>only one ion type</strong> (npsa=1) is present,
+computes a <strong>cutoff radius</strong> from a tolerance and <strong>overwrites pseudo.dat</strong> in
+<strong>ECP format</strong> with that cutoff.</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>pseudo.dat</strong> (first line: 3-character pseudoname; then for one ion:
+kindion, rcutoff, pshell; next line: parameter counts per angular shell
+(ipsip); then one line per parameter with three numbers: coefficient,
+power of <em>r</em>, Gaussian exponent). <strong>Standard input</strong>: one value <strong>toll</strong>
+(tolerance) when prompted &quot;Tollerance pseudo energy/pseudo&quot;. See Notes for
+the pseudopotential formula.</p></li>
+<li><p><strong>Output</strong>: <strong>pseudo.plot</strong> — <em>r</em> from 0 to 10 Bohr (step 0.01), one line per
+<em>r</em> with the radial pseudopotential value for each angular component. When
+npsa=1, <strong>pseudo.dat</strong> is overwritten in ECP format (header 'ECP', computed
+<strong>rcut</strong>, same parameters).</p></li>
+<li><p>The program reads pseudo.dat in two passes, scans <em>r</em> in 0–10 to find the
+largest <em>r</em> where |V(<em>r</em>)| &gt; toll (that becomes <strong>rcut</strong>), writes the grid
+to pseudo.plot, and if npsa=1 rewrites pseudo.dat with ECP header and rcut.</p></li>
+<li><p><strong>Typical use</strong>: Inspect the radial shape of the pseudopotential or get a
+numerical cutoff (rcut) and update pseudo.dat accordingly.</p></li>
+</ul>
+<p>The program is <strong>serial only</strong> (no MPI). Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help (implementation may call <code class="docutils literal notranslate"><span class="pre">help_online('traslafort10')</span></code>).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>pseudo.dat</strong> (required): Pseudopotential file. <strong>Line 1</strong>: pseudoname (3
+characters). <strong>Line 2</strong> (one ion, npsa=1): kindion, rcutoff, pshell. <strong>Line
+3</strong>: ipsip(1), …, ipsip(pshell) — number of parameters per angular shell.
+<strong>Next sum(ipsip) lines</strong>: For each parameter, three numbers stored as
+parshell(1), parshell(2), parshell(3) (coefficient <em>c</em><sub>i</sub>, power
+<span class="math notranslate nohighlight">\(\ell_i\)</span>, Gaussian exponent <span class="math notranslate nohighlight">\(\alpha_i\)</span>). The program reads
+<strong>only npsa=1</strong> (one ion type).</p></li>
+<li><p><strong>Standard input</strong>: When prompted &quot;Tollerance pseudo energy/pseudo&quot;, give one
+real number <strong>toll</strong>. The program finds the largest <em>r</em> in 0–10 Bohr where
+|V(<em>r</em>)| &gt; toll and uses it as <strong>rcut</strong>.</p></li>
+<li><p><strong>Command line</strong>: First argument <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints
+online help and exits.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>pseudo.plot</strong>: For <em>r</em> = 0.00, 0.01, …, 10.00 (1001 points), one line
+with <em>r</em> and pshell(1) values of the radial pseudopotential (one per angular
+component). Format 100e17.8e3. Use for plotting the radial shape.</p></li>
+<li><p><strong>pseudo.dat</strong> (overwritten when npsa=1): Rewritten from the start. Line 1:
+'ECP'. Line 2: 1, <strong>rcut</strong>, pshell(ion). Next line: nparpshell(j, ion) for
+j=1,…,pshell. Then one line per parameter: parshell(1,i), nint(parshell(2,i)),
+parshell(3,i). <strong>Back up pseudo.dat</strong> before running if you need to keep the
+original.</p></li>
+<li><p>Standard output: Messages such as &quot;Angular component =&quot;, &quot;Suggested cut-off
+pseudo =&quot;, &quot;indmax found =&quot;, etc.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="pseudopotential-formula">
+<h3>Pseudopotential formula<a class="headerlink" href="#pseudopotential-formula" title="Link to this heading"></a></h3>
+<p>The program evaluates the <strong>radial pseudopotential</strong> <span class="math notranslate nohighlight">\(V_\ell(r)\)</span> for
+each angular component <span class="math notranslate nohighlight">\(\ell\)</span> (shell index <em>j</em> = 1, …, pshell) using the
+subroutine <strong>pseudofun</strong>. The form is:</p>
+<div class="math notranslate nohighlight">
+\[V_\ell(r) = \frac{1}{r^2} \sum_{i=1}^{n_\ell}
+  c_i \, r^{\ell_i} \, \exp(-\alpha_i r^2)\]</div>
+<ul class="simple">
+<li><p><em>r</em>: distance from the nucleus (Bohr).</p></li>
+<li><p><em>n</em><sub>ℓ</sub>: number of terms in that angular component (nparpshell(<em>j</em>,
+ion) in the code).</p></li>
+<li><p>The sum runs over all Gaussian-type terms for that component.</p></li>
+</ul>
+<p><strong>Parameter correspondence</strong> (each parameter line in pseudo.dat gives three
+numbers stored as parshell(1:3, <em>i</em>)):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 28.6%" />
+<col style="width: 14.3%" />
+<col style="width: 57.1%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>parshell</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>parshell(1, <em>i</em>)</p></td>
+<td><p><em>c</em><sub>i</sub></p></td>
+<td><p>Coefficient (amplitude of term <em>i</em>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>parshell(2, <em>i</em>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\ell_i\)</span></p></td>
+<td><p>Power of <em>r</em> in <span class="math notranslate nohighlight">\(r^{\ell_i}\)</span>. The code computes
+<span class="math notranslate nohighlight">\(\ell_i \ln r\)</span> as <code class="docutils literal notranslate"><span class="pre">log(r)*param(2,i)</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>parshell(3, <em>i</em>)</p></td>
+<td><p><span class="math notranslate nohighlight">\(\alpha_i\)</span></p></td>
+<td><p>Gaussian exponent in <span class="math notranslate nohighlight">\(\exp(-\alpha_i r^2)\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>So internally, <span class="math notranslate nohighlight">\(\mathrm{psip}(i) = r^{\ell_i} \exp(-\alpha_i r^2)\)</span> and
+<span class="math notranslate nohighlight">\(V_\ell(r) = (1/r^2) \sum_i c_i \cdot \mathrm{psip}(i)\)</span> (see
+<code class="docutils literal notranslate"><span class="pre">pseudo.f90</span></code>, pseudofun, around lines 155–173).</p>
+<p><strong>Remarks</strong>:</p>
+<ul class="simple">
+<li><p>The <strong>1/*r*:sup:`2` factor</strong> is common in the radial Schrödinger equation
+and semi-local ECP radial forms. As <em>r</em> → 0 the term behaves like
+<span class="math notranslate nohighlight">\(r^{\ell_i-2}\)</span>; in practice <span class="math notranslate nohighlight">\(\ell_i\)</span> is often a non-negative
+integer (angular momentum).</p></li>
+<li><p><strong>Numerical stability</strong>: For <em>r</em> &lt; 10<sup>-9</sup>, the code sets <em>r</em> = 10<sup>−9</sup>
+to avoid division and log issues.</p></li>
+<li><p><strong>Cutoff rcut</strong>: The program scans <em>r</em> from 0 to 10 Bohr in steps of 0.01 and
+takes <strong>rcut</strong> as the largest <em>r</em> for which |V(<span class="math notranslate nohighlight">\(\ell\)</span>, <em>r</em>)| &gt; toll.
+So <strong>toll</strong> is the threshold below which the pseudopotential is considered
+negligible.</p></li>
+</ul>
+</section>
+<section id="npsa-1-only">
+<h3>npsa=1 only<a class="headerlink" href="#npsa-1-only" title="Link to this heading"></a></h3>
+<p>The code <strong>fixes npsa=1</strong>. Only the first (and only) ion type in pseudo.dat is
+read. Plot and ECP overwrite apply to that single ion. For multiple species,
+use <strong>assembling_pseudo</strong> or similar to build a single-ion pseudo.dat, or
+run pseudo once per species with a file containing only that ion.</p>
+</section>
+<section id="overwrite-of-pseudo-dat">
+<h3>Overwrite of pseudo.dat<a class="headerlink" href="#overwrite-of-pseudo-dat" title="Link to this heading"></a></h3>
+<p>When npsa=1, <strong>pseudo.dat is always overwritten</strong> in ECP format at the end.
+The previous content (and any other ion types) is lost. Back up the file first
+if needed.</p>
+</section>
+<section id="input-format-vs-ecp-format">
+<h3>Input format vs ECP format<a class="headerlink" href="#input-format-vs-ecp-format" title="Link to this heading"></a></h3>
+<p>The <strong>input</strong> format read by pseudo (pseudoname on line 1, then kindion,
+rcutoff, pshell, ipsip, parameter lines) may differ from the <strong>ECP</strong> format
+written by pseudo and read by <strong>read_pseudo</strong> (e.g. 'ECP' header, then 1
+rcut pshell, etc.). pseudo can be used to convert from that input form to
+ECP form with an updated rcut.</p>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>assembling_pseudo</strong>: Assembles pseudopotential files for multiple atoms
+into <strong>pseudo.dat</strong> using fort.10. You can then run pseudo on a
+single-ion pseudo.dat for plotting or rcut update.</p></li>
+<li><p><strong>read_pseudo</strong>: Reads <strong>pseudo.dat</strong> in ECP format in the main
+TurboRVB code. The ECP format written by pseudo is compatible.</p></li>
+<li><p><strong>template/pw2pseudo.input</strong>, <strong>pseudo2pw.input</strong>, <strong>pseudo2casino.input</strong>:
+Templates for other pseudopotential conversion tools. pseudo itself only
+reads <strong>toll</strong> from stdin.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<p>The program does not print &quot;ERROR&quot; or &quot;Warning&quot;. Possible issues:</p>
+<ul class="simple">
+<li><p><strong>Cannot open pseudo.dat</strong> — File missing or wrong path. Put pseudo.dat in
+the working directory.</p></li>
+<li><p><strong>Read error or wrong number of lines</strong> — pseudo.dat has unexpected format
+(e.g. npsa≠1, or ECP-only file). Use a file with one ion type in the format
+described above (pseudoname, kindion, rcutoff, pshell, ipsip, parameter
+lines).</p></li>
+<li><p><strong>pseudo.dat overwritten</strong> — When npsa=1, pseudo.dat is overwritten. Back it
+up before running if you need the original.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>No toll on stdin</strong>: The program prompts for &quot;Tollerance pseudo energy/pseudo&quot;.
+If you run non-interactively, feed one number, e.g.
+<code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">1.e-6</span> <span class="pre">|</span> <span class="pre">./pseudo.x</span></code>.</p></li>
+<li><p><strong>Larger toll</strong> → smaller rcut; <strong>smaller toll</strong> → rcut closer to 10 Bohr.
+Choose toll as the threshold below which the pseudopotential is negligible.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

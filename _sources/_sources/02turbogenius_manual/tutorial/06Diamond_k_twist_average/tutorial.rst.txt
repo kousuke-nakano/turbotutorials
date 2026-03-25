@@ -14,7 +14,7 @@ Diamond with k-point (twist) averaging using a Jastrow–Slater single-determina
 --------------------------------------------------------------------
 
 In this tutorial, you will perform k-point (twist) averaging using a Monkhorst–Pack grid within a VMC/LRDMC workflow for diamond. This reduces the so-called one-body finite-size effects in QMC. Calculations start from PySCF with ccECPs under PBCs. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
-   
+
 .. _review: https://doi.org/10.1063/5.0005037
 
 .. contents:: Table of Contents
@@ -33,18 +33,18 @@ The procedure is as follows:
 1. Run the PySCF calculation:
 
   .. code-block:: console
-      
+
       % cd 01_trial_wavefunction
       % python3 pyscf_Diamond_k_average.py
-    
+
 2. Convert the generated PySCF checkpoint file to a TREXIO file:
-    
+
   .. code-block:: console
 
       % trexio convert-from -t pyscf -i Diamond_k_average.chk -b hdf5 Diamond_k_average.hdf5
 
 The wavefunction at each k point is saved in a separate file `k*_Diamond_k_average.hdf5`.
-      
+
 3. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
@@ -52,7 +52,7 @@ The wavefunction at each k point is saved in a separate file `k*_Diamond_k_avera
       % trexio-to-turborvb Diamond_k_average.hdf5 -jasbasis cc-pVDZ -jascutbasis --twist_average
 
 Note that the ``--twist_average`` option is specified.
-      
+
 Then, you will have the TurboRVB wavefunction file ``fort.10`` as well as the pseudopotential file ``pseudo.dat``.
 
 .. note::
@@ -78,26 +78,26 @@ One should refer to the :ref:`Hydrogen dimer tutorial <turbogeniustutorial_0101_
       % cp ../01_trial_wavefunction/fort.10 .
       % cp ../01_trial_wavefunction/pseudo.dat .
       % cp -r ../01_trial_wavefunction/turborvb.scratch turborvb.scratch
-    
+
 2. Generate an input file for the optimization:
-    
+
   .. code-block:: console
 
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 200 -steps 200 -twist -kpts 1 1 1 0 0 0 -nw 128
-    
+
 3. Run the optimization:
 
   .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
-    
+
 4. Perform the postprocess and plot the results.
-      
+
   .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 50 -plot
-    
+
 Check `plot_energy_and_devmax.png` and files in the `parameters_graphs` directory to see if the convergence criterion is satisfied.
 
 
@@ -118,7 +118,7 @@ First prepare the wavefunction and related files. Note that you also need to cop
     % cp -r ../02_optimization/turborvb.scratch turborvb.scratch
 
 Next, generate an input file `datasvmc.input` by typing:
-    
+
 .. code-block:: console
 
     % turbogenius vmc -g -twist -kpts 1 1 1 0 0 0 -nw 128
@@ -135,7 +135,7 @@ Then, run the VMC calculation:
     % turbogenius vmc -r
 
 Finally, run the postprocess:
-    
+
 .. code-block:: console
 
     % turbogenius vmc -post -bin 10 -warmup 5
@@ -160,7 +160,7 @@ First, copy the prepared wavefunction and the pseudopotential files:
     % cp ../03_vmc/fort.10 .
     % cp ../03_vmc/pseudo.dat .
     % cp -r ../03_vmc/turborvb.scratch .
-    
+
 Next, generate an input file `datasfn.input` for the LRDMC calculation. Note that ``-twist`` option should be specified:
 
 .. code-block:: console

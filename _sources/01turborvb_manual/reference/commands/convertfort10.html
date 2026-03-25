@@ -20,13 +20,11 @@
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
       <script src="../../../../_static/copybutton.js?v=0d42b3ec"></script>
-      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="convertfort10mol.x" href="convertfort10mol.html" />
-    <link rel="prev" title="assembling_pseudo.x" href="assembling_pseudo.html" /> 
+    <link rel="prev" title="cleanfort10.x" href="cleanfort10.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,23 +49,35 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">convertfort10.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#wavefunction-conversions">Wavefunction conversions</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#converting-a-wf-to-agp">Converting a WF to AGP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#input-parameters">Input parameters</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#option-section">option section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#control-section">control section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#mesh-info-section">mesh_info section</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#compatibility-fort-10-in-vs-fort-10-out">Compatibility (fort.10_in vs fort.10_out)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mpi-parallel-runs">MPI (parallel runs)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
 </ul>
 </li>
 </ul>
@@ -77,14 +87,12 @@
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -135,103 +143,69 @@
   <section id="convertfort10-x">
 <span id="turborvbtutorial-command-convertfort10-x"></span><h1>convertfort10.x<a class="headerlink" href="#convertfort10-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<section id="wavefunction-conversions">
-<h3>Wavefunction conversions<a class="headerlink" href="#wavefunction-conversions" title="Link to this heading"></a></h3>
-<p>TurboRVB implements different types of <em>Ansatz</em>:</p>
-<ol class="arabic simple">
-<li><p>Pfaffian (Pf)</p></li>
-<li><p>Pfaffian with a constrained number of molecular orbitals (Pfn)</p></li>
-<li><p>Antisymmetrized Geminal Power (AGP)</p></li>
-<li><p>Antisymmetrized Geminal Power with a constrained number of molecular orbitals (AGPn)</p></li>
-<li><p>Single Slater determinant (SD)</p></li>
-</ol>
-<p>One can go back and forth between various <em>Ansatz</em> using the modules implemented in TurboRVB.
-Figures below show the hierarchy of <em>Ansatz</em> implemented in TurboRVB and their inter-conversion.</p>
-<a class="reference internal image-reference" href="../../../../_images/ansatz_hierarchy.png"><img alt="../../../../_images/ansatz_hierarchy.png" class="align-center" height="237" src="../../../../_images/ansatz_hierarchy.png" width="297" />
-</a>
-<a class="reference internal image-reference" href="../../../../_images/ansatz_conversion.png"><img alt="../../../../_images/ansatz_conversion.png" class="align-center" height="282" src="../../../../_images/ansatz_conversion.png" width="246" />
-</a>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>convertfort10</strong> is a TurboRVB utility that <strong>converts a wave function from
+one basis to another</strong>: it takes <strong>fort.10_in</strong> (source wave function, e.g. from
+DFT or another code) and <strong>fort.10_out</strong> (target basis definition), and writes
+<strong>fort.10_new</strong> with coefficients that best approximate the source wave
+function in the target basis (maximum overlap).</p>
 <ul class="simple">
-<li><p>Adding molecular orbitals to an <em>Ansatz</em> (convertfort10mol.x): The first case is to add molecular orbitals to an <em>Ansatz</em>, i.e. JAGP =&gt; JSD, JAGP =&gt; JAGPn, or JPf =&gt; JPfn.
-In TurboRVB, this is done by rewriting the expansion of the geminal in terms of molecular orbitals.</p></li>
-<li><p>The second important case is to convert an <em>Ansatz</em> among the available ones, i.e.,
-JSD, JAGP, or JAGPn =&gt; JAGP.
-This is done using the convertfort10.x tool and is achieved by maximizing the overlap
-between the two WFs (the input <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code> and the output <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code>) to be filled
-by new geminal matrix coefficients (<code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code>).
-The following overlap between two geminals is maximized:</p></li>
+<li><p><strong>Input</strong>: <strong>fort.10_in</strong> (source wave function in TurboRVB format),
+<strong>fort.10_out</strong> (target-basis structure: ions, orbitals, Jastrow type, etc.),
+and <strong>namelists</strong> from standard input (<code class="docutils literal notranslate"><span class="pre">&amp;OPTION</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;CONTROL</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&amp;mesh_info</span></code>). Use <strong>template/convertfort10.input</strong> as reference.</p></li>
+<li><p><strong>Output</strong>: <strong>fort.10_new</strong> — same structure as fort.10_out, with Det (λ) and
+optionally Jastrow coefficients computed so as to best match fort.10_in on a
+real-space mesh. Suitable as initial wave function for VMC/DMC.</p></li>
+<li><p>The program computes overlap matrices on a real-space grid between the two
+bases, then solves for the best-fit coefficients and writes them with
+<code class="docutils literal notranslate"><span class="pre">write_fort10</span></code>.</p></li>
 </ul>
-<blockquote>
-<div><div class="math notranslate nohighlight">
-\[max \: Q = \frac{\left \langle g^{new}|g^{ori} \right \rangle^2}{\left \langle g^{new}|g^{new} \right \rangle \left \langle g^{ori}|g^{ori} \right \rangle} \,,\]</div>
-</div></blockquote>
-<p>in order to obtain new geminal matrix coefficients <span class="math notranslate nohighlight">\(A^{new}_{\mu,\nu}\)</span>, defining
-the new pairing function as</p>
-<div class="math notranslate nohighlight">
-\[g^{new}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{new}_{\mu.\nu} \psi^{new}_\mu(\mathbf{i}) \psi^{new}_\nu(\mathbf{j}) \,,\]</div>
-<p>while the original geminal was given in terms of the parameter matrix <span class="math notranslate nohighlight">\(A^{ori}_{\mu, \nu}\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[g^{ori}(\mathbf{i}, \mathbf{j}) = \sum_{\mu.\nu} A^{ori}_{\mu.\nu} \psi^{ori}_\mu(\mathbf{i}) \psi^{ori}_\nu(\mathbf{j}) .\]</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p><span class="math notranslate nohighlight">\(0 \leq Q \leq 1\)</span>; so, the larger the <span class="math notranslate nohighlight">\(Q\)</span>, the better is the conversion.
-<span class="math notranslate nohighlight">\(Q\)</span> approaches unity if the conversion is perfect.</p>
-</div>
-<ul>
-<li><p>The final case is to convert a JAGP <em>ansatz</em> to JPf. Since the JAGP <em>ansatz</em> is a special case
-of the JPf <em>ansatz</em>, where only <span class="math notranslate nohighlight">\(G_{ud}\)</span> and <span class="math notranslate nohighlight">\(G_{du}\)</span> terms are defined, the
-conversion can just be realized by direct substitution.
-The primary challenge is to find a reasonable initialization for the two spin-triplet sectors,
-<span class="math notranslate nohighlight">\(G_{uu}\)</span> and <span class="math notranslate nohighlight">\(G_{dd}\)</span> that are not described in the JAGP and that otherwise
-have to be set to 0. There are two possible approaches:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>For polarized systems, we can build the <span class="math notranslate nohighlight">\(G_{uu}\)</span> block of the matrix by using an even number of <span class="math notranslate nohighlight">\(\{ \phi_i\}\)</span> and build an antisymmetric <span class="math notranslate nohighlight">\(g_{uu}\)</span>, where the eigenvalues <span class="math notranslate nohighlight">\(\lambda_k\)</span> are chosen to be large enough to occupy certainly  these unpaired states, as in  the standard Slater determinant used for our initialization. Again, we emphasize that  this works only for polarized systems.</p></li>
-<li><p>The second approach that also works in a spin-unpolarized case is to determine a standard broken symmetry single determinant <em>ansatz</em> (<em>e.g.</em>, by TurboRVB built-in DFT within the LSDA)  and modify it with a global  spin rotation. Indeed, in the presence of finite local magnetic moments, it is often convenient to rotate the spin moments of the WF in a direction perpendicular to  the spin quantization axis chosen for  our spin-dependent Jastrow factor, <em>i.e.</em>, the <span class="math notranslate nohighlight">\(z\)</span> quantization axis. In this way one can obtain reasonable initializations for  <span class="math notranslate nohighlight">\(G_{uu}\)</span> and <span class="math notranslate nohighlight">\(G_{dd}\)</span>. TurboRVB allows every possible rotation, including an arbitrary small one close to the identity. A particularly important case is when  a rotation of <span class="math notranslate nohighlight">\(\pi/2\)</span> is applied around the <span class="math notranslate nohighlight">\(y\)</span> direction. This operation maps <span class="math notranslate nohighlight">\(|\uparrow \rangle \rightarrow \frac{1} {\sqrt{2}} \left( |  \uparrow \rangle + |\downarrow \rangle \right)   \mbox{ and }  |\downarrow  \rangle  \rightarrow  \frac 1 {\sqrt{2}} \left( | \uparrow  \rangle - |\downarrow \rangle \right).\)</span> One can convert from a AGP the pairing function that is obtained from a VMC optimization <span class="math notranslate nohighlight">\({g_{ud}}(\mathbf{i},\mathbf{j}) = {f_S}({{\mathbf{r}}_i}, {{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  + \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }}\)</span> to a Pf one <span class="math notranslate nohighlight">\({g_{ud}}(\mathbf{i},\mathbf{j}) \to g\left( {\mathbf{i},\mathbf{j}} \right){\text{ }} = {f_S}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\frac{{\left| { \uparrow  \downarrow } \right\rangle  - \left| { \downarrow  \uparrow } \right\rangle }}{{\sqrt 2 }} + {f_T}({{\mathbf{r}}_i},{{\mathbf{r}}_j})\left( {\left| { \uparrow  \uparrow } \right\rangle  - \left| { \downarrow  \downarrow } \right\rangle } \right).\)</span> This transformation provides a meaningful initialization to the Pfaffian WF that can be  then optimized for reaching the best possible description of the ground state within this <em>ansatz</em>.</p></li>
-</ol>
-</div></blockquote>
-</li>
+<p>The program supports <strong>MPI</strong>: overlap and linear algebra are parallelized; file
+I/O and namelist reading are done by rank 0. See the Notes section for MPI
+usage.</p>
+<p>Run with <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> to show online help (serial build
+only; <code class="docutils literal notranslate"><span class="pre">help_online('convertfort10')</span></code>).</p>
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_in</strong> (required): Source wave function file (TurboRVB format). Read
+in <code class="docutils literal notranslate"><span class="pre">load_fort10in</span></code> via <code class="docutils literal notranslate"><span class="pre">read_fort10_fast</span></code>, <code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code>, <code class="docutils literal notranslate"><span class="pre">read_fort10</span></code>.
+If pseudopotentials are used, <strong>pseudo.dat</strong> is opened (by rank 0).</p></li>
+<li><p><strong>fort.10_out</strong> (required): Target basis definition. Defines the structure of
+the output (ions, atomic orbitals, Jastrow type). The program reads this file,
+then computes coefficients that best approximate fort.10_in in this basis and
+writes <strong>fort.10_new</strong>. Pseudopotentials: <strong>pseudo.dat</strong> when <code class="docutils literal notranslate"><span class="pre">eqion=.true.</span></code>,
+<strong>pseudo_out</strong> when <code class="docutils literal notranslate"><span class="pre">eqion=.false.</span></code>.</p></li>
+<li><p><strong>Standard input</strong>: Namelists <strong>&amp;OPTION</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">wherescratch</span></code>, <code class="docutils literal notranslate"><span class="pre">eqion</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bigram</span></code>, <code class="docutils literal notranslate"><span class="pre">symiesup</span></code>), <strong>&amp;CONTROL</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">change_contr</span></code>, <code class="docutils literal notranslate"><span class="pre">change_jas</span></code>,
+<code class="docutils literal notranslate"><span class="pre">yespardiag</span></code>, <code class="docutils literal notranslate"><span class="pre">real_agp</span></code>, <code class="docutils literal notranslate"><span class="pre">rmax</span></code>, <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>, <code class="docutils literal notranslate"><span class="pre">prec</span></code>, <code class="docutils literal notranslate"><span class="pre">epsdgel</span></code>),
+<strong>&amp;mesh_info</strong> (e.g. <code class="docutils literal notranslate"><span class="pre">nx</span></code>, <code class="docutils literal notranslate"><span class="pre">ny</span></code>, <code class="docutils literal notranslate"><span class="pre">nz</span></code>, <code class="docutils literal notranslate"><span class="pre">nbufd</span></code>, <code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">ay</span></code>, <code class="docutils literal notranslate"><span class="pre">az</span></code>).
+Only rank 0 reads stdin; values are broadcast in parallel runs.</p></li>
 </ul>
 </section>
-<section id="converting-a-wf-to-agp">
-<h3>Converting a WF to AGP<a class="headerlink" href="#converting-a-wf-to-agp" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>Rename a <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> that you want to convert AGP as  <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code></p></li>
-<li><p>Prepare a template of an AGP <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> with new basis/new exponents... as <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code></p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">convertfort10.x</span> <span class="pre">&lt;</span> <span class="pre">convertfort10.input</span></code></p></li>
-</ol>
-<p>The output is the <code class="docutils literal notranslate"><span class="pre">fort.10_new</span></code> is the converted file (with maximum
-overlap with the input) in the basis set you have decided in <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It works also with molecular orbitals. The unpaired orbitals are
-always assumed to be the last molecular orbitals in the order written
-in <code class="docutils literal notranslate"><span class="pre">fort.10_out</span></code> <code class="docutils literal notranslate"><span class="pre">fort.10_in</span></code></p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The numerical version of the algorithm (real_agp=.true. or rmax=xx) works
-only with AGPs, if you want to use it with molecular orbitals, convert the
-molecular WF in a AGP and then use the numerical version</p>
-</div>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong>: Converted wave function. Same format and structure as
+fort.10_out, with Det matrix (and optionally Jastrow) set to the best-fit
+coefficients. Written by rank 0 only. Overwrites existing file.</p></li>
+<li><p><strong>outmesh.bin</strong>, <strong>outmeshj.bin</strong>: Temporary files for mesh/overlap data
+(created by rank 0). Deleted on normal exit.</p></li>
+<li><p>When <strong>bigram=.false.</strong>, scratch files under <strong>wherescratch</strong> are used to
+reduce memory; they are removed after use.</p></li>
+</ul>
 </section>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
-</section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
-</section>
-<section id="namelist">
-<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+<section id="input-parameters">
+<span id="turborvbtutorial-command-convertfort10-x-input-parameters"></span><h2>Input parameters<a class="headerlink" href="#input-parameters" title="Link to this heading"></a></h2>
 <p>Variable are read from standard input.</p>
 <section id="option-section">
 <h3>option section<a class="headerlink" href="#option-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -265,8 +239,7 @@ molecular WF in a AGP and then use the numerical version</p>
 </section>
 <section id="control-section">
 <h3>control section<a class="headerlink" href="#control-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -360,8 +333,7 @@ molecular WF in a AGP and then use the numerical version</p>
 </section>
 <section id="mesh-info-section">
 <h3>mesh_info section<a class="headerlink" href="#mesh-info-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -438,13 +410,112 @@ molecular WF in a AGP and then use the numerical version</p>
 </table>
 </section>
 </section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="compatibility-fort-10-in-vs-fort-10-out">
+<h3>Compatibility (fort.10_in vs fort.10_out)<a class="headerlink" href="#compatibility-fort-10-in-vs-fort-10-out" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ipf</strong> (Pfaffian) and <strong>ipc</strong> (real vs complex) must <strong>match</strong> between
+fort.10_in and fort.10_out. If they differ, the program stops with a message
+suggesting <strong>convertpfaff.x</strong> (for Pfaffian) or <strong>real_to_complex.x</strong> (for
+real/complex).</p></li>
+<li><p><strong>eqion=.true.</strong> (default): Ion order and atomic numbers must match between
+the two files; ion coordinates in the output are taken from fort.10_out. If
+matching fails, the program suggests <code class="docutils literal notranslate"><span class="pre">eqion=.false.</span></code> and using
+<strong>pseudo_out</strong>.</p></li>
+<li><p><strong>eqion=.false.</strong>: Relaxes ion ordering; <strong>pseudo_out</strong> is used for
+pseudopotentials. Prepare pseudo_out accordingly if you use ECPs.</p></li>
+<li><p><strong>change_jas</strong> is forced to .false. for Jastrow type -12/-22 (ipj=2); a
+warning is printed.</p></li>
+</ul>
+</section>
+<section id="mpi-parallel-runs">
+<h3>MPI (parallel runs)<a class="headerlink" href="#mpi-parallel-runs" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>convertfort10</strong> is built with MPI support (<code class="docutils literal notranslate"><span class="pre">PARALLEL</span></code>). Run with
+<code class="docutils literal notranslate"><span class="pre">mpirun</span> <span class="pre">-np</span> <span class="pre">N</span> <span class="pre">./convertfort10.x</span> <span class="pre">&lt;</span> <span class="pre">input</span></code> (or equivalent). All ranks must
+participate; the same input stream is usually given to all (rank 0 reads the
+namelists and broadcasts).</p></li>
+<li><p><strong>File I/O</strong>: Only <strong>rank 0</strong> opens and reads <strong>fort.10_in</strong>, <strong>fort.10_out</strong>,
+and <strong>pseudo.dat</strong> / <strong>pseudo_out</strong>, and only rank 0 writes <strong>fort.10_new</strong> and
+<strong>outmesh.bin</strong> / <strong>outmeshj.bin</strong>. Ensure these files are visible to the
+process running as rank 0 (e.g. run in a shared working directory).</p></li>
+<li><p><strong>yespardiag</strong> (default .true.): Uses parallelized matrix operations for
+diagonalization/linear algebra. Set <code class="docutils literal notranslate"><span class="pre">yespardiag=.false.</span></code> in <code class="docutils literal notranslate"><span class="pre">&amp;CONTROL</span></code> to
+force serial matrix ops (e.g. for debugging).</p></li>
+<li><p>When <strong>bigram=.false.</strong>, each rank may write its own scratch files under
+<strong>wherescratch</strong>; avoid overlapping paths if running multiple jobs in the same
+directory.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>makefort10</strong>: Builds an initial fort.10. Used to create the target
+structure (fort.10_out) for convertfort10.</p></li>
+<li><p><strong>cleanfort10</strong>: Orthogonalizes and optionally relaxes constraints in a
+fort.10. Can be used after convertfort10 to clean <strong>fort.10_new</strong>.</p></li>
+<li><p><strong>convertpfaff</strong>: Converts between Pfaffian and non-Pfaffian forms. Use
+before/after convertfort10 if in/out wave functions have different Pfaffian
+flags.</p></li>
+<li><p><strong>real_to_complex</strong>: Converts real ↔ complex wave functions. Use to align
+ipc before running convertfort10.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR reading option / control / mesh_info</strong> — Namelist syntax or invalid
+variable. Check <code class="docutils literal notranslate"><span class="pre">&amp;OPTION</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;CONTROL</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;mesh_info</span></code> in the input file;
+use <strong>template/convertfort10.input</strong> as reference.</p></li>
+<li><p><strong>ERROR in the mesh input nx&gt;0,ny&gt;0,nz&gt;0</strong> — At least one of <code class="docutils literal notranslate"><span class="pre">nx</span></code>, <code class="docutils literal notranslate"><span class="pre">ny</span></code>,
+<code class="docutils literal notranslate"><span class="pre">nz</span></code> is 0 or missing. Set positive integers in <code class="docutils literal notranslate"><span class="pre">&amp;mesh_info</span></code>.</p></li>
+<li><p><strong>ERROR buffer dimension nbufd&gt;0</strong> — <code class="docutils literal notranslate"><span class="pre">nbufd</span></code> is 0. Set <code class="docutils literal notranslate"><span class="pre">nbufd</span></code> to a
+positive integer or -1 for default.</p></li>
+<li><p><strong>ERROR Volmesh =0</strong> — Mesh volume is zero (e.g. <code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">ay</span></code>, <code class="docutils literal notranslate"><span class="pre">az</span></code> zero
+for a molecule). Set positive <code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">ay</span></code>, <code class="docutils literal notranslate"><span class="pre">az</span></code> or use PBC so mesh is
+derived from the cell.</p></li>
+<li><p><strong>The two wf should have the same number of ions</strong> — <code class="docutils literal notranslate"><span class="pre">eqion=.true.</span></code> but
+fort.10_in and fort.10_out have different <code class="docutils literal notranslate"><span class="pre">nion</span></code>. Make them match or set
+<code class="docutils literal notranslate"><span class="pre">eqion=.false.</span></code> and provide <strong>pseudo_out</strong> if using pseudos.</p></li>
+<li><p><strong>The input wf do not match with fort.10_out, try eqion=.false.</strong> —
+<code class="docutils literal notranslate"><span class="pre">eqion=.true.</span></code> but ion types/order cannot be matched. Align ion order or set
+<code class="docutils literal notranslate"><span class="pre">eqion=.false.</span></code> and use <strong>pseudo_out</strong>.</p></li>
+<li><p><strong>Pfaffian in/out =/ ... please transform both with convertpfaff.x</strong> — ipf
+differs between the two files. Use convertpfaff to make them both Pfaffian or
+both non-Pfaffian, then run convertfort10 again.</p></li>
+<li><p><strong>Complex in/out =/ ... please transform both in complex with
+real_to_complex.x</strong> — ipc (real vs complex) differs. Use real_to_complex to
+align, then run convertfort10 again.</p></li>
+<li><p><strong>SDV failed !!!</strong> — Singular-value or inverse computation failed (ill-
+conditioned overlap). Try a finer mesh (larger <code class="docutils literal notranslate"><span class="pre">nx</span></code>, <code class="docutils literal notranslate"><span class="pre">ny</span></code>, <code class="docutils literal notranslate"><span class="pre">nz</span></code>), or
+relax <code class="docutils literal notranslate"><span class="pre">epsdgel</span></code> in <code class="docutils literal notranslate"><span class="pre">&amp;CONTROL</span></code>; check that the input bases are not nearly
+linearly dependent.</p></li>
+<li><p><strong>ERROR load_fort10in AGP/Jas check input nbufd and/or code</strong> — Mesh or
+buffer too small for overlap computation. Increase <strong>nbufd</strong> or mesh density.</p></li>
+<li><p><strong>ERROR not implemented option real_agp/rmax with pfaffian</strong> — Options
+<code class="docutils literal notranslate"><span class="pre">real_agp</span></code> / <code class="docutils literal notranslate"><span class="pre">rmax</span></code> are not supported for Pfaffian. Disable them.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong> is overwritten if it exists. Back it up if needed.</p></li>
+<li><p>Mesh choice: too coarse reduces overlap accuracy; too fine increases memory
+and time. Use the DFT mesh as a guide when converting from DFT.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="assembling_pseudo.html" class="btn btn-neutral float-left" title="assembling_pseudo.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cleanfort10.html" class="btn btn-neutral float-left" title="cleanfort10.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="convertfort10mol.html" class="btn btn-neutral float-right" title="convertfort10mol.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

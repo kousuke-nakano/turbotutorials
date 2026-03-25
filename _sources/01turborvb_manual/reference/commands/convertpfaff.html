@@ -49,30 +49,48 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">convertpfaff.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#molecular-orbitals-molyes">Molecular orbitals (molyes)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#compatibility-fort-10-in-vs-fort-10-out">Compatibility (fort.10_in vs fort.10_out)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pseudopotentials">Pseudopotentials</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#rotate-norotate">rotate / norotate</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#scale-unp-unpaired-orbitals">scale_unp (unpaired orbitals)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings-informational">Warnings (informational)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="makefort10.html">makefort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -123,16 +141,170 @@
   <section id="convertpfaff-x">
 <span id="turborvbtutorial-command-convertpfaff-x"></span><h1>convertpfaff.x<a class="headerlink" href="#convertpfaff-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>convertpfaff</strong> is a TurboRVB utility that <strong>converts an AGP wave function
+into Pfaffian form</strong> (or applies spin rotation to an existing Pfaffian). It
+reads <strong>fort.10_in</strong> (source, usually AGP) and <strong>fort.10_out</strong> (target
+structure in Pfaffian form), and writes <strong>fort.10_new</strong> with the Det matrix
+(λ) rewritten in Pfaffian blocks (up-up, up-down, down-down, and optionally
+unpaired).</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>fort.10_in</strong> (source wave function; AGP <code class="docutils literal notranslate"><span class="pre">ipf=1</span></code> or already
+Pfaffian <code class="docutils literal notranslate"><span class="pre">ipf=2</span></code>), <strong>fort.10_out</strong> (target structure, Pfaffian, compatible
+orbitals/shells), and optionally <strong>standard input</strong> (e.g. <strong>scale_unp</strong> when
+unpaired orbitals exist; <strong>angle_rot</strong> / <strong>phi_rot</strong> when input is Pfaffian
+and <strong>rotate</strong> is used).</p></li>
+<li><p><strong>Output</strong>: <strong>fort.10_new</strong> — same structure as fort.10_out, with the Det
+matrix filled from the AGP→Pfaffian conversion (or from the rotated
+Pfaffian). Written with <code class="docutils literal notranslate"><span class="pre">write_fort10(10)</span></code>.</p></li>
+</ul>
+<p>The program does <strong>not</strong> support <strong>molecular orbitals</strong> (molyes). If either
+fort.10_in or fort.10_out contains molecular orbitals, it stops with an
+error. It is typically used when <strong>convertfort10</strong> fails with “Pfaffian in/out
+do not match”: run convertpfaff first to make one side Pfaffian, then run
+convertfort10.</p>
+<p><strong>Command line</strong>: <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints online help and
+exits (<code class="docutils literal notranslate"><span class="pre">help_online('convertpfaff')</span></code>). <strong>rotate</strong> forces spin rotation;
+<strong>norotate</strong> forces no rotation (otherwise behavior follows <strong>symmagp</strong> in the
+input file).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_in</strong> (required): Source wave function (TurboRVB format). Read with
+<code class="docutils literal notranslate"><span class="pre">read_fort10(10)</span></code>. Must be AGP (ipf=1) or Pfaffian (ipf=2). <strong>Cannot</strong>
+contain molecular orbitals (molyes); otherwise the program stops with
+ERROR. Pseudopotential data in the file is not read by this program
+(<code class="docutils literal notranslate"><span class="pre">read_pseudo</span></code> is not called).</p></li>
+<li><p><strong>fort.10_out</strong> (required): Target structure definition (Pfaffian, ipf=2).
+Orbital count and shell layout must be <strong>compatible</strong> with fort.10_in:
+<code class="docutils literal notranslate"><span class="pre">nelorbout</span> <span class="pre">=</span> <span class="pre">2*nelorbin/ipf_in</span></code> and <code class="docutils literal notranslate"><span class="pre">nshell_c</span> <span class="pre">=</span> <span class="pre">nshell_in</span></code>. Ions,
+Jastrow, etc. are taken from here; only the Det part is overwritten with
+the converted Pfaffian matrix in <strong>fort.10_new</strong>.</p></li>
+<li><p><strong>Standard input</strong> (optional):</p>
+<ul>
+<li><p>When <strong>unpaired orbitals</strong> (ndiff&gt;0): one line with <strong>scale_unp</strong> (real;
+prompt: “Scale mean field ( infty=exact)?”). Larger values are closer to
+exact.</p></li>
+<li><p>When input is <strong>already Pfaffian</strong> (ipf_in=2) and <strong>rotate</strong> is set: one
+line with <strong>angle_rot</strong> (in units of π); if complex, <strong>angle_rot</strong> and
+<strong>phi_rot</strong> (in units of π).</p></li>
+</ul>
+</li>
+<li><p><strong>Command-line argument</strong> (first): <strong>--help</strong> / <strong>-help</strong> / <strong>help</strong> — show
+help and exit. <strong>rotate</strong> — force rotation of magnetization. <strong>norotate</strong> —
+force no rotation.</p></li>
+</ul>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong>: Converted wave function in Pfaffian form. Same format and
+structure as fort.10_out; the Det matrix (λ) is the AGP→Pfaffian (or
+rotated Pfaffian) result. Overwrites existing file.</p></li>
+</ul>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="molecular-orbitals-molyes">
+<h3>Molecular orbitals (molyes)<a class="headerlink" href="#molecular-orbitals-molyes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>convertpfaff</strong> does <strong>not</strong> support wave functions with molecular
+orbitals. If fort.10_in or fort.10_out has molyes, the program stops with
+“ERROR the code does not work with molecular orbitals”. Use
+<strong>convertfort10mol</strong> for molecular-orbital handling; do not use
+convertpfaff on such files.</p></li>
+</ul>
+</section>
+<section id="compatibility-fort-10-in-vs-fort-10-out">
+<h3>Compatibility (fort.10_in vs fort.10_out)<a class="headerlink" href="#compatibility-fort-10-in-vs-fort-10-out" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>nelorbout</strong> must equal <strong>2*nelorbin/ipf_in</strong> and <strong>nshell_c</strong> must equal
+<strong>nshell_in</strong> (contraction assumed the same). Otherwise the program stops
+with “ERROR AGP not compatible with the pfaffian”. Prepare fort.10_out
+(e.g. with <strong>makefort10</strong> in Pfaffian mode) so that orbitals and shells
+match.</p></li>
+</ul>
+</section>
+<section id="pseudopotentials">
+<h3>Pseudopotentials<a class="headerlink" href="#pseudopotentials" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>convertpfaff does <strong>not</strong> call <strong>read_pseudo</strong>. It does not open any
+pseudopotential file. If you need ECPs, use the resulting fort.10_new in a
+run that reads pseudo.dat separately.</p></li>
+</ul>
+</section>
+<section id="rotate-norotate">
+<h3>rotate / norotate<a class="headerlink" href="#rotate-norotate" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>rotate</strong> forces rotation of the magnetic moment; <strong>norotate</strong> forces no
+rotation. If omitted, behavior follows <strong>symmagp</strong> (true → norotate, false →
+rotate). When input is already Pfaffian and <strong>rotate</strong> is used, standard
+input must provide <strong>angle_rot</strong> (and <strong>phi_rot</strong> for complex) in units of π.</p></li>
+</ul>
+</section>
+<section id="scale-unp-unpaired-orbitals">
+<h3>scale_unp (unpaired orbitals)<a class="headerlink" href="#scale-unp-unpaired-orbitals" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When ndiff&gt;0, <strong>scale_unp</strong> controls the mean-field approximation for
+unpaired blocks. Larger values (e.g. “infty”) give the exact limit.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>convertfort10</strong>: Converts wave functions between different bases. Requires
+matching <strong>ipf</strong> (Pfaffian flag) between fort.10_in and fort.10_out. If
+they differ, run <strong>convertpfaff</strong> first to make one side Pfaffian, then
+convertfort10.</p></li>
+<li><p><strong>makefort10</strong>: Builds an initial fort.10. Use it to create the Pfaffian
+target structure (fort.10_out) with the same shell/orbital layout as
+fort.10_in.</p></li>
+<li><p><strong>read_fort10</strong> / <strong>write_fort10</strong>: Fort.10 read/write routines used by
+convertpfaff.</p></li>
+<li><p><strong>real_to_complex</strong>: Converts real ↔ complex wave functions. convertpfaff
+does not change <strong>ipc</strong>; use real_to_complex before/after if needed.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>ERROR the code does not work with molecular orbitals</strong> — fort.10_in or
+fort.10_out contains molecular orbitals (molyes). Use files without
+molyes, or use <strong>convertfort10mol</strong> for molecular-orbital conversion
+instead of convertpfaff.</p></li>
+<li><p><strong>ERROR AGP not compatible with the pfaffian</strong> — fort.10_out orbital count
+(nelorbout) is not 2*nelorbin/ipf_in, or shell count (nshell_c) does not
+match nshell_in. Prepare fort.10_out with the same compatible orbital and
+shell structure (e.g. makefort10 in Pfaffian mode).</p></li>
+</ul>
+</section>
+<section id="warnings-informational">
+<h3>Warnings (informational)<a class="headerlink" href="#warnings-informational" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning forcing rotation magnetization</strong> — Command-line <strong>rotate</strong> was
+given. Expected if you requested rotation.</p></li>
+<li><p><strong>Warning forcing no rotation in magnetization</strong> — Command-line <strong>norotate</strong>
+was given. Expected if you requested no rotation.</p></li>
+<li><p><strong>Warning defining also down-down by symmetry</strong> — Unpaired orbitals present
+with pfaffup=.false. and symmagp=.true.; down-down block is set by
+symmetry. By design.</p></li>
+<li><p><strong>Warning rotating magnetic moment // x</strong> — Rotation of the magnetic moment
+is being applied (rotmagn=.true.). By design.</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong> is overwritten if it exists. Back it up if needed.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

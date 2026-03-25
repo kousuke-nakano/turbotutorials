@@ -49,27 +49,30 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cleanfort10.html">cleanfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10.html">convertfort10.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertfort10mol.html">convertfort10mol.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="convertpfaff.html">convertpfaff.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="copyjas_copydet.html">copyjas.x, copydet.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrforza_corrforzap_corrforzap_complex.html">corrforza.x, corrforzap.x corrforzap_complex.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="corrvar.html">corrvar.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn_kpoints_forcefn_kpoints_parallel.html">forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc_kpoints_forcevmc_kpoints_parallel.html">forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
-<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcefn.html">forcefn.sh, forcefn_kpoints.sh, forcefn_kpoints_parallel.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="forcevmc.html">forcevmc.sh, forcevmc_kpoints.sh, forcevmc_kpoints_parallel.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="funvsa.html">funvsa.x</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">makefort10.x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#description">description</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#input-output">input/output</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#note">note</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#namelist">namelist</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#input">Input</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#input-parameters">Input parameters</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#system-section">system section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#electrons-section">electrons section</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#symmetries-section">symmetries section</a></li>
@@ -80,10 +83,27 @@
 <li class="toctree-l6"><a class="reference internal" href="#atom-number-section-test">ATOM number section(test)</a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#required-parameters-nel-rs-read-l-read">Required parameters (nel, rs_read, L_read)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#celldm-and-at">celldm and at</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#posunits-and-pbcfort10">posunits and pbcfort10</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#orthorhombic-cell">Orthorhombic cell</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id1">UNPAIRED section</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#phase-real-wave-function">Phase (real wave function)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#output-file-name">Output file name</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-programs">Related programs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fatal-errors-program-stops">Fatal errors (program stops)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#warnings">Warnings</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#other-notes">Other notes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="orthomol.html">orthomol.x</a></li>
-<li class="toctree-l4"><a class="reference internal" href="plot_Energy_plot_NormCorr_plot_devmax_plot_lr_plot_ratiodyn.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="plot_tools.html">plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh</a></li>
 <li class="toctree-l4"><a class="reference internal" href="plot_orbitals.html">plot_orbitals.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="prep.html">prep.x</a></li>
 <li class="toctree-l4"><a class="reference internal" href="pseudo.html">pseudo.x</a></li>
@@ -134,24 +154,84 @@
   <section id="makefort10-x">
 <span id="turborvbtutorial-command-makefort10-x"></span><h1>makefort10.x<a class="headerlink" href="#makefort10-x" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
+<p><strong>makefort10</strong> is a TurboRVB utility that <strong>creates an initial wave function
+file (fort.10) for solids and open systems</strong>. It reads <strong>only from standard input</strong>
+and writes <strong>fort.10_new</strong>, <strong>structure.xsf</strong>, and <strong>symmetries.dat</strong> (plus
+optionally <strong>makefort10.log</strong>).</p>
+<ul class="simple">
+<li><p><strong>Input</strong>: <strong>Standard input</strong> only. <strong>Namelists</strong> <code class="docutils literal notranslate"><span class="pre">&amp;system</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;electrons</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&amp;symmetries</span></code>, followed by the <strong>ATOMIC_POSITIONS</strong> section (atomic
+positions), <strong>ATOM_&lt;Z&gt;</strong> blocks per atomic species (<code class="docutils literal notranslate"><span class="pre">&amp;shells</span></code> and
+orbital definitions), and optionally <strong>ATOMIC_SPECIES</strong> (when
+<code class="docutils literal notranslate"><span class="pre">readatoms=.true.</span></code>), <strong>UNPAIRED</strong> (odd electrons or
+<code class="docutils literal notranslate"><span class="pre">readunpaired=.true.</span></code>).</p></li>
+<li><p><strong>Output</strong>: <strong>fort.10_new</strong> — TurboRVB wave function file (cell, ions,
+orbitals, Det matrix, Jastrow). Use as <strong>fort.10</strong> for VMC/DMC. Also
+<strong>structure.xsf</strong> (for visualization), <strong>symmetries.dat</strong> (symmetry
+operations), and <strong>makefort10.log</strong> when <code class="docutils literal notranslate"><span class="pre">write_log=.true.</span></code>.</p></li>
+<li><p><strong>Processing</strong>: The program reads cell, positions, electron count, orbital
+type, Jastrow type, and symmetries; finds Bravais lattice rotations and
+translations; builds initial orbital coefficients and Det/Jastrow matrices
+constrained by symmetry; and writes <strong>fort.10_new</strong> via an internal
+<code class="docutils literal notranslate"><span class="pre">write_fort10</span></code>.</p></li>
+</ul>
+<p>Typical use: generating <strong>fort.10</strong> from scratch for a new VMC/DMC run, or
+preparing the <strong>fort.10_out</strong> structure for <strong>convertfort10</strong>.</p>
+<p><strong>Command line</strong>: <code class="docutils literal notranslate"><span class="pre">--help</span></code>, <code class="docutils literal notranslate"><span class="pre">-help</span></code>, or <code class="docutils literal notranslate"><span class="pre">help</span></code> prints online help and
+exits (<code class="docutils literal notranslate"><span class="pre">help_online('makefort10')</span></code>). The program is <strong>serial</strong> (no MPI).</p>
 </section>
-<section id="input-output">
-<h2>input/output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading"></a></h2>
+<section id="input">
+<h3>Input<a class="headerlink" href="#input" title="Link to this heading"></a></h3>
+<p>All input is read from <strong>standard input</strong> (unit 5) via <code class="docutils literal notranslate"><span class="pre">read_input(5)</span></code>. Use
+e.g. <code class="docutils literal notranslate"><span class="pre">./makefort10.x</span> <span class="pre">&lt;</span> <span class="pre">makefort10.input</span></code>.</p>
+<ul class="simple">
+<li><p><strong>&amp;system</strong> (required): Cell and system. <strong>natoms</strong>, <strong>ntyp</strong>, <strong>posunits</strong>
+(bohr | angstrom | crystal), <strong>nxyz</strong>, <strong>celldm</strong> or <strong>at</strong>, <strong>phase</strong>,
+<strong>pbcfort10</strong>, <strong>complexfort10</strong>, <strong>rs_read</strong>, <strong>nel_read</strong>, <strong>L_read</strong>,
+<strong>yes_pfaff</strong>, <strong>yes_tilted</strong>, <strong>unit_crystal</strong>, etc. At least one of
+<strong>nel</strong>, <strong>rs_read</strong>, <strong>L_read</strong> must be set (otherwise the program stops).</p></li>
+<li><p><strong>&amp;electrons</strong> (required): <strong>nel</strong>, <strong>neldiff</strong>, <strong>numpaired</strong>, <strong>twobody</strong>,
+<strong>twobodypar</strong>, <strong>filling</strong>, <strong>noonebody</strong>, <strong>readatoms</strong>, <strong>orbtype</strong>,
+<strong>jorbtype</strong>, <strong>vecpbc</strong>, <strong>symmagp</strong>, <strong>readunpaired</strong>, etc.</p></li>
+<li><p><strong>&amp;symmetries</strong> (required): <strong>nosym</strong>, <strong>notra</strong>, <strong>eqatoms</strong>, <strong>nosym_contr</strong>,
+<strong>nosym_contrj</strong>, <strong>rot_det</strong>, <strong>rot_jas</strong>, <strong>rot_pfaff</strong>, <strong>symmagp</strong>,
+<strong>forces_sym</strong>, etc.</p></li>
+<li><p><strong>ATOMIC_POSITIONS</strong> (required): Section header followed by <strong>natoms</strong> lines.
+Each line: <strong>zeta(2)</strong>, <strong>zeta(1)</strong>, <strong>rion(1:3)</strong> (atomic number, valence
+electrons, coordinates). Interpreted according to <strong>posunits</strong> (bohr,
+angstrom, or crystal).</p></li>
+<li><p><strong>ATOMIC_SPECIES</strong>: Only when <strong>readatoms=.true.</strong>. <strong>ntyp</strong> lines of atomic
+number and wave function file name.</p></li>
+<li><p><strong>ATOM_&lt;Z&gt;</strong> blocks: One block per atomic species (Z = atomic
+number). Each block contains <strong>&amp;shells</strong> (nshelldet, nshelljas, etc.) and
+orbital definitions for Det and Jastrow (mixed / tempered / normal format).
+When <strong>readatoms=.false.</strong>, orbitals are defined here.</p></li>
+<li><p><strong>UNPAIRED</strong>: For odd-electron systems or when <strong>readunpaired=.true.</strong>.
+<strong>norb_unpaired</strong> and (atom index, orbital number) pairs.</p></li>
+</ul>
+<p>See <strong>template/makefort10.input</strong> for an example. A detailed list of namelist
+variables is described below.</p>
 </section>
-<section id="note">
-<h2>note<a class="headerlink" href="#note" title="Link to this heading"></a></h2>
-<p>TBD</p>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong>: Generated wave function (TurboRVB format). Overwrites
+existing file. Rename or copy to <strong>fort.10</strong> for VMC/DMC.</p></li>
+<li><p><strong>structure.xsf</strong>: Structure file for XCrysden (PRIMVEC/PRIMCOORD or ATOMS).</p></li>
+<li><p><strong>symmetries.dat</strong>: Number and names of symmetry operations used.</p></li>
+<li><p><strong>makefort10.log</strong>: Only when <strong>write_log=.true.</strong>. Debug/detail log.</p></li>
+</ul>
 </section>
-<section id="namelist">
-<h2>namelist<a class="headerlink" href="#namelist" title="Link to this heading"></a></h2>
+</section>
+<section id="input-parameters">
+<h2>Input parameters<a class="headerlink" href="#input-parameters" title="Link to this heading"></a></h2>
 <p>Variable are read from standard input.</p>
 <section id="system-section">
 <h3>system section<a class="headerlink" href="#system-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -283,8 +363,7 @@
 </section>
 <section id="electrons-section">
 <h3>electrons section<a class="headerlink" href="#electrons-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -435,8 +514,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="symmetries-section">
 <h3>symmetries section<a class="headerlink" href="#symmetries-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -532,8 +610,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="shells-section">
 <h3>shells section<a class="headerlink" href="#shells-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -577,8 +654,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="atomic-positions-section">
 <h3>ATOMIC POSITIONS section<a class="headerlink" href="#atomic-positions-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id5">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -597,8 +673,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="atomic-species-section">
 <h3>ATOMIC SPECIES section<a class="headerlink" href="#atomic-species-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id6">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -617,8 +692,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="unpaired-section">
 <h3>UNPAIRED section<a class="headerlink" href="#unpaired-section" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id7">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id7" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -637,8 +711,7 @@ onebodypar = 0.0d0</p></td>
 </section>
 <section id="atom-number-section-test">
 <h3>ATOM number section(test)<a class="headerlink" href="#atom-number-section-test" title="Link to this heading"></a></h3>
-<table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Parameter List</span><a class="headerlink" href="#id8" title="Link to this table"></a></caption>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter name</p></th>
 <th class="head"><p>Datatype</p></th>
@@ -654,6 +727,139 @@ onebodypar = 0.0d0</p></td>
 </tr>
 </tbody>
 </table>
+</section>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<section id="required-parameters-nel-rs-read-l-read">
+<h3>Required parameters (nel, rs_read, L_read)<a class="headerlink" href="#required-parameters-nel-rs-read-l-read" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>At least <strong>one</strong> of <strong>nel</strong>, <strong>rs_read</strong>, <strong>L_read</strong> must be set (in
+&amp;system or &amp;electrons). If all remain at default -1, the program stops with
+&quot;Error you have to set nel , rs_read or L_read!!&quot;.</p></li>
+</ul>
+</section>
+<section id="celldm-and-at">
+<h3>celldm and at<a class="headerlink" href="#celldm-and-at" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>celldm(:)</strong> and <strong>at(:,:)</strong> must <strong>not</strong> both be set. The program stops
+with &quot;Use celldm(:) or at(:,:) but not both!!&quot;. Use one or the other for the
+cell definition.</p></li>
+</ul>
+</section>
+<section id="posunits-and-pbcfort10">
+<h3>posunits and pbcfort10<a class="headerlink" href="#posunits-and-pbcfort10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>posunits=&quot;crystal&quot;</strong> is not allowed with <strong>pbcfort10=.false.</strong> (program
+stops). For open boundaries use bohr or angstrom.</p></li>
+<li><p><strong>posunits</strong> must be one of <strong>bohr</strong>, <strong>angstrom</strong>, <strong>crystal</strong>. Otherwise
+&quot;Unknown units&quot; and stop.</p></li>
+</ul>
+</section>
+<section id="orthorhombic-cell">
+<h3>Orthorhombic cell<a class="headerlink" href="#orthorhombic-cell" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>When <strong>axyz</strong> is used, only orthorhombic cells are supported. The program
+stops with &quot;Only Orthorombic cells supported! check axyz(:,:)&quot; otherwise.
+Non-orthorhombic cells may be handled via internal conversion
+(no_orthorombic) in other code paths.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>UNPAIRED section<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Atom and orbital indices in the <strong>UNPAIRED</strong> section must match the
+determinant orbital list (detorb: kion, norbatom). If any pair does not
+match, the program stops with &quot;Error in UNPAIRED section check orbital
+numbers!&quot;.</p></li>
+</ul>
+</section>
+<section id="phase-real-wave-function">
+<h3>Phase (real wave function)<a class="headerlink" href="#phase-real-wave-function" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>For a <strong>real</strong> wave function, <strong>phase</strong> must be 0 or 0.5 for each
+direction. Otherwise the program stops and suggests using the complex wave
+function (PBC_C).</p></li>
+</ul>
+</section>
+<section id="output-file-name">
+<h3>Output file name<a class="headerlink" href="#output-file-name" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The wave function is always written to <strong>fort.10_new</strong>, not fort.10. For
+VMC/DMC, copy or rename to <strong>fort.10</strong> as needed.</p></li>
+</ul>
+</section>
+</section>
+<section id="related-programs">
+<h2>Related programs<a class="headerlink" href="#related-programs" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>convertfort10</strong>: Converts a wave function between bases. The target
+structure (<strong>fort.10_out</strong>) is often created with <strong>makefort10</strong>.</p></li>
+<li><p><strong>read_fort10</strong> / <strong>write_fort10</strong>: Fort.10 read/write routines; makefort10
+uses an internal write_fort10 to output <strong>fort.10_new</strong>.</p></li>
+<li><p><strong>template/makefort10.input</strong>: Example standard input (namelists,
+ATOMIC_POSITIONS, ATOM_* blocks).</p></li>
+<li><p><strong>note/variables/makefort10_namelist.md</strong>: Variable list for &amp;system,
+&amp;electrons, &amp;symmetries, &amp;shells.</p></li>
+</ul>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="fatal-errors-program-stops">
+<h3>Fatal errors (program stops)<a class="headerlink" href="#fatal-errors-program-stops" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Error you have to set nel , rs_read or L_read!!</strong> — All three are unset
+(-1). Set at least one in &amp;system or &amp;electrons.</p></li>
+<li><p><strong>Error reading 'system' namelist!</strong> — Syntax or read failure in
+&amp;system. Check the block format; use <strong>template/makefort10.input</strong> as
+reference.</p></li>
+<li><p><strong>Error reading 'electrons' namelist!</strong> — Same for &amp;electrons.</p></li>
+<li><p><strong>Error reading 'symmetries' namelist!</strong> — Same for &amp;symmetries.</p></li>
+<li><p><strong>Error reading ATOMIC_POSITIONS!</strong> — Section not found or wrong number of
+lines. Ensure the section header and <strong>natoms</strong> data lines are correct.</p></li>
+<li><p><strong>Error reading ATOMIC_SPECIES!</strong> — When readatoms=.true., section or data
+invalid. Check section and <strong>ntyp</strong> lines.</p></li>
+<li><p><strong>Error reading ATOMIC_WF!</strong> — Failure reading atomic wave function data
+(e.g. external file). Check file names and format.</p></li>
+<li><p><strong>Error reading UNPAIRED!</strong> — UNPAIRED section missing or malformed. Check
+section and norb_unpaired line.</p></li>
+<li><p><strong>Use celldm(:) or at(:,:) but not both!!</strong> — Both are set. Use only one.</p></li>
+<li><p><strong>Only Orthorombic cells supported! check axyz(:,:)</strong> — Non-orthorhombic
+axyz. Use an orthorhombic cell.</p></li>
+<li><p><strong>You cannot use &quot;crystal&quot; units with pbcfort10=.false.</strong> — Incompatible
+options. Set pbcfort10=.true. or use another posunits.</p></li>
+<li><p><strong>Unknown units</strong> — posunits not bohr, angstrom, or crystal. Fix posunits.</p></li>
+<li><p><strong>Atom type not found!</strong> — With readatoms=.true., an atom’s atomic number
+does not match any entry in ATOMIC_SPECIES. Align atomic numbers.</p></li>
+<li><p><strong>Error in UNPAIRED section check orbital numbers!</strong> — An (atom, orbital)
+pair in UNPAIRED is not in the determinant orbital list. Use valid indices
+(detorb kion, norbatom).</p></li>
+<li><p><strong>Symmetries with phase != 0 or 0.5 not implemented for real wave
+function!</strong> — Real wave function with phase other than 0 or 0.5. Use
+complex wave function (PBC_C) or set phase to 0 or 0.5.</p></li>
+<li><p><strong>Error!! niesd is inconsistent</strong> — In write_fort10, niesd does not match
+expectations. Check Jastrow type and symmetry settings.</p></li>
+<li><p><strong>ERROR you should check your primitive cell</strong> — Primitive cell consistency
+error. Check cell, positions, nxyz.</p></li>
+</ul>
+</section>
+<section id="warnings">
+<h3>Warnings<a class="headerlink" href="#warnings" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Warning celldm(1) set to 50 !</strong> — pbcfort10=.false. and celldm(1) was
+unset; default 50 is used. Set celldm(1) explicitly if needed.</p></li>
+<li><p><strong>Warning ntyp == 0 !</strong> — ntyp is 0. Set atomic types correctly (may
+continue depending on build).</p></li>
+</ul>
+</section>
+<section id="other-notes">
+<h3>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>fort.10_new</strong> is overwritten if it exists. Back it up if needed.</p></li>
+<li><p>Orbital block format (mixed / tempered / normal, ATOM_* layout) is
+described in the source (<strong>read_orbitals</strong>) and in
+<strong>template/makefort10.input</strong>.</p></li>
+</ul>
 </section>
 </section>
 </section>

@@ -74,7 +74,7 @@ Next, the TREXIO file is converted to a TurboRVB wavefunction file as follows:
 
     .. literalinclude:: data/trexio_turborvb_wf_converter.py
        :language: python
-        
+
 .. _turbogeniustutorial_0201_03:
 
 03 JDFT ansatz - Jastrow optimization
@@ -94,20 +94,20 @@ Here, only needed commands are shown.
       % cp fort.10 fort.10_pyscf
 
 2. Generate an input file for VMC optimization:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -optimizer lr -vmcoptsteps 300 -steps 100 -nw 128
 
 3. Run the VMC optimization, e,g, as follows:
-      
+
    .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
 
 4. Perform the postprocess by typing:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 80 -plot
@@ -140,7 +140,7 @@ Next, generate an input file `datasvmc.input` using:
     % turbogenius vmc -g -steps 1000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
@@ -175,20 +175,20 @@ First, copy the prepared wavefunction and the pseudopotential files:
     % cp ../../04_vmc/pseudo.dat .
 
 Next, generate an input file `datasfn.input` for the LRDMC calculation:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -g -etry -11.70 -alat -0.20 -steps 1000 -nw 128
 
 Then, run the calculation by typing:
-    
+
 .. code-block:: console
 
     % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
     % turbogenius lrdmc -r
 
 Finally, run the postprocess:
-    
+
 .. code-block:: console
 
     % turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5

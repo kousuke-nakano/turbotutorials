@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quantum Monte Carlo calculations &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=0d42b3ec"></script>
+      <script>window.MathJax = {"loader": {"load": ["[tex]/ams", "[tex]/boldsymbol", "[tex]/tagformat"]}, "tex": {"macros": {"bm": ["\\boldsymbol{#1}", 1]}, "packages": {"[+]": ["ams", "boldsymbol", "tagformat"]}, "tags": "ams"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Wavefunction optimization" href="08optimization.html" />
+    <link rel="prev" title="Wavefunction conversions" href="05conversions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Turbotutorials
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboRVB manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Structure of TurboRVB</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../reference/01wavefunction.html">Wavefunction format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07makefort10.html">Generate a Wavefunction file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04DFT_driver.html">Initializations of Wavefunctions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05conversions.html">Wavefunction conversions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quantum Monte Carlo calculations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#quantum-monte-carlo-kernel-turborvb-x">Quantum Monte Carlo kernel (turborvb.x)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#simulation-section">Simulation section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pseudo-section">Pseudo section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#vmc-section">VMC section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#dmclrdmc-section">DMCLRDMC section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#readio-section">Readio section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#optimization-section">Optimization section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#parameters-section">Parameters section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#fitpar-section">Fitpar section</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#dynamics-section">Dynamics section</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh">How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="08optimization.html">Wavefunction optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/00index.html">TurboRVB tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Turbotutorials</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboRVB manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Structure of TurboRVB</a></li>
+      <li class="breadcrumb-item active">Quantum Monte Carlo calculations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/01turborvb_manual/structure/06qmc_driver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="quantum-monte-carlo-calculations">
+<h1>Quantum Monte Carlo calculations<a class="headerlink" href="#quantum-monte-carlo-calculations" title="Link to this heading"></a></h1>
+<p>We describe input files that control variational and diffusion Monte Carlo simulations.
+TurboRVB input files are built using fortran namelists.
+Keywords are divided in different sections according to their meaning.</p>
+<section id="quantum-monte-carlo-kernel-turborvb-x">
+<h2>Quantum Monte Carlo kernel (turborvb.x)<a class="headerlink" href="#quantum-monte-carlo-kernel-turborvb-x" title="Link to this heading"></a></h2>
+<p>turborvb.x is a binary to run QMC jobs.
+The input parameters are briefly explained as follows.
+See <a class="reference internal" href="../reference/commands/turborvb.html#turborvbtutorial-command-turborvb-x"><span class="std std-ref">Reference section</span></a> for the full description of the parameters.</p>
+<section id="simulation-section">
+<h3>Simulation section<a class="headerlink" href="#simulation-section" title="Link to this heading"></a></h3>
+<p>This section contains general informations necessary to specify the type of run to be carried out.
+In this section it is specified whether we want to perform a wave function optimization or
+production run and using which method (like Variational Monte Carlo (VMC) or Lattice Regularized DMC (LRDMC).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">itestr4</span></code> — Selects the method: VMC <code class="docutils literal notranslate"><span class="pre">2</span></code>; VMCopt with Hessian/SR variants <code class="docutils literal notranslate"><span class="pre">-4</span></code>, <code class="docutils literal notranslate"><span class="pre">-5</span></code>, <code class="docutils literal notranslate"><span class="pre">-8</span></code>, <code class="docutils literal notranslate"><span class="pre">-9</span></code> (subset of parameters vs all parameters); LRDMC <code class="docutils literal notranslate"><span class="pre">-6</span></code>; LRDMCopt <code class="docutils literal notranslate"><span class="pre">-24</span></code>–<code class="docutils literal notranslate"><span class="pre">-29</span></code> (derivatives via LRDMC analogously).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iopt</span></code> — <code class="docutils literal notranslate"><span class="pre">1</span></code> fresh start; <code class="docutils literal notranslate"><span class="pre">0</span></code> continue; <code class="docutils literal notranslate"><span class="pre">2</span></code>/<code class="docutils literal notranslate"><span class="pre">3</span></code> restart optimization from <code class="docutils literal notranslate"><span class="pre">fort.10</span></code> with optional reuse of equilibrated configs / MO projection (see manual for <code class="docutils literal notranslate"><span class="pre">molopt</span></code> coupling).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ngen</span></code> — Number of MC generations / samples; for optimization must match <code class="docutils literal notranslate"><span class="pre">nweight</span></code> constraints in &amp;optimization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nscra</span></code> — Rebuild the determinant from scratch every <code class="docutils literal notranslate"><span class="pre">nscra</span></code> accepted moves to control accumulated update error.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbra</span></code> — VMC: Metropolis steps between energy samples; LRDMC: enables newer branching scheme when <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> (load balancing—should be large enough vs electron count).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nw</span></code> — Number of walkers (default ≈ MPI ranks; must be a multiple of ranks if set).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disk_io</span></code> — <code class="docutils literal notranslate"><span class="pre">default</span></code> / <code class="docutils literal notranslate"><span class="pre">nocont</span></code> / <code class="docutils literal notranslate"><span class="pre">mpiio</span></code>: trade scratch files per rank vs continuation and single-file I/O.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kSq</span></code>, <code class="docutils literal notranslate"><span class="pre">kappar</span></code> — Ewald precision and screening; defaults differ for molecules vs crystals.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iseedr</span></code> — Random seed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freqcheck</span></code> — How often to check error flags.</p></li>
+<li><p>Memory / GPU / ScaLAPACK / developer — <code class="docutils literal notranslate"><span class="pre">membig</span></code>, <code class="docutils literal notranslate"><span class="pre">membigcpu</span></code>, <code class="docutils literal notranslate"><span class="pre">min_block</span></code>, <code class="docutils literal notranslate"><span class="pre">max_target*</span></code>, <code class="docutils literal notranslate"><span class="pre">yesfast</span></code>, <code class="docutils literal notranslate"><span class="pre">ip_reshuff</span></code>, <code class="docutils literal notranslate"><span class="pre">nproc_diag</span></code>, <code class="docutils literal notranslate"><span class="pre">developer</span></code> (several slated to move to a <code class="docutils literal notranslate"><span class="pre">/developer/</span></code> namelist per the manual).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yes_sparse*</span></code>, <code class="docutils literal notranslate"><span class="pre">max_sparse_choice</span></code> — Sparse-matrix path selection (defaults differ DFT vs QMC).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dielectric_*</span></code> — Experimental dielectric model flags (<code class="docutils literal notranslate"><span class="pre">dielectric.f90</span></code>; “not tested” in manual).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">novec_loop1</span></code> — Vectorization toggle for <code class="docutils literal notranslate"><span class="pre">upnewwf</span></code>.</p></li>
+</ul>
+</section>
+<section id="pseudo-section">
+<h3>Pseudo section<a class="headerlink" href="#pseudo-section" title="Link to this heading"></a></h3>
+<p>This block configures nonlocal pseudopotential quadrature: point counts, scaling if the code demands more points, and optional random (Fahy-style) integration mesh for QMC.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nintpsa</span></code> — Integer grid sizes for the pseudo (comma-separated defaults by context in the table).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npsamax</span></code> — Multiplies the number of integration points; increase if the run stops with “Increase npsamax”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pseudorandom</span></code> — Random integration mesh for the pseudo (default <code class="docutils literal notranslate"><span class="pre">.true.</span></code> for QMC, <code class="docutils literal notranslate"><span class="pre">.false.</span></code> for DFT in the table).</p></li>
+</ul>
+</section>
+<section id="vmc-section">
+<h3>VMC section<a class="headerlink" href="#vmc-section" title="Link to this heading"></a></h3>
+<p>This namelist applies to VMC and VMCopt. It controls Metropolis / trial moves (effective time step <code class="docutils literal notranslate"><span class="pre">tstep</span></code>, hopping fraction), numerical regularization of determinants and ratios (<code class="docutils literal notranslate"><span class="pre">epscut</span></code>, <code class="docutils literal notranslate"><span class="pre">epscuttype</span></code>, <code class="docutils literal notranslate"><span class="pre">epstlrat</span></code>, <code class="docutils literal notranslate"><span class="pre">theta_reg</span></code>, <code class="docutils literal notranslate"><span class="pre">epsvar</span></code>), and automatic tuning of <code class="docutils literal notranslate"><span class="pre">epscut</span></code> / <code class="docutils literal notranslate"><span class="pre">tstep</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tstep</span></code> — VMC move size (can be adapted automatically).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hopfraction</span></code> — Fraction of hopping moves in the hybrid MCMC (see <code class="docutils literal notranslate"><span class="pre">hopping</span></code> in source).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epscut</span></code> — Regularization threshold for the determinant; <code class="docutils literal notranslate"><span class="pre">0</span></code> for Jastrow-only optimization without regularization; <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> enables finite-variance forces and energy derivatives (type 2 regularization).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epscuttype</span></code> — Regularization flavor (0 vs 2; others deprecated).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epstlrat</span></code> — Sets <code class="docutils literal notranslate"><span class="pre">epstl</span></code> used in <code class="docutils literal notranslate"><span class="pre">ratio_psi</span></code> precision control.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">change_epscut</span></code>, <code class="docutils literal notranslate"><span class="pre">change_tstep</span></code> — Auto-adjust regularization and time step (defaults differ VMC vs other modes).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsvar</span></code>, <code class="docutils literal notranslate"><span class="pre">theta_reg</span></code> — Precision / stabilization in <code class="docutils literal notranslate"><span class="pre">ratiovar.f90</span></code> (see cited J. Chem. Phys. 2020).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alat2v</span></code>, <code class="docutils literal notranslate"><span class="pre">shift</span></code> — Marked unused / unidentified in the manual.</p></li>
+</ul>
+</section>
+<section id="dmclrdmc-section">
+<h3>DMCLRDMC section<a class="headerlink" href="#dmclrdmc-section" title="Link to this heading"></a></h3>
+<p>This namelist applies to LRDMC and LRDMCopt. It sets the lattice regularization (<code class="docutils literal notranslate"><span class="pre">alat</span></code>, <code class="docutils literal notranslate"><span class="pre">alat2</span></code>, double-grid controls), trial energy (<code class="docutils literal notranslate"><span class="pre">etry</span></code>), localization / fixed-node knobs (<code class="docutils literal notranslate"><span class="pre">npow</span></code>, <code class="docutils literal notranslate"><span class="pre">tstepfn</span></code>, <code class="docutils literal notranslate"><span class="pre">Klrdmc</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">plat</span></code>), branching (<code class="docutils literal notranslate"><span class="pre">tbra</span></code>, <code class="docutils literal notranslate"><span class="pre">nbra</span></code> coupling, <code class="docutils literal notranslate"><span class="pre">optbra</span></code>, <code class="docutils literal notranslate"><span class="pre">rejweight</span></code>, <code class="docutils literal notranslate"><span class="pre">cutreg</span></code>, <code class="docutils literal notranslate"><span class="pre">nw_max</span></code>), spin / regularization variants (<code class="docutils literal notranslate"><span class="pre">typereg</span></code>, <code class="docutils literal notranslate"><span class="pre">novar</span></code>, <code class="docutils literal notranslate"><span class="pre">epscutdmc</span></code>, <code class="docutils literal notranslate"><span class="pre">epstldmc</span></code>), Pathak–Wagner and Moroni/Umrigar style options (<code class="docutils literal notranslate"><span class="pre">true_wagner</span></code>, <code class="docutils literal notranslate"><span class="pre">cutweight</span></code>, <code class="docutils literal notranslate"><span class="pre">nbra_cyrus</span></code>, <code class="docutils literal notranslate"><span class="pre">weight_moroni</span></code>), and several flags left as “unclear” in the manual (<code class="docutils literal notranslate"><span class="pre">better_dmc</span></code>, <code class="docutils literal notranslate"><span class="pre">safelrdmc</span></code>, <code class="docutils literal notranslate"><span class="pre">lrdmc_der</span></code>, etc.—inspect source when needed).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">etry</span></code> — Trial total energy (use prior DFT or VMC estimate).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typereg</span></code> — How spin-flip is treated (e.g. <code class="docutils literal notranslate"><span class="pre">6</span></code> = determinant-only term).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">npow</span></code> — Interpolates fixed-node (<code class="docutils literal notranslate"><span class="pre">0</span></code>) vs local effective Hamiltonian (<code class="docutils literal notranslate"><span class="pre">1</span></code>); default recommended.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tbra</span></code> — Time between branchings; omit when <code class="docutils literal notranslate"><span class="pre">nbra</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> in &amp;simulation (new branching path).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alat</span></code> — Lattice spacing <span class="math notranslate nohighlight">\(a\)</span> of the finest regularization grid (default <span class="math notranslate nohighlight">\(\sim 1/Z_{\max}\)</span>); negative selects single-grid LRDMC for detailed balance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">alat2</span></code> — Double-grid ratio <span class="math notranslate nohighlight">\(a'/a\)</span> (valence vs core regions); <code class="docutils literal notranslate"><span class="pre">0</span></code> = single grid; negative <code class="docutils literal notranslate"><span class="pre">alat</span></code> ⇒ do not set <code class="docutils literal notranslate"><span class="pre">alat2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plat</span></code>, <code class="docutils literal notranslate"><span class="pre">zmin</span></code>, <code class="docutils literal notranslate"><span class="pre">l0_kousuke</span></code>, <code class="docutils literal notranslate"><span class="pre">iesrandoma</span></code> — Double-grid weighting and diffusion randomization (see cited PRB 2020 for <code class="docutils literal notranslate"><span class="pre">l0_kousuke</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tstepfn</span></code> — <code class="docutils literal notranslate"><span class="pre">0</span></code> → fixed-node; <code class="docutils literal notranslate"><span class="pre">1</span></code> → LRDMC reduces to VMC-like behavior.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Klrdmc</span></code> — <span class="math notranslate nohighlight">\(\eta = 1 + K a^2\)</span> parameter in LRDMC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parcutg</span></code> — Energy cutoff regularization (<code class="docutils literal notranslate"><span class="pre">1</span></code> recommended; <code class="docutils literal notranslate"><span class="pre">0</span></code> unbounded energy—now said to work).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rejweight</span></code> — Reject vs rescale walker weights after diffusion (context-dependent best choice).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cutreg</span></code> — Local-energy cutoff (Ry) in DMC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enforce_detailb</span></code> — Force detailed balance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nw_max</span></code> — Cap on walker count.</p></li>
+</ul>
+</section>
+<section id="readio-section">
+<h3>Readio section<a class="headerlink" href="#readio-section" title="Link to this heading"></a></h3>
+<p>This block controls special read modes for analysis (e.g. correlated sampling or correlation functions with <code class="docutils literal notranslate"><span class="pre">readforward</span></code>).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iread</span></code> — Set <code class="docutils literal notranslate"><span class="pre">iread</span> <span class="pre">=</span> <span class="pre">3</span></code> for correlated sampling / readforward workflows described in the manual.</p></li>
+</ul>
+</section>
+<section id="optimization-section">
+<h3>Optimization section<a class="headerlink" href="#optimization-section" title="Link to this heading"></a></h3>
+<p>This namelist is for VMCopt and LRDMCopt. It configures the stochastic reconfiguration / linear method (solver choice <code class="docutils literal notranslate"><span class="pre">kl</span></code>, conjugate-gradient acceleration <code class="docutils literal notranslate"><span class="pre">ncg</span></code>, signal/noise cuts <code class="docutils literal notranslate"><span class="pre">parcutmin</span></code>, <code class="docutils literal notranslate"><span class="pre">npbra</span></code>, <code class="docutils literal notranslate"><span class="pre">parcutpar</span></code>), step sizes (<code class="docutils literal notranslate"><span class="pre">tpar</span></code>, <code class="docutils literal notranslate"><span class="pre">parr</span></code>, <code class="docutils literal notranslate"><span class="pre">epsi</span></code>), binning of samples (<code class="docutils literal notranslate"><span class="pre">nweight</span></code>, <code class="docutils literal notranslate"><span class="pre">nbinr</span></code>, <code class="docutils literal notranslate"><span class="pre">iboot</span></code>), exponent bounds for Jastrow/AGP (<code class="docutils literal notranslate"><span class="pre">minzj</span></code>/<code class="docutils literal notranslate"><span class="pre">maxzj</span></code>, <code class="docutils literal notranslate"><span class="pre">minz</span></code>/<code class="docutils literal notranslate"><span class="pre">maxz</span></code>), optional fixed MO count (<code class="docutils literal notranslate"><span class="pre">molopt</span></code>), path-integral / quantum nuclei (<code class="docutils literal notranslate"><span class="pre">yesquantum</span></code>, <code class="docutils literal notranslate"><span class="pre">nbead</span></code>), ion dynamics during optimization (<code class="docutils literal notranslate"><span class="pre">idyn</span></code>, <code class="docutils literal notranslate"><span class="pre">tion</span></code>, <code class="docutils literal notranslate"><span class="pre">nmore_force</span></code>), signal-to-noise optimization (<code class="docutils literal notranslate"><span class="pre">signalnoise</span></code>), and AGP symmetrization (<code class="docutils literal notranslate"><span class="pre">symmetrizeagp</span></code>).</p>
+<a class="reference internal image-reference" href="../../../_images/VMC_opt.png"><img alt="../../../_images/VMC_opt.png" class="align-center" height="293" src="../../../_images/VMC_opt.png" width="689" />
+</a>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kl</span></code> — Linear-system solver for SR (<code class="docutils literal notranslate"><span class="pre">-7</span></code> required for <code class="docutils literal notranslate"><span class="pre">signalnoise=.true.</span></code>; <code class="docutils literal notranslate"><span class="pre">-6</span></code> alternative for small systems / many samples).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ncg</span></code> — CG acceleration of the linear method (only with <code class="docutils literal notranslate"><span class="pre">itestr4</span> <span class="pre">=</span> <span class="pre">-4,</span> <span class="pre">-8</span></code>); <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">1</span></code> uses multiple on-the-fly gradients.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parcutmin</span></code>, <code class="docutils literal notranslate"><span class="pre">npbra</span></code>, <code class="docutils literal notranslate"><span class="pre">parcutpar</span></code> — Filter gradients by signal/noise when <code class="docutils literal notranslate"><span class="pre">ncg</span> <span class="pre">&gt;</span> <span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">npbra</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tpar</span></code> — Optimization step scale (linear method: <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">1</span></code> for stability; pure SR: tune by hand).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parr</span></code> — Accuracy/stability knob for SR matrix inversion (tighten toward ~0.001 for accurate optimizations).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nweight</span></code>, <code class="docutils literal notranslate"><span class="pre">nbinr</span></code>, <code class="docutils literal notranslate"><span class="pre">iboot</span></code> — Samples per iteration, bins for error bars, and warm-up steps inside a bin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">epsi</span></code> — Cap on relative wavefunction changes <span class="math notranslate nohighlight">\(\Delta\psi/|\psi|\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minzj</span></code>/<code class="docutils literal notranslate"><span class="pre">maxzj</span></code>, <code class="docutils literal notranslate"><span class="pre">minz</span></code>/<code class="docutils literal notranslate"><span class="pre">maxz</span></code> — Allowed exponent ranges for Jastrow / AGP bases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">molopt</span></code> — <code class="docutils literal notranslate"><span class="pre">-1</span></code> = optimize with fixed number of molecular orbitals (requires <code class="docutils literal notranslate"><span class="pre">nmolmax</span></code> in &amp;molecul).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yesquantum</span></code>, <code class="docutils literal notranslate"><span class="pre">nbead</span></code> — Quantum nuclei via path integral (more beads ⇒ smaller Trotter error).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idyn</span></code>, <code class="docutils literal notranslate"><span class="pre">tion</span></code>, <code class="docutils literal notranslate"><span class="pre">nmore_force</span></code> — Ion dynamics coupled to optimization (integrator type, timestep, extra samples on last step).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signalnoise</span></code> — Optimize along maximum signal/noise direction (all parameters, optionally with <code class="docutils literal notranslate"><span class="pre">ieskin</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onebodysz</span></code> — Optimize only the one-body spin Jastrow part.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">symmetrizeagp</span></code> — Re-symmetrize AGP each iteration (default <code class="docutils literal notranslate"><span class="pre">.true.</span></code>).</p></li>
+</ul>
+</section>
+<section id="parameters-section">
+<h3>Parameters section<a class="headerlink" href="#parameters-section" title="Link to this heading"></a></h3>
+<p>This section should be specified for a VMCopt or LRDMCopt run.
+Only <code class="docutils literal notranslate"><span class="pre">ieskin</span></code> should be specified for a VMC or LRDMC run if one wants to compute atomic forces.
+This section describes switches for optimizing wavefunction parameters, the ouput printout and on the measures performed during the MC run. For example, value=0 means do not optimize this type, vice versa (<code class="docutils literal notranslate"><span class="pre">iesd=0</span></code> means that one body and two body Jastrow factors will not be optimized).</p>
+<p>This namelist (&amp;parameters) turns which parts of the wavefunction and cell enter an optimization or measurement run. <code class="docutils literal notranslate"><span class="pre">ies*</span> <span class="pre">=</span> <span class="pre">0</span></code> typically freezes that block; <code class="docutils literal notranslate"><span class="pre">1</span></code> enables optimization. For plain VMC/LRDMC (no opt), mainly <code class="docutils literal notranslate"><span class="pre">ieskin</span></code> matters if you need forces; optional cell dynamics use <code class="docutils literal notranslate"><span class="pre">typedyncell</span></code>, <code class="docutils literal notranslate"><span class="pre">pressfixed</span></code>, <code class="docutils literal notranslate"><span class="pre">fixa</span></code>/<code class="docutils literal notranslate"><span class="pre">fixb</span></code>/<code class="docutils literal notranslate"><span class="pre">fixc</span></code>.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iesd</span></code> — Optimize 1- and 2-body Jastrow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iesinv</span></code> — Optimize spin Jastrow matrix (<code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">0</span></code> ⇒ range via &amp;fitpar <code class="docutils literal notranslate"><span class="pre">rmaxinv</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iesfree</span></code> — Optimize density Jastrow (<code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">0</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">rmaxj</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iessw</span></code> — Optimize AGP matrix on localized basis (<code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">0</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">rmax</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iesm</span></code> — Optimize Jastrow basis exponents and/or contracted coefficients (interaction with <code class="docutils literal notranslate"><span class="pre">itestr4</span></code> and <code class="docutils literal notranslate"><span class="pre">yeszj</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iesup</span></code> — Same idea for determinantal part (<code class="docutils literal notranslate"><span class="pre">yeszagp</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieser</span></code> — <code class="docutils literal notranslate"><span class="pre">1</span></code> = print/measure total energy (no optimization implied).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iesfix</span></code> — <code class="docutils literal notranslate"><span class="pre">1</span></code> = print energy variance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ieskin</span></code> — <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">0</span></code> = compute nuclear forces (and dynamics when <code class="docutils literal notranslate"><span class="pre">idyn</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yeszj</span></code>, <code class="docutils literal notranslate"><span class="pre">yeszagp</span></code> — Force exponent optimization even in Hessian subset modes when <code class="docutils literal notranslate"><span class="pre">iesm</span></code>/<code class="docutils literal notranslate"><span class="pre">iessw</span></code> are on.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real_agp</span></code>, <code class="docutils literal notranslate"><span class="pre">real_contracted</span></code> — For complex WFs, optimize only real parts of AGP or contracted coefficients.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">typedyncell</span></code> — Cell dynamics: NVT, optimize shape at fixed volume, NPT-like variants (see manual for modes 0–3).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pressfixed</span></code> — Target pressure (a.u.) for constant-pressure modes (classical PV term not included).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fixa</span></code>, <code class="docutils literal notranslate"><span class="pre">fixb</span></code>, <code class="docutils literal notranslate"><span class="pre">fixc</span></code> — Freeze individual lattice lengths during dynamics.</p></li>
+</ul>
+</section>
+<section id="fitpar-section">
+<h3>Fitpar section<a class="headerlink" href="#fitpar-section" title="Link to this heading"></a></h3>
+<p>This section describes the details of the locality approximations for reducing the number of parameters.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">iessw</span></code>, <code class="docutils literal notranslate"><span class="pre">iesfree</span></code>, or <code class="docutils literal notranslate"><span class="pre">iesinv</span></code> are negative, this namelist defines spatial cutoffs so only short-range matrix elements are optimized—reducing the effective parameter count (locality approximation).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rmax</span></code> — If <code class="docutils literal notranslate"><span class="pre">iessw</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>: do not optimize AGP elements for interatomic distances beyond <code class="docutils literal notranslate"><span class="pre">rmax</span></code> (<code class="docutils literal notranslate"><span class="pre">0</span></code> ⇒ no interatomic AGP links optimized).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmaxj</span></code> — If <code class="docutils literal notranslate"><span class="pre">iesfree</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>: same for density Jastrow (<code class="docutils literal notranslate"><span class="pre">0</span></code> ⇒ effectively 3-body Jastrow only).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmaxinv</span></code> — If <code class="docutils literal notranslate"><span class="pre">iesinv</span> <span class="pre">&lt;</span> <span class="pre">0</span></code>: same for spin Jastrow.</p></li>
+</ul>
+</section>
+<section id="dynamics-section">
+<h3>Dynamics section<a class="headerlink" href="#dynamics-section" title="Link to this heading"></a></h3>
+<p>This namelist refines thermostats / friction / convergence criteria for ion dynamics used together with &amp;optimization (<code class="docutils literal notranslate"><span class="pre">idyn</span> <span class="pre">&gt;</span> <span class="pre">0</span></code>): temperature, damping, when to accept ion moves after WF optimization, and optional bias corrections.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">temp</span></code> — Temperature (a.u.; negative <code class="docutils literal notranslate"><span class="pre">abs(temp)</span></code> = Kelvin); <code class="docutils literal notranslate"><span class="pre">0</span></code> ⇒ structural (zero-T) optimization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">friction</span></code> — Damping (needed for some Newton-style integrators; can be 0 for <code class="docutils literal notranslate"><span class="pre">idyn=5</span></code> per manual).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iskipdyn</span></code>, <code class="docutils literal notranslate"><span class="pre">maxdev_dyn</span></code> — Periodically check <code class="docutils literal notranslate"><span class="pre">dev_mat</span></code> vs <code class="docutils literal notranslate"><span class="pre">maxdev_dyn</span></code> after <code class="docutils literal notranslate"><span class="pre">iskipdyn</span> <span class="pre">*</span> <span class="pre">nweight</span></code> steps (<code class="docutils literal notranslate"><span class="pre">maxdev_dyn</span></code> noted deprecated).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delta0</span></code> — Scales covariance vs approximate Hessian for <code class="docutils literal notranslate"><span class="pre">idyn=5</span></code>; for other <code class="docutils literal notranslate"><span class="pre">idyn</span></code> acts as correlation-time tuning (defaults try to pick a safe value).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addrognoso</span></code> — For <code class="docutils literal notranslate"><span class="pre">idyn=5</span></code>, remove canonical bias as <code class="docutils literal notranslate"><span class="pre">tion</span> <span class="pre">→</span> <span class="pre">0</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">normcorr</span></code> — Noise correction on forces (often leave at 0 in practice per manual).</p></li>
+</ul>
+</section>
+</section>
+<section id="how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh">
+<h2>How to get energy and forces after a VMC or LRDMC run (forcevmc.sh, forcefn.sh)<a class="headerlink" href="#how-to-get-energy-and-forces-after-a-vmc-or-lrdmc-run-forcevmc-sh-forcefn-sh" title="Link to this heading"></a></h2>
+<p>After a VMC calculation has finished, you can get the total energy
+(i.e., summation of the local energy), i.e.,</p>
+<div class="math notranslate nohighlight">
+\[E_{tot}=\int d {\bf{x}} \pi({\bf{x}}) e_L ({\bf{x}}) \sim \cfrac{1}{M} \sum_{i=1}^{M}e_L(x_i)\]</div>
+<p>by <code class="docutils literal notranslate"><span class="pre">forcevmc.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcevmc.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>wherein 10, 5, and 1 are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy  and its variance is written in <code class="docutils literal notranslate"><span class="pre">pip0.d</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat pip0.d</span>
+
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">1496</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-1.1379192772188327<span class="w">        </span><span class="m">1</span>.7589095174214898E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.7369139136828382E-003<span class="w">   </span><span class="m">2</span>.7618833870090571E-005
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.7510470092362484E-004<span class="w">   </span><span class="m">3</span>.9800256121536918E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">2</span>.6420266523220208<span class="w">       </span><span class="m">0</span>.10738159557488412
+</pre></div>
+</div>
+<p>If you want to calculate forces, put <code class="docutils literal notranslate"><span class="pre">ieskin=1</span></code> in the <code class="docutils literal notranslate"><span class="pre">&amp;parameters</span></code> section.
+you may get <code class="docutils literal notranslate"><span class="pre">forcevmc.dat</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat forces_vmc.dat</span>
+
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">1</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.004763869201490E-003<span class="w">  </span><span class="m">4</span>.997922374161991E-005
+<span class="m">6</span>.273565633363322E-007
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">6</span>.927675852724724E-003<span class="w">  </span><span class="m">4</span>.999242839793062E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.557134685159244<span class="w">       </span><span class="m">7</span>.437283601136703E-005
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.557596141151006<span class="w">       </span><span class="m">7</span>.447559481785158E-005
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-9.229119835232336E-004<span class="w">  </span><span class="m">2</span>.922997214772288E-006
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">2</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w"> </span>-6.004763869201487E-003<span class="w">  </span><span class="m">4</span>.997922374182328E-005
+<span class="m">6</span>.273565633389692E-007
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-6.927675852724721E-003<span class="w">  </span><span class="m">4</span>.999242839840503E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w"> </span>-0.557134685159244<span class="w">       </span><span class="m">7</span>.437283601136703E-005
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.557596141151006<span class="w">       </span><span class="m">7</span>.447559481785158E-005
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">9</span>.229119835232336E-004<span class="w">  </span><span class="m">2</span>.922997214772288E-006
+Force<span class="w"> </span>component<span class="w"> </span><span class="m">3</span>
+<span class="nv">Force</span><span class="w">   </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.200952773851219E-002<span class="w">  </span><span class="m">9</span>.995844747822329E-005
+<span class="m">1</span>.254713126751116E-006
+Der<span class="w"> </span><span class="nv">Eloc</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.385535170544853E-002<span class="w">  </span><span class="m">9</span>.998485679843661E-005
+&lt;OH&gt;<span class="w"> </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.11426937031852<span class="w">       </span><span class="m">1</span>.487456727691242E-004
+&lt;O&gt;&lt;H&gt;<span class="w"> </span><span class="o">=</span><span class="w">  </span>-1.11519228230199<span class="w">       </span><span class="m">1</span>.489511903810635E-004
+<span class="m">2</span>*<span class="o">(</span>&lt;OH&gt;<span class="w"> </span>-<span class="w"> </span>&lt;O&gt;&lt;H&gt;<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1.845823966936333E-003<span class="w">  </span><span class="m">5</span>.845994429761913E-006
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">Force</span></code> are total forces, <code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> are Hellman-Feyman contributions, and <code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> are Pulay contributions. In detail,</p>
+<div class="math notranslate nohighlight">
+\[F_{\alpha} = - \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L} - 2 \left(\braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} - \braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)}\right),\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is the Jacobian of the <a class="reference external" href="https://doi.org/10.1063/1.3516208">warp transformation</a> if it is employed:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\bm {r}_i} = \bm{r}_i + \Delta \bm{R}_{a}\omega_{a} \left({\bm{r}_i} \right), {\rm{where}} ,\,\ \omega_{a} = \cfrac{F \left( |\bm{r}-\bm{R_{a}}| \right)}{\sum_{M}^{b=1} F \left( |\bm{r}-\bm{R_{b}}| \right)}.\]</div>
+<p>Indeed,</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Der</span> <span class="pre">Eloc</span></code> corresponds to <span class="math notranslate nohighlight">\(- \braket{\cfrac{d}{d{\bf R}_{\alpha}}E_L}\)</span>, and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2*(&lt;OH&gt;</span> <span class="pre">-</span> <span class="pre">&lt;O&gt;&lt;H&gt;)</span></code> corresponds to <span class="math notranslate nohighlight">\(2 \left(\braket{E_L} \cdot \braket{\cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \braket{E_L \cdot \cfrac{d}{d{\bf R}_{\alpha}} \log (J^{1/2} \Psi)} \right)\)</span>.</p></li>
+</ul>
+</div></blockquote>
+<p>Note that the obtained force is the sum of force components when you specify the symmetry, i.e.,
+<code class="docutils literal notranslate"><span class="pre">Force</span></code> = <span class="math notranslate nohighlight">\(F_{1,x} + F_{2,z}\)</span> for:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Constraints for forces: ion - coordinate</span>
+           <span class="mi">2</span>      <span class="mi">1</span>      <span class="mi">1</span>      <span class="mi">2</span>      <span class="mi">3</span>
+</pre></div>
+</div>
+<p>By the way, local energies, it derivatives, ... etc are saved in <code class="docutils literal notranslate"><span class="pre">fort.12</span></code>.
+This is a binary file. So, if you want to see it, please use the following python code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>scipy.io<span class="w"> </span>import<span class="w"> </span>FortranFile
+import<span class="w"> </span>numpy<span class="w"> </span>as<span class="w"> </span>np
+
+<span class="c1"># check length of fort.12</span>
+<span class="nv">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FortranFile<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">)</span>
+<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f.read_reals<span class="o">(</span><span class="nv">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="o">)</span>
+<span class="nv">column_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>len<span class="o">(</span>a<span class="o">)</span>
+f.close<span class="o">()</span>
+
+<span class="c1"># start reading fort.12</span>
+<span class="nv">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;head&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;tail&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.dtype<span class="o">([</span>head,<span class="w"> </span><span class="o">(</span><span class="s2">&quot;a&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;{}d&quot;</span>.format<span class="o">(</span>column_length<span class="o">))</span>,<span class="w"> </span>tail<span class="o">])</span>
+<span class="nv">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>open<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s2">&quot;r&quot;</span><span class="o">)</span>
+<span class="nv">fort12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.fromfile<span class="o">(</span>fd,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>dt,<span class="w"> </span><span class="nv">count</span><span class="o">=</span>-1<span class="o">)</span>
+<span class="nv">data_length</span><span class="o">=</span>len<span class="o">(</span>fort12<span class="o">)</span>
+fd.close<span class="o">()</span>
+<span class="c1"># end reading fort.12</span>
+
+print<span class="o">(</span>fort12<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10</span>
+&gt;&gt;&gt;<span class="w"> </span>fort12
+array<span class="o">([(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.23924971,<span class="w"> </span>-11.23924971,<span class="w"> </span><span class="m">126</span>.32073395<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.4465321<span class="w"> </span>,<span class="w"> </span>-11.4465321<span class="w"> </span>,<span class="w"> </span><span class="m">131</span>.02309712<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.25058355,<span class="w"> </span>-11.25058355,<span class="w"> </span><span class="m">126</span>.57563015<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.88021352,<span class="w"> </span>-11.88021352,<span class="w"> </span><span class="m">141</span>.13947319<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.89686295,<span class="w"> </span>-10.89686295,<span class="w"> </span><span class="m">118</span>.74162225<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.8906161<span class="w"> </span>,<span class="w"> </span>-11.8906161<span class="w"> </span>,<span class="w"> </span><span class="m">141</span>.38675112<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.50040878,<span class="w"> </span>-10.50040878,<span class="w"> </span><span class="m">110</span>.25858451<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.85804034,<span class="w"> </span>-10.85804034,<span class="w"> </span><span class="m">117</span>.89704005<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-11.3042634<span class="w"> </span>,<span class="w"> </span>-11.3042634<span class="w"> </span>,<span class="w"> </span><span class="m">127</span>.78637111<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)</span>,
+<span class="w">    </span><span class="o">(</span><span class="m">40</span>,<span class="w"> </span><span class="o">[</span><span class="w">  </span><span class="m">1</span>.<span class="w">        </span>,<span class="w">   </span><span class="m">1</span>.<span class="w">        </span>,<span class="w"> </span>-10.86745849,<span class="w"> </span>-10.86745849,<span class="w"> </span><span class="m">118</span>.10165397<span class="o">]</span>,<span class="w"> </span><span class="m">40</span><span class="o">)]</span>,
+<span class="w">    </span><span class="nv">dtype</span><span class="o">=[(</span><span class="s1">&#39;head&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;i4&#39;</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span><span class="s1">&#39;a&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;f8&#39;</span>,<span class="w"> </span><span class="o">(</span><span class="m">5</span>,<span class="o">))</span>,<span class="w"> </span><span class="o">(</span><span class="s1">&#39;tail&#39;</span>,<span class="w"> </span><span class="s1">&#39;&lt;i4&#39;</span><span class="o">)])</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10, ieskin=1 (force)</span>
+&gt;&gt;&gt;<span class="w"> </span>print<span class="o">(</span>fort12<span class="o">)</span>
+<span class="o">[(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.11415166e+01,<span class="w"> </span>-1.11415166e+01,<span class="w"> </span>-6.76788096e-02,<span class="w"> </span>-3.24756797e-01,<span class="w">  </span><span class="m">7</span>.54044578e-01,<span class="w">  </span><span class="m">1</span>.24133391e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.03517873e+01,<span class="w"> </span>-1.03517873e+01,<span class="w"> </span>-6.11591170e-01,<span class="w"> </span>-1.58829951e-01,<span class="w">  </span><span class="m">6</span>.33106171e+00,<span class="w">  </span><span class="m">1</span>.07159501e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10816574e+01,<span class="w"> </span>-1.10816574e+01,<span class="w"> </span>-9.54555883e-02,<span class="w"> </span>-1.03302282e-01,<span class="w">  </span><span class="m">1</span>.05780612e+00,<span class="w">  </span><span class="m">1</span>.22803130e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10699873e+01,<span class="w"> </span>-1.10699873e+01,<span class="w"> </span>-4.56617640e-01,<span class="w"> </span>-5.06874793e-02,<span class="w">  </span><span class="m">5</span>.05475147e+00,<span class="w">  </span><span class="m">1</span>.22544618e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.11472251e+01,<span class="w"> </span>-1.11472251e+01,<span class="w"> </span>-2.66696199e-01,<span class="w"> </span>-6.23362748e-02,<span class="w">  </span><span class="m">2</span>.97292255e+00,<span class="w">  </span><span class="m">1</span>.24260627e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.12157075e+01,<span class="w"> </span>-1.12157075e+01,<span class="w">  </span><span class="m">1</span>.11745432e-01,<span class="w"> </span>-4.24133841e-02,<span class="w"> </span>-1.25330408e+00,<span class="w">  </span><span class="m">1</span>.25792096e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.21590572e+01,<span class="w"> </span>-1.21590572e+01,<span class="w">  </span><span class="m">7</span>.54759031e-02,<span class="w"> </span>-1.60694240e-01,<span class="w"> </span>-9.17715821e-01,<span class="w">  </span><span class="m">1</span>.47842672e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.06346744e+01,<span class="w"> </span>-1.06346744e+01,<span class="w">  </span><span class="m">1</span>.97122176e-03,<span class="w"> </span>-8.72304548e-01,<span class="w"> </span>-2.09633016e-02,<span class="w">  </span><span class="m">1</span>.13096300e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.09934275e+01,<span class="w"> </span>-1.09934275e+01,<span class="w">  </span><span class="m">4</span>.44874974e-01,<span class="w">  </span><span class="m">5</span>.13646778e-01,<span class="w"> </span>-4.89070079e+00,<span class="w">  </span><span class="m">1</span>.20855449e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)</span>
+<span class="o">(</span><span class="m">64</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00000000e+00,<span class="w">  </span><span class="m">1</span>.00000000e+00,<span class="w"> </span>-1.10323163e+01,<span class="w"> </span>-1.10323163e+01,<span class="w"> </span>-8.96736584e-02,<span class="w">  </span><span class="m">3</span>.65895834e-02,<span class="w">  </span><span class="m">9</span>.89308167e-01,<span class="w">  </span><span class="m">1</span>.21712004e+02<span class="o">]</span>,<span class="w"> </span><span class="m">64</span><span class="o">)]</span>
+</pre></div>
+</div>
+<p>It is a similar procedure in a LRDMC calculation. After a LRDMC calculation has finished, you can get the total energy by <code class="docutils literal notranslate"><span class="pre">forcefn.sh</span></code> script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>forcefn.sh<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>wherein <code class="docutils literal notranslate"><span class="pre">10</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, and <code class="docutils literal notranslate"><span class="pre">1</span></code> are <code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code>, <code class="docutils literal notranslate"><span class="pre">correcting</span> <span class="pre">factor</span></code> (i.e., <span class="math notranslate nohighlight">\(p\)</span> in the above expression), <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">discarded</span> <span class="pre">bins</span></code> (i.e., the number of warm-up steps is <code class="docutils literal notranslate"><span class="pre">4</span></code>), and <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">ratio</span> <span class="pre">of</span> <span class="pre">Pulay</span> <span class="pre">force</span></code> (1 is ok), respectively. A reblocked total energy and its variance is written in pip0_fn.d.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>pip0_fn.d
+number<span class="w"> </span>of<span class="w"> </span>bins<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">        </span><span class="m">1201</span>
+<span class="nv">Energy</span><span class="w"> </span><span class="o">=</span><span class="w">  </span>-11.0854289356563<span class="w">       </span><span class="m">1</span>.239503202184784E-004
+Variance<span class="w"> </span><span class="nv">square</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.126708380716482<span class="w">       </span><span class="m">1</span>.148750765092961E-003
+Est.<span class="w"> </span>energy<span class="w"> </span>error<span class="w"> </span><span class="nv">bar</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="m">1</span>.234807072779590E-004<span class="w">  </span><span class="m">2</span>.503947626011507E-006
+Est.<span class="w"> </span>corr.<span class="w"> </span><span class="nb">time</span><span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">1</span>.85075908836029<span class="w">       </span><span class="m">7</span>.596952532743223E-002
+Energy<span class="w"> </span><span class="o">(</span>ave<span class="o">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-11.0854159959592<span class="w"> </span><span class="m">1</span>.144905833254917E-004
+</pre></div>
+</div>
+<p>In detail, local energies, it derivatives, ... etc are saved in <code class="docutils literal notranslate"><span class="pre">fort.12</span></code>.
+This is a binary file. So, if you want to see it, please use the following python code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>from<span class="w"> </span>scipy.io<span class="w"> </span>import<span class="w"> </span>FortranFile
+import<span class="w"> </span>numpy<span class="w"> </span>as<span class="w"> </span>np
+
+<span class="c1"># check length of fort.12</span>
+<span class="nv">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>FortranFile<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s1">&#39;r&#39;</span><span class="o">)</span>
+<span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>f.read_reals<span class="o">(</span><span class="nv">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="o">)</span>
+<span class="nv">column_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>len<span class="o">(</span>a<span class="o">)</span>
+f.close<span class="o">()</span>
+
+<span class="c1"># start reading fort.12</span>
+<span class="nv">head</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;head&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">tail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span><span class="s2">&quot;tail&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;i&quot;</span><span class="o">)</span>
+<span class="nv">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.dtype<span class="o">([</span>head,<span class="w"> </span><span class="o">(</span><span class="s2">&quot;a&quot;</span>,<span class="w"> </span><span class="s2">&quot;&lt;{}d&quot;</span>.format<span class="o">(</span>column_length<span class="o">))</span>,<span class="w"> </span>tail<span class="o">])</span>
+<span class="nv">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>open<span class="o">(</span><span class="s1">&#39;fort.12&#39;</span>,<span class="w"> </span><span class="s2">&quot;r&quot;</span><span class="o">)</span>
+<span class="nv">fort12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>np.fromfile<span class="o">(</span>fd,<span class="w"> </span><span class="nv">dtype</span><span class="o">=</span>dt,<span class="w"> </span><span class="nv">count</span><span class="o">=</span>-1<span class="o">)</span>
+<span class="nv">data_length</span><span class="o">=</span>len<span class="o">(</span>fort12<span class="o">)</span>
+fd.close<span class="o">()</span>
+<span class="c1"># end reading fort.12</span>
+
+print<span class="o">(</span>fort12<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># for ngen=10</span>
+<span class="o">[(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.86170773e-01,<span class="w">  </span><span class="m">4</span>.99135464e-02,<span class="w">  </span><span class="m">9</span>.86170773e-01,<span class="w"> </span>-1.10385005e+01,<span class="w"> </span>-1.10168388e+01,<span class="w">  </span><span class="m">1</span>.15291960e+01,<span class="w">  </span><span class="m">8</span>.81420567e-01,<span class="w">  </span><span class="m">6</span>.98486471e-01,<span class="w">  </span><span class="m">2</span>.36894962e+01,<span class="w">  </span><span class="m">2</span>.43879827e+01,<span class="w">  </span><span class="m">1</span>.21370738e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.98338830e-01,<span class="w">  </span><span class="m">4</span>.99721051e-02,<span class="w">  </span><span class="m">9</span>.98338830e-01,<span class="w"> </span>-1.10927678e+01,<span class="w"> </span>-1.09222941e+01,<span class="w">  </span><span class="m">1</span>.19273579e+01,<span class="w">  </span><span class="m">8</span>.78528014e-01,<span class="w">  </span><span class="m">3</span>.38981825e+00,<span class="w">  </span><span class="m">2</span>.41699956e+01,<span class="w">  </span><span class="m">2</span>.75598139e+01,<span class="w">  </span><span class="m">1</span>.19296508e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00471589e+00,<span class="w">  </span><span class="m">4</span>.99333686e-02,<span class="w">  </span><span class="m">1</span>.00471589e+00,<span class="w"> </span>-1.10613899e+01,<span class="w"> </span>-1.12830842e+01,<span class="w">  </span><span class="m">1</span>.13634444e+01,<span class="w">  </span><span class="m">8</span>.85749131e-01,<span class="w">  </span><span class="m">1</span>.00489789e+00,<span class="w">  </span><span class="m">1</span>.45340719e+01,<span class="w">  </span><span class="m">1</span>.55389698e+01,<span class="w">  </span><span class="m">1</span>.27307988e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.01299329e+00,<span class="w">  </span><span class="m">5</span>.05361181e-02,<span class="w">  </span><span class="m">1</span>.01299329e+00,<span class="w"> </span>-1.11285545e+01,<span class="w"> </span>-1.09451392e+01,<span class="w">  </span><span class="m">7</span>.04597311e+00,<span class="w">  </span><span class="m">9</span>.31592950e-01,<span class="w">  </span><span class="m">7</span>.90368785e-01,<span class="w">  </span><span class="m">1</span>.20981738e+01,<span class="w">  </span><span class="m">1</span>.28885425e+01,<span class="w">  </span><span class="m">1</span>.19796072e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00768515e+00,<span class="w">  </span><span class="m">5</span>.01575002e-02,<span class="w">  </span><span class="m">1</span>.00768515e+00,<span class="w"> </span>-1.10766102e+01,<span class="w"> </span>-1.10519487e+01,<span class="w">  </span><span class="m">6</span>.23060416e+00,<span class="w">  </span><span class="m">9</span>.38800823e-01,<span class="w">  </span><span class="m">3</span>.91804603e-01,<span class="w">  </span><span class="m">1</span>.15920122e+01,<span class="w">  </span><span class="m">1</span>.19838168e+01,<span class="w">  </span><span class="m">1</span>.22145570e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00453664e+00,<span class="w">  </span><span class="m">5</span>.01341628e-02,<span class="w">  </span><span class="m">1</span>.00453664e+00,<span class="w"> </span>-1.10452450e+01,<span class="w"> </span>-1.11455370e+01,<span class="w">  </span><span class="m">6</span>.20564485e+00,<span class="w">  </span><span class="m">9</span>.37336722e-01,<span class="w">  </span><span class="m">1</span>.41905072e-01,<span class="w">  </span><span class="m">1</span>.17873053e+01,<span class="w">  </span><span class="m">1</span>.19292104e+01,<span class="w">  </span><span class="m">1</span>.24222994e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00089023e+00,<span class="w">  </span><span class="m">5</span>.01634269e-02,<span class="w">  </span><span class="m">1</span>.00089023e+00,<span class="w"> </span>-1.10088733e+01,<span class="w"> </span>-1.08850832e+01,<span class="w">  </span><span class="m">7</span>.46071511e+00,<span class="w">  </span><span class="m">9</span>.24659908e-01,<span class="w">  </span><span class="m">8</span>.62370954e-01,<span class="w">  </span><span class="m">1</span>.72063107e+01,<span class="w">  </span><span class="m">1</span>.80686817e+01,<span class="w">  </span><span class="m">1</span>.18485037e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.75216423e-01,<span class="w">  </span><span class="m">4</span>.94485892e-02,<span class="w">  </span><span class="m">9</span>.75216423e-01,<span class="w"> </span>-1.07494006e+01,<span class="w"> </span>-1.07035718e+01,<span class="w">  </span><span class="m">1</span>.08297761e+01,<span class="w">  </span><span class="m">8</span>.93990117e-01,<span class="w">  </span><span class="m">1</span>.53318195e+00,<span class="w">  </span><span class="m">2</span>.25737265e+01,<span class="w">  </span><span class="m">2</span>.41069084e+01,<span class="w">  </span><span class="m">1</span>.14566449e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">1</span>.00020845e+00,<span class="w">  </span><span class="m">5</span>.00654152e-02,<span class="w">  </span><span class="m">1</span>.00020845e+00,<span class="w"> </span>-1.10020818e+01,<span class="w"> </span>-1.09391772e+01,<span class="w">  </span><span class="m">9</span>.92690439e+00,<span class="w">  </span><span class="m">8</span>.99350239e-01,<span class="w">  </span><span class="m">2</span>.44630615e-01,<span class="w">  </span><span class="m">1</span>.76602181e+01,<span class="w">  </span><span class="m">1</span>.79048487e+01,<span class="w">  </span><span class="m">1</span>.19665598e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)</span>
+<span class="o">(</span><span class="m">88</span>,<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="m">9</span>.98680471e-01,<span class="w">  </span><span class="m">4</span>.99068560e-02,<span class="w">  </span><span class="m">9</span>.98680471e-01,<span class="w"> </span>-1.09867801e+01,<span class="w"> </span>-1.11478923e+01,<span class="w">  </span><span class="m">1</span>.14530815e+01,<span class="w">  </span><span class="m">9</span>.02006051e-01,<span class="w">  </span><span class="m">5</span>.49970529e+00,<span class="w">  </span><span class="m">1</span>.87028590e+01,<span class="w">  </span><span class="m">2</span>.42025643e+01,<span class="w">  </span><span class="m">1</span>.24275504e+02<span class="o">]</span>,<span class="w"> </span><span class="m">88</span><span class="o">)]</span>
+</pre></div>
+</div>
+<p>When you do LRDMC calculations with several <span class="math notranslate nohighlight">\(a\)</span>, extrapolation <span class="math notranslate nohighlight">\(a \rightarrow 0\)</span> by <code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
+<span class="c1"># 2=(up to a^4) number of data 4 1</span>
+<span class="m">2</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-11.0850188375511<span class="w"> </span><span class="m">1</span>.250592379643920E-004
+<span class="m">0</span>.20<span class="w"> </span>-11.0854289356563<span class="w"> </span><span class="m">1</span>.239503202184784E-004
+<span class="m">0</span>.30<span class="w"> </span>-11.0855955871707<span class="w"> </span><span class="m">1</span>.334024389855123E-004
+<span class="m">0</span>.40<span class="w"> </span>-11.0860656088368<span class="w"> </span><span class="m">1</span>.279739901272860E-004
+<span class="m">0</span>.50<span class="w"> </span>-11.0868942724581<span class="w"> </span><span class="m">1</span>.340429878094154E-004
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>cat<span class="w"> </span>evsa.out
+Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">3</span>.24139195024559
+Coefficient<span class="w"> </span>found
+<span class="m">1</span><span class="w">  </span>-11.0529822174764<span class="w">       </span><span class="m">1</span>.886835280808058E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="m">2</span><span class="w"> </span>-3.752828455181791E-003<span class="w">  </span><span class="m">3</span>.868657694133935E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+<span class="m">3</span><span class="w"> </span>-2.343738962778753E-002<span class="w">  </span><span class="m">1</span>.487080872118977E-002<span class="w">  </span>&lt;-<span class="w"> </span>k_2
+</pre></div>
+</div>
+</section>
+<section id="extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x">
+<h2>Extrapolation of LRDMC energies with respect to the lattice space (funvsa.x)<a class="headerlink" href="#extrapolation-of-lrdmc-energies-with-respect-to-the-lattice-space-funvsa-x" title="Link to this heading"></a></h2>
+<p>Please collect all LRDMC energies into <code class="docutils literal notranslate"><span class="pre">evsa.in</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
+<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
+<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
+</pre></div>
+</div>
+<p>wherein</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># See. Readme of funvsa.x in detail.</span>
+<span class="c1"># 2  number of data 4 1</span>
+<span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>for a quadratic fitting i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2 + k_{2} \cdots a^4\)</span> and</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># alat    LRDMC energy            Its error bar</span>
+<span class="w">  </span><span class="m">0</span>.10<span class="w">    </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> is a tool for a quadratic fitting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<p>You can see</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">   </span><span class="m">0</span>.876592055494152
+Coefficient<span class="w"> </span>found
+<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13803097957683<span class="w">       </span><span class="m">1</span>.045060026486010E-004<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="w"> </span><span class="m">2</span><span class="w"> </span>-1.039867020790643E-003<span class="w">  </span><span class="m">1</span>.780475364652620E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+<span class="w"> </span><span class="m">3</span><span class="w">  </span><span class="m">4</span>.237124912102820E-003<span class="w">  </span><span class="m">4</span>.688879337831868E-003<span class="w">  </span>&lt;-<span class="w"> </span>k_2
+</pre></div>
+</div>
+<p>If you want to do a linear fitting, i.e, i.e., <span class="math notranslate nohighlight">\(E(a)=E(0) + k_{1} \cdots a^2\)</span>, put evsa.in</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">1</span>
+<span class="m">0</span>.10<span class="w"> </span>-1.13810148463746<span class="w">       </span><span class="m">1</span>.081107885639917E-004
+<span class="m">0</span>.20<span class="w"> </span>-1.13799520203238<span class="w">       </span><span class="m">9</span>.985034545291718E-005
+<span class="m">0</span>.40<span class="w"> </span>-1.13811591303364<span class="w">       </span><span class="m">1</span>.092139729594029E-004
+<span class="m">0</span>.60<span class="w"> </span>-1.13785055959330<span class="w">       </span><span class="m">1</span>.244613258193110E-004
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">funvsa.x</span></code> can also do a linear fitting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>funvsa.x<span class="w"> </span>&lt;<span class="w"> </span>evsa.in<span class="w"> </span>&gt;<span class="w"> </span>evsa.out
+</pre></div>
+</div>
+<p>Check evsa.out</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Reduced<span class="w"> </span>chi^2<span class="w">  </span><span class="o">=</span><span class="w">  </span><span class="m">0</span>.873603895738953
+Coefficient<span class="w"> </span>found
+<span class="w"> </span><span class="m">1</span><span class="w">  </span>-1.13808947524004<span class="w">       </span><span class="m">8</span>.025420272361147E-005<span class="w">  </span>&lt;-<span class="w"> </span>E_0
+<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="m">5</span>.210500236482952E-004<span class="w">  </span><span class="m">4</span>.472096760481409E-004<span class="w">  </span>&lt;-<span class="w"> </span>k_1
+</pre></div>
+</div>
+<p>Thus, we get <span class="math notranslate nohighlight">\(E(a \to 0)\)</span> = -1.13808(8) Ha.</p>
+</section>
+<section id="how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x">
+<h2>How to average variational parameters after a VMCopt or LRDMCopt run (readalles.x)<a class="headerlink" href="#how-to-average-variational-parameters-after-a-vmcopt-or-lrdmcopt-run-readalles-x" title="Link to this heading"></a></h2>
+<p>You can confirm energy convergence by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_Energy.sh<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Alternatively, you may check the convergence using row data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>New<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Next, check the convergence of devmax by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%plot_devmax.sh<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Alternatively, you may check the convergence using row data:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%grep<span class="w"> </span>devmax<span class="w"> </span>out_min
+</pre></div>
+</div>
+<p>Next step is to average optimized variational parameters.
+First of all, you can check variational parameters v.s. optimization step:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%readalles.x
+bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1</span>
+number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
+<span class="m">0</span>
+max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
+<span class="m">1000</span>
+</pre></div>
+</div>
+<p>Here:</p>
+<p><code class="docutils literal notranslate"><span class="pre">bin</span> <span class="pre">length</span></code> is the number of steps per bin.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ibinit</span></code> is the number of disregarded steps for averaging, i.e, , 1 to (<code class="docutils literal notranslate"><span class="pre">ibinit</span></code> - 1) steps are discarded, and remaining steps starting from <code class="docutils literal notranslate"><span class="pre">ibinit</span></code> are averaged. This is used at the next step.</p>
+<p><code class="docutils literal notranslate"><span class="pre">write</span> <span class="pre">fort.10</span> <span class="pre">(0/1)</span></code> indicates whether the averaged variational parameters is written to fort.10.</p>
+<p><code class="docutils literal notranslate"><span class="pre">draw</span> <span class="pre">(0/1)</span></code> plot optimized parameters using gnuplot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">ind</span> <span class="pre">par</span></code> is the number of the parameters plotted using gnuplot.</p>
+<p>You may know the number of steps that required to obtain converged parameters (e.g, 201-).
+Since QMC calculations always suffers from statistical noises, the variational parameters also fluctuate.
+Therefore, one should average the optimized variational parameters in the converged region (e.g, 201-300).
+The average can be also done by <cite>readalles.x</cite> module.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>%<span class="w"> </span>readalles.x
+bin<span class="w"> </span>length,<span class="w"> </span>ibinit,<span class="w"> </span>write<span class="w"> </span>fort.10<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span>,<span class="w"> </span>draw<span class="w"> </span><span class="o">(</span><span class="m">0</span>/1<span class="o">)</span><span class="w"> </span>?
+<span class="m">1</span><span class="w"> </span><span class="m">201</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+number<span class="w"> </span>of<span class="w"> </span>generations<span class="w"> </span>from<span class="w"> </span>standard<span class="w"> </span>input?<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w">  </span>yes,<span class="w"> </span><span class="m">0</span><span class="w"> </span>no<span class="o">)</span>
+<span class="m">0</span>
+max<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>ind<span class="w"> </span>par<span class="w">  </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>part<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>wf
+<span class="m">1000</span>
+
+...
+
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">290</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">291</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">292</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">293</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">294</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">295</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">296</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">297</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">298</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">299</span>
+record<span class="w"> </span><span class="nb">read</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">300</span>
+number<span class="w"> </span>of<span class="w"> </span>measures<span class="w"> </span><span class="k">done</span><span class="w"> </span><span class="o">=</span><span class="w">         </span><span class="m">100</span><span class="w">  </span>&lt;-<span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>averaged<span class="w"> </span>steps
+</pre></div>
+</div>
+<p>Thus, variational parameters will be averaged over the remaining last 100 steps.
+<code class="docutils literal notranslate"><span class="pre">readalles.x</span></code> writes the averaged variational parameters in the end of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># fort.10</span>
+
+...
+<span class="c1"># new parameters</span>
+<span class="m">0</span>.290626442260694E+00<span class="w">   </span><span class="m">0</span>.108521356525542E+01<span class="w">  </span>-0.301131622319121E+00<span class="w">  </span>-0.102380295055131E+01<span class="w">   </span><span class="m">0</span>.229700639835700E+01<span class="w">  </span>-0.220409737565913E-02<span class="w">  </span>-0.609584028614942E-02<span class="w">   </span><span class="m">0</span>.272306548035257E-01<span class="w">   </span><span class="m">0</span>.734700209267177E-01<span class="w">  </span>-0.182065664321832E-01<span class="w">   </span><span class="m">0</span>.453293541473009E+00<span class="w">   </span><span class="m">0</span>.164648614827512E+00<span class="w">   </span><span class="m">0</span>.173486608007203E-02<span class="w">   </span><span class="m">0</span>.583308470999047E-02<span class="w">  </span>-0.188429085081367E-01<span class="w">   </span><span class="m">0</span>.248889135790375E-01<span class="w">  </span>-0.138300779564990E+00<span class="w">   </span><span class="m">0</span>.440777377680407E+00<span class="w">  </span>-0.134604374717883E+01<span class="w">  </span>-0.707524794465785E-03<span class="w">   </span><span class="m">0</span>.780729515612661E-03<span class="w">  </span>-0.151361566539925E-01<span class="w">  </span>-0.522035153211261E-01<span class="w">   </span><span class="m">0</span>.366708625842555E-01<span class="w">  </span>-0.175477073796467E+00<span class="w">   </span><span class="m">0</span>.211200067156240E+00<span class="w">   </span><span class="m">0</span>.925206078797516E-03<span class="w">   </span><span class="m">0</span>.334330184442289E-02<span class="w">  </span>-0.556589712590827E-02<span class="w">   </span><span class="m">0</span>.324861920952639E-01<span class="w">   </span><span class="m">0</span>.941094689163063E-01<span class="w">  </span>-0.387403732714091E+01<span class="w">  </span>-0.872987341975953E+01<span class="w">  </span>-0.489666531788676E-01<span class="w">   </span><span class="m">0</span>.509954432475785E-01<span class="w">  </span>-0.151442414
+</pre></div>
+</div>
+<p>The next step is to write the optimized parameters. Run a dummy VMCopt/LRDMCopt calculation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>./datasmin.input<span class="w"> </span>ave.in
+</pre></div>
+</div>
+<p>You must rewrite value of <code class="docutils literal notranslate"><span class="pre">ngen</span></code> in <code class="docutils literal notranslate"><span class="pre">ave.in</span></code> as <code class="docutils literal notranslate"><span class="pre">ngen</span> <span class="pre">=</span> <span class="pre">1</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">ngen</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Next, replace the following line of <code class="docutils literal notranslate"><span class="pre">fort.10</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
+<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># unconstrained iesfree,iessw,ieskinr,I/O flag</span>
+<span class="w">     </span><span class="m">435</span><span class="w">         </span><span class="m">466</span><span class="w">           </span><span class="m">6</span><span class="w">           </span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">I/O</span> <span class="pre">flag</span></code> is changed to <code class="docutils literal notranslate"><span class="pre">1</span></code>, which allows us to write the optimized variational parameters.</p>
+<p>Run the dummy VMCopt/LRDMCopt calculation by typing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>turborvb-serial.x<span class="w"> </span>&lt;<span class="w"> </span>ave.in<span class="w"> </span>&gt;<span class="w"> </span>out_ave
+</pre></div>
+</div>
+<p>If you do a twist-averaged calculation, you should copy the averaged Jastrow parameters for all the k point files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>turborvb.scratch
+cp<span class="w"> </span>../fort.10<span class="w"> </span>./
+cp<span class="w"> </span>../fort.10<span class="w"> </span>./fort.10_new
+copyjas.x<span class="w"> </span>kpoints
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="05conversions.html" class="btn btn-neutral float-left" title="Wavefunction conversions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="08optimization.html" class="btn btn-neutral float-right" title="Wavefunction optimization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Kosuke Nakano (SISSA/JAIST) and collaborators..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
