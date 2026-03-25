@@ -29,7 +29,7 @@ From the obtained wavefunction file ``fort.10``, we will construct the *hybrid o
 Based on physical considerations, assign **four** hybrid orbitals to each carbon and **one** hybrid orbital to each hydrogen using:
 
 .. code-block:: console
-   
+
    % cd 10_hybrid_orbitals
    % cp ../04_vmc/fort.10 .
    % cp ../04_vmc/pseudo.dat .
@@ -41,7 +41,7 @@ This projects the wavefunction onto an **AGP** (Antisymmetrized Geminal Power) f
 
    % turbogenius plotorb
 
-The obtained hybrid orbitals are visualized in **XSF** format, which can be visualized with **VESTA**. 
+The obtained hybrid orbitals are visualized in **XSF** format, which can be visualized with **VESTA**.
 
 .. image:: image/orbital_atom_1_hyb_2.jpg
    :width: 70%
@@ -81,7 +81,7 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
    % cp ../10_hybrid_orbitals/pseudo.dat .
    % vi fort.10
 
-1) Locate the block starting with ``# Nonzero values of  detmat``.  
+1) Locate the block starting with ``# Nonzero values of  detmat``.
    This region lists the **indices** and **values** of the pairing (:math:`\lambda`) matrix.
 
    To emulate the Kekulé structure, edit the pairs among the six :math:`p_z` indices
@@ -96,7 +96,7 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
 
    Edit these entries in the ``detmat`` list accordingly.
 
-2) Next, find the block starting with ``# Grouped par.  in the chosen ordered basis``.  
+2) Next, find the block starting with ``# Grouped par.  in the chosen ordered basis``.
    Here, columns 2 and 3 are the pair indices (as above), and **column 1** is the optimization flag:
    ``1`` = optimize, ``-1`` = do not optimize (fixed).
 
@@ -120,25 +120,25 @@ In the **Kekulé** picture of benzene, double and single bonds alternate around 
 03 Optimization (Kekulé)
 ----------------------------------------------------
 
-After editing, run the wavefunction optimization in this directory (your usual VMC optimization workflow).  
+After editing, run the wavefunction optimization in this directory (your usual VMC optimization workflow).
 Once optimized, evaluate the energy with the optimized wavefunction:
 
 1. Generate an input file for VMC optimization:
-      
+
    .. code-block:: console
 
       % cd ../11_Kekule_vmcopt
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
-      
+
    .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
 
 3. Perform the postprocess by typing:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 30 -plot
@@ -165,7 +165,7 @@ Next, generate an input file `datasvmc.input` using:
       % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
-    
+
 .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
@@ -208,7 +208,7 @@ Thus, in the ``# Grouped par.`` block, use flag ``1`` for all the lines. Specifi
 
 .. note::
 
-   Depending on how pairs are ordered in your ``fort.10``, you may see (2, 27) instead of (27, 2).  
+   Depending on how pairs are ordered in your ``fort.10``, you may see (2, 27) instead of (27, 2).
    Use the six **nearest-neighbor** pairs consistently around the ring, matching your index ordering.
 
 .. _turbogeniustutorial_9805_06:
@@ -219,21 +219,21 @@ Thus, in the ``# Grouped par.`` block, use flag ``1`` for all the lines. Specifi
 Optimize this resonating AGP wavefunction, then evaluate the energy as in the Kekulé case.
 
 1. Generate an input file for VMC optimization:
-      
+
    .. code-block:: console
 
       % cd ../13_Resonating_vmcopt
       % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
-      
+
    .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
       % turbogenius vmcopt -r
 
 3. Perform the postprocess by typing:
-      
+
    .. code-block:: console
 
       % turbogenius vmcopt -post -optwarmup 30 -plot
@@ -260,7 +260,7 @@ Next, generate an input file `datasvmc.input` using:
       % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
-    
+
 .. code-block:: console
 
       % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"

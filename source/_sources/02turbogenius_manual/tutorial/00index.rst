@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Tutorials 
+Tutorials
 ===========================================
 
 .. figure:: /_static/07logo/logo2.png
@@ -26,7 +26,13 @@ Here are examples of various calculations with TurboRVB via TurboGenius.
    ./10Benzene/tutorial.rst
 
 .. toctree::
-   :caption: [Advanced topics]
-   :maxdepth: 1
+   :maxdepth: 2
 
    ./98advanced/00index.rst
+
+..   ./98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.rst
+..   ./98advanced/02Hydrogen_dimer_structural_optimization/tutorial.rst
+..   ./98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.rst
+..   ./98advanced/04Carbon_dimer/tutorial.rst
+..   ./98advanced/04Carbon_dimer/tutorial.rst
+..   ./98advanced/05Benzene/tutorial.rst

@@ -8,8 +8,26 @@ TurboRVB manual
 
 .. figure:: /_static/07logo/logo.png
     :width: 600px
-    
-Here are examples of various calculations with TurboRVB.
+
+
+**TurboRVB** is software for ab initio quantum Monte Carlo (QMC) simulations of electronic systems, from molecules to extended materials. It is built around many-body trial wave functions and implements, in particular, variational Monte Carlo (VMC) and diffusion Monte Carlo in its lattice-regularized form. 
+
+This manual emphasizes how to run the code—installation, input, and typical workflows. For theoretical background, detailed numerical methods, validation, and literature context, please refer to the article:
+
+| `TurboRVB: A many-body toolkit for ab initio electronic simulations by quantum Monte Carlo <https://doi.org/10.1063/5.0005037>`__
+| K. Nakano, C. Attaccalite, M. Barborini, L. Capriotti, M. Casula, E. Coccia, M. Dagrada, Y. Luo, G. Mazzola, A. Zen, and S. Sorella,
+| *J. Chem. Phys.* **152**, 204121 (2020).
+
+	    
+.. toctree::
+   :maxdepth: 1
+   
+   ./getting_started/index.rst
+   ./structure/00index.rst
+   ./tutorials/00index.rst
+   ./reference/index.rst
+   ./appendix/00index.rst
+
 
 .. todo:: 
         
@@ -76,12 +94,3 @@ Here are examples of various calculations with TurboRVB.
         - Ansatz:JsAGPs
         - AS basis_set:XXX
         - Jastrow basis_set:XXX
-
-
-.. toctree::
-   :maxdepth: 3
-   
-   ./getting_started/index.rst
-   ./tutorials/00index.rst
-   ./reference/index.rst
-   ./appendix/00index.rst

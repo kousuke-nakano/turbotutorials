@@ -13,7 +13,7 @@ Wavefunction optimization
    
 .. _turborvbtutorial_98_00:
 
-00 What the VMC optimization does?
+What the VMC optimization does?
 --------------------------------------------------------------------
 .. _review: https://doi.org/10.1063/5.0005037
 
@@ -34,7 +34,7 @@ There once we can evaluate the above integral with some variational parameters :
 
 .. _turborvbtutorial_98_01:
 
-01 Optimization method
+Optimization method
 --------------------------------------------------------------------
 There are two major optimization methods are implemented in TurboRVB.
 One is the so-called stochastic reconfiguration (SR) method (``itestr4`` = -9,-5),
@@ -43,7 +43,7 @@ and the other one is the so-called linear method (LR) with conjugate gradient (`
 In general, the LR method works very efficiently and properly when the number of variational parmeters is not so large. For example, less than 1000? If you optimize more than 1000 variational parameters, we recommend the SR method.
 
 
-02 important hyperparameters
+important hyperparameters
 --------------------------------------------------------------------
 
 The most important parameters in practice are
@@ -89,7 +89,7 @@ This modification improves the efficiency of the optimization by  several orders
 
 .. _turborvbtutorial_98_03:
 
-03 Order of optimizing variational parameters
+Order of optimizing variational parameters
 --------------------------------------------------------------------
 
 The so-called Andrea-Zen's method empirically works very well for the LR method.
@@ -110,7 +110,7 @@ wherein
 
 .. _turborvbtutorial_98_04:
 
-04 Criterium of optimization convergence
+Criterium of optimization convergence
 --------------------------------------------------------------------
 
 In practice, during an optimization, the code monitors the variational energy (:math:`E\left( \boldsymbol{\alpha} \right)`) and the maximum value of the signal to noise ratio among all  the force components, which is denoted as ``devmax``  in the code:
@@ -123,13 +123,13 @@ where :math:`{\sigma _{{f_k}}}` represents the estimated error bar of a general 
 
 You can plot ``energies`` by ``plot_Energy.sh``
 
-.. image:: energy.png
+.. image:: ./energy.png
    :scale: 50%
    :align: center
 
 You can also plot ``devmaxs`` by ``plot_devmax.sh``
 
-.. image:: devmax.png
+.. image:: ./devmax.png
    :scale: 50%
    :align: center
    
@@ -144,7 +144,7 @@ though it is still under debate.
 
 .. _turborvbtutorial_98_05:
 
-05 Hyperparameters in the optimization methods
+Hyperparameters in the optimization methods
 --------------------------------------------------------------------
 There are several hyperparameters in the optimization method.
 Although a proper choice for some hyperparameters are still under debate,
@@ -153,7 +153,7 @@ we show a tentative guidline.
 
 .. _turborvbtutorial_98_05_01:
 
-05-01 nweight
+nweight
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``nweight`` is the number of Monte Carlo sampling per optimization step.
 For the LR method, the number of samplings in VMC should be much larger than the number of variational parameters, i.e., ``nweight`` :math:`\times` ``Number of (mpi) tasks`` :math:`>` 5 :math:`\sim` 10 :math:`\times` :math:`p`, where :math:`p` is the number of variational parameters.
@@ -162,7 +162,7 @@ For the SR method, ``nweight`` :math:`\times` ``Number of (mpi) tasks`` can be s
 
 .. _turborvbtutorial_98_05_02:
 
-05-02 tpar
+tpar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``tpar`` is an acceleration hyperparameter in optimization, corresponding to :math:`Delta` in Eq.131 and that in Eq.139 of the review_ paper for the LR and SR methods, respectively. In the machine learning community, ``tpar`` is also called ``learning rate``.
 For the LR method, ``tpar`` = 0.35 usually works well.
@@ -174,25 +174,68 @@ For the SR method, one should set ``tpar`` much smaller, typically 1.0d-4.
 
 .. _turborvbtutorial_98_05_03:
 
-05-03 parr
+parr
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ``parr`` is a regularization parameter which is added to the diagonal elements of a preconditioning matrix S, in Eq.128 of the review_ paper.
-In the LR method, XXX
+In the LR method (corresponding to ``kl=6`` or ``kl=7`` in TurboRVB), ``parr`` is added to the diagonal elements of the SR matrix to regularize small or near-zero eigenvalues, preventing numerical instabilities when the matrix becomes ill-conditioned.
 
-:red:`KN is now working...`
+The regularization is applied as:
+
+.. math::
+
+    S'_{ii} = S_{ii} (1 + \varepsilon)
+
+where :math:`\varepsilon` = ``parr`` and :math:`S'` is the regularized matrix.
+
+When ``parr < 0``, the Umrigar regularization method is activated, which provides more robust but computationally expensive regularization.
+
+For the LR method, ``parr`` = 0.01 - 0.1 is typically recommended. The value of ``parr`` can be automatically adjusted during optimization when ``change_parr=.true.``, decreasing when convergence is good (``devmaxc ≤ parcutpar + 1.5`` for 3+ iterations) and increasing when convergence is poor (``devmaxc > parcutpar + 3`` for 15+ iterations).
+
+Default value: ``0.0d0`` (no regularization). Larger ``parr`` values provide more stability but slower convergence.
 
 .. _turborvbtutorial_98_05_04:
 
-05-04 ncg
+ncg
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This works only for the LR method. 
+``ncg`` is an integer parameter that specifies the number of collective parameters (conjugate gradient directions) to be stored and used for Hessian computation to accelerate convergence. It represents the number of previous SR (Stochastic Reconfiguration) directions that are kept in memory to build an approximate Hessian matrix.
 
-:red:`KN is now working...`
+When ``ncg = 1`` (default), only the current SR direction is used, which corresponds to the standard Stochastic Reconfiguration method. This is the most stable and commonly used setting.
+
+When ``ncg > 1``, previous ``ncg`` SR directions are stored and used to compute an approximate Hessian matrix, which accelerates convergence toward the minimum. **Note**: This only works with Linear Method (``itestrr = -4``), not with standard SR method. If ``ncg > 1`` and ``itestrr ≠ -4``, ``ncg`` is automatically set to ``1``.
+
+The total number of parameters considered in optimization is:
+
+.. math::
+
+    n_{\rm binmax} = ncg + npbra
+
+where ``npbra`` is the maximum number of normal parameters.
+
+Default value: ``1`` (simple SR method). For accelerated convergence with Linear Method, ``ncg = 4`` or larger can be used, but this requires more memory (stores ``ncg × np`` values) and may be less stable than ``ncg = 1``.
 
 .. _turborvbtutorial_98_05_05:
 
-05-05 npbra and parcurpar
+npbra and parcutpar
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This works only for the LR method.
+``npbra`` is an integer parameter that specifies the maximum number of normal (non-collective) parameters to be included in the optimization. It is used in conjunction with ``ncg`` (number of collective parameters) to determine the total number of parameters considered: ``nbinmax = ncg + npbra``.
 
-:red:`KN is now working...`
+In the optimization process, parameters are selected based on their importance (measured by :math:`|f_k/\sigma_{f_k}|`). The ``npbra`` most important normal parameters are included, in addition to the ``ncg`` collective parameters.
+
+``parcutpar`` is a cutoff threshold parameter used to select which normal parameters are included in the optimization. Parameters with a normalized force-to-error ratio :math:`|f_k/\sigma_{f_k}|` greater than ``parcutpar`` are considered for optimization. It is also used in convergence criteria for automatic adjustment of ``parr``.
+
+The parameter selection criterion is:
+
+.. math::
+
+    {\rm cost} = \left| \frac{f_k}{\sigma_{f_k}} \right| > {\rm parcutpar}
+
+where :math:`f_k` is the force (gradient) for parameter :math:`k` and :math:`\sigma_{f_k}` is the error (standard deviation).
+
+Together, ``parcutpar`` determines **which** parameters are selected (based on importance), while ``npbra`` determines **how many** normal parameters can be selected (maximum count). Only parameters with :math:`|f_k/\sigma_{f_k}| > {\rm parcutpar}` are considered, up to a maximum of ``npbra`` normal parameters.
+
+``parcutpar`` is also used in convergence detection for automatic ``parr`` adjustment:
+
+- Good convergence: ``devmaxc ≤ parcutpar + 1.5`` (triggers decrease of ``parr``)
+- Poor convergence: ``devmaxc > parcutpar + 3`` (triggers increase of ``parr``)
+
+Default values: ``npbra = 0`` (only collective parameters are used), ``parcutpar = 0.0d0`` (no cutoff). Typical values: ``npbra = 20``, ``parcutpar = 4.0``.

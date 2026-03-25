@@ -25,15 +25,16 @@ TurboGenius also depends on the following Python packages, which will be automat
 * numpy (version 1.x)
 * pandas<=2.3
 
-  .. warning::
+  .. note::
 
-     being updated for pandas==3.0
+     To be updated for pandas 3.0 and later.
+
 * matplotlib
 * trexio<=2.5.0
 
   .. note::
 
-     Something wrong in trexio==2.6.0
+     Not compatible with trexio 2.6.0 at present.
 
 * trexio-tools
 * basis-set-exchange
