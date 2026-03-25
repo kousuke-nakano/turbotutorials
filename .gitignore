@@ -139,3 +139,6 @@ file/
 
 # editor backup files
 *~
+
+# seperate csv files
+source/_static/csv/rvb/turborvb_namelist_*.csv

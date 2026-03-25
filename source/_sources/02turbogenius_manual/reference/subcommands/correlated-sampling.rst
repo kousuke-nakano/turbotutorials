@@ -12,15 +12,15 @@ It internally calls ``readforward-serial.x`` and, ``turborvb-serial.x``.
 Synopsis
 --------------------------------
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius correlated-sampling [ACTION] [OPTIONS]
+   % turbogenius correlated-sampling [ACTION] [OPTIONS]
 
 ACTION is one or any combination of ``-g`` (generate an input file), ``-r`` (run a program), or ``-post`` (perform postprocess). It is mandatory.
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius correlated-sampling --help
+   % turbogenius correlated-sampling --help
    
 This command shows the list of available options.
 
@@ -32,30 +32,43 @@ general option
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This option affects all actions.
    
-.. csv-table::
-   :header: "option", "default value", "description"
-
-   "-log TEXT", "INFO", "Specify log level. The argument is DEBUG, INFO, or ERROR."
+.. include:: ./list-table/general_option.rst
 
 
 generate (-g) options
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 These options affect the generation of the input file. The correspondence between the options and the input parameters are described in the note section.
 
-.. csv-table::
-   :header: "option", "default value", "description"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   "-steps INTEGER",    1000,    "Specify vmcsteps"
-   "-bin INTEGER",      2,       "Specify bin_block"
-   "-warmup INTEGER",   1,       "Specify warmupblocks"
-   "-nw INTEGER",       -1,      "Specify num_walkers. If omitted, it is set to the number of MPI processes."
-   "-maxtime INTEGER",  3600,    "Specify maxtime"
-   "-twist",            "false", "flag for twist_average"
+   * - option
+     - default value
+     - description
+   * - -steps INTEGER
+     - 1000
+     - Specify vmcsteps
+   * - -bin INTEGER
+     - 2
+     - Specify bin_block
+   * - -warmup INTEGER
+     - 1
+     - Specify warmupblocks
+   * - -nw INTEGER
+     - -1
+     - Specify num_walkers. If omitted, it is set to the number of MPI processes.
+   * - -maxtime INTEGER
+     - 3600
+     - Specify maxtime
+   * - -twist
+     - false
+     - flag for twist_average
 
 options
 --------------------
 
-.. code-block:: bash
+.. code-block:: console
 
     % turbogenius correlated-sampling --help
     Usage: turbogenius correlated-sampling [OPTIONS]
@@ -88,40 +101,51 @@ Input and output files
 
 This subcommand generates ``prep.input``, each variable is described in :ref:`turborvbtutorial_command_prep.x`.
 
-.. csv-table::
-   :header: "action", "input", "output", "rename"
+.. list-table::
+   :widths: auto
+   :header-rows: 1
 
-   ``-g``, "
-   - fort.10
-   - pseudo.dat
-   ", "
-   - datasvmc.input
-   - readforward.input
-   - correlated_sampling_genius_cli.pkl
-   ",
-   ``-r``, "
-   - fort.10
-   - fort.10_corr
-   - pseudo.dat
-   - correlated_sampling_genius_cli.pkl
-   ", "
-   - bins.dat
-   - corrsampilng.dat
-   - fort.10_000000
-   - fort.11
-   - fort.12
-   - fort.12.new
-   - fort.readforward
-   - out_readforward
-   - out_vmc
-   - parminimized.d
-   - randseed.000000
-   ",
-   ``-post``, "
-   - out_vmc
-   - out_readforward
-   - correlated_sampling_genius_cli.pkl
-   ",,
+   * - action
+     - input
+     - output
+     - rename
+   * - ``-g``
+     -
+       - fort.10
+       - pseudo.dat
+     -
+       - datasvmc.input
+       - readforward.input
+       - correlated_sampling_genius_cli.pkl
+     -
+
+   * - ``-r``
+     -
+       - fort.10
+       - fort.10_corr
+       - pseudo.dat
+       - correlated_sampling_genius_cli.pkl
+     -
+       - bins.dat
+       - corrsampilng.dat
+       - fort.10_000000
+       - fort.11
+       - fort.12
+       - fort.12.new
+       - fort.readforward
+       - out_readforward
+       - out_vmc
+       - parminimized.d
+       - randseed.000000
+     -
+
+   * - ``-post``
+     -
+       - out_vmc
+       - out_readforward
+       - correlated_sampling_genius_cli.pkl
+     -
+     -
 
 Notes
 --------------------------------
@@ -134,37 +158,55 @@ The correspondence between the options and the input parameters in ``datasvmc.in
 datasvmc.input
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. csv-table::
-   :header: "turbogenius option", "section", "paramter"
+.. flat-table::
+   :widths: auto
+   :header-rows: 1
 
-   "vmcsteps (-steps)", "&simulation", "ngen"
-   "num_walkers (-nw)", "&simulation", "nw"
-   "maxtime (-maxtime)", "&simulation", "maxtime"
-   "
-   twist_average (-twist)
+   * - turbogenius option
+     - section
+     - paramter
+   * - vmcsteps (-steps)
+     - :rspan:`2` &simulation
+     - ngen
+   * - num_walkers (-nw)
 
-   kpoints", "", "
-   - &parameters
+     - nw
+   * - maxtime (-maxtime)
 
-     - yes_kpoints
+     - maxtime
 
-   - &kpoints
-
-     - kp_typ
-     - nkx, nky, nkz, kx, ky, kz
-     - skip_equivalence
-     - double_kpgrid
-
-   - &optimization
-
-     - yeswrite10
-   "
+   * -
+       twist_average (-twist)
+       
+       kpoints
+     -
+     -
+       - &parameters
+       
+         - yes_kpoints
+       - &kpoints
+       
+         - kp_typ
+         - nkx, nky, nkz, kx, ky, kz
+         - skip_equivalence
+         - double_kpgrid
+       - &optimization
+       
+         - yeswrite10
 
 readforward.input
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. csv-table::
-   :header: "turbogenius option", "section", "paramter"
+.. flat-table::
+   :widths: auto
+   :header-rows: 1
 
-   "bin_block (-bin)", "&corrfun", "bin_length"
-   "warmupblocks (-warmup)", "&corrfun", "initial_bin"
+   * - turbogenius option
+     - section
+     - paramter
+   * - bin_block (-bin)
+     - :rspan:`1` &corrfun
+     - bin_length
+   * - warmupblocks (-warmup)
+
+     - initial_bin

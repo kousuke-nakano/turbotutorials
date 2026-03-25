@@ -9,8 +9,7 @@ The tutorials are deployed from [GitHub Pages](https://kousuke-nakano.github.io/
 
 This document includes ``TurboRVB``, ``TurboGenius``, and ``TurboWorkflows`` tutorials. Only reStructuredText files are distributed. Indeed, you should generate the HTML documents by yourself using `sphinx`. To generate the documents, first you should install the `sphinx` using pip module::
 
-    pip install sphinx
-    pip install sphinx_rtd_theme
+    pip install -r requirements.txt
 
 The document can be built just by typing
 

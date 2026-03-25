@@ -28,18 +28,18 @@ From the obtained wavefunction file ``fort.10``, we will construct the *hybrid o
 
 Based on physical considerations, assign **four** hybrid orbitals to each carbon and **one** hybrid orbital to each hydrogen using:
 
-.. code-block:: bash
+.. code-block:: console
    
-   cd 10_hybrid_orbitals
-   cp ../04_vmc/fort.10 .
-   cp ../04_vmc/pseudo.dat .
-   turbogenius convertwf -to agps -nosym -hyb 4 1 4 1 4 1 4 1 4 1 4 1
+   % cd 10_hybrid_orbitals
+   % cp ../04_vmc/fort.10 .
+   % cp ../04_vmc/pseudo.dat .
+   % turbogenius convertwf -to agps -nosym -hyb 4 1 4 1 4 1 4 1 4 1 4 1
 
 This projects the wavefunction onto an **AGP** (Antisymmetrized Geminal Power) form **based on hybrid orbitals** rather than on atomic-orbital (AO) basis functions. You can visualize the generated hybrid orbitals with:
 
-.. code-block:: bash
+.. code-block:: console
 
-   turbogenius plotorb
+   % turbogenius plotorb
 
 The obtained hybrid orbitals are visualized in **XSF** format, which can be visualized with **VESTA**. 
 
@@ -74,12 +74,12 @@ From the generated ``.xsf`` files, you can identify the carbon :math:`p_z` orbit
 
 In the **Kekulé** picture of benzene, double and single bonds alternate around the ring. Interpreted in AGP pairing terms, this corresponds to **finite** :math:`\lambda` couplings only for **three** carbon–carbon pairs, while the others are set to **zero**. We will enforce this pattern directly in ``fort.10``.
 
-.. code-block:: bash
+.. code-block:: console
 
-   cd ../11_Kekule_vmcopt
-   cp ../10_hybrid_orbitals/fort.10 .
-   cp ../10_hybrid_orbitals/pseudo.dat .
-   vi fort.10
+   % cd ../11_Kekule_vmcopt
+   % cp ../10_hybrid_orbitals/fort.10 .
+   % cp ../10_hybrid_orbitals/pseudo.dat .
+   % vi fort.10
 
 1) Locate the block starting with ``# Nonzero values of  detmat``.  
    This region lists the **indices** and **values** of the pairing (:math:`\lambda`) matrix.
@@ -125,25 +125,23 @@ Once optimized, evaluate the energy with the optimized wavefunction:
 
 1. Generate an input file for VMC optimization:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      cd ../11_Kekule_vmcopt
-      turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
+      % cd ../11_Kekule_vmcopt
+      % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-      export TURBOVMC_RUN_COMMAND
-
-      turbogenius vmcopt -r
+      % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      % turbogenius vmcopt -r
 
 3. Perform the postprocess by typing:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      turbogenius vmcopt -post -optwarmup 30 -plot
+      % turbogenius vmcopt -post -optwarmup 30 -plot
 
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
@@ -154,32 +152,30 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
 
 Then, you can evaluate the energy.
 
-.. code-block:: bash
+.. code-block:: console
 
-      cd ../12_Kekule_vmc
-      cp ../11_Kekule_vmcopt/fort.10 .
-      cp ../11_Kekule_vmcopt/pseudo.dat .
+      % cd ../12_Kekule_vmc
+      % cp ../11_Kekule_vmcopt/fort.10 .
+      % cp ../11_Kekule_vmcopt/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-      turbogenius vmc -g -steps 3000 -nw 128
+      % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
     
-.. code-block:: bash
+.. code-block:: console
 
-      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-      export TURBOVMC_RUN_COMMAND
-
-      turbogenius vmc -r
+      % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      % turbogenius vmc -r
 
 Finally, run the postprocess:
 
-.. code-block:: bash
+.. code-block:: console
 
-      turbogenius vmc -post -bin 20 -warmup 10
+      % turbogenius vmc -post -bin 20 -warmup 10
 
 Check the reblocked total energy and error in the file `pip0.d`.
 
@@ -191,12 +187,12 @@ Check the reblocked total energy and error in the file `pip0.d`.
 
 Now set up the **resonating** (fully delocalized) :math:`\pi`-bond picture by allowing **all six** nearest-neighbor :math:`p_z` pairs to be optimized (finite):
 
-.. code-block:: bash
+.. code-block:: console
 
-      cd ../13_Resonating_vmcopt
-      cp ../12_Kekule_vmc/fort.10 .
-      cp ../12_Kekule_vmc/pseudo.dat .
-      vi fort.10
+      % cd ../13_Resonating_vmcopt
+      % cp ../12_Kekule_vmc/fort.10 .
+      % cp ../12_Kekule_vmc/pseudo.dat .
+      % vi fort.10
 
 For the six :math:`p_z` indices (2, 7, 12, 17, 22, 27), enable optimization for **all** ring-adjacent pairs:
 
@@ -224,25 +220,23 @@ Optimize this resonating AGP wavefunction, then evaluate the energy as in the Ke
 
 1. Generate an input file for VMC optimization:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      cd ../13_Resonating_vmcopt
-      turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
+      % cd ../13_Resonating_vmcopt
+      % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 100 -steps 400 -nw 128 -reg -0.005 -num_opt_param 10
 
 2. Run the VMC optimization, e,g, as follows:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-      export TURBOVMC_RUN_COMMAND
-
-      turbogenius vmcopt -r
+      % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      % turbogenius vmcopt -r
 
 3. Perform the postprocess by typing:
       
-   .. code-block:: bash
+   .. code-block:: console
 
-      turbogenius vmcopt -post -optwarmup 30 -plot
+      % turbogenius vmcopt -post -optwarmup 30 -plot
 
 Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` directory.
 
@@ -253,32 +247,30 @@ Check `plot_energy_and_devmax.png` and the files in the `parameters_graphs` dire
 
 Then, you can evaluate the energy.
 
-.. code-block:: bash
+.. code-block:: console
 
-      cd ../14_Resonating_vmc
-      cp ../13_Resonating_vmcopt/fort.10 .
-      cp ../13_Resonating_vmcopt/pseudo.dat .
+      % cd ../14_Resonating_vmc
+      % cp ../13_Resonating_vmcopt/fort.10 .
+      % cp ../13_Resonating_vmcopt/pseudo.dat .
 
 Next, generate an input file `datasvmc.input` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-      turbogenius vmc -g -steps 3000 -nw 128
+      % turbogenius vmc -g -steps 3000 -nw 128
 
 Then, run the VMC calculation, e.g., by typing:
     
-.. code-block:: bash
+.. code-block:: console
 
-      TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-      export TURBOVMC_RUN_COMMAND
-
-      turbogenius vmc -r
+      % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+      % turbogenius vmc -r
 
 Finally, run the postprocess:
 
-.. code-block:: bash
+.. code-block:: console
 
-      turbogenius vmc -post -bin 20 -warmup 10
+      % turbogenius vmc -post -bin 20 -warmup 10
 
 Check the reblocked total energy and error in the file `pip0.d`.
 

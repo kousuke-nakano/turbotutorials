@@ -25,13 +25,13 @@ The next step is to convert the optimized JDFT ansatz to a JAGPs one.This can be
 
 Copy ``fort.10`` in ``03_vmc`` to ``06_convert``.
 
-.. code-block:: bash
+.. code-block:: console
     
-    cd ./06_convert/
-    cp ../../01Hydrogen_dimer_pyscf/03_vmc/fort.10 .
-    cp ../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat .
+    % cd ./06_convert/
+    % cp ../../01Hydrogen_dimer_pyscf/03_vmc/fort.10 .
+    % cp ../../01Hydrogen_dimer_pyscf/03_vmc/pseudo.dat .
 
-    turbogenius convertwf -to agps
+    % turbogenius convertwf -to agps
 
 .. warning::
 
@@ -39,9 +39,9 @@ Copy ``fort.10`` in ``03_vmc`` to ``06_convert``.
 
 Please check the overlap square in out_conv:
 
-.. code-block:: bash
+.. code-block:: console
 
-    # grep Overlap out_conv
+    % grep Overlap out_conv
     ....
     Overlap square with no zero  0.9999....
 
@@ -60,18 +60,18 @@ Indeed, one can check the difference in energies of WFs using a VMC calculation.
 
 Copy the obtained JAGPs wavefunction ``fort.10``, and the optimized JDFT wavefunction ``fort.10_in`` as ``fort.10_corr``:
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../07_conversion_check/
-    cp ../06_convert/fort.10 ./fort.10
-    cp ../06_convert/fort.10_bak ./fort.10_corr
-    cp ../06_convert/pseudo.dat .
+    % cd ../07_conversion_check/
+    % cp ../06_convert/fort.10 ./fort.10
+    % cp ../06_convert/fort.10_bak ./fort.10_corr
+    % cp ../06_convert/pseudo.dat .
 
 Prepare input files using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius correlated-sampling -g -steps 100 -nw 128
+    % turbogenius correlated-sampling -g -steps 100 -nw 128
 
 For the correlating sampling, we need two input files, for a vmc calculation (i.e., generation of Markov chain) and a correlated sampling itself.
 
@@ -87,18 +87,18 @@ and ``readforward.input`` looks like:
 
 Now run the calculation using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    export TURBOREADFORWARD_RUN_COMMAND="mpirun -np 16 readforward-mpi.x"
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % export TURBOREADFORWARD_RUN_COMMAND="mpirun -np 16 readforward-mpi.x"
 
-    turbogenius correlated-sampling -r
+    % turbogenius correlated-sampling -r
 
 ``corrsampling.dat`` contains the output.
 
-.. code-block:: bash
+.. code-block:: console
 
-    # corrsampling.dat
+    % cat corrsampling.dat
     Energy (fort10 ref.) = -1.17606202 Ha +- 0.00119647941 Ha
     Energy (fort10 corr.) = -1.17606265 Ha +- 0.00119634713 Ha
     Energy difference = 6.26299353e-07 Ha +- 2.29651078e-06 Ha
@@ -116,17 +116,17 @@ In this step, the Jastrow factors and the determinant part are optimized at the 
 
 First of all, copy the converted wavefunction ``fort.10``
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../08_nodal_surface_optimization/
-    cp ../06_convert/fort.10 .
-    cp ../06_convert/pseudo.dat .
+    % cd ../08_nodal_surface_optimization/
+    % cp ../06_convert/fort.10 .
+    % cp ../06_convert/pseudo.dat .
 
 To generate ``datasmin.input``, which is a minimal input file for a VMC-optimization use:
 
-.. code-block:: bash
+.. code-block:: console
 
-     turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
+     % turbogenius vmcopt -g -opt_onebody -opt_twobody -opt_jas_mat -opt_det_mat -optimizer lr -vmcoptsteps 1000 -steps 100 -nw 128
 
 The input file should look something like:
 
@@ -135,16 +135,16 @@ The input file should look something like:
 
 Now run VMC optimization using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmcopt -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmcopt -r
     
 Now for post-processing use:
 
-.. code-block:: bash
+.. code-block:: console
 
-        turbogenius vmcopt -post -optwarmup 80 -plot
+        % turbogenius vmcopt -post -optwarmup 80 -plot
         
 It plots energy with the error bars and devmax wrt optimization steps (``plot_energy_and_devmax.png``).
 
@@ -164,35 +164,35 @@ The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_03`
 
 First, copy ``fort.10`` from ``08_nodal_surface_optimization`` to ``09_vmc``.
 
-.. code-block:: bash
+.. code-block:: console
     
-    cd ../09_vmc
-    cp ../08_nodal_surface_optimization/fort.10 fort.10
-    cp ../08_nodal_surface_optimization/pseudo.dat .
+    % cd ../09_vmc
+    % cp ../08_nodal_surface_optimization/fort.10 fort.10
+    % cp ../08_nodal_surface_optimization/pseudo.dat .
     
 Now generate the input file for vmc ``datasvmc.input`` using:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -g -steps 1000 -nw 128
+    % turbogenius vmc -g -steps 1000 -nw 128
 
 Run a VMC calculation by typing:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius vmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius vmc -r
 
 After the VMC run finishes, use post-processing to check the total energy:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius vmc -post -bin 10 -warmup 5
-    # this corresponds to forcevmc.sh 10 5 1
+    % turbogenius vmc -post -bin 10 -warmup 5
+    % # this corresponds to forcevmc.sh 10 5 1
 
 Use the following values in this example:
 
-.. code-block:: bash
+.. code-block:: text
 
     bin length = 10
     init bin = 5
@@ -206,7 +206,7 @@ Postprocessing basically does reblocking using the binning technique. Here again
 The reblocked total energy and error are written to the file ``energy_error.out``.
 More details are provided in the file ``pip0.d``.
 
-.. code-block:: bash
+.. code-block:: console
     
     % cat pip0.d 
     Energy =  -1.17399712181874  4.494314925096871E-004
@@ -218,27 +218,27 @@ More details are provided in the file ``pip0.d``.
 --------------------------------------------------------------------
 The same as in the JDFT case. See :ref:`turbogeniustutorial_0101_04`
 
-.. code-block:: bash
+.. code-block:: console
 
-    cd ../10_lrdmc/
-    cp ../09_vmc/fort.10 .
-    cp ../09_vmc/pseudo.dat .
+    % cd ../10_lrdmc/
+    % cp ../09_vmc/fort.10 .
+    % cp ../09_vmc/pseudo.dat .
 
-    turbogenius lrdmc -g -etry -1.10 -alat -0.20 -steps 1000 -nw 128
+    % turbogenius lrdmc -g -etry -1.10 -alat -0.20 -steps 1000 -nw 128
     
 Now run the LRDMC calculation:
 
-.. code-block:: bash
+.. code-block:: console
 
-    export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
-    turbogenius lrdmc -r
+    % export TURBOVMC_RUN_COMMAND="mpirun -np 16 turborvb-mpi.x"
+    % turbogenius lrdmc -r
 
 For post-processing use:
 
-.. code-block:: bash
+.. code-block:: console
 
-    turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
-    # This corresponds to forcefn.sh 20 3 5 1
+    % turbogenius lrdmc -post -bin 20 -corr 3 -warmup 5
+    % # This corresponds to forcefn.sh 20 3 5 1
 
 Thus, we get :math:`E (a=0.20 {\rm bohr})` = -1.1739(4) Ha.
 

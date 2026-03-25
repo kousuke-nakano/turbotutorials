@@ -25,14 +25,8 @@ Here are examples of various calculations with TurboRVB via TurboGenius.
    ./09cBN_finite_size_correction_primitive_cell/tutorial.rst
    ./10Benzene/tutorial.rst
 
-[Advanced topics]
-   
 .. toctree::
+   :caption: [Advanced topics]
    :maxdepth: 1
 
-   ./98advanced/01Hydrogen_dimer_flexible_ansatz/tutorial.rst
-   ./98advanced/02Hydrogen_dimer_structural_optimization/tutorial.rst
-   ./98advanced/03Hydrogen_dimer_builtin_DFT/tutorial.rst
-   ./98advanced/04Carbon_dimer/tutorial.rst
-   ./98advanced/04Carbon_dimer/tutorial.rst
-   ./98advanced/05Benzene/tutorial.rst
+   ./98advanced/00index.rst

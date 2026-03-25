@@ -15,3 +15,22 @@ h1,h2,h3,h4,h5,h6 {
 colgroup {
     display: none;
 }
+
+/* CSS for table */
+/* background color of header */
+table.docutils thead tr {
+    background-color: #e0e0e0 !important;
+}
+.wy-table-responsive table.docutils tbody tr.row-odd,
+.wy-table-responsive table.docutils tbody tr.row-even,
+.wy-table-responsive table.docutils tbody tr.row-odd td,
+.wy-table-responsive table.docutils tbody tr.row-even td {
+    border: 1px solid #e1e4e5;
+    /* set color of all cell for body */
+    /* background-color: white !important; */
+}
+/* mouseover */
+.wy-table-responsive table.docutils tbody tr:hover,
+.wy-table-responsive table.docutils tbody tr:hover td {
+    background-color: #f0f0f0 !important;
+}
