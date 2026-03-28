@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>c-BN Primitive Cell: Finite-Size Corrections &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -25,8 +25,26 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)" href="../10Benzene/tutorial.html" />
-    <link rel="prev" title="c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections" href="../08cBN_finite_size_correction/tutorial.html" /> 
+    <link rel="next" title="Benzene: JSD and JAGP" href="../10Benzene/tutorial.html" />
+    <link rel="prev" title="c-BN Conventional Cell: Finite-Size Corrections" href="../08cBN_finite_size_correction/tutorial.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/02turbogenius_manual/tutorial/09cBN_finite_size_correction_primitive_cell/tutorial";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,19 +67,19 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboGenius manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../01turborvb_manual/00index.html">TurboRVB Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboGenius Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/00index.html">Getting Started</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../00index.html">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../01Hydrogen_dimer/tutorial.html">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../01Hydrogen_dimer/tutorial.html">Hydrogen Dimer: First VMC/LRDMC Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02NH3/tutorial.html">Ammonia: VMC/LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03Hydrogen_chain/tutorial.html">Hydrogen Chain: Periodic VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04SiO2_k_gamma/tutorial.html">SiO2 Crystal: Gamma-Point VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05Diamond_k_twist/tutorial.html">Diamond: General k-Point VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06Diamond_k_twist_average/tutorial.html">Diamond: Twist-Averaged VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../07hBN_finite_size_correction/tutorial.html">h-BN: Two-Body Finite-Size Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../08cBN_finite_size_correction/tutorial.html">c-BN Conventional Cell: Finite-Size Corrections</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">c-BN Primitive Cell: Finite-Size Corrections</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#introduction">00 Introduction</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dft">01 DFT</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#jastrow-optimization">02 Jastrow optimization</a></li>
@@ -70,16 +88,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#finite-size-extrapolation">05 Finite-size extrapolation</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../98advanced/00index.html">Advanced topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10Benzene/tutorial.html">Benzene: JSD and JAGP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../98advanced/00index.html">Advanced Topics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../reference/00index.html">Reference guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tips/00index.html">Tips and trouble shooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/00index.html">Reference Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tips/troubleshooting.html">Troubleshooting Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
@@ -98,9 +115,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius manual</a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboGenius Manual</a></li>
           <li class="breadcrumb-item"><a href="../00index.html">Tutorials</a></li>
-      <li class="breadcrumb-item active">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</li>
+      <li class="breadcrumb-item active">c-BN Primitive Cell: Finite-Size Corrections</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/02turbogenius_manual/tutorial/09cBN_finite_size_correction_primitive_cell/tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,15 +127,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="c-bn-primitive-cell-with-a-jastrowslater-single-determinant-ansatz-via-vmc-and-lrdmc-using-ecps-two-body-finite-size-corrections">
-<span id="turbogeniustutorial-0901"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a><a class="headerlink" href="#c-bn-primitive-cell-with-a-jastrowslater-single-determinant-ansatz-via-vmc-and-lrdmc-using-ecps-two-body-finite-size-corrections" title="Link to this heading"></a></h1>
+  <section id="c-bn-primitive-cell-finite-size-corrections">
+<span id="turbogeniustutorial-0901"></span><h1><a class="toc-backref" href="#id3" role="doc-backlink">c-BN Primitive Cell: Finite-Size Corrections</a><a class="headerlink" href="#c-bn-primitive-cell-finite-size-corrections" title="Link to this heading"></a></h1>
 <section id="introduction">
 <span id="turbogeniustutorial-0901-00"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">00 Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>In this tutorial, you will perform VMC/LRDMC calculations for c-BN (primitive cell) under PBCs, starting from PySCF with ccECPs. You will carry out supercell extrapolation using 1×1×1, 2×2×2, 3×3×3, and 4×4×4 supercells to mitigate the so-called two-body finite-size errors. All input and output files for this tutorial can be downloaded <a class="reference download internal" download="" href="../../../../_downloads/e585b43c3237ac7a454fe72c1ee09481/file.tar.gz"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#c-bn-primitive-cell-with-a-jastrowslater-single-determinant-ansatz-via-vmc-and-lrdmc-using-ecps-two-body-finite-size-corrections" id="id3">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></p>
+<li><p><a class="reference internal" href="#c-bn-primitive-cell-finite-size-corrections" id="id3">c-BN Primitive Cell: Finite-Size Corrections</a></p>
 <ul>
 <li><p><a class="reference internal" href="#introduction" id="id4">00 Introduction</a></p></li>
 <li><p><a class="reference internal" href="#dft" id="id5">01 DFT</a></p></li>
@@ -298,8 +315,8 @@ The conventional and primitive cell cases are shown.</span><a class="headerlink"
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../08cBN_finite_size_correction/tutorial.html" class="btn btn-neutral float-left" title="c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../10Benzene/tutorial.html" class="btn btn-neutral float-right" title="Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../08cBN_finite_size_correction/tutorial.html" class="btn btn-neutral float-left" title="c-BN Conventional Cell: Finite-Size Corrections" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../10Benzene/tutorial.html" class="btn btn-neutral float-right" title="Benzene: JSD and JAGP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

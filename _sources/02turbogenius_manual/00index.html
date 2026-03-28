@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurboGenius manual &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>TurboGenius Manual &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,8 +23,26 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Getting started" href="getting_started/00index.html" />
-    <link rel="prev" title="Tips" href="../01turborvb_manual/appendix/tips/tutorial.html" /> 
+    <link rel="next" title="Getting Started" href="getting_started/00index.html" />
+    <link rel="prev" title="Tips" href="../01turborvb_manual/appendix/tips/tutorial.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/02turbogenius_manual/00index";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,16 +65,15 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../01turborvb_manual/00index.html">TurboRVB manual</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TurboGenius manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01turborvb_manual/00index.html">TurboRVB Manual</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TurboGenius Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/00index.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial/00index.html">Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/00index.html">Reference guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tips/00index.html">Tips and trouble shooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/00index.html">Reference Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips/troubleshooting.html">Troubleshooting Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contact/00index.html">Contact</a></li>
 </ul>
@@ -75,7 +92,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">TurboGenius manual</li>
+      <li class="breadcrumb-item active">TurboGenius Manual</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/02turbogenius_manual/00index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,27 +103,58 @@
            <div itemprop="articleBody">
              
   <section id="turbogenius-manual">
-<span id="turbogenius-manual-index"></span><h1>TurboGenius manual<a class="headerlink" href="#turbogenius-manual" title="Link to this heading"></a></h1>
+<span id="turbogenius-manual-index"></span><h1>TurboGenius Manual<a class="headerlink" href="#turbogenius-manual" title="Link to this heading"></a></h1>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/logo2.png"><img alt="../../_images/logo2.png" src="../../_images/logo2.png" style="width: 600px;" />
 </a>
 </figure>
-<p>TurboGenius is a Python package designed to fully control <em>ab initio</em> quantum Monte Carlo (QMC) calculations using a Python script, which allows one to perform high-throughput calculations combined with TurboRVB.</p>
-<p><strong>Features of turbogenius</strong></p>
-<p>One can manage any job of TurboRVB on python scripts, or on your terminal using the provided command line tool turbogenius.</p>
-<p>For python users, several one-to-one corresponding python modules (classes) are provided, i.e., makefort10.x → Makefort10_genius class in makefort10_genius.py, turborvb.x → VMC_genius class in vmc_genius.py. TurboGenius is designed as a higher layer package that provide several complicated procedures and functions such as fully automatic workflows. TurboGenius is implemented based on the lower layer packages pyturbo and TurboRVB. You can see several examples of TurboGenius scripts in the tests directory. You can also see several simple workflows using TurboGenius in the tests directory.</p>
-<p><strong>Features of pyturbo</strong></p>
-<p>One can manage any job of TurboRVB on python scripts. There are one-to-one corresponding python modules (classes), i.e., makefort10.x → Makefort10 class in makefort10.py, convertfort10.x → Convertfort10mol class in convertfort10mol.py. pyturbo is designed as a lower layer package such that the modules can be used as components of higher-level packages. Indeed, the classes are implemented as simple but flexible as possible. Other complicated methods and modules such as fully automatic workflows should be provided at the higher-level packages such as TurboGenius. You can see several examples of pyturbo scripts in the tests directory.</p>
-<p><strong>Reference</strong></p>
-<p>K. Nakano et al., TurboGenius: Python suite for high-throughput calculations of ab initio quantum Monte Carlo methods, J. Chem. Phys. 159, 224801 (2023).</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/00index.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial/00index.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/00index.html">Reference guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tips/00index.html">Tips and trouble shooting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
+<p>TurboGenius is the main user-facing interface for running <em>ab initio</em> quantum Monte Carlo (QMC) workflows with TurboRVB.
+Use this manual when you want a higher-level CLI or Python interface for standard calculations, tutorials, and command-level guidance.</p>
+<div class="manual-section-intro docutils container">
+<p><strong>Choose Where to Start</strong></p>
+</div>
+<div class="manual-card-grid docutils container">
+<div class="manual-card docutils container">
+<p><strong>Getting Started</strong></p>
+<p>Install TurboGenius and understand the standard workflow before moving to larger examples.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="getting_started/02installation.html"><span class="doc">Open Installation</span></a></p></li>
+<li><p><a class="reference internal" href="getting_started/03basic_workflow.html"><span class="doc">Open Basic Workflow</span></a></p></li>
 </ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Tutorials</strong></p>
+<p>Learn from end-to-end examples, starting from the hydrogen dimer and extending to periodic systems and finite-size corrections.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tutorial/00index.html"><span class="doc">Open Tutorials</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Reference Guide</strong></p>
+<p>Look up CLI subcommands, options, file conventions, and command behavior when you already know what you want to run.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/01general_description.html"><span class="doc">Open General Description</span></a></p></li>
+<li><p><a class="reference internal" href="reference/02command.html"><span class="doc">Open Command Reference</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Troubleshooting Guide</strong></p>
+<p>Check common pitfalls, diagnostics, and recovery steps when a calculation or workflow does not behave as expected.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tips/troubleshooting.html"><span class="doc">Open Troubleshooting Guide</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="manual-section-intro docutils container">
+<p><strong>Package Layers</strong></p>
+</div>
+<p>TurboGenius provides a higher-level interface to TurboRVB from both Python and the terminal.
+For example, <code class="docutils literal notranslate"><span class="pre">makefort10.x</span></code> → <code class="docutils literal notranslate"><span class="pre">Makefort10_genius</span></code> and <code class="docutils literal notranslate"><span class="pre">turborvb.x</span></code> → <code class="docutils literal notranslate"><span class="pre">VMC_genius</span></code> expose common workflows through simpler interfaces.</p>
+<p>The lower-level package <code class="docutils literal notranslate"><span class="pre">pyturbo</span></code> provides more direct building blocks such as <code class="docutils literal notranslate"><span class="pre">Makefort10</span></code> and <code class="docutils literal notranslate"><span class="pre">Convertfort10mol</span></code>.
+Most users should start from TurboGenius and move to <code class="docutils literal notranslate"><span class="pre">pyturbo</span></code> only when they need finer-grained scripting control.</p>
+<p><strong>Reference</strong></p>
+<p>K. Nakano et al., TurboGenius: Python suite for high-throughput calculations of <em>ab initio</em> quantum Monte Carlo methods, J. Chem. Phys. 159, 224801 (2023).</p>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -115,7 +163,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../01turborvb_manual/appendix/tips/tutorial.html" class="btn btn-neutral float-left" title="Tips" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="getting_started/00index.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="getting_started/00index.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

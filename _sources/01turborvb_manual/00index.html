@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TurboRVB manual &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>TurboRVB Manual &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../_static/roles.css" type="text/css" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,8 +23,26 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Getting started" href="getting_started/index.html" />
-    <link rel="prev" title="Documentations" href="../../index.html" /> 
+    <link rel="next" title="Getting Started" href="getting_started/index.html" />
+    <link rel="prev" title="Documentation Portal" href="../../index.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/01turborvb_manual/00index";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,16 +65,16 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">TurboRVB manual</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">TurboRVB Manual</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/index.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure/00index.html">Structure of TurboRVB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tutorials/00index.html">TurboRVB tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reference/index.html">Reference guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/00index.html">TurboRVB Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reference/index.html">Reference Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02turbogenius_manual/00index.html">TurboGenius Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contact/00index.html">Contact</a></li>
 </ul>
@@ -75,7 +93,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">TurboRVB manual</li>
+      <li class="breadcrumb-item active">TurboRVB Manual</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/01turborvb_manual/00index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -86,26 +104,60 @@
            <div itemprop="articleBody">
              
   <section id="turborvb-manual">
-<h1>TurboRVB manual<a class="headerlink" href="#turborvb-manual" title="Link to this heading"></a></h1>
+<h1>TurboRVB Manual<a class="headerlink" href="#turborvb-manual" title="Link to this heading"></a></h1>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/logo.png"><img alt="../../_images/logo.png" src="../../_images/logo.png" style="width: 600px;" />
 </a>
 </figure>
-<p><strong>TurboRVB</strong> is software for ab initio quantum Monte Carlo (QMC) simulations of electronic systems, from molecules to extended materials. It is built around many-body trial wave functions and implements, in particular, variational Monte Carlo (VMC) and diffusion Monte Carlo in its lattice-regularized form.</p>
-<p>This manual emphasizes how to run the code—installation, input, and typical workflows. For theoretical background, detailed numerical methods, validation, and literature context, please refer to the article:</p>
+<p>TurboRVB is the core QMC engine for electronic systems, from molecules to extended materials.
+Use this manual when you work directly with executables, input files, wave functions, and low-level workflow details.</p>
+<p>For theoretical background, numerical methods, and validation, please refer to:</p>
 <div class="line-block">
 <div class="line"><a class="reference external" href="https://doi.org/10.1063/5.0005037">TurboRVB: A many-body toolkit for ab initio electronic simulations by quantum Monte Carlo</a></div>
 <div class="line">K. Nakano, C. Attaccalite, M. Barborini, L. Capriotti, M. Casula, E. Coccia, M. Dagrada, Y. Luo, G. Mazzola, A. Zen, and S. Sorella,</div>
 <div class="line"><em>J. Chem. Phys.</em> <strong>152</strong>, 204121 (2020).</div>
 </div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/index.html">Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="structure/00index.html">Structure of TurboRVB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorials/00index.html">TurboRVB tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reference/index.html">Reference guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="appendix/00index.html">Appendix</a></li>
+<div class="manual-section-intro docutils container">
+<p><strong>Choose Where to Start</strong></p>
+</div>
+<div class="manual-card-grid docutils container">
+<div class="manual-card docutils container">
+<p><strong>Getting Started</strong></p>
+<p>Learn the basic concepts, installation steps, and workflow overview before working with input files.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="getting_started/index.html"><span class="doc">Open Getting Started</span></a></p></li>
 </ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Tutorials</strong></p>
+<p>Follow end-to-end examples for representative molecular and condensed-matter calculations.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tutorials/00index.html"><span class="doc">Open Tutorials</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Reference Guide</strong></p>
+<p>Look up input formats, commands, and technical reference material.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="reference/index.html"><span class="doc">Open the Reference Guide</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Code Structure</strong></p>
+<p>Use this section when you want executable-level documentation for DFT, conversion, optimization, and related code structure.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="structure/00index.html"><span class="doc">Open Code Structure</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Appendix</strong></p>
+<p>Check supporting notes and supplementary material that complement the main manual.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="appendix/00index.html"><span class="doc">Open the Appendix</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </section>
 
@@ -113,8 +165,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../index.html" class="btn btn-neutral float-left" title="Documentations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="getting_started/index.html" class="btn btn-neutral float-right" title="Getting started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Documentation Portal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started/index.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

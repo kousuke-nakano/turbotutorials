@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>plot_orbitals.x &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>plot_orbitals.x &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -24,7 +24,25 @@
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="prep.x" href="prep.html" />
-    <link rel="prev" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" href="plot_tools.html" /> 
+    <link rel="prev" title="plot_Energy.sh, plot_NormCorr.sh, plot_devmax.sh, plot_lr.sh, plot_ratiodyn.sh" href="plot_tools.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/01turborvb_manual/reference/commands/plot_orbitals";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,11 +65,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../00index.html">TurboRVB Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../structure/00index.html">Structure of TurboRVB</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/00index.html">TurboRVB Tutorials</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Reference Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../01wavefunction.html">Wavefunction format</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../02command.html">Command reference</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="assembling_pseudo.html">assembling_pseudo.x</a></li>
@@ -104,8 +122,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../../appendix/00index.html">Appendix</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../02turbogenius_manual/00index.html">TurboGenius Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../contact/00index.html">Contact</a></li>
 </ul>
@@ -124,8 +142,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB manual</a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Reference guide</a></li>
+          <li class="breadcrumb-item"><a href="../../00index.html">TurboRVB Manual</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference Guide</a></li>
           <li class="breadcrumb-item"><a href="../02command.html">Command reference</a></li>
       <li class="breadcrumb-item active">plot_orbitals.x</li>
       <li class="wy-breadcrumbs-aside">

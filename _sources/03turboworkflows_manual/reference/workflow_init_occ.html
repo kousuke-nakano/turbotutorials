@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>class Init_occ_workflow &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>class Init_occ_workflow &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -24,7 +24,25 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="class Jastrowcopy_workflow" href="workflow_jastrowcopy.html" />
-    <link rel="prev" title="class DFT_workflow" href="workflow_prep.html" /> 
+    <link rel="prev" title="class DFT_workflow" href="workflow_prep.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/03turboworkflows_manual/reference/workflow_init_occ";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,41 +65,40 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../02turbogenius_manual/00index.html">TurboGenius Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboWorkflows Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="00index.html#api-reference">API reference</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="00index.html#workflow-items">workflow items</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="workflow_convertfort10.html">class Convertfort10_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_convertfort10mol.html">class Convertfort10mol_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_convertwf.html">class Conversion_wf_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_prep.html">class DFT_workflow</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">class Init_occ_workflow</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#module-usage">Module usage</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#constructor-arguments">Constructor arguments</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#see-also">See also</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Reference Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="workflow_convertfort10.html">class Convertfort10_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_convertfort10mol.html">class Convertfort10mol_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_convertwf.html">class Conversion_wf_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_prep.html">class DFT_workflow</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">class Init_occ_workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#module-usage">Module usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#constructor-arguments">Constructor arguments</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#initialization-parameters">initialization parameters</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_jastrowcopy.html">class Jastrowcopy_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmc.html">class LRDMC_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmc_ext.html">class LRDMC_ext_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_lrdmcopt.html">class LRDMCopt_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_makefort10.html">class Makefort10_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_pyscf.html">class PySCF_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_trexio.html">class TREXIO_convert_to_turboWF</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_vmc.html">class VMC_workflow</a></li>
-<li class="toctree-l5"><a class="reference internal" href="workflow_vmcopt.html">class VMCopt_workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See also</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="00index.html#workflow-management">workflow management</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="00index.html#configurations">Configurations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="00index.html#command-line-tools">Command-line tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_jastrowcopy.html">class Jastrowcopy_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_lrdmc.html">class LRDMC_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_lrdmc_ext.html">class LRDMC_ext_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_lrdmcopt.html">class LRDMCopt_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_makefort10.html">class Makefort10_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_pyscf.html">class PySCF_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_trexio.html">class TREXIO_convert_to_turboWF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_vmc.html">class VMC_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workflow_vmcopt.html">class VMCopt_workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launcher.html">class Launcher</a></li>
+<li class="toctree-l3"><a class="reference internal" href="encapsulated_workflow.html">class Encapsulated_Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable.html">class Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html">Configuration Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="job_manager_cli.html">turbo-jobmanager command</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../troubleshooting.html">Troubleshooting Guide</a></li>
@@ -106,8 +123,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows manual</a></li>
-          <li class="breadcrumb-item"><a href="00index.html">Reference</a></li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboWorkflows Manual</a></li>
+          <li class="breadcrumb-item"><a href="00index.html">Reference Guide</a></li>
       <li class="breadcrumb-item active">class Init_occ_workflow</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/03turboworkflows_manual/reference/workflow_init_occ.rst.txt" rel="nofollow"> View page source</a>

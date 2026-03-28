@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Troubleshooting guide &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>Troubleshooting Guide &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -23,8 +23,26 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Appendix" href="../appendix/00index.html" />
-    <link rel="prev" title="Tips and trouble shooting" href="00index.html" /> 
+    <link rel="next" title="TurboWorkflows Manual" href="../../03turboworkflows_manual/00index.html" />
+    <link rel="prev" title="writestr" href="../reference/subcommands/writestr.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/02turbogenius_manual/tips/troubleshooting";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -47,62 +65,58 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboGenius manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../01turborvb_manual/00index.html">TurboRVB Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../00index.html">TurboGenius Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/00index.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorial/00index.html">Tutorials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reference/00index.html">Reference guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="00index.html">Tips and trouble shooting</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Troubleshooting guide</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#installation-related-issues">1. Installation-related Issues</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#installation-verification">1.1. Installation verification</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#errors-during-pip-install">1.2. Errors during pip install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/00index.html">Reference Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Troubleshooting Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installation-related-issues">1. Installation-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#installation-verification">1.1. Installation verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#errors-during-pip-install">1.2. Errors during pip install</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#environment-variable-related-issues">2. Environment Variable-related Issues</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#turborvb-root-not-set">2.1. TURBORVB_ROOT not set</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#turborvb-binary-not-found">2.2. TurboRVB binary not found</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#library-path-issues-on-macos">2.3. Library path issues on macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variable-related-issues">2. Environment Variable-related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#turborvb-root-not-set">2.1. TURBORVB_ROOT not set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turborvb-binary-not-found">2.2. TurboRVB binary not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#library-path-issues-on-macos">2.3. Library path issues on macOS</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#runtime-issues">3. Runtime Issues</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#input-file-not-found">3.1. Input file not found</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#pickle-file-not-found">3.2. Pickle file not found</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#basis-set-not-found">3.3. Basis set not found</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#pseudopotential-not-found">3.4. Pseudopotential not found</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#structure-file-read-error">3.5. Structure file read error</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#execution-command-error">3.6. Execution command error</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#trexio-file-read-error">3.7. TREXIO file read error</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#trexio-to-turborvb-command-error">3.8. trexio-to-turborvb command error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#runtime-issues">3. Runtime Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#input-file-not-found">3.1. Input file not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pickle-file-not-found">3.2. Pickle file not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basis-set-not-found">3.3. Basis set not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pseudopotential-not-found">3.4. Pseudopotential not found</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure-file-read-error">3.5. Structure file read error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#execution-command-error">3.6. Execution command error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trexio-file-read-error">3.7. TREXIO file read error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trexio-to-turborvb-command-error">3.8. trexio-to-turborvb command error</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#other-issues">4. Other Issues</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#notimplementederror">4.1. NotImplementedError</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#valueerror">4.2. ValueError</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#shell-compatibility-issues-macos">4.3. Shell compatibility issues (macOS)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-issues">4. Other Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#notimplementederror">4.1. NotImplementedError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#valueerror">4.2. ValueError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shell-compatibility-issues-macos">4.3. Shell compatibility issues (macOS)</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#logging-and-debugging">5. Logging and Debugging</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#log-level-setting">5.1. Log level setting</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#temporary-file-check">5.2. Temporary file check</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#output-file-check">5.3. Output file check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-and-debugging">5. Logging and Debugging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#log-level-setting">5.1. Log level setting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#temporary-file-check">5.2. Temporary file check</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#output-file-check">5.3. Output file check</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#common-error-messages-and-solutions">6. Common Error Messages and Solutions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#support-and-additional-information">7. Support and Additional Information</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#github-issues">7.1. GitHub Issues</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#documentation-reference">7.2. Documentation Reference</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-error-messages-and-solutions">6. Common Error Messages and Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#support-and-additional-information">7. Support and Additional Information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#github-issues">7.1. GitHub Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-reference">7.2. Documentation Reference</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../appendix/00index.html">Appendix</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contact/00index.html">Contact</a></li>
 </ul>
@@ -121,9 +135,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../00index.html">TurboGenius manual</a></li>
-          <li class="breadcrumb-item"><a href="00index.html">Tips and trouble shooting</a></li>
-      <li class="breadcrumb-item active">Troubleshooting guide</li>
+          <li class="breadcrumb-item"><a href="../00index.html">TurboGenius Manual</a></li>
+      <li class="breadcrumb-item active">Troubleshooting Guide</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/02turbogenius_manual/tips/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -134,62 +147,101 @@
            <div itemprop="articleBody">
              
   <section id="troubleshooting-guide">
-<span id="turbogenius-tips-troubleshooting"></span><h1>Troubleshooting guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h1>
+<span id="turbogenius-tips-troubleshooting"></span><h1>Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h1>
+<p>Use this page when installation, environment setup, or runtime execution does not behave as expected. If you are not sure where to start, check installation first, then environment variables, then runtime errors.</p>
+<div class="manual-section-intro docutils container">
+<p><strong>Quick Links</strong></p>
+</div>
+<div class="manual-card-grid docutils container">
+<div class="manual-card docutils container">
+<p><strong>Installation</strong></p>
+<p>Verify the package, fix <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> failures, and confirm version information.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation-verification"><span class="std std-ref">Installation Verification</span></a></p></li>
+<li><p><a class="reference internal" href="#errors-during-pip-install"><span class="std std-ref">Errors During pip install</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Environment Variables</strong></p>
+<p>Resolve missing <code class="docutils literal notranslate"><span class="pre">TURBORVB_ROOT</span></code>, missing binaries, and macOS library path issues.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#turborvb-root-not-set"><span class="std std-ref">TURBORVB_ROOT not set</span></a></p></li>
+<li><p><a class="reference internal" href="#turborvb-binary-not-found"><span class="std std-ref">TurboRVB binary not found</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Runtime Errors</strong></p>
+<p>Diagnose missing input files, missing databases, TREXIO problems, and execution command failures.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#input-file-not-found"><span class="std std-ref">Input file not found</span></a></p></li>
+<li><p><a class="reference internal" href="#basis-set-not-found"><span class="std std-ref">Basis set not found</span></a></p></li>
+<li><p><a class="reference internal" href="#execution-command-error"><span class="std std-ref">Execution command error</span></a></p></li>
+</ul>
+</div>
+<div class="manual-card docutils container">
+<p><strong>Support</strong></p>
+<p>Check logging, common error messages, and where to ask for help.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#logging-and-debugging"><span class="std std-ref">Logging and Debugging</span></a></p></li>
+<li><p><a class="reference internal" href="#support-and-additional-information"><span class="std std-ref">Support and Additional Information</span></a></p></li>
+</ul>
+</div>
+</div>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#installation-related-issues" id="id1">1. Installation-related Issues</a></p>
+<li><p><a class="reference internal" href="#installation-related-issues" id="id10">1. Installation-related Issues</a></p>
 <ul>
-<li><p><a class="reference internal" href="#installation-verification" id="id2">1.1. Installation verification</a></p></li>
-<li><p><a class="reference internal" href="#errors-during-pip-install" id="id3">1.2. Errors during pip install</a></p></li>
+<li><p><a class="reference internal" href="#installation-verification" id="id11">1.1. Installation verification</a></p></li>
+<li><p><a class="reference internal" href="#errors-during-pip-install" id="id12">1.2. Errors during pip install</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#environment-variable-related-issues" id="id4">2. Environment Variable-related Issues</a></p>
+<li><p><a class="reference internal" href="#environment-variable-related-issues" id="id13">2. Environment Variable-related Issues</a></p>
 <ul>
-<li><p><a class="reference internal" href="#turborvb-root-not-set" id="id5">2.1. TURBORVB_ROOT not set</a></p></li>
-<li><p><a class="reference internal" href="#turborvb-binary-not-found" id="id6">2.2. TurboRVB binary not found</a></p></li>
-<li><p><a class="reference internal" href="#library-path-issues-on-macos" id="id7">2.3. Library path issues on macOS</a></p></li>
+<li><p><a class="reference internal" href="#turborvb-root-not-set" id="id14">2.1. TURBORVB_ROOT not set</a></p></li>
+<li><p><a class="reference internal" href="#turborvb-binary-not-found" id="id15">2.2. TurboRVB binary not found</a></p></li>
+<li><p><a class="reference internal" href="#library-path-issues-on-macos" id="id16">2.3. Library path issues on macOS</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#runtime-issues" id="id8">3. Runtime Issues</a></p>
+<li><p><a class="reference internal" href="#runtime-issues" id="id17">3. Runtime Issues</a></p>
 <ul>
-<li><p><a class="reference internal" href="#input-file-not-found" id="id9">3.1. Input file not found</a></p></li>
-<li><p><a class="reference internal" href="#pickle-file-not-found" id="id10">3.2. Pickle file not found</a></p></li>
-<li><p><a class="reference internal" href="#basis-set-not-found" id="id11">3.3. Basis set not found</a></p></li>
-<li><p><a class="reference internal" href="#pseudopotential-not-found" id="id12">3.4. Pseudopotential not found</a></p></li>
-<li><p><a class="reference internal" href="#structure-file-read-error" id="id13">3.5. Structure file read error</a></p></li>
-<li><p><a class="reference internal" href="#execution-command-error" id="id14">3.6. Execution command error</a></p></li>
-<li><p><a class="reference internal" href="#trexio-file-read-error" id="id15">3.7. TREXIO file read error</a></p></li>
-<li><p><a class="reference internal" href="#trexio-to-turborvb-command-error" id="id16">3.8. trexio-to-turborvb command error</a></p></li>
+<li><p><a class="reference internal" href="#input-file-not-found" id="id18">3.1. Input file not found</a></p></li>
+<li><p><a class="reference internal" href="#pickle-file-not-found" id="id19">3.2. Pickle file not found</a></p></li>
+<li><p><a class="reference internal" href="#basis-set-not-found" id="id20">3.3. Basis set not found</a></p></li>
+<li><p><a class="reference internal" href="#pseudopotential-not-found" id="id21">3.4. Pseudopotential not found</a></p></li>
+<li><p><a class="reference internal" href="#structure-file-read-error" id="id22">3.5. Structure file read error</a></p></li>
+<li><p><a class="reference internal" href="#execution-command-error" id="id23">3.6. Execution command error</a></p></li>
+<li><p><a class="reference internal" href="#trexio-file-read-error" id="id24">3.7. TREXIO file read error</a></p></li>
+<li><p><a class="reference internal" href="#trexio-to-turborvb-command-error" id="id25">3.8. trexio-to-turborvb command error</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#other-issues" id="id17">4. Other Issues</a></p>
+<li><p><a class="reference internal" href="#other-issues" id="id26">4. Other Issues</a></p>
 <ul>
-<li><p><a class="reference internal" href="#notimplementederror" id="id18">4.1. NotImplementedError</a></p></li>
-<li><p><a class="reference internal" href="#valueerror" id="id19">4.2. ValueError</a></p></li>
-<li><p><a class="reference internal" href="#shell-compatibility-issues-macos" id="id20">4.3. Shell compatibility issues (macOS)</a></p></li>
+<li><p><a class="reference internal" href="#notimplementederror" id="id27">4.1. NotImplementedError</a></p></li>
+<li><p><a class="reference internal" href="#valueerror" id="id28">4.2. ValueError</a></p></li>
+<li><p><a class="reference internal" href="#shell-compatibility-issues-macos" id="id29">4.3. Shell compatibility issues (macOS)</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#logging-and-debugging" id="id21">5. Logging and Debugging</a></p>
+<li><p><a class="reference internal" href="#logging-and-debugging" id="id30">5. Logging and Debugging</a></p>
 <ul>
-<li><p><a class="reference internal" href="#log-level-setting" id="id22">5.1. Log level setting</a></p></li>
-<li><p><a class="reference internal" href="#temporary-file-check" id="id23">5.2. Temporary file check</a></p></li>
-<li><p><a class="reference internal" href="#output-file-check" id="id24">5.3. Output file check</a></p></li>
+<li><p><a class="reference internal" href="#log-level-setting" id="id31">5.1. Log level setting</a></p></li>
+<li><p><a class="reference internal" href="#temporary-file-check" id="id32">5.2. Temporary file check</a></p></li>
+<li><p><a class="reference internal" href="#output-file-check" id="id33">5.3. Output file check</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#common-error-messages-and-solutions" id="id25">6. Common Error Messages and Solutions</a></p></li>
-<li><p><a class="reference internal" href="#support-and-additional-information" id="id26">7. Support and Additional Information</a></p>
+<li><p><a class="reference internal" href="#common-error-messages-and-solutions" id="id34">6. Common Error Messages and Solutions</a></p></li>
+<li><p><a class="reference internal" href="#support-and-additional-information" id="id35">7. Support and Additional Information</a></p>
 <ul>
-<li><p><a class="reference internal" href="#github-issues" id="id27">7.1. GitHub Issues</a></p></li>
-<li><p><a class="reference internal" href="#documentation-reference" id="id28">7.2. Documentation Reference</a></p></li>
+<li><p><a class="reference internal" href="#github-issues" id="id36">7.1. GitHub Issues</a></p></li>
+<li><p><a class="reference internal" href="#documentation-reference" id="id37">7.2. Documentation Reference</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#summary" id="id29">Summary</a></p></li>
+<li><p><a class="reference internal" href="#summary" id="id38">Summary</a></p></li>
 </ul>
 </nav>
 <section id="installation-related-issues">
-<h2><a class="toc-backref" href="#id1" role="doc-backlink">1. Installation-related Issues</a><a class="headerlink" href="#installation-related-issues" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id10" role="doc-backlink">1. Installation-related Issues</a><a class="headerlink" href="#installation-related-issues" title="Link to this heading"></a></h2>
 <section id="installation-verification">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">1.1. Installation verification</a><a class="headerlink" href="#installation-verification" title="Link to this heading"></a></h3>
+<span id="id1"></span><h3><a class="toc-backref" href="#id11" role="doc-backlink">1.1. Installation verification</a><a class="headerlink" href="#installation-verification" title="Link to this heading"></a></h3>
 <p>Issue: Want to verify that the installation completed correctly</p>
 <p>Solution:</p>
 <ul>
@@ -208,12 +260,12 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from turbogenius._version import version; print(version)&quot;</span>
 </pre></div>
 </div>
-<p>If version information is not displayed, you may not have installed in development mode.</p>
 </li>
 </ul>
+<p>If version information is not displayed, you may not have installed in development mode.</p>
 </section>
 <section id="errors-during-pip-install">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">1.2. Errors during pip install</a><a class="headerlink" href="#errors-during-pip-install" title="Link to this heading"></a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id12" role="doc-backlink">1.2. Errors during pip install</a><a class="headerlink" href="#errors-during-pip-install" title="Link to this heading"></a></h3>
 <p>Issue: An error occurs when executing <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p>
 <p>Solution:</p>
 <ul>
@@ -245,9 +297,9 @@
 </section>
 </section>
 <section id="environment-variable-related-issues">
-<h2><a class="toc-backref" href="#id4" role="doc-backlink">2. Environment Variable-related Issues</a><a class="headerlink" href="#environment-variable-related-issues" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id13" role="doc-backlink">2. Environment Variable-related Issues</a><a class="headerlink" href="#environment-variable-related-issues" title="Link to this heading"></a></h2>
 <section id="turborvb-root-not-set">
-<h3><a class="toc-backref" href="#id5" role="doc-backlink">2.1. TURBORVB_ROOT not set</a><a class="headerlink" href="#turborvb-root-not-set" title="Link to this heading"></a></h3>
+<span id="id3"></span><h3><a class="toc-backref" href="#id14" role="doc-backlink">2.1. TURBORVB_ROOT not set</a><a class="headerlink" href="#turborvb-root-not-set" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="n">Set</span> <span class="n">TURBORVB_ROOT</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">export</span> <span class="n">TURBORVB_ROOT</span><span class="o">=</span><span class="n">XXX</span> <span class="ow">in</span> <span class="o">~.</span><span class="n">bashrc</span><span class="p">)</span>
 </pre></div>
@@ -281,7 +333,7 @@
 </ul>
 </section>
 <section id="turborvb-binary-not-found">
-<h3><a class="toc-backref" href="#id6" role="doc-backlink">2.2. TurboRVB binary not found</a><a class="headerlink" href="#turborvb-binary-not-found" title="Link to this heading"></a></h3>
+<span id="id4"></span><h3><a class="toc-backref" href="#id15" role="doc-backlink">2.2. TurboRVB binary not found</a><a class="headerlink" href="#turborvb-binary-not-found" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">FileNotFoundError</span><span class="p">:</span> <span class="n">binary</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span>
 </pre></div>
@@ -305,7 +357,7 @@
 </ul>
 </section>
 <section id="library-path-issues-on-macos">
-<h3><a class="toc-backref" href="#id7" role="doc-backlink">2.3. Library path issues on macOS</a><a class="headerlink" href="#library-path-issues-on-macos" title="Link to this heading"></a></h3>
+<span id="library-path-issues-macos"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">2.3. Library path issues on macOS</a><a class="headerlink" href="#library-path-issues-on-macos" title="Link to this heading"></a></h3>
 <p>Issue: Library not found error occurs on macOS</p>
 <p>Solution:</p>
 <ul>
@@ -319,9 +371,9 @@
 </section>
 </section>
 <section id="runtime-issues">
-<h2><a class="toc-backref" href="#id8" role="doc-backlink">3. Runtime Issues</a><a class="headerlink" href="#runtime-issues" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id17" role="doc-backlink">3. Runtime Issues</a><a class="headerlink" href="#runtime-issues" title="Link to this heading"></a></h2>
 <section id="input-file-not-found">
-<h3><a class="toc-backref" href="#id9" role="doc-backlink">3.1. Input file not found</a><a class="headerlink" href="#input-file-not-found" title="Link to this heading"></a></h3>
+<span id="id5"></span><h3><a class="toc-backref" href="#id18" role="doc-backlink">3.1. Input file not found</a><a class="headerlink" href="#input-file-not-found" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">FileNotFoundError</span><span class="p">:</span> <span class="p">{</span><span class="n">file</span><span class="p">}</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">found</span><span class="o">.</span>
 </pre></div>
@@ -340,7 +392,7 @@
 </ul>
 </section>
 <section id="pickle-file-not-found">
-<h3><a class="toc-backref" href="#id10" role="doc-backlink">3.2. Pickle file not found</a><a class="headerlink" href="#pickle-file-not-found" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id19" role="doc-backlink">3.2. Pickle file not found</a><a class="headerlink" href="#pickle-file-not-found" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>FileNotFoundError: Did you generate your input file using turbogenius?
 </pre></div>
@@ -350,13 +402,14 @@
 <li><p><strong>Generate input file first</strong></p>
 <p>First generate the input file with the <code class="docutils literal notranslate"><span class="pre">-g</span></code> option, then run with the <code class="docutils literal notranslate"><span class="pre">-r</span></code> option.</p>
 </li>
-<li><p><strong>Execution order</strong></p>
-<p>Execution order: <code class="docutils literal notranslate"><span class="pre">-g</span></code> → <code class="docutils literal notranslate"><span class="pre">-r</span></code> → <code class="docutils literal notranslate"><span class="pre">-post</span></code></p>
-</li>
+<li><p><strong>Execution order</strong></p></li>
 </ul>
+<blockquote>
+<div><p>Execution order: <code class="docutils literal notranslate"><span class="pre">-g</span></code> → <code class="docutils literal notranslate"><span class="pre">-r</span></code> → <code class="docutils literal notranslate"><span class="pre">-post</span></code></p>
+</div></blockquote>
 </section>
 <section id="basis-set-not-found">
-<h3><a class="toc-backref" href="#id11" role="doc-backlink">3.3. Basis set not found</a><a class="headerlink" href="#basis-set-not-found" title="Link to this heading"></a></h3>
+<span id="id6"></span><h3><a class="toc-backref" href="#id20" role="doc-backlink">3.3. Basis set not found</a><a class="headerlink" href="#basis-set-not-found" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The chosen basis_set is not found in the database!!
 </pre></div>
@@ -407,7 +460,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BSE<span class=
 </ul>
 </section>
 <section id="pseudopotential-not-found">
-<h3><a class="toc-backref" href="#id12" role="doc-backlink">3.4. Pseudopotential not found</a><a class="headerlink" href="#pseudopotential-not-found" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">3.4. Pseudopotential not found</a><a class="headerlink" href="#pseudopotential-not-found" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The chosen pseudo_potential is not found in the database!!
 </pre></div>
@@ -445,7 +498,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="structure-file-read-error">
-<h3><a class="toc-backref" href="#id13" role="doc-backlink">3.5. Structure file read error</a><a class="headerlink" href="#structure-file-read-error" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id22" role="doc-backlink">3.5. Structure file read error</a><a class="headerlink" href="#structure-file-read-error" title="Link to this heading"></a></h3>
 <p>Issue: Structure file cannot be read</p>
 <p>Solution:</p>
 <ul>
@@ -461,7 +514,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="execution-command-error">
-<h3><a class="toc-backref" href="#id14" role="doc-backlink">3.6. Execution command error</a><a class="headerlink" href="#execution-command-error" title="Link to this heading"></a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id23" role="doc-backlink">3.6. Execution command error</a><a class="headerlink" href="#execution-command-error" title="Link to this heading"></a></h3>
 <p>Issue: Error occurs when executing TurboRVB binaries</p>
 <p>Solution:</p>
 <ul>
@@ -483,7 +536,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="trexio-file-read-error">
-<h3><a class="toc-backref" href="#id15" role="doc-backlink">3.7. TREXIO file read error</a><a class="headerlink" href="#trexio-file-read-error" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id24" role="doc-backlink">3.7. TREXIO file read error</a><a class="headerlink" href="#trexio-file-read-error" title="Link to this heading"></a></h3>
 <p>Issue: TREXIO file cannot be read</p>
 <p>Solution:</p>
 <ul>
@@ -498,7 +551,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="trexio-to-turborvb-command-error">
-<h3><a class="toc-backref" href="#id16" role="doc-backlink">3.8. trexio-to-turborvb command error</a><a class="headerlink" href="#trexio-to-turborvb-command-error" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id25" role="doc-backlink">3.8. trexio-to-turborvb command error</a><a class="headerlink" href="#trexio-to-turborvb-command-error" title="Link to this heading"></a></h3>
 <p>Issue: trexio-to-turborvb command fails</p>
 <p>Solution:</p>
 <ul>
@@ -514,9 +567,9 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </section>
 </section>
 <section id="other-issues">
-<h2><a class="toc-backref" href="#id17" role="doc-backlink">4. Other Issues</a><a class="headerlink" href="#other-issues" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id26" role="doc-backlink">4. Other Issues</a><a class="headerlink" href="#other-issues" title="Link to this heading"></a></h2>
 <section id="notimplementederror">
-<h3><a class="toc-backref" href="#id18" role="doc-backlink">4.1. NotImplementedError</a><a class="headerlink" href="#notimplementederror" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id27" role="doc-backlink">4.1. NotImplementedError</a><a class="headerlink" href="#notimplementederror" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">NotImplementedError</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
@@ -535,7 +588,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="valueerror">
-<h3><a class="toc-backref" href="#id19" role="doc-backlink">4.2. ValueError</a><a class="headerlink" href="#valueerror" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id28" role="doc-backlink">4.2. ValueError</a><a class="headerlink" href="#valueerror" title="Link to this heading"></a></h3>
 <p>Error message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ValueError</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
@@ -551,23 +604,24 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="shell-compatibility-issues-macos">
-<h3><a class="toc-backref" href="#id20" role="doc-backlink">4.3. Shell compatibility issues (macOS)</a><a class="headerlink" href="#shell-compatibility-issues-macos" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id29" role="doc-backlink">4.3. Shell compatibility issues (macOS)</a><a class="headerlink" href="#shell-compatibility-issues-macos" title="Link to this heading"></a></h3>
 <p>Issue: Shell-related errors occur on macOS</p>
 <p>Solution:</p>
 <ul>
 <li><p><strong>Check shell type</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="nv">$SHELL</span><span class="w">  </span><span class="c1"># Check which shell you are using</span>
+
+<span class="w">    </span>Supported<span class="w"> </span>shells:<span class="w"> </span>bash,<span class="w"> </span>zsh,<span class="w"> </span>csh,<span class="w"> </span>tcsh
 </pre></div>
 </div>
-<p>Supported shells: bash, zsh, csh, tcsh</p>
 </li>
 </ul>
 </section>
 </section>
 <section id="logging-and-debugging">
-<h2><a class="toc-backref" href="#id21" role="doc-backlink">5. Logging and Debugging</a><a class="headerlink" href="#logging-and-debugging" title="Link to this heading"></a></h2>
+<span id="id8"></span><h2><a class="toc-backref" href="#id30" role="doc-backlink">5. Logging and Debugging</a><a class="headerlink" href="#logging-and-debugging" title="Link to this heading"></a></h2>
 <section id="log-level-setting">
-<h3><a class="toc-backref" href="#id22" role="doc-backlink">5.1. Log level setting</a><a class="headerlink" href="#log-level-setting" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id31" role="doc-backlink">5.1. Log level setting</a><a class="headerlink" href="#log-level-setting" title="Link to this heading"></a></h3>
 <p>Issue: Want to obtain more detailed logs</p>
 <p>Solution:</p>
 <ul>
@@ -579,7 +633,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="temporary-file-check">
-<h3><a class="toc-backref" href="#id23" role="doc-backlink">5.2. Temporary file check</a><a class="headerlink" href="#temporary-file-check" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id32" role="doc-backlink">5.2. Temporary file check</a><a class="headerlink" href="#temporary-file-check" title="Link to this heading"></a></h3>
 <p>Issue: Want to check temporary files</p>
 <p>Solution:</p>
 <ul>
@@ -592,7 +646,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="output-file-check">
-<h3><a class="toc-backref" href="#id24" role="doc-backlink">5.3. Output file check</a><a class="headerlink" href="#output-file-check" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id33" role="doc-backlink">5.3. Output file check</a><a class="headerlink" href="#output-file-check" title="Link to this heading"></a></h3>
 <p>Issue: Want to check output files when an error occurs</p>
 <p>Solution:</p>
 <ul>
@@ -611,7 +665,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </section>
 </section>
 <section id="common-error-messages-and-solutions">
-<h2><a class="toc-backref" href="#id25" role="doc-backlink">6. Common Error Messages and Solutions</a><a class="headerlink" href="#common-error-messages-and-solutions" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id34" role="doc-backlink">6. Common Error Messages and Solutions</a><a class="headerlink" href="#common-error-messages-and-solutions" title="Link to this heading"></a></h2>
 <p>The following is a summary of common error messages and their solutions. For detailed information, refer to the corresponding sections above.</p>
 <dl>
 <dt><code class="docutils literal notranslate"><span class="pre">ValueError:</span> <span class="pre">Set</span> <span class="pre">TURBORVB_ROOT</span></code></dt><dd><p><strong>Cause:</strong> Environment variable not set</p>
@@ -641,10 +695,10 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </dl>
 </section>
 <section id="support-and-additional-information">
-<h2><a class="toc-backref" href="#id26" role="doc-backlink">7. Support and Additional Information</a><a class="headerlink" href="#support-and-additional-information" title="Link to this heading"></a></h2>
+<span id="id9"></span><h2><a class="toc-backref" href="#id35" role="doc-backlink">7. Support and Additional Information</a><a class="headerlink" href="#support-and-additional-information" title="Link to this heading"></a></h2>
 <p>If the problem is not resolved, try the following steps:</p>
 <section id="github-issues">
-<h3><a class="toc-backref" href="#id27" role="doc-backlink">7.1. GitHub Issues</a><a class="headerlink" href="#github-issues" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id36" role="doc-backlink">7.1. GitHub Issues</a><a class="headerlink" href="#github-issues" title="Link to this heading"></a></h3>
 <p>Issue: Want to report a problem or get help</p>
 <p>Solution:</p>
 <ul>
@@ -662,7 +716,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </ul>
 </section>
 <section id="documentation-reference">
-<h3><a class="toc-backref" href="#id28" role="doc-backlink">7.2. Documentation Reference</a><a class="headerlink" href="#documentation-reference" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id37" role="doc-backlink">7.2. Documentation Reference</a><a class="headerlink" href="#documentation-reference" title="Link to this heading"></a></h3>
 <p>Issue: Want to find more information</p>
 <p>Solution:</p>
 <ul>
@@ -678,7 +732,7 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
 </section>
 </section>
 <section id="summary">
-<h2><a class="toc-backref" href="#id29" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id38" role="doc-backlink">Summary</a><a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>This guide explained tips and troubleshooting for TurboGenius. If a problem occurs, first refer to this guide, and if it is still not resolved, ask questions on GitHub Issues.</p>
 </section>
 </section>
@@ -687,8 +741,8 @@ turbo-download<span class="w"> </span>-db<span class="w"> </span>BFD<span class=
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="00index.html" class="btn btn-neutral float-left" title="Tips and trouble shooting" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../appendix/00index.html" class="btn btn-neutral float-right" title="Appendix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../reference/subcommands/writestr.html" class="btn btn-neutral float-left" title="writestr" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../03turboworkflows_manual/00index.html" class="btn btn-neutral float-right" title="TurboWorkflows Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

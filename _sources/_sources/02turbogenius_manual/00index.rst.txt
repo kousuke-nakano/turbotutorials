@@ -5,37 +5,76 @@
 
 .. _turbogenius_manual_index:
 
-TurboGenius manual
+TurboGenius Manual
 ===========================================
 
 .. figure:: /_static/07logo/logo2.png
    :width: 600px
 
-TurboGenius is a Python package designed to fully control *ab initio* quantum Monte Carlo (QMC) calculations using a Python script, which allows one to perform high-throughput calculations combined with TurboRVB.
+TurboGenius is the main user-facing interface for running *ab initio* quantum Monte Carlo (QMC) workflows with TurboRVB.
+Use this manual when you want a higher-level CLI or Python interface for standard calculations, tutorials, and command-level guidance.
 
 .. |leftarrow| unicode:: U+2192
 
-**Features of turbogenius**
+.. container:: manual-section-intro
 
-One can manage any job of TurboRVB on python scripts, or on your terminal using the provided command line tool turbogenius.
+   **Choose Where to Start**
 
-For python users, several one-to-one corresponding python modules (classes) are provided, i.e., makefort10.x |leftarrow| Makefort10_genius class in makefort10_genius.py, turborvb.x |leftarrow| VMC_genius class in vmc_genius.py. TurboGenius is designed as a higher layer package that provide several complicated procedures and functions such as fully automatic workflows. TurboGenius is implemented based on the lower layer packages pyturbo and TurboRVB. You can see several examples of TurboGenius scripts in the tests directory. You can also see several simple workflows using TurboGenius in the tests directory.
+.. container:: manual-card-grid
 
-**Features of pyturbo**
+   .. container:: manual-card
 
-One can manage any job of TurboRVB on python scripts. There are one-to-one corresponding python modules (classes), i.e., makefort10.x |leftarrow| Makefort10 class in makefort10.py, convertfort10.x |leftarrow| Convertfort10mol class in convertfort10mol.py. pyturbo is designed as a lower layer package such that the modules can be used as components of higher-level packages. Indeed, the classes are implemented as simple but flexible as possible. Other complicated methods and modules such as fully automatic workflows should be provided at the higher-level packages such as TurboGenius. You can see several examples of pyturbo scripts in the tests directory.
+      **Getting Started**
+
+      Install TurboGenius and understand the standard workflow before moving to larger examples.
+
+      - :doc:`Open Installation <./getting_started/02installation>`
+      - :doc:`Open Basic Workflow <./getting_started/03basic_workflow>`
+
+   .. container:: manual-card
+
+      **Tutorials**
+
+      Learn from end-to-end examples, starting from the hydrogen dimer and extending to periodic systems and finite-size corrections.
+
+      - :doc:`Open Tutorials <./tutorial/00index>`
+
+   .. container:: manual-card
+
+      **Reference Guide**
+
+      Look up CLI subcommands, options, file conventions, and command behavior when you already know what you want to run.
+
+      - :doc:`Open General Description <./reference/01general_description>`
+      - :doc:`Open Command Reference <./reference/02command>`
+
+   .. container:: manual-card
+
+      **Troubleshooting Guide**
+
+      Check common pitfalls, diagnostics, and recovery steps when a calculation or workflow does not behave as expected.
+
+      - :doc:`Open Troubleshooting Guide <./tips/troubleshooting>`
+
+.. container:: manual-section-intro
+
+   **Package Layers**
+
+TurboGenius provides a higher-level interface to TurboRVB from both Python and the terminal.
+For example, ``makefort10.x`` |leftarrow| ``Makefort10_genius`` and ``turborvb.x`` |leftarrow| ``VMC_genius`` expose common workflows through simpler interfaces.
+
+The lower-level package ``pyturbo`` provides more direct building blocks such as ``Makefort10`` and ``Convertfort10mol``.
+Most users should start from TurboGenius and move to ``pyturbo`` only when they need finer-grained scripting control.
 
 **Reference**
 
-K.\  Nakano et al., TurboGenius: Python suite for high-throughput calculations of ab initio quantum Monte Carlo methods, J. Chem. Phys. 159, 224801 (2023).
-
+K.\  Nakano et al., TurboGenius: Python suite for high-throughput calculations of *ab initio* quantum Monte Carlo methods, J. Chem. Phys. 159, 224801 (2023).
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
 
    ./getting_started/00index.rst
    ./tutorial/00index.rst
    ./reference/00index.rst
-   ./tips/00index.rst
-   ./appendix/00index.rst
-
+   ./tips/troubleshooting.rst

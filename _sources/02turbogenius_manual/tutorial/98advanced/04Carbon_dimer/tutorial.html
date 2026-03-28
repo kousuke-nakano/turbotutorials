@@ -6,16 +6,16 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A challenging case: the spin-singlet carbon dimer with various ansätze &mdash; Turbotutorials Updated on 25/03/2026 documentation</title>
+  <title>Carbon Dimer: Comparing Ansatze &mdash; Turbotutorials Updated on 28/03/2026 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=d173fdba" />
+      <link rel="stylesheet" type="text/css" href="../../../../../_static/css/my_theme.css?v=1ea572fa" />
       <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" href="../../../../../_static/roles.css" type="text/css" />
 
   
       <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../../_static/documentation_options.js?v=1aa4b1a3"></script>
+      <script src="../../../../../_static/documentation_options.js?v=147b31cf"></script>
       <script src="../../../../../_static/doctools.js?v=fd6eb6e6"></script>
       <script src="../../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -25,8 +25,26 @@
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
-    <link rel="next" title="Benzene: Kekulé vs. Resonating Structures" href="../05Benzene/tutorial.html" />
-    <link rel="prev" title="Hydrogen dimer calculation starting from the built-in DFT code &#39;prep&#39;" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html" /> 
+    <link rel="next" title="Benzene: Kekule vs. Resonating Structures" href="../05Benzene/tutorial.html" />
+    <link rel="prev" title="Hydrogen Dimer: Built-In DFT with prep" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html" />
+   
+  <script>
+    (function () {
+      var pagename = "_sources/02turbogenius_manual/tutorial/98advanced/04Carbon_dimer/tutorial";
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,25 +67,25 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB manual</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../../00index.html">TurboGenius manual</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/00index.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../01turborvb_manual/00index.html">TurboRVB Manual</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../00index.html">TurboGenius Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/00index.html">Getting Started</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../00index.html">Tutorials</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html">The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../02NH3/tutorial.html">Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../03Hydrogen_chain/tutorial.html">Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../04SiO2_k_gamma/tutorial.html">SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../05Diamond_k_twist/tutorial.html">Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../06Diamond_k_twist_average/tutorial.html">Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../07hBN_finite_size_correction/tutorial.html">h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../08cBN_finite_size_correction/tutorial.html">c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../10Benzene/tutorial.html">Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../00index.html">Advanced topics</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="../01Hydrogen_dimer_flexible_ansatz/tutorial.html">A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../02Hydrogen_dimer_structural_optimization/tutorial.html">Structural optimization of the hydrogen dimer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen dimer calculation starting from the built-in DFT code 'prep'</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">A challenging case: the spin-singlet carbon dimer with various ansätze</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../01Hydrogen_dimer/tutorial.html">Hydrogen Dimer: First VMC/LRDMC Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../02NH3/tutorial.html">Ammonia: VMC/LRDMC with ECPs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../03Hydrogen_chain/tutorial.html">Hydrogen Chain: Periodic VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../04SiO2_k_gamma/tutorial.html">SiO2 Crystal: Gamma-Point VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../05Diamond_k_twist/tutorial.html">Diamond: General k-Point VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../06Diamond_k_twist_average/tutorial.html">Diamond: Twist-Averaged VMC/LRDMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../07hBN_finite_size_correction/tutorial.html">h-BN: Two-Body Finite-Size Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../08cBN_finite_size_correction/tutorial.html">c-BN Conventional Cell: Finite-Size Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../09cBN_finite_size_correction_primitive_cell/tutorial.html">c-BN Primitive Cell: Finite-Size Corrections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../10Benzene/tutorial.html">Benzene: JSD and JAGP</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../00index.html">Advanced Topics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../01Hydrogen_dimer_flexible_ansatz/tutorial.html">Hydrogen Dimer: Flexible JAGP Ansatz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../02Hydrogen_dimer_structural_optimization/tutorial.html">Hydrogen Dimer: Structural Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../03Hydrogen_dimer_builtin_DFT/tutorial.html">Hydrogen Dimer: Built-In DFT with prep</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Carbon Dimer: Comparing Ansatze</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#introduction">00 Introduction</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c2-dimer-and-c-atom-jdft-ansatz">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#preparing-a-trial-wave-function">01-01 Preparing a trial wave function</a></li>
@@ -104,17 +122,16 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../05Benzene/tutorial.html">Benzene: Kekulé vs. Resonating Structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../05Benzene/tutorial.html">Benzene: Kekule vs. Resonating Structures</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../../reference/00index.html">Reference guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../tips/00index.html">Tips and trouble shooting</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../appendix/00index.html">Appendix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/00index.html">Reference Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tips/troubleshooting.html">Troubleshooting Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../03turboworkflows_manual/00index.html">TurboWorkflows manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../03turboworkflows_manual/00index.html">TurboWorkflows Manual</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../acknowledgements/00index.html">Acknowledgements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../contact/00index.html">Contact</a></li>
 </ul>
@@ -133,10 +150,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../../00index.html">TurboGenius manual</a></li>
+          <li class="breadcrumb-item"><a href="../../../00index.html">TurboGenius Manual</a></li>
           <li class="breadcrumb-item"><a href="../../00index.html">Tutorials</a></li>
-          <li class="breadcrumb-item"><a href="../00index.html">Advanced topics</a></li>
-      <li class="breadcrumb-item active">A challenging case: the spin-singlet carbon dimer with various ansätze</li>
+          <li class="breadcrumb-item"><a href="../00index.html">Advanced Topics</a></li>
+      <li class="breadcrumb-item active">Carbon Dimer: Comparing Ansatze</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/02turbogenius_manual/tutorial/98advanced/04Carbon_dimer/tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -146,12 +163,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="a-challenging-case-the-spin-singlet-carbon-dimer-with-various-ansatze">
-<span id="turbogeniustutorial-9804"></span><h1><a class="toc-backref" href="#id11" role="doc-backlink">A challenging case: the spin-singlet carbon dimer with various ansätze</a><a class="headerlink" href="#a-challenging-case-the-spin-singlet-carbon-dimer-with-various-ansatze" title="Link to this heading"></a></h1>
+  <section id="carbon-dimer-comparing-ansatze">
+<span id="turbogeniustutorial-9804"></span><h1><a class="toc-backref" href="#id11" role="doc-backlink">Carbon Dimer: Comparing Ansatze</a><a class="headerlink" href="#carbon-dimer-comparing-ansatze" title="Link to this heading"></a></h1>
 <nav class="contents" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#a-challenging-case-the-spin-singlet-carbon-dimer-with-various-ansatze" id="id11">A challenging case: the spin-singlet carbon dimer with various ansätze</a></p>
+<li><p><a class="reference internal" href="#carbon-dimer-comparing-ansatze" id="id11">Carbon Dimer: Comparing Ansatze</a></p>
 <ul>
 <li><p><a class="reference internal" href="#introduction" id="id12">00 Introduction</a></p></li>
 <li><p><a class="reference internal" href="#c2-dimer-and-c-atom-jdft-ansatz" id="id13">01 C<sub>2</sub> dimer and C atom - JDFT ansatz</a></p>
@@ -1612,8 +1629,8 @@ Coefficient found
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../03Hydrogen_dimer_builtin_DFT/tutorial.html" class="btn btn-neutral float-left" title="Hydrogen dimer calculation starting from the built-in DFT code &#39;prep&#39;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../05Benzene/tutorial.html" class="btn btn-neutral float-right" title="Benzene: Kekulé vs. Resonating Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../03Hydrogen_dimer_builtin_DFT/tutorial.html" class="btn btn-neutral float-left" title="Hydrogen Dimer: Built-In DFT with prep" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../05Benzene/tutorial.html" class="btn btn-neutral float-right" title="Benzene: Kekule vs. Resonating Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
