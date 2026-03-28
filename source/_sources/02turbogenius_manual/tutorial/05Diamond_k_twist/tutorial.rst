@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0501:
 
-Diamond at a general k-point with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
-=========================================================================================================
+Diamond: General k-Point VMC/LRDMC
+==================================
 
 .. _turbogeniustutorial_0501_00:
 

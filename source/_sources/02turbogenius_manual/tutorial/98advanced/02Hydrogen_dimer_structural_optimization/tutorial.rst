@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_9802:
 
-Structural optimization of the hydrogen dimer
-=============================================
+Hydrogen Dimer: Structural Optimization
+=======================================
 
 In this tutorial, you will compute atomic forces for the hydrogen dimer (H\ :sub:`2`) and optimize its geometry. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 

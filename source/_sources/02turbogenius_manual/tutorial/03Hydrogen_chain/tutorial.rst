@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0301:
 
-Periodic hydrogen chain with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs
-====================================================================================================
+Hydrogen Chain: Periodic VMC/LRDMC
+==================================
 
 .. _turbogeniustutorial_0301_00:
 

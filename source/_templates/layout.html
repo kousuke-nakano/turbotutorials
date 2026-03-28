@@ -1,0 +1,22 @@
+{% extends "!layout.html" %}
+
+{%- block extrahead %}
+  {{ super() }}
+  <script>
+    (function () {
+      var pagename = {{ pagename|tojson }};
+      var root = document.documentElement;
+      var themeClass = "portal-theme";
+
+      if (pagename.indexOf("_sources/01turborvb_manual/") === 0) {
+        themeClass = "turborvb-theme";
+      } else if (pagename.indexOf("_sources/02turbogenius_manual/") === 0) {
+        themeClass = "turbogenius-theme";
+      } else if (pagename.indexOf("_sources/03turboworkflows_manual/") === 0) {
+        themeClass = "turboworkflows-theme";
+      }
+
+      root.classList.add(themeClass);
+    })();
+  </script>
+{%- endblock %}

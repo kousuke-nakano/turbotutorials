@@ -1,6 +1,6 @@
 .. _turbogenius_reference_subcommand:
 
-Subcommand reference
+Subcommand Reference
 ===========================================
 
 .. toctree::

@@ -1,6 +1,6 @@
 .. _turbogenius_reference_general_description:
 
-General description
+General Description
 ===========================================
 
 ``TurboGenius`` has a very useful command line tool that allows us

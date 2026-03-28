@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_9803:
 
-Hydrogen dimer calculation starting from the built-in DFT code 'prep'
-=====================================================================
+Hydrogen Dimer: Built-In DFT with prep
+======================================
 
 In this tutorial, you will perform a hydrogen dimer calculation starting from the built-in DFT code prep. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 

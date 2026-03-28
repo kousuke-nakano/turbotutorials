@@ -1,7 +1,52 @@
 .. _turbogenius_tips_troubleshooting:
 
-Troubleshooting guide
+Troubleshooting Guide
 ================================================================
+
+Use this page when installation, environment setup, or runtime execution does not behave as expected. If you are not sure where to start, check installation first, then environment variables, then runtime errors.
+
+.. container:: manual-section-intro
+
+   **Quick Links**
+
+.. container:: manual-card-grid
+
+   .. container:: manual-card
+
+      **Installation**
+
+      Verify the package, fix ``pip install`` failures, and confirm version information.
+
+      - :ref:`Installation Verification <installation-verification>`
+      - :ref:`Errors During pip install <errors-during-pip-install>`
+
+   .. container:: manual-card
+
+      **Environment Variables**
+
+      Resolve missing ``TURBORVB_ROOT``, missing binaries, and macOS library path issues.
+
+      - :ref:`TURBORVB_ROOT not set <turborvb-root-not-set>`
+      - :ref:`TurboRVB binary not found <turborvb-binary-not-found>`
+
+   .. container:: manual-card
+
+      **Runtime Errors**
+
+      Diagnose missing input files, missing databases, TREXIO problems, and execution command failures.
+
+      - :ref:`Input file not found <input-file-not-found>`
+      - :ref:`Basis set not found <basis-set-not-found>`
+      - :ref:`Execution command error <execution-command-error>`
+
+   .. container:: manual-card
+
+      **Support**
+
+      Check logging, common error messages, and where to ask for help.
+
+      - :ref:`Logging and Debugging <logging-and-debugging>`
+      - :ref:`Support and Additional Information <support-and-additional-information>`
 
 .. contents::
    :local:
@@ -9,6 +54,8 @@ Troubleshooting guide
 
 1. Installation-related Issues
 ----------------------------------------------------------------
+
+.. _installation-verification:
 
 1.1. Installation verification
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -37,7 +84,9 @@ Solution:
   
       python -c "from turbogenius._version import version; print(version)"
   
-  If version information is not displayed, you may not have installed in development mode.
+If version information is not displayed, you may not have installed in development mode.
+
+.. _errors-during-pip-install:
 
 1.2. Errors during pip install
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -81,6 +130,8 @@ Solution:
 2. Environment Variable-related Issues
 ----------------------------------------------------------------
 
+.. _turborvb-root-not-set:
+
 2.1. TURBORVB_ROOT not set
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -118,6 +169,8 @@ Solution:
       export TURBOREADFORWARD_RUN_COMMAND=/path/to/readforward-serial.x
       export TURBOVMC_RUN_COMMAND=/path/to/turborvb-serial.x
 
+.. _turborvb-binary-not-found:
+
 2.2. TurboRVB binary not found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -142,6 +195,8 @@ Solution:
   * ``readforward-serial.x``
   * ``turborvb-serial.x``
 
+.. _library-path-issues-macos:
+
 2.3. Library path issues on macOS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -158,6 +213,8 @@ Solution:
 
 3. Runtime Issues
 ----------------------------------------------------------------
+
+.. _input-file-not-found:
 
 3.1. Input file not found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -195,7 +252,9 @@ Solution:
   
 - **Execution order**
   
-  Execution order: ``-g`` → ``-r`` → ``-post``
+ Execution order: ``-g`` → ``-r`` → ``-post``
+
+.. _basis-set-not-found:
 
 3.3. Basis set not found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -312,6 +371,8 @@ Solution:
   
   Verify that the file is UTF-8 encoded.
 
+.. _execution-command-error:
+
 3.6. Execution command error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -427,7 +488,9 @@ Solution:
   
       echo $SHELL  # Check which shell you are using
   
-  Supported shells: bash, zsh, csh, tcsh
+	  Supported shells: bash, zsh, csh, tcsh
+
+.. _logging-and-debugging:
 
 5. Logging and Debugging
 ----------------------------------------------------------------
@@ -523,6 +586,8 @@ The following is a summary of common error messages and their solutions. For det
    
    **Solution:** See Section 3.1
 
+.. _support-and-additional-information:
+
 7. Support and Additional Information
 ----------------------------------------------------------------
 
@@ -565,4 +630,3 @@ Summary
 ----------------------------------------------------------------
 
 This guide explained tips and troubleshooting for TurboGenius. If a problem occurs, first refer to this guide, and if it is still not resolved, ask questions on GitHub Issues.
-

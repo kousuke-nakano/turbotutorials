@@ -4,10 +4,22 @@ Structure of TurboRVB
 .. figure:: /_static/07logo/logo.png
     :width: 700px
 
+Use this section to understand how the TurboRVB executables and workflow components are organized.
+For the detailed format of ``fort.10`` and related wave function files, use the Reference Guide instead.
+
+.. container:: manual-card-grid
+
+   .. container:: manual-card
+
+      **Wave Function Format**
+
+      Read the file-format reference when you need the structure and meaning of the wave function input.
+
+      - :doc:`Open wave function reference <../reference/01wavefunction>`
+
 .. toctree::
    :maxdepth: 1
 
-   ../reference/01wavefunction.rst
    ./07makefort10.rst
    
 .. toctree::

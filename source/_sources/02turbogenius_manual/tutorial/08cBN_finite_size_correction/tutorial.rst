@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0801:
 
-c-BN (conventional cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
-=======================================================================================================================================
+c-BN Conventional Cell: Finite-Size Corrections
+================================================
 
 .. _turbogeniustutorial_0801_00:
 

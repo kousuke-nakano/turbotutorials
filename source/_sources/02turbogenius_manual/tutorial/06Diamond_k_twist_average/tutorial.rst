@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0601:
 
-Diamond with k-point (twist) averaging using a Jastrow–Slater single-determinant ansatz via VMC and LRDMC with ECPs
-===================================================================================================================
+Diamond: Twist-Averaged VMC/LRDMC
+=================================
 
 .. _turbogeniustutorial_0601_00:
 

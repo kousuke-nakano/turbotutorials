@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_9801:
 
-A more flexible ansatz: the hydrogen dimer with a Jastrow–Antisymmetrized Geminal Power (JAGP) ansatz via VMC and lattice-regularized DMC (LRDMC)
-=================================================================================================================================================
+Hydrogen Dimer: Flexible JAGP Ansatz
+====================================
 
 In this tutorial, you will compute all-electron VMC and LRDMC energies of the hydrogen dimer (:math:`H_2`). You will go beyond the Jastrow–Slater single-determinant ansatz by adopting a JAGP wave function. All input and output files for this tutorial can be downloaded :download:`here  <./file.tar.gz>`.
 
