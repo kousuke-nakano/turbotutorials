@@ -3,13 +3,62 @@
 Troubleshooting Guide
 ================================================================
 
-This section describes potential issues and their solutions that may occur during installation, configuration, and execution of TurboWorkflows.
+Use this page when TurboWorkflows fails during installation, machine setup, SSH connection, job submission, or file transfer.
+Start from the group that matches the stage where the workflow stopped, then use the detailed subsections to diagnose the exact error.
+
+.. container:: manual-section-intro
+
+   **Quick Links**
+
+.. container:: manual-card-grid
+
+   .. container:: manual-card
+
+      **Installation**
+
+      Use this section for ``pip install`` failures, installation checks, and missing initial configuration files.
+
+      - :ref:`Jump to installation issues <twf-trouble-installation>`
+
+   .. container:: manual-card
+
+      **Configuration Files**
+
+      Check this section when ``machine_data.yaml``, ``package.yaml``, or ``queue_data.toml`` is missing or inconsistent.
+
+      - :ref:`Jump to configuration issues <twf-trouble-configuration>`
+
+   .. container:: manual-card
+
+      **SSH and Remote Access**
+
+      Start here if TurboWorkflows cannot connect to the remote machine or SSH settings look incorrect.
+
+      - :ref:`Jump to SSH issues <twf-trouble-ssh>`
+
+   .. container:: manual-card
+
+      **Job Execution**
+
+      Use this section for submission script problems, scheduler errors, or abnormal job termination.
+
+      - :ref:`Jump to job issues <twf-trouble-jobs>`
+
+   .. container:: manual-card
+
+      **File Transfer and Logs**
+
+      Check this section for path errors, permission problems, log inspection, and debug settings.
+
+      - :ref:`Jump to transfer and logging <twf-trouble-transfer>`
+      - :ref:`Jump to logging and debugging <twf-trouble-logging>`
 
 .. contents:: Table of Contents
-   :depth: 3
+   :depth: 2
  
+.. _twf-trouble-installation:
 
-1. Installation-related Issues
+1. Installation Issues
 ----------------------------------------------------------------
 
 1.1. Errors during pip install
@@ -43,7 +92,7 @@ Solution:
   
       python --version
 
-1.2. Installation verification
+1.2. Verify Installation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Want to verify that the installation completed correctly
@@ -64,7 +113,7 @@ Solution:
 
   If the help message is displayed, the installation was successful.
 
-1.3. Configuration files are not generated
+1.3. Initial Configuration Files Are Not Generated
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Configuration files are not generated even when executing ``turbo-jobmanager --help``
@@ -84,10 +133,12 @@ Solution:
 
   If the directory does not exist, run ``turbo-jobmanager --help`` again.
 
-2. Configuration File-related Issues
+.. _twf-trouble-configuration:
+
+2. Configuration File Issues
 ----------------------------------------------------------------
 
-2.1. machine_data.yaml not found
+2.1. machine_data.yaml Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -111,7 +162,7 @@ Solution:
       rm -rf ~/.turbofilemanager_config
       turbo-jobmanager --help
 
-2.2. Machine not defined
+2.2. Machine Not Defined
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -135,7 +186,7 @@ Solution:
   
   Check that the YAML syntax is correct. Pay attention to indentation and colon positions.
 
-2.3. package.yaml not found
+2.3. package.yaml Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -157,7 +208,7 @@ Solution:
   
   Copy the template file and edit it.
 
-2.4. queue_data.toml not found
+2.4. queue_data.toml Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -174,7 +225,7 @@ Solution:
   
       cp ~/.turbofilemanager_config/template/queue_data.toml ~/.turbofilemanager_config/localhost/
 
-2.5. queue_label not found
+2.5. queue_label Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -194,7 +245,7 @@ Solution:
           max_job_submit=1
           ...
 
-2.6. Version does not exist
+2.6. Version Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -213,7 +264,7 @@ Solution:
         binary_path:
           stable: /path/to/turborvb/bin  # Check if this key exists
 
-2.7. Binary does not exist
+2.7. Binary Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -235,7 +286,7 @@ Solution:
           - prep-mpi.x
           ...
 
-2.8. Not configured as computation server
+2.8. Machine Is Not Configured for Computation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -254,7 +305,7 @@ Solution:
         machine_type: local
         computation: true  # Check this setting
 
-2.9. Configuration verification methods
+2.9. Validate Configuration Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Want to verify that configuration files are correctly written
@@ -281,10 +332,12 @@ Solution:
   
   If there are problems with the configuration, detailed information will be displayed in error messages. Check the error messages and verify the specified files and lines.
 
-3. SSH Connection-related Issues
+.. _twf-trouble-ssh:
+
+3. SSH Connection Issues
 ----------------------------------------------------------------
 
-3.1. SSH connection fails
+3.1. SSH Connection Fails
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -328,7 +381,7 @@ Solution:
   
       chmod 600 ~/.ssh/config
 
-3.2. SSH configuration file not found
+3.2. SSH Configuration File Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -347,7 +400,7 @@ Solution:
       touch ~/.ssh/config
       chmod 600 ~/.ssh/config
 
-3.3. Connection via proxy
+3.3. Connect via a Proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Need to connect to a remote machine via a proxy server
@@ -364,7 +417,7 @@ Solution:
           ProxyCommand ssh -W %h:%p proxy_host
           IdentityFile ~/.ssh/id_rsa
 
-3.4. SSH connection retry
+3.4. SSH Retry Behavior
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: SSH connection sometimes fails
@@ -376,10 +429,12 @@ Solution:
   TurboWorkflows automatically retries (default: maximum 10 times, 120 second intervals).
   Check the error messages and verify that there are no network issues or server-side problems.
 
-4. Job Execution-related Issues
+.. _twf-trouble-jobs:
+
+4. Job Execution Issues
 ----------------------------------------------------------------
 
-4.1. Job script template not found
+4.1. Job Script Template Not Found
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -403,7 +458,7 @@ Solution:
       cp ~/.turbofilemanager_config/template/submit_mpi.sh ~/.turbofilemanager_config/localhost/
       cp ~/.turbofilemanager_config/template/submit_nompi.sh ~/.turbofilemanager_config/localhost/
 
-4.2. Job submission command error
+4.2. Job Submission Command Fails
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: ``jobsubmit`` command (sbatch, qsub, etc.) fails
@@ -423,7 +478,7 @@ Solution:
   
   Check that the syntax of the generated job script is correct. Refer to the job scheduler documentation for your system.
 
-4.3. jobnum_index configuration error
+4.3. jobnum_index Is Incorrect
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Job ID cannot be retrieved correctly
@@ -448,7 +503,7 @@ Solution:
   
   In this case, JOBID (42.server-pbs) is in the 0th column, so set ``jobnum_index: 0``.
 
-4.4. Job terminates abnormally
+4.4. Job Terminates Abnormally
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Error message::
@@ -469,10 +524,12 @@ Solution:
   
   Verify that resource settings such as memory and CPU count are appropriate.
 
-5. File Transfer-related Issues
+.. _twf-trouble-transfer:
+
+5. File Transfer Issues
 ----------------------------------------------------------------
 
-5.1. file_manager_root path error
+5.1. file_manager_root Path Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Path error occurs during file transfer
@@ -493,7 +550,7 @@ Solution:
   
   Note that symbolic links are resolved.
 
-5.2. Directory permission error
+5.2. Directory Permission Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Permission error occurs during file transfer
@@ -510,10 +567,12 @@ Solution:
   
   Verify that the destination directory has write permissions.
 
-6. Logging and Debugging
+.. _twf-trouble-logging:
+
+6. Logs and Debugging
 ----------------------------------------------------------------
 
-6.1. Log file check
+6.1. Check Log Files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Want to check error details
@@ -529,7 +588,7 @@ Solution:
   
   TurboWorkflows temporary files are saved in ``~/.turbo_workflows_tmp``.
 
-6.2. Enable debug mode
+6.2. Enable Debug Mode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Want to obtain more detailed logs
@@ -572,10 +631,12 @@ Solution:
       logger = getLogger("Turbo-Workflows")
       logger.setLevel("DEBUG")
 
+.. _twf-trouble-other:
+
 7. Other Issues
 ----------------------------------------------------------------
 
-7.1. Dependency errors
+7.1. Dependency Errors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Dependencies between workflows are not resolved correctly
@@ -590,7 +651,7 @@ Solution:
   
   Set ``dependency_graph_draw=True`` in ``Launcher`` to check the dependency graph.
 
-7.2. Package import error
+7.2. Package Import Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: Cannot import TurboRVB or TurboGenius modules
@@ -609,7 +670,7 @@ Solution:
   
   Verify that required environment variables (such as PATH and/or PYTHONPATH) are set.
 
-7.3. Configuration file syntax error
+7.3. Configuration File Syntax Error
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issue: YAML or TOML syntax error
@@ -632,6 +693,8 @@ Solution:
   
   Use YAML or TOML syntax checkers.
 
+.. _twf-trouble-support:
+
 8. Support and Additional Information
 ----------------------------------------------------------------
 
@@ -652,4 +715,3 @@ If the problem is not resolved:
 - **Check system requirements**
   
   Verify that Python version, TurboRVB, and TurboGenius versions meet the requirements.
-

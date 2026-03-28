@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0101:
 
-The simplest example: the hydrogen dimer with a Jastrow–Slater single-determinant ansatz via Variational Monte Carlo (VMC) and lattice-regularized Diffusion Monte Carlo (LRDMC)
-================================================================================================================================================================================
+Hydrogen Dimer: First VMC/LRDMC Workflow
+========================================
 
 00 Introduction
 ----------------------------------------------------------------
@@ -587,4 +587,3 @@ The total energy obtained at the steps above and the reference value are summari
 - LRDMC (JDFT extrapolated to a :math:`\to 0`) = -1.174(5) Ha.
 
 - CCSD(T)=FULL/cc-pVQZ = -1.173793 Ha (Computational Chemistry Comparison and Benchmark DataBase)
-

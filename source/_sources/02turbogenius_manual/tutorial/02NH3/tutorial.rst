@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0201:
 
-Ammonia with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using effective core potentials (ECPs)
-================================================================================================================
+Ammonia: VMC/LRDMC with ECPs
+============================
 
 .. contents:: Table of Contents
    :depth: 3

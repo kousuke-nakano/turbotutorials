@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_1001:
 
-Benzene with a Jastrow–Slater single-determinant (JSD) and Jastrow–Antisymmetrized Geminal Function ansatz (JAGP)
-===========================================================================================================================
+Benzene: JSD and JAGP
+=====================
 
 .. contents:: Table of Contents
    :depth: 3

@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0701:
 
-h-BN with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
-===================================================================================================================
+h-BN: Two-Body Finite-Size Corrections
+======================================
 
 .. _turbogeniustutorial_0701_00:
 

@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_9805:
 
-Benzene: Kekulé vs. Resonating Structures
-===========================================================================================================================
+Benzene: Kekule vs. Resonating Structures
+=========================================
 
 .. contents:: Table of Contents
    :depth: 3

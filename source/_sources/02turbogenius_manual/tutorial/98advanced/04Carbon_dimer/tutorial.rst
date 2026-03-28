@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_9804:
 
-A challenging case: the spin-singlet carbon dimer with various ansätze
-======================================================================
+Carbon Dimer: Comparing Ansatze
+===============================
 
 .. contents:: Table of Contents
    :depth: 3

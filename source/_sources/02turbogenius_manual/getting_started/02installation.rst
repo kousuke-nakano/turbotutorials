@@ -5,8 +5,8 @@
 
 .. _turbogenius_installation:
 
-Installation of TurboGenius
-======================================================
+Install TurboGenius
+===================
 
 The following is an instruction to install TurboGenius.
 If you have any problem on the installation, please visit `TurboGenius Discussions <https://github.com/kousuke-nakano/turbogenius/discussions>`__ and please post your problem.

@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0401:
 
-SiO2 crystal (Gamma-point) with a Jastrow-Slater single-determinant ansatz via VMC and LRDMC using ECPs
-=======================================================================================================
+SiO2 Crystal: Gamma-Point VMC/LRDMC
+===================================
 
 .. _turbogeniustutorial_0401_00:
 

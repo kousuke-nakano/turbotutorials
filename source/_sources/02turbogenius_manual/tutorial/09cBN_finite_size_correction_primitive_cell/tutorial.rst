@@ -5,8 +5,8 @@
 
 .. _turbogeniustutorial_0901:
 
-c-BN (primitive cell) with a Jastrow–Slater single-determinant ansatz via VMC and LRDMC using ECPs: two-body finite-size corrections
-=======================================================================================================================================
+c-BN Primitive Cell: Finite-Size Corrections
+=============================================
 
 .. _turbogeniustutorial_0901_00:
 

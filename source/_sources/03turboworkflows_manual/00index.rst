@@ -3,31 +3,70 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-TurboWorkflows manual
+TurboWorkflows Manual
 ===========================================
 
 .. figure:: /_static/07logo/logo3.jpg
    :width: 600px
 
 .. |leftarrow| unicode:: U+2192
-	   
-`TurboWorkflows` provides a sophisticated way to realize workflows by combining `TurboGenius` with an internal file/job managing package.
-It manages file transfers as well as job submissions/collections from/to remote machines, supports job-queuing systems such as PBS and Slurm, and relies on the `paramiko` module for its data transfer.
 
-In `TurboWorkflows`, each workflow class inherits the parent Workflow class with options useful for a QMC calculation.
-For instance, in the `VMC_workflow`, a user can specify a target accuracy (i.e., statistical error) of a VMC calculation.
-The `VMC_workflow` first submits an initial VMC run to a machine with the specified MPI and OpenMP processes to get a stochastic error bar per Monte Carlo step.
-Since the error bar is inversely proportional to the square root of the number of Monte Carlo samplings, the necessary steps to achieve the target accuracy is readily estimated by the initial run.
-The `VMC_workflow` then submits subsequent production VMC runs with the estimated necessary number of steps.
-Similar functionalities are also implemented in other workflow scripts such as `VMCopt_workflow`, `LRDMC_workflow`, and `LRDMCopt_workflow`.
+TurboWorkflows automates multi-step QMC workflows by combining TurboGenius with remote execution, file transfer, and workflow management.
+Use this manual when you need to coordinate calculations across machines, queueing systems, and dependent workflow stages.
 
-`TurboWorkflows` can solve the dependencies of a given set of workflows and manage sequential jobs.
-`Launcher` class accepts `workflows` as a list, solve the dependencies of the workflows, and submit independent sequential jobs simultaneously and independently.
-`Launcher` realises this feature by the so-called topological ordering of a Directed Acyclic Graph (DAG) and the build-in python module, `asyncio`.
+Workflow classes such as ``VMC_workflow`` and ``LRDMC_workflow`` estimate required sampling, submit production jobs, and manage sequential execution.
+The ``Launcher`` resolves dependencies between workflows and schedules independent jobs using a directed acyclic graph (DAG) model.
 
-An example of workflow is presented in the tutorial that performs a sequential job, `PySCF` |leftarrow| `TREXIO converion` |leftarrow| `TurboRVB WF (JSD ansatz)` |leftarrow| `VMC optimization (Jastrow factor optimization)` |leftarrow| `VMC` |leftarrow| `LRDMC` (`lattice space` |leftarrow| `0`). Finally, we will get the extrapolated LRDMC energy of the water dimer.
+The tutorials show complete examples such as ``PySCF`` |leftarrow| ``TREXIO conversion`` |leftarrow| ``TurboRVB wave function generation`` |leftarrow| ``VMC optimization`` |leftarrow| ``VMC`` |leftarrow| ``LRDMC``.
+
+.. container:: manual-section-intro
+
+   **Choose Where to Start**
+
+.. container:: manual-card-grid
+
+   .. container:: manual-card
+
+      **Getting Started**
+
+      Install TurboWorkflows, configure machine settings, and understand the execution environment.
+
+      - :doc:`Open Getting Started <./getting_started/00index>`
+
+   .. container:: manual-card
+
+      **Tutorials**
+
+      Follow end-to-end workflow examples, including sequential and remote job execution.
+
+      - :doc:`Open Tutorials <./tutorial/00index>`
+
+   .. container:: manual-card
+
+      **Troubleshooting Guide**
+
+      Diagnose installation, configuration, and execution issues.
+
+      - :doc:`Open Troubleshooting Guide <./troubleshooting>`
+
+   .. container:: manual-card
+
+      **Reference Guide**
+
+      Look up workflow classes, launcher behavior, configuration files, and CLI tools.
+
+      - :doc:`Open Reference Guide <./reference/00index>`
+
+   .. container:: manual-card
+
+      **Appendix**
+
+      Check supporting configuration examples that complement the main reference.
+
+      - :doc:`Open the Appendix <./appendix/00index>`
 
 .. toctree::
+   :hidden:
    :maxdepth: 1
    
    ./getting_started/00index.rst
