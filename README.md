@@ -3,7 +3,7 @@ README.md
 
 <img src="logo/turborvb_logo.png" width="70%">
 
-![license](https://img.shields.io/github/license/kousuke-nakano/turbotutorials) ![release](https://img.shields.io/github/release/kousuke-nakano/turbotutorials/all.svg) ![fork](https://img.shields.io/github/forks/kousuke-nakano/turbotutorials?style=social) ![stars](https://img.shields.io/github/stars/kousuke-nakano/turbotutorials?style=social)
+![license](https://img.shields.io/github/license/kousuke-nakano/turbotutorials) ![fork](https://img.shields.io/github/forks/kousuke-nakano/turbotutorials?style=social) ![stars](https://img.shields.io/github/stars/kousuke-nakano/turbotutorials?style=social)
 
 The tutorials are deployed from [GitHub Pages](https://kousuke-nakano.github.io/turbotutorials/).
 
