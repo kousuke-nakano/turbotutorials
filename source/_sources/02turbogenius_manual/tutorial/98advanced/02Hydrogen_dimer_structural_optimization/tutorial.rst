@@ -35,19 +35,13 @@ This section describes the procedure for preparing a JAGP wavefunction for the H
       % cd 12_jagp_wf_shorter_distance
       % python3 pyscf_H2.py
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file
-
-   .. code-block:: console
-
-      % trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
-
-3. Convert from the TREXIO file to the TurboRVB wavefunction
+2. Convert from the TREXIO file to the TurboRVB wavefunction
 
    .. code-block:: console
 
       % trexio-to-turborvb H2.hdf5 -jasbasis cc-pVDZ -jascutbasis
 
-4. Convert from JDFT wavefunction to JAGP wavefunction
+3. Convert from JDFT wavefunction to JAGP wavefunction
 
    .. code-block:: console
 

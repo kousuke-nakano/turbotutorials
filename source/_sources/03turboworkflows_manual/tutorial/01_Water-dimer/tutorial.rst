@@ -47,7 +47,7 @@ PySCF Calculation Script
 - Basis set: ``ccecp-ccpvtz``
 - ECP: ``ccecp``
 - Method: DFT (LDA)
-- Output: PySCF checkpoint file (``pyscf.chk``)
+- Output: TREXIO file (``water.hdf5``) via pyscf-forge
 
 Execution Method
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,10 +58,9 @@ Execute the PySCF calculation using the ``do.sh`` script:
 
    bash do.sh
 
-This script performs the following operations:
+This script performs the following operation:
 
-1. Execute ``pyscf_water_dimer.py`` to perform PySCF calculation
-2. Convert PySCF checkpoint file (``pyscf.chk``) to TREXIO format (``water.hdf5``)
+1. Execute ``pyscf_water_dimer.py`` to perform PySCF calculation and generate TREXIO file
 
 .. code-block:: bash
 
@@ -69,19 +68,11 @@ This script performs the following operations:
    # Execute PySCF calculation
    python3 pyscf_water_dimer.py 2>&1 | tee out.o
 
-   # Convert to TREXIO format
-   trexio convert-from -t pyscf -i pyscf.chk -b hdf5 water.hdf5
-
 Output Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-- ``pyscf.chk``: PySCF checkpoint file
 - ``water.hdf5``: Wavefunction data in TREXIO format (used in the next step)
 - ``out.pyscf``, ``out.o``: PySCF calculation log output and error output
-
-.. note::
-
-   This step will be simplified in the upcoming version of PySCF that directly generates outputs in TREXIO format.
 
 Step 2: TurboRVB Workflow Execution
 ----------------------------------------------------------------

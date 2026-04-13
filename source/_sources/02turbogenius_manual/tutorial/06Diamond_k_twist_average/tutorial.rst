@@ -37,15 +37,9 @@ The procedure is as follows:
       % cd 01_trial_wavefunction
       % python3 pyscf_Diamond_k_average.py
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file:
-
-  .. code-block:: console
-
-      % trexio convert-from -t pyscf -i Diamond_k_average.chk -b hdf5 Diamond_k_average.hdf5
-
 The wavefunction at each k point is saved in a separate file `k*_Diamond_k_average.hdf5`.
 
-3. Convert the TREXIO file to a TurboRVB wavefunction file:
+2. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
 

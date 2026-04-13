@@ -23,7 +23,7 @@ In this tutorial, you will compute all-electron VMC and LRDMC energies of the hy
 01 Preparing a JDFT trial wavefunction using PySCF
 ----------------------------------------------------------------
 
-First, we will generate a JDFT trial wavefunction by starting from the Hartree-Fock or DFT calcualtion using PySCF. We assume that you already have a working copy of PySCF, e.g. by ``pip install pyscf``.
+First, we will generate a JDFT trial wavefunction by starting from the Hartree-Fock or DFT calcualtion using PySCF. We assume that you already have a working copy of PySCF, e.g. by ``pip install pyscf-forge``.
 
 The procedure is as follows:
 
@@ -35,15 +35,7 @@ The procedure is as follows:
     % cd 01_trial_wavefunction
     % python3 pyscf_H2.py
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
-
-.. code-block:: console
-
-    % # pyscf chkfile to TREXIO
-    % trexio convert-from -t pyscf -i H2.chk -b hdf5 H2.hdf5
-    % # trexio convert-from -t pyscf -i H2.chk -b hdf5 --overwrite H2.hdf5
-
-3. Convert from the TREXIO file to the TurboRVB wavefunction file by typing:
+2. Convert from the TREXIO file to the TurboRVB wavefunction file by typing:
 
 .. code-block:: console
 

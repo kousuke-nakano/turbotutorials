@@ -30,7 +30,7 @@ In this tutorial, you will carry out a VMC/LRDMC workflow for the periodic hydro
 The first step of this tutorial is to generate a JDFT ansatz using PySCF.
 A Python script will be presented later.
 In this example, a unit cell containing two hydrogen atoms is repeated 5 times along z-axis, forming a supercell.
-We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf.
+We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf-forge.
 
 The procedure is as follows:
 
@@ -50,13 +50,7 @@ The procedure is as follows:
          import psutil
          MAX_MEMORY = int(psutil.virtual_memory().available / 1e6)
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file by typing:
-
-   .. code-block:: console
-
-      % trexio convert-from -t pyscf -i H-chain.chk -b hdf5 H-chain.hdf5
-
-3. Convert from TREXIO file to the TurboRVB wavefunction file by typing:
+2. Convert from TREXIO file to the TurboRVB wavefunction file by typing:
 
    .. code-block:: console
 

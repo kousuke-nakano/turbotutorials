@@ -38,13 +38,6 @@ The Python code is given as follows:
 .. literalinclude:: data/pyscf_NH3.py
    :language: python
 
-You can convert the generated PySCF checkpoint file to a TREXIO file
-
-.. code-block:: console
-
-    % # pyscf chkfile to TREXIO
-    % trexio convert-from -t pyscf -i NH3.chk -b hdf5 NH3.hdf5
-
 .. _turbogeniustutorial_0201_02:
 
 02 From TREXIO file to TurboRVB WF

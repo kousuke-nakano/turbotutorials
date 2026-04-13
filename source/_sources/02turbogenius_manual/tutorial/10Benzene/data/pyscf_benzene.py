@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# pySCF -> pyscf checkpoint file (NH3 molecule)
+# pySCF-forge -> TREXIO file (benzene molecule)
 
 # load python packages
 import os, sys
@@ -11,6 +11,7 @@ from ase.io import read
 
 # load pyscf packages
 from pyscf import gto, scf, mp, tools
+from pyscf.tools import trexio as trexio_tools
  
 #open boundary condition
 structure_file="benzene.xyz"
@@ -87,3 +88,8 @@ print(f"Total HF/DFT energy = {total_energy}")
 print("HF/DFT calculation is done.")
 print("PySCF calculation is done.")
 print(f"checkpoint file = {checkpoint_file}")
+
+# dump to TREXIO file
+trexio_file = "benzene.hdf5"
+trexio_tools.to_trexio(mf, trexio_file)
+print(f"TREXIO file = {trexio_file}")

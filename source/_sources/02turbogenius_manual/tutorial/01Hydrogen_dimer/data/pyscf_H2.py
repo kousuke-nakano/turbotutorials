@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# pySCF -> pyscf checkpoint file (NH3 molecule)
+# pySCF-forge -> TREXIO file (H2 molecule)
 
 # load python packages
 import os, sys
 
 # load pyscf packages
 from pyscf import gto, scf, mp, tools
+from pyscf.tools import trexio as trexio_tools
 
 #open boundary condition
 checkpoint_file="H2.chk"
@@ -78,3 +79,8 @@ print(f"Total HF/DFT energy = {total_energy}")
 print("HF/DFT calculation is done.")
 print("PySCF calculation is done.")
 print(f"checkpoint file = {checkpoint_file}")
+
+# dump to TREXIO file
+trexio_file = "H2.hdf5"
+trexio_tools.to_trexio(mf, trexio_file)
+print(f"TREXIO file = {trexio_file}")
