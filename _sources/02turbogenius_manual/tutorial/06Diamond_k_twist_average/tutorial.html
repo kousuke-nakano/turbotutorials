@@ -160,16 +160,8 @@ The procedure is as follows:</p>
 </pre></div>
 </div>
 </div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p>Convert the generated PySCF checkpoint file to a TREXIO file:</p></li>
-</ol>
-<blockquote>
-<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class="w"> </span>pyscf<span class="w"> </span>-i<span class="w"> </span>Diamond_k_average.chk<span class="w"> </span>-b<span class="w"> </span>hdf5<span class="w"> </span>Diamond_k_average.hdf5
-</pre></div>
-</div>
-</div></blockquote>
 <p>The wavefunction at each k point is saved in a separate file <cite>k*_Diamond_k_average.hdf5</cite>.</p>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="2">
 <li><p>Convert the TREXIO file to a TurboRVB wavefunction file:</p></li>
 </ol>
 <blockquote>

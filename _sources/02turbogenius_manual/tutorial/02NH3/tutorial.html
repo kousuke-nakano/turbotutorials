@@ -162,7 +162,7 @@
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># coding: utf-8</span>
 
-<span class="c1"># pySCF -&gt; pyscf checkpoint file (NH3 molecule)</span>
+<span class="c1"># pySCF-forge -&gt; TREXIO file (NH3 molecule)</span>
 
 <span class="c1"># load python packages</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
@@ -172,6 +172,7 @@
 
 <span class="c1"># load pyscf packages</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyscf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gto</span><span class="p">,</span> <span class="n">scf</span><span class="p">,</span> <span class="n">mp</span><span class="p">,</span> <span class="n">tools</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyscf.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">trexio</span> <span class="k">as</span> <span class="n">trexio_tools</span>
  
 <span class="c1">#open boundary condition</span>
 <span class="n">structure_file</span><span class="o">=</span><span class="s2">&quot;NH3.xyz&quot;</span>
@@ -248,11 +249,11 @@
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;HF/DFT calculation is done.&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PySCF calculation is done.&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;checkpoint file = </span><span class="si">{</span><span class="n">checkpoint_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>You can convert the generated PySCF checkpoint file to a TREXIO file</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span><span class="c1"># pyscf chkfile to TREXIO</span>
-<span class="gp">% </span>trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class="w"> </span>pyscf<span class="w"> </span>-i<span class="w"> </span>NH3.chk<span class="w"> </span>-b<span class="w"> </span>hdf5<span class="w"> </span>NH3.hdf5
+
+<span class="c1"># dump to TREXIO file</span>
+<span class="n">trexio_file</span> <span class="o">=</span> <span class="s2">&quot;NH3.hdf5&quot;</span>
+<span class="n">trexio_tools</span><span class="o">.</span><span class="n">to_trexio</span><span class="p">(</span><span class="n">mf</span><span class="p">,</span> <span class="n">trexio_file</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;TREXIO file = </span><span class="si">{</span><span class="n">trexio_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

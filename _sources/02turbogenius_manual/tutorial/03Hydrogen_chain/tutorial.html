@@ -151,7 +151,7 @@
 <p id="turbogeniustutorial-0301-01-01">The first step of this tutorial is to generate a JDFT ansatz using PySCF.
 A Python script will be presented later.
 In this example, a unit cell containing two hydrogen atoms is repeated 5 times along z-axis, forming a supercell.
-We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf.</p>
+We assume that you already have installed a working copy of PySCF, e.g. by pip install pyscf-forge.</p>
 <p>The procedure is as follows:</p>
 <ol class="arabic">
 <li><p>Run the PySCF calculation by typing:</p>
@@ -166,11 +166,6 @@ We assume that you already have installed a working copy of PySCF, e.g. by pip i
 <span class="n">MAX_MEMORY</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">available</span> <span class="o">/</span> <span class="mf">1e6</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</li>
-<li><p>Convert the generated PySCF checkpoint file to a TREXIO file by typing:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>trexio<span class="w"> </span>convert-from<span class="w"> </span>-t<span class="w"> </span>pyscf<span class="w"> </span>-i<span class="w"> </span>H-chain.chk<span class="w"> </span>-b<span class="w"> </span>hdf5<span class="w"> </span>H-chain.hdf5
-</pre></div>
 </div>
 </li>
 <li><p>Convert from TREXIO file to the TurboRVB wavefunction file by typing:</p>

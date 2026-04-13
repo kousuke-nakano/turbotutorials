@@ -36,13 +36,7 @@ The procedure is as follows:
       % cd 01_trial_wavefunction
       % python3 pyscf_Diamond_k_twist.py
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file:
-
-  .. code-block:: console
-
-      % trexio convert-from -t pyscf -i Diamond_k_twist.chk -b hdf5 Diamond_k_twist.hdf5
-
-3. Convert the TREXIO file to a TurboRVB wavefunction file:
+2. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
 

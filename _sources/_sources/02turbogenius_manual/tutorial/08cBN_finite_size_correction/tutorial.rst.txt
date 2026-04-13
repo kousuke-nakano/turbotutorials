@@ -37,13 +37,7 @@ The procedure is as follows:
       % cd s_1_1_1/01_trial_wavefunction
       % python3 pyscf_cBN.py
 
-2. Convert the generated PySCF checkpoint file to a TREXIO file:
-
-  .. code-block:: console
-
-      % trexio convert-from -t pyscf -i cBN.chk -b hdf5 cBN.hdf5
-
-3. Convert the TREXIO file to a TurboRVB wavefunction file:
+2. Convert the TREXIO file to a TurboRVB wavefunction file:
 
   .. code-block:: console
 

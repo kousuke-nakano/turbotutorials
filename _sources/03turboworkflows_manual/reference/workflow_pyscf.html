@@ -356,8 +356,8 @@ options (structure, basis, ECP, SCF method, twist averaging, etc.).</p></li>
 and completion using <code class="xref py py-func docutils literal notranslate"><span class="pre">asyncio.sleep()</span></code>, then fetches output files (e.g.
 PySCF output, checkpoint, <code class="docutils literal notranslate"><span class="pre">int1e_ovlp.npy</span></code>).</p></li>
 <li><p>Loads the SCF result from the checkpoint, stores the total energy in
-<code class="docutils literal notranslate"><span class="pre">output_values[&quot;energy&quot;]</span></code>, and runs <code class="xref py py-func docutils literal notranslate"><span class="pre">pyscf_to_trexio()</span></code> to produce the
-TREXIO file (e.g. <code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code>).</p></li>
+<code class="docutils literal notranslate"><span class="pre">output_values[&quot;energy&quot;]</span></code>, and uses <code class="docutils literal notranslate"><span class="pre">pyscf.tools.trexio.to_trexio</span></code>
+(provided by pyscf-forge) to produce the TREXIO file (e.g. <code class="docutils literal notranslate"><span class="pre">trexio.hdf5</span></code>).</p></li>
 <li><p>Persists state in a pkl file under the <code class="docutils literal notranslate"><span class="pre">pkl</span></code> directory.</p></li>
 </ul>
 <p>On success, the method returns (status, list of output file paths under the
@@ -366,8 +366,7 @@ root directory, and an output-values dict containing <code class="docutils liter
 <section id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">turboworkflows.pyscf_tools.pyscf_to_trexio.pyscf_to_trexio()</span></code> — PySCF
-to TREXIO conversion.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyscf.tools.trexio.to_trexio</span></code> (pyscf-forge) — PySCF to TREXIO conversion.</p></li>
 </ul>
 </section>
 </section>

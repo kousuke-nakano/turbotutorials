@@ -37,14 +37,6 @@ Run a PySCF calculation by typing as follows. The Python script will be presente
     % cd 01_pyscf_calculation
     % python3 pyscf_SiO2.py
 
-You can convert the generated PySCF checkpoint file to a TREXIO file
-
-.. code-block:: console
-
-    % # pyscf chkfile to TREXIO
-    % trexio convert-from -t pyscf -i SiO2.chk -b hdf5 SiO2.hdf5
-
-
 .. _turbogeniustutorial_0401_02:
 
 02 From TREXIO file to TurboRVB WF

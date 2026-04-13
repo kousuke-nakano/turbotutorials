@@ -79,8 +79,8 @@ calculation is skipped. Otherwise, the workflow:
   and completion using :func:`asyncio.sleep`, then fetches output files (e.g.
   PySCF output, checkpoint, ``int1e_ovlp.npy``).
 - Loads the SCF result from the checkpoint, stores the total energy in
-  ``output_values["energy"]``, and runs :func:`pyscf_to_trexio` to produce the
-  TREXIO file (e.g. ``trexio.hdf5``).
+  ``output_values["energy"]``, and uses ``pyscf.tools.trexio.to_trexio``
+  (provided by pyscf-forge) to produce the TREXIO file (e.g. ``trexio.hdf5``).
 - Persists state in a pkl file under the ``pkl`` directory.
 
 On success, the method returns (status, list of output file paths under the
@@ -89,5 +89,4 @@ root directory, and an output-values dict containing ``"energy"``).
 See also
 --------------------------------
 
-- :func:`turboworkflows.pyscf_tools.pyscf_to_trexio.pyscf_to_trexio` — PySCF
-  to TREXIO conversion.
+- ``pyscf.tools.trexio.to_trexio`` (pyscf-forge) — PySCF to TREXIO conversion.

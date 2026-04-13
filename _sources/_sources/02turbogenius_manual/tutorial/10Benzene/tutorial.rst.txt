@@ -38,13 +38,6 @@ The Python code is given as follows:
 .. literalinclude:: data/pyscf_benzene.py
    :language: python
 
-You can convert the generated PySCF checkpoint file to a TREXIO file
-
-.. code-block:: console
-
-    % # pyscf chkfile to TREXIO
-    % trexio convert-from -t pyscf -i benzene.chk -b hdf5 benzene.hdf5
-
 .. _turbogeniustutorial_1001_02:
 
 02 From TREXIO file to TurboRVB WF
